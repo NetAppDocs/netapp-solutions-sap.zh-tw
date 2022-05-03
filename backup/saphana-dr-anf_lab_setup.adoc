@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_lab_setup.html 
+keywords: lab, setup, solution, validation, sap, hana, single, host, system, microsoft, azacsnap, snapshot 
+summary: 解決方案驗證是以SAP HANA單一主機系統執行。Anf的Microsoft AzAcSnap Snapshot備份工具已用於設定HANA應用程式一致的Snapshot備份。 
+---
+= 實驗室設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_requirements_and_best_practices.html["先前：要求與最佳實務做法。"]
+
+解決方案驗證是以SAP HANA單一主機系統執行。Anf的Microsoft AzAcSnap Snapshot備份工具已用於設定HANA應用程式一致的Snapshot備份。已設定每日資料磁碟區、每小時記錄備份及共用磁碟區複寫。災難恢復測試和容錯移轉已通過儲存點以及轉送恢復作業的驗證。
+
+下列軟體版本已在實驗室設定中使用：
+
+* 單一主機SAP HANA 2.0 SPS5系統與單一租戶
+* 適用於SAP 15 SP1的SUSE SLES
+* AzAcSnap 5.0
+
+
+災難恢復站台已設定具有手動QoS的單一容量資源池。
+
+下圖說明實驗室設定。
+
+image:saphana-dr-anf_image7.png["錯誤：缺少圖形影像"]
+
+
+
+== 使用AzAcSnap進行Snapshot備份組態
+
+在主要站台上、AzAcSnap已設定為針對HANA系統PR1建立應用程式一致的Snapshot備份。這些Snapshot備份可在PR1 HANA系統的ANF資料磁碟區取得、也可在SAP HANA備份目錄中註冊、如下圖所示。Snapshot備份排程為每4小時執行一次。
+
+使用ANF跨區域複寫複寫資料磁碟區後、這些Snapshot備份會複寫到災難恢復站台、並可用來還原HANA資料庫。
+
+下圖顯示HANA資料磁碟區的Snapshot備份。
+
+image:saphana-dr-anf_image8.png["錯誤：缺少圖形影像"]
+
+下圖顯示SAP HANA備份目錄。
+
+image:saphana-dr-anf_image9.png["錯誤：缺少圖形影像"]
+
+link:saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html["下一步：Anf跨區域複寫的組態步驟。"]

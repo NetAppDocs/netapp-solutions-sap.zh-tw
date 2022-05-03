@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_aff_nfs_sap_hana_data_volume_size.html 
+keywords: data volume, service, 
+summary: SAP HANA預設為每個SAP HANA服務只使用一個資料磁碟區。由於檔案系統的檔案大小上限限制、NetApp建議您限制最大資料Volume大小。 
+---
+= SAP HANA資料Volume大小
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html["先前版本：SAP HANA的I/O堆疊組態。"]
+
+SAP HANA預設為每個SAP HANA服務只使用一個資料磁碟區。由於檔案系統的檔案大小上限限制、NetApp建議您限制最大資料Volume大小。
+
+若要自動執行此作業、請在「global.ini`」一節中設定下列參數「持續性」：
+
+....
+datavolume_striping = true
+datavolume_striping_size_gb = 8000
+....
+這會在達到8、000 GB限制後建立新的資料Volume。 https://launchpad.support.sap.com/["SAP附註240005問題15"^] 提供更多資訊。
+
+link:saphana_aff_nfs_sap_hana_software_installation.html["下一步：SAP HANA軟體安裝。"]

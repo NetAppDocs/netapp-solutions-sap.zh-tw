@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana-fas-nfs_infrastructure_setup_and_configuration_overview.html 
+keywords: sap, hana, nfs, fas, inftastructure, setup, configuration 
+summary: 以下各節提供SAP HANA基礎架構的設定與組態準則。 
+---
+= 總覽
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-fas-nfs_storage_sizing.html["上一篇：儲存規模調整。"]
+
+以下各節提供SAP HANA基礎架構的設定與組態準則。
+
+link:saphana-fas-nfs_network_setup.html["下一步：網路設定。"]

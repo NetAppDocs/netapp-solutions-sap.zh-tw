@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana-fas-nfs_time_synchronization.html 
+keywords: time, synchronization, sap, hana, nfs, fas 
+summary: 您必須同步儲存控制器與SAP HANA資料庫主機之間的時間。 
+---
+= 時間同步
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-fas-nfs_network_setup.html["先前：網路設定。"]
+
+您必須同步儲存控制器與SAP HANA資料庫主機之間的時間。若要這麼做、請為所有儲存控制器和所有SAP HANA主機設定相同的時間伺服器。
+
+link:saphana-fas-nfs_storage_controller_setup.html["下一步：儲存控制器設定。"]

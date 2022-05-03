@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: bp/sap-apps-azure-cvo_pdf_link.html 
+keywords: pdf, sap, applications, apps, hana, azure netapp files 
+summary: TR-4757提供最佳實務做法、適用於Azure NetApp Files SAP應用程式和SAP HANA部署。本文也詳細說明SAP共享檔案系統的不同使用案例。本文提供最佳實務做法、可將NetApp Cloud Volumes ONTAP 支援應用於SAP應用程式和SAP HANA部署。其中包括SAP共享檔案系統的不同使用案例、Cloud Volumes ONTAP 以及SAP HANA on VMware的特定效能考量。 
+---
+= TR-4757：Microsoft Azure上的SAP應用程式-使用NetApp Cloud Volumes ONTAP 功能
+:allow-uri-read: 
+:firstname: : hardbreaks:
+:author: : hardbreaks:
+:authorinitials: :
+:authors: : hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Bernd Herth、鳥柏斯布蘭登、Nils Bauer、NetApp
+
+Microsoft Geert VAN Teylingen的will Bratton
+
+TR-4757提供最佳實務做法、適用於Azure NetApp Files SAP應用程式和SAP HANA部署。本文也詳細說明SAP共享檔案系統的不同使用案例。本文提供最佳實務做法、可將NetApp Cloud Volumes ONTAP 支援應用於SAP應用程式和SAP HANA部署。其中包括SAP共享檔案系統的不同使用案例、Cloud Volumes ONTAP 以及SAP HANA on VMware的特定效能考量。
+
+link:https://www.netapp.com/pdf.html?item=/media/17126-tr4757pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17126-tr4757pdf.pdf"]

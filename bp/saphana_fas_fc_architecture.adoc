@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_fas_fc_architecture.html 
+keywords: architecture, sap, hana, backup, storage, replication, snapmirror, metrocluster 
+summary: SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。 
+---
+= 架構
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_fas_fc_introduction.html["上一篇：FAS 《SAP HANA on NetApp Systems with FCP組態指南》。"]
+
+SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。
+
+不同機型FAS 的產品系列可在儲存層使用。附加至儲存設備的SAP HANA主機數量上限是由SAP HANA效能要求所定義。所需的磁碟櫃數量取決於SAP HANA系統的容量和效能需求。
+
+下圖顯示八部SAP HANA主機連接至儲存HA配對的組態範例。
+
+image:saphana_fas_fc_image2.png["錯誤：缺少圖形影像"]
+
+此架構可從兩個層面擴充：
+
+* 將額外的SAP HANA主機和磁碟容量附加至儲存設備、假設儲存控制器能在新負載下提供足夠的效能、以符合關鍵效能指標（KPI）
+* 為額外的SAP HANA主機增加更多儲存系統和磁碟容量
+
+
+下圖顯示儲存控制器連接更多SAP HANA主機的組態範例。在此範例中、需要更多磁碟櫃來滿足16台SAP HANA主機的容量和效能需求。視總處理量需求而定、您必須新增額外的FC連線至儲存控制器。
+
+image:saphana_fas_fc_image3.png["錯誤：缺少圖形影像"]
+
+SAP HANA環境獨立於已部署FAS 的整個系統儲存模式、也可藉由新增更多儲存控制器來擴充、如下圖所示。
+
+image:saphana_fas_fc_image4.png["錯誤：缺少圖形影像"]
+
+
+
+== SAP HANA備份
+
+NetApp ONTAP 支援軟體內建備份SAP HANA資料庫的機制。以儲存為基礎的Snapshot備份是完全受支援且整合的備份解決方案、適用於SAP HANA單一容器系統和SAP HANA MDC單一租戶系統。
+
+儲存型Snapshot備份是使用SnapCenter 適用於SAP HANA的NetApp功能區外掛程式來實作、此功能可透過SAP HANA資料庫提供的介面、實現一致的儲存型Snapshot備份。此功能可在SAP HANA備份目錄中登錄Snapshot備份、以便在SAP HANA Studio中看到備份資料、並可選擇用於還原和還原作業。SnapCenter
+
+透過使用NetApp SnapVault 功能軟件、可將在主要儲存設備上建立的Snapshot複本複製到SnapCenter 由他人控制的二線備份儲存設備。您可以針對主要儲存設備上的備份和次要儲存設備上的備份、定義不同的備份保留原則。SAP HANA資料庫的支援功能可管理保留Snapshot複製型資料備份與記錄備份、包括備份目錄的管理。SnapCenterSAP HANA資料庫的支援功能還可執行檔案型備份、以執行SAP HANA資料庫的區塊完整性檢查。SnapCenter
+
+資料庫記錄可以使用NFS掛載直接備份到次要儲存設備、如下圖所示。
+
+image:saphana_fas_fc_image5.jpg["錯誤：缺少圖形影像"]
+
+相較於檔案型備份、以儲存為基礎的Snapshot備份具有顯著的優勢。這些優勢包括：
+
+* 加快備份速度（幾分鐘）
+* 加快儲存層的還原速度（幾分鐘）
+* 在備份期間、不會影響SAP HANA資料庫主機、網路或儲存設備的效能
+* 根據區塊變更、將具空間效益且具頻寬效益的複寫至二線儲存設備
+
+
+如需SAP HANA備份與還原解決方案的詳細資訊、請SnapCenter 參閱 https://www.netapp.com/us/media/tr-4614.pdf["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]。
+
+
+
+== SAP HANA災難恢復
+
+SAP HANA災難恢復可透過SAP系統複寫在資料庫層上執行、或是使用儲存複寫技術在儲存層上執行。下節概述以儲存複寫為基礎的災難恢復解決方案。
+
+如需使用SnapCenter NetApp的SAP HANA災難恢復解決方案詳細資訊、請參閱 https://www.netapp.com/pdf.html?item=/media/19384-tr-4616.pdf["TR-4646：SAP HANA災難恢復與儲存複寫"^]。
+
+
+
+=== 以SnapMirror為基礎的儲存複寫
+
+下圖顯示三站台災難恢復解決方案、使用同步SnapMirror複寫到本機DR資料中心、以及使用非同步SnapMirror將資料複寫到遠端DR資料中心。
+
+使用同步SnapMirror進行資料複寫可提供歸零的RPO。主要與本機DR資料中心之間的距離限制在100公里左右。
+
+主災難恢復站台和本機災難恢復站台的故障防護、是透過非同步SnapMirror將資料複寫到第三個遠端災難恢復資料中心來執行。RPO取決於複寫更新的頻率及傳輸速度。理論上、距離是無限的、但限制取決於必須傳輸的資料量、以及資料中心之間可用的連線。一般RPO值介於30分鐘到多小時之間。
+
+這兩種複寫方法的RTO主要取決於在DR站台啟動HANA資料庫並將資料載入記憶體所需的時間。假設資料的讀取處理量為1000Mbps、載入1TB的資料大約需要18分鐘。
+
+災難恢復站台的伺服器可在正常運作期間用作開發/測試系統。發生災難時、開發/測試系統必須關閉、並以DR正式作業伺服器的形式啟動。
+
+這兩種複寫方法都能讓您執行DR工作流程測試、而不會影響RPO和RTO。FlexClone磁碟區是在儲存設備上建立、並附加至DR測試伺服器。
+
+image:saphana_fas_fc_image6.png["錯誤：缺少圖形影像"]
+
+同步複寫提供StrictSync模式。如果由於任何原因而無法完成對二線儲存設備的寫入、則應用程式I/O會失敗、因此可確保一線與二線儲存系統完全相同。只有在SnapMirror關係恢復為不同步狀態之後、應用程式I/O才會恢復主要連線。如果主儲存設備故障、在容錯移轉後、可在二線儲存設備上恢復應用程式I/O、而不會遺失資料。在StrictSync模式中、RPO永遠為零。
+
+
+
+=== 以NetApp MetroCluster 為基礎的儲存複寫
+
+下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
+
+image:saphana_fas_fc_image7.png["錯誤：缺少圖形影像"]
+
+link:saphana_fas_fc_storage_sizing.html["下一步：儲存規模調整。"]

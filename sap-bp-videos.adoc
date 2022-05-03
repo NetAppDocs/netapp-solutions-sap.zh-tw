@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: sap-bp-videos.html 
+summary: 討論SAP組態最佳實務做法的一系列影片和示範 
+keywords: netapp, solutions, SAP, best practices, videos, demos 
+---
+= SAP組態最佳實務做法影片與示範
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:table-stripes: odd
+:imagesdir: ./media/
+
+
+[role="lead"]
+重點介紹SAP組態最佳實務做法的影片與示範總覽。
+
+
+
+=== SAP組態最佳實務做法影片與示範
+
+* link:https://www.netapp.tv/details/28149["SAP HANA在NetApp基礎架構上執行效能最佳"]
+* link:https://www.netapp.tv/details/28189["SAP on Azure NetApp Files NetApp：概述與更新"]
+* link:https://www.netapp.tv/details/28402["使用NetApp Block和Object Storage for SAP Data Intelligence"]
+

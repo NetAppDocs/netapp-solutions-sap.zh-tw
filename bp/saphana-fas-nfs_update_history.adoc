@@ -1,0 +1,77 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana-fas-nfs_update_history.html 
+keywords:  
+summary:  
+---
+= 更新歷史記錄
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-fas-nfs_where_to_find_additional_information.html["上一步：何處可找到其他資訊。"]
+
+本解決方案自原始發佈以來、已進行下列技術變更。
+
+[cols="25,25,50"]
+|===
+| 版本 | 日期 | 更新摘要 
+
+
+| 1.0版 | 2014年4月 | 初始版本 
+
+
+| 2.0版 | 2014年8月 | 新增磁碟規模調整選項及新增SSD組態新增Red Hat Enterprise Linux OS組態、新增SAP HANA儲存連接器資訊、以新增有關VMware組態的資訊 
+
+
+| 2.1版 | 2014年11月 | 更新儲存設備規模區段 
+
+
+| 2.2版 | 2015年1月 | 更新儲存連接器API區段、更新Aggregate和Volume組態 
+
+
+| 2.3版 | 2015年3月 | 新增SAP HANA SPS9的STONITH實作新增運算節點設定與HANA安裝區段 
+
+
+| 3.0版 | 2015年10月 | 新增NFSv3支援cDOT更新的sysctl參數、其中包含SAP HANA的I/O參數、以及HWVAL > SPS10的I/O參數 
+
+
+| 3.1版 | 2016年3月 | 更新/HANA /共享更新的sysctl參數的容量調整更新掛載選項 
+
+
+| 4.0版 | 2017年2月 | 全新NetApp儲存系統和磁碟櫃ONTAP 支援40GbE的全新功能全新作業系統版本（SUSE Linux Enterprise Server12 SP1和Red Hat Enterprise Linux 7.2）全新SAP HANA版本 
+
+
+| 4.1版 | 2017年7月 | 次要更新 
+
+
+| 5.0版 | 2018年9月 | 全新NetApp儲存系統新版作業系統（SUSE Linux Enterprise Server 12 SP3與Red Hat Enterprise Linux 7.4）SAP HANA 2.0 SPS3的其他小幅變更 
+
+
+| 5.1版 | 2019年9月 | 全新作業系統版本（SUSE Linux Enterprise Server 12 SP4、SUSE Linux Enterprise Server 15和Red Hat Enterprise Linux 7.6 MAX Data 
+
+
+| 5.2版 | 2019年12月 | 全新NetApp儲存系統全新作業系統版本SUSE Linux Enterprise Server 15 SP1 
+
+
+| 5.3版 | 2020年3月 | 支援NFSv3新版作業系統的nconnect Red Hat Enterprise Linux 8 
+
+
+| 版本5.4. | 2020年5月 | 自SAP HANA 2.0 SPS4以來、推出多項資料分割功能 
+
+
+| 5.5版 | 2020年6月 | 關於選擇性功能的其他資訊次要更新 
+
+
+| 5.6版 | 2020年12月 | 支援nconnect for NFSv4.1、從ONTAP 更新版本的作業系統更新至更新版本的SAP HANA開始 
+
+
+| 5.7版 | 2021年2月 | 變更主機網路設定及其他小幅變更 
+
+
+| 5.8版 | 2021年4月 | 新增VMware vSphere專屬資訊 
+|===

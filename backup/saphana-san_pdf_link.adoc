@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-san_pdf_link.html 
+keywords: nva-1147, pdf, sap, hana, disaster, recovery, data protection, dr, snapmirror, snapcenter, commvault 
+summary: 這套NetApp認證架構涵蓋SAP系統現代化、以及ASA 在採用Brocade FC SAN Fabric的NetApp All SAN Array（簡稱EFC）儲存系統上執行SAP HANA作業。其中包括備份與還原、災難恢復及資料保護。 
+---
+= NVA-117-Design：NetApp All SAN Array上的SAP HANA -現代化SAN、資料保護及災難恢復
+:allow-uri-read: 
+
+
+Nils Bauer、Roland Wartenberg、Darryl Clinkr磅 秤、DanielHohman、Marco. Schö en、 Steve Botkin、Michael Pepper、Vidula Airer、Steve柯林斯、Pavan Jhamnani、 NetApp公司Lee Dormier
+
+Jim Zucchero,Naem Saafein，Broadcom Brocade博士
+
+這套NetApp認證架構涵蓋SAP系統現代化、以及ASA 在採用Brocade FC SAN Fabric的NetApp All SAN Array（簡稱EFC）儲存系統上執行SAP HANA作業。其中包括備份與還原、災難恢復及資料保護。此解決方案運用NetApp SnapCenter 解決方案來自動化SAP HANA備份、還原與還原、以及複製工作流程。使用同步NetApp SnapMirror資料複寫軟體、說明災難恢復組態、測試及容錯移轉案例。此外、我們也概述了採用CommVault的SAP資料保護。
+
+link:https://www.netapp.com/pdf.html?item=/media/10235-nva-1147-design.pdf["https://www.netapp.com/pdf.html?item=/media/10235-nva-1147-design.pdf"]

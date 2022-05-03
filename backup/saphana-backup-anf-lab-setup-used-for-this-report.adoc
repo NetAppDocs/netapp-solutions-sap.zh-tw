@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-lab-setup-used-for-this-report.html 
+keywords: lab, setup, configuration 
+summary: 本報告所使用的實驗室設定包括SAP HANA系統PR1-SAP HANA單一主機的MDC單一租戶系統、SnapCenter 以及「支援服務」元件。 
+---
+= 本報告所使用的實驗室設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html["上一篇：SnapCenter 《支援服務概念與最佳實務做法："]
+
+本報告所使用的實驗室設定包括SAP HANA系統PR1-SAP HANA單一主機的MDC單一租戶系統、SnapCenter 以及下圖所示的「支援服務」元件。
+
+image:saphana-backup-anf-image13.jpg["錯誤：缺少圖形影像"]
+
+link:saphana-backup-anf-snapcenter-service-policy-configuration.html["下一步：SnapCenter 支援服務原則組態。"]

@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-the-netapp-solution.html 
+keywords: anf, snapshot, backup, copy, replication 
+summary: 您可以使用Azure NetApp Files NetApp Snapshot技術、在數秒內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。 
+---
+= NetApp解決方案
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-overview.html["上一步：總覽。"]
+
+您可以使用Azure NetApp Files NetApp Snapshot技術、在數秒內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。此外、使用Snapshot技術也不會影響即時SAP系統的效能。因此、您可以排程建立Snapshot複本、而不需考慮尖峰對話或批次活動期間。SAP on Azure NetApp Files the支援客戶通常會在一天內排程多個線上Snapshot備份、例如、每四小時一次就很常見。這些Snapshot備份通常會在主要儲存系統上保留三到五天、然後再移除。
+
+Snapshot複本也為還原與還原作業提供重要優勢。Volume還原作業可根據可用的Snapshot複本、將整個資料庫還原至任何時間點。這類還原程序只需幾秒鐘就能完成、不受資料庫大小限制。由於每天都會建立數個線上Snapshot備份、因此相較於傳統備份方法、還原程序所需的時間會大幅縮短。由於只需幾小時（而非最多24小時）的Snapshot複本即可執行還原作業、因此必須套用較少的交易記錄。因此、RTO縮短至數分鐘、而非傳統單週期備份所需的數小時。
+
+Snapshot複本備份與作用中的線上資料儲存在相同的磁碟系統上。因此、NetApp建議使用Snapshot複本備份做為補充、而非取代次要位置的備份。大部分的還原和還原動作都是使用主儲存系統上的Volume Revert作業來處理。只有當包含Snapshot複本的主要儲存系統毀損時、才需要從次要位置進行還原。如果需要還原Snapshot複本不再提供的備份、您可以使用次要位置。
+
+您可以使用額外的HANA檔案型備份來備份到次要位置。這些檔案型備份的排程頻率較低、因此對正式作業系統效能的影響較小。
+
+當使用「跨區域複寫」進行災難恢復時、所有的Snapshot備份也會複寫到災難恢復站台、之後也會以卸載的次要備份形式提供。Azure NetApp Files另請參閱 link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html["TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用"^]。
+
+您也可以使用Azure AzCopy工具卸載Snapshot複本、以便長期保留至Azure Blob儲存設備。這需要SnapCenter 在不支援支援支援服務的情況下執行其他指令碼。
+
+下圖顯示使用Snapshot備份和檔案型備份的資料保護組態範例。
+
+image:saphana-backup-anf-image1.jpg["錯誤：缺少圖形影像"]
+
+
+
+== Snapshot備份的執行時間
+
+下圖顯示客戶在NetApp儲存設備上執行SAP HANA的HANA Studio快照。客戶使用NetApp Snapshot複本來備份HANA資料庫。如圖所示、HANA資料庫（約2.3 TB）使用Snapshot備份技術、可在2分鐘11秒內完成備份。
+
+整體備份工作流程執行時間最大的一部分是執行HANA備份儲存點作業所需的時間、這個步驟取決於HANA資料庫的負載。儲存Snapshot備份本身一律會在幾秒鐘內完成。
+
+image:saphana-backup-anf-image2.png["錯誤：缺少圖形影像"]
+
+
+
+== 恢復時間目標比較
+
+本節提供檔案型與儲存型Snapshot備份的RTO比較。RTO是根據還原資料庫所需的時間總和、以及啟動及還原資料庫所需的時間所定義。
+
+
+
+=== 還原資料庫所需的時間
+
+使用檔案型備份時、還原時間取決於資料庫和備份基礎架構的大小、而備份基礎架構定義的還原速度為每秒百萬位元組（Mbps）。例如、如果基礎架構支援以250Mbps速度進行還原作業、則還原資料庫的大小為1TB約需1小時10分鐘。
+
+有了儲存Snapshot複本備份、還原時間將不受資料庫大小限制、而且在幾秒鐘內即可從主要儲存設備執行還原。只有當主要儲存設備無法使用時、才需要從檔案型備份還原。
+
+
+
+=== 啟動資料庫所需的時間
+
+資料庫開始時間取決於列和欄儲存區的大小。對於欄儲存區、開始時間也取決於資料庫啟動期間預先載入的資料量。在下列範例中、我們假設開始時間為30分鐘。檔案型還原與還原的開始時間與根據Snapshot複本進行還原與還原的開始時間相同。
+
+
+
+=== 恢復資料庫所需的時間
+
+恢復時間取決於還原後必須套用的記錄數目。此數字取決於資料備份的頻率。
+
+使用檔案型資料備份時、備份排程通常每天一次。備份頻率通常無法提高、因為備份會降低正式作業效能。因此、在最糟的情況下、一天內寫入的所有記錄都必須在轉送恢復期間套用。
+
+儲存Snapshot複製資料備份通常會以較高的頻率排程、因為它們不會影響SAP HANA資料庫的效能。例如、如果每六小時排程一次Snapshot複本備份、則在最糟的情況下、還原時間是檔案型備份的恢復時間的四分之一（6小時/ 24小時= 1/4）。
+
+下圖顯示使用檔案型資料備份時、1TB資料庫的RTO範例。在此範例中、每天會進行一次備份。RTO會因執行還原與還原的時間而有所不同。如果在備份完成後立即執行還原與還原、RTO主要是以還原時間為基礎、範例中的還原時間為1小時10分鐘。恢復時間增加至2小時50分鐘、在進行下一次備份之前立即執行還原與還原、最大RTO為4小時30分鐘。
+
+image:saphana-backup-anf-image3.jpg["錯誤：缺少圖形影像"]
+
+下圖顯示使用Snapshot備份時1TB資料庫的RTO範例。使用儲存型Snapshot備份時、RTO僅取決於資料庫的開始時間和轉送恢復時間、因為還原只需幾秒鐘就完成、而且不受資料庫大小限制。轉送恢復時間也會隨還原與還原的完成時間而增加、但由於備份頻率較高（本例每6小時）、轉送恢復時間最多為43分鐘。在此範例中、RTO上限為1小時13分鐘。
+
+image:saphana-backup-anf-image4.jpg["錯誤：缺少圖形影像"]
+
+下圖顯示不同資料庫大小和Snapshot備份頻率的檔案型與儲存型Snapshot備份RTO比較。綠色列會顯示檔案型備份。其他長條圖則會顯示具有不同備份頻率的Snapshot複本備份。
+
+與檔案型資料備份相比、每天只需備份一次Snapshot複本資料、RTO已減少40%。每天進行四次Snapshot備份時、減少量會增加至70%。圖中也顯示、如果您將Snapshot備份頻率增加到每天四到六個以上的Snapshot備份、曲線就會變平。因此、我們的客戶通常每天設定四到六個Snapshot備份。
+
+image:saphana-backup-anf-image5.jpg["錯誤：缺少圖形影像"]
+
+此圖表顯示HANA伺服器的RAM大小。記憶體中的資料庫大小是伺服器RAM大小的一半。
+
+還原與還原時間的計算依據如下假設：資料庫可還原為250Mbps；每天的記錄檔數為資料庫大小的50%（例如、1TB資料庫每天會建立500MB的記錄檔）； 而且恢復速度可達100Mbps。
+
+link:saphana-backup-anf-snapcenter-service-architecture.html["下一步：SnapCenter 支援服務架構。"]

@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html 
+keywords: application, agnostic, information, azure, sap, hana 
+summary: 跨區域複寫的應用程式無關資訊可在下列位置找到。 
+---
+= Anf SAP HANA跨區域複寫
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_disaster_recovery_solution_comparison.html["先前：災難恢復解決方案比較。"]
+
+如需跨區域複寫的不受應用程式限制資訊、請參閱 https://docs.microsoft.com/en-us/azure/azure-netapp-files/["本文檔| Microsoft文件Azure NetApp Files"^] 在概念和操作指南章節中。
+
+link:saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html["接下來：SAP HANA跨區域複寫的組態選項。"]

@@ -1,0 +1,114 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_prepare_the_target_host.html 
+keywords: prepare, target, host, target, host, server, hana, log, volume, configure, install 
+summary: 本節說明伺服器所需的準備步驟、這些步驟可用於災難恢復容錯移轉測試。 
+---
+= 準備目標主機
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_disaster_recovery_testing_overview.html["先前版本：災難恢復測試。"]
+
+本節說明用於災難恢復容錯移轉測試的伺服器所需的準備步驟。
+
+在正常運作期間、目標主機通常用於其他用途、例如HANA QA或測試系統。因此、執行災難容錯移轉測試時、大部分步驟都必須執行。另一方面、您可以準備相關的組態檔、例如「etc/stabs」和「usr/sapservices」、然後只要複製組態檔、就能投入正式作業。災難恢復測試程序可確保已準備好的相關組態檔設定正確。
+
+目標主機的準備工作也包括關閉HANA QA或測試系統、以及使用「ystemctl stop sapinit」來停止所有服務。
+
+
+
+== 目標伺服器主機名稱和IP位址
+
+目標伺服器的主機名稱必須與來源系統的主機名稱相同。IP位址可能不同。
+
+
+NOTE: 必須建立適當的目標伺服器隔離、使其無法與其他系統通訊。如果沒有適當的屏障、則複製的正式作業系統可能會與其他正式作業系統交換資料、導致邏輯毀損的資料。
+
+
+
+== 安裝所需軟體
+
+SAP主機代理程式軟體必須安裝在目標伺服器上。如需詳細資訊、請參閱 https://help.sap.com/viewer/9f03f1852ce94582af41bb49e0a667a7/103/en-US["SAP主機代理程式"^] SAP說明入口網站。
+
+
+NOTE: 如果將主機用作HANA QA或測試系統、則已安裝SAP主機代理程式軟體。
+
+
+
+== 設定使用者、連接埠和SAP服務
+
+SAP HANA資料庫所需的使用者和群組必須可在目標伺服器上使用。通常會使用集中式使用者管理、因此不需要在目標伺服器上執行任何組態步驟。HANA資料庫所需的連接埠必須在目標主機上設定。您可以將「/etc/services」檔案複製到目標伺服器、從來源系統複製組態。
+
+所需的SAP服務項目必須可在目標主機上使用。您可以將「/usr/sap/sapservices」檔案複製到目標伺服器、從來源系統複製組態。下列輸出顯示實驗室設定所需的SAP HANA資料庫項目。
+
+....
+vm-pr1:~ # cat /usr/sap/sapservices
+#!/bin/sh
+LD_LIBRARY_PATH=/usr/sap/PR1/HDB01/exe:$LD_LIBRARY_PATH;export LD_LIBRARY_PATH;/usr/sap/PR1/HDB01/exe/sapstartsrv pf=/usr/sap/PR1/SYS/profile/PR1_HDB01_vm-pr1 -D -u pr1adm
+limit.descriptors=1048576
+....
+
+
+== 準備HANA記錄磁碟區
+
+由於HANA記錄磁碟區並非複寫的一部分、因此目標主機上必須存在一個空的記錄磁碟區。記錄磁碟區必須包含與來源HANA系統相同的子目錄。
+
+....
+vm-pr1:~ # ls -al /hana/log/PR1/mnt00001/
+total 16
+drwxrwxrwx 5 root   root   4096 Feb 19 16:20 .
+drwxr-xr-x 3 root   root     22 Feb 18 13:38 ..
+drwxr-xr-- 2 pr1adm sapsys 4096 Feb 22 10:25 hdb00001
+drwxr-xr-- 2 pr1adm sapsys 4096 Feb 22 10:25 hdb00002.00003
+drwxr-xr-- 2 pr1adm sapsys 4096 Feb 22 10:25 hdb00003.00003
+vm-pr1:~ #
+....
+
+
+== 準備記錄備份磁碟區
+
+由於來源系統設定有獨立的磁碟區用於HANA記錄備份、因此目標主機上也必須有記錄備份磁碟區可供使用。記錄備份的磁碟區必須在目標主機上設定及掛載。
+
+如果記錄備份磁碟區複寫是災難恢復設定的一部分、則會在目標主機上掛載以Snapshot為基礎的新磁碟區、而且不需要準備額外的記錄備份磁碟區。
+
+
+
+== 準備檔案系統掛載
+
+下表顯示實驗室設定中使用的命名慣例。災難恢復站點上新磁碟區的磁碟區名稱會包含在「etc/stab」中。這些磁碟區名稱將在下一節的Volume建立步驟中使用。
+
+|===
+| Hana PR1磁碟區 | 災難恢復站台的新磁碟區和子目錄 | 目標主機的掛載點 
+
+
+| 資料Volume | PR1-data-mnt001-sm-dest-clone | /HANA /資料/PR1/mnt00001 
+
+
+| 共享Volume | PR1-share-sm-dest-clone / shared PR1-share-sm-dest-clone / user-SAP-PR1 | /hana共享/usr/sap/PR1 
+
+
+| 記錄備份磁碟區 | hanabackup sm目的地複製 | /hanabackup 
+|===
+
+NOTE: 此表中列出的掛載點必須在目標主機上建立。
+
+以下是必要的「etc/stbst'」項目。
+
+....
+vm-pr1:~ # cat /etc/fstab
+# HANA ANF DB Mounts
+10.0.2.4:/PR1-data-mnt00001-sm-dest-clone /hana/data/PR1/mnt00001 nfs   rw,vers=4,minorversion=1,hard,timeo=600,rsize=262144,wsize=262144,intr,noatime,lock,_netdev,sec=sys  0  0
+10.0.2.4:/PR1-log-mnt00001-dr /hana/log/PR1/mnt00001 nfs   rw,vers=4,minorversion=1,hard,timeo=600,rsize=262144,wsize=262144,intr,noatime,lock,_netdev,sec=sys  0  0
+# HANA ANF Shared Mounts
+10.0.2.4:/PR1-shared-sm-dest-clone/hana-shared /hana/shared nfs rw,vers=4,minorversion=1,hard,timeo=600,rsize=262144,wsize=262144,intr,noatime,lock,_netdev,sec=sys  0  0
+10.0.2.4:/PR1-shared-sm-dest-clone/usr-sap-PR1 /usr/sap/PR1 nfs rw,vers=4,minorversion=1,hard,timeo=600,rsize=262144,wsize=262144,intr,noatime,lock,_netdev,sec=sys  0  0
+# HANA file and log backup destination
+10.0.2.4:/hanabackup-sm-dest-clone    /hanabackup nfs   rw,vers=3,hard,timeo=600,rsize=262144,wsize=262144,nconnect=8,bg,noatime,nolock 0 0
+....
+link:saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html["接下來：在災難恢復站台建立以快照備份為基礎的新磁碟區。"]

@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html 
+keywords: non-data, volumes, configuration, global 
+summary: 本節列出執行SAP HANA非資料磁碟區備份組態所需的步驟。 
+---
+= 全域非資料磁碟區的備份組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html["先前版本：SAP HANA非資料磁碟區的備份組態。"]
+
+若要設定全域非資料磁碟區的備份組態、請遵循下列步驟：
+
+. 移至SAP HANA Systems、然後按一下「Add（新增）」。
+. 在System Details（系統詳細資料）畫面中、選取系統類型Global Non-Data Volume（全域非資料Volume）。您可以提供與全域磁碟區相關聯的以逗號分隔的SID清單。輸入您選擇的系統名稱、然後按一下「Continue（繼續）」。
++
+image:saphana-backup-anf-image39.png["錯誤：缺少圖形影像"]
+
+. 選取Volume、然後按一下「Continue（繼續）」。
++
+image:saphana-backup-anf-image40.png["錯誤：缺少圖形影像"]
+
+. 按一下「繼續」。
++
+image:saphana-backup-anf-image41.png["錯誤：缺少圖形影像"]
+
+. 按一下「新增」
++
+image:saphana-backup-anf-image42.png["錯誤：缺少圖形影像"]
+
+. 若要設定保護、請按一下「繼續」。
++
+image:saphana-backup-anf-image43.png["錯誤：缺少圖形影像"]
+
+. 選取原則、然後按一下「Protect（保護）」。
++
+image:saphana-backup-anf-image44.png["錯誤：缺少圖形影像"]
+
+. 傳輸目錄現在會以全域非資料磁碟區的形式顯示在HANA系統清單中。
++
+image:saphana-backup-anf-image45.png["錯誤：缺少圖形影像"]
+
+
+
+link:saphana-backup-anf-sap-hana-database-snapshot-backups.html["下一步：SAP HANA資料庫Snapshot備份。"]

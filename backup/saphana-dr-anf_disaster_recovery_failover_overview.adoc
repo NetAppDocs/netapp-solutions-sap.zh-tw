@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_disaster_recovery_failover_overview.html 
+keywords: log, backup, replication, disaster, recovery, system, data 
+summary: 視記錄備份複寫是否屬於災難恢復設定的一部分而定、災難恢復的步驟略有不同。 
+---
+= 災難恢復容錯移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_hana_database_recovery.html["上一篇：Hana資料庫恢復。"]
+
+視記錄備份複寫是否屬於災難恢復設定的一部分而定、災難恢復的步驟略有不同。本節說明純資料備份複寫的災難恢復容錯移轉、以及結合記錄備份磁碟區複寫的資料磁碟區複寫。
+
+若要執行災難恢復容錯移轉、請完成下列步驟：
+
+. 準備目標主機。
+. 中斷並刪除複寫關係。
+. 將資料磁碟區還原至最新的應用程式一致的Snapshot備份。
+. 在目標主機上掛載磁碟區。
+. 恢復HANA資料庫。
++
+** 僅限資料磁碟區恢復。
+** 使用複寫的記錄備份來轉送恢復。
+
+
+
+
+以下小節將詳細說明這些步驟、下圖說明災難容錯移轉測試。
+
+image:saphana-dr-anf_image26.png["錯誤：缺少圖形影像"]
+
+link:saphana-dr-anf_prepare_the_target_host_01.html["下一步：準備目標主機。"]

@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_aff_fc_architecture_overview.html 
+keywords:  
+summary:  
+---
+= 總覽
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。
+
+不同機型AFF 的VMware系統產品系列可在儲存層混合搭配、以滿足成長和不同效能與容量需求。可附加至儲存系統的SAP HANA主機數量上限、是由SAP HANA效能要求和所使用的NetApp控制器模式所定義。所需的磁碟櫃數量僅取決於SAP HANA系統的容量和效能需求。
+
+下圖顯示八部SAP HANA主機連接至儲存HA配對的組態範例。
+
+image:saphana_aff_fc_image2.png["錯誤：缺少圖形影像"]
+
+此架構可從兩個層面擴充：
+
+* 如果儲存控制器能提供足夠的效能來滿足目前的SAP HANA KPI、則可將額外的SAP HANA主機和儲存容量附加至現有儲存設備
+* 新增更多儲存系統、並增加額外的儲存容量、以供額外的SAP HANA主機使用
+
+
+下圖顯示儲存控制器連接更多SAP HANA主機的組態範例。在此範例中、需要更多磁碟櫃來滿足16台SAP HANA主機的容量和效能需求。視總處理量需求而定、您必須新增額外的FC連線至儲存控制器。
+
+image:saphana_aff_fc_image3.png["錯誤：缺少圖形影像"]
+
+SAP HANA環境不受部署AFF 的整個系統的影響、也可藉由新增任何認證的儲存控制器來滿足所需的節點密度、如下圖所示。
+
+image:saphana_aff_fc_image4.png["錯誤：缺少圖形影像"]

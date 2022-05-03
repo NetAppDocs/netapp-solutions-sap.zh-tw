@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_aff_nfs_network_setup.html 
+keywords: network, setup, nic, nfs, lacp, ifgroup, jumbo frames, vmxnet3, mtu 
+summary: 本節說明SAP HANA主機專屬的儲存網路設定。 
+---
+= 網路設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html["先前：基礎架構設定與組態。"]
+
+設定網路時、請遵循下列準則：
+
+* 必須使用專屬的儲存網路、將SAP HANA主機連線至採用10GbE或更快網路的儲存控制器。
+* 儲存控制器和SAP HANA主機使用相同的連線速度。如果無法做到、請確定儲存控制器與SAP HANA主機之間的網路元件能夠處理不同的速度。例如、您必須提供足夠的緩衝空間、以便在儲存設備與主機之間的NFS層級進行速度協調。網路元件通常是交換器、但也必須考慮刀鋒機箱內的其他元件、例如背板。
+* 停用儲存網路交換器和主機層上用於儲存流量的所有實體連接埠上的流量控制。
+* 每個SAP HANA主機都必須具有至少10Gb頻寬的備援網路連線。
+* SAP HANA主機與儲存控制器之間的所有網路元件、都必須啟用傳輸單元（MTU）大小上限為9、000的巨型框架。
+* 在VMware設定中、必須將專屬的VMXNET3網路介面卡指派給每個執行中的虛擬機器。如需進一步的要求、請參閱「簡介」中提及的相關文件。
+* 為了避免彼此之間的干擾、請在記錄和資料區域使用不同的網路/IO路徑。
+
+
+下圖顯示使用10GbE網路連接至儲存控制器HA配對的四台SAP HANA主機範例。每個SAP HANA主機都有主動-被動連線到備援架構。
+
+在儲存層、會設定四個作用中連線、為每個SAP HANA主機提供10Gb處理量。此外、每個儲存控制器上都會設定一個備用介面。
+
+在儲存層、會設定MTU大小為9000的廣播網域、並將所有必要的實體介面新增至此廣播網域。此方法會自動將這些實體介面指派給相同的容錯移轉群組。指派給這些實體介面的所有邏輯介面（LIF）都會新增至此容錯移轉群組。
+
+image:saphana_aff_nfs_image10.png["錯誤：缺少圖形影像"]
+
+一般而言、也可以在伺服器（連結）和儲存系統（例如連結集合控制傳輸協定（LACP）和ifGroups）上使用HA介面群組。使用HA介面群組、確認負載在群組內的所有介面之間平均分散。負載分配取決於網路交換器基礎架構的功能。
+
+
+NOTE: 視SAP HANA主機數量和使用的連線速度而定、需要不同數量的作用中實體連接埠。如需詳細資訊、請參閱一節 link:saphana_aff_nfs_storage_controller_setup.html#lif-configuration["LIF組態"]。
+
+
+
+== VMware專屬的網路設定
+
+適當的網路設計和組態非常重要、因為此解決方案中的NFS會提供SAP HANA執行個體的所有資料、包括資料庫的效能關鍵資料和記錄磁碟區。專屬的儲存網路可用來分隔NFS流量與SAP HANA節點之間的通訊和使用者存取流量。每個SAP HANA節點都需要至少10Gb頻寬的備援專用網路連線。也支援更高的頻寬。此網路必須透過網路交換與運算、延伸端點到端點、直到裝載於VMware vSphere上的客體作業系統。除了實體交換基礎架構之外、VMware分散式交換器（VDS）也可在Hypervisor層提供適當的網路流量效能與管理能力。
+
+image:saphana_aff_nfs_image11.png["錯誤：缺少圖形影像"]
+
+如上圖所示、每個SAP HANA節點都使用VMware分散式交換器上的專用連接埠群組。此連接埠群組可增強服務品質（QoS）、並在ESX主機上專門指派實體網路介面卡（NIC）。若要在NIC故障時使用專用的實體NIC、同時保留HA功能、專用實體NIC會設定為作用中上行鏈路。在SAP HANA連接埠群組的群組和容錯移轉設定中、會將其他NIC設定為待命上行鏈路。此外、必須在實體和虛擬交換器上啟用端點對端點的巨型框架（MTU 9、000）。此外、關閉伺服器、交換器和儲存系統上用於儲存流量的所有乙太網路連接埠的流量控制。下圖顯示此類組態的範例。
+
+
+NOTE: 對於NFS流量所使用的介面、必須關閉LRO（大量接收卸載）。如需所有其他網路組態準則、請參閱SAP HANA的相關VMware最佳實務做法指南。
+
+image:saphana_aff_nfs_image12.png["錯誤：缺少圖形影像"]
+
+link:saphana_aff_nfs_time_synchronization.html["下一步：時間同步。"]

@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_disaster_recovery_failover.html 
+keywords:  
+summary:  
+---
+= 災難恢復容錯移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+

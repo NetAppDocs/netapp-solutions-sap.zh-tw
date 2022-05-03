@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-sc_pdf_link.html 
+keywords: tr-4614, pdf, sap, hana, backup, recovery, snapcenter 
+summary: 技術報告TR-4614提供SAP HANA資料保護的最佳實務做法（採用NetApp SnapCenter 技術）。本文件涵蓋SnapCenter 各種概念、組態建議及作業工作流程、包括組態、備份作業、 以及還原與還原作業。 
+---
+= TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+NetApp公司Nils Bauer
+
+TR-4616概述SAP HANA的災難恢復保護選項。其中包含詳細的設定資訊、以及以同步和非同步NetApp SnapMirror儲存複寫為基礎的三站台災難恢復解決方案使用案例說明。上述解決方案使用NetApp SnapCenter 功能搭配SAP HANA外掛程式來管理資料庫一致性。
+
+link:https://www.netapp.com/pdf.html?item=/media/12405-tr4614pdf.pdf["https://www.netapp.com/pdf.html?item=/media/12405-tr4614pdf.pdf"]

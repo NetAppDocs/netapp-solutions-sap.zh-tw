@@ -1,0 +1,146 @@
+---
+section: bp
+title: 最佳實務做法
+entries:
+- title: "《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南"
+  type: solutions
+  entries:
+  - title: 簡介
+    url: "/bp/saphana_aff_fc_introduction.html"
+  - title: 架構
+    url: "/bp/saphana_aff_fc_architecture.html"
+  - title: 儲存規模調整
+    url: "/bp/saphana_aff_fc_storage_sizing.html"
+  - title: 基礎架構設定與組態
+    entries:
+    - title: 基礎架構設定與組態總覽
+      url: "/bp/saphana_aff_fc_infrastructure_setup_and_configuration_overview.html"
+    - title: SAN架構設定
+      url: "/bp/saphana_aff_fc_san_fabric_setup.html"
+    - title: 時間同步
+      url: "/bp/saphana_aff_fc_time_synchronization.html"
+    - title: 儲存控制器設定
+      url: "/bp/saphana_aff_fc_storage_controller_setup.html"
+    - title: SAP HANA儲存連接器API
+      url: "/bp/saphana_aff_fc_sap_hana_storage_connector_api.html"
+    - title: 主機設定
+      url: "/bp/saphana_aff_fc_host_setup.html"
+    - title: SAP HANA的I/O堆疊組態
+      url: "/bp/saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html"
+    - title: SAP HANA軟體安裝
+      url: "/bp/saphana_aff_fc_sap_hana_software_installation.html"
+    - title: 為SAP HANA單一主機系統新增額外的資料Volume分割區
+      url: "/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
+  - title: 何處可找到其他資訊
+    url: "/bp/saphana_aff_fc_where_to_find_additional_information.html"
+  - title: 更新歷史記錄
+    url: "/bp/saphana_aff_fc_update_history.html"
+- title: "《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》"
+  type: solutions
+  entries:
+  - title: 簡介
+    url: "/bp/saphana_aff_nfs_introduction.html"
+  - title: 架構
+    url: "/bp/saphana_aff_nfs_architecture.html"
+  - title: 儲存規模調整
+    url: "/bp/saphana_aff_nfs_storage_sizing.html"
+  - title: 基礎架構設定與組態
+    entries:
+    - title: 基礎架構設定與組態總覽
+      url: "/bp/saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html"
+    - title: 網路設定
+      url: "/bp/saphana_aff_nfs_network_setup.html"
+    - title: 時間同步
+      url: "/bp/saphana_aff_nfs_time_synchronization.html"
+    - title: 儲存控制器設定
+      url: "/bp/saphana_aff_nfs_storage_controller_setup.html"
+    - title: 主機設定
+      url: "/bp/saphana_aff_nfs_host_setup.html"
+    - title: NFSv4的SAP HANA安裝準備
+      url: "/bp/saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html"
+    - title: SAP HANA的I/O堆疊組態
+      url: "/bp/saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html"
+    - title: SAP HANA資料Volume大小
+      url: "/bp/saphana_aff_nfs_sap_hana_data_volume_size.html"
+    - title: SAP HANA軟體安裝
+      url: "/bp/saphana_aff_nfs_sap_hana_software_installation.html"
+    - title: 新增其他資料Volume分割區
+      url: "/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html"
+  - title: 何處可找到其他資訊
+    url: "/bp/saphana_aff_nfs_where_to_find_additional_information.html"
+  - title: 更新歷史記錄
+    url: "/bp/saphana_aff_nfs_update_history.html"
+- title: "《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》"
+  type: solutions
+  entries:
+  - title: 簡介
+    url: "/bp/saphana-fas-nfs_introduction.html"
+  - title: 架構
+    url: "/bp/saphana-fas-nfs_architecture.html"
+  - title: 儲存規模調整
+    url: "/bp/saphana-fas-nfs_storage_sizing.html"
+  - title: 基礎架構設定與組態
+    entries:
+    - title: 基礎架構設定與組態總覽
+      url: "/bp/saphana-fas-nfs_infrastructure_setup_and_configuration_overview.html"
+    - title: 網路設定
+      url: "/bp/saphana-fas-nfs_network_setup.html"
+    - title: 時間同步
+      url: "/bp/saphana-fas-nfs_time_synchronization.html"
+    - title: 儲存控制器設定
+      url: "/bp/saphana-fas-nfs_storage_controller_setup.html"
+    - title: 主機設定
+      url: "/bp/saphana-fas-nfs_host_setup.html"
+    - title: NFSv4的SAP HANA安裝準備
+      url: "/bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html"
+    - title: SAP HANA的I/O堆疊組態
+      url: "/bp/saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html"
+    - title: SAP HANA資料Volume大小
+      url: "/bp/saphana-fas-nfs_sap_hana_data_volume_size.html"
+    - title: SAP HANA軟體安裝
+      url: "/bp/saphana-fas-nfs_sap_hana_software_installation.html"
+    - title: 新增其他資料Volume分割區
+      url: "/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html"
+  - title: 何處可找到其他資訊
+    url: "/bp/saphana-fas-nfs_where_to_find_additional_information.html"
+  - title: 更新歷史記錄
+    url: "/bp/saphana-fas-nfs_update_history.html"
+- title: "《SAP HANA on FAS with FCP Configuration Guide》（英文）"
+  type: solutions
+  entries:
+  - title: 簡介
+    url: "/bp/saphana_fas_fc_introduction.html"
+  - title: 架構
+    url: "/bp/saphana_fas_fc_architecture.html"
+  - title: 儲存規模調整
+    url: "/bp/saphana_fas_fc_storage_sizing.html"
+  - title: 基礎架構設定與組態
+    entries:
+    - title: 基礎架構設定與組態總覽
+      url: "/bp/saphana_fas_fc_infrastructure_setup_and_configuration_overview.html"
+    - title: SAN架構設定
+      url: "/bp/saphana_fas_fc_san_fabric_setup.html"
+    - title: 時間同步
+      url: "/bp/saphana_fas_fc_time_synchronization.html"
+    - title: 儲存控制器設定
+      url: "/bp/saphana_fas_fc_storage_controller_setup.html"
+    - title: SAP HANA儲存連接器API
+      url: "/bp/saphana_fas_fc_sap_hana_storage_connector_api.html"
+    - title: 主機設定
+      url: "/bp/saphana_fas_fc_host_setup.html"
+    - title: SAP HANA的I/O堆疊組態
+      url: "/bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html"
+    - title: SAP HANA軟體安裝
+      url: "/bp/saphana_fas_fc_sap_hana_software_installation.html"
+    - title: 為SAP HANA單一主機系統新增額外的資料Volume分割區
+      url: "/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
+  - title: 何處可找到其他資訊
+    url: "/bp/saphana_fas_fc_where_to_find_additional_information.html"
+  - title: 更新歷史記錄
+    url: "/bp/saphana_fas_fc_update_history.html"
+- title: IBM Power Systems上的SAP HANA與AFF 採用NFS的NetApp Sibs系統
+  url: "/bp/saphana-ibm-aff-nfs_pdf_link.html"
+- title: SAP搭配Oracle on UNIX和NFS搭配NetApp ONTAP 功能
+  url: "/bp/sap-oracle-snapman_pdf_link.html"
+- title: SAP搭配Microsoft SQL Server在Windows上使用ONTAP
+  url: "/bp/sap-sqls-sc_pdf_link.html"

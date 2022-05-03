@@ -1,0 +1,109 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-where-to-find-additional-information.html 
+keywords:  
+summary:  
+---
+= 何處可以找到其他資訊和版本歷程記錄
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-advanced-configuration-and-tuning.html["上一篇：進階組態與調校。"]
+
+若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
+
+* 參考資源頁面SnapCenter
++
+https://www.netapp.com/us/documentation/snapcenter-software.aspx["https://www.netapp.com/us/documentation/snapcenter-software.aspx"^]
+
+* 軟件文件SnapCenter
++
+https://docs.netapp.com/us-en/snapcenter/index.html["https://docs.netapp.com/us-en/snapcenter/index.html"^]
+
+* TR-4667：使用SnapCenter 功能自動化SAP系統複本
++
+https://www.netapp.com/pdf.html?item=/media/17111-tr4667pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17111-tr4667pdf.pdf"^]
+
+* TR-4719：SAP HANA系統複寫、利用SnapCenter 功能進行備份與恢復
++
+https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf"^]
+
+* TR-4018：整合NetApp ONTAP 的NetApp系統與SAP Landscape Management
++
+https://www.netapp.com/pdf.html?item=/media/17195-tr4018pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17195-tr4018pdf.pdf"^]
+
+* TR-4646：SAP HANA災難恢復與儲存複寫
++
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf"^]
+
+
+
+
+
+=== 版本歷程記錄
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2017年7月  a| 
+* 初始版本。
+
+
+
+
+| 1.1版 | 2017年9月  a| 
+* 新增「進階組態與調校」一節。
+* 小幅修正。
+
+
+
+
+| 2.0版 | 2018年3月  a| 
+* 更新以涵蓋SnapCenter 更新功能：全新資料量資源改善單一檔案SnapRestore 功能運作
+
+
+
+
+| 3.0版 | 2020年1月  a| 
+* 新增SnapCenter 「概念與最佳實務做法」一節。
+* 更新內容涵蓋SnapCenter 更新功能：自動探索HANA MDC多租戶的自動還原與還原支援單租戶還原作業
+
+
+
+
+| 3.1版 | 2020年7月  a| 
+* 次要更新與修正：NFSv4支援SnapCenter 使用支援《支援支援使用IBM Power的Linux *的SSL Communication Central外掛程式部署》
+
+
+
+
+| 3.2版 | 2020年11月  a| 
+* 新增HANA 2.0 SPS5所需的資料庫使用者權限。
+
+
+
+
+| 3.3版 | 2021年5月  a| 
+* 已更新SSL hdbsql組態區段。
+* 新增Linux LVM支援。
+
+
+
+
+| 3.4版 | 2021年8月  a| 
+* 新增停用自動探索組態說明。
+
+
+
+
+| 3.5版 | 2022年2月  a| 
+* 針對SnapCenter 採用HANA系統複寫技術的HANA系統、提供支援支援支援支援的部分更新內容、包括支援支援的部分。
+
+
+|===

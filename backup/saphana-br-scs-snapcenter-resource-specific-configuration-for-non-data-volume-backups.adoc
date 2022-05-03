@@ -1,0 +1,91 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html 
+keywords: resource-specific, configuration, non-data volume, resource group, sap landscape 
+summary: 非資料磁碟區的備份是SAP HANA外掛程式的整合部分。只要資料庫安裝資源和必要的記錄仍然可用、保護資料庫資料磁碟區就足以將SAP HANA資料庫還原至指定時間點。 
+---
+= 非資料磁碟區備份的資源特定組態SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html["先前版本：SnapCenter SAP HANA資料庫備份的資源專屬組態。"]
+
+非資料磁碟區的備份是SAP HANA外掛程式的整合部分。只要資料庫安裝資源和必要的記錄仍然可用、保護資料庫資料磁碟區就足以將SAP HANA資料庫還原至指定時間點。
+
+若要從必須還原其他非資料檔案的情況中恢復、NetApp建議針對非資料磁碟區開發額外的備份策略、以擴充SAP HANA資料庫備份。視您的特定需求而定、非資料磁碟區的備份可能會因排程頻率和保留設定而異、因此您應該考慮非資料檔案的變更頻率。例如HANA Volume「/HANA /共享」包含可執行檔、但也包含SAP HANA追蹤檔。雖然可執行檔只有在SAP HANA資料庫升級時才會變更、但SAP HANA追蹤檔可能需要較高的備份頻率、才能使用SAP HANA來分析問題情況。
+
+利用非資料磁碟區備份功能、只需數秒就能建立所有相關磁碟區的Snapshot複本、其空間效率與SAP HANA資料庫備份相同。SnapCenter不同之處在於、不需要SQL與SAP HANA資料庫進行通訊。
+
+
+
+== 非資料磁碟區資源的組態
+
+在此範例中、我們要保護SAP HANA資料庫SS1的非資料磁碟區。
+
+. 從「資源」索引標籤中選取「非資料磁碟區」、然後按一下「新增SAP HANA資料庫」。
++
+image:saphana-br-scs-image78.png["錯誤：缺少圖形影像"]
+
+. 在「新增SAP HANA資料庫」對話方塊的步驟之一中、於「資源類型」清單中選取「非資料磁碟區」。指定要用於資源的資源名稱、相關的SID和SAP HANA外掛程式主機、然後按一下「Next（下一步）」。
++
+image:saphana-br-scs-image79.png["錯誤：缺少圖形影像"]
+
+. 將SVM和儲存磁碟區新增為儲存設備佔用空間、然後按「Next（下一步）」。
++
+image:saphana-br-scs-image80.png["錯誤：缺少圖形影像"]
+
+. 在摘要步驟中、按一下完成以儲存設定。
+. 針對所有必要的非資料磁碟區重複這些步驟。
+. 繼續新資源的保護組態。
++
+
+NOTE: 非資料Volume資源的資料保護功能與SAP HANA資料庫資源的工作流程相同、可在個別資源層級上定義。
+
++
+下圖顯示已設定的非資料Volume資源清單。
+
++
+image:saphana-br-scs-image81.png["錯誤：缺少圖形影像"]
+
+
+
+
+
+== 資源群組
+
+資源群組是定義多個資源保護的便利方法、這些資源需要相同的保護原則和排程。屬於資源群組一部分的單一資源仍可在個別層級上受到保護。
+
+資源群組提供下列功能：
+
+* 您可以將一或多個資源新增至資源群組。所有資源都必須屬於同SnapCenter 一個支援程序外掛程式。
+* 您可以在資源群組層級上定義保護。資源群組中的所有資源在受到保護時、都會使用相同的原則和排程。
+* 所有的備份都在SnapCenter 資源保護中定義相同的名稱、這些備份都在資源庫和儲存Snapshot複本中。
+* 還原作業會套用至單一資源層級、而非資源群組的一部分。
+* 使用SnapCenter 功能表刪除在資源群組層級上建立的資源備份時、會刪除資源群組中所有資源的備份。刪除備份包括從SnapCenter 功能完善的儲存庫刪除備份、以及刪除儲存Snapshot複本。
+* 資源群組的主要使用案例是、客戶想要使用SnapCenter 以支援使用者資訊技術建立的備份、以便透過SAP Landscape Management進行系統複製。下一節將說明這一點。
+
+
+
+
+== 搭配使用功能與SAP橫向管理SnapCenter
+
+有了SAP Landscape Management（SAP Lama）、客戶就能在內部部署資料中心及雲端執行的系統中、管理複雜的SAP系統環境。SAP Lama搭配NetApp Storage Services Connector（SSC）、可以使用Snapshot和FlexClone技術執行儲存作業、例如SAP系統複製的複製和複寫、複製和重新整理使用案例。這可讓您根據儲存複製技術、將SAP系統複本完全自動化、同時也包括所需的SAP後處理。如需NetApp SAP Lama解決方案的詳細資訊、請參閱 https://www.netapp.com/us/media/tr-4018.pdf["TR-4018：整合NetApp ONTAP 的NetApp系統與SAP Landscape Management"^]。
+
+NetApp SSC和SAP Lama可以直接使用NetApp SSC建立隨需Snapshot複本、但也可以使用SnapCenter 使用以效益技術建立的Snapshot複本。若要使用SnapCenter 還原備份做為SAP Lama系統複製與複製作業的基礎、必須符合下列先決條件：
+
+* SAP Lama要求所有磁碟區都包含在備份中、包括SAP HANA資料、記錄和共享磁碟區。
+* 所有儲存Snapshot名稱必須相同。
+* 儲存Snapshot名稱必須以VCM開頭。
+
+
+
+NOTE: 在正常備份作業中、NetApp不建議納入記錄磁碟區。如果您從備份還原記錄磁碟區、它會覆寫上次作用中的重作記錄、並防止資料庫恢復到最近的狀態。
+
+可滿足所有這些需求的資源群組。SnapCenter共有三種資源以SnapCenter 供使用：資料磁碟區、記錄磁碟區和共享磁碟區各有一種資源。資源會放入資源群組、然後在資源群組層級上定義保護。在資源群組保護中、自訂Snapshot名稱必須在開頭以VCM定義。
+
+link:saphana-br-scs-database-backups.html["下一步：資料庫備份。"]

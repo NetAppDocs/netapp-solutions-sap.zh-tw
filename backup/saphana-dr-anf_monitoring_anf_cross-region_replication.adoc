@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_monitoring_anf_cross-region_replication.html 
+keywords: replicated, snapshot, backups, status, monitoring, anf, cross, region 
+summary: 下列三個螢幕擷取畫面顯示資料、記錄備份和共用磁碟區的複寫狀態。 
+---
+= 監控ANF跨區域複寫
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html["先前：Anf跨區域複寫的組態步驟。"]
+
+
+
+== 複寫狀態
+
+下列三個螢幕擷取畫面顯示資料、記錄備份和共用磁碟區的複寫狀態。
+
+Volume複寫延遲時間是瞭解RPO期望的實用價值。例如、記錄備份磁碟區複寫會顯示最長延遲時間58分鐘、這表示最大RPO的值相同。
+
+傳輸持續時間和傳輸大小可提供有關頻寬需求和變更複寫磁碟區速率的寶貴資訊。
+
+以下螢幕快照顯示HANA資料Volume的複寫狀態。
+
+image:saphana-dr-anf_image14.png["錯誤：缺少圖形影像"]
+
+以下螢幕快照顯示HANA記錄備份磁碟區的複寫狀態。
+
+image:saphana-dr-anf_image15.png["錯誤：缺少圖形影像"]
+
+以下螢幕快照顯示HANA共享Volume的複寫狀態。
+
+image:saphana-dr-anf_image16.png["錯誤：缺少圖形影像"]
+
+
+
+== 複寫的Snapshot備份
+
+每次從來源到目標磁碟區的複寫更新、最後一次更新與目前更新之間發生的所有區塊變更都會複寫到目標磁碟區。這也包括已在來源Volume建立的快照。以下螢幕快照顯示目標Volume上可用的快照。如前所述、AzAcSnap工具所建立的每個快照都是HANA資料庫的應用程式一致映像、可用來執行儲存點或轉送還原。
+
+
+NOTE: 在來源和目標磁碟區中、也會建立SnapMirror Snapshot複本、以用於重新同步和複寫更新作業。從HANA資料庫的觀點來看、這些Snapshot複本的應用程式不一致；只有透過AzaCSnap建立的應用程式一致快照、才能用於HANA恢復作業。
+
+image:saphana-dr-anf_image17.png["錯誤：缺少圖形影像"]
+
+link:saphana-dr-anf_disaster_recovery_testing_overview.html["下一步：災難恢復測試。"]

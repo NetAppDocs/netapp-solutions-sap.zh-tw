@@ -1,0 +1,57 @@
+---
+settings:
+  name: NetApp Solutions SAP
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: zh-tw,us-en,ja-jp,zh-cn,ko-kr
+sidebar:
+  entries:
+  - title: SAP解決方案
+    url: "/index.html"
+  - section: bp
+  - section: backup
+  - section: lifecycle
+  - section: briefs
+  - title: SAP解決方案FlexPod
+    url: https://docs.netapp.com/us-en/flexpod/ent-db/index.html
+  - title: NetApp解決方案
+    url: https://docs.netapp.com/us-en/netapp-solutions/
+  - title: 法律聲明
+    url: "/reference_legal_notices.html"
+homepage:
+  tiles:
+  - title: 組態最佳實務做法
+    links:
+    - title: 影片示範
+      url: sap-bp-videos.html
+    - title: 部落格
+      url: sap-bp-blogs.html
+    - title: 工具
+      url: sap-bp-tools.html
+  - title: 備份、還原及災難恢復
+    links:
+    - title: 影片示範
+      url: sap-dr-videos.html
+    - title: 部落格
+      url: sap-dr-blogs.html
+    - title: 工具
+      url: sap-dr-tools.html
+  - title: 生命週期管理
+    links:
+    - title: 影片示範
+      url: sap-lcm-videos.html
+    - title: 部落格
+      url: sap-lcm-blogs.html
+    - title: 工具
+      url: sap-lcm-tools.html
+  - title: 所有SAP解決方案
+    links:
+    - title: 新增功能
+      url: sap-whatsnew.html
+    - title: 影片示範
+      url: sap-videos.html
+    - title: 部落格
+      url: sap-blogs.html

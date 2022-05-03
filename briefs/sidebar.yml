@@ -1,0 +1,10 @@
+---
+section: briefs
+title: 解決方案簡介
+entries:
+- title: SAP HANA生命週期管理
+  url: "/briefs/saphana-lm-sb_pdf_link.html"
+- title: SAP HANA備份與還原
+  url: https://www.netapp.com/us/media/sb-3965.pdf
+- title: SAP HANA災難恢復
+  url: https://www.netapp.com/us/media/sb-3968.pdf

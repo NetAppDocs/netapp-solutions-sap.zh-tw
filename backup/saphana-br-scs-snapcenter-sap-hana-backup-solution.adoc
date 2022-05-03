@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-snapcenter-sap-hana-backup-solution.html 
+keywords: solution components, supported releases, configuration, enhancements 
+summary: 本節列出SnapCenter 本解決方案所使用的元件、支援的SAP HANA版本與組態、以及支援的功能強化功能。 
+---
+= SAP HANA備份解決方案SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-snapcenter-architecture.html["先前版本：SnapCenter 架構。"]
+
+
+
+== 解決方案元件
+
+適用於SAP HANA的解決方案包含下列領域：SnapCenter
+
+* SAP HANA資料備份搭配儲存型Snapshot複本：
++
+** 備份排程
+** 保留管理
+** SAP HANA備份目錄的管理
+
+
+* 非資料磁碟區（例如、「/Hana /共享」）備份與儲存型Snapshot複本：
++
+** 備份排程
+** 保留管理
+
+
+* 複寫到異地備份或災難恢復位置：
++
+** SAP HANA Data Snapshot備份
+** 非資料磁碟區
+** 在異地備份儲存設備上設定保留管理
+** SAP HANA備份目錄的管理
+
+
+* 使用檔案型備份進行資料庫區塊完整性檢查：
++
+** 備份排程
+** 保留管理
+** SAP HANA備份目錄的管理
+
+
+* HANA資料庫記錄備份的保留管理：
++
+** 保留管理以資料備份保留為基礎
+** SAP HANA備份目錄的管理
+
+
+* 自動探索HANA資料庫
+* 自動化還原與還原
+* 單一租戶還原作業可透過SAP HANA多租戶資料庫容器（MDC）系統進行
+
+
+資料庫資料檔案備份是SnapCenter 以搭配SAP HANA外掛程式的方式執行。外掛程式會觸發SAP HANA資料庫備份儲存點、以便在主要儲存系統上建立的Snapshot複本、以SAP HANA資料庫的一致映像為基礎。
+
+使用NetApp SnapMirror或NetApp SnapMirror、即可將一致的資料庫映像複寫到異地備份或災難恢復位置。SnapCenter SnapVault功能。一般而言、主要備份和異地備份儲存設備的備份保留原則各有不同。解決主儲存設備的保留問題、而支援將資料保留在異地備份儲存設備。SnapCenter ONTAP
+
+為了完整備份所有SAP HANA相關資源、SnapCenter 使用SAP HANA外掛程式搭配儲存型Snapshot複本、即可備份所有非資料磁碟區。非資料磁碟區可從資料庫資料備份中獨立排程、以啟用個別的保留與保護原則。
+
+SAP HANA資料庫會自動執行記錄備份。視還原點目標而定、記錄備份的儲存位置有多種選項：
+
+* 記錄備份會寫入儲存系統、透過NetApp MetroCluster 還原高可用度（HA）和災難恢復儲存軟體、將資料同步鏡射到第二個位置。
+* 記錄備份目的地可設定在相同的主要儲存系統上、然後使用SnapMirror同步或非同步複寫到次要儲存設備。
+* 記錄備份目的地可設定在使用SnapVault 下列功能複寫資料庫備份的同一個異地備份儲存設備上。有了這項組態、異地備份儲存設備就有像主儲存設備一樣的可用度需求、因此記錄備份可以寫入異地備份儲存設備。
+
+
+SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。區塊完整性檢查可從SnapCenter 無法更新的地方執行。根據您可設定的保留政策SnapCenter 、此功能可管理主儲存設備的資料檔案備份、記錄檔備份及SAP HANA備份目錄。
+
+
+NOTE: 支援主儲存設備的保留、而支援功能則可管理二線備份保留。SnapCenter ONTAP
+
+下圖顯示資料庫與記錄備份組態的總覽、其中記錄備份會寫入異地備份儲存設備的NFS掛載。
+
+image:saphana-br-scs-image7.png["錯誤：缺少圖形影像"]
+
+執行非資料磁碟區的儲存型Snapshot備份時SnapCenter 、執行下列工作：
+
+. 建立非資料磁碟區的儲存Snapshot複本。
+. 執行SnapVault 資料磁碟區的不實或SnapMirror更新（若已設定）。
+. 根據定義的保留原則、刪除主儲存設備上的儲存Snapshot複本。
+
+
+執行SAP HANA資料庫的儲存型Snapshot備份時SnapCenter 、執行下列工作：
+
+. 建立SAP HANA備份儲存點、以便在持續層上建立一致的映像。
+. 建立資料磁碟區的儲存Snapshot複本。
+. 在SAP HANA備份目錄中註冊儲存Snapshot備份。
+. 推出SAP HANA備份儲存點。
+. 執行SnapVault 資料磁碟區的不實或SnapMirror更新（若已設定）。
+. 根據定義的保留原則、刪除主儲存設備上的儲存Snapshot複本。
+. 如果主要或異地備份儲存設備不再存在備份、則刪除SAP HANA備份目錄項目。
+. 每當根據保留原則刪除備份或手動刪除備份時SnapCenter 、即可刪除所有早於最舊資料備份的記錄備份。記錄備份會在檔案系統和SAP HANA備份目錄中刪除。
+
+
+
+
+== 支援的SAP HANA版本與組態
+
+支援使用NFS或FC附加的NetApp儲存系統（例如：NetApp系統、支援SAP HANA單一主機和多主機組態、以及在AWS、Azure、Google Cloud Platform和使用NFS的AWS FSX SX上執行的SAP HANA系統。SnapCenter AFF FAS Cloud Volumes ONTAP ONTAP
+
+支援下列SAP HANA架構與版本：SnapCenter
+
+* SAP HANA單一容器：SAP HANA 1.0 SPS12
+* SAP HANA多租戶資料庫容器（MDC）單一租戶：SAP HANA 2.0 SPS3及更新版本
+* SAP HANA多租戶資料庫容器（MDC）多租戶：SAP HANA 2.0 SPS4及更新版本
+
+
+
+
+== 更新版本SnapCenter
+
+從版本4.6開始SnapCenter 、支援自動探索在HANA系統複寫關係中設定的HANA系統。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源組合在一個資源群組中、SnapCenter 而不只能自動識別哪個主機是主要或次要主機、然後會相應地執行所需的備份作業。使用現象建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上也刪除舊備份。下圖顯示高層級的概觀。如需詳細說明SnapCenter 、請參閱 https://www.netapp.com/us/media/tr-4719.pdf["TR-4719 SAP HANA系統複寫、備份與還原功能SnapCenter 、搭配使用"^]。
+
+image:saphana-br-scs-image8.png["錯誤：缺少圖形影像"]
+
+link:saphana-br-scs-snapcenter-concepts-and-best-practices.html["下一步：SnapCenter 概念與最佳實務做法。"]

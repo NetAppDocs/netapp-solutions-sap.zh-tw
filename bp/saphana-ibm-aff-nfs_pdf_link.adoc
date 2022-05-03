@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana-ibm-aff-nfs_pdf_link.html 
+keywords: tr-4821, pdf, sap, hana, ibm, aff, nfs 
+summary: IBM Power Systems專為資料密集和任務關鍵型工作負載所設計、例如SAP HANA。IBM Power Systems提供四項關鍵功能、包括優異的虛擬化與靈活度、更快的資源配置、經濟實惠的擴充性、以及最大化的正常運作時間、藉此簡化並加速SAP HANA部署。NetApp AFF 產品系列通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用、並可完美補強IBM Power Systems。本文件說明使用NetApp ONTAP 功能搭配AFF 使用NetApp產品系列和IBM Power Systems進行NAS（NFS）儲存設定的最佳實務做法。 
+---
+= TR-4821：IBM Power Systems上的SAP HANA、以及AFF 採用NFS的NetApp系統
+:allow-uri-read: 
+:firstname: : hardbreaks:
+:author: : hardbreaks:
+:authorinitials: :
+:authors: : hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+NetApp的Tobias Brandl
+
+IBM Carsten Dieterle
+
+IBM Power Systems專為資料密集和任務關鍵型工作負載所設計、例如SAP HANA。IBM Power Systems提供四項關鍵功能、簡化並加速SAP HANA部署：優異的虛擬化與靈活度、更快的資源配置、經濟實惠的擴充性、以及最大化的正常運作時間。NetApp AFF 產品系列通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用、並可完美補強IBM Power Systems。本文件說明使用NetApp ONTAP 功能搭配AFF 使用NetApp產品系列和IBM Power Systems進行NAS（NFS）儲存設定的最佳實務做法。
+
+link:https://www.netapp.com/pdf.html?item=/media/19887-TR-4821.pdf["https://www.netapp.com/pdf.html?item=/media/19887-TR-4821.pdf"]

@@ -1,0 +1,148 @@
+---
+section: backup
+title: 備份、還原及災難恢復
+entries:
+- title: SAP HANA利用SnapCenter NetApp備份與還原
+  type: solutions
+  entries:
+  - title: 總覽
+    url: "/backup/saphana-br-scs-overview.html"
+  - title: 架構SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-architecture.html"
+  - title: SAP HANA備份解決方案SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-sap-hana-backup-solution.html"
+  - title: 概念與最佳實務做法SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-concepts-and-best-practices.html"
+  - title: 本報告所使用的實驗室設定
+    url: "/backup/saphana-br-scs-lab-setup-used-for-this-report.html"
+  - title: 組態SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-configuration.html"
+  - title: 初始組態SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-initial-configuration.html"
+  - title: SAP HANA資料庫備份的資源專屬組態SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html"
+  - title: 非資料磁碟區備份的資源特定組態SnapCenter
+    url: "/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html"
+  - title: 資料庫備份
+    url: "/backup/saphana-br-scs-database-backups.html"
+  - title: 區塊完整性檢查
+    url: "/backup/saphana-br-scs-block-integrity-check.html"
+  - title: 還原與還原
+    url: "/backup/saphana-br-scs-restore-and-recovery.html"
+  - title: 進階組態與調校
+    url: "/backup/saphana-br-scs-advanced-configuration-and-tuning.html"
+  - title: 何處可以找到其他資訊和版本歷程記錄
+    url: "/backup/saphana-br-scs-where-to-find-additional-information.html"
+- title: SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
+  type: solutions
+  entries:
+  - title: SAP HANA系統複寫總覽
+    url: "/backup/saphana-sr-scs-sap-hana-system-replication-overview.html"
+  - title: 儲存Snapshot備份與SAP系統複寫
+    url: "/backup/saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html"
+  - title: SAP系統複寫的組態選項SnapCenter
+    url: "/backup/saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html"
+  - title: 使用資源群組進行的功能組態設定SnapCenter
+    url: "/backup/saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html"
+  - title: 使用單一資源進行組態設定SnapCenter
+    url: "/backup/saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html"
+  - title: 從在其他主機上建立的備份進行還原與還原
+    url: "/backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html"
+  - title: 何處可找到其他資訊
+    url: "/backup/saphana-sr-scs-where-to-find-additional-information_overview.html"
+  - title: 版本歷程記錄
+    url: "/backup/saphana-sr-scs-version-history.html"
+- title: SAP HANA災難恢復Azure NetApp Files 功能
+  type: solutions
+  entries:
+  - title: 資料保護總覽
+    url: "/backup/saphana-dr-anf_data_protection_overview_overview.html"
+  - title: 災難恢復解決方案比較
+    url: "/backup/saphana-dr-anf_disaster_recovery_solution_comparison.html"
+  - title: Anf SAP HANA跨區域複寫
+    entries:
+    - title: SAP HANA跨區域複寫總覽
+      url: "/backup/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html"
+    - title: SAP HANA跨區域複寫的組態選項
+      url: "/backup/saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html"
+    - title: 要求與最佳實務做法
+      url: "/backup/saphana-dr-anf_requirements_and_best_practices.html"
+    - title: 實驗室設定
+      url: "/backup/saphana-dr-anf_lab_setup.html"
+    - title: ANF跨區域複寫的組態步驟
+      url: "/backup/saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html"
+    - title: 監控ANF跨區域複寫
+      url: "/backup/saphana-dr-anf_monitoring_anf_cross-region_replication.html"
+  - title: 災難恢復測試
+    entries:
+    - title: 災難恢復測試總覽
+      url: "/backup/saphana-dr-anf_disaster_recovery_testing_overview.html"
+    - title: 準備目標主機
+      url: "/backup/saphana-dr-anf_prepare_the_target_host.html"
+    - title: 根據災難恢復站台的快照備份建立新的磁碟區
+      url: "/backup/saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html"
+    - title: 在目標主機上掛載新的磁碟區
+      url: "/backup/saphana-dr-anf_mount_the_new_volumes_at_the_target_host.html"
+    - title: HANA資料庫恢復
+      url: "/backup/saphana-dr-anf_hana_database_recovery.html"
+  - title: 災難恢復容錯移轉
+    entries:
+    - title: 災難恢復容錯移轉總覽
+      url: "/backup/saphana-dr-anf_disaster_recovery_failover_overview.html"
+    - title: 準備目標主機
+      url: "/backup/saphana-dr-anf_prepare_the_target_host_01.html"
+    - title: 中斷和刪除複寫對等關係
+      url: "/backup/saphana-dr-anf_break_and_delete_replication_peering.html"
+    - title: 在目標主機上掛載磁碟區
+      url: "/backup/saphana-dr-anf_mount_the_volumes_at_the_target_host.html"
+    - title: HANA資料庫恢復
+      url: "/backup/saphana-dr-anf_hana_database_recovery_01.html"
+  - title: 更新歷史記錄
+    url: "/backup/saphana-dr-anf_update_history.html"
+- title: SAP HANA利用Azure NetApp Files NetApp服務在支援功能的基礎上進行備份與還原SnapCenter
+  type: solutions
+  entries:
+  - title: 總覽
+    url: "/backup/saphana-backup-anf-overview.html"
+  - title: NetApp解決方案
+    url: "/backup/saphana-backup-anf-the-netapp-solution.html"
+  - title: 支援服務架構SnapCenter
+    url: "/backup/saphana-backup-anf-snapcenter-service-architecture.html"
+  - title: SAP HANA備份解決方案SnapCenter
+    url: "/backup/saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html"
+  - title: 服務概念與最佳實務做法SnapCenter
+    url: "/backup/saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html"
+  - title: 本報告所使用的實驗室設定
+    url: "/backup/saphana-backup-anf-lab-setup-used-for-this-report.html"
+  - title: 支援服務原則組態SnapCenter
+    url: "/backup/saphana-backup-anf-snapcenter-service-policy-configuration.html"
+  - title: 服務Snapshot備份組態SnapCenter
+    entries:
+    - title: 總覽
+      url: "/backup/saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html"
+    - title: SAP HANA資料庫備份的備份組態
+      url: "/backup/saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html"
+    - title: SAP HANA非資料磁碟區的備份組態
+      url: "/backup/saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html"
+    - title: 全域非資料磁碟區的備份組態
+      url: "/backup/saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html"
+  - title: SAP HANA資料庫Snapshot備份
+    url: "/backup/saphana-backup-anf-sap-hana-database-snapshot-backups.html"
+  - title: 檔案型備份與區塊完整性檢查
+    url: "/backup/saphana-backup-anf-file-based-backups-and-block-integrity-check.html"
+  - title: 還原與還原
+    url: "/backup/saphana-backup-anf-restore-and-recovery.html"
+  - title: 其他資訊
+    url: "/backup/saphana-backup-anf-additional-information.html"
+  - title: 版本歷程記錄
+    url: "/backup/saphana-backup-anf-version-history.html"
+- title: SAP HANA利用SnapCenter 功能進行備份與還原
+  url: "/backup/saphana-br-sc_pdf_link.html"
+- title: SAP HANA災難恢復與儲存複寫
+  url: "/backup/saphana-dr-sr_pdf_link.html"
+- title: 使用SnapCreator進行SAP HANA備份與還原
+  url: "/backup/saphana-bandr-sc_pdf_link.html"
+- title: 使用NetApp儲存設備和CommVault軟體進行SAP HANA備份與恢復
+  url: "/backup/saphana-commvault_pdf_link.html"
+- title: NetApp All SAN Array上的SAP HANA：現代化的SAN、資料保護與災難恢復
+  url: "/backup/saphana-san_pdf_link.html"

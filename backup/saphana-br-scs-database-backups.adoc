@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-database-backups.html 
+keywords: sap hana studio, on-demand backup, replication 
+summary: 在功能方面、資料庫備份通常是使用每個HANA資料庫的資源保護組態中定義的排程來執行。SnapCenter您可以使用SnapCenter RESIGUI、PowerShell命令列或REST API來執行隨需資料庫備份。 
+---
+= 資料庫備份
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html["先前版本：SnapCenter 非資料磁碟區備份的資源特定組態。"]
+
+在功能方面、資料庫備份通常是使用每個HANA資料庫的資源保護組態中定義的排程來執行。SnapCenter
+
+您可以使用SnapCenter RESIGUI、PowerShell命令列或REST API來執行隨需資料庫備份。
+
+
+
+== 在SnapCenter SAP HANA Studio中找出可執行的功能
+
+此資源拓撲顯示使用還原建立的備份清單。SnapCenter SnapCenter下圖顯示主要儲存設備上可用的備份、並強調最近的備份。
+
+image:saphana-br-scs-image82.png["錯誤：缺少圖形影像"]
+
+使用SAP HANA MDC系統的儲存Snapshot複本執行備份時、會建立資料磁碟區的Snapshot複本。此資料磁碟區包含系統資料庫的資料、以及所有租戶資料庫的資料。為了反映這種實體架構、SAP HANA會在SnapCenter 內部執行系統資料庫和所有租戶資料庫的合併備份、而每當此功能觸發Snapshot備份時、都會執行。這會在SAP HANA備份目錄中產生多個獨立的備份項目：一個用於系統資料庫、一個用於每個租戶資料庫。
+
+
+NOTE: 對於SAP HANA單一容器系統、資料庫Volume僅包含單一資料庫、而SAP HANA的備份目錄中只有一個項目。
+
+在SAP HANA備份目錄中SnapCenter 、還原備份名稱會儲存為「Comment（註解）」欄位、以及「外部備份ID（EBID）」。這會顯示在系統資料庫的下列螢幕擷取畫面、以及租戶資料庫SS1的快照之後。這兩個圖都會強調SnapCenter 註解欄位和EBID中儲存的支援名稱。
+
+
+NOTE: HANA 2.0 SPS4（修訂版40和41）版本一律顯示Snapshot型備份的備份大小為零。修正版本42。如需詳細資訊、請參閱SAP附註 https://launchpad.support.sap.com/["https://launchpad.support.sap.com/#/notes/2795010"^]。
+
+image:saphana-br-scs-image83.png["錯誤：缺少圖形影像"]
+
+image:saphana-br-scs-image84.png["錯誤：缺少圖形影像"]
+
+
+NOTE: 僅知道自己的備份。SnapCenter例如使用SAP HANA Studio建立的其他備份、可在SAP HANA目錄中看到、SnapCenter 但無法在功能表中看到。
+
+
+
+== 識別SnapCenter 儲存系統上的還原備份
+
+若要檢視儲存層上的備份、請使用NetApp OnCommand SView System Manager、然後在SVM—Volume檢視中選取資料庫Volume。「較低的Snapshot複本」索引標籤會顯示該磁碟區的Snapshot複本。下列螢幕快照顯示主要儲存設備上資料庫Volume「S1_data_mnt00001」的可用備份。反白顯示的備份是SnapCenter 先前影像中的靜止和SAP HANA Studio所示的備份、其命名慣例相同。
+
+image:saphana-br-scs-image85.png["錯誤：缺少圖形影像"]
+
+下列螢幕快照顯示次要儲存系統中複寫目標磁碟區「HANA」SA1_data_mnt001_dest'的可用備份。
+
+image:saphana-br-scs-image86.png["錯誤：缺少圖形影像"]
+
+
+
+== 一線儲存設備的隨需資料庫備份
+
+. 在資源檢視中、選取資源、然後按兩下該行以切換至拓撲檢視。
++
+資源拓撲檢視提供SnapCenter 使用效益技術建立的所有可用備份的總覽。此檢視的頂端區域會顯示備份拓撲、顯示主要儲存設備（本機複本）上的備份、以及異地備份儲存設備（資料保存複本）上的備份（若有）。
+
++
+image:saphana-br-scs-image86.5.png["錯誤：缺少圖形影像"]
+
+. 在頂端列中、選取「立即備份」圖示以開始隨需備份。從下拉式清單中、選取備份原則「LocalSnap」、然後按一下「備份」開始隨需備份。
++
+image:saphana-br-scs-image87.png["錯誤：缺少圖形影像"]
+
++
+這會啟動備份工作。前五個工作的記錄會顯示在拓撲檢視下方的「活動」區域中。備份完成後、拓撲檢視中會顯示新項目。備份名稱的命名慣例與一節中定義的Snapshot名稱相同 link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#resource-protection-configuration["「資源保護組態」。"]
+
++
+
+NOTE: 您必須關閉並重新開啟拓撲檢視、才能查看更新的備份清單。
+
++
+image:saphana-br-scs-image88.png["錯誤：缺少圖形影像"]
+
+. 按一下「活動」區域中的工作活動列時、會顯示工作詳細資料。您可以按一下「檢視記錄」來開啟詳細的工作記錄。
++
+image:saphana-br-scs-image89.png["錯誤：缺少圖形影像"]
+
+. 在SAP HANA Studio中、新的備份會顯示在備份目錄中。在備份目錄的註解和EBID欄位中、也會使用相同的支援名稱SnapCenter 。
+
+
+
+
+== 隨需資料庫備份搭配SnapVault 功能以進行還原複寫
+
+. 在資源檢視中、選取資源、然後按兩下該行以切換至拓撲檢視。
+. 在頂端列中、選取「立即備份」圖示以開始隨需備份。從下拉式清單中、選取備份原則「LocalSnapAndSnapVault」、然後按一下「備份」開始隨需備份。
++
+image:saphana-br-scs-image90.png["錯誤：缺少圖形影像"]
+
+. 按一下「活動」區域中的工作活動列時、會顯示工作詳細資料。
++
+image:saphana-br-scs-image91.png["錯誤：缺少圖形影像"]
+
+. 備份完成後、拓撲檢視中會顯示新項目。備份名稱的命名慣例與一節中定義的Snapshot名稱相同 link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#resource-protection-configuration["「資源保護組態」。"]
++
+
+NOTE: 您必須關閉並重新開啟拓撲檢視、才能查看更新的備份清單。
+
++
+image:saphana-br-scs-image92.png["錯誤：缺少圖形影像"]
+
+. 選取Vault複本後、便會顯示次要儲存設備的備份。複寫備份的名稱與主儲存設備的備份名稱相同。
++
+image:saphana-br-scs-image93.png["錯誤：缺少圖形影像"]
+
+. 在SAP HANA Studio中、新的備份會顯示在備份目錄中。在備份目錄的註解和EBID欄位中、也會使用相同的支援名稱SnapCenter 。
+
+
+link:saphana-br-scs-block-integrity-check.html["下一步：區塊完整性檢查。"]

@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-snapcenter-architecture.html 
+keywords: overview, components, snapcenter 
+summary: 提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter 
+---
+= 架構SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-overview.html["上一步：總覽。"]
+
+
+
+== 概述SnapCenter
+
+提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。支援NetApp的資料架構、可在端點之間管理資料。SnapCenter您可以使用SnapCenter NetApp在內部部署環境之間、內部部署環境與雲端之間、以及私有雲、混合雲或公有雲之間複寫資料。
+
+
+
+== 元件SnapCenter
+
+包含適用於Windows的功能強大的功能、以及適用於Linux的功能強大的功能。SnapCenter SnapCenter SnapCenter SnapCenter每個套件都包含SnapCenter 適用於各種應用程式和基礎架構元件的外掛程式。
+
+使用同一個支援程式介面、您可以使用這個自訂外掛程式來建立自己的外掛程式、並保護應用程式。SnapCenter SnapCenter
+
+下圖說明SnapCenter 各個元件。
+
+image:saphana-br-scs-image6.png["錯誤：缺少圖形影像"]
+
+link:saphana-br-scs-snapcenter-sap-hana-backup-solution.html["下一步：SnapCenter SAP HANA備份解決方案。"]

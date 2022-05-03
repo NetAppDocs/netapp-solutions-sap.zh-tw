@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html 
+keywords: restore, backup, recovery 
+summary: 從其他SAP HANA主機建立的備份還原作業、是SnapCenter 兩個NetApp組態選項的有效案例。 
+---
+= 從在其他主機上建立的備份進行還原與還原
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html["上一篇：SnapCenter 使用單一資源進行的不完整組態。"]
+
+從其他SAP HANA主機建立的備份還原作業、是SnapCenter 兩個NetApp組態選項的有效案例。
+
+下圖顯示本節所述的還原與還原案例總覽。
+
+已在主機1的T1建立備份。已對主機2執行容錯移轉。在目前時間點、主機2是主要主機。
+
+. 發生故障、您必須還原至在主機1的T1上建立的備份。
+. 主主機（主機1）已關機。
+. 主機1的備份資料T1會還原至主機2。
+. 使用來自主機1和主機2的記錄檔執行轉送恢復。
+. 主機1隨即啟動、並自動啟動主機1的系統複寫重新同步。
+
+
+image:saphana-sr-scs-image48.png["錯誤：缺少圖形影像"]
+
+下圖顯示SAP HANA備份目錄、並重點說明在主機1建立的備份、用於還原與還原作業。
+
+image:saphana-sr-scs-image49.png["錯誤：缺少圖形影像"]
+
+還原作業包括下列步驟：
+
+. 從主機1建立的備份建立複本。
+. 將複製的磁碟區掛載到主機2。
+. 將資料從複製的Volume複製到原始位置。
+
+
+在支援中、會選取備份並啟動複製作業。SnapCenter
+
+image:saphana-sr-scs-image50.png["錯誤：缺少圖形影像"]
+
+您必須提供複製伺服器和NFS匯出IP位址。
+
+
+NOTE: 在單一資源的組態中、SAP HANA外掛程式並未安裝在資料庫主機上。SnapCenter若要執行SnapCenter 「鏡像複製」工作流程、任何安裝HANA外掛程式的主機都可以當成複製伺服器使用。
+
++ SnapCenter 在包含獨立資源的支援功能組態中、HANA資料庫主機被選取為複製伺服器、並使用掛載指令碼將複本掛載至目標主機。
+
+image:saphana-sr-scs-image51.png["錯誤：缺少圖形影像"]
+
+若要判斷掛載複製磁碟區所需的交會路徑、請查看複製工作的工作記錄、如下圖所示。
+
+image:saphana-sr-scs-image52.png["錯誤：缺少圖形影像"]
+
+現在可以掛載複製的Volume。
+
+....
+stlrx300s8-5:/mnt/tmp # mount 192.168.173.101:/Scc373da37-00ff-4694-b1e1-8153dbd46caf /mnt/tmp
+....
+複製的Volume包含HANA資料庫的資料。
+
+....
+stlrx300s8-5:/mnt/tmp/# ls –al
+drwxr-x--x 2 ssradm sapsys 4096 Jun 27 11:12 hdb00001
+drwx------ 2 ssradm sapsys 4096 Jun 21 09:38 hdb00002.00003
+drwx------ 2 ssradm sapsys 4096 Jun 27 11:12 hdb00003.00003
+-rw-r--r-- 1 ssradm sapsys   22 Jun 27 11:12 nameserver.lck
+....
+資料會複製到原始位置。
+
+....
+stlrx300s8-5:/mnt/tmp # cp -Rp hdb00001 /hana/data/SSR/mnt00001/
+stlrx300s8-5:/mnt/tmp # cp -Rp hdb00002.00003/ /hana/data/SSR/mnt00001/
+stlrx300s8-5:/mnt/tmp # cp -Rp hdb00003.00003/ /hana/data/SSR/mnt00001/
+....
+如一節所述、使用SAP HANA Studio進行還原 link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html#snapcenter-restore-of-the-valid-backup-only["僅還原有效的備份SnapCenter"]。
+
+link:saphana-sr-scs-where-to-find-additional-information_overview.html["下一步：何處可找到其他資訊。"]

@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_disaster_recovery_testing_overview.html 
+keywords: disaster, recovery, strategy, workflow, testing, internal, documentation 
+summary: 若要實作有效的災難恢復策略、您必須測試所需的工作流程。測試可證明策略是否有效、內部文件是否足夠、也可讓系統管理員訓練所需的程序。 
+---
+= 災難恢復測試
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_monitoring_anf_cross-region_replication.html["上一篇：監控ANF跨區域複寫。"]
+
+若要實作有效的災難恢復策略、您必須測試所需的工作流程。測試可證明策略是否有效、內部文件是否足夠、也可讓系統管理員訓練所需的程序。
+
+ANF跨區域複寫可在不影響RTO和RPO的情況下進行災難恢復測試。災難恢復測試可在不中斷資料複寫的情況下完成。
+
+災難恢復測試工作流程利用ANF功能集、根據災難恢復目標上現有的Snapshot備份來建立新的磁碟區。請參閱 https://docs.microsoft.com/en-us/azure/azure-netapp-files/snapshots-introduction["功能介紹| Microsoft文件Azure NetApp Files"^]。
+
+視記錄備份複寫是否屬於災難恢復設定的一部分而定、災難恢復的步驟略有不同。本節說明純資料備份複寫的災難恢復測試、以及結合記錄備份磁碟區複寫的資料磁碟區複寫測試。
+
+若要執行災難恢復測試、請完成下列步驟：
+
+. 準備目標主機。
+. 在災難恢復站台建立以Snapshot備份為基礎的新磁碟區。
+. 在目標主機上掛載新的磁碟區。
+. 恢復HANA資料庫。
++
+** 僅限資料磁碟區恢復。
+** 使用複寫的記錄備份來轉送恢復。
+
+
+
+
+以下小節將詳細說明這些步驟。
+
+image:saphana-dr-anf_image18.png["錯誤：缺少圖形影像"]
+
+link:saphana-dr-anf_prepare_the_target_host.html["下一步：準備目標主機。"]

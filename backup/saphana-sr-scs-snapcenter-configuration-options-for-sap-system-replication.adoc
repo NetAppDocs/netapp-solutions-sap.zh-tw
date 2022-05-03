@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html 
+keywords: configuration, snapcenter, virtual ip, auto-discovery 
+summary: 本頁說明SAP系統複寫的組態選項。 
+---
+= SAP系統複寫的組態選項SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html["先前版本：儲存Snapshot備份與SAP系統複寫。"]
+
+在SAP HANA系統複寫環境中、有兩個選項可用來設定NetApp SnapCenter 功能性軟體的資料保護：
+
+* 包含SAP HANA主機及利用支援更新版本的功能自動探索的支援資源群組。SnapCenter SnapCenter
+* 使用虛擬IP位址的兩部SAP HANA主機只需單SnapCenter 一的支援資源。
+
+
+image:saphana-sr-scs-image5.png["錯誤：缺少圖形影像"]
+
+從推出支援自動探索HANA系統的功能之一開始SnapCenter 、SnapCenter 此系統已設定為HANA系統複寫關係。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源會結合在資源群組中、SnapCenter 且支援自動識別哪個主機為主要或次要主機、並據此執行所需的備份作業。由現象中心建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上刪除舊備份。
+
+單一資源組態適用於兩個SAP HANA主機、單SnapCenter 一的功能就是使用SAP HANA系統複寫主機的虛擬IP位址來設定。SAP HANA主機的兩個資料磁碟區都包含在SnapCenter 本資源中。由於它是單SnapCenter 一的資源、SnapCenter 因此由支援Snapshot和檔案型備份的保留管理功能、與目前主要或次要的主機無關。所有SnapCenter 版本的資訊均可提供此選項。
+
+下表摘要說明這兩個組態選項的主要差異。
+
+|===
+|  | 資源群組SnapCenter 搭配使用 | 單SnapCenter 一資源和虛擬IP位址 
+
+
+| 備份作業（Snapshot和檔案型） | 自動識別資源群組中的主要主機 | 自動使用虛擬IP位址 
+
+
+| 保留管理（Snapshot與檔案型） | 在兩個主機之間自動執行 | 自動使用單一資源 
+
+
+| 備份容量需求 | 備份只會在主要主機磁碟區建立 | 備份一律會在兩個主機磁碟區上建立。第二台主機的備份只會發生一致的當機、無法用來進行轉送。 
+
+
+| 還原作業 | 目前作用中主機的備份可用於還原作業 | 需要預先備份指令碼、才能識別哪些備份有效且可用於還原 
+
+
+| 恢復作業 | 所有可用的恢復選項、與任何自動探索的資源相同 | 需要手動恢復 
+|===
+
+NOTE: 一般而言、NetApp建議使用資源群組組組態選項SnapCenter 搭配使用支援HANA系統複寫的功能來保護HANA系統。只有在以中央外掛主機為基礎的「還原作業」方法為基礎、且HANA外掛程式未部署於HANA資料庫主機上時、才需要使用單SnapCenter 一的「還原資源組態SnapCenter 」。
+
+以下各節將詳細討論這兩個選項。
+
+link:saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html["下一步：SnapCenter 使用資源群組進行的功能組態設定。"]

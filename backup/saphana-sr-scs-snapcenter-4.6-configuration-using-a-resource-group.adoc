@@ -1,0 +1,165 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html 
+keywords: resource group, configuration, discovery, retention management 
+summary: 支援針對採用HANA系統複寫的HANA系統進行自動探索。SnapCenter在備份作業期間、支援識別主要和次要HANA主機的邏輯、同時處理兩個HANA主機之間的保留管理。SnapCenter 
+---
+= 使用資源群組進行的功能組態設定SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html["上一篇：SnapCenter SAP系統複寫的功能選項。"]
+
+支援針對採用HANA系統複寫的HANA系統進行自動探索。SnapCenter在備份作業期間、支援識別主要和次要HANA主機的邏輯、同時處理兩個HANA主機之間的保留管理。SnapCenter此外、HANA系統複寫環境現在也能使用自動化還原與還原功能。
+
+
+
+== 適用於HANA系統複寫環境的功能SnapCenter
+
+下圖顯示本章所使用的實驗室設定。兩台HANA主機Hana（Hana）3和Hana（Hana）4均設定HANA系統複寫。
+
+為HANA系統資料庫建立資料庫使用者SnapCenter 「支援」、並具備執行備份與還原作業所需的權限（請參閱 https://www.netapp.com/us/media/tr-4614.pdf["SAP HANA利用SnapCenter 功能進行備份與還原"^]）。HANA使用者存放區金鑰必須在兩個主機上使用上述資料庫使用者進行設定。
+
+....
+ss2adm@hana- 3: / > hdbuserstore set SS2KEY hana- 3:33313 SNAPCENTER <password>
+....
+....
+ss2adm@hana- 4:/ > hdbuserstore set SS2KEY hana-4:33313 SNAPCENTER <password>
+....
+從高層面來看、您必須執行下列步驟、才能在SnapCenter 整個過程中設定HANA系統複寫。
+
+. 在主要和次要主機上安裝HANA外掛程式。系統會執行自動探索、並偵測每個主要或次要主機的HANA系統複寫狀態。
+. 執行SnapCenter 「設定資料庫」、並提供「hdbuserstore」金鑰。將執行更多自動探索作業。
+. 建立資源群組、包括主機和設定保護。
+
+
+image:saphana-sr-scs-image6.png["錯誤：缺少圖形影像"]
+
+在SnapCenter 兩個HANA主機上安裝完「支援HANA」外掛程式之後、HANA系統會以SnapCenter 與其他自動探索資源相同的方式顯示在「支援資訊」檢視中。從功能表支援的支援範本SnapCenter 中、會顯示額外的一欄、顯示HANA系統複寫的狀態（啟用/停用、主要/次要）。
+
+image:saphana-sr-scs-image7.png["錯誤：缺少圖形影像"]
+
+只要按一下資源SnapCenter 、即可要求HANA系統的HANA使用者儲存金鑰。
+
+image:saphana-sr-scs-image8.png["錯誤：缺少圖形影像"]
+
+執行其他自動探索步驟、SnapCenter 並顯示資源詳細資料。使用本檢視中列出的是系統複寫狀態和次要伺服器。SnapCenter
+
+image:saphana-sr-scs-image9.png["錯誤：缺少圖形影像"]
+
+對第二個HANA資源執行相同步驟之後、自動探索程序就會完成、而且兩個HANA資源都會設定SnapCenter 在更新中。
+
+image:saphana-sr-scs-image10.png["錯誤：缺少圖形影像"]
+
+若為採用HANA系統複寫的系統、您必須設定SnapCenter 一個包含兩個HANA資源在內的資源群組。
+
+image:saphana-sr-scs-image11.png["錯誤：缺少圖形影像"]
+
+NetApp建議使用自訂的Snapshot名稱格式、其中應包含主機名稱、原則及排程。
+
+image:saphana-sr-scs-image12.png["錯誤：缺少圖形影像"]
+
+您必須將兩個HANA主機新增至資源群組。
+
+image:saphana-sr-scs-image13.png["錯誤：缺少圖形影像"]
+
+原則和排程是針對資源群組進行設定。
+
+
+NOTE: 原則中定義的保留會用於兩個HANA主機。例如、如果原則中定義保留10、則兩個主機的備份總和會作為刪除備份的準則。如果是在目前的主要或次要主機上建立最舊的備份、則該備份會獨立刪除。SnapCenter
+
+image:saphana-sr-scs-image14.png["錯誤：缺少圖形影像"]
+
+資源群組組組態現在已完成、可以執行備份。
+
+image:saphana-sr-scs-image15.png["錯誤：缺少圖形影像"]
+
+image:saphana-sr-scs-image16.png["錯誤：缺少圖形影像"]
+
+
+
+== Snapshot備份作業
+
+執行資源群組的備份作業時SnapCenter 、支援功能可識別哪個主機為主要主機、而且只會在主要主機上觸發備份。這表示只會快照主主機的資料磁碟區。在我們的範例中、Hana 3是目前的主要主機、並在此主機上執行備份。
+
+image:saphana-sr-scs-image17.png["錯誤：缺少圖形影像"]
+
+這個職務記錄顯示目前主要主機Hana 3的身分識別作業和備份執行。SnapCenter
+
+image:saphana-sr-scs-image18.png["錯誤：缺少圖形影像"]
+
+Snapshot備份現已在主要HANA資源建立。備份名稱中包含的主機名稱顯示Hana（3）。
+
+image:saphana-sr-scs-image19.png["錯誤：缺少圖形影像"]
+
+同樣的Snapshot備份也可在HANA備份目錄中看到。
+
+image:saphana-sr-scs-image20.png["錯誤：缺少圖形影像"]
+
+如果執行接管作業、則進一步SnapCenter 的還原備份功能現在會將前二級主機（Hana–4）識別為主要主機、並在Hana–4執行備份作業。同樣地、只會快照新一級主機（Hana - 4）的資料磁碟區。
+
+
+NOTE: 此功能的驗證邏輯僅涵蓋HANA主機處於一線二線關係或其中一台HANA主機離線的情況。SnapCenter
+
+image:saphana-sr-scs-image21.png["錯誤：缺少圖形影像"]
+
+這個職務記錄顯示目前主要主機Hana 4上的識別作業和備份執行。SnapCenter
+
+image:saphana-sr-scs-image22.png["錯誤：缺少圖形影像"]
+
+Snapshot備份現已在主要HANA資源建立。備份名稱中包含的主機名稱顯示Hana：4。
+
+image:saphana-sr-scs-image23.png["錯誤：缺少圖形影像"]
+
+同樣的Snapshot備份也可在HANA備份目錄中看到。
+
+image:saphana-sr-scs-image24.png["錯誤：缺少圖形影像"]
+
+
+
+== 以檔案型備份來進行區塊完整性檢查作業
+
+根據Snapshot備份作業所述、支援以檔案為基礎的備份進行區塊完整性檢查作業時、可使用相同的邏輯。SnapCenter此系統可識別目前的主要HANA主機、並針對此主機執行檔案型備份。SnapCenter保留管理也會在兩個主機上執行、因此無論目前哪個主機為主要主機、都會刪除最舊的備份。
+
+
+
+== 內部複寫SnapVault
+
+若要在接管和獨立的情況SnapVault 下、讓透明的備份作業無需手動互動、而HANA主機目前是主要主機、您必須為兩個主機的資料磁碟區設定一個「不穩定」關係。在每次執行備份時、將針對目前的主要主機執行一個更新作業。SnapCenter SnapVault
+
+
+NOTE: 如果長期未執行對次要主機的接管、SnapVault 次要主機上第一次更新的變更區塊數目將會很高。
+
+由於在不受支援的情況下、無法在不受支援的情況下管理支援對象的保留管理、SnapVault 因此無法在兩個HANA主機之間處理保留問題。SnapCenter ONTAP因此、在接管之前建立的備份不會隨著備份作業一起刪除、而會在先前的次要備份作業中刪除。這些備份會一直保留、直到先前的主要備份再次成為主要備份。因此這些備份不會阻礙記錄備份的保留管理、因此必須在SnapVault 支援對象或HANA備份目錄中手動刪除。
+
+
+NOTE: 無法清除SnapVault 所有的不完整Snapshot複本、因為一個Snapshot複本會被封鎖為同步點。如果也需要刪除最新的Snapshot複本、SnapVault 就必須刪除該複寫關係。在此情況下、NetApp建議刪除HANA備份目錄中的備份、以解除記錄備份保留管理的封鎖。
+
+image:saphana-sr-scs-image25.png["錯誤：缺少圖形影像"]
+
+
+
+== 保留管理
+
+由於支援Snapshot備份、區塊完整性檢查作業、HANA備份目錄項目、以及兩個HANA主機之間的記錄備份（若未停用）、因此無論目前的主要或次要主機為何、都能順利保留資料。SnapCenter無論目前的主要或次要主機是否需要刪除作業、HANA目錄中的備份（資料和記錄）和項目都會根據定義的保留來刪除。換句話說、如果執行接管作業和（或）將複寫設定為另一個方向、則不需要手動互動。
+
+如果SnapVault 資料保護策略中包含了使用效益複寫功能、則特定案例需要手動互動、如一節所述 <<SnapVault Replication>>。
+
+
+
+== 還原與還原
+
+下圖說明在這兩個站台執行多個移轉並建立Snapshot備份的案例。在目前狀態下、主機Hana 3是主要主機、而最新的備份則是T4、這是在主機Hana 3建立的。如果您需要執行還原與還原作業、備份T1和T4可在SnapCenter 還原與還原。在主機Hana 4（T2、T3）建立的備份、無法使用SnapCenter 還原功能還原。這些備份必須手動複製到Hana 3的資料磁碟區以進行還原。
+
+image:saphana-sr-scs-image26.png["錯誤：缺少圖形影像"]
+
+還原與還原作業針對SnapCenter 某個資源群組組組態、與自動探索的非系統複寫設定相同。所有的還原和自動還原選項均可供使用。如需詳細資料、請參閱技術報告 https://www.netapp.com/us/media/tr-4614.pdf["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]。
+
+一節將說明從其他主機建立的備份進行還原作業 link:saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html["從在其他主機上建立的備份還原及還原"]。
+
+link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html["下一步：SnapCenter 以單一資源進行的功能組態。"]

@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html 
+keywords: solution components, scheduling, retention, 
+summary: 本節將說明SnapCenter 《支援服務的不完整支援解決方案」的涵蓋範圍。 
+---
+= SAP HANA備份解決方案SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-snapcenter-service-architecture.html["上一篇：SnapCenter 《支援服務架構："]
+
+
+
+== 解決方案元件
+
+適用於SAP HANA的支援服務備份解決方案涵蓋下列領域：SnapCenter
+
+* SAP HANA資料備份搭配儲存型Snapshot複本：
++
+** 備份排程
+** 隨需備份
+** 保留管理
+** SAP HANA備份目錄的管理
+** 還原作業
+
+
+* 非資料磁碟區備份、採用儲存型Snapshot複本
++
+** 舉例來說、非資料磁碟區屬於特定HANA系統、例如HANA共享磁碟區、以及不屬於特定HANA系統的全域非資料磁碟區（例如SAP傳輸目錄）SnapCenter 。
+** 備份排程
+** 隨需備份
+** 保留管理
+** 還原作業
+
+
+* 用於資料庫區塊完整性檢查或備份到第二個位置的檔案型備份：
++
+** 備份排程
+** 隨需備份
+** 保留管理
+** SAP HANA備份目錄的管理
+
+
+* HANA資料庫記錄備份的保留管理：
++
+** 保留管理以資料備份保留為基礎
+** SAP HANA備份目錄的管理
+
+
+
+
+Snapshot資料備份是透過SnapCenter 觸發SAP HANA資料庫備份儲存點執行、以便在儲存層建立的Snapshot複本、以SAP HANA資料庫的一致映像為基礎。
+
+為了完整備份所有SAP HANA相關資源、SnapCenter 利用以儲存為基礎的Snapshot複本、即可備份所有非資料磁碟區。您可以從資料庫資料備份獨立排程非資料磁碟區、以啟用個別的保留與保護原則。
+
+SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。您可以從SnapCenter 整個過程中執行區塊完整性檢查。區塊完整性檢查（檔案型）備份也可用於將備份卸載到第二個儲存位置。
+
+根據您可自行設定的保留政策、SnapCenter 此服務可管理資料備份、記錄備份及SAP HANA備份目錄的內部管理。
+
+下圖摘要說明備份解決方案。
+
+image:saphana-backup-anf-image9.png["錯誤：缺少圖形影像"]
+
+執行非資料磁碟區的儲存型Snapshot備份時SnapCenter 、Service會執行下列工作：
+
+. 建立非資料磁碟區的儲存Snapshot複本。
+. 根據定義的保留原則刪除儲存Snapshot複本。
+
+
+執行SAP HANA資料庫的儲存型Snapshot備份時SnapCenter 、支援服務會執行下列工作：
+
+. 建立SAP HANA備份儲存點、在持續層上建立一致的映像。
+. 建立資料磁碟區的儲存Snapshot複本。
+. 在SAP HANA備份目錄中登錄儲存Snapshot備份。
+. 發佈SAP HANA備份儲存點。
+. 根據定義的保留原則刪除儲存Snapshot複本。
+. 根據定義的保留原則刪除SAP HANA備份目錄項目。
+. 每當手動刪除資料備份或根據保留政策刪除資料時SnapCenter 、即可刪除所有早於最舊資料備份的記錄備份。記錄備份會在檔案系統和SAP HANA備份目錄中刪除。
+
+
+
+
+== 支援的SAP HANA版本與組態
+
+支援SAP HANA單一主機和多主機組態、連接至支援的支援範圍。SnapCenter Azure NetApp Files
+
+支援下列SAP HANA架構與版本的支援：SnapCenter
+
+* SAP HANA單一容器：
++
+** SAP HANA 1.0 SPS12
+
+
+* SAP HANA多租戶資料庫容器（MDC）、含單一或多個租戶：
++
+** SAP HANA 2.0 SPS4及更新版本
+
+
+
+
+
+NOTE: SAP針對單一租戶系統推出HANA 2.0 SP1的Snapshot備份支援、針對多個租戶系統推出HANA 2.0 SPS4。
+
+不SnapCenter 支援將資料Snapshot備份與支援還原服務結合、以及使用回溯解決方案進行記錄備份。記錄備份必須設定為寫入檔案系統。
+
+link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html["下一步：SnapCenter 《支援服務概念與最佳實務做法："]

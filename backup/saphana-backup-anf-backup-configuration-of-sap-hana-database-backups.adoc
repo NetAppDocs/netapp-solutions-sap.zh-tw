@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html 
+keywords: configuration, database, backups, MDC 
+summary: 本節說明單一主機SAP HANA MDC單租戶系統PR1的組態步驟。對於具有多個租戶的MDC系統而言、這些步驟完全相同。單一容器或多主機系統的差異會反映在對應的組態步驟中。 
+---
+= SAP HANA資料庫備份的備份組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html["上一篇：SnapCenter 《支援服務Snapshot備份組態總覽："]
+
+本節說明單一主機SAP HANA MDC單租戶系統PR1的組態步驟。對於具有多個租戶的MDC系統而言、這些步驟完全相同。單一容器或多主機系統的差異會反映在對應的組態步驟中。
+
+
+
+== SAP HANA備份使用者
+
+NetApp建議在HANA資料庫中設定專屬的資料庫使用者、以便使用SnapCenter 支援服務執行備份作業。在還原服務的HANA系統組態期間SnapCenter 、系統會為此備份使用者設定HANA資料庫使用者儲存金鑰、並使用此使用者儲存金鑰與HANA系統進行通訊。
+
+下圖顯示SAP HANA Studio的快照、您可透過該快照建立備份使用者。
+
+
+NOTE: 在SAP HANA 2.0 SPS3版本中所需的權限已變更：備份管理、目錄讀取、資料庫備份管理及資料庫恢復營運者。對於較早版本、備份管理和目錄讀取已足夠。
+
+若為SAP HANA MDC系統、只有單一或多個租戶、您必須在系統資料庫中建立使用者、因為系統和租戶資料庫的所有備份命令都是使用系統資料庫執行。
+
+image:saphana-backup-anf-image19.png["錯誤：缺少圖形影像"]
+
+
+
+== SAP HANA系統組態的SnapCenter 功能
+
+若要在SnapCenter 《支援靜態服務：SAP HANA系統PR1」中設定、請依照下列步驟執行：
+
+. 移至SAP HANA Systems、然後按一下「Add（新增）」。
+. 在System Details（系統詳細資料）畫面中、選取系統類型HANA單一容器或多租戶資料庫容器。提供HANA系統的SID、並輸入您選擇的任何系統名稱文字。
+. 若要新增HANA資料庫使用者儲存金鑰、請按一下「新增金鑰」。
++
+image:saphana-backup-anf-image20.png["錯誤：缺少圖形影像"]
+
+. 輸入設定HANA資料庫使用者儲存金鑰的資訊。您可以提供任何名稱作為金鑰名稱。
++
+系統詳細資料包括IP位址和連接埠、以便使用hdbsql用戶端與系統資料庫進行通訊。在SAP HANA MDC單租戶設定中、連接埠「3<instanceNo>13」是SQL存取系統資料庫的標準連接埠。對於SAP HANA單一容器設定、連接埠「3<instanceNo>15」是SQL存取索引伺服器的標準連接埠、必須用於組態中。若要設定SAP HANA多主機、您必須為所有主機設定使用者儲存金鑰。支援服務會嘗試使用每個提供的金鑰來連線至資料庫、因此可以獨立運作、將SAP HANA服務容錯移轉至不同的主機。SnapCenter
+
++
+您必須在先前設定的系統資料庫中、提供資料庫使用者的使用者名稱和密碼。利用此資訊自動建立使用者儲存金鑰、並使用金鑰與HANA資料庫進行通訊。SnapCenter
+
+. 若要繼續、請按一下「新增」。
++
+image:saphana-backup-anf-image21.png["錯誤：缺少圖形影像"]
+
+. 若要繼續進行儲存設備佔用空間組態、請按一下「Continue（繼續）」。
++
+image:saphana-backup-anf-image22.png["錯誤：缺少圖形影像"]
+
+. 輸入HANA系統儲存磁碟區的資訊。
++
+選擇用於Azure NetApp Files HANA系統的穩定環境和NetApp帳戶。選取HANA系統的資料Volume、例如「PR1_data_mnt00001」。
+
++
+對於SAP HANA多主機系統、您必須選取屬於系統的所有HANA主機的資料Volume。
+
++
+image:saphana-backup-anf-image23.png["錯誤：缺少圖形影像"]
+
++
+image:saphana-backup-anf-image24.png["錯誤：缺少圖形影像"]
+
+. 按一下「繼續」。
++
+image:saphana-backup-anf-image25.png["錯誤：缺少圖形影像"]
+
+. 若要新增HANA系統、請按一下「新增」。
++
+image:saphana-backup-anf-image26.png["錯誤：缺少圖形影像"]
+
+. 若要繼續保護組態、請按一下「繼續」。
++
+image:saphana-backup-anf-image27.png["錯誤：缺少圖形影像"]
+
++
+畫面會顯示SnapCenter 所有已在「支援服務」中設定的原則。
+
++
+image:saphana-backup-anf-image28.png["錯誤：缺少圖形影像"]
+
+. 選取您要指派的原則。例如、會選取先前建立的「快照每4小時」和「BlockIntegrityChecksEverySunday」原則。
+. 若要將原則指派給HANA系統、請按一下「Protect（保護）」。
++
+image:saphana-backup-anf-image29.png["錯誤：缺少圖形影像"]
+
++
+HANA系統總覽畫面會顯示HANA系統及指派的原則。
+
++
+image:saphana-backup-anf-image30.png["錯誤：缺少圖形影像"]
+
+
+
+link:saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html["接下來：SAP HANA非資料磁碟區的備份組態。"]

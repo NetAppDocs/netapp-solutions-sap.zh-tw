@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: sap-dr-videos.html 
+summary: 討論SAP備份、還原及災難恢復的一系列影片與示範 
+keywords: netapp, solutions, SAP, backup, restore, disaster recover, dr, videos, demos 
+---
+= SAP備份、還原與災難恢復影片與示範
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:table-stripes: odd
+:imagesdir: ./media/
+
+
+[role="lead"]
+重點介紹SAP備份、還原及災難恢復的影片與示範總覽。
+
+
+
+=== SAP備份、還原與災難恢復影片與示範
+
+* link:https://www.netapp.tv/details/25592["確保SAP應用程式可用度、並將停機時間降至最低"]
+* link:https://www.netapp.tv/details/28399["在Azure NetApp Files 整個過程中最佳化SAP HANA的資料保護"]
+* link:https://www.netapp.tv/details/28398["SAP HANA的災難恢復選項"]
+* link:https://www.netapp.tv/details/28406["SAP HANA災難恢復搭配ANF與跨區域複寫"]
+

@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_aff_fc_where_to_find_additional_information.html 
+keywords:  
+summary:  
+---
+= 何處可找到其他資訊
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html["上一篇：為SAP HANA單一主機系統新增額外的資料Volume分割區。"]
+
+若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
+
+* 在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議
++
+http://www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf["www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf"^]
+
+* 在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議
++
+http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf["http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf"^]
+
+* SAP認證的SAP HANA企業儲存硬體
++
+https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html["https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html"^]
+
+* SAP HANA儲存需求
++
+http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html["http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html"^]
+
+* SAP HANA量身打造的資料中心整合常見問題集
++
+https://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["https://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html"^]
+
+* TR-4646：SAP HANA Disaster Recovery搭配使用SnapCenter NetApp HANA外掛程式的儲存複寫功能
++
+https://www.netapp.com/us/media/tr-4646.pdf["https://www.netapp.com/us/media/tr-4646.pdf"^]
+
+* TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）
++
+https://www.netapp.com/us/media/tr-4614.pdf["https://www.netapp.com/us/media/tr-4614.pdf"^]
+
+* TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統
++
+http://www.netapp.com/us/media/tr-4338.pdf["www.netapp.com/us/media/tr-4338.pdf"^]
+
+* TR-4667：使用SnapCenter NetApp 4.0 SAP HANA外掛程式來自動化SAP系統複本
++
+https://www.netapp.com/us/media/tr-4667.pdf["https://www.netapp.com/us/media/tr-4667.pdf"^]
+
+* NetApp文件中心
++
+https://www.netapp.com/us/documentation/index.aspx["https://www.netapp.com/us/documentation/index.aspx"^]
+
+* NetApp AFF 解決方案儲存系統資源
++
+https://mysupport.netapp.com/info/web/ECMLP2676498.html["https://mysupport.netapp.com/info/web/ECMLP2676498.html"^]
+
+* SAP HANA軟體解決方案
++
+file:///C:/Users/mschoen/NetApp%20Inc/SAP%20TME%20-%20Dokumente/Projects/HANA-BestPracticeGuide-TRs/2018_sept/www.netapp.com/us/solutions/applications/sap/index.aspx%23sap-hana["www.netapp.com/us/solutions/applications/sap/index.aspx#sap-hana"^]
+
+
+
+link:saphana_aff_fc_update_history.html["下一步：更新歷程記錄。"]

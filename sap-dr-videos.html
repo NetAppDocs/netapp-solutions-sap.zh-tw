@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>SAP備份、還原與災難恢復影片與示範</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="SAP備份、還原與災難恢復影片與示範" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/netapp-solutions-sap/sap-dr-videos.html" />
+	<meta property="og:description" content="討論SAP備份、還原及災難恢復的一系列影片與示範" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/netapp-solutions-sap/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="討論SAP備份、還原及災難恢復的一系列影片與示範">
+  <meta name="keywords" content=" netapp, solutions, SAP, backup, restore, disaster recover, dr, videos, demos"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/netapp-solutions-sap/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/netapp-solutions-sap/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/netapp-solutions-sap/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/netapp-solutions-sap/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-tw/netapp-solutions-sap/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-tw/netapp-solutions-sap/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-tw/netapp-solutions-sap/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/netapp-solutions-sap/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/netapp-solutions-sap/css/custom-dropdown.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/netapp-solutions-sap/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/zh-tw/netapp-solutions-sap/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/netapp-solutions-sap/js/na-search.js'></script><script src='/zh-tw/netapp-solutions-sap/js/na-pagenav.js'></script><link rel='stylesheet' href='/zh-tw/netapp-solutions-sap/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/netapp-solutions-sap/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-tw/netapp-solutions-sap/js/na-utility.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/clouddocs.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/toc.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-tw/netapp-solutions-sap/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/jszip.min.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions-sap/issues/new?body=Page%3A%20[SAP備份、還原與災難恢復影片與示範](https://docs.netapp.com/zh-tw/netapp-solutions-sap/sap-dr-videos.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/netapp-solutions-sap/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions-sap/blob/main/sap-dr-videos.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/netapp-solutions-sap/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/netapp-solutions-sap/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此頁面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">產品與解決方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支援與訓練</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社群</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">部落格</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客戶成功案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-tw/netapp-solutions-sap/search.html"
+          data-type="widget" 
+          data-placeholder="搜尋文件" 
+          data-no-results-found="找不到符合 {query} 的相關結果。" 
+          data-did-you-mean="搜尋 {suggestion}。" 
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
+          data-results-found="找到 {hitCount} 筆結果"  
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">繁體中文</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/netapp-solutions-sap/sap-dr-videos.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/netapp-solutions-sap/sap-dr-videos.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/netapp-solutions-sap/sap-dr-videos.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/netapp-solutions-sap/sap-dr-videos.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-tw/netapp-solutions-sap/sap-dr-videos.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-tw/netapp-solutions-sap/pdfs/fullsite-sidebar/SAP商業應用程式與SAP_HANA資料庫解決方案.pdf" >
+          <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/最佳實務做法.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            最佳實務做法
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_NetApp_AFF___採用FCP組態的NetApp系統_指南.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_NetApp_AFF___採用NFS的NetApp系統組態指南_.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_NetApp_FAS___採用NFS的NetApp系統組態指南_.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_FAS_with_FCP_Configuration_Guide__英文_.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            《SAP HANA on FAS with FCP Configuration Guide》（英文）
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/備份_還原及災難恢復.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            備份、還原及災難恢復
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA利用SnapCenter_NetApp備份與還原.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            SAP HANA利用SnapCenter NetApp備份與還原
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA系統複寫利用SnapCenter_功能進行備份與還原.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA災難恢復Azure_NetApp_Files_功能.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            SAP HANA災難恢復Azure NetApp Files 功能
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/Anf_SAP_HANA跨區域複寫.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            Anf SAP HANA跨區域複寫
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/災難恢復測試.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            災難恢復測試
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/災難恢復容錯移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            災難恢復容錯移轉
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA利用Azure_NetApp_Files_NetApp服務在支援功能的基礎上進行備份與還原SnapCenter.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            SAP HANA利用Azure NetApp Files NetApp服務在支援功能的基礎上進行備份與還原SnapCenter
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/服務Snapshot備份組態SnapCenter.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            服務Snapshot備份組態SnapCenter
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/生命週期管理.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            生命週期管理
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/解決方案簡介.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf.png" width="16" height="16"/>
+            解決方案簡介
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-tw/netapp-solutions-sap/images/pdf-zip.png" width="16" height="16"/>
+      <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/index.html">
+        SAP解決方案
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 最佳實務做法</div>
+      </a>
+      <ul><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html">
+        簡介
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_architecture.html">
+        架構
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_storage_sizing.html">
+        儲存規模調整
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 基礎架構設定與組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_infrastructure_setup_and_configuration_overview.html">
+        基礎架構設定與組態總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_san_fabric_setup.html">
+        SAN架構設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_time_synchronization.html">
+        時間同步
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_sap_hana_storage_connector_api.html">
+        SAP HANA儲存連接器API
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_host_setup.html">
+        主機設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html">
+        為SAP HANA單一主機系統新增額外的資料Volume分割區
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html">
+        簡介
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_architecture.html">
+        架構
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_storage_sizing.html">
+        儲存規模調整
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 基礎架構設定與組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html">
+        基礎架構設定與組態總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_network_setup.html">
+        網路設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_time_synchronization.html">
+        時間同步
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_host_setup.html">
+        主機設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html">
+        NFSv4的SAP HANA安裝準備
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_sap_hana_data_volume_size.html">
+        SAP HANA資料Volume大小
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html">
+        新增其他資料Volume分割區
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_introduction.html">
+        簡介
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_architecture.html">
+        架構
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_storage_sizing.html">
+        儲存規模調整
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 基礎架構設定與組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_infrastructure_setup_and_configuration_overview.html">
+        基礎架構設定與組態總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_network_setup.html">
+        網路設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_time_synchronization.html">
+        時間同步
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_host_setup.html">
+        主機設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html">
+        NFSv4的SAP HANA安裝準備
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_sap_hana_data_volume_size.html">
+        SAP HANA資料Volume大小
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html">
+        新增其他資料Volume分割區
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 《SAP HANA on FAS with FCP Configuration Guide》（英文）</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_introduction.html">
+        簡介
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_architecture.html">
+        架構
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_storage_sizing.html">
+        儲存規模調整
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 基礎架構設定與組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_infrastructure_setup_and_configuration_overview.html">
+        基礎架構設定與組態總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_san_fabric_setup.html">
+        SAN架構設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_time_synchronization.html">
+        時間同步
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_sap_hana_storage_connector_api.html">
+        SAP HANA儲存連接器API
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_host_setup.html">
+        主機設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html">
+        為SAP HANA單一主機系統新增額外的資料Volume分割區
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/saphana-ibm-aff-nfs_pdf_link.html">
+        IBM Power Systems上的SAP HANA與AFF 採用NFS的NetApp Sibs系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/sap-oracle-snapman_pdf_link.html">
+        SAP搭配Oracle on UNIX和NFS搭配NetApp ONTAP 功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/bp/sap-sqls-sc_pdf_link.html">
+        SAP搭配Microsoft SQL Server在Windows上使用ONTAP
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 備份、還原及災難恢復</div>
+      </a>
+      <ul><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> SAP HANA利用SnapCenter NetApp備份與還原</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-overview.html">
+        總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-architecture.html">
+        架構SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-sap-hana-backup-solution.html">
+        SAP HANA備份解決方案SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-concepts-and-best-practices.html">
+        概念與最佳實務做法SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-lab-setup-used-for-this-report.html">
+        本報告所使用的實驗室設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-configuration.html">
+        組態SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-initial-configuration.html">
+        初始組態SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html">
+        SAP HANA資料庫備份的資源專屬組態SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html">
+        非資料磁碟區備份的資源特定組態SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-database-backups.html">
+        資料庫備份
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-block-integrity-check.html">
+        區塊完整性檢查
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-restore-and-recovery.html">
+        還原與還原
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-advanced-configuration-and-tuning.html">
+        進階組態與調校
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-where-to-find-additional-information.html">
+        何處可以找到其他資訊和版本歷程記錄
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> SAP HANA系統複寫利用SnapCenter 功能進行備份與還原</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-sap-hana-system-replication-overview.html">
+        SAP HANA系統複寫總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html">
+        儲存Snapshot備份與SAP系統複寫
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html">
+        SAP系統複寫的組態選項SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html">
+        使用資源群組進行的功能組態設定SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html">
+        使用單一資源進行組態設定SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html">
+        從在其他主機上建立的備份進行還原與還原
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-where-to-find-additional-information_overview.html">
+        何處可找到其他資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-version-history.html">
+        版本歷程記錄
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> SAP HANA災難恢復Azure NetApp Files 功能</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html">
+        資料保護總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_disaster_recovery_solution_comparison.html">
+        災難恢復解決方案比較
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Anf SAP HANA跨區域複寫</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html">
+        SAP HANA跨區域複寫總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html">
+        SAP HANA跨區域複寫的組態選項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_requirements_and_best_practices.html">
+        要求與最佳實務做法
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_lab_setup.html">
+        實驗室設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html">
+        ANF跨區域複寫的組態步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_monitoring_anf_cross-region_replication.html">
+        監控ANF跨區域複寫
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 災難恢復測試</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_disaster_recovery_testing_overview.html">
+        災難恢復測試總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_prepare_the_target_host.html">
+        準備目標主機
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html">
+        根據災難恢復站台的快照備份建立新的磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_mount_the_new_volumes_at_the_target_host.html">
+        在目標主機上掛載新的磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_hana_database_recovery.html">
+        HANA資料庫恢復
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 災難恢復容錯移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_disaster_recovery_failover_overview.html">
+        災難恢復容錯移轉總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_prepare_the_target_host_01.html">
+        準備目標主機
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_break_and_delete_replication_peering.html">
+        中斷和刪除複寫對等關係
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_mount_the_volumes_at_the_target_host.html">
+        在目標主機上掛載磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_hana_database_recovery_01.html">
+        HANA資料庫恢復
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> SAP HANA利用Azure NetApp Files NetApp服務在支援功能的基礎上進行備份與還原SnapCenter</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-overview.html">
+        總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-the-netapp-solution.html">
+        NetApp解決方案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-snapcenter-service-architecture.html">
+        支援服務架構SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html">
+        SAP HANA備份解決方案SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html">
+        服務概念與最佳實務做法SnapCenter
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-lab-setup-used-for-this-report.html">
+        本報告所使用的實驗室設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-snapcenter-service-policy-configuration.html">
+        支援服務原則組態SnapCenter
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 服務Snapshot備份組態SnapCenter</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html">
+        總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html">
+        SAP HANA資料庫備份的備份組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html">
+        SAP HANA非資料磁碟區的備份組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html">
+        全域非資料磁碟區的備份組態
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-sap-hana-database-snapshot-backups.html">
+        SAP HANA資料庫Snapshot備份
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-file-based-backups-and-block-integrity-check.html">
+        檔案型備份與區塊完整性檢查
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-restore-and-recovery.html">
+        還原與還原
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-additional-information.html">
+        其他資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-backup-anf-version-history.html">
+        版本歷程記錄
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-br-sc_pdf_link.html">
+        SAP HANA利用SnapCenter 功能進行備份與還原
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html">
+        SAP HANA災難恢復與儲存複寫
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-bandr-sc_pdf_link.html">
+        使用SnapCreator進行SAP HANA備份與還原
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-commvault_pdf_link.html">
+        使用NetApp儲存設備和CommVault軟體進行SAP HANA備份與恢復
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/backup/saphana-san_pdf_link.html">
+        NetApp All SAN Array上的SAP HANA：現代化的SAN、資料保護與災難恢復
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 生命週期管理</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="https://www.netapp.com/us/media/tr-4667.pdf">
+        使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://www.netapp.com/us/media/tr-4018.pdf">
+        將NetApp儲存設備與SAP Landscape Management整合
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 解決方案簡介</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/briefs/saphana-lm-sb_pdf_link.html">
+        SAP HANA生命週期管理
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://www.netapp.com/us/media/sb-3965.pdf">
+        SAP HANA備份與還原
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://www.netapp.com/us/media/sb-3968.pdf">
+        SAP HANA災難恢復
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/flexpod/ent-db/index.html">
+        SAP解決方案FlexPod
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/netapp-solutions/">
+        NetApp解決方案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/netapp-solutions-sap/reference_legal_notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-tw/netapp-solutions-sap/">NetApp&nbsp;Solutions&nbsp;SAP</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">SAP備份、還原與災難恢復影片與示範</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-05-03 06:21:18 +0000">05/03/2022</time>
+    
+  
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>重點介紹SAP備份、還原及災難恢復的影片與示範總覽。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sap備份還原與災難恢復影片與示範">SAP備份、還原與災難恢復影片與示範</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.netapp.tv/details/25592">"確保SAP應用程式可用度、並將停機時間降至最低"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.tv/details/28399">"在Azure NetApp Files 整個過程中最佳化SAP HANA的資料保護"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.tv/details/28398">"SAP HANA的災難恢復選項"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.tv/details/28406">"SAP HANA災難恢復搭配ANF與跨區域複寫"</a></p>
+</li>
+</ul>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">legal-terms</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">legal-privacy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">legal-cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">cookie-settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">對我們的網站有任何意見或要求？</span>
+              <a target="_self" href="javascript:netapp_mailto()">請與我們聯絡</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/zh-tw/announcements/">公告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/netapp-solutions-sap/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/netapp-solutions-sap/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/netapp-solutions-sap/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/netapp-solutions-sap/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/netapp-solutions-sap/js/www-ntap.js'></script>
+    <script src='/zh-tw/netapp-solutions-sap/js/tabbed-blocks.js'></script>
+  </body></html>

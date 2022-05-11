@@ -136,8 +136,6 @@ entries:
     url: "/backup/saphana-backup-anf-additional-information.html"
   - title: 版本歷程記錄
     url: "/backup/saphana-backup-anf-version-history.html"
-- title: SAP HANA利用SnapCenter 功能進行備份與還原
-  url: "/backup/saphana-br-sc_pdf_link.html"
 - title: SAP HANA災難恢復與儲存複寫
   url: "/backup/saphana-dr-sr_pdf_link.html"
 - title: 使用SnapCreator進行SAP HANA備份與還原

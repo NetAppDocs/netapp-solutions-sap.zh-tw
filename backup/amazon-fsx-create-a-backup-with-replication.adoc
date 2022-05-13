@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: backup/amazon-fsx-create-a-backup-with-replication.html 
+keywords: backup, local snapshot, copy 
+summary: 本節說明如何使用複寫建立備份。 
+---
+= 使用複寫建立備份
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:amazon-fsx-add-a-policy-to-resource-protection.html["上一步：新增原則至資源保護。"]
+
+備份的建立方式與本機Snapshot複本相同。
+
+若要建立複寫備份、請選取包含備份複寫的原則、然後按一下備份。
+
+image:amazon-fsx-image88.png["錯誤：缺少圖形影像"]
+
+在「職務記錄」中SnapCenter 、您可以看到「次要更新」步驟、這會啟動SnapVault 「更新」作業。複寫作業會將來源磁碟區的區塊變更為目標磁碟區。
+
+image:amazon-fsx-image89.png["錯誤：缺少圖形影像"]
+
+在FSXfor ONTAP Sfor Sf2檔案系統上、會使用SnapCenter SnapMirror標籤「Sfor the Sf2」建立來源磁碟區上的Snapshot、此標籤是SnapCenter 根據《支援資料》原則所設定的「支援資料」。
+
+....
+FsxId00fa9e3c784b6abbb::> snapshot show -vserver sapcc-hana-svm -volume PFX_data_mnt00001 -fields snapmirror-label
+vserver        volume            snapshot                                                    snapmirror-label
+-------------- ----------------- ----------------------------------------------------------- ----------------
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_03-31-2022_13.10.26.5482 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_03-31-2022_14.00.05.2023 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-05-2022_08.00.06.3380 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-05-2022_14.00.01.6482 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-14-2022_20.00.05.0316 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-28-2022_08.00.06.3629 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-28-2022_14.00.01.7275 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnapAndSnapVault_Daily_04-28-2022_16.21.41.5853
+                                                                                             snapcenter
+8 entries were displayed.
+....
+在目標磁碟區上、會建立名稱相同的Snapshot複本。
+
+....
+FsxId05f7f00af49dc7a3e::> snapshot show -vserver sapcc-backup-target-zone5 -volume PFX_data_mnt00001 -fields snapmirror-label
+vserver                   volume            snapshot                                                               snapmirror-label
+------------------------- ----------------- ---------------------------------------------------------------------- ----------------
+sapcc-backup-target-zone5 PFX_data_mnt00001 SnapCenter_hana-1_LocalSnapAndSnapVault_Daily_04-28-2022_16.21.41.5853 snapcenter
+FsxId05f7f00af49dc7a3e::>
+....
+新的Snapshot備份也會列在HANA備份目錄中。
+
+image:amazon-fsx-image90.png["錯誤：缺少圖形影像"]
+
+在還原中SnapCenter 、您可以按一下拓撲檢視中的Vault複本、以列出複寫的備份。
+
+image:amazon-fsx-image91.png["錯誤：缺少圖形影像"]
+
+link:amazon-fsx-restore-and-recover-from-secondary-storage.html["下一步：從二線儲存設備還原及還原。"]

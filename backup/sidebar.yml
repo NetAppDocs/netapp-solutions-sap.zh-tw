@@ -2,6 +2,39 @@
 section: backup
 title: 備份、還原及災難恢復
 entries:
+- title: SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復
+  type: solutions
+  entries:
+  - title: 總覽
+    url: "/backup/amazon-fsx-overview.html"
+  - title: 使用Amazon FSX for ONTAP Sfor Sf.進行備份與還原
+    url: "/backup/amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html"
+  - title: 架構SnapCenter
+    url: "/backup/amazon-fsx-snapcenter-architecture.html"
+  - title: 組態SnapCenter
+    url: "/backup/amazon-fsx-snapcenter-configuration.html"
+  - title: 支援備份作業SnapCenter
+    url: "/backup/amazon-fsx-snapcenter-backup-operations.html"
+  - title: 非資料磁碟區的備份
+    url: "/backup/amazon-fsx-backup-of-non-data-volumes.html"
+  - title: 利用功能進行備份複寫SnapVault
+    entries:
+    - title: 總覽
+      url: "/backup/amazon-fsx-backup-replication-with-snapvault_overview.html"
+    - title: 在FSX上設定ONTAP 適用於Sfxfon檔案系統的複寫關係
+      url: "/backup/amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html"
+    - title: 將備份SVM新增SnapCenter 至
+      url: "/backup/amazon-fsx-add-a-backup-svm-to-snapcenter.html"
+    - title: 建立SnapCenter 新的支援複寫功能的更新功能
+      url: "/backup/amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html"
+    - title: 新增原則至資源保護
+      url: "/backup/amazon-fsx-add-a-policy-to-resource-protection.html"
+    - title: 使用複寫建立備份
+      url: "/backup/amazon-fsx-create-a-backup-with-replication.html"
+    - title: 從二線儲存設備還原及還原
+      url: "/backup/amazon-fsx-restore-and-recover-from-secondary-storage.html"
+  - title: 何處可以找到其他資訊和版本歷程記錄
+    url: "/backup/amazon-fsx-where-to-find-additional-information.html"
 - title: SAP HANA利用SnapCenter NetApp備份與還原
   type: solutions
   entries:

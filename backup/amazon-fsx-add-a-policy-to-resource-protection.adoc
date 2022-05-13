@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: backup/amazon-fsx-add-a-policy-to-resource-protection.html 
+keywords: policy, resource, protection, hana, daily schedule 
+summary: 本節說明如何將原則新增至資源保護。 
+---
+= 新增原則至資源保護
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html["上一篇：建立SnapCenter 新的支援複寫的更新政策。"]
+
+您必須將新原則新增至HANA資源保護組態、如下圖所示。
+
+image:amazon-fsx-image86.png["錯誤：缺少圖形影像"]
+
+我們的設定定義了每日排程。
+
+image:amazon-fsx-image87.png["錯誤：缺少圖形影像"]
+
+link:amazon-fsx-create-a-backup-with-replication.html["下一步：建立複寫備份。"]

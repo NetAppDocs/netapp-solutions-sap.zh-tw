@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: backup/amazon-fsx-backup-replication-with-snapvault_overview.html 
+keywords: overview, configuration, 
+summary: 在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中使用第二個FSXfor the Sfor the Sfuse檔案系統來展示HANA資料Volume的備份複寫。 
+---
+= 總覽- SnapVault 利用功能進行備份複寫
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:amazon-fsx-backup-of-non-data-volumes.html["先前：非資料磁碟區的備份。"]
+
+在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中使用第二個FSXfor the Sfor the Sfuse檔案系統來展示HANA資料Volume的備份複寫。
+
+如第章所述 link:amazon-fsx-snapcenter-architecture.html#data-protection-strategy["「資料保護策略」"]、複寫目標必須是ONTAP 另一個可用區域中的第二個FSXfor the Sf2檔案系統、才能避免ONTAP 發生適用於該文件系統的主要FSX故障。此外、HANA共享磁碟區也應複寫至次要FSXfor ONTAP the Sfor the Sf二 檔案系統。
+
+image:amazon-fsx-image8.png["錯誤：缺少圖形影像"]
+
+
+
+=== 組態步驟總覽
+
+有幾個組態步驟必須在FSXfor ONTAP Sof the Sof the Layer上執行。您可以使用NetApp Cloud Manager或FSXfor ONTAP the Sfor the Command Line來執行此作業。
+
+. 對等FSXfor ONTAP Sf供 檔案系統使用。FSXfor ONTAP Sfor Sfor Sfor Sfor FeSffile系統必須進行對等處理、才能在彼此之間進行複寫。
+. 對等SVM：SVM必須進行對等處理、才能在彼此之間進行複寫。
+. 建立目標Volume。在目標SVM上建立磁碟區、磁碟區類型為「DP」。必須輸入「DP」作為複寫目標Volume。
+. 建立SnapMirror原則。這是用來建立複寫類型為「保存庫」的原則。
++
+.. 新增規則至原則。此規則包含SnapMirror標籤和保留資料、以便在次要站台進行備份。您必須稍後在SnapCenter 「還原」原則中設定相同的SnapMirror標籤、SnapCenter 以便在含有此標籤的來源Volume上建立Snapshot備份。
+
+
+. 建立SnapMirror關係。定義來源與目標Volume之間的複寫關係、並附加原則。
+. 初始化SnapMirror。這會啟動初始複寫、以便將完整的來源資料傳輸至目標Volume。
+
+
+當Volume複寫組態完成時、您必須在SnapCenter 下列步驟中設定使用下列功能的備份複寫：
+
+. 將目標SVM新增SnapCenter 至SVM。
+. 為SnapCenter Snapshot備份和SnapVault 功能不全的複寫建立全新的功能不全原則。
+. 將原則新增至HANA資源保護。
+. 您現在可以使用新原則執行備份。
+
+
+以下各章將更詳細地說明各個步驟。
+
+link:amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html["下一步：在FSX上設定ONTAP 適用於Sfor Sf供 檔案系統的複寫關係。"]

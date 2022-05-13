@@ -3831,4 +3831,427 @@
   <block id="fceb9e9a7a8e75da09a45b74960f3ce3" category="sidebar">使用SnapCreator進行SAP HANA備份與還原</block>
   <block id="0f1df2d5d1f6e9db4283f9e9814fa12a" category="sidebar">使用NetApp儲存設備和CommVault軟體進行SAP HANA備份與恢復</block>
   <block id="eeb338bfcd3ad35ad6983ecfa31efba2" category="sidebar">NetApp All SAN Array上的SAP HANA：現代化的SAN、資料保護與災難恢復</block>
+  <block id="c50aa3f02a43d1792d7198bd3766142c" category="summary">本節將說明如何針對ONTAP 下列項目建立對等FSX-以利執行下列作業：FSX檔案系統、對等SVM、建立目標磁碟區、建立SnapMirror原則、建立SnapMirror關係、以及初始化SnapMirror。</block>
+  <block id="dbf9d2787d072a4fd34082b47aacfe77" category="doc">在FSX上設定ONTAP 適用於Sfxfon檔案系統的複寫關係</block>
+  <block id="1352ecc16336d5708103acd36138f3ca" category="inline-link-macro">上一篇：概述- SnapVault 利用功能進行備份複寫。</block>
+  <block id="882a79d8ed451130b65c7f4757896bf2" category="paragraph"><block ref="882a79d8ed451130b65c7f4757896bf2" category="inline-link-macro-rx"></block></block>
+  <block id="98651d7cc1c378d485ba8f375d4d7dbd" category="inline-link">SnapMirror複寫工作流程（netapp.com）</block>
+  <block id="b5beb3cfb3b1b16081425e9d6e52d915" category="paragraph">如需SnapMirror組態選項的詳細資訊、請參閱ONTAP 上的《關於SnapMirror組態選項的資訊》<block ref="a679b656ad5513b2e5948e853501b769" category="inline-link-rx"></block>。</block>
+  <block id="35271451318f12e2f5cc52cc3a8a6d22" category="list-text">資料來源FSX: ONTAP 「FsxId00fa9e3c784b6abbb」</block>
+  <block id="5936d785731bc7c4b4fb1addddd3c4ae" category="list-text">來源SVM：「APCA-HA-SVM」</block>
+  <block id="83473822e15b41d9976df9e62816bf1e" category="list-text">目標FSx用於ONTAP 支援資料系統：「FsxId05f7f00af49dc7a3e」</block>
+  <block id="184d9d97bac5976851f8d3d29c6eb7b3" category="list-text">目標SVM：「APCPCC備份-目標-區域5」</block>
+  <block id="13a408d84a52802ccb7fc9d194ec03a6" category="section-title">對等FSXfor ONTAP Sf供 檔案系統使用</block>
+  <block id="0b06a3f79e2e9507c1505d7e5ecbd420" category="admonition">「對等網路」是目的地叢集的叢集IP。</block>
+  <block id="bce6381c4cea64c81cbc9ed883116e79" category="section-title">對等SVM</block>
+  <block id="eb9a4a5509950dc1c19cc313a888ad57" category="section-title">建立目標Volume</block>
+  <block id="78ba09c1e6974a1fb593d751fc2ae60f" category="paragraph">您必須使用「DP」類型建立目標磁碟區、將其標示為複寫目標。</block>
+  <block id="55d42bd9ef30094c89253387e26ced80" category="section-title">建立SnapMirror原則</block>
+  <block id="d26ad042aedd077c7d434fe094c98f8d" category="paragraph">SnapMirror原則和新增規則定義了保留和SnapMirror標籤、以識別應複寫的Snapshot。稍後建立SnapCenter 「樣」原則時、您必須使用相同的標籤。</block>
+  <block id="4e9cf532300b4450e6f840b010b2f183" category="section-title">建立SnapMirror關係</block>
+  <block id="07cfc8eda6d55b5eb0fb5db40ea9fa3c" category="paragraph">現在已定義來源與目標Volume之間的關係、以及XDP類型和我們先前建立的原則。</block>
+  <block id="c5d142fafd8837228c0357960c716915" category="section-title">初始化SnapMirror</block>
+  <block id="3a30d9da07e9c53ea40e049da7fc7fdc" category="paragraph">使用此命令會啟動初始複寫。這是將所有資料從來源磁碟區完整傳輸至目標磁碟區的方式。</block>
+  <block id="86a1f7ab04e42924fc2f5709b4b53d19" category="paragraph">您可以使用「napmirror show」命令來檢查複寫狀態。</block>
+  <block id="afaa23b2ed1b8fc27f00e296c09842c2" category="inline-link-macro">下一步：將備份SVM新增SnapCenter 至</block>
+  <block id="900bcd14629ec77bc4e8314fb7a4239a" category="paragraph"><block ref="900bcd14629ec77bc4e8314fb7a4239a" category="inline-link-macro-rx"></block></block>
+  <block id="ab5c6d77e6be89dfafd62072722d1f8d" category="summary">本節說明如何將備份SVM新增SnapCenter 至SVM。</block>
+  <block id="3e3ce5c2a6c9e71dd944b379b54040fc" category="doc">將備份SVM新增SnapCenter 至</block>
+  <block id="25eb595a41dcaf86c42a684d57bfd667" category="inline-link-macro">上一篇：在FSX上 設定ONTAP 適用於Sfxfon檔案系統的複寫關係。</block>
+  <block id="a5490459e02c6b0fb7bd9078cbdc01d6" category="paragraph"><block ref="a5490459e02c6b0fb7bd9078cbdc01d6" category="inline-link-macro-rx"></block></block>
+  <block id="be7788774fa38e42c5b2c6ad478f7e0d" category="paragraph">若要將備份SVM新增SnapCenter 至SVM、請依照下列步驟操作：</block>
+  <block id="69a827a353f1759f83d4d29038339b5e" category="list-text">設定SVM、SnapVault 使其位於SVM SnapCenter 中的SVM磁碟區。</block>
+  <block id="abd2312dbf29f3719e4c10b997b8ef32" category="paragraph"><block ref="abd2312dbf29f3719e4c10b997b8ef32" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7ff3bfb984e16ba0e9ddeea3a9675aba" category="list-text">在「More Options（更多選項）」視窗中、選取「All Flash FAS 」作為平台、然後選取「Secondary（次要）」。</block>
+  <block id="4d9cbf0937260f562f28ad6bf395051f" category="paragraph"><block ref="4d9cbf0937260f562f28ad6bf395051f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="17a507a9ef1c4ff633b35e3f95052658" category="paragraph">SVM現已推出SnapCenter 以供選購。</block>
+  <block id="009e7bd5c10430df0e40f71649d3dddb" category="paragraph"><block ref="009e7bd5c10430df0e40f71649d3dddb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="58507822576395a28fe0d32750be7493" category="inline-link-macro">下一步：建立SnapCenter 新的支援複寫功能的更新功能。</block>
+  <block id="19d218f1b1a6af37502fa77b905665c7" category="paragraph"><block ref="19d218f1b1a6af37502fa77b905665c7" category="inline-link-macro-rx"></block></block>
+  <block id="594405c63145846b5ef5da75637c651c" category="summary">本節說明如何建立隨需Snapshot備份和隨需區塊完整性檢查作業。</block>
+  <block id="ecc57313124902e4c42227ae61bb9bf1" category="doc">支援備份作業SnapCenter</block>
+  <block id="c92f9b3ef03c3febfc6024da76033aeb" category="paragraph"><block ref="c92f9b3ef03c3febfc6024da76033aeb" category="inline-link-macro-rx"></block></block>
+  <block id="fd2e55c1e41efe9b784a15be371759b1" category="section-title">建立隨需Snapshot備份</block>
+  <block id="7657283c697ca0582f3be9790868181b" category="paragraph">請依照下列步驟建立隨需Snapshot備份。</block>
+  <block id="056e429fcb2f6a7c1a53fbbc544c6426" category="list-text">在「資源」檢視中、選取資源、然後按兩下該行以切換至「拓撲」檢視。</block>
+  <block id="2ac85cad7240f8f0669e69bab5c0fddc" category="paragraph">「資源拓撲」檢視提供SnapCenter 所有可用備份的總覽、這些備份都是使用效益技術建立的。此檢視的頂端區域會顯示備份拓撲、顯示主要儲存設備（本機複本）上的備份、以及異地備份儲存設備（資料保存複本）上的備份（若有）。</block>
+  <block id="80ccdc0d27069c1ff7eda00fad9ce630" category="list-text">在頂端列中、選取「立即備份」圖示以開始隨需備份。</block>
+  <block id="a4add3607bef17315ff36a36896cd8a5" category="paragraph"><block ref="a4add3607bef17315ff36a36896cd8a5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fd5d1357b318fbf4e649f0de7314c3f9" category="list-text">從下拉式清單中、選取備份原則「LocalSnap」、然後按一下「備份」開始隨需備份。</block>
+  <block id="3e8bdc12d234c131867b6bf206139e8f" category="paragraph"><block ref="3e8bdc12d234c131867b6bf206139e8f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f6acf71ad860c83647bf8fba05a3d9c6" category="paragraph"><block ref="f6acf71ad860c83647bf8fba05a3d9c6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="25f3c4b4983c7aeeea861e3dbda6f2e4" category="paragraph">前五個工作的記錄會顯示在拓撲檢視底部的「活動」區域中。</block>
+  <block id="8748d7533b9ff0f8de956dca869cf164" category="list-text">按一下「活動」區域中的工作活動列時、會顯示工作詳細資料。您可以按一下「檢視記錄」來開啟詳細的工作記錄</block>
+  <block id="7b34de8bc935f20d0be7ac12ef0d7e66" category="paragraph"><block ref="7b34de8bc935f20d0be7ac12ef0d7e66" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0ba847d81f910709c3c09aa75fa0ad47" category="inline-link-macro">「設定及保護HANA資源」。</block>
+  <block id="5517e803e46e8dd4074b86328ea2116e" category="paragraph">備份完成後、拓撲檢視中會顯示新項目。備份名稱的命名慣例與一節中定義的Snapshot名稱相同 <block ref="21266aca09e91497bf9e47ec98f61bc4" category="inline-link-macro-rx"></block></block>
+  <block id="564f24a6d42bc11862b656800bf71003" category="paragraph"><block ref="564f24a6d42bc11862b656800bf71003" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="886f063ff3cbce042bd5354957ab45fe" category="paragraph">在SAP HANA備份目錄中SnapCenter 、還原備份名稱會儲存為「Comment（註解）」欄位、以及「外部備份ID（EBID）」。下圖顯示系統資料庫和租戶資料庫PFX的下圖。</block>
+  <block id="51828a3b8dd3d5bacedec913cc887921" category="paragraph"><block ref="51828a3b8dd3d5bacedec913cc887921" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="40213481fe2e7fef53342a0b6f79f03e" category="paragraph"><block ref="40213481fe2e7fef53342a0b6f79f03e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b0fea066e4357286d1022c0f348cda79" category="paragraph">在FSXfor ONTAP Sfingfile系統上、您可以連線至SVM的主控台、列出Snapshot備份。</block>
+  <block id="a8b02af2d15bda403394c0199a693bf0" category="section-title">建立隨需區塊完整性檢查作業</block>
+  <block id="32b5fe8164d6968ffd17b6d1728e1103" category="paragraph">透過選取原則BlockIntegrityCheck、隨需區塊完整性檢查作業的執行方式與Snapshot備份工作相同。使用此原則排程備份時SnapCenter 、將為系統和租戶資料庫建立標準的SAP HANA檔案備份。</block>
+  <block id="32ab6e3e05856c24cf63fc8aa5c3c55d" category="paragraph"><block ref="32ab6e3e05856c24cf63fc8aa5c3c55d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="268b5b314e7cb02e490d79d6472802d3" category="paragraph"><block ref="268b5b314e7cb02e490d79d6472802d3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d8cb7b1a283deec84411bd00723fc925" category="paragraph"><block ref="d8cb7b1a283deec84411bd00723fc925" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ba7aeca897359e25127ed4621d0fedba" category="paragraph">SAP HANA備份目錄會顯示系統和租戶資料庫的項目。下圖顯示SnapCenter 系統和租戶資料庫備份目錄中的「區塊完整性檢查」。</block>
+  <block id="9ac5d8a243a32a4076f42e0a04f5d292" category="paragraph"><block ref="9ac5d8a243a32a4076f42e0a04f5d292" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="51c4bd9388ab1af79f6d53daaa966ffd" category="paragraph"><block ref="51c4bd9388ab1af79f6d53daaa966ffd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3453b83e04ff7c4b2293244874e7dd53" category="paragraph">成功的區塊完整性檢查可建立標準的SAP HANA資料備份檔案。使用已設定HANA資料庫的備份路徑進行檔案型資料備份作業。SnapCenter</block>
+  <block id="70d36fb87c76f6389689df766a8dd993" category="inline-link-macro">下一步：備份非資料磁碟區。</block>
+  <block id="736930fbc1537a04133455311a8f2cbe" category="paragraph"><block ref="736930fbc1537a04133455311a8f2cbe" category="inline-link-macro-rx"></block></block>
+  <block id="fa8e9c099eedc452a4d7a73d21130c08" category="summary">本節說明如何將原則新增至資源保護。</block>
+  <block id="f6e2ee2d6349e048bf2c27a62ae4e46c" category="doc">新增原則至資源保護</block>
+  <block id="e80a0fb7205c27d9ab26b846c47f929b" category="inline-link-macro">上一篇：建立SnapCenter 新的支援複寫的更新政策。</block>
+  <block id="ac7edf08792f5b8800208039d2e56cfd" category="paragraph"><block ref="ac7edf08792f5b8800208039d2e56cfd" category="inline-link-macro-rx"></block></block>
+  <block id="1da64551d06b94d7b482063dbb2e35e1" category="paragraph">您必須將新原則新增至HANA資源保護組態、如下圖所示。</block>
+  <block id="8f7d93ab25ce5e59a3884b721bf8a1bb" category="paragraph"><block ref="8f7d93ab25ce5e59a3884b721bf8a1bb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8d6efb0dba912228a4f9680328b7569b" category="paragraph">我們的設定定義了每日排程。</block>
+  <block id="d1cd804a2ab976022034998372527589" category="paragraph"><block ref="d1cd804a2ab976022034998372527589" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="079b889dbfa247456ae4e9ddfea1e623" category="inline-link-macro">下一步：建立複寫備份。</block>
+  <block id="cb388287d7dd57ba45d740fed1ce0eb0" category="paragraph"><block ref="cb388287d7dd57ba45d740fed1ce0eb0" category="inline-link-macro-rx"></block></block>
+  <block id="8d672d6879c8db3a9c37e06acd4d7571" category="summary">本技術報告針對Amazon FSX for NetApp ONTAP 餐廳和NetApp SnapCenter 餐廳提供SAP HANA資料保護的最佳實務做法。本文件涵蓋SnapCenter 各種概念、組態建議及作業工作流程、包括組態、備份作業、 以及還原與還原作業。</block>
+  <block id="042f7a2c227ce333d4132cb3d2f72c1a" category="doc">TR-4926：適用於NetApp ONTAP 的Amazon FSX上的SAP HANA - SnapCenter 利用NetApp進行備份與還原</block>
+  <block id="945a22530e2c0bc909fe7bd733744001" category="paragraph">現今的企業需要持續且不中斷的SAP應用程式可用度。他們期望面對不斷增加的資料量、以及例行維護工作（例如系統備份）的需求、能達到一致的效能等級。執行SAP資料庫備份是一項重要工作、可能會對正式作業SAP系統造成重大效能影響。</block>
+  <block id="22eb5cd58a9c358396971f25290eeb1e" category="paragraph">備份時間縮短、而要備份的資料量卻不斷增加。因此、您很難找到一段時間來執行備份、但對業務程序的影響最小。還原及還原SAP系統所需的時間是一項重大考量、因為必須將SAP正式作業與非正式作業系統的停機時間降至最低、以降低企業成本。</block>
+  <block id="9bf7f5887c6c4a274f85ea1eb16b6c64" category="inline-link-macro">下一步：使用Amazon FSX for ONTAP Sfor Sfor功能進行備份與恢復。</block>
+  <block id="c0afbf27fa14fece1360d59a0fce5e77" category="paragraph"><block ref="c0afbf27fa14fece1360d59a0fce5e77" category="inline-link-macro-rx"></block></block>
+  <block id="a93f4cc43678f9ab3b805d2bb40079f2" category="summary">您必須執行本節中的步驟、才能SnapCenter 設定基礎的功能、並保護HANA資源。</block>
+  <block id="60fcb2c80bab22c5d0be2bf13e9dc00b" category="paragraph"><block ref="60fcb2c80bab22c5d0be2bf13e9dc00b" category="inline-link-macro-rx"></block></block>
+  <block id="359afa6593b15e77c26003b8273f9004" category="section-title">組態步驟總覽</block>
+  <block id="0960b23dd4a17a6020075c6227b9232f" category="paragraph">您必須執行下列步驟、才能SnapCenter 設定基礎的資訊穩定功能、並保護HANA資源。以下各章將詳細說明每個步驟。</block>
+  <block id="caa4a49314502e7c0e18c5dab680cc2b" category="list-text">設定SAP HANA備份使用者和hdbuserstore金鑰。用於使用hdbsqll用戶端存取HANA資料庫。</block>
+  <block id="feba79381e14c9bc7a08ea5d266dc327" category="list-text">設定SnapCenter 儲存在靜態中。從ONTAP SVM上存取FSX for SVMs的認證資料SnapCenter</block>
+  <block id="709b936bce2a1736edd0f031dc27af83" category="list-text">設定外掛程式部署的認證。用於在SnapCenter HANA資料庫主機上自動部署及安裝所需的功能不全插件。</block>
+  <block id="21df4d6c65c5d1b22f73da36d70707b2" category="list-text">將HANA主機新增SnapCenter 至部署並安裝所需SnapCenter 的功能不全的外掛程式。</block>
+  <block id="224a7e7662399b8780f32fdc84c2ae1b" category="list-text">設定原則。定義備份作業類型（Snapshot、file）、保留、以及選用的Snapshot備份複寫。</block>
+  <block id="215c8d01e52220d94bfc06b2ff7c04f6" category="list-text">設定HANA資源保護。提供hdbuserstore金鑰、並將原則和排程附加至HANA資源。</block>
+  <block id="e55ff41af170b5ea45b9f0f5d18c388e" category="paragraph">下圖顯示可用來建立備份使用者的SAP HANA Studio</block>
+  <block id="81301f8e5191357519759b3297ce2d44" category="paragraph">HANA 2.0 SPS5版本可變更所需的權限：備份管理、目錄讀取、資料庫備份管理及資料庫還原操作員。對於較早版本、備份管理和目錄讀取已足夠。</block>
+  <block id="0fc753b520c4227f940435dc5b8f402a" category="paragraph">對於SAP HANA MDC系統、您必須在系統資料庫中建立使用者、因為系統和租戶資料庫的所有備份命令都是使用系統資料庫執行。</block>
+  <block id="892da7911635cd7da42c07b854d8b1a1" category="paragraph"><block ref="892da7911635cd7da42c07b854d8b1a1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="75cb7cd589bf636cc5ca574de687f7b2" category="paragraph">以下命令用於具有「&lt;SID&gt;adm'使用者的使用者存放區組態：</block>
+  <block id="1d18928f61e38eb05e7e01ba72ddd5e3" category="paragraph">使用「&lt;SID&gt;adm'使用者與HANA資料庫通訊。SnapCenter因此、您必須在資料庫主機上使用&lt;id&gt;adm'使用者來設定使用者存放區金鑰。SAP HANA hdbsql用戶端軟體通常會與資料庫伺服器安裝一起安裝。如果情況並非如此、您必須先安裝hdbClient。</block>
+  <block id="47359db53576b27891d283bf529b35d5" category="paragraph">在SAP HANA MDC設定中、連接埠「3&lt;instanceNo&gt;13」是SQL存取系統資料庫的標準連接埠、必須用於hdbuserstore組態。</block>
+  <block id="d73493837316727c01ae9815d9355939" category="paragraph">若要設定SAP HANA多主機、您必須為所有主機設定使用者儲存金鑰。使用每個提供的金鑰嘗試連線至資料庫、因此可以獨立運作、將SAP HANA服務容錯移轉至不同的主機。SnapCenter在實驗室設定中、我們為系統PFX設定了使用者儲存金鑰「pfxadm」、這是單一租戶的單一主機HANA MDC系統。</block>
+  <block id="92b9d3db3fdb1957b4c4d34e73939c5d" category="paragraph">您可以使用「hdbsql」命令檢查使用金鑰的HANA系統資料庫存取權。</block>
+  <block id="fcc101f2c66262c23387819df7a461c8" category="paragraph">請依照下列步驟在SnapCenter 不執行儲存的情況下進行設定。</block>
+  <block id="578d00099c13466294fdf336b017f275" category="list-text">在這個UI中、選取「儲存系統」SnapCenter 。</block>
+  <block id="6d456b30427299ffa927cb4c13e0a8c3" category="paragraph"><block ref="6d456b30427299ffa927cb4c13e0a8c3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="72ff7091ffb09be1df45aed0830b1c03" category="paragraph">您可以選擇儲存系統類型ONTAP 、也可以是「SVM」或ONTAP 「叢集」。在下列範例中、已選取SVM管理。</block>
+  <block id="026daff7da6da40281861fb592305d53" category="paragraph"><block ref="026daff7da6da40281861fb592305d53" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8604e4985adf9ff19cf645c562016a2c" category="list-text">若要新增儲存系統並提供所需的主機名稱和認證、請按一下「New（新增）」。</block>
+  <block id="21de7574224c54d506a9f9f69185f1bd" category="paragraph">SVM使用者不需要是vsadmin使用者、如下圖所示。一般而言、使用者是在SVM上設定、並指派執行備份與還原作業所需的權限。如需必要權限的相關資訊、請參閱<block ref="7b715dbc2fecfcb275c5209e8e720c86" category="inline-link-rx"></block> 在標題為ONTAP 「最低要求的權限」一節中。</block>
+  <block id="b5fbdcdea815bdd8c08d2ddc460334eb" category="paragraph"><block ref="b5fbdcdea815bdd8c08d2ddc460334eb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ac0a876fac34b08db6fd053849b9a61c" category="list-text">若要設定儲存平台、請按一下「更多選項」。</block>
+  <block id="eb29cb32fb88ca7c229236d5f25dce2a" category="list-text">選擇All Flash FAS 支援作為儲存系統、以確保FSX- for ONTAP the FSX-的授權可供SnapCenter 使用。</block>
+  <block id="dbcb811a4af9b71c69c99ac2293abd94" category="paragraph"><block ref="dbcb811a4af9b71c69c99ac2293abd94" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="299439100d029701f59616597606d753" category="paragraph">SVM的「sAPCA-Hana - SVM」現已設定SnapCenter 於SVM中。</block>
+  <block id="8b0162abcec24fa373c1f3436dc0ccdf" category="paragraph"><block ref="8b0162abcec24fa373c1f3436dc0ccdf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0572ed1f74a831bbe0d08a962826f1d9" category="section-title">建立外掛程式部署的認證資料</block>
+  <block id="cfc5ece26f0c93a92ccccb43983e85df" category="paragraph">若要在SnapCenter HANA主機上部署必要的外掛程式、必須設定使用者認證。</block>
+  <block id="dd5315f14b8e5deb9617f6d7f8ecb09f" category="paragraph"><block ref="dd5315f14b8e5deb9617f6d7f8ecb09f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="200a5ea310bf58e32ff8608924910f7f" category="list-text">在實驗室設定中、我們在SnapCenter HANA主機上設定了新的使用者「支援」、用於外掛部署。您必須啟用Sudo prvilleges、如下圖所示。</block>
+  <block id="916c5c5ed4ac91c38ac77424452d62a3" category="paragraph"><block ref="916c5c5ed4ac91c38ac77424452d62a3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1517d504e38dc374c8f101f4e81ef219" category="section-title">新增SAP HANA主機</block>
+  <block id="c6c86914a12d68144f1f2b237b771ca3" category="paragraph">新增SAP HANA主機時SnapCenter 、NetApp會在資料庫主機上部署所需的外掛程式、並執行自動探索作業。</block>
+  <block id="db0309ae0b66c918b50e10cf960adac6" category="paragraph">SAP HANA外掛程式需要Java 64位元1.8版。必須先在主機上安裝Java、然後才能將主機新增SnapCenter 至鏡像。</block>
+  <block id="51a98b038742fddf88a6bf0cac86fe16" category="paragraph">支援OpenJDKTM或Oracle Java SnapCenter 。</block>
+  <block id="f92f162575ca24726f81e3984b27fd2c" category="paragraph">若要新增SAP HANA主機、請遵循下列步驟：</block>
+  <block id="2c2d4f6f66bff6974d391f5b47aa6bcd" category="paragraph"><block ref="2c2d4f6f66bff6974d391f5b47aa6bcd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e6eb4529d88150ea453b906dca520246" category="paragraph"><block ref="e6eb4529d88150ea453b906dca520246" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d50f8da07a47cf2bd81d2c52efe31d8e" category="paragraph"><block ref="d50f8da07a47cf2bd81d2c52efe31d8e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e56209b057aa06956c0e0556d62be7c1" category="paragraph">HANA與Linux外掛程式的安裝會自動啟動。安裝完成後、主機的狀態欄會顯示「Configure VMware Plug-in（設定VMware外掛程式）」。可偵測SAP HANA外掛程式是否安裝在虛擬化環境中。SnapCenter這可能是VMware環境或公有雲供應商的環境。在這種情況SnapCenter 下、功能表會顯示設定Hypervisor的警告。</block>
+  <block id="01c8adc0940fc944d6bceb0a58335832" category="paragraph">您可以使用下列步驟移除警告訊息。</block>
+  <block id="4ed121e2d9bd6bb4b6ed37f0389621b2" category="paragraph"><block ref="4ed121e2d9bd6bb4b6ed37f0389621b2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="690583402e73138cf43fe0e6a07a913c" category="paragraph"><block ref="690583402e73138cf43fe0e6a07a913c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="43511a4b3774fe4d02144fe4b86b3dd8" category="paragraph">現在畫面會顯示Linux外掛程式和HANA外掛程式、並顯示執行狀態。</block>
+  <block id="d2c792ca82e6b9299ebb51fb653b5bd9" category="paragraph"><block ref="d2c792ca82e6b9299ebb51fb653b5bd9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ac4361253d885faaf895a0d0cd05c3d8" category="section-title">設定原則</block>
+  <block id="3988ca38d0149c3c196796f887611cb5" category="paragraph">原則通常會獨立設定資源、可供多個SAP HANA資料庫使用。</block>
+  <block id="f3583ef14178cc77a72623a9cd8acb5d" category="list-text">不需複寫的每小時備份原則：「本地管理單元」。</block>
+  <block id="2235861b5bc201f918f6b8a7947301ba" category="list-text">使用檔案型備份進行每週區塊完整性檢查的原則：「BlockIntegrityCheck」。</block>
+  <block id="2b07d6a7b5422b0cd9352398b1459ccc" category="paragraph">下列各節將說明這些原則的組態。</block>
+  <block id="e7e20c907bb0cf2de077b4f92cc87879" category="section-title">Snapshot備份原則</block>
+  <block id="270658685f14f40df5a97dcb443d187d" category="paragraph">請依照下列步驟設定Snapshot備份原則。</block>
+  <block id="fcc31f5acb3bb2bac613dbd42129dd9b" category="paragraph"><block ref="fcc31f5acb3bb2bac613dbd42129dd9b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3d19a5d9c48a0bc54690ec2f0ff596d0" category="paragraph"><block ref="3d19a5d9c48a0bc54690ec2f0ff596d0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e25858bd60001cd50bf9600bc16960f" category="paragraph">排程本身稍後會設定HANA資源保護組態。</block>
+  <block id="84c489bc680b4176503373772376d884" category="paragraph"><block ref="84c489bc680b4176503373772376d884" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a686976145be6b4ec8ceff4680c2ae97" category="paragraph"><block ref="a686976145be6b4ec8ceff4680c2ae97" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="190fa107ba472e0eb7388fad0dc9f98e" category="paragraph"><block ref="190fa107ba472e0eb7388fad0dc9f98e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="825c50adfec5430df0e6715daa04d245" category="paragraph"><block ref="825c50adfec5430df0e6715daa04d245" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="aa785cec21110ee3100d934df3f27610" category="paragraph">現在已設定新原則。</block>
+  <block id="a4559da56a5bbdb3f26b333ddb8baf01" category="paragraph"><block ref="a4559da56a5bbdb3f26b333ddb8baf01" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2cb5b15e3797f553ddf112b4b3cd651d" category="section-title">區塊完整性檢查原則</block>
+  <block id="1e4b633df036aab42607fbc95a2850e6" category="paragraph">請依照下列步驟設定區塊完整性檢查原則。</block>
+  <block id="c896af46bd74548a98a99d065225bccc" category="paragraph"><block ref="c896af46bd74548a98a99d065225bccc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="882e8132f9d8c5b34f622bd048180933" category="list-text">將備份類型設為「檔案型」、並將排程頻率設為「每週」。排程本身稍後會設定HANA資源保護組態。</block>
+  <block id="2e7a1460232d945757813bbd27f9b4fd" category="paragraph"><block ref="2e7a1460232d945757813bbd27f9b4fd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fbd4b9f628fc33b7d90164cd34ebb578" category="paragraph"><block ref="fbd4b9f628fc33b7d90164cd34ebb578" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2a445bccf884e2de000a654a04fcae6c" category="paragraph"><block ref="2a445bccf884e2de000a654a04fcae6c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0aaaa7c76233c96a87f771620929b12f" category="paragraph"><block ref="0aaaa7c76233c96a87f771620929b12f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="587169b2c69633c66fc254ec91d39015" category="section-title">設定及保護HANA資源</block>
+  <block id="36413444bdd59e22d0fe3054f9903db8" category="paragraph">外掛程式安裝完成後、HANA資源的自動探索程序會自動啟動。在「資源」畫面中、會建立一個新的資源、並以紅色掛鎖圖示標示為鎖定。若要設定及保護新的HANA資源、請依照下列步驟操作：</block>
+  <block id="ba685f1a08fe226c2c3c7e97f7fd46c4" category="list-text">選取並按一下資源以繼續設定。</block>
+  <block id="2455bdad114eb0bbce54e418891ecb1c" category="paragraph">您也可以按一下「重新整理資源」、在「資源」畫面中手動觸發自動探索程序。</block>
+  <block id="a38a05e04bad0f4bb3800192f1927d0a" category="paragraph"><block ref="a38a05e04bad0f4bb3800192f1927d0a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b62cca965ac7a7f8b9aa48ec195b7a47" category="paragraph"><block ref="b62cca965ac7a7f8b9aa48ec195b7a47" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="83c4968ab2385345cca17e0266355f0d" category="paragraph"><block ref="83c4968ab2385345cca17e0266355f0d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e68ac8b42a88c9359693badb698d1d5" category="list-text">在「Resources（資源）」索引標籤中、按兩下資源以設定資源保護。</block>
+  <block id="948da424b6b1931de2b422e798240a92" category="paragraph"><block ref="948da424b6b1931de2b422e798240a92" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f3f2fb3a8df9cea2f8322063989dc4cf" category="paragraph">NetApp建議使用自訂Snapshot複本名稱、輕鬆識別已建立哪些備份、以及使用何種原則和排程類型。在Snapshot複本名稱中新增排程類型、即可區分排程備份與隨需備份。隨需備份的「排程名稱」字串為空白、而排程備份則包含字串「每小時」、「每日」、「或每週」。</block>
+  <block id="e82fd6f71708a6f6cd8f71ba22f6989e" category="paragraph"><block ref="e82fd6f71708a6f6cd8f71ba22f6989e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="61efa00efc19f6d0cad868b7f1d7ffa1" category="paragraph"><block ref="61efa00efc19f6d0cad868b7f1d7ffa1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0ac613f5fa2d93f0cbc1cd158f2eaf95" category="list-text">選取要新增至資源的原則。</block>
+  <block id="45a912931ace3636beee93178c4035e1" category="paragraph"><block ref="45a912931ace3636beee93178c4035e1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="27329ed143fb9e6ad1bec7a9798ec09a" category="list-text">定義區塊完整性檢查原則的排程。</block>
+  <block id="bb679512107983b315a700d36f774e12" category="paragraph">在此範例中、此設定為每週一次。</block>
+  <block id="f95d0594caebf47e056264e2764cad7c" category="paragraph"><block ref="f95d0594caebf47e056264e2764cad7c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f6f370ad34b914bb9b3188cab95579f6" category="list-text">定義本機Snapshot原則的排程。</block>
+  <block id="01d64140a5b79b3220671ec24e5355a7" category="paragraph">在此範例中、每6小時設定一次。</block>
+  <block id="c0d6af2403ce1b9675338671e65758a5" category="paragraph"><block ref="c0d6af2403ce1b9675338671e65758a5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b7dfac81d29f1deee31d252e8c95de36" category="paragraph"><block ref="b7dfac81d29f1deee31d252e8c95de36" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b854707cc3132b3ad49cf824f2bbcd3b" category="paragraph"><block ref="b854707cc3132b3ad49cf824f2bbcd3b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6f4a321c621aa39d5ac85d3cddcb95de" category="paragraph"><block ref="6f4a321c621aa39d5ac85d3cddcb95de" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="91f8b9395cad8e2a4e4239c12d3319b4" category="paragraph">HANA資源組態現已完成、您可以執行備份。</block>
+  <block id="fa51a27b6ba798c75e9c404ec3343e19" category="paragraph"><block ref="fa51a27b6ba798c75e9c404ec3343e19" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="94f31dc89c951410793a7b22a3ca3fed" category="inline-link-macro">下一步：SnapCenter 支援不中斷的備份作業。</block>
+  <block id="ac196e12287b0c54e5e07b2bc41e68ab" category="paragraph"><block ref="ac196e12287b0c54e5e07b2bc41e68ab" category="inline-link-macro-rx"></block></block>
+  <block id="de6dd6d03f10c361d7fa2eaeb8b1332b" category="summary">非資料磁碟區的備份是SnapCenter 整合在整個過程中的一部分、也就是SAP HANA外掛程式。只要資料庫安裝資源和必要的記錄仍然可用、保護資料庫資料磁碟區就足以將SAP HANA資料庫還原至指定時間點。</block>
+  <block id="93f9c08757a13da54247af8b021689ae" category="doc">非資料磁碟區的備份</block>
+  <block id="20940b5a8ce4a20b4ae55a0f6ebc3635" category="inline-link-macro">先前版本：SnapCenter 支援不中斷的備份作業。</block>
+  <block id="a7bee54f39b3a6371cd8ac23ef21462d" category="paragraph"><block ref="a7bee54f39b3a6371cd8ac23ef21462d" category="inline-link-macro-rx"></block></block>
+  <block id="63b3090ea38e707b917b2d7c7901b50f" category="section-title">設定非資料磁碟區資源</block>
+  <block id="0c7ab37fcc2da596254c60c409d69fb1" category="paragraph">請依照下列步驟設定非資料磁碟區資源：</block>
+  <block id="cb13e36dbad0de46510e77982a0357c5" category="list-text">從「資源」索引標籤中選取「非資料磁碟區」、然後按一下「新增SAP HANA資料庫」。</block>
+  <block id="d6d4ac7ae9d9dd1c447bac74bfd65632" category="paragraph"><block ref="d6d4ac7ae9d9dd1c447bac74bfd65632" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fd24b11ffe2f4e6437e44b159cc48068" category="list-text">在「新增SAP HANA資料庫」對話方塊的步驟之一中、於「資源類型」清單中選取「非資料磁碟區」。指定要用於資源的資源名稱、相關的SID和SAP HANA外掛程式主機、然後按一下「Next（下一步）」。</block>
+  <block id="dfee2b138827b42e1b8ab71a26868f9b" category="paragraph"><block ref="dfee2b138827b42e1b8ab71a26868f9b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="586cfb64fc5c86207c129c82742ba3c6" category="paragraph"><block ref="586cfb64fc5c86207c129c82742ba3c6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d4a9e6880ccfcdaaffcc00b27a10adbc" category="list-text">若要儲存設定、請在摘要步驟中按一下「完成」。</block>
+  <block id="6b9c62493529099da50469bb6b198e12" category="paragraph"><block ref="6b9c62493529099da50469bb6b198e12" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e92aeb0662fdfc2cddbde8f13e067b2" category="paragraph">全新的非資料磁碟區現已新增SnapCenter 至功能區。按兩下新資源以執行資源保護。</block>
+  <block id="dc82972ff43859c38d55ce9ddbace67c" category="paragraph"><block ref="dc82972ff43859c38d55ce9ddbace67c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="56be9f03e68466dab79c0aec2f1a21f7" category="paragraph">資源保護的執行方式與HANA資料庫資源之前所述相同。</block>
+  <block id="fac7e42fec45827c4ca846b9834a929d" category="list-text">您現在可以按一下「立即備份」來執行備份。</block>
+  <block id="ac7657ee791eed4de1a8d7dfd7f9253b" category="paragraph"><block ref="ac7657ee791eed4de1a8d7dfd7f9253b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a4035f853527d3ecaeb2ba0b5da4093d" category="list-text">選取原則並開始備份作業。</block>
+  <block id="faa8ff8930a21071b0cc0b888144462e" category="paragraph"><block ref="faa8ff8930a21071b0cc0b888144462e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fbda5ff558f836b18d5d4e20f084fd07" category="paragraph">這個職務記錄會顯示個別的工作流程步驟。SnapCenter</block>
+  <block id="43e823ac8e9020a3b4d84ab2a7136eff" category="paragraph"><block ref="43e823ac8e9020a3b4d84ab2a7136eff" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cd424c5779cf104249372c575c7dfa1d" category="paragraph">新的備份現在可在非資料磁碟區資源的資源檢視中看到。</block>
+  <block id="88a2e083438c34003f38a5881c3a7702" category="paragraph"><block ref="88a2e083438c34003f38a5881c3a7702" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2ed820e22ac1859d1d70e21fb5f5db6d" category="section-title">還原與還原</block>
+  <block id="309955e6ebf3cb366a5302796b9cf4aa" category="paragraph">有了這個功能、只要單一租戶、即可支援HANA單一主機的MDC系統的自動化還原與還原作業。SnapCenter對於多主機系統或具有多個租戶的MDC系統、SnapCenter 僅執行還原作業、您必須手動執行還原。</block>
+  <block id="1ddfdb636c7165392bd902ed21e074b0" category="list-text">選取要用於還原作業的備份。</block>
+  <block id="0e24c2d90fa54d4601108fb362e0b7c0" category="list-text">還原資料庫。視選取的還原類型而定、會執行不同的作業。</block>
+  <block id="9898ecb46e5451d2bf61de3e6a37843c" category="list-text">如果選取Volume Revert、SnapCenter 則不掛載Volume、在SnapRestore 儲存層使用Volume Based的功能還原Volume、然後掛載Volume。</block>
+  <block id="175b25afe5701244ebfd4e3aef8a4a89" category="list-text">如果未選取Volume Revert、SnapCenter 則使用SnapRestore 儲存層上的單一檔案還原作業來還原所有檔案。</block>
+  <block id="8305b5f7e8f850be2950a98f0074e981" category="list-text">恢復系統資料庫</block>
+  <block id="6932a35ded8eb84abf9b46e82e789050" category="list-text">恢復租戶資料庫</block>
+  <block id="cb63172a234cdd6be152a658ab722417" category="list-text">啟動HANA資料庫</block>
+  <block id="656b4cf8c72df02c9118b8b812768e29" category="paragraph">如果選取「No Recovery（無恢復）」、SnapCenter 則會退出此功能、您必須手動執行系統和租戶資料庫的還原作業。</block>
+  <block id="95e2f3ab294570e9b8011f00cff5422a" category="paragraph">若要執行手動還原作業、請遵循下列步驟：</block>
+  <block id="97adb537524dd318691188b75af52153" category="paragraph"><block ref="97adb537524dd318691188b75af52153" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="813110ab7918deb5018070a177f6acea" category="inline-link">還原與還原（netapp.com）</block>
+  <block id="dcc2b41889853e2270c3727afc5c80fe" category="paragraph">HANA MDC單一租戶系統的標準案例是使用完整資源進行磁碟區還原。若為具有多個租戶的HANA MDC系統、您可能只想還原單一租戶。如需單一租戶還原的詳細資訊、請參閱<block ref="47d580635c2571be2d4bc74d513a0e35" category="inline-link-rx"></block>。</block>
+  <block id="deca927322be0c6a839467cc2369dd02" category="paragraph"><block ref="deca927322be0c6a839467cc2369dd02" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0b216691a52e4b2a672849ba2af7a819" category="paragraph">使用HANA global.ini檔案中的預設路徑或變更路徑、預先填入記錄和目錄備份位置。SnapCenter</block>
+  <block id="b03297b116d68d92bc537333d060688f" category="paragraph"><block ref="b03297b116d68d92bc537333d060688f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1cfdcd6cdad2d50d440ba1078e2b38c2" category="list-text">輸入選擇性的預先還原命令。</block>
+  <block id="91a5a4b42d68a161f4418dc6c9feceed" category="paragraph"><block ref="91a5a4b42d68a161f4418dc6c9feceed" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fdc6fabfb6a3bf7acef4e2e973a76781" category="paragraph"><block ref="fdc6fabfb6a3bf7acef4e2e973a76781" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="311b39381cb4c4ef0d982f67ce82c886" category="list-text">若要開始還原與還原作業、請按一下「Finish（完成）」。</block>
+  <block id="f2bfafa1d265848935d75e1575a2f473" category="paragraph"><block ref="f2bfafa1d265848935d75e1575a2f473" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="08120f01e764ae8f6a8a1a639dfcc04f" category="paragraph"><block ref="08120f01e764ae8f6a8a1a639dfcc04f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="149506589f08a3b9c195efedfb665eba" category="inline-link-macro">下一步：總覽- SnapVault 利用功能進行備份複寫。</block>
+  <block id="79e4ca96e58647fe593cec084e113c49" category="paragraph"><block ref="79e4ca96e58647fe593cec084e113c49" category="inline-link-macro-rx"></block></block>
+  <block id="354f6659b1577f8f6917db07330c0738" category="doc">利用功能進行備份複寫SnapVault</block>
+  <block id="bbde47426fa7874d15811aa09d0a9ca3" category="summary">本節說明如何從次要儲存設備還原及還原。</block>
+  <block id="2d4a8328bc7032e3e3d3f8b982312d2d" category="doc">從二線儲存設備還原及還原</block>
+  <block id="248a377f828df477da6b651f5873504d" category="inline-link-macro">上一篇：使用複寫建立備份。</block>
+  <block id="b687af1b52282884290e49814c4c0885" category="paragraph"><block ref="b687af1b52282884290e49814c4c0885" category="inline-link-macro-rx"></block></block>
+  <block id="addd18eb81f4ef4def30d433ebedffac" category="paragraph">若要從次要儲存設備還原及還原、請依照下列步驟進行：</block>
+  <block id="ad39bf07e2f0970a49e91b6d7bc08b73" category="paragraph">若要擷取次要儲存設備上所有備份的清單、請SnapCenter 在「還原拓撲」檢視中、按一下「Vault複本」、然後選取備份、再按一下「還原」。</block>
+  <block id="6633d1d1b495da9e959a08c19402a0cb" category="paragraph"><block ref="6633d1d1b495da9e959a08c19402a0cb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c320657b7f9ae00d117b826103a60570" category="paragraph">還原對話方塊會顯示次要位置。</block>
+  <block id="de9336bc37770787a889535d36adbf94" category="paragraph"><block ref="de9336bc37770787a889535d36adbf94" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d66def06f615a91837537eafad25ce09" category="paragraph">進一步的還原和還原步驟與先前在主要儲存設備上進行Snapshot備份所涵蓋的步驟相同。</block>
+  <block id="fa85857e13e0f6d7620479158c9f3416" category="inline-link-macro">下一步：何處可以找到其他資訊和版本歷程記錄。</block>
+  <block id="56f6941618e23c94e44b86955c13815c" category="paragraph"><block ref="56f6941618e23c94e44b86955c13815c" category="inline-link-macro-rx"></block></block>
+  <block id="9b7e589c27568a1ba1e20a07bd4bf384" category="summary">提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。支援NetApp的資料架構、可在端點之間管理資料。SnapCenter</block>
+  <block id="b7f61892b22ba215673bbeb57a614cb0" category="inline-link-macro">上一篇：使用Amazon FSX for ONTAP Sfor S還原 與備份。</block>
+  <block id="4b2b680f393dd1bb003f424f9f039c89" category="paragraph"><block ref="4b2b680f393dd1bb003f424f9f039c89" category="inline-link-macro-rx"></block></block>
+  <block id="3eb62999f248332cd1da44e30cd485bc" category="paragraph">提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。支援NetApp的資料架構、可在端點之間管理資料。SnapCenter您可以使用SnapCenter NetApp在內部部署環境之間、內部部署環境與雲端之間、以及私有雲、混合雲或公有雲之間複寫資料。</block>
+  <block id="a3e2fc88c7b51a05fbb9c57347e8b0e7" category="paragraph">包含適用於Windows的不含更新程式、不含更新程式套件、以及適用於Linux的不含更新程式套件。SnapCenter SnapCenter SnapCenter SnapCenter每個套件都包含SnapCenter 適用於各種應用程式和基礎架構元件的外掛程式。</block>
+  <block id="dc325c8c455577fa2633b21e50213e6a" category="paragraph"><block ref="dc325c8c455577fa2633b21e50213e6a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b48d82447a4abda007d79854b3f6646a" category="list-text">備份作業、排程及保留管理</block>
+  <block id="fbb95408c5973fc141dcf2b7b46bd0ec" category="list-text">SAP HANA資料備份搭配儲存型Snapshot複本</block>
+  <block id="3d270926656ce5648382eaa1719bf92d" category="list-text">非資料磁碟區備份搭配儲存型Snapshot複本（例如：「/Hana /共享」）</block>
+  <block id="ce7f855add0a7ede117b2101e9828d12" category="list-text">使用檔案型備份來檢查資料庫區塊完整性</block>
+  <block id="b576b60679bf39b7899eedc0ff5dafd1" category="list-text">複寫到異地備份或災難恢復位置</block>
+  <block id="e44df3eb7c1e201337b8ee7ea6f5aafd" category="list-text">適用於HANA資料備份（Snapshot和檔案型）</block>
+  <block id="ae56dd7000a0b955a430ea3ff10dd48d" category="list-text">適用於HANA記錄備份</block>
+  <block id="6f359fd609acebab5d18f381e4c19f39" category="list-text">SAP HANA（MDC）系統的單一租戶還原作業</block>
+  <block id="bea1b4e87998a4b25b42721d198aacd7" category="paragraph">資料庫資料檔案備份是SnapCenter 以搭配SAP HANA外掛程式的方式執行。外掛程式會觸發SAP HANA資料庫備份儲存點、使在主要儲存系統上建立的Snapshot複本、以SAP HANA資料庫的一致映像為基礎。</block>
+  <block id="20a189b6aeebb9db007cacab85408f24" category="paragraph">使用支援還原或SnapMirror功能、可將一致的資料庫映像複寫到異地備份或災難恢復位置。SnapCenter SnapVault一般而言、主要備份和異地備份儲存設備的備份保留原則各有不同。解決主儲存設備的保留問題、而支援將資料保留在異地備份儲存設備。SnapCenter ONTAP</block>
+  <block id="bf9380471a3b02146d5e51719d0940b1" category="paragraph">為了完整備份所有SAP HANA相關資源、SnapCenter 利用SAP HANA外掛程式搭配儲存型Snapshot複本、即可備份所有非資料磁碟區。您可以從資料庫資料備份獨立排程非資料磁碟區、以啟用個別的保留與保護原則。</block>
+  <block id="0541043f71b51f3409fd5ad4a1cbec95" category="paragraph">SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。您可以從SnapCenter 整個過程中執行區塊完整性檢查。根據您設定的保留政策SnapCenter 、此功能可管理主儲存設備的資料檔案備份、記錄檔備份及SAP HANA備份目錄。</block>
+  <block id="44492b7c8fce340f84cc4ee3e74208ea" category="paragraph">支援主儲存設備的保留功能、而FSXfor Sfor支援管理二線備份保留功能。SnapCenter ONTAP</block>
+  <block id="866f9a05b82b0824f1a0e87ecde3fb71" category="paragraph">下圖顯示SnapCenter 了關於「不支援資料」備份與保留管理作業的總覽。</block>
+  <block id="b0f315b1d81470185bd92855a7bef20c" category="paragraph"><block ref="b0f315b1d81470185bd92855a7bef20c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bebd9be6fafde148cc61bd43c11e27e9" category="list-text">建立SAP HANA備份儲存點、以便在持續層上建立一致的映像。</block>
+  <block id="a745daee4619d54f16ae0f1c2d0962f8" category="list-text">建立資料磁碟區的儲存型Snapshot複本。</block>
+  <block id="527348cba8a7343779b6f59ba4c06ce9" category="list-text">在SAP HANA備份目錄中登錄儲存型Snapshot備份。</block>
+  <block id="f6357d7d7209510612ac9d41b805083f" category="list-text">發佈SAP HANA備份儲存點。</block>
+  <block id="53d1d7d25d4bf41a740607083db85f90" category="list-text">針對SnapVault 資料磁碟區執行功能不全或SnapMirror更新（若已設定）。</block>
+  <block id="f26d0e3da2e083562d626efdb0a80db1" category="list-text">根據定義的保留原則、刪除主儲存設備上的儲存Snapshot複本。</block>
+  <block id="297347c174657fe437156fe1d919b49d" category="list-text">如果主要或異地備份儲存設備不再存在備份、則刪除SAP HANA備份目錄項目。</block>
+  <block id="5d63204692887e644e79ad4f6fa6c268" category="list-text">每當根據保留原則刪除備份或手動刪除備份時SnapCenter 、也會刪除所有早於最舊資料備份的記錄備份。記錄備份會在檔案系統和SAP HANA備份目錄中刪除。</block>
+  <block id="76cc02267bf656e283d3a17bcd99260e" category="section-title">本文件的範圍</block>
+  <block id="434c79c7fab66fb3f1020892b6f3be08" category="inline-link">概念與最佳實務做法（netapp.com）SnapCenter</block>
+  <block id="59a5fb4fb61646bb0b75bc11415a63cd" category="paragraph">本文件說明SnapCenter SAP HANA MDC單一主機系統最常見的功能、其中只有一個租戶位於FSXfor ONTAP Sf.上。其他組態選項也有可能、在某些情況下、特定SAP HANA系統（例如多主機系統）需要使用這些選項。如需其他組態選項的詳細說明、請參閱<block ref="cff4a980adbb6cc05ec53083e0ffe5b6" category="inline-link-rx"></block>。</block>
+  <block id="625979e29cea5b42dff162a508041627" category="inline-link">深入瞭解Amazon FSX for ONTAP NetApp（netapp.com）</block>
+  <block id="befc1f68b82fd5acedbe7594e276b75a" category="paragraph">在本文件中、我們使用Amazon Web Services（AWS）主控台和FSXfor ONTAP Suse CLI、在儲存層上執行所需的組態步驟。您也可以使用NetApp Cloud Manager來管理FSX for ONTAP Suse、但本文檔已超出此範圍。如需有關使用NetApp Cloud Manager for FSX for ONTAP Sf,請參閱<block ref="d44e3137c0d20662e292194c800b788f" category="inline-link-rx"></block>。</block>
+  <block id="352f3d46cad062540fff3f31dc5869fb" category="paragraph">下圖為SAP HANA on FSX for EfsX的典型備份架構ONTAP 。HANA系統位於AWS可用度區域1、並在ONTAP 相同可用度區域內使用FSXfor Sfor the Sfor Sfor the Sfor Sfor the file System。針對HANA資料庫的資料和共享磁碟區執行Snapshot備份作業。除了保留3-5天的本機Snapshot備份、備份也會複寫到異地儲存設備、以延長保留時間。異地備份儲存設備是ONTAP 位於不同AWS可用區域的第二個FSX for Sf2檔案系統。HANA資料和共享磁碟區的備份會以SnapVault 還原技術複寫到ONTAP 第二個FSXfor Ef2檔案系統、並保留2至3週。</block>
+  <block id="a7a965db03a84cae2848f2da30ba2c88" category="paragraph"><block ref="a7a965db03a84cae2848f2da30ba2c88" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d9a905f2855845662704261034b8e519" category="paragraph">在設定SnapCenter 功能不全之前、必須根據各種SAP系統的RTO和RPO需求來定義資料保護策略。</block>
+  <block id="c96aeaa3bbed44a4eb6e491bd825b114" category="paragraph">必須定義下列參數：</block>
+  <block id="add54c6c694f1dea873fa725229c4ff6" category="paragraph">下表顯示系統類型的資料保護參數範例：正式作業、開發及測試。對於正式作業系統、已定義高備份頻率、而且備份每天會複寫到異地備份站台一次。測試系統的需求較低、而且沒有複寫備份。</block>
+  <block id="d784a4ef3efe213e4ffce2a3b8aab638" category="cell">原則本地Snap</block>
+  <block id="cf95b8ba53e47289df481c76a0fc1e7c" category="cell">原則：LocalSnapAndSnapVault</block>
+  <block id="b651fe1ef6a54eadfe7ec046c5fb3610" category="cell">原則區塊整合檢查</block>
+  <block id="4470d7231c03ea61b48270dd4e89c7c2" category="list-text">正式作業：每4小時排程一次。</block>
+  <block id="8756cc378f32be7606a311cc58e42116" category="list-text">開發：每4小時排程一次。</block>
+  <block id="3f16a4dae07b31412bf1f7d6fd53fb55" category="list-text">測試：每4小時排程一次。</block>
+  <block id="1d3a5ab2affa87cd97d667df12d08f19" category="list-text">正式作業：每日排程。</block>
+  <block id="cc77ff8683600a5f70dc5c80c8a4112c" category="list-text">開發：每天排程。「BlockIntegrityCheck」原則可用於正式作業和開發系統、使用檔案型備份來涵蓋每週區塊完整性檢查。</block>
+  <block id="22356469ac5ca8aeafb4a4cd5aaa2346" category="list-text">正式作業：每週排程。</block>
+  <block id="68b554bfef8312da6a9ba9bba23937d5" category="list-text">開發：每週排程。</block>
+  <block id="cb6a15450e2fa9cea2ea31aa4a510c0d" category="paragraph">對於使用異地備份原則的每個SAP HANA資料庫、您都必須在儲存層上設定保護關係。保護關係可定義要複寫哪些磁碟區、以及將備份保留在異地備份儲存設備上。</block>
+  <block id="9d0b24c01af3a2a587574b46fceb72d3" category="paragraph">下列範例為每個正式作業與開發系統的保留時間、在異地備份儲存設備中定義為保留兩週。</block>
+  <block id="0197c9098f672a502b8fb0ea4af8c88a" category="paragraph">在此範例中、SAP HANA資料庫資源和非資料Volume資源的保護原則和保留不一樣。</block>
+  <block id="38a5161bfaecb6377c969b8c970a6677" category="section-title">實驗室設定範例</block>
+  <block id="4acdc8775ab5d93ca83720de28826682" category="paragraph">下列實驗室設定是本文件其餘部分的範例組態設定。</block>
+  <block id="2edcc43e604ebe03c9e589e03ad59509" category="paragraph">Hana系統PFX：</block>
+  <block id="e246c6ca2a43b0011a7139e737f72e94" category="list-text">單一租戶的單一主機MDC系統</block>
+  <block id="11da4dfde153724b26d00bd0b8eef4c1" category="list-text">HANA 2.0 SPS 6修訂版60</block>
+  <block id="c07320955ae27fabbb4794368ec16c12" category="list-text">適用於SAP 15SP3的SLES</block>
+  <block id="18d457f56413972c18dd88f5456dedd9" category="paragraph">產品特色：SnapCenter</block>
+  <block id="50c86c9536ac5a750f7b41adb4073361" category="list-text">版本4.6%</block>
+  <block id="906753eafa96e59604253afc13b16762" category="list-text">HANA與Linux外掛程式部署在HANA資料庫主機上</block>
+  <block id="27dd1f0ad2cb3dde55ff3aaa438b942f" category="paragraph">FSXfor ONTAP Sfor Sfor Sfxffile系統：</block>
+  <block id="f656ee2a8422f6074720c983ae791ddb" category="list-text">兩個FSX可搭配ONTAP 單一儲存虛擬機器（SVM）、用於支援不完整的檔案系統</block>
+  <block id="a1ac29fe64b1ca0654c85b2f60b211a1" category="list-text">每ONTAP 個FSXfor Sfor Sf供 系統在不同的AWS可用區域中使用</block>
+  <block id="48eba9fd649acf4be2ae35cea201d48a" category="list-text">Hana資料磁碟區已複寫至第二個FSX、以供ONTAP 使用</block>
+  <block id="b72a5be0072bf415d1c0ff9a40a5cfb4" category="paragraph"><block ref="b72a5be0072bf415d1c0ff9a40a5cfb4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4237019695c161beca8a937cda37a609" category="paragraph"><block ref="4237019695c161beca8a937cda37a609" category="inline-link-macro-rx"></block></block>
+  <block id="b7868c33a653d5e8748fca10e512fdc7" category="summary">在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中使用第二個FSXfor the Sfor the Sfuse檔案系統來展示HANA資料Volume的備份複寫。</block>
+  <block id="95ea3387767393eddc1336a2154175d9" category="doc">總覽- SnapVault 利用功能進行備份複寫</block>
+  <block id="aa358bfc362579777a74f1c62e6ae922" category="inline-link-macro">先前：非資料磁碟區的備份。</block>
+  <block id="c42762d73edc5694fb95406baf733e5f" category="paragraph"><block ref="c42762d73edc5694fb95406baf733e5f" category="inline-link-macro-rx"></block></block>
+  <block id="86aba40e8759c5f3a79b7b6b23617ed9" category="inline-link-macro">「資料保護策略」</block>
+  <block id="532b5caf6d2f2df226e8b398d9b30a66" category="paragraph">如第章所述 <block ref="be68466d3e3fcc946680f447c790913d" category="inline-link-macro-rx"></block>、複寫目標必須是ONTAP 另一個可用區域中的第二個FSXfor the Sf2檔案系統、才能避免ONTAP 發生適用於該文件系統的主要FSX故障。此外、HANA共享磁碟區也應複寫至次要FSXfor ONTAP the Sfor the Sf二 檔案系統。</block>
+  <block id="8913ab6041dfb8e85d12eddd1acaa5ca" category="section-title">組態步驟總覽</block>
+  <block id="07f30226d3c2baca5e7519c8b103a270" category="paragraph">有幾個組態步驟必須在FSXfor ONTAP Sof the Sof the Layer上執行。您可以使用NetApp Cloud Manager或FSXfor ONTAP the Sfor the Command Line來執行此作業。</block>
+  <block id="81641f60f8074d2777e22d31d1d5477e" category="list-text">對等FSXfor ONTAP Sf供 檔案系統使用。FSXfor ONTAP Sfor Sfor Sfor Sfor FeSffile系統必須進行對等處理、才能在彼此之間進行複寫。</block>
+  <block id="04f9fb453a5b3f03dcfa9eb4b47daca4" category="list-text">對等SVM：SVM必須進行對等處理、才能在彼此之間進行複寫。</block>
+  <block id="62318a8b11e534add7ef07b26c1ace60" category="list-text">建立目標Volume。在目標SVM上建立磁碟區、磁碟區類型為「DP」。必須輸入「DP」作為複寫目標Volume。</block>
+  <block id="f3db679e572cae36c0e32cb0946bc5b9" category="list-text">建立SnapMirror原則。這是用來建立複寫類型為「保存庫」的原則。</block>
+  <block id="001de0baa772b4eb02137ea1838ecbad" category="list-text">新增規則至原則。此規則包含SnapMirror標籤和保留資料、以便在次要站台進行備份。您必須稍後在SnapCenter 「還原」原則中設定相同的SnapMirror標籤、SnapCenter 以便在含有此標籤的來源Volume上建立Snapshot備份。</block>
+  <block id="dd1b188f97236bc65d266b713b0a2c3c" category="list-text">建立SnapMirror關係。定義來源與目標Volume之間的複寫關係、並附加原則。</block>
+  <block id="33ff9e19a0a8c2a53edafdfe10646c3d" category="list-text">初始化SnapMirror。這會啟動初始複寫、以便將完整的來源資料傳輸至目標Volume。</block>
+  <block id="caed6b5eec6c8a3a2d223a3896adeebc" category="paragraph">當Volume複寫組態完成時、您必須在SnapCenter 下列步驟中設定使用下列功能的備份複寫：</block>
+  <block id="12ed731fe0ebb2ea71878d5e9c029f69" category="list-text">將目標SVM新增SnapCenter 至SVM。</block>
+  <block id="02b70400ae992d29c68f4e654dee405e" category="list-text">為SnapCenter Snapshot備份和SnapVault 功能不全的複寫建立全新的功能不全原則。</block>
+  <block id="650e26d413499d7020a3e2e477999428" category="list-text">將原則新增至HANA資源保護。</block>
+  <block id="9505d7775b4aa534ceeeb23744ed09e7" category="list-text">您現在可以使用新原則執行備份。</block>
+  <block id="4b7d520e2b58478a0dd3736b31c461d8" category="paragraph">以下各章將更詳細地說明各個步驟。</block>
+  <block id="f20af1cfe8582cbfc0161d926ff8241d" category="inline-link-macro">下一步：在FSX上設定ONTAP 適用於Sfor Sf供 檔案系統的複寫關係。</block>
+  <block id="77fbf754ff73b16178b03c9d3688fe17" category="paragraph"><block ref="77fbf754ff73b16178b03c9d3688fe17" category="inline-link-macro-rx"></block></block>
+  <block id="af6c6acd72965555d34e33c0b507962b" category="summary">本節說明如何使用複寫建立備份。</block>
+  <block id="1975e970c6735fe42f83f63430773bce" category="doc">使用複寫建立備份</block>
+  <block id="58c47b96b780f211f95c10bcb76348b4" category="inline-link-macro">上一步：新增原則至資源保護。</block>
+  <block id="252a73daf19a196ad7399fd17fd29a34" category="paragraph"><block ref="252a73daf19a196ad7399fd17fd29a34" category="inline-link-macro-rx"></block></block>
+  <block id="fe963cc53fa6ca91332135a0fdf394ce" category="paragraph">備份的建立方式與本機Snapshot複本相同。</block>
+  <block id="220f06985b74a5091aad99541552d38f" category="paragraph">若要建立複寫備份、請選取包含備份複寫的原則、然後按一下備份。</block>
+  <block id="50650c28ef007817b8f518829f05932f" category="paragraph"><block ref="50650c28ef007817b8f518829f05932f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="873a3b33f12dee6fcd571bc7c855da4e" category="paragraph">在「職務記錄」中SnapCenter 、您可以看到「次要更新」步驟、這會啟動SnapVault 「更新」作業。複寫作業會將來源磁碟區的區塊變更為目標磁碟區。</block>
+  <block id="a18e8c9b6a6498d7b848e3d17ee1e57d" category="paragraph"><block ref="a18e8c9b6a6498d7b848e3d17ee1e57d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bd72bb66cc1f6c0274f2b9a01b88f988" category="paragraph">在FSXfor ONTAP Sfor Sf2檔案系統上、會使用SnapCenter SnapMirror標籤「Sfor the Sf2」建立來源磁碟區上的Snapshot、此標籤是SnapCenter 根據《支援資料》原則所設定的「支援資料」。</block>
+  <block id="ca557f776bfcc035900f10add0a5a68f" category="paragraph">在目標磁碟區上、會建立名稱相同的Snapshot複本。</block>
+  <block id="913ca500d383f0ef7e31451f47e06ba9" category="paragraph">新的Snapshot備份也會列在HANA備份目錄中。</block>
+  <block id="4b0953bc21876f1eb89bcc365e29298d" category="paragraph"><block ref="4b0953bc21876f1eb89bcc365e29298d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="536d39b1788aafe77a33dea12db6f000" category="paragraph">在還原中SnapCenter 、您可以按一下拓撲檢視中的Vault複本、以列出複寫的備份。</block>
+  <block id="b89209aee8e5f4c0f9105ca0d10aad27" category="paragraph"><block ref="b89209aee8e5f4c0f9105ca0d10aad27" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="53e3819b8a9a5808ee0384e18bdccb1d" category="inline-link-macro">下一步：從二線儲存設備還原及還原。</block>
+  <block id="43be71a8439ae6d2178888aa495dd2fb" category="paragraph"><block ref="43be71a8439ae6d2178888aa495dd2fb" category="inline-link-macro-rx"></block></block>
+  <block id="46f7f3d3c0b3afe7e5a1e026b2079c7d" category="summary">本節說明如何設定備份複寫原則。</block>
+  <block id="b950bdfd30a0ab3d80a5aba7d93af29e" category="doc">建立SnapCenter 新的支援複寫功能的更新功能</block>
+  <block id="20354d92a33c57c6b0ee58c66103ed6a" category="inline-link-macro">上一步：將備份SVM新增SnapCenter 至SVM。</block>
+  <block id="86b9b4b8ddd407d59265a342cf9e8a0b" category="paragraph"><block ref="86b9b4b8ddd407d59265a342cf9e8a0b" category="inline-link-macro-rx"></block></block>
+  <block id="3025c1bc51ebfd7060cc53e320af06b3" category="paragraph">您必須設定備份複寫原則、如下所示：</block>
+  <block id="8b8b965fb7ffc307bea22e16dc282653" category="list-text">提供原則名稱。</block>
+  <block id="c5240e59969f5a1ffada137485e1a04b" category="paragraph"><block ref="c5240e59969f5a1ffada137485e1a04b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="255926c246407f59e63874cdf162bfe1" category="list-text">選取Snapshot備份和排程頻率。每日通常用於備份複寫。</block>
+  <block id="1928b034a8791cf4d0602fe4e21806fc" category="paragraph"><block ref="1928b034a8791cf4d0602fe4e21806fc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a509d11a422413094074cecbf0366aca" category="list-text">選取Snapshot備份的保留。</block>
+  <block id="9c3bbe5329d1961144ff4c511fb183c2" category="paragraph"><block ref="9c3bbe5329d1961144ff4c511fb183c2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d8d1327fe7287b0a0153e98b18253c34" category="paragraph">這是主儲存設備每日執行Snapshot備份的保留時間。先前已使用位於該層級的add rule命令、在還原目標中設定次要備份的保留。SnapVault ONTAP請參閱「在FSx上設定ONTAP 適用於不支援的檔案系統的複寫關係」（xref）。</block>
+  <block id="9ddff7fc898a1159866a9ff2e11a70ba" category="paragraph"><block ref="9ddff7fc898a1159866a9ff2e11a70ba" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0f3c758f3ba480dbff88c44bceab01e8" category="list-text">選取「更新SnapVault 」功能變數、並提供自訂標籤。</block>
+  <block id="8f610812cd49bd366c9638bef3fce744" category="paragraph">此標籤必須符合ONTAP 「ADD規則」命令所提供的SnapMirror標籤、位於景點的層級。</block>
+  <block id="a26d27fc6bbe5d9d50c78f8918701e3a" category="paragraph"><block ref="a26d27fc6bbe5d9d50c78f8918701e3a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5cfd42e3c15df5714db4f1968e5d3c26" category="paragraph"><block ref="5cfd42e3c15df5714db4f1968e5d3c26" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ec5c19062711162507c65806ea542ac5" category="paragraph">現在SnapCenter 已設定新的功能更新原則。</block>
+  <block id="90f0a45cd8da1fee79c7571738e602e8" category="paragraph"><block ref="90f0a45cd8da1fee79c7571738e602e8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="18aa1b1ec1244de711c458e7e517b814" category="inline-link-macro">下一步：新增原則至資源保護。</block>
+  <block id="91da4077727a5c39056f1eaf5a87dd7a" category="paragraph"><block ref="91da4077727a5c39056f1eaf5a87dd7a" category="inline-link-macro-rx"></block></block>
+  <block id="eb04119e7b1674cd267ce6b996cbe795" category="inline-link-macro">先前：從次要儲存設備還原及還原。</block>
+  <block id="1bbc107e118c0ac47c4a044863d97272" category="paragraph"><block ref="1bbc107e118c0ac47c4a044863d97272" category="inline-link-macro-rx"></block></block>
+  <block id="2c0b1092a288f5d67050f3fbf404d5f8" category="list-text">FSX for NetApp ONTAP 解決方案使用者指南—什麼是Amazon FSX for NetApp ONTAP 呢？</block>
+  <block id="d82c21a48349085e4fd93fb6712e3789" category="paragraph"><block ref="d82c21a48349085e4fd93fb6712e3789" category="inline-link-rx"></block></block>
+  <block id="3306e00cec668497714eaadcd7aa6ac8" category="list-text">支援資源頁面SnapCenter</block>
+  <block id="7608e75619cff3eeb4e8bce40481b456" category="list-text">軟件文檔SnapCenter</block>
+  <block id="7a3492bffc26e95ce3669b39a1f14422" category="list-text">TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業</block>
+  <block id="57ba5a9f523a8e4c04a3d8c97ceb0512" category="paragraph"><block ref="57ba5a9f523a8e4c04a3d8c97ceb0512" category="inline-link-rx"></block></block>
+  <block id="3c191542e46a4ce9d7eb2f662380cb07" category="list-text">TR-4719：SAP HANA系統複寫：SnapCenter 利用功能進行備份與恢復</block>
+  <block id="fdb11e662eb4102170cd8c688e5f636e" category="inline-link"><block ref="fdb11e662eb4102170cd8c688e5f636e" category="inline-link-rx"></block></block>
+  <block id="1abbabb28000113cac5f8ec1cb3265ee" category="paragraph"><block ref="1abbabb28000113cac5f8ec1cb3265ee" category="inline-link-rx"></block></block>
+  <block id="b56a5394775a9f077c12cb3e770d913c" category="cell">2022年5月</block>
+  <block id="baaebabde318c3efac57f4b4eaf80541" category="summary">您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。</block>
+  <block id="a72020b2f4b19541a1ec28f5c06dd28d" category="doc">使用Amazon FSX for ONTAP Sfor Sf.進行備份與還原</block>
+  <block id="a190df99d0777f04495171bfcf390a1c" category="paragraph"><block ref="a190df99d0777f04495171bfcf390a1c" category="inline-link-macro-rx"></block></block>
+  <block id="60b8c7b8372a3f1b6d91f7f758119c91" category="paragraph">您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。此外、使用Snapshot技術也不會影響即時SAP系統的效能。因此、您可以排程建立Snapshot複本、而不需考慮尖峰對話或批次活動期間。SAP與NetApp客戶通常會在一天內排程多個線上Snapshot備份、例如、每六小時一次就很常見。這些Snapshot備份通常會在一線儲存系統上保留三到五天、然後再移除或分層至較便宜的儲存設備、以供長期保留。</block>
+  <block id="2025d4d57c2a7727e45b8c27669d1766" category="paragraph">Snapshot複本也為還原與還原作業提供重要優勢。NetApp SnapRestore 支援還原整個資料庫、或是根據目前可用的Snapshot複本、將資料庫的一部分還原到任何時間點。這類還原程序只需幾秒鐘就能完成、不受資料庫大小限制。由於每天可以建立數個線上Snapshot備份、因此相較於傳統的每日一次備份方法、恢復程序所需的時間會大幅縮短。由於您可以使用Snapshot複本執行還原、而且快照複本最少只有幾小時的時間（而非24小時）、因此在轉送恢復期間必須套用較少的交易記錄。因此、RTO縮短至數分鐘、而非傳統串流備份所需的數小時。</block>
+  <block id="a2a3e9da861c9ea2a98377b12083c9dd" category="paragraph">Snapshot複本備份與作用中的線上資料儲存在相同的磁碟系統上。因此、NetApp建議使用Snapshot複本備份做為補充、而非取代次要位置的備份。大部分的還原和還原動作都是使用SnapRestore 主儲存系統上的功能進行管理。只有當包含Snapshot複本的主要儲存系統毀損時、才需要從次要位置進行還原。如果需要還原主要位置不再提供的備份、您也可以使用次要位置。</block>
+  <block id="8dcd926cbf875d3253a284078f4d4d97" category="paragraph">備份到次要位置的基礎是在主要儲存設備上建立的Snapshot複本。因此、資料會直接從主要儲存系統讀取、而不會在SAP資料庫伺服器上產生負載。主儲存設備會直接與二線儲存設備通訊、並使用NetApp SnapVault 功能將備份資料複寫到目的地。</block>
+  <block id="5b20f618fc45fa395c10c6521e4740bb" category="paragraph">與傳統備份相比、此技術提供顯著優勢。SnapVault在初始資料傳輸（所有資料都已從來源傳輸至目的地）之後、所有後續備份複本只會將變更的區塊移至次要儲存設備。因此、主儲存系統的負載和完整備份所需的時間會大幅減少。由於僅將變更的區塊儲存在目的地、因此任何額外的完整資料庫備份所耗用的磁碟空間都會大幅減少。SnapVault</block>
+  <block id="cba657bc8a28e8aa3d4ccf36fee09f3d" category="section-title">Snapshot備份與還原作業的執行時間</block>
+  <block id="f2d966c4c76183b95a2dd4aab1cc183f" category="paragraph">下圖顯示客戶使用Snapshot備份作業的HANA Studio。映像顯示HANA資料庫（大小約4TB）使用Snapshot備份技術、在1分鐘20秒內備份、而使用檔案型備份作業則需4小時以上。</block>
+  <block id="c7e7d45d7e845928548b3e543ca10436" category="paragraph">整體備份工作流程執行時間最大的一部分是執行HANA備份儲存點作業所需的時間、而此步驟取決於HANA資料庫的負載。儲存Snapshot備份本身一律會在幾秒鐘內完成。</block>
+  <block id="afb33cda7e9fa5a9602e4269ff11419c" category="paragraph"><block ref="afb33cda7e9fa5a9602e4269ff11419c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="193fec5a460def18c358af628c0b33be" category="paragraph">本節提供檔案型與儲存型Snapshot備份的還原時間目標（RTO）比較。RTO是根據還原、還原及啟動資料庫所需的時間總和來定義。</block>
+  <block id="7beb9f884b7fd71d5e5a785cdeb855ae" category="paragraph">使用檔案型備份時、還原時間取決於資料庫和備份基礎架構的大小、而備份基礎架構會以每秒MB為單位來定義還原速度。例如、如果基礎架構支援以250Mbps速度還原作業、則還原持續性資料庫時、大約需要4.5小時的時間、以4TB為單位。</block>
+  <block id="a743491c215755ced1d249728d4c59cf" category="paragraph">有了儲存Snapshot複本備份、還原時間不受資料庫大小限制、而且一律在數秒內完成。</block>
+  <block id="beb19f37eae3085fec5f4641f0033384" category="paragraph">資料庫開始時間取決於資料庫的大小、以及將資料載入記憶體所需的時間。在下列範例中、假設資料可以以1000Mbps載入。將4TB載入記憶體約需1小時10分鐘。檔案型與Snapshot型還原與還原作業的開始時間相同。</block>
+  <block id="2c68d79a149075de78266c5882a42d2d" category="paragraph">Snapshot備份通常會以較高的頻率排程、因為它們不會影響SAP HANA資料庫的效能。例如、如果每六小時排程一次Snapshot備份、則在最糟的情況下、還原時間是檔案型備份的恢復時間（6小時/ 24小時=.25）的四分之一。</block>
+  <block id="43f14ff1b246267a64206adbdba0de5d" category="paragraph">下圖顯示每日檔案型備份與Snapshot備份的還原與還原作業與不同排程的比較。</block>
+  <block id="30073284d63b6f33c78286326400021c" category="paragraph">前兩個長條圖顯示、即使每天使用單一Snapshot備份、由於Snapshot備份的還原作業速度加快、還原與還原作業也會減少到43%。如果每天建立多個Snapshot備份、則可進一步減少執行時間、因為在轉送還原期間需要套用的記錄較少。</block>
+  <block id="0d381e697a62c19da0662e14a0677b91" category="paragraph">下圖也顯示每天四到六個Snapshot備份最合理、因為較高的頻率對整體執行時間不再有重大影響。</block>
+  <block id="ccf3e344f067ed03b2c47a1809ab0053" category="paragraph"><block ref="ccf3e344f067ed03b2c47a1809ab0053" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f098f2578c0983f1b7aa54ffbce45c14" category="section-title">加速備份與複製作業的使用案例與價值</block>
+  <block id="e7a11550e1b499ff6585bb500fe016d4" category="paragraph">執行備份是任何資料保護策略的關鍵部分。定期排程備份、確保您能從系統故障中恢復。這是最明顯的使用案例、但也有其他SAP生命週期管理工作、因此加速備份與還原作業至關重要。</block>
+  <block id="d7b2a02b60c22dabdbb3d85e7896c825" category="paragraph">SAP HANA系統升級是一個範例、說明升級前的隨需備份、以及升級失敗時的可能還原作業、對整體計畫性停機時間有重大影響。以4TB資料庫為例、您可以使用Snapshot型備份與還原作業、將計畫性停機時間縮短8小時。</block>
+  <block id="3771b614a6d8a93c16146fea5ac011a7" category="paragraph">另一個使用案例是典型的測試週期、測試必須在多個迭代上使用不同的資料集或參數。使用快速備份與還原作業時、您可以在測試週期內輕鬆建立儲存點、並在測試失敗或需要重複時、將系統重設為先前的任何儲存點。如此可讓測試提早完成、或同時進行更多測試、並改善測試結果。</block>
+  <block id="59512cf908870ec0273a50e175f168a9" category="paragraph"><block ref="59512cf908870ec0273a50e175f168a9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9b0edbbb4b880bc3149ad74e530b34e3" category="paragraph">實作Snapshot備份後、即可用於處理其他多種需要HANA資料庫複本的使用案例。有了FSXfor ONTAP Sf2、您就能根據任何可用Snapshot備份的內容來建立新的Volume。此作業的執行時間僅需數秒、與磁碟區大小無關。</block>
+  <block id="664899847ba43249fa67d3faf26a8593" category="paragraph">最受歡迎的使用案例是SAP系統重新整理、其中需要將正式作業系統的資料複製到測試或QA系統。藉由運用FSXfor ONTAP S還原 複製功能、您可以在數秒內從正式作業系統的任何Snapshot複本中、為測試系統配置磁碟區。然後、新的Volume必須附加至測試系統、並還原HANA資料庫。</block>
+  <block id="b87a6bb157820948a8a8c214af4e0062" category="paragraph">第二個使用案例是建立修復系統、用於解決正式作業系統中的邏輯毀損問題。在這種情況下、會使用正式作業系統的舊Snapshot備份來啟動修復系統、這是正式作業系統的相同實體複本、以及毀損發生之前的資料。然後使用修復系統來分析問題、並在必要的資料毀損之前匯出。</block>
+  <block id="c7b35ad7f0a4691a80ff05970187ddeb" category="paragraph">最後一個使用案例是能夠在不停止複寫的情況下執行災難恢復容錯移轉測試、因此不會影響災難恢復設定的RTO和恢復點目標（RPO）。當使用FSX for ONTAP the Sfor NetApp SnapMirror複寫將資料複寫到災難恢復站台時、正式作業Snapshot備份也可在災難恢復站台上使用、然後再用來建立新的磁碟區以進行災難恢復測試。</block>
+  <block id="265110f4d7e59b2f94484d2789a052ba" category="paragraph"><block ref="265110f4d7e59b2f94484d2789a052ba" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="95097e935fdf6be438e5789d41bb9589" category="paragraph"><block ref="95097e935fdf6be438e5789d41bb9589" category="inline-link-macro-rx"></block></block>
+  <block id="0a6bfe5423e343fa9ae1504fcfa72370" category="sidebar">SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復</block>
 </blocks>

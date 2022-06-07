@@ -125,6 +125,34 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-overview.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-where-to-find-additional-information.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/reference_legal_notices.html</loc>
       
       <lastmod>2022-05-03T06:21:18+00:00</lastmod>
@@ -357,13 +385,6 @@
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/backup/saphana-bandr-sc_pdf_link.html</loc>
-      
-      <lastmod>2022-05-03T06:21:18+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/backup/saphana-br-sc_pdf_link.html</loc>
       
       <lastmod>2022-05-03T06:21:18+00:00</lastmod>
       
@@ -1189,9 +1210,86 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-automation-example-scripts.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-where-to-find-additional-information.html</loc>
+      
+      <lastmod>2022-06-07T14:44:56+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/zh-tw/netapp-solutions-sap//search.html</loc>
       
-      <lastmod>2022-05-13T20:42:00+00:00</lastmod>
+      <lastmod>2022-06-07T14:45:21+00:00</lastmod>
       
     </url>
   

@@ -2,6 +2,42 @@
 section: lifecycle
 title: 生命週期管理
 entries:
+- title: 利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化
+  type: solutions
+  entries:
+  - title: 簡介
+    url: "/lifecycle/sc-copy-clone-introduction.html"
+  - title: SAP系統複製、重新整理及複製案例
+    url: "/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html"
+  - title: 系統更新與複製的使用案例
+    url: "/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html"
+  - title: SAP系統更新工作流程概述SnapCenter （含）
+    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html"
+  - title: SAP系統複製工作流程概述SnapCenter （含）
+    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html"
+  - title: SAP系統實體複製工作流程概述SnapCenter
+    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html"
+  - title: SAP HANA系統使用儲存快照備份來重新整理作業工作流程
+    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html"
+  - title: 自動化範例指令碼
+    url: "/lifecycle/sc-copy-clone-automation-example-scripts.html"
+  - title: SAP HANA系統更新SnapCenter 功能
+    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html"
+  - title: SAP系統以SnapCenter 功能複製
+    url: "/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html"
+  - title: 何處可以找到其他資訊和版本歷程記錄
+    url: "/lifecycle/sc-copy-clone-where-to-find-additional-information.html"
+- title: 利用Libelle SystemCopy自動化SAP系統複製作業
+  type: solutions
+  entries:
+  - title: 總覽
+    url: "/lifecycle/libelle-sc-overview.html"
+  - title: SAP HANA系統使用LSC和SnapCenter 功能更新
+    url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+  - title: SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新
+    url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html"
+  - title: 何處可以找到其他資訊和版本歷程記錄
+    url: "/lifecycle/libelle-sc-where-to-find-additional-information.html"
 - title: 使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化
   url: https://www.netapp.com/us/media/tr-4667.pdf
 - title: 將NetApp儲存設備與SAP Landscape Management整合

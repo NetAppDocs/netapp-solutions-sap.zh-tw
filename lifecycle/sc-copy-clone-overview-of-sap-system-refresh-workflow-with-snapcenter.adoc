@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html 
+keywords: overview, sap system refresh, workflow 
+summary: 支援各種工作流程、可讓您從任何現有的Snapshot備份管理資料集的複本。SnapCenter這套複製資料集FlexClone Volume可用於從來源系統快速配置HANA資料Volume、並將其附加至目標系統。因此、它非常適合執行QA、測試、沙箱或訓練系統的系統更新作業。 
+---
+= SAP系統更新工作流程概述SnapCenter （含）
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sc-copy-clone-use-cases-for-system-refresh-and-cloning.html["先前：系統重新整理與複製的使用案例。"]
+
+支援各種工作流程、可讓您從任何現有的Snapshot備份管理資料集的複本。SnapCenter這套複製資料集FlexClone Volume可用於從來源系統快速配置HANA資料Volume、並將其附加至目標系統。因此、它非常適合執行QA、測試、沙箱或訓練系統的系統更新作業。
+
+此類實體複製工作流程可處理儲存層上所有必要的作業、並可利用指令碼來執行主機專屬和HANA資料庫專屬的作業。SnapCenter在本文中、我們使用指令碼來執行目標主機上的掛載和卸載作業、以及HANA資料庫的還原和關機作業。利用指令碼進一步自動化的流程可處理所有必要的HANA資料庫作業、但不涵蓋任何必要的SAP後處理步驟。SnapCenterSAP後置處理必須手動執行、或使用協力廠商工具執行。
+
+
+NOTE: 使用指令碼自動執行的所有步驟、也可以手動執行。不過、對於目標主機的掛載作業、您需要知道FlexClone Volume的儲存系統交會路徑。交叉路徑在SnapCenter 視覺上看不到、因此您需要直接在儲存系統上查詢交會路徑、或是使用簡單的指令碼、在SnapCenter 目標主機上提供各種版本的支援環境變數。如需詳細資訊、請參閱一節 link:sc-copy-clone-automation-example-scripts.html["「自動化範例指令碼」。"]
+
+SAP系統更新流程SnapCenter 搭配使用VMware技術、包含五個主要步驟、如下圖所示。
+
+. 目標系統的一次性初始安裝與準備。
+. 這個實體複製建立工作流程。SnapCenter
+. SAP後置處理（手動或搭配協力廠商工具）。
+. 系統可作為測試/ QA系統使用。
+. 當要求新的系統重新整理時、SnapCenter 使用「實體複製刪除」工作流程來移除FlexClone磁碟區、並使用步驟2重新啟動重新整理。
+
+
+image:sc-copy-clone-image7.png["錯誤：缺少圖形影像"]
+
+在大多數情況下、目標測試/ QA系統至少會使用幾週、而FlexClone容量節約效益在一到兩週後就不再存在。重要的是、來源系統的Snapshot備份必須從FlexClone磁碟區釋出、以便SnapCenter 透過不受影響的資料保留管理功能加以刪除。因此、NetApp建議您立即或在數天後分割FlexClone Volume。複製分割作業不會封鎖複製磁碟區的使用、因此可在HANA資料庫使用期間隨時執行。
+
+
+NOTE: 分割FlexClone Volume時SnapCenter 、將刪除在目標系統上建立的所有備份。
+
+包括實體複本分割在內的重新整理作業包含下列步驟（下圖）。
+
+. 目標系統的一次性初始安裝與準備。
+. 實體複製建立工作流程。SnapCenter
+. 實體複製切割工作流程。SnapCenter
+. SAP後置處理（手動或搭配協力廠商工具）。
+. 現在、系統可做為測試/ QA系統使用。
+. 當要求新的系統重新整理時、SnapCenter 使用「建立流程」功能來執行額外的關機和卸載步驟。
+
+
+
+NOTE: 先前分割的舊資料磁碟區、必須在儲存系統上手動刪除。
+
+下圖說明使用SnapCenter 含實體複本切割功能的SAP系統更新工作流程總覽。
+
+image:sc-copy-clone-image8.png["錯誤：缺少圖形影像"]
+
+章節 link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["「SAP HANA系統更新SnapCenter 功能與更新功能」"] 提供兩個系統重新整理工作流程的詳細逐步說明。
+
+link:sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html["下一步：SAP系統複製工作流程概述SnapCenter （含）。"]

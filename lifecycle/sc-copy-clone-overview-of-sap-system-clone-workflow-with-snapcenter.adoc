@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html 
+keywords: system clone, target host, clone create 
+summary: FlexClone技術可實現快速資源配置程序、並可大幅節省容量、因為修復系統通常只會在短時間內使用。 
+---
+= SAP系統實體複製工作流程概述SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html["上一篇：SAP系統複製工作流程概述SnapCenter （含）。"]
+
+如前一節所述、SnapCenter 透過任何現有的Snapshot備份、即可管理資料集的複本、並可將這些資料集快速配置至任何目標系統。將正式作業資料配置至修復系統以解決邏輯毀損的速度至關重要、因為通常需要重設修復系統並選擇不同的正式作業資料集。FlexClone技術可實現快速資源配置程序、並可大幅節省容量、因為修復系統通常只會在短時間內使用。
+
+下圖摘要說明使用SnapCenter NetApp執行SAP系統複製作業所需的步驟。
+
+. 準備目標主機。
+. 針對HANA共享磁碟區建立流程。SnapCenter
+. 啟動SAP HANA服務。
+. 以實體複製建立HANA資料磁碟區的工作流程、包括資料庫還原。SnapCenter
+. HANA系統現在可作為修復系統使用。
+
+
+
+NOTE: 如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。HANA共享磁碟區可以繼續掛載。
+
+如果不再需要系統、請執行下列步驟進行清理程序。
+
+. HANA資料磁碟區的還原刪除工作流程、包括資料庫關機。SnapCenter
+. 停止SAP HANA服務。
+. HANA共享磁碟區的實體複製刪除工作流程。SnapCenter
+
+
+image:sc-copy-clone-image10.png["錯誤：缺少圖形影像"]
+
+章節 link:sc-copy-clone-sap-system-clone-with-snapcenter.html["「SAP系統實體複製」SnapCenter"] 提供系統複製工作流程的詳細逐步說明。
+
+link:sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html["接下來：SAP HANA系統使用儲存快照備份來重新整理作業工作流程。"]

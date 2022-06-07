@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html 
+keywords: date refresh, qa, test, sandbox, training, logical corruption, dr, disaster recovery, testing 
+summary: 在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。 
+---
+= 系統更新與複製的使用案例
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html["先前版本：SAP系統複製、重新整理及複製案例。"]
+
+
+
+== QA、測試、沙箱或訓練系統的資料更新
+
+在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。
+
+下圖說明SAP系統的重新整理、複製及複製作業。
+
+image:sc-copy-clone-image3.png["錯誤：缺少圖形影像"]
+
+利用還原複製工作流程、可加速並自動化基礎架構和資料庫層的必要工作。SnapCenter與其將備份從來源系統還原至目標系統、SnapCenter 不如使用NetApp Snapshot複本和NetApp FlexClone技術、如此一來、啟動HANA資料庫所需的工作、只需幾分鐘即可完成、而非數小時、如下圖所示。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。
+
+下圖說明QA、測試、沙箱或訓練系統的資料更新。
+
+image:sc-copy-clone-image4.png["錯誤：缺少圖形影像"]
+
+系統重新整理作業的工作流程將在一節中說明 link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["「SAP HANA系統更新SnapCenter 功能可讓您實現更多效益。」"]
+
+
+
+== 解決邏輯毀損問題
+
+邏輯毀損可能是由軟體錯誤、人為錯誤或破壞所造成。遺憾的是、邏輯毀損問題通常無法透過標準的高可用度與災難恢復解決方案來解決。因此、視發生邏輯毀損的層級、應用程式、檔案系統或儲存設備而定、有時無法滿足最短停機時間和最大資料遺失需求。
+
+最糟的情況是SAP應用程式的邏輯毀損。SAP應用程式通常會在不同應用程式彼此通訊及交換資料的環境中運作。因此、還原及還原發生邏輯毀損的SAP系統並非建議的方法。將系統還原至毀損發生前的某個時間點、會導致資料遺失。此外、SAP環境也不再同步、需要額外的後處理。
+
+與其還原SAP系統、更好的方法是嘗試在個別的修復系統中分析問題、以修正系統內的邏輯錯誤。根本原因分析需要業務程序和應用程式擁有者的參與。在此案例中、您會根據邏輯毀損發生之前所儲存的資料、建立修復系統（正式作業系統的複本）。在修復系統中、所需的資料可匯出並匯入正式作業系統。使用這種方法、不需要停止正式作業系統、而且在最佳情況下、不會遺失任何資料或只會遺失一小部分資料。
+
+在設定修復系統時、靈活度和速度是關鍵。有了NetApp儲存型Snapshot備份、就能使用NetApp FlexClone技術建立多個一致的資料庫映像、如下圖所示。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。
+
+image:sc-copy-clone-image5.png["錯誤：缺少圖形影像"]
+
+修復系統建立的工作流程將在一節中說明 link:sc-copy-clone-sap-system-clone-with-snapcenter.html["「SAP系統利用SnapCenter 功能進行實體複製。」"]
+
+
+
+== 災難恢復測試
+
+有效的災難恢復策略需要測試所需的工作流程。測試可證明策略是否有效、以及內部文件是否足夠。此外、系統管理員也能訓練所需的程序。
+
+使用SnapMirror進行儲存複寫、可在不影響RTO和RPO的情況下執行災難恢復測試。災難恢復測試可在不中斷資料複寫的情況下執行。
+
+非同步和同步SnapMirror的災難恢復測試會在災難恢復目標上使用Snapshot備份和FlexClone磁碟區。
+
+下圖說明災難恢復測試。
+
+image:sc-copy-clone-image6.png["錯誤：缺少圖形影像"]
+
+詳細的逐步說明可在技術報告中找到 http://www.netapp.com/us/media/tr-4646.pdf["SAP HANA災難恢復與儲存複寫"^]。
+
+link:sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html["下一步：SAP系統更新工作流程概述SnapCenter 、含功能更新。"]

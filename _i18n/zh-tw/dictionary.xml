@@ -378,8 +378,6 @@
   <block id="ed4d2f627a13537ec50cc73b8aab9434" category="inline-link">www.netapp.com/us/media/tr-4338.pdf</block>
   <block id="f3cf3d4bafab3435fc6438043df8d588" category="paragraph"><block ref="f3cf3d4bafab3435fc6438043df8d588" category="inline-link-rx"></block></block>
   <block id="bb41f5e2046d2c100d796ce09315ce5a" category="list-text">TR-4667：使用SnapCenter NetApp 4.0 SAP HANA外掛程式來自動化SAP系統複本</block>
-  <block id="144b9f7c2b692720a8d41abdda9b5485" category="inline-link"><block ref="144b9f7c2b692720a8d41abdda9b5485" category="inline-link-rx"></block></block>
-  <block id="cb22cde491c8ae8ab780a6806f412e04" category="paragraph"><block ref="cb22cde491c8ae8ab780a6806f412e04" category="inline-link-rx"></block></block>
   <block id="c54847a2046020d06d345fd8b61fc169" category="list-text">NetApp文件中心</block>
   <block id="c9617ae303d0bce89d13bebecca2ea1b" category="inline-link"><block ref="c9617ae303d0bce89d13bebecca2ea1b" category="inline-link-rx"></block></block>
   <block id="bf78332b32395471af72955679895502" category="paragraph"><block ref="bf78332b32395471af72955679895502" category="inline-link-rx"></block></block>
@@ -1093,7 +1091,6 @@
   <block id="c5c650b56fbb9fa65cf9e47fde05f179" category="list-text">TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）<block ref="a50e21e630f35731790436c759fca5b7" category="inline-link-rx"></block></block>
   <block id="0a96172d42ff3da65b0f1c7bc827f84e" category="list-text">TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統<block ref="98a7d509ee148a118d5943b98dac0880" category="inline-link-rx"></block></block>
   <block id="f15eda444a7f3c1908338e1801c55307" category="inline-link">www.netapp.com/us/media/tr-4667.pdf</block>
-  <block id="25432379081387b0127fa08bb638c061" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化<block ref="123ec0a6c1b7ebb478c5566cdc547f86" category="inline-link-rx"></block></block>
   <block id="69e9c5891ea0d7c109eca9d776a28922" category="list-text">NetApp文件中心<block ref="25f769ea9202a023ba9c99acedadbda6" category="inline-link-rx"></block></block>
   <block id="e9de988fb4a8df63ad9aa891e14b766c" category="list-text">NetApp FAS 解決方案儲存系統資源<block ref="b8ffe4c4013882c10001270e8b487ee3" category="inline-link-rx"></block></block>
   <block id="06c9004a0f2fcfcfd8f0e4998e26ceea" category="list-text">SAP HANA軟體解決方案<block ref="f8e283f33fb9df1008b8f59ee91b76be" category="inline-link-rx"></block></block>
@@ -1134,7 +1131,6 @@
   <block id="6f907eb751f7fabe2c63aee8b3529b14" category="list-text">TR-4646：SAP HANA災難恢復與儲存複寫<block ref="62658c7987e92cf3967ab8bdd1e66d18" category="inline-link-rx"></block></block>
   <block id="7a28a9c1676d9980d4743396ec41e05e" category="list-text">TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）<block ref="026a8e661ca1c91258a93024c126a529" category="inline-link-rx"></block></block>
   <block id="0aeac98f03977f60da41b25c44ab1d16" category="list-text">TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統<block ref="f3cf3d4bafab3435fc6438043df8d588" category="inline-link-rx"></block></block>
-  <block id="9437a0c7fd3aa1491ea7e97594e4706e" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化<block ref="cb22cde491c8ae8ab780a6806f412e04" category="inline-link-rx"></block></block>
   <block id="af970b7f5802a374d53f2c5d39adb076" category="list-text">NetApp文件中心<block ref="bf78332b32395471af72955679895502" category="inline-link-rx"></block></block>
   <block id="f089acce3f0d6fcaced91a0696005dff" category="list-text">NetApp FAS 解決方案儲存系統資源<block ref="65fdf1bbdd083420089318972c99c550" category="inline-link-rx"></block></block>
   <block id="1d2d39f411f870989256ab7ea42e9394" category="list-text">SAP HANA軟體解決方案<block ref="71aa61c769ce3c313ee996249b3ba484" category="inline-link-rx"></block></block>
@@ -1499,7 +1495,6 @@
   <block id="896435116179bed2dde76b00414b4fa5" category="cell">新的NetApp儲存系統會在主機網路設定中發生些微變更</block>
   <block id="8743d46cf40e9841fd4d7a036d38956c" category="paragraph"><block ref="8743d46cf40e9841fd4d7a036d38956c" category="inline-link-macro-rx"></block></block>
   <block id="68be744220cfff40ab15d535a912c8a0" category="list-text">TR-4646：SAP HANA災難恢復搭配使用SnapCenter NetApp HANA外掛程式的非同步儲存複寫</block>
-  <block id="2505e1f3dd70f8398b450e6045393d0e" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化</block>
   <block id="b4142d7007d4ca027509ca5370c0f3e9" category="list-text">NetApp FAS 解決方案儲存系統資源</block>
   <block id="71aa61c769ce3c313ee996249b3ba484" category="paragraph"><block ref="71aa61c769ce3c313ee996249b3ba484" category="inline-link-rx"></block></block>
   <block id="93edd73a174ce62b468c111e85659a4e" category="paragraph"><block ref="93edd73a174ce62b468c111e85659a4e" category="inline-link-macro-rx"></block></block>
@@ -3798,7 +3793,6 @@
   <block id="fa532045e834ec2fac1200964a189516" category="sidebar">生命週期管理</block>
   <block id="d57e0763c47c99218375572fbdd307a1" category="sidebar">所有SAP解決方案</block>
   <block id="91770f038cd944a1d3b9b347edeb2b10" category="sidebar">新增功能</block>
-  <block id="1e83c49aed775d711f6d1a9a0a6a7060" category="sidebar">使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化</block>
   <block id="91a1838980cefe2d841b83794fd6d4a1" category="sidebar">將NetApp儲存設備與SAP Landscape Management整合</block>
   <block id="f01120deea316d303519ad5ab689a57f" category="sidebar">解決方案簡介</block>
   <block id="d5d6ed7727f0e542e6846a58af1d02ba" category="sidebar">SAP HANA生命週期管理</block>
@@ -4423,7 +4417,6 @@
   <block id="c4e5652d7c6756098b7fa87e73bd054c" category="list-text">*使用中央通訊主機進行的支援安裝*。*中央通訊主機安裝了支援資料庫相關作業的支援中心、SAP HANA外掛程式和HANA資料庫用戶端、可在環境中備份及還原多個SAP HANA系統的SAP HANA資料庫。SnapCenter SnapCenter因此、中央通訊主機不需要安裝完整的SAP HANA資料庫系統。</block>
   <block id="b4414ea38c77a0a3ee9e47059486f3e2" category="paragraph">如需這些SnapCenter 不同的支援代理程式和SAP HANA資料庫外掛程式安裝選項的詳細資訊、請參閱技術報告<block ref="dcc70b4da54279e83b2675b3331c54b4" category="inline-link-rx"></block>。</block>
   <block id="a0e8a8955d20c8fc657e47b2296ed8c1" category="paragraph">以下各節將強調使用SnapCenter 標準安裝或中央通訊主機、將LSC與支援功能整合的差異。值得注意的是、無論安裝選項和使用的資料庫為何、未反白顯示的所有組態步驟都是相同的。</block>
-  <block id="cc1cd0a0f9eb582d235ae4d0f6e8342b" category="paragraph">若要從來源資料庫執行自動Snapshot複本型備份、並為新的目標資料庫建立複本、LSC與SnapCenter Sfor之間所述的整合會使用中所述的組態選項和指令碼<block ref="cd920b3d7d4dc41443c1d02db576233a" category="inline-link-rx"></block>。</block>
   <block id="2859fee4a02ffd846470095dc466260c" category="paragraph">下圖顯示了SAP系統更新生命週期的典型高層工作流程SnapCenter 、其中包含不含LSC的現象：</block>
   <block id="052eec788d8241d56e540b703047914e" category="list-text">手動預先處理（匯出授權、使用者、印表機等）。</block>
   <block id="7e1b2dbe7aeb5bb0dae54646fc7b068f" category="list-text">如有必要、刪除目標系統上已存在的實體複本。</block>
@@ -4455,7 +4448,6 @@
   <block id="550ff411af842971b5bef45c5d9d1a59" category="inline-link">TR-47700：SnapCenter 適用於Oracle資料庫的支援</block>
   <block id="2c7b4a7cfd7910e959b3899cdd539867" category="list-text"><block ref="2c7b4a7cfd7910e959b3899cdd539867" category="inline-link-rx"></block></block>
   <block id="4d0488fb3017f2f14273ce8765843a99" category="list-text"><block ref="4d0488fb3017f2f14273ce8765843a99" category="inline-link-rx"></block></block>
-  <block id="3d6ce96c053ea7e9b5b5760fe4e75ae7" category="list-text"><block ref="3d6ce96c053ea7e9b5b5760fe4e75ae7" category="inline-link-rx"></block></block>
   <block id="56f5eeda3975435c8530355bc5441429" category="inline-link">TR-4769 - SnapCenter 《最佳實務做法與規模調整準則》</block>
   <block id="025547de09dae9dc145b97701e1b973f" category="list-text"><block ref="025547de09dae9dc145b97701e1b973f" category="inline-link-rx"></block></block>
   <block id="6be1ed7d0e35cab2dd490a58f13d3761" category="inline-link">《英文）》第4.6版Cmdlet參考指南SnapCenter</block>
@@ -4653,7 +4645,6 @@
   <block id="b0b38c4cc3e591b6cdab5040cd71f242" category="list-text">定期更新品質保證、測試與訓練系統</block>
   <block id="d88297c655f3ff29d2a1ec937fdd33a7" category="list-text">建立中斷修復或修復系統環境、以解決邏輯毀損問題</block>
   <block id="a70c7e060a3886f8f55acde979d98f33" category="list-text">災難恢復測試案例</block>
-  <block id="6f89f570d60963a6699473a3ff97bc26" category="paragraph">雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。如需不同使用案例的詳細資訊、請參閱技術報告<block ref="cd920b3d7d4dc41443c1d02db576233a" category="inline-link-rx"></block>。</block>
   <block id="0a2e09fa683bd368c81839911e03b708" category="paragraph">本文的其餘部分分為兩部分。第一部分說明NetApp SnapCenter 功能與Libelle SystemCopy的整合、適用於SAP HANA、以及在ONTAP 內部部署的NetApp作業系統上執行SAP Anywhere系統。第二部分說明AzAcSnap與LSC的整合、適用於在Microsoft Azure上執行Azure NetApp Files 的SAP HANA系統、並提供功能。儘管底層ONTAP 的不穩定技術相同、Azure NetApp Files 但與原生ONTAP 的不穩定安裝相比、支援不同的介面和工具整合（例如AzacSnap）。</block>
   <block id="2068acecca0077fd3a48d2668542bccc" category="inline-link-macro">下一步：SAP HANA系統更新LSC和SnapCenter 功能</block>
   <block id="901dbde8a2b798f61a514b189d3ac126" category="paragraph"><block ref="901dbde8a2b798f61a514b189d3ac126" category="inline-link-macro-rx"></block></block>
@@ -4938,4 +4929,12 @@
   <block id="43678c52f4cb8971c772ed90d9f6ce7c" category="paragraph"><block ref="43678c52f4cb8971c772ed90d9f6ce7c" category="inline-link-macro-rx"></block></block>
   <block id="aed4be0abac71ea3a4ee20b172e42949" category="sidebar">利用Libelle SystemCopy自動化SAP系統複製作業</block>
   <block id="8e070ffcf4d959eabcd3559b9bb17ec6" category="sidebar">何處可以找到其他資訊和版本歷程記錄</block>
+  <block id="2c5d95d1e63dd18b275493c1704ed479" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化</block>
+  <block id="bc2cda4f2510d2d58906aedd61e82e50" category="inline-link"><block ref="bc2cda4f2510d2d58906aedd61e82e50" category="inline-link-rx"></block></block>
+  <block id="acae3e0452c3127b0c142245461a61ae" category="paragraph"><block ref="acae3e0452c3127b0c142245461a61ae" category="inline-link-rx"></block></block>
+  <block id="6aa1ba1b9f6e5fae64ea9d88054f4805" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化<block ref="637c8239b2db20891c482cfa0b2e2b23" category="inline-link-rx"></block></block>
+  <block id="7e00b6917da8eaba0d8e9182e2234480" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化<block ref="acae3e0452c3127b0c142245461a61ae" category="inline-link-rx"></block></block>
+  <block id="845479810e43d8fc64263c1a762de016" category="paragraph">若要從來源資料庫執行自動Snapshot複本型備份、並為新的目標資料庫建立複本、LSC與SnapCenter Sfor之間所述的整合會使用中所述的組態選項和指令碼 <block ref="6cb270d5a2712c948be937faf1cb1d50" category="inline-link-macro-rx"></block>。</block>
+  <block id="66988e72fd271cabc6a7489ab70e1a4f" category="list-text"><block ref="66988e72fd271cabc6a7489ab70e1a4f" category="inline-link-rx"></block></block>
+  <block id="5c427e461906a4b90dc3d5777ec58bfa" category="paragraph">雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。如需不同使用案例的詳細資訊、請參閱技術報告<block ref="d89e94a6aaf703375bdbc4104c3e8227" category="inline-link-rx"></block>。</block>
 </blocks>

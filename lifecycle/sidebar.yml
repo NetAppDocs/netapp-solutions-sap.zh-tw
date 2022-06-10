@@ -38,7 +38,5 @@ entries:
     url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html"
   - title: 何處可以找到其他資訊和版本歷程記錄
     url: "/lifecycle/libelle-sc-where-to-find-additional-information.html"
-- title: 使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化
-  url: https://www.netapp.com/us/media/tr-4667.pdf
 - title: 將NetApp儲存設備與SAP Landscape Management整合
   url: https://www.netapp.com/us/media/tr-4018.pdf

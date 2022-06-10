@@ -25,7 +25,7 @@ link:saphana-fas-nfs_adding_additional_data_volume_partitions.html["上一步：
 * TR-4646：SAP HANA災難恢復與儲存複寫 http://www.netapp.com/us/media/tr-4646.pdf["www.netapp.com/us/media/tr-4646.pdf"^]
 * TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能） http://www.netapp.com/us/media/tr-4614.pdf["www.netapp.com/us/media/tr-4614.pdf"^]
 * TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統 http://www.netapp.com/us/media/tr-4338.pdf["www.netapp.com/us/media/tr-4338.pdf"^]
-* TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化 http://www.netapp.com/us/media/tr-4667.pdf["www.netapp.com/us/media/tr-4667.pdf"^]
+* TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化 https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["www.netapp.com/us/media/tr-4667.pdf"^]
 * NetApp文件中心 https://www.netapp.com/us/documentation/index.aspx["https://www.netapp.com/us/documentation/index.aspx"^]
 * NetApp FAS 解決方案儲存系統資源 https://mysupport.netapp.com/info/web/ECMLP2676498.html["https://mysupport.netapp.com/info/web/ECMLP2676498.html"^]
 * SAP HANA軟體解決方案 http://www.netapp.com/us/solutions/applications/sap/index.aspx["www.netapp.com/us/solutions/applications/sap/index.aspx#sap-hana"^]

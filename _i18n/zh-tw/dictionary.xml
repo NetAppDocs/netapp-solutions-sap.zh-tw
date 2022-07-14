@@ -627,7 +627,6 @@
   <block id="ea2a5017e6cdb7eff470cc58152d6c96" category="doc">TR-4290：《SAP HANA on NetApp FAS 》（採用NFS組態的SAP HANA）指南</block>
   <block id="3ba2c0f2dd07fd36730e20b6bcba3d0a" category="paragraph">此認證目前僅適用於下列機型：</block>
   <block id="ae9c01e101eba86b0e6ff092df062fae" category="inline-link">SAP HANA硬體目錄已通過認證且受到支援</block>
-  <block id="257f17de4aa60411125a8899104c5927" category="list-text">FAS2720、FAS2750、FAS8300、FAS8700和FAS9000A完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
   <block id="45bb1f13b573370e5659e113eaa6e2a7" category="paragraph">本文件說明ONTAP NFS版本3（NFSv3）傳輸協定或NFS版本4（NFSv4.1）傳輸協定的功能不完整組態需求。</block>
   <block id="134a6ecca2c7d98e325ad00ee461d25a" category="admonition">本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效能的必要條件。變更任何設定或使用本文未列出的功能、可能會導致效能降低或發生非預期的行為、而且只有在NetApp支援人員告知時才應執行。</block>
   <block id="c79fca4f33a4c23e62509e315c7a3415" category="paragraph">下列FAS 連結提供使用FCP及AFF 使用NFS或FC的NetApp等系統組態指南：</block>
@@ -1325,7 +1324,6 @@
   <block id="bc2f77b802672aed5e74bfb91aa5eee4" category="inline-link-macro"><block ref="bc2f77b802672aed5e74bfb91aa5eee4" category="inline-link-rx"></block></block>
   <block id="8e3940acd5b42b2156bc15a3fdf1827d" category="paragraph"><block ref="8e3940acd5b42b2156bc15a3fdf1827d" category="inline-link-macro-rx"></block></block>
   <block id="4f0141ecc04bee7dc293f8992542b4bd" category="summary">NetApp FAS 產品系列已通過認證、可與TDI專案中的SAP HANA搭配使用。通過認證的企業級儲存平台、其特色為NetApp ONTAP 功能完善的作業系統。</block>
-  <block id="d505ac9d8d6e21d17ef8d33d547be191" category="list-text">FAS2720、FAS2750、FAS8200、FAS8300、FAS8700、 FAS9000</block>
   <block id="42eb56ae1e83db3afce70f056a668205" category="inline-link">獲得認證且支援的SAP HANA硬體目錄</block>
   <block id="bc3bbc9b5df10cfc4c9d9747e9b15e4f" category="paragraph">如需NetApp SAP HANA認證儲存解決方案的完整清單、請參閱<block ref="2585df8f0f74fb3d91dc9a930fa3213b" category="inline-link-rx"></block>。</block>
   <block id="b448d121930edfc4a956027d7533c403" category="paragraph">本文件說明FAS 使用光纖通道傳輸協定（FCP）的各項功能。</block>
@@ -4937,4 +4935,6 @@
   <block id="845479810e43d8fc64263c1a762de016" category="paragraph">若要從來源資料庫執行自動Snapshot複本型備份、並為新的目標資料庫建立複本、LSC與SnapCenter Sfor之間所述的整合會使用中所述的組態選項和指令碼 <block ref="6cb270d5a2712c948be937faf1cb1d50" category="inline-link-macro-rx"></block>。</block>
   <block id="66988e72fd271cabc6a7489ab70e1a4f" category="list-text"><block ref="66988e72fd271cabc6a7489ab70e1a4f" category="inline-link-rx"></block></block>
   <block id="5c427e461906a4b90dc3d5777ec58bfa" category="paragraph">雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。如需不同使用案例的詳細資訊、請參閱技術報告<block ref="d89e94a6aaf703375bdbc4104c3e8227" category="inline-link-rx"></block>。</block>
+  <block id="ecf911b27dfacab49658bef695c01f50" category="list-text">FAS2720、FAS2750、FAS8300、FAS8700、FAS9000、 和FAS9500。如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
+  <block id="9b340c29d45c75265853d640bc6a1e05" category="list-text">FAS2720、FAS2750、FAS8200、FAS8300、FAS8700、 FAS9000、FAS9500</block>
 </blocks>

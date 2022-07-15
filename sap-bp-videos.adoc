@@ -19,7 +19,7 @@ keywords: netapp, solutions, SAP, best practices, videos, demos
 
 
 
-=== SAP組態最佳實務做法影片與示範
+== SAP組態最佳實務做法影片與示範
 
 * link:https://www.netapp.tv/details/28149["SAP HANA在NetApp基礎架構上執行效能最佳"]
 * link:https://www.netapp.tv/details/28189["SAP on Azure NetApp Files NetApp：概述與更新"]

@@ -45,7 +45,7 @@ image:saphana_aff_nfs_image5.png["錯誤：缺少圖形影像"]
 
 
 
-=== SAP HANA備份
+== SAP HANA備份
 
 所有NetApp儲存控制器上的支援功能軟體均內建備份機制、可在運作時備份SAP HANA資料庫、不會影響效能。ONTAP以儲存為基礎的NetApp Snapshot備份是完全受支援且整合的備份解決方案、適用於SAP HANA單一容器、以及具有單一租戶或多個租戶的SAP HANA多租戶資料庫容器（MDC）系統。
 
@@ -70,7 +70,7 @@ NOTE: 如需SAP HANA備份與還原解決方案的詳細資訊、請參閱 https
 
 
 
-=== SAP HANA災難恢復
+== SAP HANA災難恢復
 
 SAP HANA災難恢復（DR）可在資料庫層上使用SAP HANA系統複寫、或是在儲存層上使用儲存複寫技術。下節概述以儲存複寫為基礎的災難恢復解決方案。
 
@@ -78,7 +78,7 @@ SAP HANA災難恢復（DR）可在資料庫層上使用SAP HANA系統複寫、�
 
 
 
-==== 以SnapMirror為基礎的儲存複寫
+=== 以SnapMirror為基礎的儲存複寫
 
 下圖顯示使用同步SnapMirror複寫至本機災難恢復資料中心的三站台災難恢復解決方案、以及使用非同步SnapMirror將資料複寫至遠端災難恢復資料中心。
 
@@ -98,7 +98,7 @@ image:saphana_aff_nfs_image7.png["錯誤：缺少圖形影像"]
 
 
 
-==== 儲存複寫功能以MetroCluster 功能為基礎
+=== 儲存複寫功能以MetroCluster 功能為基礎
 
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
 

@@ -23,7 +23,7 @@ NetApp上SAP的部落格總覽。
 
 
 
-=== SAP組態最佳實務做法部落格
+== SAP組態最佳實務做法部落格
 
 
 
@@ -31,7 +31,7 @@ NetApp上SAP的部落格總覽。
 
 
 
-=== SAP生命週期管理部落格
+== SAP生命週期管理部落格
 
 * link:https://blogs.sap.com/2021/10/27/whitepaper-sap-landscape-management-with-netapp/["SAP Landscape Management與NetApp合作"]
 

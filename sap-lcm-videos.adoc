@@ -19,7 +19,7 @@ keywords: netapp, solutions, SAP, lifecycle, management, lcm, videos, demos
 
 
 
-=== SAP生命週期管理影片與示範
+== SAP生命週期管理影片與示範
 
 * link:https://www.netapp.tv/details/25588["降低風險並提高SAP專案的品質"]
 * link:https://www.netapp.tv/details/25595["確保業務單位在面臨非預期事件時能持續運作"]

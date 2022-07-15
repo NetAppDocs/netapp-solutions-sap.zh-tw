@@ -21,7 +21,7 @@ link:saphana_aff_fc_sap_hana_storage_connector_api.html["先前版本：SAP HANA
 
 
 
-=== 設定多重路徑
+== 設定多重路徑
 
 
 NOTE: 在SAP HANA多主機組態中、必須在所有工作者和待命主機上執行步驟1到6。
@@ -216,7 +216,7 @@ size=512G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
 
 
 
-=== 建立LVM Volume群組和邏輯磁碟區
+== 建立LVM Volume群組和邏輯磁碟區
 
 只有在使用LVM時才需要執行此步驟。下列範例適用於使用SID FC5設定2+1主機。
 
@@ -270,7 +270,7 @@ vgchange -a y
 ....
 
 
-=== 建立檔案系統
+== 建立檔案系統
 
 若要在屬於HANA系統的每個LUN上建立XFS檔案系統、請執行下列其中一項動作：
 
@@ -305,7 +305,7 @@ NOTE: 多個主機範例命令顯示2+1多主機HANA系統。
 
 
 
-=== 建立掛載點
+== 建立掛載點
 
 若要建立所需的掛載點目錄、請執行下列其中一項動作：
 
@@ -341,7 +341,7 @@ NOTE: 使用Linux LVM進行系統組態時、必須執行相同的步驟。
 
 
 
-=== 掛載檔案系統
+== 掛載檔案系統
 
 若要在系統開機期間使用「etc/stab'組態檔來掛載檔案系統、請完成下列步驟：
 

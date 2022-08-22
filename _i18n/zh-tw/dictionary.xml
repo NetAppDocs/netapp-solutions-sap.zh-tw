@@ -1243,7 +1243,6 @@
   <block id="4142bd640477d1c4292c7fcbb3bb1f57" category="section-title">在/HANA /共享磁碟區中建立子目錄</block>
   <block id="67435e0588f5cb039a7fb0f4578e90a7" category="admonition">這些範例顯示SID=NF2的SAP HANA資料庫。</block>
   <block id="73534bc746cc8b23b1e96428d64fb98d" category="paragraph">若要建立必要的子目錄、請執行下列其中一項動作：</block>
-  <block id="a3dd76ccd42ef45432fcdf4bcd06d1d6" category="list-text">對於單一主機系統、請掛載「/HANA /共享」磁碟區、然後建立「共享」和「USR SAP」子目錄。</block>
   <block id="4dedcda7bf51022c092ff39d3a6d5686" category="list-text">對於多主機系統、請掛載「/HANA /共享」磁碟區、並為每個主機建立「共享」和「USR SAP」子目錄。</block>
   <block id="456f14e4dccd61c74e863ee833a9ca13" category="paragraph">下列命令範例適用於2+1多主機HANA系統。</block>
   <block id="436b2f88b88434a5965be45b319737cd" category="paragraph">視NFS版本和ONTAP 發行版而定、必須使用不同的掛載選項。下列檔案系統必須掛載到主機：</block>
@@ -1350,12 +1349,10 @@
   <block id="52f0703c63884d2286e98f0a3488601f" category="paragraph"><block ref="52f0703c63884d2286e98f0a3488601f" category="inline-link-macro-rx"></block></block>
   <block id="e41020e64935329a6db54f4c483b9113" category="summary">本節所述的所有主機設定步驟均適用於實體伺服器上的SAP HANA環境、以及在VMware vSphere上執行的SAP HANA。</block>
   <block id="970af0317b4da152f387070d466a966a" category="paragraph"><block ref="970af0317b4da152f387070d466a966a" category="inline-link-macro-rx"></block></block>
-  <block id="95df6f6c376792473a459235195a79dd" category="paragraph">從SUSE Linux Enterprise Server 12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="ec0668f7ae6dba074f0862485b7b15f8" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。如需詳細資訊、請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="c60051ea586d490f1e69166ac39409e5" category="paragraph">如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「unrpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="179a425489e8da15ef704b42e37645c8" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
   <block id="e19cf298e039e5acff1dbe7e98090d84" category="paragraph">您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。</block>
-  <block id="7a093f47a350c0e9b97c0070054a7d01" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「show rpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="5491b828c5fede318e582fdb0621d64f" category="paragraph">從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="b57aa9745ef1f47f50b9a81013b110fc" category="admonition">以下範例顯示SID=NF2的SAP HANA資料庫。</block>
   <block id="7e0efdf8314ae57608296d0f91d73af0" category="list-text">對於單一主機系統、請掛載「/HANA /共享」磁碟區、然後建立「共享」和「USR SAP」子目錄。</block>
@@ -4937,4 +4934,8 @@
   <block id="5c427e461906a4b90dc3d5777ec58bfa" category="paragraph">雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。如需不同使用案例的詳細資訊、請參閱技術報告<block ref="d89e94a6aaf703375bdbc4104c3e8227" category="inline-link-rx"></block>。</block>
   <block id="ecf911b27dfacab49658bef695c01f50" category="list-text">FAS2720、FAS2750、FAS8300、FAS8700、FAS9000、 和FAS9500。如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
   <block id="9b340c29d45c75265853d640bc6a1e05" category="list-text">FAS2720、FAS2750、FAS8200、FAS8300、FAS8700、 FAS9000、FAS9500</block>
+  <block id="8293eb8037b07e6a99273e0e69a21b6f" category="paragraph">從SUSE Linux Enterprise Server 12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
+  <block id="9f7a362263a005504b84698373ae8acb" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「show rpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
+  <block id="c27949e29c7b8b43b4bd0feb8b22be99" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="a45ee993bf9abd75c709b9125c24c32a" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
 </blocks>

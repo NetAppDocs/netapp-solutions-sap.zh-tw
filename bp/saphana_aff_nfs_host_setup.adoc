@@ -77,6 +77,9 @@ net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
 ....
 
+NOTE: 從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱 https://launchpad.support.sap.com/["SAP附註3024346"^] （需要SAP登入）。
+
+
 
 == 在/HANA /共享磁碟區中建立子目錄
 

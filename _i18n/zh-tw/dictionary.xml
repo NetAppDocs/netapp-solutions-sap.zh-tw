@@ -105,11 +105,8 @@
   <block id="a08e3f55ac1bf243274ee454a477749b" category="admonition">本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效能的必要條件。變更任何未列出的設定或功能、可能會導致效能降低或發生非預期的行為、而且只有在NetApp支援部門告知時才應這麼做。</block>
   <block id="793f62e70c31f71a93161db091bea2c0" category="paragraph">您AFF 可以在下列連結中找到使用FCP的NetApp Sfor Systems組態指南、FAS 以及使用NFS或FCP的適用於Sfor Sfor Sfor Sfor Sfor Sfor Sfor Sfor the Systems：</block>
   <block id="fd645c3ffaeed1c3efb140082b037a69" category="inline-link">採用FAS Fibre Channel Protocol的NetApp解決方案上的SAP HANA</block>
-  <block id="6578ba8f8050606717eb26d6e9c36396" category="list-text"><block ref="6578ba8f8050606717eb26d6e9c36396" category="inline-link-rx"></block></block>
   <block id="794aa68d1e6abb7bdd6b9ecf4a1125fd" category="inline-link">SAP HANA on NetApp FAS 的NFS系統</block>
-  <block id="172a4f6be2e5258ba785f0fbe99140f7" category="list-text"><block ref="172a4f6be2e5258ba785f0fbe99140f7" category="inline-link-rx"></block></block>
   <block id="d3eeeac9b8ca9512c68dfff9f3b301a2" category="inline-link">採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA</block>
-  <block id="9e2f7b0947eed9e36a3d84200631ce7d" category="list-text"><block ref="9e2f7b0947eed9e36a3d84200631ce7d" category="inline-link-rx"></block></block>
   <block id="36fafbaf89be825de435f50a73ce793c" category="paragraph">下表顯示NFS版本、NFS鎖定及所需隔離實作的支援組合、視SAP HANA資料庫組態而定。</block>
   <block id="4a74ba49b2778c7cf6b73600b7dfe758" category="paragraph">若為SAP HANA單一主機系統或不使用主機自動容錯移轉的多個主機、則支援NFSv3和NFSv4。</block>
   <block id="8456bce54ecacb824d3f0f3333eec164" category="paragraph">對於採用主機自動容錯移轉的SAP HANA多個主機系統、NetApp僅支援NFSv4、而使用NFSv4鎖定功能來替代伺服器專屬的STONITH（SAP HANA HA/DR供應商）實作。</block>
@@ -133,11 +130,9 @@
   <block id="5d75848b6169b06c4cd7d6a8c2ec2337" category="paragraph">NetApp AFF 支援的儲存控制器已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。如需SAP HANA TDI架構總覽、請參閱下圖。</block>
   <block id="341d84aa26cb4521474864e04ea2a63b" category="inline-image-macro">錯誤：缺少圖形影像</block>
   <block id="b397cda0484ae78f49c994384022879a" category="paragraph"><block ref="b397cda0484ae78f49c994384022879a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0b915d978fec9594c52c6c0d2f128886" category="paragraph">如需更多有關產品SAP HANA系統的先決條件與建議資訊、請參閱下列資源：</block>
   <block id="14a31d6554fa48b10cc86d1aaf656a07" category="inline-link">SAP HANA量身打造的資料中心整合常見問題集</block>
   <block id="9282f2106e2ecc166cf241e78c58163e" category="list-text"><block ref="9282f2106e2ecc166cf241e78c58163e" category="inline-link-rx"></block></block>
   <block id="244d98fed97800c3bc8073163dc1e3b2" category="inline-link">SAP HANA儲存需求</block>
-  <block id="44cbaf598c2b8895a3d3a875dd63203f" category="list-text"><block ref="44cbaf598c2b8895a3d3a875dd63203f" category="inline-link-rx"></block></block>
   <block id="ff3f1e894014f4c26eac8cab49b8a0f4" category="section-title">使用VMware vSphere的SAP HANA</block>
   <block id="4769b140b92a70ffdab406be16d30122" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的選項是將儲存磁碟區與NFS直接從客體作業系統連線。使用此選項時、主機和儲存設備的組態在實體主機和VM之間不會有所不同。</block>
   <block id="35eb3c62d099b5d5e6334b74d5b2bcff" category="paragraph">也支援NFS資料存放區和VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。此外SnapCenter 、NetApp的功能組合與解決方案（例如SAP系統複製）所協調的Snapshot型備份與還原、也無法實作。</block>
@@ -630,9 +625,6 @@
   <block id="45bb1f13b573370e5659e113eaa6e2a7" category="paragraph">本文件說明ONTAP NFS版本3（NFSv3）傳輸協定或NFS版本4（NFSv4.1）傳輸協定的功能不完整組態需求。</block>
   <block id="134a6ecca2c7d98e325ad00ee461d25a" category="admonition">本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效能的必要條件。變更任何設定或使用本文未列出的功能、可能會導致效能降低或發生非預期的行為、而且只有在NetApp支援人員告知時才應執行。</block>
   <block id="c79fca4f33a4c23e62509e315c7a3415" category="paragraph">下列FAS 連結提供使用FCP及AFF 使用NFS或FC的NetApp等系統組態指南：</block>
-  <block id="8c286ade008f7d794b82d8e4bc981424" category="list-text"><block ref="8c286ade008f7d794b82d8e4bc981424" category="inline-link-rx"></block></block>
-  <block id="4300aba024439d53329726e8ecb7f77b" category="list-text"><block ref="4300aba024439d53329726e8ecb7f77b" category="inline-link-rx"></block></block>
-  <block id="c5b75af125f41729ef7bcd709c04f970" category="list-text"><block ref="c5b75af125f41729ef7bcd709c04f970" category="inline-link-rx"></block></block>
   <block id="90a239e164a24bfe58142290491d6a2c" category="paragraph">若為SAP HANA單一主機系統或不含主機自動容錯移轉的多個主機、則支援NFSv3和NFSv4。</block>
   <block id="97e382ecf7e6f1064476764cbcc5b429" category="cell">NFS版本</block>
   <block id="63bed36f11f7ad7653116b5a06c528d7" category="cell">NFS鎖定</block>
@@ -643,7 +635,6 @@
   <block id="fdb63fa26dfca812f4f453ca18a829c7" category="section-title">SAP HANA量身打造的資料中心整合</block>
   <block id="c2798d82f6c464fd30d247919005bc5b" category="paragraph">NetApp FAS 支援的儲存控制器已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。如需架構總覽、請參閱下圖。</block>
   <block id="780627a969a9ecaba83ec1a8ad4e34f6" category="paragraph"><block ref="780627a969a9ecaba83ec1a8ad4e34f6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c57f9f1ae5801f0d8675d5d2053fbac7" category="paragraph">如需正式作業SAP HANA系統的先決條件與建議相關資訊、請參閱下列SAP資源：</block>
   <block id="cd67947f6f1984974a5e507afaa2222d" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。使用此選項時、主機和儲存設備的組態在實體主機和VM之間不會有所不同。</block>
   <block id="3e0badc46d16811661a7977c8991b3ea" category="paragraph">也支援NFS資料存放區或VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。此外SnapCenter 、無法實作由下列項目協調的Snapshot複本型備份與還原、以及以SAP系統複製等為基礎的解決方案。</block>
   <block id="41f8d362e2484ed69d1a57c66be636dc" category="paragraph"><block ref="41f8d362e2484ed69d1a57c66be636dc" category="inline-link-macro-rx"></block></block>
@@ -717,13 +708,10 @@
   <block id="171ad4663cdfb492651e0357292fbe82" category="paragraph">本文件說明AFF 使用光纖通道傳輸協定（FCP）的各項功能。</block>
   <block id="9ba59bf1b64e9d129b41dbb49f3c385f" category="paragraph">使用NFS和NetApp等功能的系統組態指南AFF 可透過下列連結找到：FAS</block>
   <block id="6e309be8793679276c5f6a7bdd2bfdfa" category="inline-link">SAP HANA on NetApp FAS 》、採用FCP技術的系統</block>
-  <block id="c9d1db03ff9188655c6df6826c9cec88" category="list-text"><block ref="c9d1db03ff9188655c6df6826c9cec88" category="inline-link-rx"></block></block>
-  <block id="d76e7542f28a5b74ef246f360a1518d6" category="list-text"><block ref="d76e7542f28a5b74ef246f360a1518d6" category="inline-link-rx"></block></block>
   <block id="5f6e041a9634120ceb1ee084f6acde8a" category="inline-link">SAP附註2235581–SAP HANA支援的作業系統</block>
   <block id="10fba2fd8d2b0860517a92eefbfce26b" category="paragraph">在SAP HANA多主機環境中、標準SAP HANA儲存連接器可在SAP HANA主機容錯移轉時提供屏障。請務必參閱相關的SAP附註、以瞭解作業系統組態準則和HANA特定的Linux核心相依性。如需詳細資訊、請參閱<block ref="362348e4aadbc3b1dc4fa3ddcce8fb65" category="inline-link-rx"></block>。</block>
   <block id="e13ebe7bf91deecb41098f3561e752bf" category="paragraph">NetApp AFF 支援的儲存系統已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。下圖顯示架構總覽。</block>
   <block id="92587b11e86da44eb218f2b17846d58e" category="paragraph"><block ref="92587b11e86da44eb218f2b17846d58e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ea6847e11cffe9d9606d920fe126bfdc" category="paragraph">如需更多有關高效SAP HANA系統的先決條件與建議資訊、請參閱下列資源：</block>
   <block id="1c00cdc071680932dbe093eee9f348e7" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項如所述 <block ref="0f1147a043e687692dc16c07b278ec3b" category="inline-link-macro-rx"></block>。</block>
   <block id="d39f50075dc9ec7266b5156c1d0ce319" category="summary">以下各節提供SAP HANA基礎架構的設定與組態準則。</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="doc">總覽</block>
@@ -4938,4 +4926,12 @@
   <block id="9f7a362263a005504b84698373ae8acb" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「show rpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="c27949e29c7b8b43b4bd0feb8b22be99" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="a45ee993bf9abd75c709b9125c24c32a" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="6ed4f46c3f6437e250cb69f8684772f4" category="list-text"><block ref="6ed4f46c3f6437e250cb69f8684772f4" category="inline-link-rx"></block></block>
+  <block id="24d3ef74df0d2ceedb42c4a4c33104d4" category="list-text"><block ref="24d3ef74df0d2ceedb42c4a4c33104d4" category="inline-link-rx"></block></block>
+  <block id="a52e74dbfc20d705ac349fdd5b3d0188" category="list-text"><block ref="a52e74dbfc20d705ac349fdd5b3d0188" category="inline-link-rx"></block></block>
+  <block id="aeb3b72555ced42ccaba566af6824c8b" category="paragraph">如需更多有關高效SAP HANA系統的先決條件與建議資訊、請參閱下列資源：</block>
+  <block id="bee7a17172474fbff8f082af26c835d8" category="list-text"><block ref="bee7a17172474fbff8f082af26c835d8" category="inline-link-rx"></block></block>
+  <block id="1b0cf038717d1ac5c71d63e939cce293" category="list-text"><block ref="1b0cf038717d1ac5c71d63e939cce293" category="inline-link-rx"></block></block>
+  <block id="e7f295e915bb11e75ddb24aa294f7351" category="paragraph">如需正式作業SAP HANA系統的先決條件與建議相關資訊、請參閱下列SAP資源：</block>
+  <block id="1ad4402d015b30446fdee11f5a31f55b" category="paragraph">如需更多有關產品SAP HANA系統的先決條件與建議資訊、請參閱下列資源：</block>
 </blocks>

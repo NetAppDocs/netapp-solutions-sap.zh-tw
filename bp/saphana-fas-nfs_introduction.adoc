@@ -24,9 +24,9 @@ NOTE: 本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效
 
 下列FAS 連結提供使用FCP及AFF 使用NFS或FC的NetApp等系統組態指南：
 
-* https://docs.netapp.com/us-en/netapp-solutions_main/ent-apps-db/saphana_fas_fc_introduction.html["採用FAS Fibre Channel Protocol的NetApp解決方案上的SAP HANA"^]
-* https://docs.netapp.com/us-en/netapp-solutions_main/ent-apps-db/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"^]
-* https://docs.netapp.com/us-en/netapp-solutions_main/ent-apps-db/saphana_aff_fc_introduction.html["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"^]
+* https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_fas_fc_introduction.html["採用FAS Fibre Channel Protocol的NetApp解決方案上的SAP HANA"^]
+* https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"^]
+* https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"^]
 
 
 下表顯示NFS版本、NFS鎖定及所需隔離實作的支援組合、視SAP HANA資料庫組態而定。
@@ -69,7 +69,6 @@ image:saphana-fas-nfs_image1.png["錯誤：缺少圖形影像"]
 如需正式作業SAP HANA系統的先決條件與建議相關資訊、請參閱下列SAP資源：
 
 * http://go.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["SAP HANA量身打造的資料中心整合常見問題集"^]
-* http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html["SAP HANA儲存需求"^]
 
 
 

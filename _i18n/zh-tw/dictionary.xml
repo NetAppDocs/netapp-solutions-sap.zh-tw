@@ -1222,7 +1222,6 @@
   <block id="efcd9df071a570f7c5ed3559b172bce3" category="section-title">SUSE Linux Enterprise Server 12和15</block>
   <block id="ebb8355d8accfb697b6808ce518c8666" category="paragraph">從SUSE Linux Enterprise Server（SLES）12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="68d9ac2d7e973e347e878b223355bf31" category="inline-link">SAP附註3024346</block>
-  <block id="5a7935c69e3983bd16f2022048011c44" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="fe039cc1acff15ac3ebdef50867dad8e" category="paragraph">如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「show rpc.tcp_ma_slot_table_entries」參數。如果檔案不存在、則必須先新增下列行來建立：</block>
   <block id="82740b25df395d68a79118ebc5c4da80" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
   <block id="ba0e722235d43672bc79f8b3d5e18c9f" category="paragraph">您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。</block>
@@ -1337,7 +1336,6 @@
   <block id="52f0703c63884d2286e98f0a3488601f" category="paragraph"><block ref="52f0703c63884d2286e98f0a3488601f" category="inline-link-macro-rx"></block></block>
   <block id="e41020e64935329a6db54f4c483b9113" category="summary">本節所述的所有主機設定步驟均適用於實體伺服器上的SAP HANA環境、以及在VMware vSphere上執行的SAP HANA。</block>
   <block id="970af0317b4da152f387070d466a966a" category="paragraph"><block ref="970af0317b4da152f387070d466a966a" category="inline-link-macro-rx"></block></block>
-  <block id="ec0668f7ae6dba074f0862485b7b15f8" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。如需詳細資訊、請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="c60051ea586d490f1e69166ac39409e5" category="paragraph">如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「unrpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="179a425489e8da15ef704b42e37645c8" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
   <block id="e19cf298e039e5acff1dbe7e98090d84" category="paragraph">您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。</block>
@@ -4924,8 +4922,6 @@
   <block id="9b340c29d45c75265853d640bc6a1e05" category="list-text">FAS2720、FAS2750、FAS8200、FAS8300、FAS8700、 FAS9000、FAS9500</block>
   <block id="8293eb8037b07e6a99273e0e69a21b6f" category="paragraph">從SUSE Linux Enterprise Server 12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="9f7a362263a005504b84698373ae8acb" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「show rpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
-  <block id="c27949e29c7b8b43b4bd0feb8b22be99" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
-  <block id="a45ee993bf9abd75c709b9125c24c32a" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="d34bfa3c287edf039e3a5c4e365c2a83" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="6ed4f46c3f6437e250cb69f8684772f4" category="list-text"><block ref="6ed4f46c3f6437e250cb69f8684772f4" category="inline-link-rx"></block></block>
   <block id="24d3ef74df0d2ceedb42c4a4c33104d4" category="list-text"><block ref="24d3ef74df0d2ceedb42c4a4c33104d4" category="inline-link-rx"></block></block>
   <block id="a52e74dbfc20d705ac349fdd5b3d0188" category="list-text"><block ref="a52e74dbfc20d705ac349fdd5b3d0188" category="inline-link-rx"></block></block>
@@ -4934,4 +4930,8 @@
   <block id="1b0cf038717d1ac5c71d63e939cce293" category="list-text"><block ref="1b0cf038717d1ac5c71d63e939cce293" category="inline-link-rx"></block></block>
   <block id="e7f295e915bb11e75ddb24aa294f7351" category="paragraph">如需正式作業SAP HANA系統的先決條件與建議相關資訊、請參閱下列SAP資源：</block>
   <block id="1ad4402d015b30446fdee11f5a31f55b" category="paragraph">如需更多有關產品SAP HANA系統的先決條件與建議資訊、請參閱下列資源：</block>
+  <block id="537754f62b9e3072d7b143e82ea96f51" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。如需詳細資訊、請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="64de99f49b55f96ef81b9f1d7d3ef301" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="a02f77a47cb5c9004f19c8c78d662cd5" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="bdd70ece842485df8dbfc92d3ddc2d1e" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
 </blocks>

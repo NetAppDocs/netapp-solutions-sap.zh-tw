@@ -43,7 +43,7 @@ net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
 ....
 
-NOTE: 適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請參閱 https://launchpad.support.sap.com/["SAP附註3024346"^] （需要SAP登入）。
+NOTE: 適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請參閱 https://launchpad.support.sap.com/#/notes/3024346["SAP附註3024346"^] （需要SAP登入）。
 
 如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「show rpc.tcp_ma_slot_table_entries」參數。如果檔案不存在、則必須先新增下列行來建立：
 
@@ -77,7 +77,7 @@ net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
 ....
 
-NOTE: 從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱 https://launchpad.support.sap.com/["SAP附註3024346"^] （需要SAP登入）。
+NOTE: 從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱 https://launchpad.support.sap.com/#/notes/3024346["SAP附註3024346"^] （需要SAP登入）。
 
 
 

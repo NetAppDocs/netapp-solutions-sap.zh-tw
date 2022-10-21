@@ -84,7 +84,7 @@ image:libelle-sc-image5.png["錯誤：缺少圖形影像"]
 
 image:libelle-sc-image6.png["錯誤：缺少圖形影像"]
 
-LSC主機和LSC工作人員必須安裝在SAP環境中。在此部署中、我們也在SnapCenter 目標SAP資料庫伺服器上安裝LSC主機、並在目標SAP資料庫伺服器上安裝LSC工作人員。更多詳細資訊請參閱下節「」<<Lab setup>>。」
+LSC主機和LSC工作人員必須安裝在SAP環境中。在此部署中、我們也在SnapCenter 目標SAP資料庫伺服器上安裝LSC主機、並在目標SAP資料庫伺服器上安裝LSC工作人員。更多詳細資訊請參閱下節「」 setup。」
 
 文件資源：
 

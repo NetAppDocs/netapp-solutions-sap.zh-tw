@@ -1224,7 +1224,6 @@
   <block id="68d9ac2d7e973e347e878b223355bf31" category="inline-link">SAP附註3024346</block>
   <block id="fe039cc1acff15ac3ebdef50867dad8e" category="paragraph">如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「show rpc.tcp_ma_slot_table_entries」參數。如果檔案不存在、則必須先新增下列行來建立：</block>
   <block id="82740b25df395d68a79118ebc5c4da80" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
-  <block id="ba0e722235d43672bc79f8b3d5e18c9f" category="paragraph">您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。</block>
   <block id="384d34c5cb85a44702029243289c3645" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「unrpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="c2e770dd6d768668395e4b8d3b9291d1" category="paragraph">從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="4142bd640477d1c4292c7fcbb3bb1f57" category="section-title">在/HANA /共享磁碟區中建立子目錄</block>
@@ -1256,9 +1255,6 @@
   <block id="5ce2764cf9f6ed7aadfe7ba01b6b29a4" category="cell">vers = 4、minorversion=1、鎖定</block>
   <block id="4a09ae73b23148acb0508b47589e3623" category="cell">rsize=1048576、wsize=262144、</block>
   <block id="7d7894f31c9b83146d2bc22185ed5db0" category="cell">rsize=65536、wsize=65536、</block>
-  <block id="15ae6c88c5781cc59702ffce23dbc9c4" category="admonition">為了改善NFSv3的讀取效能、建議您使用「nconnect = n」掛載選項、此選項適用於SUSE Linux Enterprise Server 12 SP4或更新版本、以及RedHat Enterprise Linux（RHEL）8.3或更新版本。</block>
-  <block id="5af44f409fcf1d822ee94e4abf92a132" category="admonition">效能測試顯示、「nconnect = 8」提供良好的讀取結果。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」 請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使在「nconnect」中使用不同的值、進一步的掛載也不會改變這種情況。</block>
-  <block id="1aee368bcb2be0cdb87c1fb6bbdfe17d" category="admonition">NetApp從ONTAP 支援使用支援NFSv4.1的NF9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、支援nconnect選項。如需其他資訊、請參閱Linux廠商文件。</block>
   <block id="ae2c578e6abfee06e6c468fd4e7cb392" category="paragraph">若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：</block>
   <block id="f9d7623ba6cc83509340e737618f63c2" category="paragraph">以下範例顯示單一主機SAP HANA資料庫、其中SID=NF2使用NFSv3、NFS傳輸大小為1MB（讀取）、256k（寫入）。</block>
   <block id="f731bd3074578aba0a3c1b5ab0ca78ee" category="list-text">將所需的檔案系統新增至「etc/stab'組態檔。</block>
@@ -1350,10 +1346,6 @@
   <block id="c16b7b6c06ec01825313e31feb82c6d2" category="cell">rsize=1048576、wsize=262144</block>
   <block id="9fdcbaccc733453d8e7687d8e14a4e06" category="cell">rsize=65536、wsize=65536</block>
   <block id="a6b3bab4792cb8cb5eda6f38e11a69e7" category="admonition">為提升NFSv3的讀取效能、NetApp建議您使用「nconnect = n」掛載選項、此選項適用於SUSE Linux Enterprise Server 12 SP4或更新版本、以及RedHat Enterprise Linux（RHEL）8.3或更新版本。</block>
-  <block id="c252bc09fef14c3fb2a8d711bae9e7ed" category="admonition">效能測試顯示、"nConnect = 8"提供良好的讀取結果。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使nconnect使用不同的值、進一步的掛載也不會變更此設定。</block>
-  <block id="c16896dd475dc23d3a84eb0def7cee50" category="admonition">NetApp支援NFSv4.1的nconnect選項、從ONTAP 功能表9.8開始。支援nconnect with NFSv4.1的第一個NFS用戶端可搭配使用SLES15SP2和RHEL 8.4。如需其他資訊、請參閱Linux廠商文件。</block>
-  <block id="d3413923f038d5ccbb48c2ba31d26f55" category="paragraph">以下範例顯示使用NFSv3且NFS傳輸大小為1MB的單一主機SAP HANA資料庫、其SID=NF2為例。若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：</block>
-  <block id="8ffd511efff2f95144ac621432b751cd" category="paragraph">下一個範例顯示使用NFSv4.1的多主機SAP HANA資料庫、使用SID=NF2的資料與記錄檔系統、以及使用NFSv3的「/HANA /共享」和「USP/SAP/NF2」檔案系統。NFS傳輸大小為1MB。</block>
   <block id="03c18c34eb30051a996a6e6304e449da" category="paragraph"><block ref="03c18c34eb30051a996a6e6304e449da" category="inline-link-macro-rx"></block></block>
   <block id="7fd01fa95033c040ddfe882c5258bda9" category="paragraph">=：硬斷點：：nofooter：：圖示：字型：linkattros:：imagesdir：.//.../media/</block>
   <block id="5a8b82a0bfb2e7625d351720d4376bdf" category="summary">只有具備容錯移轉功能的多主機環境才需要儲存連接器。在多主機設定中、SAP HANA提供高可用度功能、讓SAP HANA資料庫主機容錯移轉至待命主機。在此情況下、待機主機會存取並使用故障主機的LUN。</block>
@@ -4933,5 +4925,10 @@
   <block id="537754f62b9e3072d7b143e82ea96f51" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。如需詳細資訊、請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="64de99f49b55f96ef81b9f1d7d3ef301" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="a02f77a47cb5c9004f19c8c78d662cd5" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
-  <block id="bdd70ece842485df8dbfc92d3ddc2d1e" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="8af9dcc6bc45874f6dab0a351794996a" category="admonition">效能測試顯示、「nconnect = 8」可為資料磁碟區提供良好的讀取結果。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
+  <block id="b35bcba907dc97a5b6020488961f3307" category="admonition">NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。如需其他資訊、請參閱Linux廠商文件。</block>
+  <block id="dbe18498a47f8eb26e80012f0c049b0d" category="paragraph">以下範例顯示單一主機SAP HANA資料庫、其中SID=NF2使用NFSv3、NFS傳輸大小為1MB（讀取）、256k（寫入）。若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：</block>
+  <block id="afd4f67ca3483f6b519e8ebc2a53dcea" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
+  <block id="e7a66fb065da642109c3abf1481bfcd0" category="paragraph">根據NFS版本和ONTAP 發行版、會使用不同的掛載選項。下列檔案系統必須掛載到主機：</block>
+  <block id="d1805ea655a389bcd86b519f65f01560" category="admonition">效能測試顯示、「nconnect = 8」提供良好的讀取結果、尤其是資料磁碟區。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
 </blocks>

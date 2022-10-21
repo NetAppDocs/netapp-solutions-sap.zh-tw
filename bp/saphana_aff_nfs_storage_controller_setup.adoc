@@ -60,14 +60,14 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存連接埠（10GbE或更快）與網路之間的連線也必須已經就緒。
 
-. 檢查正確的磁碟櫃組態、如「<<Disk shelf connection>>。」
-. 按照"<<Aggregate configuration>>。」
-. 按照"<<SVM configuration>>。」
-. 按照"<<LIF configuration>>。」
-. 在集合體內建立磁碟區、如「<<Volume configuration for SAP HANA single host systems>>"和"<<Volume configuration for SAP HANA multiple host systems>>。」
-. 按照"<<Volume options>>。」
-. 按照"<<NFS configuration for NFSv3>>"或NFSv4（如中所述）。<<NFS configuration for NFSv4>>。」
-. 將磁碟區掛載到命名空間、並依照「<<Mount volumes to namespace and set export policies>>。」
+. 檢查正確的磁碟櫃組態、如「 shelf connection。」
+. 按照" configuration。」
+. 按照" configuration。」
+. 按照" configuration。」
+. 在集合體內建立磁碟區、如「 configuration for SAP HANA single host systems"和" configuration for SAP HANA multiple host systems。」
+. 按照" options。」
+. 按照" configuration for NFSv3"或NFSv4（如中所述）。 configuration for NFSv4。」
+. 將磁碟區掛載到命名空間、並依照「 volumes to namespace and set export policies。」
 
 
 

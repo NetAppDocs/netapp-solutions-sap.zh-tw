@@ -228,7 +228,7 @@ hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 
 == 複製其他SAP應用程式服務
 
-其他SAP應用程式服務的複製方式與SAP HANA共享Volume相同、如一節所述 the HANA shared volume。」 當然、SAP應用程式伺服器所需的儲存磁碟區也必須以SnapCenter 不受影響的方式加以保護。
+其他SAP應用程式服務的複製方式與SAP HANA共享Volume相同、如一節所述<<複製HANA共享磁碟區>>。」 當然、SAP應用程式伺服器所需的儲存磁碟區也必須以SnapCenter 不受影響的方式加以保護。
 
 您必須將必要的服務項目新增至「USP/SAP/sapservices」、而且必須準備好連接埠、使用者和檔案系統掛載點（例如、「USP/SAP/SID'」）。
 

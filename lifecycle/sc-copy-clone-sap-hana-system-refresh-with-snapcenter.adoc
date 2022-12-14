@@ -239,7 +239,7 @@ image:sc-copy-clone-image25.png["錯誤：缺少圖形影像"]
 
 image:sc-copy-clone-image26.png["錯誤：缺少圖形影像"]
 
-所有後續步驟都與從主儲存設備複製的工作流程相同、如「」一節所述 from primary storage with tenant name equal to SID。」
+所有後續步驟都與從主儲存設備複製的工作流程相同、如「」一節所述<<從主儲存設備複製、租戶名稱等於SID>>。」
 
 
 
@@ -249,7 +249,7 @@ image:sc-copy-clone-image26.png["錯誤：缺少圖形影像"]
 
 image:sc-copy-clone-image27.png["錯誤：缺少圖形影像"]
 
-所需的SnapCenter 步驟與本節中所述相同 from primary storage with tenant name equal to SID。」 不同之處在於指令碼「sc-system-refresh.sh」中的租戶還原作業。
+所需的SnapCenter 步驟與本節中所述相同<<從主儲存設備複製、租戶名稱等於SID>>。」 不同之處在於指令碼「sc-system-refresh.sh」中的租戶還原作業。
 
 如果指令碼偵測到來源系統租戶名稱不同於來源系統的SID、則目標系統上的租戶還原會使用與來源租戶相同的租戶名稱執行。如果目標租戶名稱應該有不同的名稱、則之後必須手動重新命名租戶。
 

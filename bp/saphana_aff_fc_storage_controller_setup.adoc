@@ -60,12 +60,12 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存FCP連接埠與SAN架構之間的連線也必須已就緒。
 
-. 檢查正確的磁碟櫃組態、如「 shelf connection。」
-. 建立及設定所需的集合體、如「 configuration。」
-. 創建儲存虛擬機（SVM）、如「 virtual machine configuration。」
-. 創建邏輯介面（l生命）、如「 interface configuration。」
-. 建立連接埠集、如「 port sets。」
-. 在集合體中建立啟動器群組、磁碟區和LUN、如建立" and volumes and mapping LUNs to initiator groups。」
+. 檢查正確的磁碟櫃組態、如「<<磁碟櫃連線>>。」
+. 建立及設定所需的集合體、如「<<Aggregate組態>>。」
+. 創建儲存虛擬機（SVM）、如「<<儲存虛擬機器組態>>。」
+. 創建邏輯介面（l生命）、如「<<邏輯介面組態>>。」
+. 建立連接埠集、如「<<FCP連接埠集>>。」
+. 在集合體中建立啟動器群組、磁碟區和LUN、如建立"<<LUNs and volumes and mapping LUNs to initiator groups>>。」
 
 
 

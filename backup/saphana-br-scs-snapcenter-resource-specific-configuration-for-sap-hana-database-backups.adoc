@@ -169,7 +169,7 @@ image:saphana-br-scs-image54.png["錯誤：缺少圖形影像"]
 下圖顯示保護原則。保護關係所使用的保護原則定義了SnapMirror標籤、以及將備份保留在二線儲存設備上。在我們的範例中、使用的標籤是「DAIY」、保留值設為5。
 
 
-NOTE: 所建立原則中的SnapMirror標籤必須符合SnapCenter 在功能複本原則組態中定義的標籤。如需詳細資料、請參閱「 for daily Snapshot backups with SnapVault replication。」
+NOTE: 所建立原則中的SnapMirror標籤必須符合SnapCenter 在功能複本原則組態中定義的標籤。如需詳細資料、請參閱「<<每日Snapshot備份與SnapVault 還原複寫的原則>>。」
 
 
 NOTE: 異地備份儲存設備的備份保留是由本政策所定義、並由ONTAP 支援者加以控制。
@@ -235,7 +235,7 @@ image:saphana-br-scs-image59.png["錯誤：缺少圖形影像"]
 +
 image:saphana-br-scs-image60.png["錯誤：缺少圖形影像"]
 
-.. 完成資源組態後、請依照「」一節所述、執行資源保護的組態設定 protection configuration。」
+.. 完成資源組態後、請依照「」一節所述、執行資源保護的組態設定<<資源保護組態>>。」
 
 
 

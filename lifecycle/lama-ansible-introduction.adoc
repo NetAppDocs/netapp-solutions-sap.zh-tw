@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-introduction.html 
+keywords: tr4953, introduction, 4953, clone, copy, refresh automation 
+summary: SAP Landscape Management（Lama）可讓SAP系統管理員將SAP系統作業自動化、包括端點對端點SAP系統複製、複製及重新整理作業。 
+---
+= TR-4953：使用Ansible的NetApp SAP Landscape Management整合
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+NetApp Nils Bauer的Michael Schloser
+
+[role="lead"]
+SAP Landscape Management（Lama）可讓SAP系統管理員將SAP系統作業自動化、包括端點對端點SAP系統複製、複製及重新整理作業。
+
+NetApp提供一系列豐富的Ansible模組、讓SAP Lama透過SAP Lama Automation Studio存取NetApp Snapshot和FlexClone等技術。這些技術有助於簡化及加速SAP系統複製、複製及更新作業。
+
+整合功能可讓在內部部署環境中執行NetApp儲存解決方案的客戶使用、或是在Amazon Web Services、Microsoft Azure或Google Cloud Platform等公有雲端供應商使用NetApp儲存服務的客戶使用。
+
+本文件說明SAP Lama搭配NetApp儲存功能的組態、適用於使用Ansible Automation進行SAP系統複製、複製及重新整理作業。
+
+link:lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html["接下來：SAP系統複製、複製及重新整理案例。"]

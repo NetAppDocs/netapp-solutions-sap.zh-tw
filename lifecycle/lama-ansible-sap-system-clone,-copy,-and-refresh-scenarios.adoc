@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html 
+keywords:  
+summary:  
+---
+= SAP系統複製、複製及重新整理案例
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:lama-ansible-introduction.html["上一篇：簡介。"]
+
+[role="lead"]
+SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統複製、SAP系統複本或SAP系統重新整理。請務必區分不同的作業、因為工作流程和使用案例各不相同。
+
+* * SAP系統複製。* SAP系統複製是來源SAP系統的相同複製。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。使用系統複製作業時、主機名稱、執行個體編號和SID會維持不變。因此、為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊、這一點非常重要。
+* * SAP系統複本。* SAP系統複本是新目標SAP系統的設定、其中含有來自來源SAP系統的資料。例如、新的目標系統可能是另一個含有正式作業系統資料的測試系統。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。
+* * SAP系統重新整理* SAP系統重新整理是以來源SAP系統的資料來重新整理現有目標SAP系統。目標系統通常是SAP傳輸環境的一部分、例如品質保證系統、會以正式作業系統的資料重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。
+
+
+下圖說明系統複製、系統複本或系統重新整理作業期間必須執行的主要步驟。紫色方塊表示可整合NetApp儲存功能的步驟。這三項作業都可以使用SAP Lama完全自動化。
+
+image:lama-ansible-image1.png["此圖分別說明系統複製、系統複製及系統重新整理的三個程序時間表。"]
+
+link:lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html["接下來：系統重新整理、複製及複製的使用案例。"]

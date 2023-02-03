@@ -4931,4 +4931,361 @@
   <block id="afd4f67ca3483f6b519e8ebc2a53dcea" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="e7a66fb065da642109c3abf1481bfcd0" category="paragraph">根據NFS版本和ONTAP 發行版、會使用不同的掛載選項。下列檔案系統必須掛載到主機：</block>
   <block id="d1805ea655a389bcd86b519f65f01560" category="admonition">效能測試顯示、「nconnect = 8」提供良好的讀取結果、尤其是資料磁碟區。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
+  <block id="6f7cbdc39f9acbcde843e913e06a5bd8" category="summary">若要取消委任複製的系統、必須事先停止並準備好。之後即可啟動系統銷毀工作流程。</block>
+  <block id="7c4bf45739108965dce4dca9b396f39d" category="doc">SAP Lama取消資源配置工作流程-系統破壞</block>
+  <block id="7d2873665d2795e9c49d5a4c3b46fde1" category="inline-link-macro">上一篇：SAP Lama資源配置工作流程-複製系統。</block>
+  <block id="d364b9b9187e547b897ed747674bc53a" category="paragraph"><block ref="d364b9b9187e547b897ed747674bc53a" category="inline-link-macro-rx"></block></block>
+  <block id="ce5e3f676f90c441971cc56d6dffe08e" category="paragraph">下圖強調系統銷毀工作流程執行的主要步驟。</block>
+  <block id="fa37114811e0a6c252384710fd555989" category="inline-image-macro">此影像說明系統銷毀工作流程的總覽。其中包含「停止系統」、「取消準備系統」、「刪除儲存複製」及「刪除系統組態」等步驟。</block>
+  <block id="2c49f1c2b6cf2a413b781562e94f51c9" category="paragraph"><block ref="2c49f1c2b6cf2a413b781562e94f51c9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="326db1dde007554a6fc6a7f35a558d15" category="inline-image-macro">此圖包含架構圖、以及先前提及的工作流程步驟在系統中執行的位置。</block>
+  <block id="be134f57e81ec33622cfc4840b1b0b96" category="paragraph"><block ref="be134f57e81ec33622cfc4840b1b0b96" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cd1551a21e8c953f9daec26871057a76" category="list-text">在此範例中、我們會針對先前建立的系統執行系統銷毀工作流程。我們在*系統檢視*畫面中選取系統、然後在*銷毀程序*下啟動系統銷毀工作流程。</block>
+  <block id="22dd11876567037f3dce168aca90a55d" category="inline-image-macro">此螢幕快照顯示SAP Lama GUI已開啟至System &amp;gt; Provisioning Systems View（系統&amp;gt；資源配置系統檢視）、可讓您開啟Destroy Systems（銷毀系統）下拉式清單。</block>
+  <block id="c29f9ca5d936c517167eb4d17112544a" category="paragraph"><block ref="cd60d04f86fbd91a9f493108cae035e8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d34819d82542a5e53e6821ec5e4db0e4" category="list-text">在資源配置階段所維護的所有掛載點都會顯示在這裡、並在系統銷毀工作流程期間刪除。</block>
+  <block id="b6d7ae1d25c1ed56190634cbcb9f9b20" category="inline-image-macro">此螢幕快照顯示「銷毀儲存磁碟區」索引標籤下的「銷毀系統」畫面、其中列出所有掛載點。</block>
+  <block id="80e4ac8363c4bb43c3e0be2319263403" category="paragraph"><block ref="80e4ac8363c4bb43c3e0be2319263403" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c55590507c7a5987bf4a4f7b1d810243" category="paragraph">不會刪除任何虛擬主機名稱、因為這些主機名稱是透過DNS進行維護、並已自動指派。</block>
+  <block id="47667892836644d0cd83d17b4917dc35" category="inline-image-macro">此螢幕快照顯示「刪除主機名稱」索引標籤下的「銷毀系統」畫面。未列出任何主機名稱。</block>
+  <block id="ed02cb72288b1d82c109e6809814b6d8" category="paragraph"><block ref="ed02cb72288b1d82c109e6809814b6d8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bbd7a36bba667209844b03f241994057" category="list-text">按一下「執行」按鈕即可啟動作業。</block>
+  <block id="99ed6ae4a60e41a6306ef4ca90f88b38" category="inline-image-macro">此快照顯示「銷毀儲存磁碟區摘要」頁面。</block>
+  <block id="c9e5185c4873df6611b8dfbcf745108e" category="paragraph"><block ref="c9e5185c4873df6611b8dfbcf745108e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4ccc4170b3fa1543f818c336ac8fe5f3" category="paragraph">SAP Lama現在會刪除磁碟區複本、並刪除複製系統的組態。</block>
+  <block id="3c4c4cc2b32a212b8dfdcb531f7833dc" category="list-text">您可以在*監控*功能表下監控複製工作流程的進度。</block>
+  <block id="048eec815017fa246a747d2da0febba7" category="inline-image-macro">此螢幕快照會即時顯示系統銷毀工作流程的進度。</block>
+  <block id="665bbfd6b563f38b5fe08024fd11bd2a" category="paragraph"><block ref="665bbfd6b563f38b5fe08024fd11bd2a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2f0172893615db7f6217f8aea9f5d77c" category="list-text">選取*刪除NetAppClon*工作、即會顯示該步驟的詳細記錄。執行Ansible教戰手冊的內容如下所示。如您所見、Ansible教戰手冊<block ref="02f575c9a42953c46d6832e43305b6fd" prefix=" " category="inline-code"></block> 針對每個HANA資料庫Volume、資料、記錄及共享執行。</block>
+  <block id="4354252a68eb4bbcfdd68b6514d4c26f" category="inline-image-macro">此螢幕快照顯示系統銷毀工作流程的記錄頁面。</block>
+  <block id="9337347d6d92fec3b5156bcc5bb61fdb" category="paragraph"><block ref="9337347d6d92fec3b5156bcc5bb61fdb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3444b3912e49b9ee6b82e89cd3ee703d" category="inline-link-macro">下一步：SAP Lama資源配置工作流程-複製系統。</block>
+  <block id="65f3658bf00c6057ea5e6b3944007494" category="paragraph"><block ref="65f3658bf00c6057ea5e6b3944007494" category="inline-link-macro-rx"></block></block>
+  <block id="b9b81059c0673276efc1c1e439881f55" category="summary">將Ansible等現代化自動化架構整合到SAP Lama資源配置工作流程中、可讓客戶擁有靈活的解決方案、以因應標準或更複雜的基礎架構需求。</block>
+  <block id="6f8b794f3246b0c1e1780bb4d4d5dc53" category="doc">結論</block>
+  <block id="5d31f0d1a0a87ea0f6a99aa660b266a4" category="inline-link-macro">上一篇：提供者指令碼組態和可執行的方針。</block>
+  <block id="5f02483aeae731e2ae996fee251c5cfd" category="paragraph"><block ref="5f02483aeae731e2ae996fee251c5cfd" category="inline-link-macro-rx"></block></block>
+  <block id="261f5cfcc4c662ad4bdb40d9718a5735" category="list-text">NetApp命名空間中的集合</block>
+  <block id="95b860ff1d3414d84c1d0dd66c71beb5" category="inline-link"><block ref="95b860ff1d3414d84c1d0dd66c71beb5" category="inline-link-rx"></block></block>
+  <block id="c7d87c9780b4892d37181cf021e638e2" category="paragraph"><block ref="c7d87c9780b4892d37181cf021e638e2" category="inline-link-rx"></block></block>
+  <block id="1371cf980b833fe3e01808264a214fa5" category="list-text">關於Ansible整合的文件與範例可執行教戰手冊</block>
+  <block id="17d0c87f7f769c8ea7ac812812ebd6d5" category="inline-link"><block ref="17d0c87f7f769c8ea7ac812812ebd6d5" category="inline-link-rx"></block></block>
+  <block id="854bcd8220ccda1e905303668e3793ab" category="paragraph"><block ref="854bcd8220ccda1e905303668e3793ab" category="inline-link-rx"></block></block>
+  <block id="1bc1c7499928cd5f0942064dd37f54f2" category="list-text">通用Ansible與NetApp整合</block>
+  <block id="d7b64d94b2b9e3dbbe93b80934086220" category="inline-link"><block ref="d7b64d94b2b9e3dbbe93b80934086220" category="inline-link-rx"></block></block>
+  <block id="a71e2ab189cc2e25539ceb7f9c4ced72" category="paragraph"><block ref="a71e2ab189cc2e25539ceb7f9c4ced72" category="inline-link-rx"></block></block>
+  <block id="54ec5aa26742228ba1f9e4024c4d73ac" category="list-text">SAP Lama與Ansible整合的部落格</block>
+  <block id="3da5f444c1b02ebe424e80c245333bf1" category="inline-link"><block ref="3da5f444c1b02ebe424e80c245333bf1" category="inline-link-rx"></block></block>
+  <block id="b6a1e2104cef9312a7e1e31c53499350" category="paragraph"><block ref="b6a1e2104cef9312a7e1e31c53499350" category="inline-link-rx"></block></block>
+  <block id="abf2ed748dab1316ba3962b6eacbe747" category="list-text">SAP Landscape Management 3.0企業版文件</block>
+  <block id="137cdbd940ab5580ba6f97a90cdc49d7" category="inline-link"><block ref="137cdbd940ab5580ba6f97a90cdc49d7" category="inline-link-rx"></block></block>
+  <block id="c9d90f3898ea1626d1c3a9a148fd4de1" category="paragraph"><block ref="c9d90f3898ea1626d1c3a9a148fd4de1" category="inline-link-rx"></block></block>
+  <block id="2358274d65c1630d9cc77d20a679ca78" category="list-text">SAP Lama文件–供應商定義</block>
+  <block id="aa594a5bd07b5bc43679c6743f5318cc" category="inline-link"><block ref="aa594a5bd07b5bc43679c6743f5318cc" category="inline-link-rx"></block></block>
+  <block id="76ff1106df915feb26c63a2d10f8ed76" category="paragraph"><block ref="76ff1106df915feb26c63a2d10f8ed76" category="inline-link-rx"></block></block>
+  <block id="cf584bec369b5b183362b23e3b48c171" category="list-text">SAP Lama文件-自訂掛勾</block>
+  <block id="a449378b07182beacf1e06df0157fb1a" category="inline-link"><block ref="a449378b07182beacf1e06df0157fb1a" category="inline-link-rx"></block></block>
+  <block id="29786d40f149d2b6bde83fc7b3b8d311" category="paragraph"><block ref="29786d40f149d2b6bde83fc7b3b8d311" category="inline-link-rx"></block></block>
+  <block id="82f583fbca7e52c75cf724100fceeb87" category="list-text">SAP Lama文件-設定SAP主機代理程式登錄指令碼</block>
+  <block id="a42ebcc58d97420fee4c785861bdf4d3" category="inline-link"><block ref="a42ebcc58d97420fee4c785861bdf4d3" category="inline-link-rx"></block></block>
+  <block id="b837152d68eb7f96b0f885c89e076a13" category="paragraph"><block ref="b837152d68eb7f96b0f885c89e076a13" category="inline-link-rx"></block></block>
+  <block id="41bf842c374d0fd4ab82ce0e6079a372" category="list-text">SAP Lama文件：自訂作業和自訂掛勾的參數</block>
+  <block id="ef2b3fe29f808573588186cae37d62c0" category="inline-link"><block ref="ef2b3fe29f808573588186cae37d62c0" category="inline-link-rx"></block></block>
+  <block id="a8fc83992fa48ceb04a6dd0a40ec951e" category="paragraph"><block ref="a8fc83992fa48ceb04a6dd0a40ec951e" category="inline-link-rx"></block></block>
+  <block id="ac28a244d6bbc68fc735b6d8e78c406f" category="list-text">SAP Lama文件：調適性設計</block>
+  <block id="c3c9babca9a3c4755fc4fc97aab15698" category="inline-link"><block ref="c3c9babca9a3c4755fc4fc97aab15698" category="inline-link-rx"></block></block>
+  <block id="062786b87b67b615196261414e684e55" category="paragraph"><block ref="062786b87b67b615196261414e684e55" category="inline-link-rx"></block></block>
+  <block id="3cd8b5fe5ca94a9fdb5caaf96875ef7e" category="inline-link"><block ref="3cd8b5fe5ca94a9fdb5caaf96875ef7e" category="inline-link-rx"></block></block>
+  <block id="6bfac05f3cc2c0adace9c385ef708fd9" category="paragraph"><block ref="6bfac05f3cc2c0adace9c385ef708fd9" category="inline-link-rx"></block></block>
+  <block id="abb14d21829ba186172f6e1d0b64b55b" category="cell">2023年1月</block>
+  <block id="dfd02aef9802f4824ead7c08b8f81f1f" category="cell">初始版本</block>
+  <block id="30216ab76baa66d9e857660c909822e7" category="summary">在本章中、我們將簡短討論系統複製工作流程和輸入畫面的差異。</block>
+  <block id="50cca7f997c3211915cd57a3bb04b29c" category="doc">SAP Lama資源配置工作流程-複製系統</block>
+  <block id="8ff70a8b4cc140ad4c748b96474f870b" category="inline-link-macro">上一篇：SAP Lama取消資源配置工作流程-系統破壞。</block>
+  <block id="59219532e5305fac7e7ddba7d8c9f225" category="paragraph"><block ref="59219532e5305fac7e7ddba7d8c9f225" category="inline-link-macro-rx"></block></block>
+  <block id="072f81464e5d856a8d5a7f8883a36632" category="paragraph">下圖重點說明使用系統複製工作流程執行的主要步驟。</block>
+  <block id="01b76581a904a061a13aac9f12d95640" category="inline-image-macro">此圖提供系統複製工作流程的時間表。其中包含儲存複製、準備系統、啟動隔離、系統重新命名、啟動系統、匯入組態、複製後自動化及停用系統。</block>
+  <block id="1fd4abb2e9e4644dca0b00cc5564ae7d" category="paragraph"><block ref="1fd4abb2e9e4644dca0b00cc5564ae7d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="266de5c670b51a2300bfff08eadf3f83" category="paragraph">在本章中、我們將簡短討論系統複製工作流程和輸入畫面的差異。如下列映像所示、儲存工作流程沒有任何變更。</block>
+  <block id="3f9896a740ccd028335e64982c037d5a" category="inline-image-macro">此圖提供架構圖表、其中包含重疊步驟、顯示工作流程中每個步驟的執行位置。</block>
+  <block id="0ee7ebf271ff2743b8f544bbfeb81691" category="paragraph"><block ref="0ee7ebf271ff2743b8f544bbfeb81691" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c46bd11826f2315cf0610d409ffd537e" category="list-text">系統複製工作流程可在系統準備妥當時啟動。這不是此組態的特定工作、我們不會詳細說明。如果您需要更多資訊、請檢閱SAP Lama文件。</block>
+  <block id="4233ffb48a1b0153e20c92c0f6c40e0c" category="inline-image-macro">此螢幕快照顯示系統索引標籤下的資源配置系統檢視。會列出兩個系統、並反白顯示「複製系統」下拉式清單。</block>
+  <block id="675714232d181513a4eeff22a3b0db21" category="paragraph"><block ref="675714232d181513a4eeff22a3b0db21" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="083716145cee33ff2046c406370b2405" category="list-text">在複製工作流程期間、系統會重新命名、必須在第一個畫面中指定。</block>
+  <block id="bc347213ce1c3f1d2438267811473b15" category="inline-image-macro">此螢幕快照顯示複製系統頁面、其中系統ID和HANA Sid方塊會反白顯示。</block>
+  <block id="0e5538f491798b42e37ed0f1c413963d" category="paragraph"><block ref="0e5538f491798b42e37ed0f1c413963d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6c469dd99db5fe4f2cdd41a2240beab2" category="list-text">在工作流程期間、您可以變更執行個體編號。</block>
+  <block id="4deccc9f34577d008d9c3b2b0c99aec4" category="inline-image-macro">此快照顯示SAP執行個體編號索引標籤、其中有三個資料方塊。</block>
+  <block id="fd186e381af91342321d2f87740110a9" category="paragraph"><block ref="fd186e381af91342321d2f87740110a9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7803f3d937daa0d08bcf01b401c1f147" category="admonition">變更執行個體編號尚未經過測試、可能需要變更提供者指令碼。</block>
+  <block id="f5ad1b268b7a64d86910e1ae4182ef29" category="list-text">如前所述、*自訂Clone（複製複製）*畫面與複製工作流程並無不同、如下所示。</block>
+  <block id="d5dc66f7bd8c1011c81ddc3e66057ee0" category="inline-image-macro">此螢幕快照顯示「複製系統」頁面、其中包含「自訂複製」資訊和操作參數。</block>
+  <block id="d6c61f59b9d13174e1e29f1881cb383a" category="paragraph"><block ref="d6c61f59b9d13174e1e29f1881cb383a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="54ca6a630ee4f94a5198fac13397bd58" category="list-text">如我們先前所述、其餘輸入遮罩並不偏離標準、我們在此不再深入探討。最後一個畫面會顯示摘要、現在即可開始執行。</block>
+  <block id="e0543801e3151d1c0326270020101b9a" category="inline-image-macro">此螢幕快照會顯示「複製系統」畫面、其中包含基本資訊和主機清單。右下角是「執行」按鈕。</block>
+  <block id="7413e2537a132edd12589463531e2bcd" category="paragraph"><block ref="7413e2537a132edd12589463531e2bcd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e3ae308e52556fdb623ce663f313b439" category="paragraph">複製程序完成後、不會針對自訂複製程序啟用目標執行個體。</block>
+  <block id="f25336d3bf88cbd451a163c97ac17567" category="inline-image-macro">此螢幕快照會顯示Lama Systems畫面以及系統詳細資料。</block>
+  <block id="3692e43b127e4974805821bedcf7b7af" category="paragraph"><block ref="3692e43b127e4974805821bedcf7b7af" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8da564d2ce3424e459494f5a0676b5fe" category="paragraph">必須手動採用此方法、才能在系統銷毀程序期間執行掛機前的步驟、因為會設定限制並防止執行。</block>
+  <block id="ccca928b2a7d8dd76d677eb328f1da6f" category="inline-image-macro">此螢幕快照會顯示「Lama Systems」（Lama系統）畫面及系統詳細資料、並勾選「Use Custom Processing Process（使用自訂處理程序）」核取方塊。</block>
+  <block id="ea9e8adaeb644dd10fe0cff853bb61c9" category="paragraph"><block ref="ea9e8adaeb644dd10fe0cff853bb61c9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="447b03b249dc99078c09554651d7b75d" category="inline-link-macro">下一步：SAP Lama資源配置工作流程-系統更新。</block>
+  <block id="d0fafa2f13b6bd5677fb87cf6b3377a9" category="paragraph"><block ref="d0fafa2f13b6bd5677fb87cf6b3377a9" category="inline-link-macro-rx"></block></block>
+  <block id="c4da05fb7cdd8766abc25fbafbea5a65" category="summary">在本文件的範例部署和工作流程執行期間、會使用下列提供者組態檔、執行指令碼和可執行的教戰手冊。</block>
+  <block id="d53d04a1ea080883183470ec02c16fdd" category="doc">提供者指令碼組態和可執行的方針</block>
+  <block id="d075b8370b5d1860d1832df4652c9bcb" category="inline-link-macro">先前：AP Lama資源配置工作流程-系統更新。</block>
+  <block id="c9d0557baae9a55d0e043df1c3e959d0" category="paragraph"><block ref="c9d0557baae9a55d0e043df1c3e959d0" category="inline-link-macro-rx"></block></block>
+  <block id="f23e38be71134dd193343d810430ee13" category="admonition">範例指令碼是以原樣提供、NetApp不支援。您可以透過電子郵件向mailto：ng-sapcc@netapp.com [ng-sapcc@netapp.com ^]索取最新版的指令碼。</block>
+  <block id="9feebf1712ffdf30142ff1038f2355ff" category="section-title">供應商組態檔NetApp_clone.conf</block>
+  <block id="15d4f6de10e85918b52fcdf3fa78b2a5" category="paragraph">組態檔會依照中所述建立<block ref="840230e2b210400caa403b3aab40b668" category="inline-link-rx"></block>。此組態檔必須位於安裝SAP主機代理程式的Ansible控制節點上。</block>
+  <block id="d0813c701ba6b269a96b838cf74abedc" category="paragraph">已設定的OS使用者<block ref="24a29401ac4c9ae51f6da9510e56b6ab" prefix=" " category="inline-code"></block> 必須具有適當權限才能執行指令碼和稱為「Ansible」的指令碼。您可以將指令碼放在通用指令碼目錄中。SAP Lama可在呼叫指令碼時提供多個參數。</block>
+  <block id="a0104975cac3e4d943107b138472b95f" category="inline-link">SAP Lama文件</block>
+  <block id="fe04f70c92d468b41a00ac721c2baa57" category="paragraph">除了自訂參數、<block ref="d4dd8a053b8921e0c97c9fad320ec6c2" prefix=" " category="inline-code"></block>、<block ref="5272e959f6dcee40a765dfc5b7c078e4" prefix=" " category="inline-code"></block>、<block ref="d4dd8a053b8921e0c97c9fad320ec6c2" prefix=" " category="inline-code"></block>和<block ref="5272e959f6dcee40a765dfc5b7c078e4" prefix=" " category="inline-code"></block>中所示、許多其他人都可以移交<block ref="7af1e5ad564c38fa8886e29ffc9fd522" category="inline-link-rx"></block>。</block>
+  <block id="cf0f4d3b8cdc69ccc8949ccb49435a5a" category="section-title">提供者指令碼netapp_clone.sh</block>
+  <block id="2ba17681023aebd89534577dad86560b" category="paragraph">提供者指令碼必須儲存在中<block ref="7d2dc603b61f4a1874bc1ce662075b91" prefix=" " category="inline-code"></block> 如供應商組態檔中所設定。</block>
+  <block id="03df896fc71cd516fdcf44aa699c4933" category="section-title">變數</block>
+  <block id="bc01539c93d17a2b0f783e4f71b90e40" category="paragraph">下列變數會在指令碼中進行硬式編碼、必須加以調整。</block>
+  <block id="f6cd53bc6bdc52ffc68b4d7d70bd2983" category="list-text"><block ref="5c02ab368b8fc3928b534dac33254332" prefix="" category="inline-code"></block>&lt;hostname of netapp cluster&gt;</block>
+  <block id="c2d8140083809cc5b28989c192c7583b" category="list-text"><block ref="e24726c77a4b5dec5edaf5bac725b89f" prefix="" category="inline-code"></block>&lt;SVM name where source system volumes are stored&gt;</block>
+  <block id="05b0a54c6c43fd11d9f8332bcfff94aa" category="inline-link">NetApp Ansible模組-準備ONTAP</block>
+  <block id="0438110aaa77dc44bccb1ddfe89b0d28" category="paragraph">憑證檔案<block ref="5697de2afb62d59b2877f2a7351ecff8" prefix=" " category="inline-code"></block> 和<block ref="03af5d39699563e8a0e5f65d820a4f9c" prefix=" " category="inline-code"></block> 必須如所述提供<block ref="3af2b6d20ca12a9d04bef18f3151e29e" category="inline-link-rx"></block>。</block>
+  <block id="9ab689b3746aba13d2b0d80a43a23582" category="admonition">如果不同的SAP系統需要不同的叢集或SVM、則這些變數可新增為SAP Lama供應商定義中的參數。</block>
+  <block id="18d821c99fe3d5876a94747ea97ee786" category="section-title">功能：建立庫存檔案</block>
+  <block id="8bd40edd8c06fc2cce652993a0e9b88e" category="paragraph">為了讓Ansible教戰手冊的執行更具動態性<block ref="5041a4494e62ffcb13cfe23041ebc270" prefix=" " category="inline-code"></block> 檔案會即時建立。部分靜態值會在變數區段中設定、部分靜態值會在執行期間動態建立。</block>
+  <block id="576eb476f089a96bcd4354951241757b" category="section-title">功能：執行Ansible教戰手冊</block>
+  <block id="ce8914401ecb3769fce4ddc4e1ced2e8" category="paragraph">此功能可用來執行Ansible教戰手冊、以及動態建立的<block ref="d28e452e49fc926f32af1d87afcff3ce" prefix=" " category="inline-code"></block> 檔案：教戰手冊的命名慣例為<block ref="a6d1d971f71d0033c54dd886792835e2" prefix=" " category="inline-code"></block>。的值<block ref="11f852efb3bc8ae7dac506ad959a0820" prefix=" " category="inline-code"></block> 取決於Lama作業、並由Lama作為命令列參數移交。</block>
+  <block id="bd5cc661e59e91681d4af8d42f266b60" category="section-title">章節主要</block>
+  <block id="8008be4d646729fc2b2eacc341248378" category="paragraph">本節包含主要執行計畫。變數<block ref="11f852efb3bc8ae7dac506ad959a0820" prefix=" " category="inline-code"></block> 包含Lama置換步驟的名稱、並在指令碼被呼叫時由Lama提供。</block>
+  <block id="ee18f05f19fdfaeb9188e25812655d93" category="list-text">系統複製與系統複製資源配置工作流程的價值：</block>
+  <block id="5bc5a2b2e92b316952f792fccde81bfc" category="list-text">ClonVolumes</block>
+  <block id="fa4194159c5a4ad6ef8927aa7d748906" category="list-text">後端磁碟區</block>
+  <block id="924718ea3d11b3fab6f774ae0dc5d993" category="list-text">系統破壞工作流程的價值：</block>
+  <block id="2b566d405e2ccbecac2cf005770047cb" category="list-text">ServiceConfig移 除</block>
+  <block id="65c7a43c3cc81a55199e705b073e6c04" category="list-text">系統重新整理工作流程的價值：</block>
+  <block id="ddb34f7875ee414d57c52d7f6b1532c0" category="list-text">ClearMountConfig</block>
+  <block id="b7a8d056647cd4547e218c04d0f035da" category="section-title">HookoperationName = ClonVolumes</block>
+  <block id="d84f8c0ddcc3d73f02cf17eccbacb6e2" category="paragraph">執行此步驟時、會執行可執行的教戰手冊、以觸發Snapshot複本和複製作業。SAP Lama會透過變數中定義的XML檔案來移交磁碟區名稱和掛載組態<block ref="e0a24edf8af93d34591b84a3ba4c60ca" prefix=" " category="inline-code"></block>。此檔案會儲存、因為稍後會在步驟中使用<block ref="de1ba36294d8c3bc57e5d9df81711f9e" prefix=" " category="inline-code"></block> 以建立新的掛載點組態。磁碟區名稱會從XML檔案擷取、並針對每個磁碟區執行「Ansible Cloning」方針。</block>
+  <block id="c80bb2258a3a0e1a34ad0ba8971ad5d7" category="admonition">在此範例中、AS執行個體和中央服務共用相同的磁碟區。因此、磁碟區複製只會在SAP執行個體編號時執行 <block ref="14ba4a6ef0dc47790ff7704515344fff" prefix="(" category="inline-code"></block>）不是<block ref="96a3be3cf272e017046d1b2674a52bd3" prefix=" " category="inline-code"></block>。這在其他環境中可能會有所不同、因此必須加以變更。</block>
+  <block id="ef6e9f1dd886e5d5363a05e4d08cecc6" category="section-title">HookoperationName =後ClonewVolumes</block>
+  <block id="223edcc0773a44e4b34959031a80f42f" category="paragraph">在此步驟中、自訂屬性<block ref="58df34e81d3ebd3108d3cd89e9ed8c5d" prefix=" " category="inline-code"></block> 和<block ref="8f2c6579709285c9a24c1233a19b7518" prefix=" " category="inline-code"></block> 並維護目標系統的掛載點組態。</block>
+  <block id="7ade54baca7712e1446f7644e2b63881" category="paragraph">之後當系統在中停用時、會將自訂屬性用作輸入內容<block ref="2b566d405e2ccbecac2cf005770047cb" prefix=" " category="inline-code"></block> 或<block ref="ddb34f7875ee414d57c52d7f6b1532c0" prefix=" " category="inline-code"></block> 階段。系統的設計是為了保留系統資源配置工作流程中指定的自訂參數設定。</block>
+  <block id="f6e52e9107b3ac6aa07d820f3587c7e7" category="paragraph">本範例中使用的值為<block ref="bdb47fed0d313262c9d3c7d41c894201" prefix=" " category="inline-code"></block> 和<block ref="85e7e9424d29538746c1b1b2cbb86003" prefix=" " category="inline-code"></block>。</block>
+  <block id="7beba9ba634960c6d652b856b7fa9af7" category="paragraph">適用於Volume<block ref="feb928da308850091372edc73ab231a4" prefix=" " category="inline-code"></block>、動態建立的Ansible檔案包含下列值：<block ref="74570c0ba8bed87fb108923b85e1c86e" prefix=" " category="inline-code"></block>：<block ref="feb928da308850091372edc73ab231a4" prefix=" " category="inline-code"></block>、<block ref="ab8c0f3f510441dfbf6832e5c66506cb" prefix=" " category="inline-code"></block>和<block ref="404f3f40c3094f27edaf2e379e807d19" prefix=" " category="inline-code"></block>。</block>
+  <block id="39637c1bfac2481530e7f976d2404f57" category="paragraph">這會在Volume HN9_SAP上導入快照名稱<block ref="a929b360dff8b79736d40929f007faec" prefix=" " category="inline-code"></block> 以及建立的Volume Clone名稱<block ref="2f11b298ad59bd8dfd88c2aadbbf81e8" prefix=" " category="inline-code"></block>。</block>
+  <block id="b199cb39ab8949193c27458fe7923308" category="admonition">自訂屬性可用於保留資源配置程序期間使用的參數。</block>
+  <block id="17b57d511dca01dac6e1f3d0eea8591e" category="inline-link">SAP附註1889590</block>
+  <block id="37bfe2d6c630cd8dce994786cedb88f1" category="paragraph">掛載點組態會從Lama在中移交的XML檔案擷取<block ref="c76dd551d0df4615489f4840c234db4e" prefix=" " category="inline-code"></block> 步驟。。<block ref="58df34e81d3ebd3108d3cd89e9ed8c5d" prefix=" " category="inline-code"></block> 會新增至磁碟區名稱、並透過預設指令碼輸出傳回Lama。功能如所述<block ref="f917bd775336e1bab012a560d990f292" category="inline-link-rx"></block>。</block>
+  <block id="96552086a9a139af05ca83c2b608b1f5" category="admonition">在此範例中、儲存系統上的qtree是將不同資料放在單一磁碟區上的常用方法。例如、<block ref="feb928da308850091372edc73ab231a4" prefix=" " category="inline-code"></block> 容納的掛載點<block ref="602440fe8fe65977e9574638f9a2c511" prefix=" " category="inline-code"></block>、<block ref="10fba32c279114a49cdfd03372e1e02e" prefix=" " category="inline-code"></block>和<block ref="238092ea5275b74b281dd99d812a95eb" prefix=" " category="inline-code"></block>。子目錄的運作方式相同。這在其他環境中可能會有所不同、因此必須加以變更。</block>
+  <block id="346a028f600790fffe377b01a2b9981c" category="section-title">HookoperationName = ServiceConfigRemoval</block>
+  <block id="53a8b34c26f167a4b06e6eec25b55427" category="paragraph">在此步驟中、負責刪除磁碟區複本的Ansible教戰手冊正在執行中。</block>
+  <block id="5ac066717b22e8c02f8bffb6a8ddcd96" category="paragraph">磁碟區名稱由SAP Lama透過掛載組態檔和自訂屬性來傳遞<block ref="58df34e81d3ebd3108d3cd89e9ed8c5d" prefix=" " category="inline-code"></block> 和<block ref="8f2c6579709285c9a24c1233a19b7518" prefix=" " category="inline-code"></block> 用於移交系統資源配置工作流程中最初指定的參數值（請參閱中的附註）<block ref="ef6e9f1dd886e5d5363a05e4d08cecc6" prefix=" " category="inline-code"></block>）。</block>
+  <block id="e8065accf11ce1a2b63e42eec427fd63" category="paragraph">磁碟區名稱會從XML檔案擷取、並針對每個磁碟區執行「Ansible Cloning」方針。</block>
+  <block id="81ad9d04ab6444acadad9192d00a12c0" category="admonition">在此範例中、AS執行個體和中央服務共用相同的磁碟區。因此、磁碟區刪除只會在SAP執行個體編號時執行 <block ref="14ba4a6ef0dc47790ff7704515344fff" prefix="(" category="inline-code"></block>）不是<block ref="96a3be3cf272e017046d1b2674a52bd3" prefix=" " category="inline-code"></block>。這在其他環境中可能會有所不同、因此必須加以變更。</block>
+  <block id="92f6f8cba070fb9e27767dd5551e768b" category="section-title">HookoperationName = ClearMountConfig</block>
+  <block id="4a4f44bf22d06f8fafafadd3fd090a90" category="paragraph">在此步驟中、負責在系統重新整理工作流程期間刪除磁碟區複本的Ansible教戰手冊正在執行中。</block>
+  <block id="d58b54d2e52ca8489cc7248ba854ae21" category="paragraph">磁碟區名稱由SAP Lama透過掛載組態檔和自訂屬性來傳遞<block ref="58df34e81d3ebd3108d3cd89e9ed8c5d" prefix=" " category="inline-code"></block> 和<block ref="8f2c6579709285c9a24c1233a19b7518" prefix=" " category="inline-code"></block> 用於移交系統資源配置工作流程中最初指定的參數值。</block>
+  <block id="8886a6fe82aff5197d15c38da5b592fd" category="paragraph">磁碟區名稱會從XML檔案擷取、並針對每個磁碟區執行「Ansible Cloning」方針。</block>
+  <block id="8d58923ab8b9151914bc816648b0875d" category="admonition">在此範例中、AS執行個體和中央服務共用相同的磁碟區。因此、磁碟區刪除只會在SAP執行個體編號時執行 <block ref="14ba4a6ef0dc47790ff7704515344fff" prefix="(" category="inline-code"></block>）不是<block ref="96a3be3cf272e017046d1b2674a52bd3" prefix=" " category="inline-code"></block>。這在其他環境中可能會有所不同、因此必須加以變更。</block>
+  <block id="1943d0253ccc5d45e36df0227dd4793e" category="section-title">Ansible教戰手冊NetApp_Lama Clonewores.yml</block>
+  <block id="d370af02588316b01d589655a107cbbc" category="inline-link">NetApp Ansible模組- Yaml檔案</block>
+  <block id="06a69040885f67ea75f8c71bd26cdfdf" category="paragraph">在Lama系統實體複製工作流程的ClonVolumes步驟中執行的方針組合為<block ref="3e3c61f048949537d0dfdcc5a1db6ce2" prefix=" " category="inline-code"></block> 和<block ref="bf70df0c372967b21792d4176664f064" prefix=" " category="inline-code"></block> （請參閱<block ref="ae5d962151a417d9f49d9333a90e0f3c" category="inline-link-rx"></block>）。本方針可輕鬆擴充、涵蓋其他使用案例、例如從二線複製和複製分割作業複製。</block>
+  <block id="455e5b157968d37a4203a9f3779b384a" category="section-title">Ansible教戰手冊NetApp_Lama _ServiceConfigRemove.yml</block>
+  <block id="ce2acc94df9bd91ff47fc72ecf404031" category="paragraph">在執行期間執行的教戰手冊<block ref="2b566d405e2ccbecac2cf005770047cb" prefix=" " category="inline-code"></block> Lama系統銷毀工作流程的階段是結合的<block ref="35dd0b5421b741dfd4e373d5f4d1e4d1" prefix=" " category="inline-code"></block> 和<block ref="8e983ebe58c49099839bfd3bb1b83f41" prefix=" " category="inline-code"></block> （請參閱<block ref="ae5d962151a417d9f49d9333a90e0f3c" category="inline-link-rx"></block>）。它必須與的執行步驟一致<block ref="1f06042fc02f2e855ea461c7817d81a4" prefix=" " category="inline-code"></block> 教戰守則：</block>
+  <block id="bd68c303edefacbfbb91261b59a4e9ac" category="section-title">Ansible教戰手冊NetApp_Lama _ClearMountConfig.yml</block>
+  <block id="ff0f6a8ce2fcd64cebec6e1d9151cfce" category="paragraph">執行期間的教戰手冊<block ref="219f5b01b91b2ed6147264d0df5f9c07" prefix=" " category="inline-code"></block> 系統重新整理工作流程的階段是結合的<block ref="35dd0b5421b741dfd4e373d5f4d1e4d1" prefix=" " category="inline-code"></block> 和<block ref="8e983ebe58c49099839bfd3bb1b83f41" prefix=" " category="inline-code"></block> （請參閱<block ref="ae5d962151a417d9f49d9333a90e0f3c" category="inline-link-rx"></block>）。它必須與的執行步驟一致<block ref="1f06042fc02f2e855ea461c7817d81a4" prefix=" " category="inline-code"></block> 教戰守則：</block>
+  <block id="85e6de7723c608b48d8483e8f080d82e" category="section-title">Ansible inventory.yml範例</block>
+  <block id="13618afb34e29ee98ce78d61d6dd1f2c" category="paragraph">此庫存檔案是在工作流程執行期間動態建置的、僅在此顯示以供說明。</block>
+  <block id="4b774a4819b60036fd16dae7b1618fe7" category="inline-link-macro">下一步：結論。</block>
+  <block id="0121b72f1048ad47d27993ba834591c8" category="paragraph"><block ref="0121b72f1048ad47d27993ba834591c8" category="inline-link-macro-rx"></block></block>
+  <block id="b606dabc2c3e184086b564adb1940f56" category="doc">SAP系統複製、複製及重新整理案例</block>
+  <block id="624ad99ea806758007584adea9961445" category="paragraph"><block ref="624ad99ea806758007584adea9961445" category="inline-link-macro-rx"></block></block>
+  <block id="3e2c20ce79434cedb498fc7527d30dbe" category="paragraph">SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統複製、SAP系統複本或SAP系統重新整理。請務必區分不同的作業、因為工作流程和使用案例各不相同。</block>
+  <block id="43767cf21d4b8f31f9dcdee8e59adb69" category="paragraph">下圖說明系統複製、系統複本或系統重新整理作業期間必須執行的主要步驟。紫色方塊表示可整合NetApp儲存功能的步驟。這三項作業都可以使用SAP Lama完全自動化。</block>
+  <block id="596b75e644e7872d4337d48a315dd53d" category="inline-image-macro">此圖分別說明系統複製、系統複製及系統重新整理的三個程序時間表。</block>
+  <block id="50e1d44f2792b680cc4c690f57736241" category="paragraph"><block ref="50e1d44f2792b680cc4c690f57736241" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2c93721b169a730e0590387eea9a96ee" category="inline-link-macro">接下來：系統重新整理、複製及複製的使用案例。</block>
+  <block id="bb0ac805dad993ca6396fa3c7a85f266" category="paragraph"><block ref="bb0ac805dad993ca6396fa3c7a85f266" category="inline-link-macro-rx"></block></block>
+  <block id="10f22ce6f0d2560d2593dccd1c7a2cac" category="summary">SAP Landscape Management（Lama）可讓SAP系統管理員將SAP系統作業自動化、包括端點對端點SAP系統複製、複製及重新整理作業。</block>
+  <block id="f0e2318cd32c61c7c602d5745e21791b" category="doc">TR-4953：使用Ansible的NetApp SAP Landscape Management整合</block>
+  <block id="5d36e325b7addc853f5a7a6ecd350eb2" category="paragraph">NetApp Nils Bauer的Michael Schloser</block>
+  <block id="f130ce1e1c7d90310044ef7daf088f2e" category="paragraph">NetApp提供一系列豐富的Ansible模組、讓SAP Lama透過SAP Lama Automation Studio存取NetApp Snapshot和FlexClone等技術。這些技術有助於簡化及加速SAP系統複製、複製及更新作業。</block>
+  <block id="d2c4fa04492deec7383fc3a48fb61fcc" category="paragraph">整合功能可讓在內部部署環境中執行NetApp儲存解決方案的客戶使用、或是在Amazon Web Services、Microsoft Azure或Google Cloud Platform等公有雲端供應商使用NetApp儲存服務的客戶使用。</block>
+  <block id="e95a257ceffab9c7ca49cb69ae38d9d7" category="paragraph">本文件說明SAP Lama搭配NetApp儲存功能的組態、適用於使用Ansible Automation進行SAP系統複製、複製及重新整理作業。</block>
+  <block id="494151a5ba2beb41cd33cb34ecaa3b34" category="inline-link-macro">接下來：SAP系統複製、複製及重新整理案例。</block>
+  <block id="f1f59a5379c668a0313447a3dba4f01f" category="paragraph"><block ref="f1f59a5379c668a0313447a3dba4f01f" category="inline-link-macro-rx"></block></block>
+  <block id="1549d8a91814eafffd1bb350b7956ad9" category="summary">在重新整理工作流程期間、必須刪除儲存實體複本。您可以使用與系統銷毀工作流程相同的可執行教戰手冊。不過、自訂掛勾是定義為不同的步驟、因此會據此命名該教戰手冊。複本的程序步驟並不不同。</block>
+  <block id="7949afbae2a9d5fd15f7b4c7f7a05fa4" category="doc">SAP Lama資源配置工作流程-系統更新</block>
+  <block id="9220fe6d4e22f106fa49606d2e0f9dc7" category="inline-link-macro">上一篇：SAP Lama資源配置工作流程-複製系統。</block>
+  <block id="1795fc9ac323cc6308efcae72b0bafbc" category="paragraph"><block ref="1795fc9ac323cc6308efcae72b0bafbc" category="inline-link-macro-rx"></block></block>
+  <block id="7f4f2ac27cfdf79058d0e50de2e9742d" category="paragraph">下圖重點說明系統重新整理工作流程執行的主要步驟。</block>
+  <block id="481edeab724446585cba31c21c5c303b" category="inline-image-macro">此影像描述系統重新整理工作流程中步驟的時間表。其中包含匯出組態、停止系統、取消準備系統、刪除儲存實體複製、儲存實體複製、準備系統、啟動隔離、系統重新命名、啟動系統、匯入組態、複製後自動化、以及停用隔離功能。</block>
+  <block id="9c922d24ae362be7b4b207796c78fc80" category="paragraph"><block ref="9c922d24ae362be7b4b207796c78fc80" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="271d28463c63d7fd4374acd04ad1d970" category="paragraph">在重新整理工作流程期間、必須刪除儲存實體複本。您可以使用與系統銷毀工作流程相同的可執行教戰手冊。不過、自訂掛勾是定義為不同的步驟、因此會據此命名該教戰手冊。複本的程序步驟並不不同。</block>
+  <block id="9e5091c63ff2962a881841af91e2823c" category="inline-image-macro">此影像顯示架構圖表、其中包含此工作流程中所包含的步驟。</block>
+  <block id="f66bd4318b3bbbdefc2a05b723e920b8" category="paragraph"><block ref="f66bd4318b3bbbdefc2a05b723e920b8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d1a447a92da11b77de2544fbcfe43acf" category="paragraph">重新整理工作流程可透過複製系統的資源配置畫面觸發。</block>
+  <block id="5d395370196d6d4e376fe46b17b57d79" category="inline-image-macro">此螢幕快照會顯示資源配置系統檢視、並反白顯示「重新整理系統」下拉式清單。</block>
+  <block id="6940d83e659b53fe2828f35b5691fab4" category="paragraph"><block ref="6940d83e659b53fe2828f35b5691fab4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8cfad5ce51e7271ce19cce7c6b114c91" category="paragraph">同樣地、輸入畫面與標準畫面沒有任何差異、您也可以從摘要畫面開始執行工作流程。</block>
+  <block id="29fc636c559035fd7df8a518d41d0ce2" category="inline-image-macro">此螢幕快照顯示「重新整理系統」畫面、包括要重新整理的系統基本資料、以及目標系統的主機選擇。</block>
+  <block id="dfbc93639d1067b24f414457d7eb84e4" category="paragraph"><block ref="dfbc93639d1067b24f414457d7eb84e4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e22f2b8efbb602218c7385804fb05f3" category="inline-link-macro">下一步：提供者指令碼組態和可執行的方針。</block>
+  <block id="db0410882f9a399768af0469082c6756" category="paragraph"><block ref="db0410882f9a399768af0469082c6756" category="inline-link-macro-rx"></block></block>
+  <block id="3174e9fa49f311c5e00e12e71a3b5b98" category="summary">由於系統和儲存設備設定有大量可用選項、因此應將實作範例當作個別系統設定和組態需求的範本。</block>
+  <block id="22b2b5c6aa3ef83ba384074fa4b1f70b" category="doc">實作範例</block>
+  <block id="d636957b95987f0920f5f75840a58677" category="inline-link-macro">先前版本：NetApp SAP Lama整合使用Ansible。</block>
+  <block id="f19fa360d8053527cbb9fdad004ee091" category="paragraph"><block ref="f19fa360d8053527cbb9fdad004ee091" category="inline-link-macro-rx"></block></block>
+  <block id="218856d6f0f5481bf616ccd68aa42cba" category="section-title">已驗證的組態與限制</block>
+  <block id="ead08ec5c8fd39a74fa185810bb7521e" category="paragraph">以下原則適用於實作範例、可能需要加以調整以符合客戶需求：</block>
+  <block id="da30655d4bed2647c2fec11ec1ee095a" category="list-text">託管SAP系統使用NFS存取NetApp儲存磁碟區、並根據調適性設計原則進行設定。</block>
+  <block id="a606bd07766c70874c1247221e4b6920" category="list-text">您可以使用ONTAP NetApp Ansible模組（ZAPI和REST API）支援的所有版本。</block>
+  <block id="8a13407d32dabdb45cd5b99a37d3658d" category="list-text">單一NetApp叢集和SVM的認證資料會在供應商指令碼中硬式編碼為變數。</block>
+  <block id="62479efe2da12c69ae8fead43ad2a41c" category="list-text">儲存複製是在來源SAP系統所使用的相同儲存系統上執行。</block>
+  <block id="2822fed36861cecbea9530e16c3dc549" category="list-text">目標SAP系統的儲存磁碟區名稱與來源名稱相同、附有附錄。</block>
+  <block id="45d18080d1d1501f967a6234b8e9c807" category="list-text">未實作次要儲存設備（SV/SM）的複製。</block>
+  <block id="a2c82d2d1a8c3fa26f5d24f153350b67" category="list-text">未實作FlexClone分割。</block>
+  <block id="295940074fec313c1941e256113f0e88" category="list-text">來源和目標SAP系統的執行個體編號相同。</block>
+  <block id="92b9b9bba1ad0383940e73178d2d2b1f" category="inline-link">可調整的設計</block>
+  <block id="694793abedab052f0f8fe31c7ed5d468" category="inline-link">NetApp ONTAP 的Ansible教戰手冊</block>
+  <block id="e3f6982f9a27e912e8c722adde3efd24" category="paragraph">下圖顯示我們使用的實驗室設定。用於系統實體複製作業的來源SAP系統HN9、包括資料庫H09、SAP CS和SAP、以及安裝在同一部主機（SAP-lnx32）上執行的服務<block ref="0f7e6b0bf7b6b1239b509159ab784efd" category="inline-link-rx"></block> 已啟用。根據準備了可Ansible控制節點<block ref="2b2330f758d35be084c542c192f2a4aa" category="inline-link-rx"></block> 文件。</block>
+  <block id="440bd2077d1dc4268b805695e517765a" category="inline-link-macro">「附錄：供應商指令碼組態。」</block>
+  <block id="0ddc9ab61cfb2c7266939699da865a07" category="paragraph">SAP主機代理程式也安裝在此主機上。NetApp供應商指令碼和Ansible實戰手冊均在Ansible控制節點上設定、如所述 <block ref="3a5309a81be4983848acab2ae66229f5" category="inline-link-macro-rx"></block></block>
+  <block id="b66c6a3a7edc45e35e3ddf6c05273c2e" category="paragraph">主機<block ref="0e4bb0c252ec92e9686dfba6c8df0076" prefix=" " category="inline-code"></block> 是做為SAP Lama複製作業的目標、而隔離就緒功能則是在該處設定。</block>
+  <block id="83b45fa496284bbb2f02b9bded901b86" category="paragraph">不同的SAP系統（HNA做為來源、HN2做為目標）用於系統複製和重新整理作業、因為這裡已啟用「複製後自動化」（CA）。</block>
+  <block id="dfa47107ed64e58579a060d20cca230a" category="inline-image-macro">此映像描述各種SAP主機代理程式、以及它們如何透過NFS掛載與NetApp儲存設備互動。SAP Lama執行個體也會顯示。</block>
+  <block id="d0f0f43af738b26d182641cb7c12254e" category="paragraph"><block ref="d0f0f43af738b26d182641cb7c12254e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9d50189ad22fa1f80dd4993b241fa520" category="paragraph">實驗室設定使用下列軟體版本：</block>
+  <block id="b4cd99983baacefc54875fd2de6c03d4" category="list-text">SAP Lama Enterprise Edition 3.00 SP23_2</block>
+  <block id="7bdc9b8c3e894f5a2369e5c3b8a133e4" category="list-text">SAP HANA 2.00.052.00.1599235305</block>
+  <block id="d550cc442fbc5ea03e42ba86d0cfeb03" category="list-text">SAP 7.77修補程式27（S/4 HANA 1909）</block>
+  <block id="f6297e2394a4dfe959fc0dace04882a1" category="list-text">SAP主機代理程式7.22修補程式56</block>
+  <block id="780c1fbb148682140e46cccca790b4ff" category="list-text">SAPACEXT 7.22修補程式69</block>
+  <block id="bded4cce06ec88cd16a823fa44159118" category="list-text">Linux SLES 15 SP2</block>
+  <block id="8271f798ae4ae5f28efaa3a9eaf06233" category="list-text">Ansible 2.13.7.</block>
+  <block id="4b0373c99a4c85c6b0f82b56d8c42730" category="list-text">NetApp ONTAP 產品技術9.8P8</block>
+  <block id="70cc2142e75ab6a0289b10c66ef4448a" category="section-title">SAP Lama組態</block>
+  <block id="97604b3e0820bd1474b9e6fae5edb42d" category="section-title">SAP Lama供應商定義</block>
+  <block id="cdde8d4b44ba034030a4e67f7cd1355c" category="paragraph">供應商定義是在SAP Lama的Automation Studio中執行、如下列螢幕擷取畫面所示。此實作範例使用單一供應商定義、用於不同的自訂資源配置步驟和作業掛勾、如前所述。</block>
+  <block id="1746e76929a022aece9b6dfb14dae7f4" category="inline-image-macro">SAP Lama GUI中SAP供應商定義的快照。</block>
+  <block id="08c5b98069920bf5ac7b4961005b5056" category="paragraph"><block ref="08c5b98069920bf5ac7b4961005b5056" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4f341f0e5eb3b1f46991cea35272fcf1" category="paragraph">供應商<block ref="f66a8619ee48b9a9e3c50bb78492093d" prefix=" " category="inline-code"></block> 定義為指令碼<block ref="e43ee3b6f349861a2a2c82d22b32d52e" prefix=" " category="inline-code"></block> 已在SAP主機代理程式註冊。SAP主機代理程式會在中央主機上執行<block ref="b364ceeb78cb4529181c9ca2c288a0f4" prefix=" " category="inline-code"></block>也可作為Ansible控制節點。</block>
+  <block id="64435bf2455f95dd405db3790145406d" category="inline-image-macro">「一般」索引標籤下名為NetApp_clone的個別供應商定義快照。顯示「摘要」區段、「用途」區段和「選項」區段。</block>
+  <block id="54c6354a212b8f91f2ff043d95c8a94e" category="paragraph"><block ref="54c6354a212b8f91f2ff043d95c8a94e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0534b8ad7bf71ef8b710dad564e0cd7a" category="paragraph">「*使用於*」索引標籤會顯示供應商所使用的自訂作業。自訂資源配置的組態* NetAppClon*和自訂勾點*刪除NetAppClon*和*刪除NetAppClone Refresh*會顯示在下一章中。</block>
+  <block id="a340f1bceb05f0cd1b147b9f672ba8d2" category="inline-image-macro">使用中區段的快照、以及使用定義的自訂作業清單。在此範例中、我們會看到「刪除NetAppClone」、「刪除NetAppClone重新整理」和「NetAppClone」。</block>
+  <block id="70f474aab1616506d03d24a8657ae910" category="paragraph"><block ref="70f474aab1616506d03d24a8657ae910" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7a0ae7f1897ba065a4175f0a031d40ca" category="paragraph">執行資源配置工作流程時會要求使用* ClonePostFix*和* SnapPostFix*參數、並用於Snapshot和FlexClone磁碟區名稱。</block>
+  <block id="e9f68f9346bf37c4d5361a06a77f7922" category="inline-image-macro">「參數」區段的快照、內含兩個參數清單：CLonePostFix和SnapPostFix。</block>
+  <block id="7f23aeaaf119e1c77839ccb7a26f572a" category="paragraph"><block ref="7f23aeaaf119e1c77839ccb7a26f572a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f75575994c2d652cc4c91f3475946ddd" category="section-title">SAP Lama自訂資源配置</block>
+  <block id="71f3f2d0ca1eb7593b6ccbae27d47630" category="paragraph">在SAP Lama自訂資源配置組態中、先前所述的客戶供應商會用來取代資源配置工作流程步驟* Clone Volumes *和* PostCloneworet*。</block>
+  <block id="9f86a21de7693c92ea6e20ccf4b6bfed" category="inline-image-macro">自訂資源配置畫面的快照。會列出ClonewoVolumes和FinalizeClonVolumes的程序。</block>
+  <block id="18ed31da1adaccc57dd6543fc9b26c8f" category="paragraph"><block ref="18ed31da1adaccc57dd6543fc9b26c8f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9e1240b3666e6094668a9e44b93b1aaf" category="section-title">SAP Lama客製化掛勾</block>
+  <block id="fc234b36f71d0a48d49f813690e499d5" category="paragraph">如果系統隨系統銷毀工作流程一起刪除、則會使用勾號*刪除NetAppClon*來呼叫供應商定義<block ref="f66a8619ee48b9a9e3c50bb78492093d" prefix=" " category="inline-code"></block>。系統重新整理工作流程期間會使用*刪除NetApp Clone Refresh*勾選、因為執行期間會保留執行個體。</block>
+  <block id="1214fb9ed85a47de9908cb172d861fb9" category="inline-image-macro">包含自訂勾點的「自訂勾點」畫面快照「刪除NetAppClone重新整理」和「刪除NetAppClone」。</block>
+  <block id="baaa9a167a827541388c50135103e4fd" category="paragraph"><block ref="baaa9a167a827541388c50135103e4fd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0c3cf1c76c18bb4fefa6e023a411ffc4" category="paragraph">請務必設定*使用Mount Data XML作為自訂掛勾、以便SAP Lama將掛載點組態的資訊提供給供應商。</block>
+  <block id="f2e7523bdd169ca65eca0147bca8fff1" category="inline-image-macro">「刪除NetAppClone一般」畫面的快照、並反白顯示「使用Mount Data XML yes」。</block>
+  <block id="8a8dd4fc02cb2cf28f0b93868a12473e" category="paragraph"><block ref="8a8dd4fc02cb2cf28f0b93868a12473e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="98f4e317bbaa784645b3288ba01b74c6" category="paragraph">為了確保只有在使用自訂資源配置工作流程建立系統時、才會使用及執行自訂資源勾、系統會新增下列限制。</block>
+  <block id="ec60f21e7cd865823a756b683438922a" category="inline-image-macro">「刪除NetAppClone限制」頁面的快照。包含名為「Custom Clone Process name（Static）（自訂複製程序名稱（靜態））」的單一限制。</block>
+  <block id="d574b7c12d0ffbf3da10d882088b0cef" category="paragraph"><block ref="d574b7c12d0ffbf3da10d882088b0cef" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="251b0d3699e5721f1881283a4fca406a" category="paragraph">如需使用自訂掛勾的詳細資訊、請參閱<block ref="cccebfd04b7323b5c9d595ca9e1a8202" category="inline-link-rx"></block>。</block>
+  <block id="8e28a1dc58486d267cf25af39d6a11e6" category="section-title">啟用SAP來源系統的自訂資源配置工作流程</block>
+  <block id="113da349476dc9377bcc12b4a0257c93" category="paragraph">若要啟用來源系統的自訂資源配置工作流程、必須在組態中進行調整。必須選取「*使用自訂資源配置程序*」核取方塊以及對應的自訂資源配置定義。</block>
+  <block id="0f9f630eca85dbbe04a442a7a696930c" category="inline-image-macro">SAP Lama組態&amp;gt;系統&amp;gt;系統詳細資料畫面的快照。「使用自訂資源配置程序」核取方塊會反白顯示。</block>
+  <block id="032c2a456234741b329b07d476cc4d1a" category="paragraph"><block ref="875d532bdc997e1002f70ac7b667645e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7d2b00bc2711e0322869201b0aa47d14" category="inline-link-macro">下一步：SAP Lama資源配置工作流程-複製系統。</block>
+  <block id="00dce0767e2512b23468b23504bee9ac" category="paragraph"><block ref="00dce0767e2512b23468b23504bee9ac" category="inline-link-macro-rx"></block></block>
+  <block id="9d9c41126d52bd5f1a379e53bd0752f3" category="summary">在本節中、我們將介紹以來源SAP系統HN9搭配HANA資料庫H09為基礎的完整SAP Lama系統複製工作流程。下圖概述工作流程執行的步驟。</block>
+  <block id="2080b046fbab316052bf3cd004fba2c1" category="doc">SAP Lama資源配置工作流程-複製系統</block>
+  <block id="24699046bc864ed36aa118e7d56dfb78" category="inline-link-macro">上一篇：實作範例。</block>
+  <block id="6b7cd807aa80b4988f851f2971fd2751" category="paragraph"><block ref="6b7cd807aa80b4988f851f2971fd2751" category="inline-link-macro-rx"></block></block>
+  <block id="f928bd8b1ecd05387cc712d7a46bf18c" category="paragraph">下圖重點說明使用系統複製工作流程執行的主要步驟。</block>
+  <block id="f796aa70006aac29ee5eb4b2ed23ba95" category="inline-image-macro">工作流程圖、包含儲存複製、準備系統、啟動隔離和啟動系統等步驟。</block>
+  <block id="43c1e12c4de1117893166b4d61a58800" category="paragraph"><block ref="43c1e12c4de1117893166b4d61a58800" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fdf5d8e6fccfdfce632b92c3e93acaf7" category="inline-image-macro">此映像描述工作流程中執行的步驟、包括建立複製的系統組態、建立儲存Snapshot與Clone、建立掛載點組態、設定自訂內容、以及準備與啟動系統。</block>
+  <block id="11be0398e50f67b0d6de3c0d5065d86d" category="paragraph"><block ref="11be0398e50f67b0d6de3c0d5065d86d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bcda724368fccf9bf6be920fc775e707" category="list-text">若要開始複製工作流程、請在功能表樹狀結構中開啟* Provisioning *、然後選取來源系統（在我們的HN9範例中）。然後啟動* Clone System*精靈。</block>
+  <block id="320b2524f93a492ce1312bd5ae04746a" category="inline-image-macro">此螢幕擷取畫面說明資源配置系統檢視。它包含兩個系統。</block>
+  <block id="92e855188fcadbee0c81d0aef8797e36" category="paragraph"><block ref="92e855188fcadbee0c81d0aef8797e36" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="26f307d1b32126e9ef74d6d94d34593a" category="list-text">輸入要求的值。精靈的畫面1會詢問複製系統的集區名稱。此步驟會指定要在其上啟動複製系統的執行個體（虛擬或實體）。預設為將系統複製到與目標系統相同的資源池中。</block>
+  <block id="28e2a407caa32a2e6d85a365fc6137ee" category="inline-image-macro">Clone System Wizard（複製系統精靈）畫面1、提供目標系統的基本資料。</block>
+  <block id="5d15a1dd9a1e0efc6857b74627bf9a71" category="paragraph"><block ref="5d15a1dd9a1e0efc6857b74627bf9a71" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="93097e472af50d9306626ab3c2ad088c" category="list-text">精靈的畫面2會要求啟動新SAP執行個體的目標主機。此執行個體的目標主機可從上一個畫面所指定的主機集區中選取。每個執行個體或服務都可以在不同的主機上啟動。在我們的範例中、這三項服務都是在同一部主機上執行。</block>
+  <block id="d45437922cbadac03e555f9396029c52" category="inline-image-macro">Clone System Wizard（複製系統精靈）畫面2提供目標系統的主機選擇。</block>
+  <block id="942813ee3bf3e2e859a1cad799510176" category="paragraph"><block ref="942813ee3bf3e2e859a1cad799510176" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dbbb3c208933ad8e73912e8b71c8cfe9" category="list-text">請提供畫面3所要求的資訊、以要求提供虛擬主機名稱和網路。一般而言、主機名稱會保留在DNS中、因此IP位址會隨之預先填入。</block>
+  <block id="1e0378f2db383a2474acde3e5f6c08c4" category="inline-image-macro">Clone System Wizard（複製系統精靈）畫面3可讓您提供虛擬主機名稱和網路。</block>
+  <block id="47a8e72c82c913fb5ec4254dfdc296d9" category="paragraph"><block ref="47a8e72c82c913fb5ec4254dfdc296d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="45f39a262ef1deb0ae56818de7b8012c" category="list-text">在畫面4中、會列出自訂的實體複本作業。提供一個複本和一個* SnapPostfi*名稱、分別用於FlexClone Volume和Snapshot名稱的儲存實體複製作業。如果您將這些欄位保留空白、則會在供應商指令碼的變數區段中設定預設值<block ref="e43ee3b6f349861a2a2c82d22b32d52e" prefix=" " category="inline-code"></block> 已使用。</block>
+  <block id="9dd8edfbceb76bf22d88c7fd9447943b" category="inline-image-macro">在Clone System Wizard（Clone系統精靈）畫面4中、自訂Clone選項會以作業參數的形式列出。</block>
+  <block id="d2131ff1c4a2e5d26bf0b2cb33f5c8eb" category="paragraph"><block ref="d2131ff1c4a2e5d26bf0b2cb33f5c8eb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0eca4f9874b4bf56a3688acd75704009" category="list-text">在畫面5中、會選取資料庫一致性選項。在我們的範例中、我們選擇*線上：複製執行中的DB*。</block>
+  <block id="31680669fa3034c6e5659a85a5154f00" category="inline-image-macro">在Clone System Wizard（Clone System精靈）畫面5中、會列出Database Consistency（資料庫一致性）選項、並選取Online：Clone Running DB（線上：複製執行</block>
+  <block id="78a4d37e4d6724327721d85ef21012d9" category="paragraph"><block ref="78a4d37e4d6724327721d85ef21012d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="625f6568780e6e1c8d04b941df9248ef" category="list-text">在畫面6中、只有執行租戶複製時才需要輸入。</block>
+  <block id="47abcfee5b22144e9b3b60e685c63dc6" category="inline-image-macro">在Clone System Wizard（複製系統精靈）畫面6中、如果執行租戶複製、您可以提供使用者名稱和密碼。</block>
+  <block id="9326b2ac6972353a648e8ebac728915c" category="paragraph"><block ref="9326b2ac6972353a648e8ebac728915c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="64606b6bd8cb0c32c15e338b0756702c" category="list-text">在畫面7中、可以設定系統隔離。</block>
+  <block id="31d6011ed5b7611543fb146a48f8b7ec" category="inline-image-macro">在Clone System Wizard（Clone系統精靈）畫面7中、您可以定義允許的傳出連線以進行系統隔離。</block>
+  <block id="1d8e554fbc28ed599fa3b330903e7d0b" category="paragraph"><block ref="1d8e554fbc28ed599fa3b330903e7d0b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d5be567f5a60baa8d0255d467375bfb9" category="list-text">在畫面8中、摘要頁面包含所有設定、可在工作流程開始之前進行最終確認。按一下「*執行*」以啟動工作流程。</block>
+  <block id="632b59e47eba1c14746c6f4bb3c38289" category="inline-image-macro">Clone System Wizard（複製系統精靈）畫面8提供輸入資訊的摘要。</block>
+  <block id="7a46bc035ec735ffe93788d32e556ee4" category="paragraph"><block ref="7a46bc035ec735ffe93788d32e556ee4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="93cefbf94e2762da32c6ca08f9ea4841" category="paragraph">SAP Lama現在會執行組態中指示的所有動作。這些行動包括建立儲存磁碟區複製及匯出、將其掛載至目標主機、新增隔離防火牆規則、以及啟動HANA資料庫和SAP服務。</block>
+  <block id="e214579b1ef23c2afaf6095e9e34f58f" category="inline-image-macro">「他的螢幕快照說明系統複製程序的監控畫面。」</block>
+  <block id="a118fa5c9c9accd7643ffad4342eaf35" category="paragraph"><block ref="a118fa5c9c9accd7643ffad4342eaf35" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c2cc1ea5bc6c9297f5c6cb7ff1096618" category="paragraph">在詳細記錄中、會在Ansible節點執行* Clone Volume *和* Modify mountpoints and add Custom Properties *作業<block ref="b364ceeb78cb4529181c9ca2c288a0f4" prefix=" " category="inline-code"></block> 主機：這些步驟會針對每項服務、HANA資料庫、SAP中央服務及SAP即服務執行。</block>
+  <block id="3df6b54174cd2a42f59a8dbd7cbc813a" category="inline-image-macro">此螢幕擷取畫面會顯示詳細記錄中所述的各種作業、並顯示系統複製畫面。</block>
+  <block id="6721ceca95a36e6e11baced7869c395e" category="paragraph"><block ref="6721ceca95a36e6e11baced7869c395e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f63912439c7fa06d095f53e9e3e4b864" category="list-text">選取* Clone Volumes（複製磁碟區）*工作、就會顯示該步驟的詳細記錄、並顯示執行Ansible教戰手冊的內容。您可以看到、這是Ansible教戰手冊<block ref="c9a20dd023079737355442f70666f77f" prefix=" " category="inline-code"></block> 針對每個HANA資料庫Volume、資料、記錄及共享執行。</block>
+  <block id="ca31c500f57ebe381bd2273516bebe25" category="inline-image-macro">此畫面描述詳細記錄Volume Clone的記錄。</block>
+  <block id="55ca9b09ad1ce9c38941c90c88767f7e" category="paragraph"><block ref="55ca9b09ad1ce9c38941c90c88767f7e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="857f308602f7ba1d17c9bcd529db65a0" category="list-text">在步驟*修改掛載點和新增自訂內容*的詳細資訊檢視中、您可以找到執行指令碼所傳遞的掛載點和自訂屬性相關資訊。</block>
+  <block id="b030ac3d8ad8890898d0e771a32c477b" category="inline-image-macro">更多記錄資訊</block>
+  <block id="441425b2f5b62ff29a43ee5c4a2ca207" category="paragraph"><block ref="441425b2f5b62ff29a43ee5c4a2ca207" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="22bfd63c8b4d3df02dbc6b174c65b0f1" category="paragraph">工作流程完成後、複製的SAP系統即已準備就緒、已啟動、並可供使用。</block>
+  <block id="746a177f13d2fcdab855bd4b1944a327" category="inline-link-macro">下一步：SAP Lama取消資源配置工作流程-系統破壞。</block>
+  <block id="25ca648c91e1e2b245d67a22ef8392b2" category="paragraph"><block ref="25ca648c91e1e2b245d67a22ef8392b2" category="inline-link-macro-rx"></block></block>
+  <block id="ac8a75fedf05fbee71814a271251285f" category="summary">整合方法使用SAP Lama自訂資源配置與作業掛勾、並搭配Ansible教戰手冊來進行NetApp儲存管理。下圖顯示Lama端組態的高階概觀、以及範例實作的對應元件。</block>
+  <block id="3a05a4cf01114d4fe10b4485ddee4278" category="doc">NetApp SAP Lama整合使用Ansible</block>
+  <block id="e48765c69029da61acaebe483e9316c2" category="inline-link-macro">先前：系統重新整理、複製及複製的使用案例。</block>
+  <block id="89525646254a114f60fce4de9edd46b2" category="paragraph"><block ref="89525646254a114f60fce4de9edd46b2" category="inline-link-macro-rx"></block></block>
+  <block id="198b2bd9b00943bcedf9ecdd177e1c38" category="inline-image-macro">這是相當複雜的映像、其中有三個方塊標示為SAP Lama、Ansible Control Node和NetApp儲存設備。每個方塊都包含在每個層級上執行的個別程序步驟。</block>
+  <block id="e066a9a52290d370f53ecf456c5be0f4" category="paragraph"><block ref="e066a9a52290d370f53ecf456c5be0f4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b9e659c463a2a678f0e611704e512f86" category="paragraph">作為Ansible控制節點的中央主機可用來執行SAP Lama的要求、並使用Ansible教戰手冊來觸發NetApp儲存作業。SAP主機代理程式元件必須安裝在此主機上、才能將該主機當作通往SAP Lama的通訊閘道。</block>
+  <block id="638982755cb7864b186283043849388f" category="paragraph">在Lama Automation Studio中、系統會定義在Ansible主機的SAP主機代理程式中註冊的供應商。主機代理程式組態檔會指向SAP Lama所呼叫的Shell指令碼、並根據所要求的作業、提供一組命令列參數。</block>
+  <block id="68dcf0e282674b14fed37a5be8c28905" category="paragraph">在Lama Automation Studio中、自訂資源配置和自訂資源掛勾定義為在資源配置期間執行儲存複製作業、以及在系統取消資源配置時執行清理作業。然後、Ansible控制節點上的Shell指令碼會執行對應的Ansible指令碼、以觸發Snapshot和FlexClone作業、以及刪除具有取消資源配置工作流程的複本。</block>
+  <block id="dae3fc22ee8211dc76b1b10604d664bf" category="paragraph">如需NetApp Ansible模組和Lama供應商定義的詳細資訊、請參閱：</block>
+  <block id="0041533e713a78228719d821d293dcd4" category="inline-link">NetApp Ansible模組</block>
+  <block id="9f56dd7786268026308d6c101b3d76c4" category="list-text"><block ref="9f56dd7786268026308d6c101b3d76c4" category="inline-link-rx"></block></block>
+  <block id="d57e5b07e6dad93c13ff5947c9e556e5" category="inline-link">SAP Lama文件–供應商定義</block>
+  <block id="b961383b57c9b01bb96a93facf9ff473" category="list-text"><block ref="b961383b57c9b01bb96a93facf9ff473" category="inline-link-rx"></block></block>
+  <block id="714cd76444125876327bb20f1a232e54" category="inline-link-macro">下一步：實作範例。</block>
+  <block id="19c69d5c1080a8849a938b3a8ddcefed" category="paragraph"><block ref="19c69d5c1080a8849a938b3a8ddcefed" category="inline-link-macro-rx"></block></block>
+  <block id="4159d7c81405c1d9cd6ccf2d2dc39862" category="summary">在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
+  <block id="f57f410c06dab6a60fe8e6a28770509d" category="doc">系統重新整理、複製及複製的使用案例</block>
+  <block id="58cf688ef7e81bf38e1210c60ca69584" category="inline-link-macro">先前版本：SAP系統複製、複製及重新整理案例。</block>
+  <block id="47e39cc1a5ff97fe1718e7ce1eb31c90" category="paragraph"><block ref="47e39cc1a5ff97fe1718e7ce1eb31c90" category="inline-link-macro-rx"></block></block>
+  <block id="56d5fedf8fc8bf63d4174389cb19f7ed" category="inline-image-macro">此影像說明從主要開發環境到暫時性專案分割、修復系統、訓練系統和SANbox系統的環境工作流程。它會顯示系統更新、系統複製和系統複製用於這些不同用途的位置。</block>
+  <block id="27a88cfd40f9f876e71c77f4b3ebce5b" category="paragraph"><block ref="27a88cfd40f9f876e71c77f4b3ebce5b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3e7487fffc42c7f8a2aeaa0819e630a4" category="paragraph">SAP Lama和NetApp複製工作流程可用於加速及自動化基礎架構和資料庫層的必要工作。SAP Lama不需要將備份從來源系統還原至目標系統、而是使用NetApp Snapshot複本和NetApp FlexClone技術、因此可在數分鐘內完成所需的工作、而非數小時內完成、如下圖所示。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。透過自動化作業系統和資料庫層以及SAP後處理端的工作、進一步縮短執行時間。</block>
+  <block id="5250c15aaf7bc535777e729ee215e00a" category="inline-image-macro">此映像顯示使用和不使用NetApp Snapshot複本的複製程序與NetApp FlexClone技術之間的比較、可大幅加快程序的執行速度。</block>
+  <block id="a0519aa55a3128b6d977868b191a4c9b" category="paragraph"><block ref="a0519aa55a3128b6d977868b191a4c9b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f18de1d998f8c83fe7b43b1fe738c842" category="paragraph">邏輯毀損可能是由軟體錯誤、人為錯誤或破壞所造成。遺憾的是、邏輯毀損問題通常無法透過標準的高可用度與災難恢復解決方案來解決。因此、視發生邏輯毀損的層級、應用程式、檔案系統或儲存設備而定、有時無法滿足最短的停機時間和可接受的資料遺失需求。</block>
+  <block id="fe74c6bc72a7cff471befb07d7218feb" category="paragraph">與其還原SAP系統、更好的方法是嘗試在個別的修復系統中分析問題、以修正系統內的邏輯錯誤。根本原因分析需要業務程序和應用程式擁有者的參與。在此案例中、您會根據邏輯毀損發生之前所儲存的資料、建立修復系統（正式作業系統的複本）。在修復系統中、所需的資料可匯出並匯入正式作業系統。使用這種方法、不需要停止正式作業系統、而且在最佳情況下、不會遺失任何資料或只會遺失一小部分資料。</block>
+  <block id="ff74c5a8991cf91e9cf124b189bc2877" category="paragraph">在設定修復系統時、靈活度和速度是關鍵。有了NetApp儲存型Snapshot備份、就能使用NetApp FlexClone技術建立多個一致的資料庫映像、以建立正式作業系統的複本。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。</block>
+  <block id="7b0ea79aabb35accd10a6389af9d0d3b" category="inline-image-macro">此映像說明使用FlexClone技術從複製系統建立修復系統的逐步程序。</block>
+  <block id="0fd3fed7a6654b610a5215582f3890df" category="paragraph"><block ref="0fd3fed7a6654b610a5215582f3890df" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7a11ff2d89142afadf2fbe0a94ecc400" category="paragraph">使用SnapMirror進行儲存複寫、可在不影響RTO和RPO的情況下執行災難恢復測試。災難恢復測試可在不中斷資料複寫的情況下執行。非同步和同步SnapMirror的災難恢復測試會在災難恢復目標上使用Snapshot備份和FlexClone磁碟區。</block>
+  <block id="ecec150056053bbf2793c30155015e60" category="paragraph">SAP Lama可用來協調整個測試程序、也可負責網路隔離、目標主機維護等。</block>
+  <block id="cf485594ca520eaab221d7e9f1c35741" category="inline-image-macro">此映像描述一線資料中心的NetApp儲存系統、本機災難恢復資料中心和遠端災難恢復資料中心之間的關係。它們同時透過同步SnapMirror和非同步SnapMirror關係進行連線。</block>
+  <block id="8dda9dbd415a90ebdecd67562ff62647" category="paragraph"><block ref="8dda9dbd415a90ebdecd67562ff62647" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="041a3821794f47be7b2454c6e42e40e9" category="inline-link-macro">下一步：NetApp SAP Lama整合使用Ansible。</block>
+  <block id="cbd461cf21aebe404144b08c1c869d9c" category="paragraph"><block ref="cbd461cf21aebe404144b08c1c869d9c" category="inline-link-macro-rx"></block></block>
+  <block id="2e979feafadb9bbdb7932ab43f8d549c" category="sidebar">使用Ansible的NetApp SAP Landscape Management整合</block>
 </blocks>

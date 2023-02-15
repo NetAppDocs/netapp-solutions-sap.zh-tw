@@ -98,7 +98,6 @@
   <block id="5a19cb1f3722bd59393efe7cbc853747" category="summary">NetApp AFF 支援系統產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。通過認證的企業級儲存系統以NetApp ONTAP 的整套軟體為特色。</block>
   <block id="ccc35786789b66e9752e6f8cde933754" category="paragraph">NetApp公司Nils Bauer和Marco. schö n</block>
   <block id="af01ac16ca42b9b924b834a3199131e9" category="paragraph">本認證適用於下列機型：</block>
-  <block id="c35a0cd0a7282bf70f4933947c018788" category="list-text">VA220、VA250、VA300、32、VA400、AFF AFF AFF AFF AFF Su A700s、Se A700、32 A800、32 A900 AFF AFF AFF AFF</block>
   <block id="130c9ce9d2909449cb229a98c66f9d29" category="inline-link">獲得認證且支援的SAP HANA硬體目錄</block>
   <block id="152277675a8ef46c12f1dc91f2f53ede" category="paragraph">如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="a3976abaebe3520fd66c465c4d7747d7" category="inline-link-rx"></block>。</block>
   <block id="18cab9085e2115741cf08f1964299a5a" category="paragraph">本文件說明ONTAP NFS傳輸協定第3版（NFSv3）或NFS傳輸協定第4版（NFSv4.1）的功能不完整組態需求。</block>
@@ -5288,4 +5287,5 @@
   <block id="041a3821794f47be7b2454c6e42e40e9" category="inline-link-macro">下一步：NetApp SAP Lama整合使用Ansible。</block>
   <block id="cbd461cf21aebe404144b08c1c869d9c" category="paragraph"><block ref="cbd461cf21aebe404144b08c1c869d9c" category="inline-link-macro-rx"></block></block>
   <block id="2e979feafadb9bbdb7932ab43f8d549c" category="sidebar">使用Ansible的NetApp SAP Landscape Management整合</block>
+  <block id="17f31b52b49dfe7dec5229f7caf638c6" category="list-text">VA150、VA220、VA250、VA300、VA320 AFF AFF AFF AFF AFF 、 Su A400、S32 A700s、S32 A700、S32 A800、S32 A900 AFF AFF AFF AFF AFF</block>
 </blocks>

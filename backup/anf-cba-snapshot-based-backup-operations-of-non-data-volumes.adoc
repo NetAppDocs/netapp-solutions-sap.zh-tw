@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html 
+keywords: configuration, assign policy, non-data volume, cba topology view, azure portal 
+summary: 本節說明如何執行非資料磁碟區的Snapshot型備份作業。 
+---
+= 非資料磁碟區的Snapshot型備份作業
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-file-based-backup-operations-of-the-hana-database.html["先前版本：HANA資料庫的檔案型備份作業。"]
+
+[role="lead"]
+如前所述、CBA支援非資料磁碟區的備份作業。非資料磁碟區是屬於特定SAP HANA系統的磁碟區、例如 `/hana/shared` 或SAP應用程式伺服器磁碟區、例如 `/usr/sap/SID` 或 `sapmnt/SID`。
+
+
+
+== 組態
+
+. 在CBA儀表板檢視中、選取「Manage System–Add Non-Data Volume（管理系統–新增非資料Volume）」。
++
+image:anf-cba-image57.png["正在完成步驟的快照。"]
+
+. 輸入非資料磁碟區的資訊。
++
+選擇用於HANA系統ANF磁碟區的工作環境和NetApp帳戶。選取Volume（s）。在我們的範例中： `PR1_shared`。
+
++
+image:anf-cba-image58.png["正在完成步驟的快照。"]
+
+
+
+
+
+== 指派原則
+
+若要啟動排程備份、必須指派備份原則。
+
+. 轉至*指派原則*>*非資料磁碟區*。
++
+image:anf-cba-image59.png["正在完成步驟的快照。"]
+
+. 按一下*指派*。
++
+image:anf-cba-image60.png["正在完成步驟的快照。"]
+
+
+
+
+
+== 建立非資料磁碟區的隨需備份
+
+若要建立隨需資料庫備份、請遵循下列步驟：
+
+. 在CBA儀表板檢視中、選取內容功能表中的隨需備份–資料Volume。
++
+image:anf-cba-image61.png["正在完成步驟的快照。"]
+
+. 在「隨需備份」對話方塊中、選取*原則型*或*一次*。
++
+** 使用原則型備份時、隨需備份的處理方式與排定的保留備份、指令碼前與指令碼後組態備份的處理方式相同。
+** 只要一次、您就能定義特定的保留、特定的備份名稱、以及特定的指令碼前後。
++
+在我們的範例中、我們選擇了原則型、並需要選擇原則和保留做為下一步。
+
++
+image:anf-cba-image62.png["正在完成步驟的快照。"]
+
++
+在「工作監控」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。在我們的範例中、備份作業耗時47秒。
+
++
+image:anf-cba-image63.png["工作監控檢視的快照。"]
+
+
+
+
+
+
+
+== 在CBA拓撲檢視中檢閱Snapshot備份資訊
+
+在CBA儀表板檢視的內容功能表中、選取*檢視拓撲*以開啟備份總覽。
+
+備份總覽會顯示使用CBA建立的備份清單。
+
+
+NOTE: 備份名稱使用備份原則中定義的格式。Anf磁碟區上的Snapshot名稱也使用相同的命名慣例。
+
+image:anf-cba-image64.png["正在完成步驟的快照。"]
+
+
+
+== 檢閱Azure Portal中的Snapshot備份資訊
+
+在CBA中做為備份名稱的名稱也會用作ANF磁碟區上的Snapshot備份名稱。下圖顯示Azure入口網站及非資料磁碟區的Snapshot備份 `pr1-shared`。
+
+image:anf-cba-image65.png["正在完成步驟的快照。"]
+
+link:anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html["下一步：全域非資料磁碟區的Snapshot型備份作業。"]

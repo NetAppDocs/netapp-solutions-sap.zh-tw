@@ -1,0 +1,205 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-overview-of-installation-and-configuration-steps.html 
+keywords: bluexp, hana host, backup user, hana system database 
+summary: 本節說明本解決方案所有元件的安裝與組態。 
+---
+= 安裝與組態步驟總覽
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-cloud-backup-for-applications-architecture.html["先前版本：適用於應用程式的雲端備份架構。"]
+
+[role="lead"]
+所需的安裝和組態步驟可分為三個部分。
+
+* NetApp BlueXP元件的安裝與組態。
++
+在資料保護解決方案的初始設定期間、必須執行一次。
+
+* HANA主機與資料庫的準備步驟。
++
+必須針對每個HANA資料庫執行、並受到CBA的保護。
+
+* Cloud Backup for Applications中的組態步驟。
++
+必須針對每個HANA資料庫執行、並受到CBA的保護。
+
+
+
+
+
+== NetApp BlueXP元件的安裝與組態
+
+中說明NetApp BlueXP元件的安裝與組態 https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-protect-cloud-app-data-to-cloud.html["保護雲端原生應用程式資料| NetApp文件"^]。
+
+. 註冊BlueXP並設定NetApp帳戶。
+. 在Azure vNet上部署BlueXP連接器。
+. 在Azure NetApp Files BlueXP中建立工作環境以利執行。
+
+
+image:anf-cba-image5.png["本映像說明本節所述的解決方案架構。"]
+
+
+
+== HANA主機與資料庫的準備步驟
+
+. 在HANA主機上安裝Java 11。HANA資料庫主機上必須安裝Java 11（64位元）Oracle Java或OpenJDK。
+. 如所述、在HANA主機上部署CBA HANA外掛程式 link:https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-deploy-snapcenter-plugin-for-sap-hana.html["部署適用於SAP HANA的Cloud Backup for Applications外掛程式| NetApp文件"]。
+. 如下一章所述、在HANA系統資料庫中建立備份使用者。
+
+
+
+
+== Cloud Backup for Applications中的組態步驟
+
+. 將HANA主機新增至Cloud Backup for Applications。
++
+.. Hana使用者儲存區金鑰組態。
+.. 儲存設備佔用空間組態。
+
+
+. 為HANA系統建立並指派備份原則。
++
+.. Snapshot型備份作業。
+.. 檔案型備份作業：
+
+
+. 設定非資料磁碟區備份作業。
++
+.. 儲存設備佔用空間組態。
+.. 建立並指派備份原則。
+
+
+. 設定全域非資料磁碟區備份作業。
++
+.. 系統詳細資料組態。
+.. 儲存設備佔用空間組態。
+.. 建立並指派備份原則。
+
+
+
+
+下一章將詳細說明雲端備份應用程式的組態步驟。
+
+
+
+== 在HANA系統資料庫建立備份使用者
+
+NetApp建議在HANA資料庫中設定專屬的資料庫使用者、以便與CBA一起執行備份作業。第二步是針對此備份使用者設定SAP HANA使用者存放區金鑰、此使用者存放區金鑰用於設定Cloud Backup for Applications SAP HANA外掛程式。下圖顯示可用來建立備份使用者的SAP HANA Studio。
+
+所需權限如下：
+
+* 備份管理
+* 目錄讀取
+* 資料庫備份管理
+* 資料庫恢復營運者
+
+
+對於SAP HANA MDC系統、您必須在系統資料庫中建立使用者、因為系統和租戶資料庫的所有備份命令都是使用系統資料庫執行。
+
+image:anf-cba-image10.png["此螢幕快照顯示在系統資料庫中建立使用者的位置。"]
+
+
+
+== 將HANA系統新增至Cloud Backup for Application
+
+. 在BlueXP中、選取* Protection *>* Backup and recovery *>* Applications*
++
+image:anf-cba-image11.png["此螢幕快照會顯示藍XP畫版、並顯示正確的應用程式路徑。"]
+
+. 接下來的螢幕快照會顯示新增第一個HANA系統時的工作流程。如果已有系統新增至Cloud Backup for Applications、則初始畫面為儀表板檢視畫面、並有* Add System*（新增系統）按鈕可新增額外的HANA系統。在這種情況下、步驟5是第一步。按一下*探索應用程式*。
++
+image:anf-cba-image12.png["此螢幕快照顯示新增第一個HANA系統時的工作流程。"]
+
+. 按一下* Cloud Native *。
++
+image:anf-cba-image13.png["此快照說明「混合式與雲端原生」選擇頁面。"]
+
+. 按一下「* SAP HANA *」。
++
+image:anf-cba-image14.png["此快照說明「混合式與雲端原生」選擇頁面。"]
+
+. 在System Details（系統詳細資料）畫面中、選取系統類型：Hana單一容器或多租戶資料庫容器。提供HANA系統的SID、並輸入任意文字做為系統名稱。
++
+下列螢幕快照顯示SAP HANA系統PR1的組態。
+
++
+image:anf-cba-image15.png["此螢幕快照顯示SAP HANA系統PR1的組態。"]
+
+. 按一下*新增外掛主機*以新增HANA資料庫主機。通常會使用主機名稱。IP位址也能正常運作。連接埠 `8145` 是HANA資料庫主機上安裝的HANA外掛程式預設連接埠。如果在外掛程式安裝期間未進行任何變更、則預設連接埠為有效。
++
+
+NOTE: 對於HANA多主機系統、您只需要新增執行系統資料庫的主機。
+
++
+image:anf-cba-image16.png["此螢幕快照顯示「Add-Plug-in Host selection」（附加外掛程式主機選擇）畫面。"]
+
+. 若要新增HANA資料庫使用者儲存金鑰、請按一下*新增使用者儲存金鑰*。
++
+輸入設定HANA資料庫使用者儲存金鑰的資訊。您可以提供任何名稱作為金鑰名稱。系統詳細資料包括IP位址和連接埠、以便使用hdbsql用戶端與系統資料庫進行通訊。對於SAP HANA MDC系統、連接埠 `3<instanceNo>13` 是SQL存取系統資料庫的標準連接埠。
+
++
+您必須在先前設定的系統資料庫中、提供資料庫使用者的使用者名稱和密碼。Cloud Backup for Applications會使用此資訊自動建立使用者儲存金鑰、並使用金鑰與HANA資料庫進行通訊。
+
++
+image:anf-cba-image17.png["此螢幕快照顯示「新增使用者儲存區金鑰選擇」畫面。"]
+
+. 在HANA主機上、您可以執行下列命令來檢查金鑰是否正常運作：
++
+....
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> hdbuserstore list
+DATA FILE       : /usr/sap/PR1/pr1adm/.hdb/vm-pr1/SSFS_HDB.DAT
+KEY FILE        : /usr/sap/PR1/pr1adm/.hdb/vm-pr1/SSFS_HDB.KEY
+KEY PR1KEY
+  ENV : 10.0.1.20:30113
+  USER: SNAPSHOT
+KEY PR1SAPDBCTRL
+  ENV : vm-pr1:30113
+  USER: SAPDBCTRL
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> hdbsql -U PR1KEY
+Welcome to the SAP HANA Database interactive terminal.
+Type:  \h for help with commands
+       \q to quit
+hdbsql SYSTEMDB=>
+....
+. 單擊*下一步*完成系統詳細資料組態。
++
+image:anf-cba-image18.png["此螢幕快照顯示「系統詳細資料」畫面。"]
+
+. 按一下「*新增儲存設備*」以設定HANA資料庫的儲存佔用空間。
++
+image:anf-cba-image19.png["此螢幕快照顯示「儲存設備佔用空間」畫面上的「新增儲存空間」按鈕。"]
+
+. 輸入HANA系統儲存磁碟區的資訊。
+. 選取用於HANA系統ANF磁碟區的工作環境和NetApp帳戶。選取HANA系統的資料Volume。在我們的範例中、就是這樣 `PR1_data_mnt00001`。
++
+
+NOTE: 對於SAP HANA多主機系統、您必須選取屬於系統的所有HANA主機的資料Volume。
+
++
+image:anf-cba-image20.png["此螢幕快照顯示「Add Storage Footprint（新增儲存設備佔用空間）」選擇"]
+
+. 單擊* Next*（下一步*）以增加儲存設備佔用空間。
++
+image:anf-cba-image21.png["此螢幕快照顯示如何新增儲存設備佔用空間。"]
+
+. 檢查組態、然後按一下*「Add System*（新增系統*）」。
++
+image:anf-cba-image22.png["此螢幕快照顯示如何新增儲存系統。"]
+
++
+image:anf-cba-image23.png["此螢幕快照顯示結果。"]
+
+
+
+HANA系統現已新增至Cloud Backup for Applications。下一步、您必須設定備份作業。
+
+image:anf-cba-image24.png["此螢幕快照顯示備份作業的設定位置。"]
+
+link:anf-cba-create-backup-policies.html["下一步：建立備份原則。"]

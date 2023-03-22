@@ -1,0 +1,212 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-restore-and-recovery-from-snapshot-backup.html 
+keywords: restore, recovery, operation, system database 
+summary: 本節說明如何從Snapshot備份執行還原與還原。 
+---
+= 從Snapshot備份還原與還原
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html["先前：全域非資料磁碟區的Snapshot型備份作業。"]
+
+[role="lead"]
+下節說明HANA MDC單一主機單租戶系統的還原與還原工作流程。多主機系統的差異會反白顯示。這些範例顯示SAP HANA Studio是執行手動還原的工具。您也可以使用SAP HANA Cockpit或HANA SQL聲明進行還原作業。
+
+若要使用SAP HANA Studio和Cloud Backup for Applications還原及還原SAP HANA MDC單一租戶系統、請完成下列步驟：
+
+. 利用SAP HANA Studio準備還原與還原程序：
++
+.. 選取*恢復系統資料庫*、然後確認SAP HANA系統已關機。
+.. 選取恢復類型和記錄備份位置。
++
+此時會顯示資料備份清單。
+
+.. 選取相關備份以查看外部備份ID。
+
+
+. 卸載HANA資料磁碟區。
+. 使用Cloud Backup for Applications執行還原程序：
++
+.. 在「備份」檢視中、選取與SAP HANA Studio中的外部備份ID或註解欄位相符的備份。
+.. 若要開始還原作業、請在內容功能表中選取*還原*。
+
+
+. 掛載HANA資料磁碟區。
+. 使用SAP HANA Studio執行系統資料庫的還原程序：
++
+.. 按一下備份清單中的* Refresh（重新整理）*、然後選取可用的備份以供還原（以綠色圖示表示）。
+.. 啟動恢復作業。
++
+恢復作業完成後、系統資料庫便會啟動。
+
+
+
+. 使用SAP HANA Studio執行租戶資料庫的還原程序：
++
+.. 選取*「恢復租戶資料庫」*、然後選取要恢復的租戶。
+.. 選取恢復類型和記錄備份位置。
+
+
+. 此時會顯示一份資料備份清單。由於資料磁碟區已還原、因此租戶備份會指出可用（綠色）。
++
+.. 選取備份並開始恢復程序。還原程序完成後、租戶資料庫會自動啟動。
+
+
+
+
+此時會顯示一份資料備份清單。由於資料磁碟區已還原、因此租戶備份會指出可用（綠色）。選取備份並開始恢復程序。還原程序完成後、租戶資料庫會自動啟動。
+
+下列步驟說明HANA系統PR1的還原與還原作業。
+
+
+
+== 準備還原與還原作業
+
+. 若要在SAP HANA Studio中開始還原系統資料庫、請前往*備份與還原*>*恢復系統資料庫*。
++
+image:anf-cba-image79.png["正在完成步驟的快照。"]
+
++
+image:anf-cba-image80.png["正在完成步驟的快照。"]
+
+. 選取恢復類型、然後按一下*「下一步」*。
++
+image:anf-cba-image81.png["正在完成步驟的快照。"]
+
+. 提供備份目錄的位置、然後按一下「*下一步*」。
++
+image:anf-cba-image82.png["正在完成步驟的快照。"]
+
+. 可用備份清單會根據HANA備份目錄的內容顯示。選擇所需的備份、並記下外部備份ID：例如最近的備份。
++
+image:anf-cba-image83.png["正在完成步驟的快照。"]
+
+. 卸載所有資料磁碟區。
++
+....
+umount /hana/data/PR1/mnt00001
+....
++
+
+NOTE: 對於SAP HANA多主機系統、您必須卸載每個主機上的所有資料磁碟區。
+
+
+
+
+
+== 還原HANA資料庫
+
+. 若要開始還原作業、請在備份檢視中選取HANA Studio中也顯示的備份、然後在內容功能表中選取還原。
++
+image:anf-cba-image84.png["正在完成步驟的快照。"]
+
+. 在下一步中、您可以提供用於還原作業的指令碼前與後置指令碼。
++
+image:anf-cba-image85.png["正在完成步驟的快照。"]
+
++
+Cloud Backup for Applications工作記錄會顯示還原作業的進度。
+
++
+image:anf-cba-image86.png["正在完成步驟的快照。"]
+
+. 等到還原程序完成後再掛載資料磁碟區。
++
+....
+mount /hana/data/SP1/mnt00001
+....
++
+
+NOTE: 對於SAP HANA多主機系統、您必須在每個主機上掛載所有資料磁碟區。
+
+
+
+
+
+== 恢復系統資料庫
+
+. 若要更新可用備份清單、請前往SAP HANA Studio、然後按一下「Refresh（重新整理）」。使用Cloud Backup for Applications還原的備份會在備份清單中顯示綠色圖示。選取備份、然後按「Next（下一步）」。
++
+image:anf-cba-image87.png["正在完成步驟的快照。"]
+
+. 提供記錄備份的位置。單擊 * 下一步 * 。
++
+image:anf-cba-image88.png["正在完成步驟的快照。"]
+
+. 視需要選取其他設定。請確定未選取「使用差異備份」。單擊 * 下一步 * 。
++
+image:anf-cba-image89.png["正在完成步驟的快照。"]
+
+. 檢閱還原設定、然後按一下「*完成*」。
++
+image:anf-cba-image90.png["正在完成步驟的快照。"]
+
+. 恢復程序隨即開始。等待系統資料庫恢復完成。
++
+image:anf-cba-image91.png["正在完成步驟的快照。"]
+
+
+
+
+
+== 恢復租戶資料庫
+
+. 在SAP HANA Studio中、選取系統資料庫的項目、然後移至*備份與恢復*>*恢復租戶資料庫*。
++
+image:anf-cba-image92.png["正在完成步驟的快照。"]
+
+. 選取要恢復的租戶、然後按一下*下一步*。
++
+image:anf-cba-image93.png["正在完成步驟的快照。"]
+
+. 指定恢復類型、然後按「Next（下一步）」。
++
+image:anf-cba-image94.png["正在完成步驟的快照。"]
+
+. 確認備份目錄位置、然後按一下*「下一步*」。
++
+image:anf-cba-image95.png["正在完成步驟的快照。"]
+
+. 確認租戶資料庫已離線。按一下「確定」以繼續。
++
+image:anf-cba-image96.png["正在完成步驟的快照。"]
+
++
+由於資料磁碟區的還原是在系統資料庫還原之前進行、因此租戶備份可以立即使用。
+
+. 選取以綠色反白顯示的備份、然後按一下*下一步*。
++
+image:anf-cba-image97.png["正在完成步驟的快照。"]
+
+. 確認記錄備份位置、然後按一下*下一步*。
++
+image:anf-cba-image98.png["正在完成步驟的快照。"]
+
+. 視需要選取其他設定。確保未選擇*使用差異備份*。單擊 * 下一步 * 。
++
+image:anf-cba-image99.png["正在完成步驟的快照。"]
+
+. 按一下「*完成*」來檢閱還原設定、並開始租戶資料庫的還原程序。
++
+image:anf-cba-image100.png["正在完成步驟的快照。"]
+
+. 等到還原完成、租戶資料庫開始。
++
+image:anf-cba-image101.png["正在完成步驟的快照。"]
+
++
+SAP HANA系統已啟動並開始運作。
+
++
+
+NOTE: 對於具有多個租戶的SAP HANA MDC系統、您必須針對每個租戶重複步驟16至25。
+
+
+
+link:anf-cba-backup-operations-with-hana-system-replication.html["下一步：使用HANA系統複寫進行備份作業。"]

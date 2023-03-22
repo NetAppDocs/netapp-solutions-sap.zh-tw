@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-create-backup-policies.html 
+keywords: policy, snapshot, backups, file-based 
+summary: 原則通常會獨立設定資源、可供多個SAP HANA資料庫使用。典型的最低組態包含每小時Snapshot備份原則、以及使用檔案型備份進行每週區塊完整性檢查的原則。 
+---
+= 建立備份原則
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-overview-of-installation-and-configuration-steps.html["上一步：安裝與組態步驟總覽。"]
+
+[role="lead"]
+如前所述、原則通常會獨立設定資源、並可供多個SAP HANA資料庫使用。典型的最低組態包含下列兩項原則：
+
+* 每小時Snapshot備份原則：例如 `SnapshotEvery4Hours`。
+* 使用檔案型備份進行每週區塊完整性檢查的原則：例如 `WeeklyBlockIntegrityCheck`。
+
+
+以下各節將說明這兩項原則的組態。
+
+
+
+== 建立Snapshot型備份原則
+
+. 請移至*設定*>*原則*以建立新原則。
++
+image:anf-cba-image25.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 按一下「*建立原則*」。
++
+image:anf-cba-image26.png["此螢幕快照顯示包含「建立原則」按鈕的畫面。"]
+
+. 設定Snapshot名稱格式。
++
+NetApp建議在Snapshot名稱中新增其他資訊、以便在HANA備份目錄中更容易識別。
+
++
+
+NOTE: 在HSR設定中、您也應該將系統名稱新增為名稱格式。當然、您必須以名稱包含角色或主機名稱的方式來設定主要和次要主機的系統名稱：例如、 `SID-HSR-Primary` 或 `SID-HSR-Secondary`。透過這種方法、您可以輕鬆識別在HANA備份目錄中建立備份的主機。
+
++
+image:anf-cba-image27.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 設定排程。在我們的範例中、我們每4小時執行一次Snapshot備份、並將備份保留3天。
++
+image:anf-cba-image28.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 或者、您可以新增使用備份作業執行的指令碼前與指令碼後。
++
+指令碼會在HANA資料庫主機上執行。另請參閱 https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-backup-cloud-native-sap-hana-data.html["備份雲端原生SAP HANA資料庫| NetApp文件"^]。
+
++
+image:anf-cba-image29.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 現在已建立Snapshot型備份原則。
++
+image:anf-cba-image30.png["此螢幕擷取畫面顯示藍圖XP "]
+
+
+
+
+
+== 建立檔案型備份原則
+
+. 選取*建立原則*。
++
+image:anf-cba-image31.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 在Create Policy（建立原則）畫面中、提供原則名稱、備份類型、備份命名慣例、以及排程與保留詳細資料。
++
+image:anf-cba-image32.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 在我們的範例中、我們在每個星期日設定每週備份、並保留一個*複本以保留*。
++
+
+NOTE: 「1」是您可以設定*複本保留*的最低數目。這表示您在檔案系統上一律至少有一個檔案型備份。在執行下一個檔案型備份期間、您需要兩倍容量、因為舊的備份會在建立新的備份之後刪除。
+
++
+image:anf-cba-image33.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 或者、您可以新增指令碼前與指令碼後執行備份作業。
++
+image:anf-cba-image34.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 備份原則清單現在會顯示一項Snapshot備份原則、另一項是檔案型備份原則。
++
+image:anf-cba-image35.png["原則建立完成。"]
+
+
+
+link:anf-cba-snapshot-based-backup-operations-of-the-hana-database.html["接下來：HANA資料庫的Snapshot型備份作業。"]

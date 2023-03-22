@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html 
+keywords: global non-data, configuration, assign policy, azure portal 
+summary: 本節說明如何建立全域非資料磁碟區的Snapshot型備份作業。 
+---
+= 全域非資料磁碟區的Snapshot型備份作業
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html["先前：非資料磁碟區的Snapshot型備份作業。"]
+
+[role="lead"]
+在CBA中、全域非資料磁碟區是未指派給特定HANA系統的磁碟區。範例包括SAP傳輸目錄 `/usr/sap/trans` 或軟體儲存庫。
+
+
+
+== 組態
+
+若要設定非資料磁碟區的資料保護、請完成下列步驟。
+
+. 按一下「*新增HANA系統*」、然後選取「*全域非資料磁碟區*」作為「*系統類型*」。
++
+image:anf-cba-image66.png["正在完成步驟的快照。"]
+
+. 提供一個名稱和一個或一份SID清單、以供參考。您也需要選取外掛程式主機。這可以是您環境中的任何外掛主機。
++
+image:anf-cba-image67.png["正在完成步驟的快照。"]
+
+. 按一下「*新增儲存設備*」來設定全域非資料磁碟區的儲存佔用空間。
++
+image:anf-cba-image68.png["正在完成步驟的快照。"]
+
+. 輸入全域非資料磁碟區的資訊。
++
+image:anf-cba-image69.png["正在完成步驟的快照。"]
+
+. 全球非資料磁碟區的列示方式與CBA儀表板中的HANA系統相同。
++
+image:anf-cba-image70.png["正在完成步驟的快照。"]
+
+
+
+
+
+== 指派原則
+
+若要啟動排程備份、必須指派備份原則。
+
+. 轉至*指派原則*。
++
+image:anf-cba-image71.png["正在完成步驟的快照。"]
+
+. 按一下*指派*。
++
+image:anf-cba-image72.png["正在完成步驟的快照。"]
+
+. 此原則現已指派給非資料磁碟區。
++
+image:anf-cba-image73.png["正在完成步驟的快照。"]
+
+
+
+
+
+== 建立全域非資料磁碟區的隨需備份
+
+若要建立隨需資料庫備份、請完成下列步驟：
+
+. 在CBA儀表板檢視中、選取內容功能表中的*隨需備份*。
++
+image:anf-cba-image74.png["正在完成步驟的快照。"]
+
+. 在「*隨需備份*」對話方塊中、選取*原則型*或*一次性*。
++
+** 使用*原則型*時、隨需備份的處理方式與排程備份的保留與指令碼前及指令碼後組態相同。
+** 使用*一次*、您可以定義特定的保留、特定的備份名稱、以及特定的指令碼前後。
++
+在我們的範例中、我們選擇了「原則型」、因此必須在下一步中選取原則和保留。
+
++
+image:anf-cba-image75.png["正在完成步驟的快照。"]
+
++
+在「*工作監控*」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。在我們的範例中、備份作業耗時41秒。
+
++
+image:anf-cba-image76.png["正在完成步驟的快照。"]
+
+
+
+
+
+
+
+== 在CBA拓撲檢視中檢閱Snapshot備份資訊
+
+在CBA儀表板檢視的內容功能表中、選取*檢視拓撲*以開啟備份總覽。
+
+備份總覽會顯示使用CBA建立的備份清單。
+
+
+NOTE: 備份名稱使用備份原則中定義的格式。Anf磁碟區上的Snapshot名稱也使用相同的命名慣例。
+
+image:anf-cba-image77.png["正在完成步驟的快照。"]
+
+
+
+== 檢閱Azure Portal中的Snapshot備份資訊
+
+在CBA中、與備份名稱相同的名稱也會用作ANF磁碟區上的Snapshot備份名稱。下圖顯示Azure入口網站及全域非資料磁碟區的Snapshot備份 `software`。
+
+image:anf-cba-image78.png["正在完成步驟的快照。"]
+
+link:anf-cba-restore-and-recovery-from-snapshot-backup.html["下一步：從Snapshot備份還原與還原。"]

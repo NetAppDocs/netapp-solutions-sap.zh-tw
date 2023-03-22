@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-snapshot-based-backup-operations-of-the-hana-database.html 
+keywords: snapshot backup, cba topology, file system, sap hana studio 
+summary: 本節說明如何針對HANA資料庫執行快照型備份作業。 
+---
+= HANA資料庫的Snapshot型備份作業
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-create-backup-policies.html["前言：建立備份原則。"]
+
+
+
+== 指派原則給HANA系統
+
+若要啟動排程備份、必須將備份原則指派給HANA系統。
+
+. 轉至*指派原則*>*資料磁碟區*。
++
+image:anf-cba-image36.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 按一下*指派*。
++
+image:anf-cba-image37.png["此螢幕擷取畫面顯示藍圖XP "]
+
+. 此原則現已指派給HANA系統、並會根據排程定義執行Snapshot備份。
++
+image:anf-cba-image38.png["此螢幕擷取畫面顯示藍圖XP "]
+
+
+
+
+
+== 建立隨需Snapshot備份
+
+若要建立隨需資料庫備份、請完成下列步驟：
+
+. 在CBA儀表板檢視中、選取內容功能表中的*隨需備份*>*資料磁碟區*。
++
+image:anf-cba-image39.png["正在完成步驟的快照。"]
+
+. 在「*隨需備份*」對話方塊中、選取*原則型*或*一次性*。
++
+** 使用*原則型*時、隨需備份的處理方式與排程備份的保留與指令碼前及指令碼後組態相同。
+** 使用*一次*、您可以定義特定的保留、特定的備份名稱、以及特定的指令碼前後。
+
+
+. 在我們的範例中、我們選擇了原則型、然後選擇原則和保留作為下一步。
++
+image:anf-cba-image40.png["正在完成步驟的快照。"]
+
++
+在「工作監控」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。在我們的範例中、備份作業大約需要1分鐘。
+
++
+image:anf-cba-image41.png["正在完成步驟的快照。"]
+
++
+image:anf-cba-image42.png["正在完成步驟的快照。"]
+
+
+
+
+
+== 在CBA拓撲檢視中檢閱Snapshot備份資訊
+
+在CBA儀表板檢視的內容功能表中、選取*檢視拓撲*以開啟備份總覽。
+
+image:anf-cba-image43.png["正在完成步驟的快照。"]
+
+備份總覽會顯示使用CBA建立的備份清單。
+
+
+NOTE: 備份名稱會依照備份原則中所定義的格式進行。SAP HANA備份目錄中的項目和ANF磁碟區上的Snapshot名稱也使用相同的命名慣例。
+
+image:anf-cba-image44.png["正在完成步驟的快照。"]
+
+
+
+== 檢閱SAP HANA Studio中的Snapshot備份資訊
+
+使用SAP HANA MDC系統的儲存Snapshot複本執行備份時、會建立資料磁碟區的Snapshot複本。此資料磁碟區包含系統資料庫的資料、以及所有租戶資料庫的資料。為了反映這種實體架構、每當CBA觸發Snapshot備份時、SAP HANA會在內部執行系統資料庫和所有租戶資料庫的組合備份。這會在SAP HANA備份目錄中產生多個獨立的備份項目：一個用於系統資料庫、一個用於每個租戶資料庫。
+
+在SAP HANA備份目錄中、CBA備份名稱會儲存在Comment（註解）欄位和外部備份ID（EBID）欄位中、如下圖所示。下圖顯示系統資料庫和租戶資料庫PR1。這兩個圖都強調「註解」欄位和EBID欄位中儲存的CBA備份名稱。
+
+
+NOTE: CBA只知道自己的備份。例如使用SAP HANA Studio建立的其他備份、可在SAP HANA目錄中看到、但在CBA中卻看不到。
+
+image:anf-cba-image45.png["正在完成步驟的快照。"]
+
+image:anf-cba-image46.png["正在完成步驟的快照。"]
+
+
+
+== 檢閱Azure Portal中的Snapshot備份資訊
+
+在CBA中用作備份名稱的名稱也會用作anf磁碟區上的Snapshot備份名稱。下圖顯示Azure入口網站及資料庫資料Volume的Snapshot備份。
+
+image:anf-cba-image47.png["此圖顯示Azure入口網站和資料庫資料Volume的Snapshot備份。"]
+
+link:anf-cba-file-based-backup-operations-of-the-hana-database.html["下一步：HANA資料庫的檔案型備份作業。"]

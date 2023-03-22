@@ -5288,4 +5288,569 @@
   <block id="cbd461cf21aebe404144b08c1c869d9c" category="paragraph"><block ref="cbd461cf21aebe404144b08c1c869d9c" category="inline-link-macro-rx"></block></block>
   <block id="2e979feafadb9bbdb7932ab43f8d549c" category="sidebar">使用Ansible的NetApp SAP Landscape Management整合</block>
   <block id="17f31b52b49dfe7dec5229f7caf638c6" category="list-text">VA150、VA220、VA250、VA300、VA320 AFF AFF AFF AFF AFF 、 Su A400、S32 A700s、S32 A700、S32 A800、S32 A900 AFF AFF AFF AFF AFF</block>
+  <block id="e6c434a39cbdd99e996e35ba917a1f79" category="summary">Cloud Backup for Applications是SaaS解決方案、可為NetApp雲端儲存設備上執行的應用程式提供資料保護功能。在NetApp BlueXP中啟用的雲端應用程式備份、可針對SAP HANA Azure NetApp Files 提供高效、應用程式一致且以原則為基礎的保護功能。Cloud Backup for Applications提供集中化的控制與監督、同時委派使用者管理應用程式專屬的備份與還原作業的能力。</block>
+  <block id="68b2531582c9405379a246e2f5612632" category="doc">適用於應用程式的雲端備份架構</block>
+  <block id="1e418ab89f193c74121a07ce83abaed4" category="inline-link-macro">上一篇：適用於應用程式的雲端備份架構總覽。</block>
+  <block id="d9d3ce81752bc06ac7427df8f9d0dd8d" category="paragraph"><block ref="d9d3ce81752bc06ac7427df8f9d0dd8d" category="inline-link-macro-rx"></block></block>
+  <block id="f6fcca3f3d3bfd44d0aa729b3d893d98" category="paragraph">Cloud Backup for Applications在NetApp BlueXP內以SaaS形式執行、並運用架構和UI。BlueXP工作環境架構可用來設定及管理Azure NetApp Files 用於支援的認證資料。</block>
+  <block id="b56d64743b38fb4b0973d9110fb21c20" category="paragraph">必須在客戶vNet內部署BlueXP連接器。NetApp SaaS元件與客戶環境之間的通訊只能透過連接器進行。連接器使用ANF管理API執行ANF儲存作業。</block>
+  <block id="9e9b9e3d6624aa7bef29265a2780a193" category="paragraph">HANA外掛程式提供HANA資料庫專屬邏輯、必須部署在每個HANA主機上。HANA外掛程式使用HANA hdbsqll用戶端和使用者存放區金鑰、與HANA資料庫進行通訊。所有資料庫作業都是由BlueXP連接器觸發。</block>
+  <block id="e1a223bd28cc7b4db160c5f2525f1ed4" category="inline-image-macro">此影像說明NetApp SaaS搭配客戶網路和Azure訂閱的基本架構。</block>
+  <block id="971c341a35635ced90e330879cbdd0be" category="paragraph"><block ref="971c341a35635ced90e330879cbdd0be" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ade52060e326f6594419e5ea8d4fccd6" category="section-title">適用於SAP HANA的雲端備份</block>
+  <block id="c0c4b60d27032c028c91440e9d3be949" category="section-title">解決方案總覽</block>
+  <block id="4a7fae94a6ed282d6e286673e3953d83" category="paragraph">Cloud Backup for Application支援下列元件的Snapshot型備份作業：</block>
+  <block id="da131ce5a9d46c5a704b1311f9a7faef" category="list-text">* SAP HANA system*資料磁碟區。</block>
+  <block id="e19c6fe338685f17f36d99ff1561e39b" category="list-text">* SAP HANA資料庫的非資料磁碟區*。例如、<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> Volume和（或）SAP應用程式伺服器資料。</block>
+  <block id="1867ad497c0a7f23eb7a51c4ef6b4d82" category="list-text">*不屬於特定HANA系統的全域非資料磁碟區*。例如、SAP傳輸目錄<block ref="82fccaf357ca5c791314eaf3a6944474" prefix=" " category="inline-code"></block>。</block>
+  <block id="18b0e752be3b164a7312a26014817f25" category="paragraph">這些元件的備份作業包括：</block>
+  <block id="b94d492b0e828a777f4e734e3394a1e8" category="list-text">排程或隨需備份</block>
+  <block id="d8d409d34b6ec6bb01fc7fd1044288ce" category="list-text">選用的指令碼前與後置處理</block>
+  <block id="234cfa591140af88707403a064741fdc" category="list-text">原則導向的保留管理</block>
+  <block id="2a77f822b3af9eb616a60f4fe58ac6ec" category="list-text">適用於ANf-Volume層級的Snapshot</block>
+  <block id="c6f807b92b10f88050f2f8712a935441" category="list-text">SAP HANA備份目錄（適用於HANA資料Volume備份）</block>
+  <block id="43f1f504f9a5ab834cfd1865b90f33cc" category="paragraph">SAP HANA檔案型備份可用於資料庫區塊完整性檢查、也可隨需執行或排程備份作業。原則導向的保留管理是在檔案系統層級和HANA備份目錄中執行。</block>
+  <block id="052a7f3a3e5777b11edc73c59bb60cbc" category="paragraph">HANA資料庫記錄備份的保留管理是根據HANA資料庫資料備份（Snapshot或檔案型）的定義保留來執行。</block>
+  <block id="d78e55aa1c38cddf3924d486bff17ecd" category="paragraph">CBA支援所有Snapshot型備份的還原作業。檔案型備份只能使用原生HANA工具還原。</block>
+  <block id="f2cbf927a8fb7c85a791629316d6f75a" category="inline-image-macro">此映像描述HANA系統多租戶資料庫容器和全域非資料磁碟區的備份與還原。</block>
+  <block id="534e2f7242090d9e4b0e3af97cf75bd7" category="paragraph"><block ref="534e2f7242090d9e4b0e3af97cf75bd7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c6fb3bfea38d9fe758c8c7cd1f8a7dda" category="section-title">解決方案營運</block>
+  <block id="5fd5d0cebb6b81a0a0b8bdedb21cc49e" category="inline-link">SAP系統管理指南</block>
+  <block id="f03602a0b1ab5e0376d9a6612bc2875e" category="paragraph">Snapshot資料備份是透過Cloud Backup for Applications執行、方法是觸發SAP HANA資料庫備份儲存點、以便在儲存層上建立的Snapshot複本、以SAP HANA資料庫的一致映像為基礎。請參閱<block ref="8b94384f34b29befbd0be1e5846bea80" category="inline-link-rx"></block> 以取得更多資訊。</block>
+  <block id="48a7491df5d6963afc3076f4f04ca6c1" category="paragraph">為了完整備份所有SAP HANA相關資源、Cloud Backup for Applications也可讓您使用儲存型Snapshot複本來備份所有非資料磁碟區。您可以從資料庫資料備份獨立排程非資料磁碟區、以啟用個別的保留與保護原則。</block>
+  <block id="f05ae7358d86a473196746fd2709fd45" category="paragraph">SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。您可以從CBA內部執行區塊完整性檢查。區塊完整性檢查（檔案型）備份也可用於將備份卸載到第二個儲存位置。</block>
+  <block id="99ec1034b3aa3ce85ce48843a2791ed7" category="paragraph">Cloud Backup for Applications會根據您可設定的保留原則、管理資料備份、記錄備份及SAP HANA備份目錄的管理作業。</block>
+  <block id="76dcab823f986b98ef86f30a529ba428" category="inline-image-macro">本圖摘要說明備份解決方案。</block>
+  <block id="24ba909b8937dcc15ec7cc627a9d8225" category="paragraph"><block ref="24ba909b8937dcc15ec7cc627a9d8225" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="aa534b51f3388932e6ed9c199851f8a0" category="paragraph">執行非資料磁碟區的儲存型Snapshot備份時、Cloud Backup for Applications會執行下列工作：</block>
+  <block id="77fe6de62b9d0dcb4c2426070736e92b" category="paragraph">執行SAP HANA資料庫的儲存型Snapshot備份時、Cloud Backup for Applications會執行下列工作：</block>
+  <block id="78a03624696c04c0fac73b5fad3f1e66" category="list-text">建立資料磁碟區的儲存Snapshot複本。</block>
+  <block id="f9b698cddd63b5ef20973173c2a1e6b1" category="list-text">每當手動刪除資料備份或根據保留原則刪除資料備份時、Cloud Backup for Applications會刪除所有早於最舊資料備份的記錄備份。記錄備份會在檔案系統和SAP HANA備份目錄中刪除。</block>
+  <block id="e16a648a1f5451dfd836b55577d38519" category="paragraph">Cloud Backup for Applications可透過下列組態選項、以單一或多個租戶支援HANA MDC系統：</block>
+  <block id="c2876f734584d35f67a43060b685a837" category="list-text">SAP HANA單一主機系統</block>
+  <block id="d20d79293f82b8371ee4a8a75af9b851" category="inline-link-macro">「使用HANA多主機系統進行備份作業」</block>
+  <block id="93aee4990df7f7a5e9ec867335b4ac7b" category="list-text">如一節所述、SAP HANA多主機系統 <block ref="d913662f5b34409e149f8bd06fbd9ac6" category="inline-link-macro-rx"></block></block>
+  <block id="5e55eff6af98680e7e4438576390b13b" category="inline-link-macro">「採用HANA系統複寫的備份作業」</block>
+  <block id="2e50b03413ef449d755882d3e002c891" category="list-text">SAP HANA系統設定HANA系統複寫（HSR）、如一節所述 <block ref="b8f7f08afa33eae155a966ddf799e69c" category="inline-link-macro-rx"></block></block>
+  <block id="0f650c7a252821847859ebcb5f0d9b01" category="section-title">雲端備份應用程式概念與最佳實務做法</block>
+  <block id="49d1e721724f129b447aa2df357cd0b4" category="paragraph">在為應用程式設定Cloud Backup之前、您必須根據各種SAP系統的RTO和RPO需求來定義資料保護策略。</block>
+  <block id="08ccd7f9bad6419d306faaff281a2a59" category="paragraph">常見的方法是定義系統類型、例如正式作業、開發、測試或沙箱系統。同一系統類型的所有SAP系統通常具有相同的資料保護參數。</block>
+  <block id="6656a251cf353d79049b8e69d94de900" category="list-text">保留區塊完整性檢查備份（檔案型備份）的時間</block>
+  <block id="6ed2950ea307dda0a50fb3e368a8b8d4" category="paragraph">下表顯示系統類型之正式作業、開發及測試的資料保護參數範例。對於正式作業系統、已定義高備份頻率、並會執行每週檔案型備份。測試與開發系統的需求較低、而且Snapshot備份的排程頻率較低。</block>
+  <block id="c3d7cd73d74ed330d6226f106c06d344" category="paragraph">SAP在採用HANA 2.0 SPS4的多租戶系統中推出Snapshot備份支援。在SAP HANA MDC系統中、租戶組態不一定是靜態的。您可以新增或刪除租戶。Cloud Backup for Applications無法仰賴HANA資料庫新增至Cloud Backup for Applications時所發現的組態。雲端備份應用程式必須知道在執行備份作業時、哪些租戶可用。</block>
+  <block id="875d95882938c8b2e2ffbd3516a39bd7" category="paragraph">因此、在每次備份作業中、工作流程的第一步是取得租戶資訊。下一步是Snapshot備份作業本身。此步驟包括觸發HANA備份儲存點、anf Snapshot備份的SQL命令、以及關閉HANA備份儲存點的SQL命令。HANA資料庫會使用Close命令、更新系統資料庫和每個租戶的備份目錄。</block>
+  <block id="6891db4267661e7c8d9cd733cb16139b" category="admonition">當一或多個租戶停止運作時、SAP HANA不支援針對MDC系統進行Snapshot備份作業。</block>
+  <block id="6fd9d5d0b5431cc716bff165875b041b" category="paragraph">為了保留資料備份與HANA備份目錄管理、Cloud Backup for Applications必須針對系統資料庫和第一步中識別的所有租戶資料庫執行目錄刪除作業。以記錄備份的相同方式、Cloud Backup for Applications工作流程必須在備份作業的每個租戶上運作。</block>
+  <block id="43a100d6e48b7d3dce0d02d9a7084208" category="inline-image-macro">此圖顯示備份工作流程的總覽。</block>
+  <block id="a2eb685da7f8b1d46c78486b31160543" category="paragraph"><block ref="a2eb685da7f8b1d46c78486b31160543" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2d88dffb44a39f0fc5f1d9f437fc9338" category="paragraph">Cloud Backup for Applications會依下列順序備份SAP HANA資料庫：</block>
+  <block id="a7b530400dae76836377d2b88e61c8ea" category="list-text">Cloud Backup for Applications會從HANA資料庫讀取租戶清單。</block>
+  <block id="10d457d0f9a7283fac2c6dae0c44e61d" category="list-text">租戶資訊儲存在Cloud Backup for Applications中繼資料中、以供備份作業使用。</block>
+  <block id="a6e0e16d20a02b93154a981f9366c476" category="list-text">Cloud Backup for Applications會觸發SAP HANA全域同步備份儲存點、以便在持續層上建立一致的資料庫映像。</block>
+  <block id="a8d3ae07d9166d02ab1cb0e6a3686e8f" category="admonition">對於SAP HANA MDC單租戶或多租戶系統、系統資料庫和每個租戶資料庫的同步化全域備份儲存點都是以單一作業建立。</block>
+  <block id="ab4d684bbc51ca09a186cd31df13e9fd" category="list-text">Cloud Backup for Applications會為HANA系統設定的所有資料磁碟區建立Anf Snapshot複本。對於單一主機HANA資料庫、只有一個資料Volume。有了SAP HANA多主機資料庫、就有多個資料磁碟區。</block>
+  <block id="a8fae5fa2b4caebd100bcde413bbe9db" category="list-text">Cloud Backup for Applications會在SAP HANA備份目錄中註冊Snapshot備份。</block>
+  <block id="31708b1da9bd3aeb52cd8e1e71dedbb8" category="list-text">Cloud Backup for Applications會刪除SAP HANA備份儲存點。</block>
+  <block id="4b2542c744eeadb2a91b0b6303dcbc2d" category="list-text">Cloud Backup for Applications會根據為備份所定義的保留原則、刪除資料庫及SAP HANA備份目錄中的ANF Snapshot複本和備份項目。Hana備份目錄作業是針對系統資料庫和所有租戶執行。</block>
+  <block id="1fb4e09bf568dd8d5828c976bd497e58" category="list-text">Cloud Backup for Applications會刪除檔案系統和SAP HANA備份目錄中的所有記錄備份、這些記錄備份的版本比SAP HANA備份目錄中識別的最舊成功資料備份還舊。這些作業是針對系統資料庫和所有租戶執行。</block>
+  <block id="382d2044e47686432cb421d84ddc1792" category="paragraph">Cloud Backup for Applications會依照下列順序執行區塊完整性檢查：</block>
+  <block id="f70854ea44d320bc775ae92be14c84dd" category="list-text">Cloud Backup for Applications會觸發系統資料庫和每個租戶的檔案型備份作業。</block>
+  <block id="424529d825ec38bc53fab91b7570d2fd" category="list-text">Cloud Backup for Applications會根據針對區塊完整性檢查作業所定義的保留原則、刪除資料庫、檔案系統和SAP HANA備份目錄中的檔案型備份。系統資料庫和所有租戶都會在檔案系統和HANA備份目錄作業上執行備份刪除。</block>
+  <block id="43f71eb45557c672c077975aa394dd3c" category="list-text">Cloud Backup for Applications會刪除檔案系統和SAP HANA備份目錄中的所有記錄備份、這些記錄備份的版本比SAP HANA備份目錄中識別的最舊資料備份還要舊。這些作業是針對系統資料庫和所有租戶執行。</block>
+  <block id="63a7c17998884d271e7514d25fedc602" category="paragraph">資料備份保留管理與記錄備份管理可分為四大領域、包括下列項目的保留管理：</block>
+  <block id="a0098f513385926751b46a1ba77498f8" category="inline-image-macro">本圖概述不同的工作流程、以及每項作業的相依性。</block>
+  <block id="7ef948448a210698f0c5286a99456794" category="paragraph"><block ref="7ef948448a210698f0c5286a99456794" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="32c8002f2ad16e43ab64fbea9025dcd5" category="paragraph">Cloud Backup for Applications會根據Cloud Backup for Applications備份原則中所定義的保留、刪除儲存設備和Cloud Backup for Applications儲存庫中的Snapshot複本、以處理SAP HANA資料庫備份和非資料磁碟區備份的管理工作。</block>
+  <block id="62854aff918c3190f9cf690fb509937a" category="paragraph">保留管理邏輯會隨著Cloud Backup for Applications中的每個備份工作流程執行。</block>
+  <block id="49f37db45c21e83fdbaea6a38719d58d" category="paragraph">您也可以在Cloud Backup for Applications中手動刪除Snapshot備份。</block>
+  <block id="49b31693ccd93b674d80140ace780ef3" category="paragraph">Cloud Backup for Applications會根據Cloud Backup for Applications備份原則中所定義的保留、刪除檔案系統上的備份、以處理檔案型備份的管理工作。</block>
+  <block id="f410aa8ce81d177a3e7a7741a1a1e707" category="paragraph">當Cloud Backup for Applications刪除任何備份（Snapshot或檔案型）時、SAP HANA備份目錄中也會刪除此資料備份。</block>
+  <block id="660e4ed39fbedf77ca632c1fbc97a1dc" category="paragraph">SAP HANA資料庫會自動建立記錄備份。這些記錄備份執行會在SAP HANA設定的備份目錄中、為每個SAP HANA服務建立備份檔案。</block>
+  <block id="947ccb7fe62db3fa4bf77acd3e9f74b8" category="paragraph">如果要進行轉送恢復、不再需要使用早於最舊成功的資料備份的記錄備份、因此可以刪除。</block>
+  <block id="f77586abe79a8fd383906da838abad0a" category="paragraph">Cloud Backup for Applications會執行下列步驟、在檔案系統層級和SAP HANA備份目錄中、處理記錄檔備份的管理工作：</block>
+  <block id="f36fe5c447e367f60d6be29f95fdeb2c" category="list-text">Cloud Backup for Applications會讀取SAP HANA備份目錄、以取得最舊且成功的檔案型或Snapshot備份的備份ID。</block>
+  <block id="ca947029a983832b85f0437faba5dde5" category="list-text">Cloud Backup for Applications會刪除SAP HANA目錄和檔案系統中所有早於此備份ID的記錄備份。</block>
+  <block id="b5d54cde570c517bc93041ed68fc6908" category="admonition">雲端備份應用程式只會處理雲端備份應用程式所建立的備份作業。如果在Cloud Backup for Applications之外建立任何其他資料備份、您必須確定已從備份目錄中刪除資料備份。如果這類資料備份並未從備份目錄手動刪除、則可能會成為最舊的資料備份、而且在刪除此資料備份之前、不會刪除舊的記錄備份。</block>
+  <block id="244d602463ce3eb0edbbfe515aa071ad" category="admonition">預設會啟用記錄備份管理功能、但可在HANA外掛程式主機層級停用。編輯<block ref="f2e1d0d2867245c2cf593c0c911881b3" prefix=" " category="inline-code"></block> 檔案<block ref="27150e8018ec8a48f9a82cbe118b79a9" prefix=" " category="inline-code"></block>。包括參數<block ref="1cf70b9778da11353822595d9eb455ee" prefix=" " category="inline-code"></block> 在中<block ref="f2e1d0d2867245c2cf593c0c911881b3" prefix=" " category="inline-code"></block> 組態檔會停用記錄備份管理功能。如果檔案不存在、您必須建立該檔案。</block>
+  <block id="0f9f39e18973fb4ee9df6efe5ab4c54a" category="section-title">實現與HANA資料庫的安全通訊</block>
+  <block id="a6547aec095a286f1b87bda4a4be891f" category="paragraph">如果HANA資料庫設定為安全通訊<block ref="4d4a930a64b1ebee270dcaaa55807f8c" prefix=" " category="inline-code"></block> 由CBA執行的命令必須使用其他命令列選項。這可以透過使用呼叫的包裝指令碼來達成<block ref="4d4a930a64b1ebee270dcaaa55807f8c" prefix=" " category="inline-code"></block> 提供所需選項。</block>
+  <block id="450939f4bf806eb2e2f4388e7d62b66a" category="admonition">有多種選項可用來設定SSL通訊。在下列範例中、最簡單的用戶端組態是使用命令列選項來說明、而不會驗證伺服器憑證。如果需要在伺服器和/或用戶端進行憑證驗證、則需要不同的hdbsql命令列選項、而且您必須依照《SAP HANA安全性指南》中的說明來設定PSE環境。</block>
+  <block id="40d9c57c47f83a147468d361bf2dda62" category="paragraph">而非設定<block ref="4d4a930a64b1ebee270dcaaa55807f8c" prefix=" " category="inline-code"></block> 中的執行檔<block ref="e68fab1c9569b9af7f96c37f2b34af5f" prefix=" " category="inline-code"></block> 檔案中、您可以新增包裝指令碼。在檔案中<block ref="25510b0e767eb2eec7c5942d11942b80" prefix=" " category="inline-code"></block>、您必須新增下列內容。如果檔案不存在、您必須建立該檔案。</block>
+  <block id="c6e3c7bf48e735b0cb4b04b6af2e3094" category="paragraph">此範例適用於SID=SM1且執行個體編號為12的HANA系統。</block>
+  <block id="af6b2811e346d56f00a19c6e44234693" category="paragraph">您必須考量儲存層的區塊變更率、相對於傳統資料庫的變更率。由於資料行儲存區的HANA表格合併程序、完整的資料表會寫入磁碟、而不只是資料表中的變更資料。</block>
+  <block id="31321c07673e01e713ea10ae8ec93f4b" category="paragraph">如果一天內進行多個Snapshot備份、則客戶群的資料顯示每日變更率介於20%到50%之間。</block>
+  <block id="b7637628ad2e28e9247c1200f1d53cff" category="inline-link-macro">下一步：安裝與組態步驟總覽。</block>
+  <block id="dfc881a6cc81ea0a65f877c8bf83ab85" category="paragraph"><block ref="dfc881a6cc81ea0a65f877c8bf83ab85" category="inline-link-macro-rx"></block></block>
+  <block id="ab44c566cfba2eacfa2e22217e5bf3b2" category="summary">本技術報告針對Azure NetApp Files NetApp BlueXP Cloud Backup for Applications（CBA）提供SAP HANA資料保護的最佳實務做法。本文件涵蓋CBA的概念、組態最佳實務做法、以及備份、還原與還原作業的作業工作流程說明。</block>
+  <block id="232498e24604dc849df80f90f7ec42f3" category="doc">TR-4959：Anf上的SAP HANA -使用Cloud Backup for Applications進行備份與還原</block>
+  <block id="28aef2e1e02807ae22344ac66a8fe3bb" category="paragraph">現今的企業需要持續且不中斷的SAP應用程式可用度。他們期望在面對不斷增加的資料量和例行維護工作（例如系統備份）時、能達到一致的效能等級。執行SAP資料庫備份是一項重要工作、可能對正式作業SAP系統造成重大效能影響。</block>
+  <block id="966ee6815261ca124d9d0436732b68b1" category="paragraph">備份時間縮短、而要備份的資料量卻不斷增加。因此、您很難找到一段時間來執行備份、但對業務程序的影響最小。還原及還原SAP系統所需的時間是一項重大考量、因為必須將SAP正式作業與非正式作業系統的停機時間降至最低、以降低企業成本。</block>
+  <block id="9f40b7131272c5d2e96a9feb1ed9bdf5" category="inline-link-macro">下一步：Azure NetApp Files 使用支援功能進行備份與恢復。</block>
+  <block id="be118de7926472e7ac68616b6fa4d725" category="paragraph"><block ref="be118de7926472e7ac68616b6fa4d725" category="inline-link-macro-rx"></block></block>
+  <block id="0fb9ebfb2994aef0d0b3ff8a57d5209e" category="summary">本節說明如何執行非資料磁碟區的Snapshot型備份作業。</block>
+  <block id="6f339b34967fa7f8508fac20cd0beb7b" category="doc">非資料磁碟區的Snapshot型備份作業</block>
+  <block id="170604b98b0dec4771f538179bd8a84c" category="inline-link-macro">先前版本：HANA資料庫的檔案型備份作業。</block>
+  <block id="bf7685401cf338670c96be375a971da5" category="paragraph"><block ref="bf7685401cf338670c96be375a971da5" category="inline-link-macro-rx"></block></block>
+  <block id="3ea96fda4bac154f6b59feb219ce9326" category="paragraph">如前所述、CBA支援非資料磁碟區的備份作業。非資料磁碟區是屬於特定SAP HANA系統的磁碟區、例如<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> 或SAP應用程式伺服器磁碟區、例如<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block> 或<block ref="318bf6c24e5779ccf0671be61ae1e17b" prefix=" " category="inline-code"></block>。</block>
+  <block id="254f642527b45bc260048e30704edb39" category="section-title">組態</block>
+  <block id="25d867dde9b949c789aaecf058fd9f7a" category="list-text">在CBA儀表板檢視中、選取「Manage System–Add Non-Data Volume（管理系統–新增非資料Volume）」。</block>
+  <block id="337081a5eca9090aec50413a1cbe4698" category="inline-image-macro">正在完成步驟的快照。</block>
+  <block id="3646735f1b669099c9b47da7ff8c4a2c" category="paragraph"><block ref="3646735f1b669099c9b47da7ff8c4a2c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="269dfae4708e747275e93f5e69e835c7" category="list-text">輸入非資料磁碟區的資訊。</block>
+  <block id="35d9ac700df53ecb275c0ea04e088e7c" category="paragraph">選擇用於HANA系統ANF磁碟區的工作環境和NetApp帳戶。選取Volume（s）。在我們的範例中：<block ref="e9468f7aa5b9385a6b43d7f4d5893507" prefix=" " category="inline-code"></block>。</block>
+  <block id="4a8b50d02e0fc11712b68d3dd1c0d9c8" category="paragraph"><block ref="4a8b50d02e0fc11712b68d3dd1c0d9c8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7b849f66aa18fbe76b4de3ccd94e7fa5" category="section-title">指派原則</block>
+  <block id="650b7e05e927e4b9d7a0aaaef650ff9a" category="paragraph">若要啟動排程備份、必須指派備份原則。</block>
+  <block id="9b8451ae8f292fd44e59492a9c15972b" category="list-text">轉至*指派原則*&gt;*非資料磁碟區*。</block>
+  <block id="c78143b6072fa155867d8b203fb851be" category="paragraph"><block ref="c78143b6072fa155867d8b203fb851be" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6525c33bffe7e18b5082ee362f89e075" category="list-text">按一下*指派*。</block>
+  <block id="cb18855dd3af1a32a6cefa52a69837a3" category="paragraph"><block ref="cb18855dd3af1a32a6cefa52a69837a3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="45a57fe14cdc18dbc62534fe7163c47a" category="section-title">建立非資料磁碟區的隨需備份</block>
+  <block id="308668d836164bf87bbaf6ec05748d10" category="list-text">在CBA儀表板檢視中、選取內容功能表中的隨需備份–資料Volume。</block>
+  <block id="7f9c5487f037fe15a65fe54dee62f8ee" category="paragraph"><block ref="7f9c5487f037fe15a65fe54dee62f8ee" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9a399ce434f5c72942593e6f2957f43e" category="list-text">在「隨需備份」對話方塊中、選取*原則型*或*一次*。</block>
+  <block id="de1fbdb4ec8a070a5ff7c9373df2fb21" category="list-text">使用原則型備份時、隨需備份的處理方式與排定的保留備份、指令碼前與指令碼後組態備份的處理方式相同。</block>
+  <block id="114d947fb3ac9723c0c7337eddca9d18" category="list-text">只要一次、您就能定義特定的保留、特定的備份名稱、以及特定的指令碼前後。</block>
+  <block id="daf2e91893d41ed258cf75d110afc15a" category="paragraph">在我們的範例中、我們選擇了原則型、並需要選擇原則和保留做為下一步。</block>
+  <block id="c7d1d63ca13b9a5ad88a483821fc2633" category="paragraph"><block ref="c7d1d63ca13b9a5ad88a483821fc2633" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="01175a045cf7b2fb012b487ce50b7de0" category="paragraph">在「工作監控」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。在我們的範例中、備份作業耗時47秒。</block>
+  <block id="b944b8430ba9dee008ba5e152d18ceaa" category="inline-image-macro">工作監控檢視的快照。</block>
+  <block id="681e7f60b98897a6e243f145e340fc8a" category="paragraph"><block ref="681e7f60b98897a6e243f145e340fc8a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8c942da5a1c057fd8a6670acbbb90e90" category="section-title">在CBA拓撲檢視中檢閱Snapshot備份資訊</block>
+  <block id="48b87e04940d14373263adb817776823" category="paragraph">在CBA儀表板檢視的內容功能表中、選取*檢視拓撲*以開啟備份總覽。</block>
+  <block id="5e1a8fe03cef1d5cdff16e65f090145b" category="paragraph">備份總覽會顯示使用CBA建立的備份清單。</block>
+  <block id="39994f96097d44b887bac2350ec32cdd" category="admonition">備份名稱使用備份原則中定義的格式。Anf磁碟區上的Snapshot名稱也使用相同的命名慣例。</block>
+  <block id="62c9be1f2a33ee6e72696dcf9431b493" category="paragraph"><block ref="62c9be1f2a33ee6e72696dcf9431b493" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="029f4623d8c3170751b4d452aa7d7706" category="section-title">檢閱Azure Portal中的Snapshot備份資訊</block>
+  <block id="a5f016fb5de2d556205abc5de1faba9d" category="paragraph">在CBA中做為備份名稱的名稱也會用作ANF磁碟區上的Snapshot備份名稱。下圖顯示Azure入口網站及非資料磁碟區的Snapshot備份<block ref="ab6ae8d51129eaa5d12c95fd2db022c9" prefix=" " category="inline-code"></block>。</block>
+  <block id="b6889b2a4c134f23bc33360f42cba5cb" category="paragraph"><block ref="b6889b2a4c134f23bc33360f42cba5cb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e7ecec35122c587ecfaaf0643c1844b3" category="inline-link-macro">下一步：全域非資料磁碟區的Snapshot型備份作業。</block>
+  <block id="b34cdf4d7963b6880a745ac6342f8617" category="paragraph"><block ref="b34cdf4d7963b6880a745ac6342f8617" category="inline-link-macro-rx"></block></block>
+  <block id="6188392a3623facd1cf3c1101c7e510a" category="summary">本節說明如何完成HANA資料庫的檔案型備份作業。</block>
+  <block id="bc1686a267af43b11824ae950a757dc0" category="doc">HANA資料庫的檔案型備份作業</block>
+  <block id="4078efb59f6f24a36c51941277192a1f" category="inline-link-macro">先前版本：HANA資料庫的Snapshot型備份作業。</block>
+  <block id="52c55d68ec64060345fc84a71c53cf52" category="paragraph"><block ref="52c55d68ec64060345fc84a71c53cf52" category="inline-link-macro-rx"></block></block>
+  <block id="09760106b21169700509f30318694911" category="paragraph">SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。Cloud Backup for Applications使用選取檔案型備份做為備份類型的原則、支援執行區塊完整性檢查。</block>
+  <block id="a695fccadcbc3fbd1e6bfd214dccf50b" category="paragraph">除了HANA資料磁碟區上的Snapshot備份之外、也會使用檔案型備份來建立次要備份複本。當主要資料磁碟區完全遺失時、您可以使用這些檔案型備份來進行還原與還原作業。</block>
+  <block id="28f31aaf3ea61240f0f68255f0daa3ab" category="paragraph">使用此原則排程備份時、Cloud Backup for Applications會為系統和所有租戶資料庫建立標準SAP HANA檔案備份。</block>
+  <block id="305d0382f376ab6bbc697ead5df50607" category="section-title">指派原則給HANA系統</block>
+  <block id="fd6e1fa0349d1f985c5ca917d407b687" category="paragraph">若要啟動排程備份、必須將備份原則指派給HANA系統。</block>
+  <block id="9528af81db7093e6acecec536f393180" category="list-text">轉至*指派原則*&gt;*資料磁碟區*。</block>
+  <block id="5c36c99d4bd3016ea2cd553080aa17b6" category="paragraph"><block ref="5c36c99d4bd3016ea2cd553080aa17b6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b645996d7d995ef9aec562a27a428d36" category="list-text">選取檔案型備份原則、然後按一下*指派*。</block>
+  <block id="1f91c932b0e695720eee27384d70841d" category="paragraph"><block ref="1f91c932b0e695720eee27384d70841d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f611d26bbb0e2c6a0ca1e669983cbc4e" category="list-text">此原則現已指派給HANA系統、並會根據排程定義執行檔案型備份。</block>
+  <block id="4b1c1c94d6dfe61b20b51948bccb7997" category="section-title">建立隨需檔案型備份</block>
+  <block id="419c5fdcfba96cbf047d7d18ea5ce368" category="paragraph">若要建立隨需資料庫備份、請完成下列步驟：</block>
+  <block id="0b917c588641ad5a2d6217923029c25f" category="list-text">在CBA儀表板檢視中、選取內容功能表中的隨需備份–資料Volume。</block>
+  <block id="8274409b587c9a527449a9bf55f1948c" category="paragraph"><block ref="8274409b587c9a527449a9bf55f1948c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6f56b771282562ff108557b819e2ec9f" category="list-text">使用*原則型*時、隨需備份的處理方式與排程備份的保留與指令碼前及指令碼後組態相同。</block>
+  <block id="2d960e36edd44a041193c42f62baa4f5" category="list-text">使用*一次*、您可以定義特定的保留、特定的備份名稱、以及特定的指令碼前後。</block>
+  <block id="0969a09590346ec1abc853114c735c2f" category="list-text">在我們的範例中、我們選擇了原則型、並將原則和保留選為下一步。</block>
+  <block id="efd73395bc224f462e54c208e6fe151c" category="paragraph"><block ref="efd73395bc224f462e54c208e6fe151c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ad18d639e0d5a1a025aa35b001bb4198" category="list-text">在「工作監控」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。</block>
+  <block id="0f61ace6c68e294ea2ff667b26b6bd12" category="paragraph"><block ref="0f61ace6c68e294ea2ff667b26b6bd12" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2a3eaf8e7eaeb27eb8114834126a78dc" category="paragraph"><block ref="2a3eaf8e7eaeb27eb8114834126a78dc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b376fb78206f77ac8363e32bfba9db1e" category="section-title">在CBA拓撲檢視中檢閱檔案型備份資訊</block>
+  <block id="64074bfc8c8d545dcec1a76a468b9d7f" category="paragraph">Cloud Backup for Applications不會以與Snapshot複製型備份相同的方式顯示檔案型備份。相反地、只會列出最後一次的檔案型備份。在「工作監控」檢視中可以看到檔案型備份的成功或失敗。</block>
+  <block id="aaae7c704e5eef917eb4eccacad6f2e3" category="paragraph"><block ref="aaae7c704e5eef917eb4eccacad6f2e3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e89a4bda8bc7c922c56584081a4848a" category="section-title">檢閱檔案系統上的檔案型備份資訊</block>
+  <block id="581c38bff66435bb2f248da252d69e60" category="paragraph">成功的區塊完整性檢查可建立標準的SAP HANA資料備份檔案。CBA使用HANA資料庫中設定的備份路徑進行檔案型資料備份作業。命名慣例遵循檔案型備份原則中的組態。</block>
+  <block id="2f28699f166c85d057058ef8481039e4" category="section-title">在SAP HANA Studio中檢閱檔案型備份資訊</block>
+  <block id="8eb30172ada69de624be01602cf0765f" category="paragraph">SAP HANA備份目錄會顯示系統和租戶資料庫的項目。下圖顯示系統資料庫和租戶資料庫備份目錄中的CBA檔案型備份。</block>
+  <block id="d7db7e583046d1658dac9e1694104858" category="inline-image-macro">下圖顯示系統資料庫備份目錄中的CBA檔案型備份。</block>
+  <block id="75e461a22b72d8ca410857310ac8765a" category="paragraph"><block ref="75e461a22b72d8ca410857310ac8765a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2425fdbf30b603e3bd18196de1809d39" category="inline-image-macro">下圖顯示租戶資料庫備份目錄中的CBA檔案型備份。</block>
+  <block id="f3baeb1ad926fb5b5dc9ba58672230ca" category="paragraph"><block ref="f3baeb1ad926fb5b5dc9ba58672230ca" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8fb6836a6a4f22c7090d031fb31467d8" category="inline-link-macro">下一步：非資料磁碟區的Snapshot型備份作業。</block>
+  <block id="052102618f8c4535a292e7e8eda937ce" category="paragraph"><block ref="052102618f8c4535a292e7e8eda937ce" category="inline-link-macro-rx"></block></block>
+  <block id="731c91555406019fb4ca7b621105abba" category="summary">執行備份是任何資料保護策略的關鍵部分。定期排程備份、以確保您能從系統故障中恢復。這是最明顯的使用案例、但也有其他SAP生命週期管理工作、因此加速備份與還原作業至關重要。</block>
+  <block id="51f47ae99b1d73a12860cadd58026d0c" category="doc">加速備份與複製作業的使用案例與價值總覽</block>
+  <block id="e97a05d9d17313a2f8bcb989f95b853d" category="inline-link-macro">上一篇：使用Azure NetApp Files 支援功能進行備份與恢復。</block>
+  <block id="ec02aabec7c977a0d1479d4c3756ea39" category="paragraph"><block ref="ec02aabec7c977a0d1479d4c3756ea39" category="inline-link-macro-rx"></block></block>
+  <block id="9a8fc8d0db2b6ce4ad7546eec3a993b7" category="paragraph">SAP HANA系統升級是一個範例、說明升級前的隨需備份、以及升級失敗時的可能還原作業、對整體計畫性停機時間有重大影響。以4TB資料庫為例、您可以使用Snapshot型備份與還原作業、將計畫性停機時間縮短8小時。</block>
+  <block id="5ebf625d0688903ed04796c585679d22" category="paragraph">另一個使用案例是典型的測試週期、測試必須在多個迭代上使用不同的資料集或參數。使用快速備份與還原作業時、您可以在測試週期內輕鬆建立儲存點、並在測試失敗或需要重複時、將系統重設為任何先前的儲存點。如此一來、測試就能提早完成、因此能進行更多測試並改善測試結果。</block>
+  <block id="008092616053f52e01cece7ff4ba608b" category="inline-image-macro">此圖說明備份與還原作業的使用案例。</block>
+  <block id="26600ad54a9411bc5ac5e74ffd64be2e" category="paragraph"><block ref="26600ad54a9411bc5ac5e74ffd64be2e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="be8e7ca7937bc8c29727f89f58b06b9a" category="paragraph">實作Snapshot備份後、也可用於處理其他需要HANA資料庫複本的使用案例。使用ANF、您可以根據任何可用Snapshot備份的內容來建立新的Volume。此作業的執行時間僅需數秒、與磁碟區大小無關。</block>
+  <block id="1f72eb1bc88799cc1c24233f0811deff" category="paragraph">最受歡迎的使用案例是SAP系統重新整理、其中需要將正式作業系統的資料複製到測試或QA系統。藉由運用Anf複製功能、您可以在數秒內從正式作業系統的任何Snapshot複本中、為測試系統配置磁碟區。然後、新的Volume必須附加至測試系統、並還原HANA資料庫。</block>
+  <block id="fb0d85595e1a6a2943bddcfbd305443d" category="paragraph">第二個使用案例是建立修復系統、用於解決正式作業系統中的邏輯毀損問題。在這種情況下、會使用正式作業系統的舊Snapshot備份來啟動修復系統、這是正式作業系統的相同實體複本、以及毀損發生之前的資料。然後使用修復系統來分析問題、並在必要的資料毀損之前匯出。</block>
+  <block id="84a3c0f538f1ccc448ab059ca32b7793" category="paragraph">最後一個使用案例是能夠在不停止複寫的情況下執行災難恢復容錯移轉測試、因此不會影響災難恢復設定的RTO和恢復點目標（RPO）。當使用ANF跨區域複寫將資料複寫到災難恢復站台時、正式作業Snapshot備份也可在災難恢復站台上使用、然後再用來建立新的磁碟區以進行災難恢復測試。</block>
+  <block id="9f59f82ac0531a8145614a304f4cc7b2" category="inline-image-macro">此映像描述複製作業的使用案例。</block>
+  <block id="50cb4c265f166105e64d765814b3b9d8" category="paragraph"><block ref="50cb4c265f166105e64d765814b3b9d8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c5e90bee241b77030d6d4983ce2425bd" category="inline-link-macro">下一步：應用程式架構的雲端備份。</block>
+  <block id="4323c6ff6a73ad7ddfa69396cdcbfd94" category="paragraph"><block ref="4323c6ff6a73ad7ddfa69396cdcbfd94" category="inline-link-macro-rx"></block></block>
+  <block id="0e5044553c5a0847ad8e06fd368e13c0" category="summary">本節說明如何使用HANA系統複寫來執行備份作業。</block>
+  <block id="7889ad8ef266f17cd26c52da34c68b06" category="doc">使用HANA多主機系統進行備份作業</block>
+  <block id="1b2e9225a8b5ce27c68d4f3e12be5256" category="inline-link-macro">先前版本：HANA系統複寫的備份作業。</block>
+  <block id="208fd710ac9f4e41f126337d9b7f378a" category="paragraph"><block ref="208fd710ac9f4e41f126337d9b7f378a" category="inline-link-macro-rx"></block></block>
+  <block id="fa447ce4450a764d737c6218d505eb35" category="paragraph">HANA資料庫執行Snapshot備份的方式與單一主機系統相同。必須在系統資料庫中觸發備份作業SQL命令、並為所有HANA工作節點建立HANA備份儲存點、使每個節點的所有資料磁碟區都保持一致。接下來、儲存Snapshot作業必須在每個資料磁碟區上執行。</block>
+  <block id="7939c95d754d068ad7514fc0cd4459ef" category="section-title">Hana多主機系統、無需待命主機</block>
+  <block id="578bd9fc94c33bfd0a7e96957986af74" category="paragraph">沒有待命主機的HANA多主機系統在CBA中的設定方式類似於HANA單一主機系統。</block>
+  <block id="c1ebde8ffb5143ba131784227b9d8607" category="list-text">HANA外掛程式必須安裝在執行HANA名稱伺服器和系統資料庫的工作節點上。執行Indexserver的工作節點不需要HANA外掛程式。</block>
+  <block id="7e804afb19d714b3f3012309395a1dee" category="list-text">HDB使用者儲存金鑰的設定方式與HANA單一主機系統相同。</block>
+  <block id="4aef517f6d0b7af32544175f437be804" category="list-text">在儲存設備實體佔用空間的組態中、必須新增HANA系統的所有資料磁碟區。</block>
+  <block id="06f2669c67b8bc2178b8c9b02e792ca1" category="paragraph">在下列範例中、您將新增Data1、Data2和Data3磁碟區。</block>
+  <block id="e7a012fd55f508f496811089e35793ab" category="admonition">每個HANA主機的資料磁碟區必須以待命主機組態的相同方式掛載於每個主機上。Cloud Backup for Applications會建立備份所含檔案的清單、因此需要存取屬於HANA系統的所有磁碟區。啟用ANF跨區域複寫或ANF備份時、單一檔案還原作業需要檔案清單。</block>
+  <block id="6e997ea56ed1c05baaa944c445fc0bb6" category="inline-image-macro">此圖顯示HANA外掛程式必須安裝在執行Nameserver/systemDB的工作節點上的方式。</block>
+  <block id="821de6ac1da7eb8b8284206bf9fb404b" category="paragraph"><block ref="821de6ac1da7eb8b8284206bf9fb404b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0ba635e308d74a89689e25ff90eb1da5" category="section-title">Hana多主機系統與待命主機</block>
+  <block id="998bcbb4b21641377d27370ee82ac57b" category="paragraph">在目前的CBA版本中、支援使用待命主機的HANA多主機系統時、假設在名稱伺服器容錯移轉至待命主機之後、故障主機會重新啟動、然後出現相同的作業系統組態、檔案系統掛載和HANA外掛。</block>
+  <block id="3c5fbf1951b411f432a407d0886b3c95" category="paragraph">在CBA中設定具有待命主機的HANA多主機系統、並執行下列步驟。</block>
+  <block id="5540d37cd558eebf1080e34458b51a48" category="list-text">HANA外掛程式必須安裝在執行HANA名稱伺服器/系統資料庫的工作節點上。</block>
+  <block id="8771d7da4ee9191850fe7e5c4c438f0c" category="list-text">HDB使用者存放區金鑰設定為兩部主機、系統資料庫（名稱伺服器主機）和待命主機。CBA金鑰組態中的主機：連接埠字串必須以分號分隔、而且清單必須以雙引號開頭和結尾。然後hdbsql用戶端會從使用者存放區金鑰的第一個項目開始、並嘗試連線至資料庫。如果該項目無法運作、則會使用下一個項目。因此、將主要名稱伺服器主機設定為第一個、將待命主機設定為使用者存放區金鑰中的第二個項目、是非常重要的。</block>
+  <block id="2888facfcc8015ce06ff70182b0616a0" category="inline-image-macro">此螢幕快照顯示「新增使用者儲存區」畫面、並填入適當的資訊。</block>
+  <block id="c7a438710caf174513ff1847d9a67eb2" category="paragraph"><block ref="c7a438710caf174513ff1847d9a67eb2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="22c69dd808a46d069c04343d4fb0b3a0" category="list-text">HANA系統的所有資料磁碟區都必須新增至儲存設備佔用空間的組態。</block>
+  <block id="d2d83ded87482c559ba5fb2518ee2098" category="paragraph">在下圖所示範例中、您需要新增Data1和Data2磁碟區。</block>
+  <block id="ef3ae0b29c34cc66bcbfada24aa016af" category="inline-image-macro">此圖顯示如何將Data1和Data2新增至工作者名稱伺服器和待命模式。</block>
+  <block id="e6b0477459d453afa3aa46e76f03efcd" category="paragraph"><block ref="e6b0477459d453afa3aa46e76f03efcd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="80421d014a1ef015849924168e286aa2" category="paragraph">如果名稱伺服器容錯移轉至待命主機、則會假設故障主機會在短時間內重新啟動、並與之前相同的組態。在此案例中、HANA外掛程式和hdbsql和hdb使用者存放區元件可供使用、並可繼續用於備份作業。</block>
+  <block id="fc865539ed7dc0dc8c8c300711a4d419" category="paragraph">使用之前所述的使用者存放區組態、hdbsql用戶端現在會使用第二個主機項目來指向目前的名稱伺服器主機、並執行備份作業。</block>
+  <block id="61f34b63eb027cc3f0139dd66e4f6af9" category="inline-image-macro">此圖顯示故障的VM會重新啟動、並在容錯移轉至待命主機後做為新的待命主機。</block>
+  <block id="b198941983a8f6da5a2eacdb2db69af2" category="paragraph"><block ref="b198941983a8f6da5a2eacdb2db69af2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="64cdc20a727ab4436a45a7951f085e77" category="paragraph"><block ref="64cdc20a727ab4436a45a7951f085e77" category="inline-link-macro-rx"></block></block>
+  <block id="6a6a91c83da27ddf52286c69bf9c89ec" category="doc">利用HANA系統複寫進行備份作業</block>
+  <block id="d5616770c2f23f863172545e206ae958" category="inline-link-macro">先前：從Snapshot備份還原與還原。</block>
+  <block id="c1078d2f3c9e51371f039dc4de241605" category="paragraph"><block ref="c1078d2f3c9e51371f039dc4de241605" category="inline-link-macro-rx"></block></block>
+  <block id="3e9023aa1dfb1460e771a57c2f3f7543" category="section-title">儲存Snapshot備份與HANA系統複寫</block>
+  <block id="3e578e1aa400e15d9f7d37c73472bfb0" category="paragraph">備份作業一律會在主要SAP HANA主機執行、因為備份作業所需的SQL命令無法在次要SAP HANA主機上執行。</block>
+  <block id="7b5d8736de48d9feebbf1dc3aec29b4c" category="paragraph">對於SAP HANA備份作業、主要和次要SAP HANA主機是單一實體。他們共享相同的SAP HANA備份目錄、無論備份是在主要或次要SAP HANA主機上建立、都會使用備份來進行還原和還原。</block>
+  <block id="53fc4fb9e28c854d79a6e388ea102f0d" category="paragraph">每個SAP HANA主機都有自己的儲存磁碟區。當您使用儲存型Snapshot來執行備份時、會在主要SAP HANA主機的儲存Volume上建立資料庫一致的Snapshot複本。</block>
+  <block id="aa5f24cbd67f2546b57d47fb36a6c3a5" category="inline-image-macro">此圖顯示如何在主要SAP HANA主機的儲存Volume上建立資料庫一致的Snapshot複本。</block>
+  <block id="e203ccfa60302ad0b9338ea158f02e92" category="paragraph"><block ref="e203ccfa60302ad0b9338ea158f02e92" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2659af014ed82f7ef53b9f4a5cfa5dce" category="paragraph">執行容錯移轉至主機2時、主機2會成為主要SAP HANA主機、備份會在主機2執行、並在主機2的儲存磁碟區建立Snapshot備份。</block>
+  <block id="f1ae39768ece346fac00b21ce2dbc1f7" category="paragraph">在主機2上建立的備份可直接在儲存層還原。如果您必須使用在主機1上建立的備份、則必須將備份從主機1儲存磁碟區複製到主機2儲存磁碟區。轉送恢復會使用來自兩個主機的記錄備份。</block>
+  <block id="ea44ae732b6f0b033826492a33c56109" category="inline-image-macro">此圖顯示轉送恢復如何使用兩台主機的記錄備份。</block>
+  <block id="80a29ace8b5c5ed1a852088ebdb6274d" category="paragraph"><block ref="80a29ace8b5c5ed1a852088ebdb6274d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="50dd1e30dd52477144fcd09f8485afa3" category="section-title">利用支援CBA和HSR的HANA系統進行備份作業</block>
+  <block id="a3c7dfa6422252863d49737e78d176a1" category="paragraph">如前一節所述、您必須考量幾件與採用HSR技術的HANA系統搭配進行備份作業的事項。</block>
+  <block id="f39253c9142cdd5207272ff762d2d88e" category="list-text">備份作業只能在主要HANA主機上執行。因此、在執行備份作業時、CBA必須知道目前哪個主機是主要主機。</block>
+  <block id="ad7af00267b5901f497a519059c84310" category="list-text">必須針對目前的主要主機執行備份SQL陳述式。</block>
+  <block id="23c7722667cf8fdf40f92ced0b90dc3a" category="list-text">Snapshot備份只能在主要主機資料磁碟區進行、因為次要主機資料磁碟區的狀態不一致、因此無法進行還原與還原作業。</block>
+  <block id="3b44d36d038fe4f77233bc81daed8772" category="list-text">Snapshot備份的保留管理必須跨兩個主機執行。例如、當執行容錯移轉至次要主機時、也必須根據定義的所有層級保留、在CBA、anf磁碟區和HANA備份目錄中刪除前主要主機的備份。否則、由於舊資料備份、會封鎖根據記錄備份保留管理刪除舊的記錄備份。</block>
+  <block id="09105d84903552e60e9cf84d4ad2f6df" category="paragraph">在CBA中、主要和次要HANA主機的設定方式都與一般HANA系統相同、如下圖所示。組態設定時唯一的差異在於勾選核取方塊、告知CBA此HANA系統屬於HSR ralationShip的一部分。CBA會從主機讀取HSR狀態、然後找出哪些主機屬於一起、哪些主機屬於一線或二線主機。在內部CBA中、這兩個主機會視為單一實體、只會針對目前的主要主機執行備份、並在兩個主機之間執行保留管理。</block>
+  <block id="43a3fe8035abcabf23f3e672ee327aa0" category="admonition">CBA僅支援雙主機組態的HSR。</block>
+  <block id="0e5732f444de6579d83d4565cf81a2e0" category="inline-image-macro">本圖顯示CBA如何僅支援雙主機組態的HSR。</block>
+  <block id="b58bc356a6e1c1db6468b66463ed9f5d" category="paragraph"><block ref="b58bc356a6e1c1db6468b66463ed9f5d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b2bf2bbf7e6b4629b50b4af1483af0ba" category="section-title">安裝與組態步驟總覽</block>
+  <block id="a3fc32d3e7a5348ede0e8fc9d5933443" category="paragraph">啟用HSR的HANA系統所需的組態步驟有一些小差異。在本節中、我們只強調與先前所述標準組態步驟相比的差異。</block>
+  <block id="8a9632adca934f81a684d4cba308f910" category="list-text">在主要HSR主機的HANA系統資料庫中建立備份使用者。</block>
+  <block id="9b7034894d0387ac59078118e05fd67e" category="list-text">在Cloud Backup for Applications中新增主要主機並設定HANA系統。</block>
+  <block id="0b3f971d04149ca9068afc10f73d8c90" category="list-text">在組態期間選取* HANA System Replication *。</block>
+  <block id="e29eabcfb7ac05b60b8718c43cb6fa85" category="paragraph"><block ref="e29eabcfb7ac05b60b8718c43cb6fa85" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b9a058ce91f3375abd586ca31229b563" category="list-text">增加主主機的儲存佔用空間。</block>
+  <block id="5c8c57878286b10fccb87b95ddf434e9" category="paragraph"><block ref="5c8c57878286b10fccb87b95ddf434e9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f7349939927e999a3c45a61eee1f0155" category="list-text">新的HANA系統現在列有HSR圖示。</block>
+  <block id="ec04869b9c944cec75c3eb2c98d6ce1f" category="paragraph"><block ref="ec04869b9c944cec75c3eb2c98d6ce1f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e2de900ea3c9324f90f63db46fe1fa2f" category="list-text">在Cloud Backup for Applications中新增次要主機並設定HANA系統。</block>
+  <block id="1f34d3e7d39e451b72e1694dcb9d59f9" category="paragraph"><block ref="1f34d3e7d39e451b72e1694dcb9d59f9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6768c65a006cb1306f74bd463d9288ef" category="list-text">增加二線主機的儲存佔用空間。</block>
+  <block id="373e3ebf8d9e857aade32261bc765ad9" category="paragraph"><block ref="373e3ebf8d9e857aade32261bc765ad9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f30bfe0e71fdb1d9d2bc4182c6de655e" category="paragraph">這兩個系統現在都會顯示HSR圖示。</block>
+  <block id="7a0da82b2f77213ba2f736c309b60561" category="paragraph"><block ref="7a0da82b2f77213ba2f736c309b60561" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2d96e44bcaccaeb148638d06c70e39ca" category="list-text">將備份原則新增至主要和次要HANA系統。</block>
+  <block id="31af66cbc5b06726f109677c12d742af" category="admonition">您必須將相同的原則新增至兩個系統、因為保留管理是在兩個HANA主機之間執行。</block>
+  <block id="068718706a310a5c9baeadcea936da32" category="paragraph">現在、備份是根據定義的原則執行。CBA一律會在主要HANA主機上觸發Snapshot備份作業。</block>
+  <block id="fa9077db6ccb0bb10f938dd7ee2c82ea" category="inline-link-macro">下一步：使用HANA多主機系統進行備份作業。</block>
+  <block id="f695825a102f45e2fed34a2de60f9a45" category="paragraph"><block ref="f695825a102f45e2fed34a2de60f9a45" category="inline-link-macro-rx"></block></block>
+  <block id="c132ac09d00227583d8feb0205a088e7" category="summary">本節說明如何從Snapshot備份執行還原與還原。</block>
+  <block id="ed7e8958d69c2330e67d90b98a772bda" category="doc">從Snapshot備份還原與還原</block>
+  <block id="79b81614cc6815fba22a54e103700be7" category="inline-link-macro">先前：全域非資料磁碟區的Snapshot型備份作業。</block>
+  <block id="f566340127d18ff2a2d6d56e02b47a43" category="paragraph"><block ref="f566340127d18ff2a2d6d56e02b47a43" category="inline-link-macro-rx"></block></block>
+  <block id="ce63834174879a2312778b1773259367" category="paragraph">下節說明HANA MDC單一主機單租戶系統的還原與還原工作流程。多主機系統的差異會反白顯示。這些範例顯示SAP HANA Studio是執行手動還原的工具。您也可以使用SAP HANA Cockpit或HANA SQL聲明進行還原作業。</block>
+  <block id="a9c36562202b61fc105deed86e30bdf0" category="paragraph">若要使用SAP HANA Studio和Cloud Backup for Applications還原及還原SAP HANA MDC單一租戶系統、請完成下列步驟：</block>
+  <block id="315405f2a265d55f5a07de55aadb2eac" category="list-text">選取*恢復系統資料庫*、然後確認SAP HANA系統已關機。</block>
+  <block id="77b582d77e6387aaa7bc8541fbf329aa" category="list-text">使用Cloud Backup for Applications執行還原程序：</block>
+  <block id="bdc08ed3bbd4f9297fc4d75e31b4cd52" category="list-text">若要開始還原作業、請在內容功能表中選取*還原*。</block>
+  <block id="3c6cde592c889a240d2a9d6e9474bc3c" category="list-text">按一下備份清單中的* Refresh（重新整理）*、然後選取可用的備份以供還原（以綠色圖示表示）。</block>
+  <block id="c81b2f41042b763edc795b9dff81d4b5" category="list-text">選取*「恢復租戶資料庫」*、然後選取要恢復的租戶。</block>
+  <block id="3c3975ef0df7170122e9ffd48b35db5e" category="paragraph">此時會顯示一份資料備份清單。由於資料磁碟區已還原、因此租戶備份會指出可用（綠色）。選取備份並開始恢復程序。還原程序完成後、租戶資料庫會自動啟動。</block>
+  <block id="e9ff980dbdcbbc6ade3783971447af01" category="paragraph">下列步驟說明HANA系統PR1的還原與還原作業。</block>
+  <block id="79e68c99510e8afd9f36aba147b06bb8" category="section-title">準備還原與還原作業</block>
+  <block id="841c567556b640a49e92c9c5f6155d47" category="list-text">若要在SAP HANA Studio中開始還原系統資料庫、請前往*備份與還原*&gt;*恢復系統資料庫*。</block>
+  <block id="c83152d95fb615ab87771dbac373c984" category="paragraph"><block ref="c83152d95fb615ab87771dbac373c984" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="12f473930524bf775f19e6131270568d" category="paragraph"><block ref="12f473930524bf775f19e6131270568d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1aac48ab030926bc72561ef45df07490" category="list-text">選取恢復類型、然後按一下*「下一步」*。</block>
+  <block id="47843a9ac9b18823a24c74a3cdb504fe" category="paragraph"><block ref="47843a9ac9b18823a24c74a3cdb504fe" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a34f18d27656aa8829ee9a28fc976294" category="list-text">提供備份目錄的位置、然後按一下「*下一步*」。</block>
+  <block id="3f0e6fce5ca4fcb591d0f2663a9ae7dd" category="paragraph"><block ref="3f0e6fce5ca4fcb591d0f2663a9ae7dd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4bed2c0d7e8ee4d94a46a17fb73ae11e" category="list-text">可用備份清單會根據HANA備份目錄的內容顯示。選擇所需的備份、並記下外部備份ID：例如最近的備份。</block>
+  <block id="40c377e4dae4ea5e3f64585109916e50" category="paragraph"><block ref="40c377e4dae4ea5e3f64585109916e50" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3c779eba2464353e0d5e897cb641d847" category="section-title">還原HANA資料庫</block>
+  <block id="4d39579bf9b07847b1ed28180ea9dc5a" category="list-text">若要開始還原作業、請在備份檢視中選取HANA Studio中也顯示的備份、然後在內容功能表中選取還原。</block>
+  <block id="98587988f730b324b4aecc508399d787" category="paragraph"><block ref="98587988f730b324b4aecc508399d787" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6375be6ed31d59534004d93fd1e864db" category="list-text">在下一步中、您可以提供用於還原作業的指令碼前與後置指令碼。</block>
+  <block id="c422916098dad3afd3aab7b1be61b9de" category="paragraph"><block ref="c422916098dad3afd3aab7b1be61b9de" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1dad5b4573cb9cef3ace55dd52e37679" category="paragraph">Cloud Backup for Applications工作記錄會顯示還原作業的進度。</block>
+  <block id="ad9b8183766ae0c12b5ec0d76ec21abe" category="paragraph"><block ref="ad9b8183766ae0c12b5ec0d76ec21abe" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="84edc55994b6b73fd4661ce53190f989" category="list-text">等到還原程序完成後再掛載資料磁碟區。</block>
+  <block id="658ca3ebff1b6d831fc84e43d962a70a" category="admonition">對於SAP HANA多主機系統、您必須在每個主機上掛載所有資料磁碟區。</block>
+  <block id="0d61584738ae8bc7f3f31ef282fa6199" category="section-title">恢復系統資料庫</block>
+  <block id="8e76ca160d499b3ffa083584822dee35" category="list-text">若要更新可用備份清單、請前往SAP HANA Studio、然後按一下「Refresh（重新整理）」。使用Cloud Backup for Applications還原的備份會在備份清單中顯示綠色圖示。選取備份、然後按「Next（下一步）」。</block>
+  <block id="b8ee3c2d2e8d49588864291e4454d85d" category="paragraph"><block ref="b8ee3c2d2e8d49588864291e4454d85d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="62222f0a2a353579e477a95b5e00a8ca" category="list-text">提供記錄備份的位置。單擊 * 下一步 * 。</block>
+  <block id="96c04e05adc4df0b6da014f158b178e9" category="paragraph"><block ref="96c04e05adc4df0b6da014f158b178e9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6baf80282d60b3bc0c16acbf8a39539c" category="list-text">視需要選取其他設定。請確定未選取「使用差異備份」。單擊 * 下一步 * 。</block>
+  <block id="07584f7a48fc75495db05fe996915865" category="paragraph"><block ref="07584f7a48fc75495db05fe996915865" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c477c29f6e0fc1a40e19749dfea2e22e" category="list-text">檢閱還原設定、然後按一下「*完成*」。</block>
+  <block id="7b4c8a2ce16881eea9a87950be01721a" category="paragraph"><block ref="7b4c8a2ce16881eea9a87950be01721a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f1f6dd99545df94de3537ae25af7611d" category="paragraph"><block ref="f1f6dd99545df94de3537ae25af7611d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5ade864a6a42db65057d0a7a9e6c87bd" category="section-title">恢復租戶資料庫</block>
+  <block id="335f6a7d43bcb219ce499e16c7dbcd1b" category="list-text">在SAP HANA Studio中、選取系統資料庫的項目、然後移至*備份與恢復*&gt;*恢復租戶資料庫*。</block>
+  <block id="5ec0e33eaacd4e6e51111daf8ec23a46" category="paragraph"><block ref="5ec0e33eaacd4e6e51111daf8ec23a46" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6fef3dca6fedd05bad07c1ffbfeea5ad" category="list-text">選取要恢復的租戶、然後按一下*下一步*。</block>
+  <block id="c07645318b4a844236fdb968b0d65b8b" category="paragraph"><block ref="c07645318b4a844236fdb968b0d65b8b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f9c2d4a78c46ad5f003fda14eed8c16f" category="paragraph"><block ref="f9c2d4a78c46ad5f003fda14eed8c16f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="94b6b511b774b202972651b1c190f7df" category="list-text">確認備份目錄位置、然後按一下*「下一步*」。</block>
+  <block id="962e2807f9e81b77ac9cbfd14e0ad98a" category="paragraph"><block ref="962e2807f9e81b77ac9cbfd14e0ad98a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b359846bdece1448d88354a2b5669071" category="paragraph"><block ref="b359846bdece1448d88354a2b5669071" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2f8efab183119bc1940f2b866962c2d3" category="list-text">選取以綠色反白顯示的備份、然後按一下*下一步*。</block>
+  <block id="70c9b905b1a4efb55fbca156beeab3d1" category="paragraph"><block ref="70c9b905b1a4efb55fbca156beeab3d1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="be6859198eb90f1c858a4e87c39e9a45" category="list-text">確認記錄備份位置、然後按一下*下一步*。</block>
+  <block id="13cedabf382e66c73770b2b8068ad6ba" category="paragraph"><block ref="13cedabf382e66c73770b2b8068ad6ba" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6afd4a2a4e4c88aa30287cf92590a32a" category="list-text">視需要選取其他設定。確保未選擇*使用差異備份*。單擊 * 下一步 * 。</block>
+  <block id="8e9b4f1270a09866e1f029f21d193d75" category="paragraph"><block ref="8e9b4f1270a09866e1f029f21d193d75" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="379ada1b9d8953c33400a809ac30de68" category="list-text">按一下「*完成*」來檢閱還原設定、並開始租戶資料庫的還原程序。</block>
+  <block id="c2f445264a8deb4796e4b4d6c65affd5" category="paragraph"><block ref="c2f445264a8deb4796e4b4d6c65affd5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ebc0c96626016e0593646637519bbdd1" category="paragraph"><block ref="ebc0c96626016e0593646637519bbdd1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="367dc9a3cc084ce5cf2c74bbeccaf28d" category="admonition">對於具有多個租戶的SAP HANA MDC系統、您必須針對每個租戶重複步驟16至25。</block>
+  <block id="66132d1e5ba11c86aafeff56efabd28f" category="inline-link-macro">下一步：使用HANA系統複寫進行備份作業。</block>
+  <block id="9770d0e0dfff015b11f2db8064b96f2f" category="paragraph"><block ref="9770d0e0dfff015b11f2db8064b96f2f" category="inline-link-macro-rx"></block></block>
+  <block id="c48933b44cb171c017054a9a1c693146" category="summary">本節說明如何建立全域非資料磁碟區的Snapshot型備份作業。</block>
+  <block id="9f4b63849ffbd51b00975f3ae8bb1f19" category="doc">全域非資料磁碟區的Snapshot型備份作業</block>
+  <block id="769d2ef45eba56ba20151a9d847568b1" category="inline-link-macro">先前：非資料磁碟區的Snapshot型備份作業。</block>
+  <block id="dc8afd1f8c17ddf5116bfc5caa5e3eae" category="paragraph"><block ref="dc8afd1f8c17ddf5116bfc5caa5e3eae" category="inline-link-macro-rx"></block></block>
+  <block id="38353dc7d4b92040f5338ca6173bcde6" category="paragraph">在CBA中、全域非資料磁碟區是未指派給特定HANA系統的磁碟區。範例包括SAP傳輸目錄<block ref="82fccaf357ca5c791314eaf3a6944474" prefix=" " category="inline-code"></block> 或軟體儲存庫。</block>
+  <block id="75bbb537cda0fc9840125dcb777be47f" category="paragraph">若要設定非資料磁碟區的資料保護、請完成下列步驟。</block>
+  <block id="020b0dcc5e0199490b1cb24cf3e89e98" category="list-text">按一下「*新增HANA系統*」、然後選取「*全域非資料磁碟區*」作為「*系統類型*」。</block>
+  <block id="227745e466bdf1a5342b49a10cc678dd" category="paragraph"><block ref="227745e466bdf1a5342b49a10cc678dd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4fd4e7bc53c98cc1209d0eff6f57abef" category="list-text">提供一個名稱和一個或一份SID清單、以供參考。您也需要選取外掛程式主機。這可以是您環境中的任何外掛主機。</block>
+  <block id="c6c33ac281d7712ac43f415212b0782c" category="paragraph"><block ref="c6c33ac281d7712ac43f415212b0782c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ceceab2949fdb31216179a814ae8ce76" category="list-text">按一下「*新增儲存設備*」來設定全域非資料磁碟區的儲存佔用空間。</block>
+  <block id="db6b8e05c2f4281ac4524066bce8b0aa" category="paragraph"><block ref="db6b8e05c2f4281ac4524066bce8b0aa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="159e2337ca0ebc4d59391a9d2e22d3bb" category="list-text">輸入全域非資料磁碟區的資訊。</block>
+  <block id="5501144bc6d849e73ffe78217679dc93" category="paragraph"><block ref="5501144bc6d849e73ffe78217679dc93" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="120cb4accc1aba0fc3da240e49a68b95" category="list-text">全球非資料磁碟區的列示方式與CBA儀表板中的HANA系統相同。</block>
+  <block id="86b7e3aae84ae6166df77460dda4114f" category="paragraph"><block ref="86b7e3aae84ae6166df77460dda4114f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="996ad7fd7812b227b03130b0ef3783bb" category="paragraph">若要啟動排程備份、必須指派備份原則。</block>
+  <block id="479015ded92d44e06a9162ba1416be65" category="list-text">轉至*指派原則*。</block>
+  <block id="12eeb55ea92968bc25f6d8e284e0d8cb" category="paragraph"><block ref="12eeb55ea92968bc25f6d8e284e0d8cb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="feceeaa067f8421ce6749f2795a374c7" category="paragraph"><block ref="feceeaa067f8421ce6749f2795a374c7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e461bc91cb3ab7868f92512ea8be189b" category="list-text">此原則現已指派給非資料磁碟區。</block>
+  <block id="995b98c9ebe200fd00e1134afe4aa8a7" category="paragraph"><block ref="995b98c9ebe200fd00e1134afe4aa8a7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="81f4b555461d72571040dd417ac7bdfa" category="section-title">建立全域非資料磁碟區的隨需備份</block>
+  <block id="1c410c66090440ff2acd876e31032e91" category="list-text">在CBA儀表板檢視中、選取內容功能表中的*隨需備份*。</block>
+  <block id="08e92ae292a4cff3aefba58bb2748cb6" category="paragraph"><block ref="08e92ae292a4cff3aefba58bb2748cb6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d939c3040288503bd2fba7c00e042dfa" category="list-text">在「*隨需備份*」對話方塊中、選取*原則型*或*一次性*。</block>
+  <block id="2993fb8aa99db7ca69fe4bb0a1a641d0" category="paragraph">在我們的範例中、我們選擇了「原則型」、因此必須在下一步中選取原則和保留。</block>
+  <block id="66cfb5d9e4b4d02d34c6f9ff0ca24cd5" category="paragraph"><block ref="66cfb5d9e4b4d02d34c6f9ff0ca24cd5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ed640e78de5650a7d471604651bba3e2" category="paragraph">在「*工作監控*」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。在我們的範例中、備份作業耗時41秒。</block>
+  <block id="42f5e59d86c67a3f20271c7199a3f975" category="paragraph"><block ref="42f5e59d86c67a3f20271c7199a3f975" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f83c718e5246b69648961775837704de" category="admonition">備份名稱使用備份原則中定義的格式。Anf磁碟區上的Snapshot名稱也使用相同的命名慣例。</block>
+  <block id="6fa359b541ea6ac007057efeb291696a" category="paragraph"><block ref="6fa359b541ea6ac007057efeb291696a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="47219183c1d700fbe23d2505aefcae98" category="paragraph">在CBA中、與備份名稱相同的名稱也會用作ANF磁碟區上的Snapshot備份名稱。下圖顯示Azure入口網站及全域非資料磁碟區的Snapshot備份<block ref="f9fa10ba956cacf91d7878861139efb9" prefix=" " category="inline-code"></block>。</block>
+  <block id="95fe26c19b7c6e253cc4004fd7c97aa6" category="paragraph"><block ref="95fe26c19b7c6e253cc4004fd7c97aa6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6ddf4e025af69cf8f37cf789a146c0f9" category="inline-link-macro">下一步：從Snapshot備份還原與還原。</block>
+  <block id="fd245a4e4a918e6c713fe069c4c2da0c" category="paragraph"><block ref="fd245a4e4a918e6c713fe069c4c2da0c" category="inline-link-macro-rx"></block></block>
+  <block id="66a96cfb315b86e5795b7eb94b1e9d66" category="summary">您可以使用Azure NetApp Files Snapshot（anf）Snapshot快照技術、在數秒內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。此外、使用Snapshot技術也不會影響即時SAP系統的效能。</block>
+  <block id="e28e28f9da9eed5aa0fd3be0c29aa050" category="doc">使用Azure NetApp Files 支援功能進行備份與恢復</block>
+  <block id="4af7d07e11687f866414a0b0afc8e673" category="paragraph"><block ref="4af7d07e11687f866414a0b0afc8e673" category="inline-link-macro-rx"></block></block>
+  <block id="689c00c8bcc6f881dcd3dd3e514e690a" category="paragraph">您可以使用Azure NetApp Files Snapshot（anf）Snapshot快照技術、在數秒內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。此外、使用Snapshot技術也不會影響即時SAP系統的效能。因此、您可以排程建立Snapshot複本、而不需考慮尖峰對話或批次活動期間。SAP on anf客戶通常會在一天內排程多個線上Snapshot備份、例如、每四到六個小時就很常見。這些Snapshot備份通常會在主要儲存系統上保留三到五天、然後再移除。</block>
+  <block id="2e513c53e9fe7eb215ab3b768d27ad8e" category="paragraph">您可以使用額外的HANA檔案型備份來備份到次要位置。這些檔案型備份的排程頻率較低、因此對正式作業系統效能的影響較小。</block>
+  <block id="bcb693ee129e25e6277fcb4cfb035e95" category="paragraph">整體備份工作流程執行時間最大的一部分是執行HANA備份儲存點作業所需的時間、而此步驟則取決於HANA資料庫的負載。儲存Snapshot備份本身一律會在幾秒鐘內完成。</block>
+  <block id="5fcde897040682a5790750917970f867" category="inline-image-macro">此圖顯示客戶使用Snapshot備份作業的HANA Studio。</block>
+  <block id="3db6ffe01eff376a197608116c90765c" category="paragraph"><block ref="3db6ffe01eff376a197608116c90765c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1a5dbab08b65660e301a50b3c16948b4" category="paragraph">資料庫開始時間取決於資料庫的大小、以及將資料載入記憶體所需的時間。在下列範例中、假設資料可以以1000Mbps載入。將4TB載入記憶體約需1小時10分鐘。檔案型與Snapshot型還原與還原作業的開始時間相同。</block>
+  <block id="af5ec1ce19c642ed654d8175fbe0d119" category="admonition">有了這個功能、就能動態調整Volume處理量Azure NetApp Files 。在HANA啟動之前、HANA資料磁碟區的處理量可在HANA資料庫啟動後增加並減少至每日作業值。</block>
+  <block id="9c5ed092a9dd1cb2374d02f3319c495e" category="paragraph">Snapshot備份通常會以較高的頻率排程、因為它們不會影響SAP HANA資料庫的效能。例如、如果每六小時排程一次Snapshot備份、則在最糟的情況下、還原時間是檔案型備份的恢復時間（6小時/ 24小時= 0.25）的四分之一。</block>
+  <block id="3846d8295c7683bc64dc40dd28cdaf66" category="paragraph">前兩個長條圖顯示、即使每天只有一次Snapshot備份、由於Snapshot備份的還原作業速度加快、還原與還原作業也會減少到43%。如果每天建立多個Snapshot備份、則可進一步減少執行時間、因為在轉送還原期間需要套用的記錄較少。</block>
+  <block id="0c9b137d446d182bb2e09f48f99bb959" category="paragraph">下圖也顯示每天四到六個Snapshot備份最合理、因為較高的頻率不會對整體執行時間造成重大影響。</block>
+  <block id="8c554f2053d9b33cffdbf4c4bc3f94ac" category="inline-image-macro">此圖顯示每日檔案型備份與Snapshot備份的還原與還原作業與不同排程的比較。</block>
+  <block id="b0f59705d05dd39c6f89d9968f9eeb49" category="paragraph"><block ref="b0f59705d05dd39c6f89d9968f9eeb49" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0c0ca9ff38b52189ad273dbd80084a11" category="inline-link-macro">下一步：加速備份與複製作業的使用案例和價值。</block>
+  <block id="4f109dd5a4827e176d3ca39738fc5c47" category="paragraph"><block ref="4f109dd5a4827e176d3ca39738fc5c47" category="inline-link-macro-rx"></block></block>
+  <block id="de1322e9f9fe2c99feb520f53032db4b" category="summary">原則通常會獨立設定資源、可供多個SAP HANA資料庫使用。典型的最低組態包含每小時Snapshot備份原則、以及使用檔案型備份進行每週區塊完整性檢查的原則。</block>
+  <block id="0a4a3719bc7519d1162060e0f0e08f8a" category="doc">建立備份原則</block>
+  <block id="658a203799f01f268cc2779bfb65e0be" category="inline-link-macro">上一步：安裝與組態步驟總覽。</block>
+  <block id="bde7054d72f8b1e6deecca5fa0a15137" category="paragraph"><block ref="bde7054d72f8b1e6deecca5fa0a15137" category="inline-link-macro-rx"></block></block>
+  <block id="32cb9c5fd0f89225b1f0dc1f28a5175b" category="paragraph">如前所述、原則通常會獨立設定資源、並可供多個SAP HANA資料庫使用。典型的最低組態包含下列兩項原則：</block>
+  <block id="8d199034838da53d0369cf62a228cd81" category="list-text">每小時Snapshot備份原則：例如<block ref="68f240c4ec10cc0928966448602d707a" prefix=" " category="inline-code"></block>。</block>
+  <block id="e49b38262560696af1d35ee7cb604551" category="list-text">使用檔案型備份進行每週區塊完整性檢查的原則：例如<block ref="39750d3aa07eaf02d1b106890b3e863c" prefix=" " category="inline-code"></block>。</block>
+  <block id="900dd7e542596b521b25216cd2dab2ed" category="section-title">建立Snapshot型備份原則</block>
+  <block id="c2fc52ea772d1b83a01108f2099816cd" category="list-text">請移至*設定*&gt;*原則*以建立新原則。</block>
+  <block id="2544c6d67c35feb96694b3cd5d26f9a2" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；系統。</block>
+  <block id="448fd52bceb8c288ea967c9e1bc8288f" category="paragraph"><block ref="8ce428a7a39b8a6bcab224d830e61702" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fdc2c96185d2a7c98ab81a927c827edb" category="list-text">按一下「*建立原則*」。</block>
+  <block id="b31097424a89195ab009d7fbb5d31a05" category="inline-image-macro">此螢幕快照顯示包含「建立原則」按鈕的畫面。</block>
+  <block id="4c08ccf8ce12afcb2495b6ca49f535e8" category="paragraph"><block ref="4c08ccf8ce12afcb2495b6ca49f535e8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="355aaa3e73c9186d26f02016578b24fd" category="list-text">設定Snapshot名稱格式。</block>
+  <block id="66f81d47441b08b0d730a5f05dfe145d" category="paragraph">NetApp建議在Snapshot名稱中新增其他資訊、以便在HANA備份目錄中更容易識別。</block>
+  <block id="851a2c9b708115ea1b6db01069a9c2b1" category="admonition">在HSR設定中、您也應該將系統名稱新增為名稱格式。當然、您必須以名稱包含角色或主機名稱的方式來設定主要和次要主機的系統名稱：例如、<block ref="dfa6b2d7f9367b9ac496a60fb501cfb4" prefix=" " category="inline-code"></block> 或<block ref="e9fbd39f535296755852efa7a98e70d4" prefix=" " category="inline-code"></block>。透過這種方法、您可以輕鬆識別在HANA備份目錄中建立備份的主機。</block>
+  <block id="e16f2f83e62a5a786981dd33d81133d3" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。已填寫名稱原則欄位。</block>
+  <block id="87029c92867db7b8649ecda35336d7e0" category="paragraph"><block ref="14369f19822e9f1e4068fcdd6e0fd0c1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="44078104ac2737274cebd6bf54c751fb" category="list-text">設定排程。在我們的範例中、我們每4小時執行一次Snapshot備份、並將備份保留3天。</block>
+  <block id="a083d35e5453c83f0a1063ed7c77bce7" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。畫面會顯示排程。</block>
+  <block id="563ce36755e4d3f1f612080b8bf97a3e" category="paragraph"><block ref="77bb3ada86b731185d383103bdd2d638" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bafeee03397d87ba7ca469862d12dd45" category="list-text">或者、您可以新增使用備份作業執行的指令碼前與指令碼後。</block>
+  <block id="62afd50019cb5d32aaefd8edf2110325" category="inline-link">備份雲端原生SAP HANA資料庫| NetApp文件</block>
+  <block id="fc27bee950177adc111e7531e6c37f34" category="paragraph">指令碼會在HANA資料庫主機上執行。另請參閱<block ref="58d814b6f5d5d11975a16372369b3a7a" category="inline-link-rx"></block>。</block>
+  <block id="024dac004c5d8f75bded916923d4365b" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。會顯示「指令碼前」和「POST」欄位。</block>
+  <block id="c15b839bda5b339fa40fa14a93df73aa" category="paragraph"><block ref="4c1345665f3115efc063a99b4610874f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a23bfe903286d70545863fc88c4e6dde" category="list-text">現在已建立Snapshot型備份原則。</block>
+  <block id="0b15cd41f8696487568d1bb35b42dfc1" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；原則。原則建立顯示為完成。</block>
+  <block id="790f8875d4e3a50f612ccee00798406c" category="paragraph"><block ref="540168dc04e4a2e51b93bb3826e73efd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="977bce66a85c6fe1784e2eba2fbdcffe" category="section-title">建立檔案型備份原則</block>
+  <block id="41025e9c551610edae39a167ecbe1b73" category="list-text">選取*建立原則*。</block>
+  <block id="7cec5555bc56f60139227356ef5ca767" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。</block>
+  <block id="5d65dc015dbe0aebec7a4f1f9117cbf9" category="paragraph"><block ref="92a1c19b098e026932698e2981921489" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e90cab6a713646d49680c439d185ae66" category="list-text">在Create Policy（建立原則）畫面中、提供原則名稱、備份類型、備份命名慣例、以及排程與保留詳細資料。</block>
+  <block id="8f1e4fbdde0943622a5463842ddee397" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。基本原則資訊已填入。</block>
+  <block id="3478a155900484a6d5598f6477f37f27" category="paragraph"><block ref="f7f59c18ee75d62ea233a670c8e764bf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7f60281251bfb3f199fdaf7fbe1399cf" category="list-text">在我們的範例中、我們在每個星期日設定每週備份、並保留一個*複本以保留*。</block>
+  <block id="5badecc4f56d34542f971473a955f5b2" category="admonition">「1」是您可以設定*複本保留*的最低數目。這表示您在檔案系統上一律至少有一個檔案型備份。在執行下一個檔案型備份期間、您需要兩倍容量、因為舊的備份會在建立新的備份之後刪除。</block>
+  <block id="8b39dbbab2337a10fac560d156f4668f" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。顯示每週排程。</block>
+  <block id="bdcbac88f0c755fa6d76696526fa271e" category="paragraph"><block ref="1cb3b7a91cf140959b075691f49c252b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="81023a42e49f24fa42e3905eb233c59e" category="list-text">或者、您可以新增指令碼前與指令碼後執行備份作業。</block>
+  <block id="134a443d273133756d690efd7ff0cc52" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；建立原則。會指出「指令碼前」和「指令碼後」欄位。</block>
+  <block id="d530a29475d9cb38cb0c0e343059a93f" category="paragraph"><block ref="450f8acd2eef1959837d96f557618eb5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="142af62281893119ccc48fe1963ee9f1" category="list-text">備份原則清單現在會顯示一項Snapshot備份原則、另一項是檔案型備份原則。</block>
+  <block id="12df2d8cb7d1955deaef58c1c2e2e9dd" category="inline-image-macro">原則建立完成。</block>
+  <block id="6b7d06d268d7b9dc0e272b61df7dd0ea" category="paragraph"><block ref="6b7d06d268d7b9dc0e272b61df7dd0ea" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="888682159d6a19c8c5121f285d0dc9a8" category="inline-link-macro">接下來：HANA資料庫的Snapshot型備份作業。</block>
+  <block id="0fcbed8246fc7f3ebb2b79d1fb23f531" category="paragraph"><block ref="0fcbed8246fc7f3ebb2b79d1fb23f531" category="inline-link-macro-rx"></block></block>
+  <block id="1eab4dbc063cd29553c3467977f41636" category="summary">本節說明如何針對HANA資料庫執行快照型備份作業。</block>
+  <block id="9767d43190c12a103ffc32e78df4e1b3" category="doc">HANA資料庫的Snapshot型備份作業</block>
+  <block id="7697e1a8debff6c68bc1d3dbcb6ac1dc" category="inline-link-macro">前言：建立備份原則。</block>
+  <block id="ea5d51c571ef6036b7ef317f133b94cd" category="paragraph"><block ref="ea5d51c571ef6036b7ef317f133b94cd" category="inline-link-macro-rx"></block></block>
+  <block id="19ba5392a7cfd37fa4147040c25860d3" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；系統。此時會顯示資料Volume下拉式清單。</block>
+  <block id="de4da5c9bf7ec02d966db83d16642a68" category="paragraph"><block ref="023837f298a9d8239edf98d4971d23d0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="455c0e708308bdc37909d635371cd166" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；系統。此時會顯示「指派選擇」畫面。</block>
+  <block id="92738d8bd0564976a3d9cd21710851fa" category="paragraph"><block ref="439b3b2148ad634fa6fa3a11090643d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9700c6f272e568246bf62e04ab58786b" category="list-text">此原則現已指派給HANA系統、並會根據排程定義執行Snapshot備份。</block>
+  <block id="1e0849dc70d4455858298e332cc6e3fb" category="inline-image-macro">此螢幕擷取畫面顯示藍圖XP &amp;gt；備份與恢復&amp;gt；應用程式&amp;gt；系統。基本原則資訊已填入。</block>
+  <block id="ce058832c893394c866dc419edff3261" category="paragraph"><block ref="a419a45b26b6282eb6576d48307dcf33" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="00954ecf46841027939723779a1de172" category="section-title">建立隨需Snapshot備份</block>
+  <block id="2d4840014e30743d087a9d82d7d702db" category="list-text">在CBA儀表板檢視中、選取內容功能表中的*隨需備份*&gt;*資料磁碟區*。</block>
+  <block id="d823ccc56ac40d73e2abab32ae0c6e6e" category="inline-image-macro">正在完成步驟的快照。</block>
+  <block id="ab1c47bf64a4bf20fd671188f8105b6f" category="paragraph"><block ref="ab1c47bf64a4bf20fd671188f8105b6f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4f19dc415d033688ba013c3b77636182" category="list-text">在我們的範例中、我們選擇了原則型、然後選擇原則和保留作為下一步。</block>
+  <block id="cef3989102fe43084d4dd5d219d471d0" category="paragraph"><block ref="cef3989102fe43084d4dd5d219d471d0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="da1d964b40085c70aedc46bc3c999629" category="paragraph">在「工作監控」檢視中、您可以看到不同的工作流程步驟、步驟的執行時間、以及總作業執行時間。在我們的範例中、備份作業大約需要1分鐘。</block>
+  <block id="7046d282e74bf21599feac2565783673" category="paragraph"><block ref="7046d282e74bf21599feac2565783673" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="96fe9d59aff2caa6f4ec846c24c6fa10" category="paragraph"><block ref="96fe9d59aff2caa6f4ec846c24c6fa10" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="11b7fab1b0922656fbfc728379344547" category="paragraph">在CBA儀表板檢視的內容功能表中、選取*檢視拓撲*以開啟備份總覽。</block>
+  <block id="11ab2dca077584ffa8df5547d9a7928a" category="paragraph"><block ref="11ab2dca077584ffa8df5547d9a7928a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2ac7f5cd1974265936182521ba145e84" category="admonition">備份名稱會依照備份原則中所定義的格式進行。SAP HANA備份目錄中的項目和ANF磁碟區上的Snapshot名稱也使用相同的命名慣例。</block>
+  <block id="0cbf145758f7742b677f950e9be4e3a3" category="paragraph"><block ref="0cbf145758f7742b677f950e9be4e3a3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="033db15e06a0e7caf16a762e9dc163b7" category="section-title">檢閱SAP HANA Studio中的Snapshot備份資訊</block>
+  <block id="0902673cf3def0a9ecd304b3b3bd15ed" category="paragraph">使用SAP HANA MDC系統的儲存Snapshot複本執行備份時、會建立資料磁碟區的Snapshot複本。此資料磁碟區包含系統資料庫的資料、以及所有租戶資料庫的資料。為了反映這種實體架構、每當CBA觸發Snapshot備份時、SAP HANA會在內部執行系統資料庫和所有租戶資料庫的組合備份。這會在SAP HANA備份目錄中產生多個獨立的備份項目：一個用於系統資料庫、一個用於每個租戶資料庫。</block>
+  <block id="6d21c6ef27d928c2890a92a9500e28a0" category="paragraph">在SAP HANA備份目錄中、CBA備份名稱會儲存在Comment（註解）欄位和外部備份ID（EBID）欄位中、如下圖所示。下圖顯示系統資料庫和租戶資料庫PR1。這兩個圖都強調「註解」欄位和EBID欄位中儲存的CBA備份名稱。</block>
+  <block id="4fdabd234c91569a9ccfb266b0e138af" category="admonition">CBA只知道自己的備份。例如使用SAP HANA Studio建立的其他備份、可在SAP HANA目錄中看到、但在CBA中卻看不到。</block>
+  <block id="2cfe86f7d58548595c162ea7f02e51de" category="paragraph"><block ref="2cfe86f7d58548595c162ea7f02e51de" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="716f0739f1fff0c3dbe3d66fe9e4b14c" category="paragraph"><block ref="716f0739f1fff0c3dbe3d66fe9e4b14c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7b7cacaa4b974ee7d8e686ffc2d49670" category="paragraph">在CBA中用作備份名稱的名稱也會用作anf磁碟區上的Snapshot備份名稱。下圖顯示Azure入口網站及資料庫資料Volume的Snapshot備份。</block>
+  <block id="28ff78eb36317d7d4d8140f0936d4c85" category="inline-image-macro">此圖顯示Azure入口網站和資料庫資料Volume的Snapshot備份。</block>
+  <block id="26ba3960cd7dfc5ac119a043c84d0adc" category="paragraph"><block ref="26ba3960cd7dfc5ac119a043c84d0adc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2ae0865170dd1147b2cb7b4ceea153b2" category="inline-link-macro">下一步：HANA資料庫的檔案型備份作業。</block>
+  <block id="efbd3ea450b7fc918106999e1390d99e" category="paragraph"><block ref="efbd3ea450b7fc918106999e1390d99e" category="inline-link-macro-rx"></block></block>
+  <block id="15985f4149eab35be8d985a1b7101de7" category="summary">本節說明本解決方案所有元件的安裝與組態。</block>
+  <block id="960f01cbd6790023884b18a8df14325f" category="inline-link-macro">先前版本：適用於應用程式的雲端備份架構。</block>
+  <block id="470368e9210992d60eae0d4b5eb3d3f2" category="paragraph"><block ref="470368e9210992d60eae0d4b5eb3d3f2" category="inline-link-macro-rx"></block></block>
+  <block id="59fb2e9bdd2aa49d411c0369541e252c" category="paragraph">所需的安裝和組態步驟可分為三個部分。</block>
+  <block id="a63540c81089e8aba203a4ec3fca1e34" category="list-text">NetApp BlueXP元件的安裝與組態。</block>
+  <block id="cea8383f4f05e092150fa04d9f1ee3d3" category="paragraph">在資料保護解決方案的初始設定期間、必須執行一次。</block>
+  <block id="5a85e0b51a7c09f3d577daa8e9835407" category="list-text">HANA主機與資料庫的準備步驟。</block>
+  <block id="18bb679328d91f80efff788b065d944f" category="paragraph">必須針對每個HANA資料庫執行、並受到CBA的保護。</block>
+  <block id="e9ef2a02d166bf8ed7876d4e7dc88416" category="list-text">Cloud Backup for Applications中的組態步驟。</block>
+  <block id="75c92150892f2d4c17df992f8096f219" category="section-title">NetApp BlueXP元件的安裝與組態</block>
+  <block id="92b7a3ab913ea59c6ce9467cb380819a" category="inline-link">保護雲端原生應用程式資料| NetApp文件</block>
+  <block id="1061c31d63970f580dad981c138f6cc2" category="paragraph">中說明NetApp BlueXP元件的安裝與組態<block ref="6862974af2059654bc29bac37c3bc175" category="inline-link-rx"></block>。</block>
+  <block id="1770400ac95f35d610bab96e74801a52" category="list-text">註冊BlueXP並設定NetApp帳戶。</block>
+  <block id="15390e1b4661159bb7bee8d815e157af" category="list-text">在Azure vNet上部署BlueXP連接器。</block>
+  <block id="53c5ef0cb579c8ffc597617104312d57" category="list-text">在Azure NetApp Files BlueXP中建立工作環境以利執行。</block>
+  <block id="3cd26b07ca19722ef47d302728108faf" category="inline-image-macro">本映像說明本節所述的解決方案架構。</block>
+  <block id="2a6da5628dda0163c6d9214937a1ea41" category="paragraph"><block ref="2a6da5628dda0163c6d9214937a1ea41" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6123b7673675149babeebcdc84a180d4" category="section-title">HANA主機與資料庫的準備步驟</block>
+  <block id="814bf8ab71afc2e973a78a9f7e0dc3bf" category="list-text">在HANA主機上安裝Java 11。HANA資料庫主機上必須安裝Java 11（64位元）Oracle Java或OpenJDK。</block>
+  <block id="0c2152cd382775e339419f488f2e9b0d" category="inline-link-macro">部署適用於SAP HANA的Cloud Backup for Applications外掛程式| NetApp文件</block>
+  <block id="ae26e2cc27be17d3e816bea1e3b61ef6" category="list-text">如所述、在HANA主機上部署CBA HANA外掛程式 <block ref="25aebe83b4142c13ba3b9a620d3384c7" category="inline-link-macro-rx"></block>。</block>
+  <block id="3af5b8a35b7bc203710a9576b6035876" category="list-text">如下一章所述、在HANA系統資料庫中建立備份使用者。</block>
+  <block id="6ce99abf71ac564f8c4f4c2b68114f06" category="section-title">Cloud Backup for Applications中的組態步驟</block>
+  <block id="92220bc246c6d15a69cf26a2e4331687" category="list-text">將HANA主機新增至Cloud Backup for Applications。</block>
+  <block id="d313f10f860c262003d3847bdace4a4b" category="list-text">Hana使用者儲存區金鑰組態。</block>
+  <block id="7a4d0dfa1e88d1e4b2eec43aa365aa4f" category="list-text">儲存設備佔用空間組態。</block>
+  <block id="e2cc5f1bda0b65cd5b194d1992d5f1b8" category="list-text">為HANA系統建立並指派備份原則。</block>
+  <block id="52106652d2581fa3583604f9fb4f21dd" category="list-text">Snapshot型備份作業。</block>
+  <block id="8d57753ad4db16c562a0d47741b9c38e" category="list-text">檔案型備份作業：</block>
+  <block id="9551c4e14fc66f4a5e195ac0bffd7d83" category="list-text">設定非資料磁碟區備份作業。</block>
+  <block id="c0592bb6ebd116cc70fb695d187e544d" category="list-text">建立並指派備份原則。</block>
+  <block id="08281be540c13a3a1489c0c6844d8822" category="list-text">設定全域非資料磁碟區備份作業。</block>
+  <block id="f665a6f513b11443549a59eefdf0106a" category="list-text">系統詳細資料組態。</block>
+  <block id="7e7cbe1b62172d3af3f51b327aa8feb1" category="paragraph">下一章將詳細說明雲端備份應用程式的組態步驟。</block>
+  <block id="6e88bb167247098664bf7de1f8a00093" category="section-title">在HANA系統資料庫建立備份使用者</block>
+  <block id="c27102dc521fc796e8e6b092a830b329" category="paragraph">NetApp建議在HANA資料庫中設定專屬的資料庫使用者、以便與CBA一起執行備份作業。第二步是針對此備份使用者設定SAP HANA使用者存放區金鑰、此使用者存放區金鑰用於設定Cloud Backup for Applications SAP HANA外掛程式。下圖顯示可用來建立備份使用者的SAP HANA Studio。</block>
+  <block id="9b8fe63aa376defe5ed81b4091862e7a" category="paragraph">所需權限如下：</block>
+  <block id="2dd3a102a5305099f60d0d6cb46d1baa" category="list-text">備份管理</block>
+  <block id="12d6f31b8c6f7fe522c2d557d227988b" category="list-text">目錄讀取</block>
+  <block id="73b93614a88b942739af6e125f33e519" category="list-text">資料庫備份管理</block>
+  <block id="adedb3bbfd94865d8771be527b04a20a" category="list-text">資料庫恢復營運者</block>
+  <block id="fd0896a03e56989f94c9eff80d9f21dc" category="inline-image-macro">此螢幕快照顯示在系統資料庫中建立使用者的位置。</block>
+  <block id="5ae2355832eaa5f2b62e101ab945d7c4" category="paragraph"><block ref="5ae2355832eaa5f2b62e101ab945d7c4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6a000e1efcf0ac6d8df427f25635aea6" category="section-title">將HANA系統新增至Cloud Backup for Application</block>
+  <block id="c4337d17f4d40a5745de18869a60ab3a" category="list-text">在BlueXP中、選取* Protection *&gt;* Backup and recovery *&gt;* Applications*</block>
+  <block id="6f808cf0323c5cd6e8cfc96a70059e37" category="inline-image-macro">此螢幕快照會顯示藍XP畫版、並顯示正確的應用程式路徑。</block>
+  <block id="47b1e126620188686f42fa6e9f7e0649" category="paragraph"><block ref="47b1e126620188686f42fa6e9f7e0649" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5c93ff63465a7535c7090a5361557d65" category="list-text">接下來的螢幕快照會顯示新增第一個HANA系統時的工作流程。如果已有系統新增至Cloud Backup for Applications、則初始畫面為儀表板檢視畫面、並有* Add System*（新增系統）按鈕可新增額外的HANA系統。在這種情況下、步驟5是第一步。按一下*探索應用程式*。</block>
+  <block id="1ea4d8f3432e80e90a598ebe1fc0e19c" category="inline-image-macro">此螢幕快照顯示新增第一個HANA系統時的工作流程。</block>
+  <block id="6336b261a2ef72cb4746572cda2d1f26" category="paragraph"><block ref="6336b261a2ef72cb4746572cda2d1f26" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0085bdf2a8fc61b5dfdfab0fd1e7c54a" category="list-text">按一下* Cloud Native *。</block>
+  <block id="1147e30777d9bedf840f3d9749a8b86c" category="inline-image-macro">此快照說明「混合式與雲端原生」選擇頁面。</block>
+  <block id="76fa378e1b929f358a7f378b9abaf2dc" category="paragraph"><block ref="76fa378e1b929f358a7f378b9abaf2dc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4c2b0eaee9a8fe546790d98b98eb42a4" category="list-text">按一下「* SAP HANA *」。</block>
+  <block id="56e91e0a62d57fbd3e90c9e9d0fe8683" category="paragraph"><block ref="56e91e0a62d57fbd3e90c9e9d0fe8683" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9f1cbebf4b75113de89091e21dc968ef" category="list-text">在System Details（系統詳細資料）畫面中、選取系統類型：Hana單一容器或多租戶資料庫容器。提供HANA系統的SID、並輸入任意文字做為系統名稱。</block>
+  <block id="26650e5912452446800c0c876f71dd17" category="paragraph">下列螢幕快照顯示SAP HANA系統PR1的組態。</block>
+  <block id="93d95309d344bc074a824f3f5e8e884e" category="inline-image-macro">此螢幕快照顯示SAP HANA系統PR1的組態。</block>
+  <block id="d5a79ccf51c92db9ed4f08daedb58c83" category="paragraph"><block ref="d5a79ccf51c92db9ed4f08daedb58c83" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ba7a2759dd24bac9aa467b69a976e351" category="list-text">按一下*新增外掛主機*以新增HANA資料庫主機。通常會使用主機名稱。IP位址也能正常運作。連接埠<block ref="0c0cfd9478c6551fbfe74a7acb6fc037" prefix=" " category="inline-code"></block> 是HANA資料庫主機上安裝的HANA外掛程式預設連接埠。如果在外掛程式安裝期間未進行任何變更、則預設連接埠為有效。</block>
+  <block id="ddafe7f4e4e0ee4f775ef5ca371ef10d" category="admonition">對於HANA多主機系統、您只需要新增執行系統資料庫的主機。</block>
+  <block id="ddddbe1495b6764c0507a178f3a405f9" category="inline-image-macro">此螢幕快照顯示「Add-Plug-in Host selection」（附加外掛程式主機選擇）畫面。</block>
+  <block id="e7d1260f91202acae5eb1c24fd130ef6" category="paragraph"><block ref="e7d1260f91202acae5eb1c24fd130ef6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d701ad31017b4cb5d305fe760f2b7bbd" category="list-text">若要新增HANA資料庫使用者儲存金鑰、請按一下*新增使用者儲存金鑰*。</block>
+  <block id="6b2057a22e4d5c8c15b14d96a0ab0069" category="paragraph">輸入設定HANA資料庫使用者儲存金鑰的資訊。您可以提供任何名稱作為金鑰名稱。系統詳細資料包括IP位址和連接埠、以便使用hdbsql用戶端與系統資料庫進行通訊。對於SAP HANA MDC系統、連接埠<block ref="5dc8d728189bc6b74fc9418c0f01d286" prefix=" " category="inline-code"></block> 是SQL存取系統資料庫的標準連接埠。</block>
+  <block id="d45351f4c3e34d44f55050e815415cc3" category="paragraph">您必須在先前設定的系統資料庫中、提供資料庫使用者的使用者名稱和密碼。Cloud Backup for Applications會使用此資訊自動建立使用者儲存金鑰、並使用金鑰與HANA資料庫進行通訊。</block>
+  <block id="267ff7314c8b6c7b675db561ee524829" category="inline-image-macro">此螢幕快照顯示「新增使用者儲存區金鑰選擇」畫面。</block>
+  <block id="1a3b8a8a0f133172352ecec01fd5b0b4" category="paragraph"><block ref="1a3b8a8a0f133172352ecec01fd5b0b4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="19d2c6ac41ce973e40e9124642bda3cc" category="list-text">在HANA主機上、您可以執行下列命令來檢查金鑰是否正常運作：</block>
+  <block id="bcbc3899172b950d5191415005292d69" category="list-text">單擊*下一步*完成系統詳細資料組態。</block>
+  <block id="0f5df6718f929efdd6e11497e8dd7f97" category="inline-image-macro">此螢幕快照顯示「系統詳細資料」畫面。</block>
+  <block id="5d6c3ec4bc6ffd7bbceecd202a5aa030" category="paragraph"><block ref="5d6c3ec4bc6ffd7bbceecd202a5aa030" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dc3dc94a8a3048db5e837ee5b76a07fe" category="list-text">按一下「*新增儲存設備*」以設定HANA資料庫的儲存佔用空間。</block>
+  <block id="04010c6400fe9c5acae67689beea12ba" category="inline-image-macro">此螢幕快照顯示「儲存設備佔用空間」畫面上的「新增儲存空間」按鈕。</block>
+  <block id="762bc0015b993e34d17678e9e2c46854" category="paragraph"><block ref="762bc0015b993e34d17678e9e2c46854" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b97ab2674a38f3016327d1ad59452528" category="list-text">選取用於HANA系統ANF磁碟區的工作環境和NetApp帳戶。選取HANA系統的資料Volume。在我們的範例中、就是這樣<block ref="a9ab31966b3cda46683b17c75b23aa2c" prefix=" " category="inline-code"></block>。</block>
+  <block id="54bf14e267f14130b541c58a5cb865f0" category="inline-image-macro">此螢幕快照顯示「Add Storage Footprint（新增儲存設備佔用空間）」選擇</block>
+  <block id="e8ccf87b6fd95479e95d1d45f037d987" category="paragraph"><block ref="e8ccf87b6fd95479e95d1d45f037d987" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bd6732d5c68255f02145a0240c18ce4e" category="list-text">單擊* Next*（下一步*）以增加儲存設備佔用空間。</block>
+  <block id="06aaa460e73785ef63cdd5a3f0f9ed49" category="inline-image-macro">此螢幕快照顯示如何新增儲存設備佔用空間。</block>
+  <block id="f9eb0949647f5be4a0cad17b39c13f74" category="paragraph"><block ref="f9eb0949647f5be4a0cad17b39c13f74" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="940e6985ed16a0b1f36e304c90baa1db" category="list-text">檢查組態、然後按一下*「Add System*（新增系統*）」。</block>
+  <block id="40c2769d1fe55ef4360219c34fb81f63" category="inline-image-macro">此螢幕快照顯示如何新增儲存系統。</block>
+  <block id="5a518ad184c2d5c2437f6fa93cce0a80" category="paragraph"><block ref="5a518ad184c2d5c2437f6fa93cce0a80" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8918752d1ec619e23c32fca9a8bfd055" category="inline-image-macro">此螢幕快照顯示結果。</block>
+  <block id="d9b68f76e6094527315ec6c33e2fb039" category="paragraph"><block ref="d9b68f76e6094527315ec6c33e2fb039" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="db8b7c9182cacf3525929195724ca994" category="paragraph">HANA系統現已新增至Cloud Backup for Applications。下一步、您必須設定備份作業。</block>
+  <block id="9eb8160ab961ff265aec75d1c256925b" category="inline-image-macro">此螢幕快照顯示備份作業的設定位置。</block>
+  <block id="a37f6d0a287ef3f5b45a13a68ddc5d9b" category="paragraph"><block ref="a37f6d0a287ef3f5b45a13a68ddc5d9b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="59f2d97617625dbc672afc96e7cc4b8d" category="inline-link-macro">下一步：建立備份原則。</block>
+  <block id="465c301cca65bba81002e0c98328f298" category="paragraph"><block ref="465c301cca65bba81002e0c98328f298" category="inline-link-macro-rx"></block></block>
+  <block id="f7031e2a5bba0a5705e33c068d477f8f" category="list-text">NetApp Cloud Backup for Applications產品文件</block>
+  <block id="67b1c17595959a16b659302b6f9e7c68" category="paragraph"><block ref="67b1c17595959a16b659302b6f9e7c68" category="inline-link-rx"></block></block>
+  <block id="d53a72004974ee8431ee292856c0bba3" category="list-text">解決方案架構、使用Azure NetApp Files 解決方案</block>
+  <block id="504820d5d7de6754afa9ae4ff99a3e43" category="inline-link"><block ref="504820d5d7de6754afa9ae4ff99a3e43" category="inline-link-rx"></block></block>
+  <block id="555beff8adf73d539cb68de46a9549df" category="paragraph"><block ref="555beff8adf73d539cb68de46a9549df" category="inline-link-rx"></block></block>
+  <block id="fb4d860c1938626a4cb9b8f66c6eb6f2" category="cell">2023年3月</block>
+  <block id="8e44a3ecd2d34ebd0399052b6ee88e12" category="sidebar">Anf上的SAP HANA：為應用程式備份雲端備份、以進行備份與還原</block>
+  <block id="a412c94443f5ac6c0322b71de9e01398" category="sidebar">加速備份與複製作業的使用案例與價值</block>
 </blocks>

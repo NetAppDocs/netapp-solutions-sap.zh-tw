@@ -15,10 +15,6 @@ summary: 本節說明如何使用HANA系統複寫來執行備份作業。
 
 link:anf-cba-backup-operations-with-hana-system-replication.html["先前版本：HANA系統複寫的備份作業。"]
 
-
-
-= 使用HANA多主機系統進行備份作業
-
 HANA資料庫執行Snapshot備份的方式與單一主機系統相同。必須在系統資料庫中觸發備份作業SQL命令、並為所有HANA工作節點建立HANA備份儲存點、使每個節點的所有資料磁碟區都保持一致。接下來、儲存Snapshot作業必須在每個資料磁碟區上執行。
 
 

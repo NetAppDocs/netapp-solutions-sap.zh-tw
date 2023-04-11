@@ -4,7 +4,7 @@ permalink: backup/anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-
 keywords: system upgrade, backups, restore 
 summary: 執行備份是任何資料保護策略的關鍵部分。定期排程備份、以確保您能從系統故障中恢復。這是最明顯的使用案例、但也有其他SAP生命週期管理工作、因此加速備份與還原作業至關重要。 
 ---
-= 加速備份與複製作業的使用案例與價值總覽
+= 加速備份與複製作業的使用案例與價值
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

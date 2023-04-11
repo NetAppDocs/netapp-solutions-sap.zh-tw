@@ -10,11 +10,13 @@ entries:
   - title: 使用Azure NetApp Files 支援功能進行備份與恢復
     url: "/backup/anf-cba-backup-and-recovery-using-azure-netapp-files.html"
   - title: 加速備份與複製作業的使用案例與價值
-    entries:
-    - title: 總覽
-      url: "/backup/anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-operations_overview.html"
-    - title: 適用於應用程式的雲端備份架構
-      url: "/backup/anf-cba-cloud-backup-for-applications-architecture.html"
+    url: "/backup/anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-operations_overview.html"
+  - title: 適用於應用程式的雲端備份架構
+    url: "/backup/anf-cba-cloud-backup-for-applications-architecture.html"
+  - title: 適用於SAP HANA的雲端備份
+    url: "/backup/anf-cba-cloud-backup-for-applications-for-sap-hana-on-anf.html"
+  - title: 雲端備份應用程式概念與最佳實務做法
+    url: "/backup/anf-cba-cloud-backup-for-applications-concepts-and-best-practices.html"
   - title: 安裝與組態步驟總覽
     url: "/backup/anf-cba-overview-of-installation-and-configuration-steps.html"
   - title: 建立備份原則

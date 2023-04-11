@@ -13,7 +13,7 @@ summary: 本節說明本解決方案所有元件的安裝與組態。
 :imagesdir: ./../media/
 
 
-link:anf-cba-cloud-backup-for-applications-architecture.html["先前版本：適用於應用程式的雲端備份架構。"]
+link:anf-cba-cloud-backup-for-applications-concepts-and-best-practices.html["上一篇：雲端備份應用程式概念和最佳實務做法。"]
 
 [role="lead"]
 所需的安裝和組態步驟可分為三個部分。

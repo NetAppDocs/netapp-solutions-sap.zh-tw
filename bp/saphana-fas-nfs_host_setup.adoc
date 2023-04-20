@@ -231,7 +231,7 @@ NOTE: SAP Lama需要將/usr/sap/sID目錄變成本機目錄。因此、如果您
 | 通用參數 | NFSv3 | NFSv4. | NFS傳輸大小ONTAP 與功能 | NFS傳輸大小ONTAP 與功能8 
 
 
-| rw、bg、hard、timeo=600、noatime、 | vers = 3、nock、 | vers = 4、minorversion=1、鎖定 | rsize=1048576、wsize=262144、 | rsize=65536、wsize=65536、 
+| rw、bg、hard、timeo=600、noatime、 | nfsver=3 、節點鎖定、 | nfsves=4.1 、鎖定 | rsize=1048576、wsize=262144、 | rsize=65536、wsize=65536、 
 |===
 
 NOTE: 為提升NFSv3的讀取效能、NetApp建議您使用「nconnect = n」掛載選項、此選項適用於SUSE Linux Enterprise Server 12 SP4或更新版本、以及RedHat Enterprise Linux（RHEL）8.3或更新版本。

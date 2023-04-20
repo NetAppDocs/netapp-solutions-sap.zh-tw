@@ -1250,8 +1250,6 @@
   <block id="0614a261ce2e53d5987e97a60496a434" category="cell">NFS傳輸大小ONTAP 與功能</block>
   <block id="54b941646e65c3622af659cd9d965169" category="cell">NFS傳輸大小ONTAP 與功能8</block>
   <block id="1017e4c4798ba77b88c85f3b8c6fdf03" category="cell">rw、bg、hard、timeo=600、noatime、</block>
-  <block id="7f4fbd9239422e6cbff6a5c40524adb3" category="cell">vers = 3、nock、</block>
-  <block id="5ce2764cf9f6ed7aadfe7ba01b6b29a4" category="cell">vers = 4、minorversion=1、鎖定</block>
   <block id="4a09ae73b23148acb0508b47589e3623" category="cell">rsize=1048576、wsize=262144、</block>
   <block id="7d7894f31c9b83146d2bc22185ed5db0" category="cell">rsize=65536、wsize=65536、</block>
   <block id="ae2c578e6abfee06e6c468fd4e7cb392" category="paragraph">若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：</block>
@@ -1341,7 +1339,6 @@
   <block id="2f47d7fd74fc1974289ac9986bf3aadc" category="admonition">SAP Lama需要將/usr/sap/sID目錄變成本機目錄。因此、如果您使用的是SAP Lama、請勿掛載USr/SAP/SID的NFS磁碟區。</block>
   <block id="2d10c7ea8ceb7d4d67cf331de62acb84" category="paragraph">對於NFSv3、您必須關閉NFS鎖定、以免在軟體或伺服器故障時執行NFS鎖定清除作業。</block>
   <block id="d8ad267f2c46ff97a15a2d97678f0e5d" category="cell">rw、bg、hard、timeo=600、noatime</block>
-  <block id="d52686ae129e1d4bbe8cb75712e98f22" category="cell">vers = 3、nock</block>
   <block id="c16b7b6c06ec01825313e31feb82c6d2" category="cell">rsize=1048576、wsize=262144</block>
   <block id="9fdcbaccc733453d8e7687d8e14a4e06" category="cell">rsize=65536、wsize=65536</block>
   <block id="a6b3bab4792cb8cb5eda6f38e11a69e7" category="admonition">為提升NFSv3的讀取效能、NetApp建議您使用「nconnect = n」掛載選項、此選項適用於SUSE Linux Enterprise Server 12 SP4或更新版本、以及RedHat Enterprise Linux（RHEL）8.3或更新版本。</block>
@@ -5859,4 +5856,7 @@
   <block id="7d0603f1cd927eedf5cdee93312e268b" category="paragraph"><block ref="7d0603f1cd927eedf5cdee93312e268b" category="inline-link-macro-rx"></block></block>
   <block id="0f8328591822cd94c86e0d9fa42a479e" category="inline-link-macro">下一步：雲端備份 for Applications for SAP HANA on anf 。</block>
   <block id="2aa507441d0bdacbf0b3c44eb914612f" category="paragraph"><block ref="2aa507441d0bdacbf0b3c44eb914612f" category="inline-link-macro-rx"></block></block>
+  <block id="e2aad9960e8d21643cd0c96d6d0231cc" category="cell">nfsver=3 、節點鎖定、</block>
+  <block id="9bb4ef49da8c49be50e8756f6e99e5fa" category="cell">nfsves=4.1 、鎖定</block>
+  <block id="dae81ce43b95196ee53c797d1ddda090" category="cell">nfsver=3 、無鎖定</block>
 </blocks>

@@ -335,6 +335,9 @@ image:saphana_aff_nfs_image17.jpg["錯誤：缺少圖形影像"]
 | 停用NFSv4數值ID | NFS modify -vserver <vserver_name>-vv4數值ID已停用 
 |===
 
+NOTE: 請注意、停用數字 ID 需要使用者管理、如一節所述 link:saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html["「NFSv4的SAP HANA安裝準備。」"]
+
+
 NOTE: NFSv4網域ID必須設定為所有Linux伺服器（如一節所述）和SVM上的相同值 link:saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html["「NFSv4的SAP HANA安裝準備。」"]
 
 

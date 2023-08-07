@@ -23,7 +23,7 @@ NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭�
 * AFF C250 、 AFF C400 、 AFF C800
 +
 
-NOTE: NetApp AFF C 系列需要 NetApp MTAP 9.13.1 或更新版本
+NOTE: NetApp AFF C 系列需要 NetApp ONTAP 9.13.1 或更新版本
 
 
 

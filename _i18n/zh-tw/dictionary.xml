@@ -5863,5 +5863,5 @@
   <block id="a548c9345f858c0926b5fa0db82b1d29" category="admonition">請注意、停用數字 ID 需要使用者管理、如一節所述 <block ref="19618adae76246007b68ca646cc14e2b" category="inline-link-macro-rx"></block></block>
   <block id="fcb7778cf38a196128c87d1b6e20281e" category="paragraph">NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。</block>
   <block id="7c3d41bb91a832b194d140ed72b101e7" category="list-text">AFF C250 、 AFF C400 、 AFF C800</block>
-  <block id="04e2bd68f6165239df3d6c856c1c6128" category="admonition">NetApp AFF C 系列需要 NetApp MTAP 9.13.1 或更新版本</block>
+  <block id="326f77b6d7cda2b57e0f8e89a8f89959" category="admonition">NetApp AFF C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
 </blocks>

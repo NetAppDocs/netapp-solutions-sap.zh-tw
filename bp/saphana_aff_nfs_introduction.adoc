@@ -15,11 +15,16 @@ summary: NetApp AFF 支援系統產品系列已通過認證、可在量身打造
 
 NetApp公司Nils Bauer和Marco. schö n
 
-NetApp AFF 支援系統產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。通過認證的企業級儲存系統以NetApp ONTAP 的整套軟體為特色。
+NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。
 
 本認證適用於下列機型：
 
 * VA150、VA220、VA250、VA300、VA320 AFF AFF AFF AFF AFF 、 Su A400、S32 A700s、S32 A700、S32 A800、S32 A900 AFF AFF AFF AFF AFF
+* AFF C250 、 AFF C400 、 AFF C800
++
+
+NOTE: NetApp AFF C 系列需要 NetApp MTAP 9.13.1 或更新版本
+
 
 
 如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["獲得認證且支援的SAP HANA硬體目錄"^]。

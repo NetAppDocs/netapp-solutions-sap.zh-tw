@@ -429,8 +429,6 @@
   <block id="1f9b6cb5e6465cc0b4cd03f573daa750" category="paragraph"><block ref="1f9b6cb5e6465cc0b4cd03f573daa750" category="inline-link-macro-rx"></block></block>
   <block id="fd18465573ec21a6218982055981f6b1" category="section-title">儲存效率</block>
   <block id="fef2c24f71a084e813005b395f827515" category="paragraph">SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時壓縮及即時資料壓縮。</block>
-  <block id="c4b8c29f448328e82ce27062b5fd9c28" category="section-title">NetApp Volume Encryption</block>
-  <block id="473b0453336bcd8bf5591681f8f2d0a1" category="paragraph">SAP HANA支援使用NetApp Volume Encryption（NVE）。</block>
   <block id="a662d487b875a4e232a16649f36fb399" category="section-title">服務品質</block>
   <block id="429f30a2f19f5542c01260900f1268d8" category="paragraph">QoS可用於限制共享控制器上特定SAP HANA系統或無SAP應用程式的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。</block>
   <block id="6c86cfdf44739a850a7a1248b66cb537" category="paragraph">在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。</block>
@@ -917,7 +915,6 @@
   <block id="894de544f0eac1207fa7838f54544a87" category="paragraph"><block ref="894de544f0eac1207fa7838f54544a87" category="inline-link-macro-rx"></block></block>
   <block id="cc9ff39c9f631978557ae00fd8f5865d" category="paragraph">SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時資料壓縮及即時資料壓縮等功能。</block>
   <block id="ed6036f9cee51fdd7e2a091bbae50c50" category="paragraph">不支援在HDD型組態中啟用儲存效率功能。</block>
-  <block id="f884253d5c2cf3e0fbcf27b5bd7fc515" category="section-title">NetApp Volume加密</block>
   <block id="7686322155849443f06959615c011bf4" category="paragraph">QoS可用於限制共享控制器上特定SAP HANA系統或其他應用程式的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。</block>
   <block id="7bb98c896519df010b68c8bdb336edc7" category="paragraph">使用「純快照」分層原則是可行的、FabricPool 一般情況下、可在備份目標（例如SnapVault 、SnapMirror或SnapMirror目的地）上使用SnapMirror。</block>
   <block id="b76091ebd2ebee3eceba1434b0e25665" category="admonition">使用支援在一線儲存設備上分層Snapshot複本、或使用支援還原的功能來變更資料庫還原與還原所需的時間、或是建立系統複本或修復系統等其他工作。FabricPool FabricPool在規劃整體生命週期管理策略時、請將此考量納入考量、並檢查是否仍符合使用此功能時的SLA要求。</block>
@@ -1476,7 +1473,6 @@
   <block id="27050e2c290e878d422bc1e9c060c6b4" category="paragraph"><block ref="27050e2c290e878d422bc1e9c060c6b4" category="inline-link-macro-rx"></block></block>
   <block id="38b9ce28746b740067bec85a2b293e2a" category="paragraph"><block ref="38b9ce28746b740067bec85a2b293e2a" category="inline-link-macro-rx"></block></block>
   <block id="0d3eab0b9e96ff06837e191b39218d16" category="paragraph">不支援在HDD組態中啟用儲存效率功能。</block>
-  <block id="908c5fb32cc42e93096371afa23e0dce" category="paragraph">SAP HANA支援使用NetApp Volume Encryption（NVE）。</block>
   <block id="e2a82c831a3a4651879482e858053e83" category="paragraph">QoS可用於限制特定SAP HANA系統的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。</block>
   <block id="6897ebb03b24bb6d57001cdf55ad2d30" category="paragraph">在規模調整過程中、必須判斷非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在正式作業系統的20%至50%之間。</block>
   <block id="8469b8e3a88a77acf02664f233b3cb72" category="paragraph">從ONTAP 供應功能表9開始、QoS會在儲存磁碟區層級上設定、並使用處理量（Mbps）和I/O（IOPS）的最大值。</block>
@@ -5864,4 +5860,7 @@
   <block id="fcb7778cf38a196128c87d1b6e20281e" category="paragraph">NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。</block>
   <block id="7c3d41bb91a832b194d140ed72b101e7" category="list-text">AFF C250 、 AFF C400 、 AFF C800</block>
   <block id="326f77b6d7cda2b57e0f8e89a8f89959" category="admonition">NetApp AFF C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
+  <block id="f7d09d43174d21d3203d6472d2543dc2" category="section-title">NetApp Volume 和 Aggregate Encryption</block>
+  <block id="381cfdf4e70ff7173296a764c78e97ae" category="paragraph">SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。</block>
+  <block id="5d10dd356a9d8604eaed291a9dfeb67e" category="section-title">NetApp Volume 和 Aggregate 加密</block>
 </blocks>

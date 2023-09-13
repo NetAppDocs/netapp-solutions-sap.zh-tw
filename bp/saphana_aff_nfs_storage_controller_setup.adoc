@@ -25,9 +25,9 @@ SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資
 
 
 
-== NetApp Volume Encryption
+== NetApp Volume 和 Aggregate Encryption
 
-SAP HANA支援使用NetApp Volume Encryption（NVE）。
+SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。
 
 
 

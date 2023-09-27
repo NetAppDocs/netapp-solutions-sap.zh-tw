@@ -2,41 +2,6 @@
 section: backup
 title: 備份、還原及災難恢復
 entries:
-- title: Anf上的SAP HANA：為應用程式備份雲端備份、以進行備份與還原
-  type: solutions
-  entries:
-  - title: 總覽
-    url: "/backup/anf-cba-overview.html"
-  - title: 使用Azure NetApp Files 支援功能進行備份與恢復
-    url: "/backup/anf-cba-backup-and-recovery-using-azure-netapp-files.html"
-  - title: 加速備份與複製作業的使用案例與價值
-    url: "/backup/anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-operations_overview.html"
-  - title: 適用於應用程式的雲端備份架構
-    url: "/backup/anf-cba-cloud-backup-for-applications-architecture.html"
-  - title: 適用於SAP HANA的雲端備份
-    url: "/backup/anf-cba-cloud-backup-for-applications-for-sap-hana-on-anf.html"
-  - title: 雲端備份應用程式概念與最佳實務做法
-    url: "/backup/anf-cba-cloud-backup-for-applications-concepts-and-best-practices.html"
-  - title: 安裝與組態步驟總覽
-    url: "/backup/anf-cba-overview-of-installation-and-configuration-steps.html"
-  - title: 建立備份原則
-    url: "/backup/anf-cba-create-backup-policies.html"
-  - title: HANA資料庫的Snapshot型備份作業
-    url: "/backup/anf-cba-snapshot-based-backup-operations-of-the-hana-database.html"
-  - title: HANA資料庫的檔案型備份作業
-    url: "/backup/anf-cba-file-based-backup-operations-of-the-hana-database.html"
-  - title: 非資料磁碟區的Snapshot型備份作業
-    url: "/backup/anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html"
-  - title: 全域非資料磁碟區的Snapshot型備份作業
-    url: "/backup/anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html"
-  - title: 從Snapshot備份還原與還原
-    url: "/backup/anf-cba-restore-and-recovery-from-snapshot-backup.html"
-  - title: 利用HANA系統複寫進行備份作業
-    url: "/backup/anf-cba-backup-operations-with-hana-system-replication.html"
-  - title: 使用HANA多主機系統進行備份作業
-    url: "/backup/anf-cba-backup-operations-with-hana-multiple-host-systems.html"
-  - title: 何處可以找到其他資訊和版本歷程記錄
-    url: "/backup/anf-cba-where-to-find-additional-information-and-version-history.html"
 - title: SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復
   type: solutions
   entries:

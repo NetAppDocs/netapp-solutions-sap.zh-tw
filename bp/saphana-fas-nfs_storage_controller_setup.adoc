@@ -356,15 +356,7 @@ NOTE: 所有Linux伺服器（/'etc/idmapd.conf）和SVM上的NFSv4網域ID必須
 
 NOTE: 如果您使用的是NFSV4.1、則可以啟用和使用pNFS。
 
-如果使用SAP HANA多主機系統、請在SVM上設定NFSv4租用時間、如下表所示。
-
-|===
-| 行動 | 命令 
-
-
-| 設定NFSv4租用時間。 | 設定進階NFS modify -vserver <vserver_name>-v4.x租期-秒10組admin 
-|===
-從HANA 2.0 SPS4開始、HANA提供可控制容錯移轉行為的參數。NetApp建議使用這些HANA參數、而非在SVM層級設定租用時間。參數位於nameserver.ini`範圍內、如下表所示。請在這些區段內保留預設的重試時間間隔10秒。
+如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數 `nameserver.ini` 如下表所示。請在這些區段內保留預設的重試時間間隔10秒。
 
 |===
 | 部分、請參閱nameserver.ini | 參數 | 價值 

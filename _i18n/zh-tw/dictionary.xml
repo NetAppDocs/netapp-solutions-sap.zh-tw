@@ -1013,10 +1013,6 @@
   <block id="4a762e476d9eda379d2de2de4266fb64" category="inline-link-macro">NFSv4的SAP HANA安裝準備。</block>
   <block id="ad357b093f7cd3e6d382bfe20cd1f2bd" category="admonition">所有Linux伺服器（/'etc/idmapd.conf）和SVM上的NFSv4網域ID必須設定為相同的值、如所述 <block ref="7cbf1992917906c8f8c329ad679d4886" category="inline-link-macro-rx"></block></block>
   <block id="e678bbdfe53ad933277605d32601cebe" category="admonition">如果您使用的是NFSV4.1、則可以啟用和使用pNFS。</block>
-  <block id="8a497c5d71c93d9fb0f969b97af6bf05" category="paragraph">如果使用SAP HANA多主機系統、請在SVM上設定NFSv4租用時間、如下表所示。</block>
-  <block id="3228e5563c749aee2e3aacd329eadf42" category="cell">設定NFSv4租用時間。</block>
-  <block id="a1577ab4439c333a27d3a1daf67efe55" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-v4.x租期-秒10組admin</block>
-  <block id="0a1cdfe3de7f309f6c0b04a185658b15" category="paragraph">從HANA 2.0 SPS4開始、HANA提供可控制容錯移轉行為的參數。NetApp建議使用這些HANA參數、而非在SVM層級設定租用時間。參數位於nameserver.ini`範圍內、如下表所示。請在這些區段內保留預設的重試時間間隔10秒。</block>
   <block id="58c8eee50f8f52237271f796e3c1123f" category="cell">部分、請參閱nameserver.ini</block>
   <block id="3ad6e9988864aeae2ef386345946dc6d" category="cell">容錯移轉</block>
   <block id="af175fe1a76f8f5124de60f5d01ca78b" category="cell">normal_retries</block>
@@ -1160,10 +1156,6 @@
   <block id="9d4c39bb98c40111c9c2cda962a5051a" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 65536 set admin</block>
   <block id="c480c17814d28d6a9b00fd06a87dee2a" category="inline-link-macro">「NFSv4的SAP HANA安裝準備。」</block>
   <block id="9fa840f16cd7cf7f80145507faa2a523" category="admonition">NFSv4網域ID必須設定為所有Linux伺服器（如一節所述）和SVM上的相同值 <block ref="19618adae76246007b68ca646cc14e2b" category="inline-link-macro-rx"></block></block>
-  <block id="cd2bd9dcb9cd374f1c6be216bae1bdf6" category="paragraph">如果使用SAP HANA多個主機系統、請在SVM上設定NFSv4租用時間（如下表所示）。</block>
-  <block id="b536e6889ef55581986e4e8b1c67319b" category="cell">設定NFSv4租用時間</block>
-  <block id="7ffdb0b76d7e00eb6b452c2e74026dc6" category="paragraph">從HANA 2.0 SPS4開始、HANA提供可控制容錯移轉行為的參數。NetApp建議使用這些HANA參數、而非在SVM層級設定租用時間。</block>
-  <block id="6db9549748203188275a99dbe3f37e35" category="paragraph">參數位於nameserver.ini`範圍內、如下表所示。請在這些區段內保留預設的重試時間間隔10秒。</block>
   <block id="ea45b1c1ea68b79495fa9e10bf790b3b" category="paragraph"><block ref="ea45b1c1ea68b79495fa9e10bf790b3b" category="inline-link-macro-rx"></block></block>
   <block id="fe772f1f05ae8cbd39b88886e4d0fcf5" category="summary">設定網路時、請遵循下列準則。</block>
   <block id="4d9de89d8dc9bb9db25b8c5a5aa836cc" category="doc">網路設定</block>
@@ -5290,4 +5282,7 @@
   <block id="5d10dd356a9d8604eaed291a9dfeb67e" category="section-title">NetApp Volume 和 Aggregate 加密</block>
   <block id="8e1ca12077e9e911e038655a0c678e91" category="paragraph">第一層機櫃最少可容納 12 個 NVMe SSD 、最多可支援 18 個 SAP HANA 主機。完整配置的機櫃最多可支援48台SAP HANA主機。</block>
   <block id="664e3eacf73f74d7628f38588ee009f2" category="paragraph">第一層機櫃最少可容納 12 個 NVMe SSD 、最多可支援 18 個 SAP HANA 主機。完整配置的機櫃（24個SSD）最多可支援48台SAP HANA主機。同樣適用於AFF 內部磁碟的Same A800系統。</block>
+  <block id="2976619a79e897d24427ec6796aa4a70" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。
+請將這些區段的預設重試時間間隔保持在 10 秒內。</block>
+  <block id="73d4ace7e434b8709f5a930ad845d6d6" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。請在這些區段內保留預設的重試時間間隔10秒。</block>
 </blocks>

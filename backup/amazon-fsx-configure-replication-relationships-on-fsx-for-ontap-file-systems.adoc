@@ -13,8 +13,7 @@ summary: 本節將說明如何針對ONTAP 下列項目建立對等FSX-以利執�
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-backup-replication-with-snapvault_overview.html["上一篇：概述- SnapVault 利用功能進行備份複寫。"]
-
+[role="lead"]
 如需SnapMirror組態選項的詳細資訊、請參閱ONTAP 上的《關於SnapMirror組態選項的資訊》 https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-replication-workflow-concept.html["SnapMirror複寫工作流程（netapp.com）"^]。
 
 * 資料來源FSX: ONTAP 「FsxId00fa9e3c784b6abbb」
@@ -170,4 +169,3 @@ sapcc-hana-svm:PFX_data_mnt00001
                               Snapmirrored
                                       Idle           -         true    -
 ....
-link:amazon-fsx-add-a-backup-svm-to-snapcenter.html["下一步：將備份SVM新增SnapCenter 至"]

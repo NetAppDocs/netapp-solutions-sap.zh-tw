@@ -13,8 +13,7 @@ summary: 本節說明SnapCenter 初始的驗證組態、包括儲存系統、認
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-configuration.html["上一篇：SnapCenter 版本資訊。"]
-
+[role="lead"]
 初始組態包括下列步驟：
 
 . 儲存系統組態
@@ -257,5 +256,3 @@ image:saphana-br-scs-image51.png["錯誤：缺少圖形影像"]
 image:saphana-br-scs-image52.png["錯誤：缺少圖形影像"]
 
 
-
-link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html["下一步：SnapCenter SAP HANA資料庫備份的資源專屬組態。"]

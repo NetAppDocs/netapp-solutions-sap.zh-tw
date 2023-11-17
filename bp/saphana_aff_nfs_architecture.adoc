@@ -13,8 +13,7 @@ summary: SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接�
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_introduction.html["上一篇：SAP HANA on NetApp All Flash FAS Sing Systems with NFS組態指南。"]
-
+[role="lead"]
 SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存控制器。SAP HANA主機與儲存控制器之間的資料通訊是以NFS傳輸協定為基礎。在交換器或網路介面卡（NIC）故障時、需要備援交換基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。
 
 交換器可能會將個別連接埠效能與連接埠通道集合起來、以便在主機層級顯示為單一邏輯實體。
@@ -103,5 +102,3 @@ image:saphana_aff_nfs_image7.png["錯誤：缺少圖形影像"]
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
 
 image:saphana_aff_nfs_image8.png["錯誤：缺少圖形影像"]
-
-link:saphana_aff_nfs_storage_sizing.html["下一步：儲存規模調整。"]

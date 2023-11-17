@@ -13,7 +13,8 @@ summary: 本節說明SAP HANA主機專屬的儲存網路設定。
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html["先前：基礎架構設定與組態。"]
+[role="lead"]
+本節說明SAP HANA主機專屬的儲存網路設定。
 
 設定網路時、請遵循下列準則：
 
@@ -53,5 +54,3 @@ image:saphana_aff_nfs_image11.png["錯誤：缺少圖形影像"]
 NOTE: 對於NFS流量所使用的介面、必須關閉LRO（大量接收卸載）。如需所有其他網路組態準則、請參閱SAP HANA的相關VMware最佳實務做法指南。
 
 image:saphana_aff_nfs_image12.png["錯誤：缺少圖形影像"]
-
-link:saphana_aff_nfs_time_synchronization.html["下一步：時間同步。"]

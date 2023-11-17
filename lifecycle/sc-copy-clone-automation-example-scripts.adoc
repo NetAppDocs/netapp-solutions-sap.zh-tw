@@ -13,8 +13,7 @@ summary: 在本文件中、有兩個指令碼可用於進一步自動化SnapCent
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html["先前版本：SAP HANA系統使用儲存快照備份來重新整理作業工作流程。"]
-
+[role="lead"]
 在本文件中、有兩個指令碼可用於進一步自動化SnapCenter 建立及複製刪除作業。
 
 * 指令碼「shc-system-refresh.sh」用於系統更新和系統複製工作流程、以執行HANA資料磁碟區的掛載和卸載作業、以及HANA資料庫的還原和關機作業。
@@ -173,4 +172,3 @@ ss1adm@hana-1:/mnt/sapcc-share/SAP-System-Refresh>
 ....
 CLONED_VOLUMES_MOUNT_PATH=192.168.175.117:/SS1_data_mnt00001_Clone_05112206115489411
 ....
-link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["下一步：SAP HANA系統更新SnapCenter 功能以實現更新。"]

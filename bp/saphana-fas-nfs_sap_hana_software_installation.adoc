@@ -13,7 +13,8 @@ summary: 以下是SAP HANA軟體安裝需求。
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_sap_hana_data_volume_size.html["先前版本：SAP HANA資料Volume大小。"]
+[role="lead"]
+以下是SAP HANA軟體安裝需求。
 
 
 
@@ -83,5 +84,3 @@ Enter Installation Path [/hana/shared]:
 ....
 . 確認安裝工具已在所有工作主機和待命主機上安裝所有選取的元件。
 
-
-link:saphana-fas-nfs_adding_additional_data_volume_partitions.html["下一步：新增額外的資料Volume分割區。"]

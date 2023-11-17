@@ -13,8 +13,7 @@ summary: 本節說明NetApp儲存系統的組態。您必須根據對應Data ONT
 :imagesdir: ./../media/
 
 
-link:saphana_aff_fc_time_synchronization.html["先前：時間同步。"]
-
+[role="lead"]
 本節說明NetApp儲存系統的組態。您必須根據對應Data ONTAP 的《安裝與組態指南》完成主要安裝與設定。
 
 
@@ -423,5 +422,3 @@ lun map -path /vol/FC5_log_mnt00002/FC5_log_mnt00002  -igroup HANA-FC5
 lun map -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002  -igroup HANA-FC5
 ....
 
-
-link:saphana_aff_fc_sap_hana_storage_connector_api.html["下一步：SAP HANA儲存連接器API。"]

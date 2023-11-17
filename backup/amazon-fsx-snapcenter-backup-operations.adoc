@@ -13,7 +13,8 @@ summary: 本節說明如何建立隨需Snapshot備份和隨需區塊完整性檢
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-snapcenter-configuration.html["上一篇：SnapCenter 版本資訊。"]
+[role="lead"]
+您可以建立隨需 Snapshot 備份和隨需區塊完整性檢查作業。
 
 
 
@@ -119,4 +120,3 @@ drwxr-xr-x 4 pfxadm sapsys       4096 Feb 21 15:02 ..
 -rw-r----- 1 pfxadm sapsys 3825213440 Feb 22 12:55 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_1_1
 hana-1:~ #
 ....
-link:amazon-fsx-backup-of-non-data-volumes.html["下一步：備份非資料磁碟區。"]

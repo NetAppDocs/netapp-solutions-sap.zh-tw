@@ -13,8 +13,7 @@ summary: 本節說明如何設定備份複寫原則。
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-add-a-backup-svm-to-snapcenter.html["上一步：將備份SVM新增SnapCenter 至SVM。"]
-
+[role="lead"]
 您必須設定備份複寫原則、如下所示：
 
 . 提供原則名稱。
@@ -50,5 +49,3 @@ image:amazon-fsx-image84.png["錯誤：缺少圖形影像"]
 現在SnapCenter 已設定新的功能更新原則。
 
 image:amazon-fsx-image85.png["錯誤：缺少圖形影像"]
-
-link:amazon-fsx-add-a-policy-to-resource-protection.html["下一步：新增原則至資源保護。"]

@@ -13,8 +13,7 @@ summary: 備份作業一律會在主要SAP HANA主機上執行。備份作業所
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-sap-hana-system-replication-overview.html["上一篇：SAP HANA系統複寫總覽。"]
-
+[role="lead"]
 備份作業一律會在主要SAP HANA主機上執行。備份作業所需的SQL命令無法在次要SAP HANA主機上執行。
 
 對於SAP HANA備份作業、主要和次要SAP HANA主機是單一實體。他們共享相同的SAP HANA備份目錄、無論備份是在主要或次要SAP HANA主機上建立、都會使用備份來進行還原和還原。
@@ -30,5 +29,3 @@ image:saphana-sr-scs-image3.png["錯誤：缺少圖形影像"]
 在主機2上建立的備份可直接在儲存層還原。如果您必須使用在主機1上建立的備份、則必須將備份從主機1儲存磁碟區複製到主機2儲存磁碟區。轉送恢復會使用來自兩個主機的記錄備份。
 
 image:saphana-sr-scs-image4.png["錯誤：缺少圖形影像"]
-
-link:saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html["下一步：SnapCenter SAP系統複寫的組態選項。"]

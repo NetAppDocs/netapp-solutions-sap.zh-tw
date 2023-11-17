@@ -13,12 +13,7 @@ summary: 下列三個螢幕擷取畫面顯示資料、記錄備份和共用磁�
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html["先前：Anf跨區域複寫的組態步驟。"]
-
-
-
-== 複寫狀態
-
+[role="lead"]
 下列三個螢幕擷取畫面顯示資料、記錄備份和共用磁碟區的複寫狀態。
 
 Volume複寫延遲時間是瞭解RPO期望的實用價值。例如、記錄備份磁碟區複寫會顯示最長延遲時間58分鐘、這表示最大RPO的值相同。
@@ -47,5 +42,3 @@ image:saphana-dr-anf_image16.png["錯誤：缺少圖形影像"]
 NOTE: 在來源和目標磁碟區中、也會建立SnapMirror Snapshot複本、以用於重新同步和複寫更新作業。從HANA資料庫的觀點來看、這些Snapshot複本的應用程式不一致；只有透過AzaCSnap建立的應用程式一致快照、才能用於HANA恢復作業。
 
 image:saphana-dr-anf_image17.png["錯誤：缺少圖形影像"]
-
-link:saphana-dr-anf_disaster_recovery_testing_overview.html["下一步：災難恢復測試。"]

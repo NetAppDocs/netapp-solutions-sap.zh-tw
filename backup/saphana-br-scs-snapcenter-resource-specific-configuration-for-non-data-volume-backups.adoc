@@ -13,8 +13,7 @@ summary: 非資料磁碟區的備份是SAP HANA外掛程式的整合部分。只
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html["先前版本：SnapCenter SAP HANA資料庫備份的資源專屬組態。"]
-
+[role="lead"]
 非資料磁碟區的備份是SAP HANA外掛程式的整合部分。只要資料庫安裝資源和必要的記錄仍然可用、保護資料庫資料磁碟區就足以將SAP HANA資料庫還原至指定時間點。
 
 若要從必須還原其他非資料檔案的情況中恢復、NetApp建議針對非資料磁碟區開發額外的備份策略、以擴充SAP HANA資料庫備份。視您的特定需求而定、非資料磁碟區的備份可能會因排程頻率和保留設定而異、因此您應該考慮非資料檔案的變更頻率。例如HANA Volume「/HANA /共享」包含可執行檔、但也包含SAP HANA追蹤檔。雖然可執行檔只有在SAP HANA資料庫升級時才會變更、但SAP HANA追蹤檔可能需要較高的備份頻率、才能使用SAP HANA來分析問題情況。
@@ -87,5 +86,3 @@ NetApp SSC和SAP Lama可以直接使用NetApp SSC建立隨需Snapshot複本、�
 NOTE: 在正常備份作業中、NetApp不建議納入記錄磁碟區。如果您從備份還原記錄磁碟區、它會覆寫上次作用中的重作記錄、並防止資料庫恢復到最近的狀態。
 
 可滿足所有這些需求的資源群組。SnapCenter共有三種資源以SnapCenter 供使用：資料磁碟區、記錄磁碟區和共享磁碟區各有一種資源。資源會放入資源群組、然後在資源群組層級上定義保護。在資源群組保護中、自訂Snapshot名稱必須在開頭以VCM定義。
-
-link:saphana-br-scs-database-backups.html["下一步：資料庫備份。"]

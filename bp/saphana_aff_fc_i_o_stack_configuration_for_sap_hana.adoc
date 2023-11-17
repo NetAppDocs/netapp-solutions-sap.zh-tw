@@ -13,8 +13,7 @@ summary: 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並�
 :imagesdir: ./../media/
 
 
-link:saphana_aff_fc_host_setup.html["上一步：主機設定。"]
-
+[role="lead"]
 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。
 
 NetApp進行效能測試、以定義理想的價值。下表列出從效能測試中推斷的最佳值。
@@ -65,4 +64,3 @@ python setParameter.py -set=SYSTEM/global.ini/fileio/async_read_submit=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_active=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_blocks=all
 ....
-link:saphana_aff_fc_sap_hana_software_installation.html["下一步：SAP HANA軟體安裝。"]

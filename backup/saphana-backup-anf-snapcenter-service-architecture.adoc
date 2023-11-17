@@ -13,8 +13,7 @@ summary: 支援統一化、可擴充的平台、提供應用程式一致的資�
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-the-netapp-solution.html["上一篇：NetApp解決方案。"]
-
+[role="lead"]
 支援統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援支援集中控制與監督、同時委派使用者管理應用程式專屬的備份與還原作業的能力。SnapCenter
 
 利用NetApp Cloud Manager軟體做為UI、並管理認證資料以利執行。SnapCenter Azure NetApp Files此功能可在Kubernetes叢集內執行、並透過Cloud Manager Connector與NetApp Cloud Manager進行通訊。SnapCenter利用HANA hdbsql用戶端和使用效益管理API執行的還原儲存作業、可觸發HANA資料庫作業。SnapCenter Azure NetApp Files Azure NetApp Files
@@ -28,5 +27,3 @@ image:saphana-backup-anf-image7.jpg["錯誤：缺少圖形影像"]
 安裝支援服務至少需要兩部虛擬機器（VM）、一部VM for the Cloud Manager Connector、另一部VM在非HA組態中執行Kubernetes叢集。SnapCenter在高可用度（HA）組態中設定「支援服務」時、還需要另外兩個VM SnapCenter 。
 
 image:saphana-backup-anf-image8.jpg["錯誤：缺少圖形影像"]
-
-link:saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html["下一步：SnapCenter SAP HANA備份解決方案。"]

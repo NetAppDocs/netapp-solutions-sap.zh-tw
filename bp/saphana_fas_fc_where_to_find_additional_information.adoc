@@ -13,8 +13,7 @@ summary: 若要深入瞭解本文件所述資訊、請參閱下列文件和/或�
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html["上一篇：為SAP HANA單一主機系統新增額外的資料Volume分割區。"]
-
+[role="lead"]
 若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
 
 * 在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議
@@ -64,5 +63,3 @@ https://www.netapp.com/us/documentation/index.aspx["https://www.netapp.com/us/do
 http://www.netapp.com/us/solutions/applications/sap/index.aspx["www.netapp.com/us/solutions/applications/sap/index.aspx#sap-hana"^]
 
 
-
-link:saphana_fas_fc_update_history.html["下一步：更新歷程記錄。"]

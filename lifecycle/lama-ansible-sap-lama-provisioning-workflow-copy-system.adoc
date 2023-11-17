@@ -13,8 +13,6 @@ summary: 在本章中、我們將簡短討論系統複製工作流程和輸入�
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html["上一篇：SAP Lama取消資源配置工作流程-系統破壞。"]
-
 [role="lead"]
 下圖重點說明使用系統複製工作流程執行的主要步驟。
 
@@ -57,5 +55,3 @@ image:lama-ansible-image47.png["此螢幕快照會顯示Lama Systems畫面以及
 必須手動採用此方法、才能在系統銷毀程序期間執行掛機前的步驟、因為會設定限制並防止執行。
 
 image:lama-ansible-image48.png["此螢幕快照會顯示「Lama Systems」（Lama系統）畫面及系統詳細資料、並勾選「Use Custom Processing Process（使用自訂處理程序）」核取方塊。"]
-
-link:lama-ansible-sap-lama-provisioning-workflow-system-refresh.html["下一步：SAP Lama資源配置工作流程-系統更新。"]

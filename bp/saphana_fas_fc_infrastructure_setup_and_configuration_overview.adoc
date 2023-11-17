@@ -13,8 +13,7 @@ summary: 以下各節提供SAP HANA基礎架構的設定與組態準則。
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_storage_sizing.html["上一篇：儲存規模調整。"]
-
+[role="lead"]
 以下各節提供SAP HANA基礎架構的設定與組態準則。其中包含設定SAP HANA所需的所有步驟。系統會建立SVM來裝載資料。在這些章節中、使用下列組態範例：
 
 * Hana系統的SID=SS3和ONTAP SES9.7或更早版本
@@ -29,5 +28,3 @@ link:saphana_fas_fc_storage_sizing.html["上一篇：儲存規模調整。"]
 
 
 
-
-link:saphana_fas_fc_san_fabric_setup.html["下一步：SAN架構設定。"]

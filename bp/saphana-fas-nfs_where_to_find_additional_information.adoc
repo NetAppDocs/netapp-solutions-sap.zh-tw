@@ -13,8 +13,7 @@ summary: 若要深入瞭解本文件所述資訊、請參閱下列文件和/或�
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_adding_additional_data_volume_partitions.html["上一步：新增額外的資料Volume分割區。"]
-
+[role="lead"]
 若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
 
 * 在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議 http://www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf["www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf"^]
@@ -30,5 +29,3 @@ link:saphana-fas-nfs_adding_additional_data_volume_partitions.html["上一步：
 * NetApp FAS 解決方案儲存系統資源 https://mysupport.netapp.com/info/web/ECMLP2676498.html["https://mysupport.netapp.com/info/web/ECMLP2676498.html"^]
 * SAP HANA軟體解決方案 http://www.netapp.com/us/solutions/applications/sap/index.aspx["www.netapp.com/us/solutions/applications/sap/index.aspx#sap-hana"^]
 
-
-link:saphana-fas-nfs_update_history.html["下一步：更新歷程記錄。"]

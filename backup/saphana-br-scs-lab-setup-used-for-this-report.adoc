@@ -13,8 +13,7 @@ summary: 本技術報告所使用的實驗室設定包含五種不同的SAP HANA
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-concepts-and-best-practices.html["上一篇：SnapCenter 概念與最佳實務做法。"]
-
+[role="lead"]
 本技術報告所使用的實驗室設定包含五種不同的SAP HANA組態：
 
 * * MS1.*
@@ -61,5 +60,3 @@ link:saphana-br-scs-snapcenter-concepts-and-best-practices.html["上一篇：Sna
 下圖顯示實驗室設定。
 
 image:saphana-br-scs-image21.png["錯誤：缺少圖形影像"]
-
-link:saphana-br-scs-snapcenter-configuration.html["下一步：SnapCenter 功能組態。"]

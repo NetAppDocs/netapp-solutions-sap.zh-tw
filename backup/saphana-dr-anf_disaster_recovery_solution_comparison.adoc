@@ -13,8 +13,7 @@ summary: 全方位的災難恢復解決方案必須能讓客戶從主要站台�
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_data_protection_overview_overview.html["上一篇：SAP HANA災難恢復功能Azure NetApp Files 概述。"]
-
+[role="lead"]
 全方位的災難恢復解決方案必須能讓客戶從主要站台的完整故障中恢復。因此、資料必須傳輸至次要站台、而且在站台故障時、必須有完整的基礎架構才能執行必要的正式作業SAP HANA系統。視應用程式的可用度需求和您想要保護的災難類型而定、必須考慮採用雙站台或三站台災難恢復解決方案。
 
 下圖顯示一般組態、其中資料會在同一個Azure區域內同步複寫到第二個可用區域。短距離可讓您同步複寫資料、以達到零的RPO（通常用於提供HA）。
@@ -139,4 +138,3 @@ image:saphana-dr-anf_image5.png["錯誤：缺少圖形影像"]
 
 | 災難恢復測試、不影響RTO和RPO | 是的 | 否 | 否 
 |===
-link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["下一步：使用SAP HANA進行ANF跨區域複寫。"]

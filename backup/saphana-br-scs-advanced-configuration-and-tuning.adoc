@@ -13,8 +13,7 @@ summary: 本頁說明完成組態設定與調校所需的各種作業。
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-restore-and-recovery.html["上一篇：還原與還原。"]
-
+[role="lead"]
 本節說明客戶可用來調整SnapCenter 功能的組態和調校選項、以因應其特定需求。並非所有設定都適用於所有客戶案例。
 
 
@@ -217,5 +216,3 @@ PS C:\Users\scadmin> Check the configuration using the Windows Task Scheduler.
 image:saphana-br-scs-image158.png["錯誤：缺少圖形影像"]
 
 
-
-link:saphana-br-scs-where-to-find-additional-information.html["下一步：何處可找到其他資訊。"]

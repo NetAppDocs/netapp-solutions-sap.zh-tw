@@ -13,8 +13,6 @@ summary: 在本文件的範例部署和工作流程執行期間、會使用下�
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-provisioning-workflow-system-refresh.html["先前：AP Lama資源配置工作流程-系統更新。"]
-
 [role="lead"]
 在本文件的範例部署和工作流程執行期間、會使用下列提供者組態檔、執行指令碼和可執行的教戰手冊。
 
@@ -518,4 +516,3 @@ ontapservers:
    snapshotpostfix: " _snap_20221115"
    clonepostfix: "_clone_20221115"
 ....
-link:lama-ansible-conclusion.html["下一步：結論。"]

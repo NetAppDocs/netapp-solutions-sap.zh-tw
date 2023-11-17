@@ -13,8 +13,7 @@ summary: 本節列出執行SAP HANA非資料磁碟區備份組態所需的步驟
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html["先前版本：SAP HANA非資料磁碟區的備份組態。"]
-
+[role="lead"]
 若要設定全域非資料磁碟區的備份組態、請遵循下列步驟：
 
 . 移至SAP HANA Systems、然後按一下「Add（新增）」。
@@ -47,5 +46,3 @@ image:saphana-backup-anf-image44.png["錯誤：缺少圖形影像"]
 image:saphana-backup-anf-image45.png["錯誤：缺少圖形影像"]
 
 
-
-link:saphana-backup-anf-sap-hana-database-snapshot-backups.html["下一步：SAP HANA資料庫Snapshot備份。"]

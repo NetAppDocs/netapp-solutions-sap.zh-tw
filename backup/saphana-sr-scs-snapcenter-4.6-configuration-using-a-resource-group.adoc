@@ -13,8 +13,7 @@ summary: 支援針對採用HANA系統複寫的HANA系統進行自動探索。Sna
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html["上一篇：SnapCenter SAP系統複寫的功能選項。"]
-
+[role="lead"]
 支援針對採用HANA系統複寫的HANA系統進行自動探索。SnapCenter在備份作業期間、支援識別主要和次要HANA主機的邏輯、同時處理兩個HANA主機之間的保留管理。SnapCenter此外、HANA系統複寫環境現在也能使用自動化還原與還原功能。
 
 
@@ -161,5 +160,3 @@ image:saphana-sr-scs-image26.png["錯誤：缺少圖形影像"]
 還原與還原作業針對SnapCenter 某個資源群組組組態、與自動探索的非系統複寫設定相同。所有的還原和自動還原選項均可供使用。如需詳細資料、請參閱技術報告 https://www.netapp.com/us/media/tr-4614.pdf["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]。
 
 一節將說明從其他主機建立的備份進行還原作業 link:saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html["從在其他主機上建立的備份還原及還原"]。
-
-link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html["下一步：SnapCenter 以單一資源進行的功能組態。"]

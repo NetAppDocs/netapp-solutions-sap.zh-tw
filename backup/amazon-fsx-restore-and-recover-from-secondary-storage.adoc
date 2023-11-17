@@ -13,8 +13,7 @@ summary: 本節說明如何從次要儲存設備還原及還原。
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-create-a-backup-with-replication.html["上一篇：使用複寫建立備份。"]
-
+[role="lead"]
 若要從次要儲存設備還原及還原、請依照下列步驟進行：
 
 若要擷取次要儲存設備上所有備份的清單、請SnapCenter 在「還原拓撲」檢視中、按一下「Vault複本」、然後選取備份、再按一下「還原」。
@@ -26,5 +25,3 @@ image:amazon-fsx-image92.png["錯誤：缺少圖形影像"]
 image:amazon-fsx-image93.png["錯誤：缺少圖形影像"]
 
 進一步的還原和還原步驟與先前在主要儲存設備上進行Snapshot備份所涵蓋的步驟相同。
-
-link:amazon-fsx-where-to-find-additional-information.html["下一步：何處可以找到其他資訊和版本歷程記錄。"]

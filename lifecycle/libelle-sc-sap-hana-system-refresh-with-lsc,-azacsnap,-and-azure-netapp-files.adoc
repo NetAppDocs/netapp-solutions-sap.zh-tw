@@ -13,8 +13,7 @@ summary: 在Azure上使用Azure NetApp Files 適用於SAP HANA、Oracle和DB2的
 :imagesdir: ./../media/
 
 
-link:libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html["上一篇：SAP HANA系統更新LSC與SnapCenter 功能"]
-
+[role="lead"]
 使用 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-solution-architectures["SAP HANA適用的Azure NetApp Files"^]Azure上的Oracle和DB2、可ONTAP 透過原生的Microsoft Azure NetApp Files 支援服務、為客戶提供NetApp的進階資料管理和資料保護功能。 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction["AzAcSnap"^] 是SAP系統快速重新整理作業的基礎、可為SAP HANA和Oracle系統建立應用程式一致的NetApp Snapshot複本（AzAcSnap目前不支援DB2）。
 
 Snapshot複製備份是隨需建立或定期建立的、作為備份策略的一部分、之後即可有效率地複製到新的磁碟區、並用於快速重新整理目標系統。AzAcSnap提供必要的工作流程、可建立備份並將其複製到新磁碟區、而Libelle SystemCopy則會執行完整端點對端點系統更新所需的處理前及後置處理步驟。
@@ -241,5 +240,3 @@ image:libelle-sc-image38.jpg["錯誤：缺少圖形影像"]
 複製階段結束後、LSC會繼續執行後續階段的所有已定義步驟。當系統重新整理程序完全完成時、目標系統會重新啟動並執行、而且完全可用。使用本實驗室系統、SAP系統重新整理的總執行時間約為25分鐘、其中複製階段僅需5分鐘。
 
 image:libelle-sc-image39.jpg["錯誤：缺少圖形影像"]
-
-link:libelle-sc-where-to-find-additional-information.html["下一步：何處可以找到其他資訊和版本歷程記錄。"]

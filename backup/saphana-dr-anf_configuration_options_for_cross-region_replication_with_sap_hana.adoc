@@ -13,8 +13,7 @@ summary: 下圖顯示使用ANF跨區域複寫之SAP HANA系統的Volume複寫關
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["先前版本：Anf使用SAP HANA進行跨區域複寫。"]
-
+[role="lead"]
 下圖顯示使用ANF跨區域複寫之SAP HANA系統的Volume複寫關係。使用ANF跨區域複寫時、必須複寫HANA資料和HANA共享磁碟區。如果只複寫HANA資料磁碟區、則一般RPO值的範圍為一天。如果需要較低的RPO值、也必須複寫HANA記錄備份、才能進行轉送恢復。
 
 
@@ -51,4 +50,3 @@ image:saphana-dr-anf_image6.png["錯誤：缺少圖形影像"]
 
 | 轉送恢復 | 不適用 | 過去24小時的+記錄+ Snapshot排程（例如6小時）+ | 過去24小時的+記錄+ Snapshot排程（例如6小時）+ 
 |===
-link:saphana-dr-anf_requirements_and_best_practices.html["下一步：要求與最佳實務做法。"]

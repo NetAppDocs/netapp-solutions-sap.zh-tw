@@ -13,8 +13,7 @@ summary: 本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與Sn
 :imagesdir: ./../media/
 
 
-link:libelle-sc-overview.html["上一步：總覽。"]
-
+[role="lead"]
 本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與SnapCenter 支援SAP的所有資料庫均可整合。不過、我們必須區分SAP Anywhere和SAP HANA、因為SAP HANA提供的集中通訊主機不適用於SAP Anywhere。
 
 SAP Anyca的預設SnapCenter 值為安裝本地的程序、SnapCenter 除了資料庫伺服器的對應資料庫外掛程式、還可從該代理程式進行安裝。
@@ -246,5 +245,3 @@ image:libelle-sc-image21.png["錯誤：缺少圖形影像"]
 下圖顯示使用中央通訊主機時的兩項工作：「NTAP_system_clone _CP」和「NTAP_MNT_recovery _CP」。如您所見、建立Snapshot複本、複製、在目標資料庫伺服器上掛載複本磁碟區、以及還原及還原目標資料庫、所需時間約12分鐘。使用標準安裝時、執行這些步驟所需的時間大致相同。同樣地、Snapshot與NetApp FlexClone技術也能讓這些工作持續快速地完成、而且不受來源資料庫的大小限制。
 
 image:libelle-sc-image22.png["錯誤：缺少圖形影像"]
-
-link:libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html["下一步：SAP HANA系統更新LSC、AzAcSnap和Azure NetApp Files Sz."]

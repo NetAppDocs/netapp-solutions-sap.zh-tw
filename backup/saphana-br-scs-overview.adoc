@@ -106,5 +106,3 @@ NOTE: 圖表顯示HANA伺服器的RAM大小。記憶體中的資料庫大小是�
 
 
 NOTE: 還原與還原時間是根據下列假設來計算。資料庫可還原為250Mbps。每天的記錄檔數為資料庫大小的50%。例如、1TB資料庫每天會建立500MB的記錄檔。恢復速度可達100Mbps。
-
-link:saphana-br-scs-snapcenter-architecture.html["下一步：SnapCenter 架構。"]

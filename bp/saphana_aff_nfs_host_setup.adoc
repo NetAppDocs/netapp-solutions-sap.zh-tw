@@ -13,8 +13,7 @@ summary: 本節所述的所有主機設定步驟均適用於實體伺服器上�
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_storage_controller_setup.html["先前：儲存控制器設定。"]
-
+[role="lead"]
 本節所述的所有主機設定步驟均適用於實體伺服器上的SAP HANA環境、以及在VMware vSphere上執行的SAP HANA。
 
 
@@ -276,5 +275,3 @@ stlrx300s8-5:/ # cat /etc/fstab
 ....
 . 執行「mount–a」、在所有主機上掛載檔案系統。
 
-
-link:saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html["接下來：NFSv4的SAP HANA安裝準備。"]

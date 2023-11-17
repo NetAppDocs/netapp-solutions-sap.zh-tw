@@ -13,8 +13,7 @@ summary: 若要實作有效的災難恢復策略、您必須測試所需的工�
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_monitoring_anf_cross-region_replication.html["上一篇：監控ANF跨區域複寫。"]
-
+[role="lead"]
 若要實作有效的災難恢復策略、您必須測試所需的工作流程。測試可證明策略是否有效、內部文件是否足夠、也可讓系統管理員訓練所需的程序。
 
 ANF跨區域複寫可在不影響RTO和RPO的情況下進行災難恢復測試。災難恢復測試可在不中斷資料複寫的情況下完成。
@@ -39,5 +38,3 @@ ANF跨區域複寫可在不影響RTO和RPO的情況下進行災難恢復測試�
 以下小節將詳細說明這些步驟。
 
 image:saphana-dr-anf_image18.png["錯誤：缺少圖形影像"]
-
-link:saphana-dr-anf_prepare_the_target_host.html["下一步：準備目標主機。"]

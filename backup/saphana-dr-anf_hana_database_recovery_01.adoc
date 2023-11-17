@@ -13,7 +13,8 @@ summary: 以下是HANA資料庫還原的步驟。
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_mount_the_volumes_at_the_target_host.html["先前：在目標主機上掛載磁碟區。"]
+[role="lead"]
+以下是HANA資料庫還原的步驟。
 
 啟動所需的SAP服務。
 
@@ -122,5 +123,3 @@ Backup '/mnt/log-backup/SYSTEMDB/log_backup_0_0_0_0.1589289811148' successfully 
 必須針對系統和租戶資料庫的最新記錄備份檔案執行檢查。
 
 如果「hdbbackupcheck」工具回報最新記錄備份錯誤、則必須移除或刪除最新的記錄備份集。
-
-link:saphana-dr-anf_update_history.html["下一步：更新歷程記錄。"]

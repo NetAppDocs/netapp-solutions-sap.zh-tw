@@ -13,8 +13,6 @@ summary: 若要取消委任複製的系統、必須事先停止並準備好。�
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-provisioning-workflow-clone-system.html["上一篇：SAP Lama資源配置工作流程-複製系統。"]
-
 [role="lead"]
 下圖強調系統銷毀工作流程執行的主要步驟。
 
@@ -54,5 +52,3 @@ image:lama-ansible-image38.png["此螢幕快照會即時顯示系統銷毀工作
 image:lama-ansible-image39.png["此螢幕快照顯示系統銷毀工作流程的記錄頁面。"]
 
 
-
-link:lama-ansible-sap-lama-provisioning-workflow-copy-system.html["下一步：SAP Lama資源配置工作流程-複製系統。"]

@@ -13,8 +13,7 @@ summary: SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_introduction.html["上一篇：FAS 《SAP HANA on NetApp Systems with FCP組態指南》。"]
-
+[role="lead"]
 SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。
 
 不同機型FAS 的產品系列可在儲存層使用。附加至儲存設備的SAP HANA主機數量上限是由SAP HANA效能要求所定義。所需的磁碟櫃數量取決於SAP HANA系統的容量和效能需求。
@@ -96,5 +95,3 @@ image:saphana_fas_fc_image6.png["錯誤：缺少圖形影像"]
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
 
 image:saphana_fas_fc_image7.png["錯誤：缺少圖形影像"]
-
-link:saphana_fas_fc_storage_sizing.html["下一步：儲存規模調整。"]

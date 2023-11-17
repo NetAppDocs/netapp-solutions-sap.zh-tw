@@ -13,8 +13,7 @@ summary: 從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_sap_hana_software_installation.html["先前版本：SAP HANA軟體安裝。"]
-
+[role="lead"]
 從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區。此功能可讓您針對SAP HANA租戶資料庫的資料磁碟區設定兩個以上的LUN、並可擴充至超過單一LUN的大小和效能限制。
 
 
@@ -120,5 +119,3 @@ ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 image:saphana_fas_fc_image28.jpg["錯誤：缺少圖形影像"]
 
 
-
-link:saphana_fas_fc_where_to_find_additional_information.html["下一步：何處可找到其他資訊。"]

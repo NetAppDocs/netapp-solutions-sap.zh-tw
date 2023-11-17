@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html]["先前版本：SAP HANA系統使用LSC、AzAcSnap及Azure NetApp Files 更新。"]
-
+[role="lead"]
 若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
 
 * NetApp 產品文件
@@ -22,14 +21,3 @@ link:libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-fil
 https://docs.netapp.com["https://docs.netapp.com"^]
 
 
-
-
-
-=== 版本歷程記錄
-
-|===
-| 版本 | 日期 | 文件版本歷程記錄 
-
-
-| 1.0版 | 2022年4月 | 初始版本。 
-|===

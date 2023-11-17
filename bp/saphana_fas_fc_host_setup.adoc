@@ -13,8 +13,7 @@ summary: 本文件也包含所使用Linux版本特有的多重路徑組態相關
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_sap_hana_storage_connector_api.html["先前版本：SAP HANA儲存連接器API。"]
-
+[role="lead"]
 設定主機之前、必須先從下載NetApp SAN主機公用程式 http://mysupport.netapp.com/["NetApp支援"^] 並安裝在HANA伺服器上。主機公用程式文件包含其他軟體的相關資訊、這些軟體必須視所使用的FCP HBA而安裝。
 
 本文件也包含所使用Linux版本特有的多重路徑組態相關資訊。本文件說明SLES 15及Red Hat Enterprise Linux 7.6或更新版本所需的組態步驟、如所述 https://library.netapp.com/ecm/ecm_download_file/ECMLP2547958["《Linux主機公用程式7.1安裝與設定指南》"^]。
@@ -384,5 +383,3 @@ stlrx300s8-6:/ # cat /etc/fstab
 
 . 若要掛載檔案系統、請在每個主機上執行「mount–a」命令。
 
-
-link:saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html["接下來：SAP HANA的I/O堆疊組態。"]

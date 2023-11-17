@@ -52,5 +52,3 @@ SAP測試系統的資源配置有多種情境和使用案例、您可能也有�
 採用SAP HANA外掛程式的NetApp SnapCenter 功能可根據應用程式一致的Snapshot備份來配置所需的儲存磁碟區、並可執行所有必要的主機和資料庫作業、直到啟動的SAP HANA資料庫。視使用案例而定、可能需要SAP系統複製、系統複製、系統重新整理或SAP後處理等其他手動步驟。下一節將說明更多詳細資料。
 
 SAP測試系統的全自動化端點對端點資源配置、可透過SAP Landscape Management（Lama）來執行。NetApp Storage Services Connector可整合至SAP Lama、並在儲存層為SAP Lama提供必要的作業。如需詳細資料、請參閱 https://www.netapp.com/us/media/tr-4018.pdf["整合NetApp ONTAP 系統與SAP Landscape Management"^]。
-
-link:sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html["下一步：SAP系統複製、重新整理及複製案例。"]

@@ -13,8 +13,7 @@ summary: 本節將逐步說明SAP HANA資料庫的不同系統更新作業選項
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-automation-example-scripts.html["上一篇：自動化範例指令碼。"]
-
+[role="lead"]
 下節將逐步說明SAP HANA資料庫的不同系統更新作業選項。
 
 
@@ -601,4 +600,3 @@ PolicyName         :
 Clone delete job has been finshed.
 PS C:\NetApp>
 ....
-link:sc-copy-clone-sap-system-clone-with-snapcenter.html["下一步：SAP系統利用SnapCenter 功能進行實體複製。"]

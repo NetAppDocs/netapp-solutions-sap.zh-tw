@@ -13,8 +13,7 @@ summary: NFS版本4及更新版本需要使用者驗證。此驗證可透過使�
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_host_setup.html["上一步：主機設定。"]
-
+[role="lead"]
 NFS版本4及更新版本需要使用者驗證。此驗證可透過使用集中式使用者管理工具（例如輕量型目錄存取傳輸協定（LDAP）伺服器或本機使用者帳戶）來完成。下列各節將說明如何設定本機使用者帳戶。
 
 在SAP HANA軟體開始安裝之前、必須在SAP HANA主機和儲存控制器上手動建立管理使用者「<idadm>'」和「sapsys」群組。
@@ -56,4 +55,3 @@ vserver services unix-user create -vserver <vserver> -user <user name> -id <user
 ....
 vserver services unix-user modify -vserver <vserver> -user root -primary-gid 0
 ....
-link:saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html["接下來：SAP HANA的I/O堆疊組態。"]

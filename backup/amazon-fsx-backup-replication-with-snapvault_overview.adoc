@@ -13,8 +13,7 @@ summary: 在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中�
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-backup-of-non-data-volumes.html["先前：非資料磁碟區的備份。"]
-
+[role="lead"]
 在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中使用第二個FSXfor the Sfor the Sfuse檔案系統來展示HANA資料Volume的備份複寫。
 
 如第章所述 link:amazon-fsx-snapcenter-architecture.html#data-protection-strategy["「資料保護策略」"]、複寫目標必須是ONTAP 另一個可用區域中的第二個FSXfor the Sf2檔案系統、才能避免ONTAP 發生適用於該文件系統的主要FSX故障。此外、HANA共享磁碟區也應複寫至次要FSXfor ONTAP the Sfor the Sf二 檔案系統。
@@ -48,5 +47,3 @@ image:amazon-fsx-image8.png["錯誤：缺少圖形影像"]
 
 
 以下各章將更詳細地說明各個步驟。
-
-link:amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html["下一步：在FSX上設定ONTAP 適用於Sfor Sf供 檔案系統的複寫關係。"]

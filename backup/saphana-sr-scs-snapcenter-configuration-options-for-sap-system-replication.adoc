@@ -13,8 +13,7 @@ summary: 本頁說明SAP系統複寫的組態選項。
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html["先前版本：儲存Snapshot備份與SAP系統複寫。"]
-
+[role="lead"]
 在SAP HANA系統複寫環境中、有兩個選項可用來設定NetApp SnapCenter 功能性軟體的資料保護：
 
 * 包含SAP HANA主機及利用支援更新版本的功能自動探索的支援資源群組。SnapCenter SnapCenter
@@ -51,5 +50,3 @@ image:saphana-sr-scs-image5.png["錯誤：缺少圖形影像"]
 NOTE: 一般而言、NetApp建議使用資源群組組組態選項SnapCenter 搭配使用支援HANA系統複寫的功能來保護HANA系統。只有在以中央外掛主機為基礎的「還原作業」方法為基礎、且HANA外掛程式未部署於HANA資料庫主機上時、才需要使用單SnapCenter 一的「還原資源組態SnapCenter 」。
 
 以下各節將詳細討論這兩個選項。
-
-link:saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html["下一步：SnapCenter 使用資源群組進行的功能組態設定。"]

@@ -13,8 +13,7 @@ summary: 在功能方面、資料庫備份通常是使用每個HANA資料庫的�
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html["先前版本：SnapCenter 非資料磁碟區備份的資源特定組態。"]
-
+[role="lead"]
 在功能方面、資料庫備份通常是使用每個HANA資料庫的資源保護組態中定義的排程來執行。SnapCenter
 
 您可以使用SnapCenter RESIGUI、PowerShell命令列或REST API來執行隨需資料庫備份。
@@ -115,5 +114,3 @@ image:saphana-br-scs-image93.png["錯誤：缺少圖形影像"]
 
 . 在SAP HANA Studio中、新的備份會顯示在備份目錄中。在備份目錄的註解和EBID欄位中、也會使用相同的支援名稱SnapCenter 。
 
-
-link:saphana-br-scs-block-integrity-check.html["下一步：區塊完整性檢查。"]

@@ -13,9 +13,10 @@ summary: SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接�
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_introduction.html["上一篇：SAP HANA on NetApp All Flash FAS Sing Systems with NFS組態指南。"]
+[role="lead"]
+SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存控制器。SAP HANA主機與儲存控制器之間的資料通訊是以NFS傳輸協定為基礎。
 
-SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存控制器。SAP HANA主機與儲存控制器之間的資料通訊是以NFS傳輸協定為基礎。如果交換器或網路介面卡（NIC）發生故障、建議使用備援交換基礎架構來提供容錯SAP HANA主機對儲存設備連線。交換器可能會將個別連接埠效能與連接埠通道集合起來、以便在主機層級顯示為單一邏輯實體。
+如果交換器或網路介面卡（NIC）發生故障、建議使用備援交換基礎架構來提供容錯SAP HANA主機對儲存設備連線。交換器可能會將個別連接埠效能與連接埠通道集合起來、以便在主機層級顯示為單一邏輯實體。
 
 不同機型FAS 的VMware系統產品系列可在儲存層混合搭配、以滿足成長和不同效能與容量需求。可附加至儲存系統的SAP HANA主機數量上限、是由SAP HANA效能要求和所使用的NetApp控制器模式所定義。所需的磁碟櫃數量僅取決於SAP HANA系統的容量和效能需求。下圖顯示八部SAP HANA主機連接至儲存高可用度（HA）配對的組態範例。
 
@@ -98,5 +99,3 @@ image:saphana-fas-nfs_image7.png["錯誤：缺少圖形影像"]
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、如果發生災難容錯移轉、就可以使用。
 
 image:saphana-fas-nfs_image8.png["錯誤：缺少圖形影像"]
-
-link:saphana-fas-nfs_storage_sizing.html["下一步：儲存規模調整。"]

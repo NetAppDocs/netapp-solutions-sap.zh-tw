@@ -13,7 +13,8 @@ summary: 從SAP HANA 2.0 SPS4開始、您可以設定額外的資料磁碟區分
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_sap_hana_software_installation.html["先前版本：SAP HANA軟體安裝。"]從SAP HANA 2.0 SPS4開始、您可以設定額外的資料磁碟區分割、以便為SAP HANA租戶資料庫的資料磁碟區設定兩個以上的磁碟區。您也可以擴充至超過單一磁碟區的大小和效能限制。
+[role="lead"]
+從SAP HANA 2.0 SPS4開始、您可以設定額外的資料磁碟區分割、以便為SAP HANA租戶資料庫的資料磁碟區設定兩個以上的磁碟區。您也可以擴充至超過單一磁碟區的大小和效能限制。
 
 
 NOTE: SAP HANA單一主機和多主機系統可使用兩個以上的個別磁碟區來處理資料磁碟區。您可以隨時新增額外的資料Volume分割區、但這樣做可能需要重新啟動SAP HANA資料庫。
@@ -212,5 +213,3 @@ NOTE: 使用不同的儲存虛擬介面連線至每個資料磁碟區、以確�
 ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 ....
 image:saphana-fas-nfs_image19.jpg["錯誤：缺少圖形影像"]
-
-link:saphana-fas-nfs_where_to_find_additional_information.html["下一步：何處可找到其他資訊。"]

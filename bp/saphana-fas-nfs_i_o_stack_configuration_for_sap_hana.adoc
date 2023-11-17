@@ -13,8 +13,7 @@ summary: 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整IO行為、並針
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html["先前版本：NFSv4的SAP HANA安裝準備。"]
-
+[role="lead"]
 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。
 
 NetApp進行效能測試、以定義理想的價值。下表列出從效能測試中推斷的最佳值。
@@ -65,4 +64,3 @@ python setParameter.py -set=SYSTEM/global.ini/fileio/async_read_submit=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_active=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_blocks=all
 ....
-link:saphana-fas-nfs_sap_hana_data_volume_size.html["下一步：SAP HANA資料Volume大小。"]

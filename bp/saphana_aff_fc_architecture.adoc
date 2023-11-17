@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana_aff_fc_introduction.html["先前版本：TR-4436 -採用AFF Fibre Channel Protocol的NetApp穩定系統上的SAP HANA。"]
-
+[role="lead"]
 SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。
 
 不同機型AFF 的VMware系統產品系列可在儲存層混合搭配、以滿足成長和不同效能與容量需求。可附加至儲存系統的SAP HANA主機數量上限、是由SAP HANA效能要求和所使用的NetApp控制器模式所定義。所需的磁碟櫃數量僅取決於SAP HANA系統的容量和效能需求。
@@ -96,5 +95,3 @@ image:saphana_aff_fc_image6.png["錯誤：缺少圖形影像"]
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
 
 image:saphana_aff_fc_image7.png["錯誤：缺少圖形影像"]
-
-link:saphana_aff_fc_storage_sizing.html["下一步：儲存規模調整。"]

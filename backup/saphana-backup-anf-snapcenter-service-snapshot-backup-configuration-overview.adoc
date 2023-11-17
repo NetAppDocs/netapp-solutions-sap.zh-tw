@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-policy-configuration.html["上一篇：SnapCenter 《支援服務原則組態："]
-
+[role="lead"]
 支援兩種不同的Snapshot備份作業類型：SnapCenter
 
 * 使用Snapshot作業備份SAP HANA資料。
@@ -40,5 +39,3 @@ SAP HANA資料庫資料Volume的備份結合HANA SQL陳述式、以Azure NetApp 
 
 
 
-
-link:saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html["下一步：SAP HANA資料庫備份的備份組態。"]

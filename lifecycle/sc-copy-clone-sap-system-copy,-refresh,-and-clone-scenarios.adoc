@@ -13,8 +13,7 @@ summary: SAP系統複本一詞通常是三種不同程序的同義詞、分別�
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-introduction.html["上一篇：簡介。"]
-
+[role="lead"]
 SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統重新整理、SAP系統複本或SAP系統複製作業。請務必區分不同的作業、因為工作流程和使用案例各不相同。
 
 * * SAP系統重新整理* SAP系統重新整理是以來源SAP系統的資料來重新整理現有目標SAP系統。目標系統通常是SAP傳輸環境的一部分、例如品質保證系統、會以正式作業系統的資料重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。
@@ -29,5 +28,3 @@ SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統重新�
 NetApp也與Libelle合作 https://www.libelle.com["www.libelle.com"^] 整合SnapCenter 以利貝爾系統複製進行的還原複製、以自動化SAP的處理前和後處理。如需詳細的解決方案說明、請參閱 link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-overview.html["利用Libelle SystemCopy自動化SAP系統複製作業"^]。
 
 image:sc-copy-clone-image2.png["錯誤：缺少圖形影像"]
-
-link:sc-copy-clone-use-cases-for-system-refresh-and-cloning.html["下一步：系統更新與複製的使用案例。"]

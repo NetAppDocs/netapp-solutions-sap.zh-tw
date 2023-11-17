@@ -77,5 +77,3 @@ image:saphana_aff_fc_image1.png["錯誤：缺少圖形影像"]
 * http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf["在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議"^]
 * https://launchpad.support.sap.com/["2161991- VMware vSphere組態準則- SAP One Support啟動板（需要登入）"^]
 
-
-link:saphana_aff_fc_architecture.html["下一步：架構。"]

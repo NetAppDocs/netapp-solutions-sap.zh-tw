@@ -13,7 +13,8 @@ summary: 本節說明在單一主機和多主機系統上安裝SAP HANA所需的
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html["先前版本：SAP HANA的I/O堆疊組態。"]
+[role="lead"]
+本節說明在單一主機和多主機系統上安裝SAP HANA所需的準備工作。
 
 
 
@@ -146,5 +147,3 @@ Enter Local Host Name [sapcc-hana-tst-03]:
 ....
 . 確認安裝工具已在所有工作主機和待命主機上安裝所有選取的元件。
 
-
-link:saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html["接下來：為SAP HANA單一主機系統新增額外的資料Volume分割區。"]

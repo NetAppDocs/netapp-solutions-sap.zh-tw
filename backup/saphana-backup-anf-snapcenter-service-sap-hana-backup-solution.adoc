@@ -13,7 +13,8 @@ summary: 本節將說明SnapCenter 《支援服務的不完整支援解決方案
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-architecture.html["上一篇：SnapCenter 《支援服務架構："]
+[role="lead"]
+本節將說明SnapCenter 《支援服務的不完整支援解決方案」的涵蓋範圍。
 
 
 
@@ -108,5 +109,3 @@ image:saphana-backup-anf-image9.png["錯誤：缺少圖形影像"]
 NOTE: SAP針對單一租戶系統推出HANA 2.0 SP1的Snapshot備份支援、針對多個租戶系統推出HANA 2.0 SPS4。
 
 不SnapCenter 支援將資料Snapshot備份與支援還原服務結合、以及使用回溯解決方案進行記錄備份。記錄備份必須設定為寫入檔案系統。
-
-link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html["下一步：SnapCenter 《支援服務概念與最佳實務做法："]

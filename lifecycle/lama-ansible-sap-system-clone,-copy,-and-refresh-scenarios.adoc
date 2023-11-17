@@ -13,8 +13,6 @@ summary:
 :imagesdir: ./../media/
 
 
-link:lama-ansible-introduction.html["上一篇：簡介。"]
-
 [role="lead"]
 SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統複製、SAP系統複本或SAP系統重新整理。請務必區分不同的作業、因為工作流程和使用案例各不相同。
 
@@ -26,5 +24,3 @@ SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統複製�
 下圖說明系統複製、系統複本或系統重新整理作業期間必須執行的主要步驟。紫色方塊表示可整合NetApp儲存功能的步驟。這三項作業都可以使用SAP Lama完全自動化。
 
 image:lama-ansible-image1.png["此圖分別說明系統複製、系統複製及系統重新整理的三個程序時間表。"]
-
-link:lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html["接下來：系統重新整理、複製及複製的使用案例。"]

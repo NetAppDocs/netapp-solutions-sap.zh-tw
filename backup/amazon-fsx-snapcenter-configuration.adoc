@@ -13,7 +13,8 @@ summary: 您必須執行本節中的步驟、才能SnapCenter 設定基礎的功
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-snapcenter-architecture.html["先前版本：SnapCenter 架構。"]
+[role="lead"]
+您必須執行本節中的步驟、才能SnapCenter 設定基礎的功能、並保護HANA資源。
 
 
 
@@ -349,5 +350,3 @@ image:amazon-fsx-image46.png["錯誤：缺少圖形影像"]
 HANA資源組態現已完成、您可以執行備份。
 
 image:amazon-fsx-image47.png["錯誤：缺少圖形影像"]
-
-link:amazon-fsx-snapcenter-backup-operations.html["下一步：SnapCenter 支援不中斷的備份作業。"]

@@ -13,8 +13,7 @@ summary: 本節說明單一主機SAP HANA MDC單租戶系統PR1的組態步驟�
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html["上一篇：SnapCenter 《支援服務Snapshot備份組態總覽："]
-
+[role="lead"]
 本節說明單一主機SAP HANA MDC單租戶系統PR1的組態步驟。對於具有多個租戶的MDC系統而言、這些步驟完全相同。單一容器或多主機系統的差異會反映在對應的組態步驟中。
 
 
@@ -102,5 +101,3 @@ HANA系統總覽畫面會顯示HANA系統及指派的原則。
 image:saphana-backup-anf-image30.png["錯誤：缺少圖形影像"]
 
 
-
-link:saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html["接下來：SAP HANA非資料磁碟區的備份組態。"]

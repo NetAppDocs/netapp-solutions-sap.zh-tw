@@ -13,13 +13,10 @@ summary: 在多種情況下、來源系統的資料必須提供給目標系統�
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html["先前版本：SAP系統複製、複製及重新整理案例。"]
+[role="lead"]
+在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。
 
-
-
-== QA、測試、沙箱或訓練系統的資料更新
-
-在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。
+這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。
 
 image:lama-ansible-image2.png["此影像說明從主要開發環境到暫時性專案分割、修復系統、訓練系統和SANbox系統的環境工作流程。它會顯示系統更新、系統複製和系統複製用於這些不同用途的位置。"]
 
@@ -52,5 +49,3 @@ image:lama-ansible-image4.png["此映像說明使用FlexClone技術從複製系�
 SAP Lama可用來協調整個測試程序、也可負責網路隔離、目標主機維護等。
 
 image:lama-ansible-image5.png["此映像描述一線資料中心的NetApp儲存系統、本機災難恢復資料中心和遠端災難恢復資料中心之間的關係。它們同時透過同步SnapMirror和非同步SnapMirror關係進行連線。"]
-
-link:lama-ansible-netapp-sap-lama-integration-using-ansible.html["下一步：NetApp SAP Lama整合使用Ansible。"]

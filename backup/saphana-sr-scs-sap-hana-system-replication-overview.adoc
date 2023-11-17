@@ -46,5 +46,3 @@ image:saphana-sr-scs-image1.png["錯誤：缺少圖形影像"]
 關於備份需求、您必須能夠在資料中心1正常運作期間、以及在資料中心2的災難恢復期間、建立備份。資料中心1和2提供獨立的備份基礎架構、備份作業會在災難容錯移轉過程中啟動。備份基礎架構通常不會共用、而且無法還原在其他資料中心建立的備份作業。
 
 image:saphana-sr-scs-image2.png["錯誤：缺少圖形影像"]
-
-link:saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html["下一步：儲存Snapshot備份與SAP系統複寫。"]

@@ -13,8 +13,6 @@ summary: 整合方法使用SAP Lama自訂資源配置與作業掛勾、並搭配
 :imagesdir: ./../media/
 
 
-link:lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html["先前：系統重新整理、複製及複製的使用案例。"]
-
 [role="lead"]
 整合方法使用SAP Lama自訂資源配置與作業掛勾、並搭配Ansible教戰手冊來進行NetApp儲存管理。下圖顯示Lama端組態的高階概觀、以及範例實作的對應元件。
 
@@ -31,5 +29,3 @@ image:lama-ansible-image6.png["這是相當複雜的映像、其中有三個方�
 * https://www.ansible.com/integrations/infrastructure/netapp["NetApp Ansible模組"^]
 * https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/bf6b3e43340a4cbcb0c0f3089715c068.html["SAP Lama文件–供應商定義"^]
 
-
-link:lama-ansible-example-implementation.html["下一步：實作範例。"]

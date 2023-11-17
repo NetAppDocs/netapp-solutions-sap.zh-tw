@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-restore-and-recover-from-secondary-storage.html["先前：從次要儲存設備還原及還原。"]
-
+[role="lead"]
 若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
 
 * FSX for NetApp ONTAP 解決方案使用者指南—什麼是Amazon FSX for NetApp ONTAP 呢？
@@ -38,14 +37,3 @@ https://www.netapp.com/pdf.html?item=/media/17111-tr4667.pdf[]
 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-sr-scs-sap-hana-system-replication-overview.html["https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-sr-scs-sap-hana-system-replication-overview.html"^]
 
 
-
-
-
-== 版本歷程記錄
-
-|===
-| 版本 | 日期 | 文件版本歷程記錄 
-
-
-| 1.0版 | 2022年5月 | 初始版本。 
-|===

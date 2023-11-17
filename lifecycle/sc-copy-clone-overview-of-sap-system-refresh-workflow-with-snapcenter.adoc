@@ -13,8 +13,7 @@ summary: 支援各種工作流程、可讓您從任何現有的Snapshot備份管
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-use-cases-for-system-refresh-and-cloning.html["先前：系統重新整理與複製的使用案例。"]
-
+[role="lead"]
 支援各種工作流程、可讓您從任何現有的Snapshot備份管理資料集的複本。SnapCenter這套複製資料集FlexClone Volume可用於從來源系統快速配置HANA資料Volume、並將其附加至目標系統。因此、它非常適合執行QA、測試、沙箱或訓練系統的系統更新作業。
 
 此類實體複製工作流程可處理儲存層上所有必要的作業、並可利用指令碼來執行主機專屬和HANA資料庫專屬的作業。SnapCenter在本文中、我們使用指令碼來執行目標主機上的掛載和卸載作業、以及HANA資料庫的還原和關機作業。利用指令碼進一步自動化的流程可處理所有必要的HANA資料庫作業、但不涵蓋任何必要的SAP後處理步驟。SnapCenterSAP後置處理必須手動執行、或使用協力廠商工具執行。
@@ -56,5 +55,3 @@ NOTE: 先前分割的舊資料磁碟區、必須在儲存系統上手動刪除�
 image:sc-copy-clone-image8.png["錯誤：缺少圖形影像"]
 
 章節 link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["「SAP HANA系統更新SnapCenter 功能與更新功能」"] 提供兩個系統重新整理工作流程的詳細逐步說明。
-
-link:sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html["下一步：SAP系統複製工作流程概述SnapCenter （含）。"]

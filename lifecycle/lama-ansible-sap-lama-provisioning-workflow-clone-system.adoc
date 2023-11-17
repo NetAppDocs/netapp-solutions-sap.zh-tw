@@ -13,8 +13,6 @@ summary: 在本節中、我們將介紹以來源SAP系統HN9搭配HANA資料庫H
 :imagesdir: ./../media/
 
 
-link:lama-ansible-example-implementation.html["上一篇：實作範例。"]
-
 [role="lead"]
 下圖重點說明使用系統複製工作流程執行的主要步驟。
 
@@ -84,5 +82,3 @@ image:lama-ansible-image31.png["更多記錄資訊"]
 
 
 工作流程完成後、複製的SAP系統即已準備就緒、已啟動、並可供使用。
-
-link:lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html["下一步：SAP Lama取消資源配置工作流程-系統破壞。"]

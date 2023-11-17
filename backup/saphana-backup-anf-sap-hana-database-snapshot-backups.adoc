@@ -13,8 +13,7 @@ summary: 利用支援服務、資料庫備份通常是使用原則中定義的�
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html["先前版本：全域非資料磁碟區的備份組態。"]
-
+[role="lead"]
 利用支援服務、資料庫備份通常是使用原則中定義的排程來執行。SnapCenter您也可以使用SnapCenter 「支援服務」UI或REST API來執行隨需資料庫備份。
 
 
@@ -101,5 +100,3 @@ image:saphana-backup-anf-image56.png["錯誤：缺少圖形影像"]
 image:saphana-backup-anf-image57.png["錯誤：缺少圖形影像"]
 
 
-
-link:saphana-backup-anf-file-based-backups-and-block-integrity-check.html["下一步：檔案型備份與區塊完整性檢查。"]

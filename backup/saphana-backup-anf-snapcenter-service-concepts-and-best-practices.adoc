@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: backup/saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html 
 keywords:  
-summary:  
+summary: 您應該瞭解 SnapCenter 服務的概念和最佳實務做法。例如、必須針對備份作業設定各種原則。 
 ---
 = 服務概念與最佳實務做法SnapCenter
 :hardbreaks:
@@ -13,7 +13,8 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html["先前版本：SnapCenter SAP HANA備份解決方案。"]
+[role="lead"]
+您應該瞭解 SnapCenter 服務的概念和最佳實務做法。例如、必須針對備份作業設定各種原則。
 
 
 
@@ -220,5 +221,3 @@ NOTE: 您無法使用目前發行SnapCenter 的版本的支援服務來關閉記
 == Snapshot備份的容量需求
 
 您必須考量儲存層的區塊變更率、相對於傳統資料庫的變更率。由於資料行儲存區的HANA表格合併程序、因此完整的資料表會寫入磁碟、而不只是變更的區塊。如果一天內進行多個Snapshot備份、則客戶群的資料顯示每日變更率介於20%到50%之間。
-
-link:saphana-backup-anf-lab-setup-used-for-this-report.html["下一步：本報告使用的實驗室設定。"]

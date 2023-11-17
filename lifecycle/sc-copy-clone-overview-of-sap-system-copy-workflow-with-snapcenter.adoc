@@ -13,8 +13,7 @@ summary: SAP複製工作流程類似於系統重新整理工作流程的初始�
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html["上一篇：SAP系統更新工作流程概述SnapCenter （含更新功能）。"]
-
+[role="lead"]
 SAP複製工作流程類似於系統重新整理工作流程的初始步驟。包含VMware的流程SnapCenter 包含五個主要步驟、如下圖所示。
 
 . 目標系統的初始安裝與準備。
@@ -25,5 +24,3 @@ SAP複製工作流程類似於系統重新整理工作流程的初始步驟。�
 
 
 image:sc-copy-clone-image9.png["錯誤：缺少圖形影像"]
-
-link:sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html["下一步：概述SAP系統實體複製工作流程。SnapCenter"]

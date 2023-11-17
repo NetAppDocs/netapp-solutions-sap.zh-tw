@@ -13,11 +13,8 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-restore-and-recovery.html["上一篇：還原與還原。"]
-
+[role="lead"]
 若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
 
 * link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_main/backup/saphana-dr-anf_data_protection_overview_overview.html["TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用"]
 
-
-link:saphana-backup-anf-version-history.html["下一步：版本歷程記錄。"]

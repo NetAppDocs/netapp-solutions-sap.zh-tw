@@ -13,8 +13,7 @@ summary: 本節說明HANA MDC單一主機單一租戶系統的還原與還原工
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-file-based-backups-and-block-integrity-check.html["先前版本：檔案型備份與區塊完整性檢查。"]
-
+[role="lead"]
 下節說明HANA MDC單一主機單一租戶系統的還原與還原工作流程。說明多主機系統的差異。
 
 這些範例顯示SAP HANA Studio是執行手動還原的工具。您也可以使用SAP HANA Cockpit或HANA SQL聲明進行還原作業。
@@ -178,5 +177,3 @@ SAP HANA系統已啟動並開始運作。
 
 
 對於具有多個租戶的SAP HANA MDC系統、您必須針對每個租戶重複步驟15至24。
-
-link:saphana-backup-anf-additional-information.html["下一步：何處可找到其他資訊。"]

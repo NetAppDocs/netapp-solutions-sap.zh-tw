@@ -13,7 +13,8 @@ summary: 本節說明SnapCenter 與SAP HANA資源組態與部署相關的概念�
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-sap-hana-backup-solution.html["先前版本：SnapCenter SAP HANA備份解決方案。"]
+[role="lead"]
+本節說明SnapCenter 與SAP HANA資源組態與部署相關的概念與最佳實務做法。
 
 
 
@@ -615,4 +616,3 @@ image:saphana-br-scs-image20.png["錯誤：缺少圖形影像"]
 
 | 手冊 | 手冊 | 手冊 
 |===
-link:saphana-br-scs-lab-setup-used-for-this-report.html["下一步：本報告使用的實驗室設定。"]

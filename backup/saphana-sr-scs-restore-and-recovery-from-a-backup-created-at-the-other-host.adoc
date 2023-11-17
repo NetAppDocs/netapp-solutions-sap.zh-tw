@@ -13,8 +13,7 @@ summary: 從其他SAP HANA主機建立的備份還原作業、是SnapCenter 兩�
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html["上一篇：SnapCenter 使用單一資源進行的不完整組態。"]
-
+[role="lead"]
 從其他SAP HANA主機建立的備份還原作業、是SnapCenter 兩個NetApp組態選項的有效案例。
 
 下圖顯示本節所述的還原與還原案例總覽。
@@ -80,5 +79,3 @@ stlrx300s8-5:/mnt/tmp # cp -Rp hdb00002.00003/ /hana/data/SSR/mnt00001/
 stlrx300s8-5:/mnt/tmp # cp -Rp hdb00003.00003/ /hana/data/SSR/mnt00001/
 ....
 如一節所述、使用SAP HANA Studio進行還原 link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html#snapcenter-restore-of-the-valid-backup-only["僅還原有效的備份SnapCenter"]。
-
-link:saphana-sr-scs-where-to-find-additional-information_overview.html["下一步：何處可找到其他資訊。"]

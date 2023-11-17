@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-sap-system-clone-with-snapcenter.html["上一篇：SAP系統利用SnapCenter 功能進行實體複製。"]
-
+[role="lead"]
 若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
 
 * TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）
@@ -42,20 +41,3 @@ https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introducti
 http://www.netapp.com/us/solutions/applications/sap/index.aspx["http://www.netapp.com/us/solutions/applications/sap/index.aspx"^]
 
 
-
-
-
-== 版本歷程記錄
-
-|===
-| 版本 | 日期 | 文件版本歷程記錄 
-
-
-| 1.0版 | 2018年2月 | 初始版本。 
-
-
-| 2.0版 | 2021年2月 | 完整重新寫入功能涵蓋SnapCenter 範圍涵蓋整個過程、以及改良的自動化指令碼。系統更新與系統複製作業的新工作流程說明。 
-
-
-| 3.0版 | 2022年5月 | 更新的流程：更新流程：SnapCenter 
-|===

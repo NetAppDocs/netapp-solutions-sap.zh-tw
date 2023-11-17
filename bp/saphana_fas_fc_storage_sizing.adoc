@@ -13,8 +13,7 @@ summary: 下節概述調整SAP HANA儲存系統規模的效能與容量考量。
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_architecture.html["上一篇：架構。"]
-
+[role="lead"]
 下節概述調整SAP HANA儲存系統規模的效能與容量考量。
 
 
@@ -217,5 +216,3 @@ NetApp進行效能測試、以定義最佳價值。下表列出必須在SAP測�
 下圖摘要說明規模調整程序。
 
 image:saphana_fas_fc_image8.jpg["錯誤：缺少圖形影像"]
-
-link:saphana_fas_fc_infrastructure_setup_and_configuration_overview.html["下一步：基礎架構設定與組態。"]

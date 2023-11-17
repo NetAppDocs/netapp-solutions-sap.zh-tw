@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-lab-setup-used-for-this-report.html["上一篇：本報告所使用的實驗室設定。"]
-
+[role="lead"]
 如一節所述 link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html#data-protection-strategy["「資料保護策略」"] 原則通常會獨立設定資源、可供多個SAP HANA資料庫使用。
 
 典型的最低組態包含下列原則：
@@ -77,5 +76,3 @@ image:saphana-backup-anf-image17.png["錯誤：缺少圖形影像"]
 image:saphana-backup-anf-image18.png["錯誤：缺少圖形影像"]
 
 
-
-link:saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html["下一步：SnapCenter 功能表：功能表Snapshot備份組態總覽。"]

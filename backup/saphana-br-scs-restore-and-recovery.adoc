@@ -13,8 +13,7 @@ summary: 下列各節將說明三種不同案例和範例組態的還原與還�
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-block-integrity-check.html["先前：區塊完整性檢查。"]
-
+[role="lead"]
 下列各節將說明三種不同案例和範例組態的還原與還原工作流程。
 
 * 自動還原與還原：
@@ -534,5 +533,3 @@ SAP HANA系統已啟動並開始運作。
 NOTE: 對於具有多個租戶的SAP HANA MDC系統、您必須針對每個租戶重複步驟20–29。
 
 
-
-link:saphana-br-scs-advanced-configuration-and-tuning.html["下一步：進階組態與調校。"]

@@ -50,7 +50,7 @@ entries:
     url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html"
   - title: SAP系統以SnapCenter 功能複製
     url: "/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html"
-  - title: 何處可以找到其他資訊和版本歷程記錄
+  - title: 何處可找到其他資訊
     url: "/lifecycle/sc-copy-clone-where-to-find-additional-information.html"
 - title: 利用Libelle SystemCopy自動化SAP系統複製作業
   type: solutions
@@ -61,7 +61,7 @@ entries:
     url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
   - title: SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新
     url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html"
-  - title: 何處可以找到其他資訊和版本歷程記錄
+  - title: 何處可找到其他資訊
     url: "/lifecycle/libelle-sc-where-to-find-additional-information.html"
 - title: 將NetApp儲存設備與SAP Landscape Management整合
   url: https://www.netapp.com/us/media/tr-4018.pdf

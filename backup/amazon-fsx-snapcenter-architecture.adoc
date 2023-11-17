@@ -13,13 +13,10 @@ summary: 提供統一化、可擴充的平台、提供應用程式一致的資�
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html["上一篇：使用Amazon FSX for ONTAP Sfor S還原 與備份。"]
+[role="lead"]
+提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。
 
-
-
-== 概述SnapCenter
-
-提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。支援NetApp的資料架構、可在端點之間管理資料。SnapCenter您可以使用SnapCenter NetApp在內部部署環境之間、內部部署環境與雲端之間、以及私有雲、混合雲或公有雲之間複寫資料。
+支援NetApp的資料架構、可在端點之間管理資料。SnapCenter您可以使用 SnapCenter 在內部環境之間、內部環境與雲端之間、以及私有雲、混合雲或公有雲之間複寫資料。
 
 
 
@@ -205,5 +202,3 @@ FSXfor ONTAP Sfor Sfor Sfxffile系統：
 
 
 image:amazon-fsx-image8.png["錯誤：缺少圖形影像"]
-
-link:amazon-fsx-snapcenter-configuration.html["下一步：SnapCenter 功能組態。"]

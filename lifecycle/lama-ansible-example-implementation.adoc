@@ -13,8 +13,6 @@ summary: 由於系統和儲存設備設定有大量可用選項、因此應將�
 :imagesdir: ./../media/
 
 
-link:lama-ansible-netapp-sap-lama-integration-using-ansible.html["先前版本：NetApp SAP Lama整合使用Ansible。"]
-
 由於系統和儲存設備設定有大量可用選項、因此應將實作範例當作個別系統設定和組態需求的範本。
 
 
@@ -119,5 +117,3 @@ image:lama-ansible-image15.png["「刪除NetAppClone限制」頁面的快照。�
 若要啟用來源系統的自訂資源配置工作流程、必須在組態中進行調整。必須選取「*使用自訂資源配置程序*」核取方塊以及對應的自訂資源配置定義。
 
 image:lama-ansible-image16.png["SAP Lama組態>系統>系統詳細資料畫面的快照。「使用自訂資源配置程序」核取方塊會反白顯示。"]
-
-link:lama-ansible-sap-lama-provisioning-workflow-clone-system.html["下一步：SAP Lama資源配置工作流程-複製系統。"]

@@ -13,7 +13,8 @@ summary: 本節說明如何設定系統、以便在單一主機和多主機系�
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_sap_hana_data_volume_size.html["先前版本：SAP HANA資料Volume大小。"]
+[role="lead"]
+本節說明如何設定系統、以便在單一主機和多主機系統上安裝SAP HANA軟體。
 
 
 
@@ -83,5 +84,3 @@ Enter Installation Path [/hana/shared]:
 ....
 . 確認安裝工具已在所有工作主機和待命主機上安裝所有選取的元件。
 
-
-link:saphana_aff_nfs_adding_additional_data_volume_partitions.html["下一步：新增額外的資料Volume分割區。"]

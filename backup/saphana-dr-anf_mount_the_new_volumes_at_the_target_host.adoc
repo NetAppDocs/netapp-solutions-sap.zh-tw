@@ -13,8 +13,7 @@ summary: 現在可以根據先前建立的/etc/stab檔案、將新的磁碟區�
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html["先前版本：根據災難恢復站台的快照備份建立新的磁碟區。"]
-
+[role="lead"]
 現在可以根據先前建立的「etc/stb'」檔案、將新的磁碟區掛載到目標主機上。
 
 ....
@@ -40,4 +39,3 @@ tmpfs                                               1641748        0      164174
 10.0.2.4:/PR1-shared-sm-dest-clone/usr-sap-PR1 107377048320 11204096 107365844224   1% /usr/sap/PR1
 10.0.2.4:/hanabackup-sm-dest-clone             107379429120 35293440 107344135680   1% /hanabackup
 ....
-link:saphana-dr-anf_hana_database_recovery.html["下一步：Hana資料庫恢復。"]

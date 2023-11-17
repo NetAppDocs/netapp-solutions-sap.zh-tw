@@ -13,8 +13,7 @@ summary: 本節說明SS2和SS1這兩個範例組態的組態步驟。
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-initial-configuration.html["上一篇：SnapCenter 不包括初始組態。"]
-
+[role="lead"]
 本節說明兩個範例組態的組態步驟。
 
 * * SS2.*
@@ -398,5 +397,3 @@ Exit /b 0
 下圖顯示資源保護組態畫面中的「Post Quiesce」命令。
 
 image:saphana-br-scs-image77.png["錯誤：缺少圖形影像"]
-
-link:saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html["下一步：SnapCenter 非資料磁碟區備份的資源特定組態。"]

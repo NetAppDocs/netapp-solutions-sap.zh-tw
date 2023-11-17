@@ -13,8 +13,7 @@ summary: 本節說明如何將備份SVM新增SnapCenter 至SVM。
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html["上一篇：在FSX上 設定ONTAP 適用於Sfxfon檔案系統的複寫關係。"]
-
+[role="lead"]
 若要將備份SVM新增SnapCenter 至SVM、請依照下列步驟操作：
 
 . 設定SVM、SnapVault 使其位於SVM SnapCenter 中的SVM磁碟區。
@@ -30,5 +29,3 @@ image:amazon-fsx-image77.png["錯誤：缺少圖形影像"]
 SVM現已推出SnapCenter 以供選購。
 
 image:amazon-fsx-image78.png["錯誤：缺少圖形影像"]
-
-link:amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html["下一步：建立SnapCenter 新的支援複寫功能的更新功能。"]

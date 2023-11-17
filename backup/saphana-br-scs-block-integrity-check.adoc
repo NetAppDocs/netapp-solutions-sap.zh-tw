@@ -13,8 +13,7 @@ summary: SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-database-backups.html["先前：資料庫備份。"]
-
+[role="lead"]
 SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。支援使用選取檔案型備份做為備份類型的原則來執行區塊完整性檢查。SnapCenter
 
 使用此原則排程備份時SnapCenter 、將為系統和租戶資料庫建立標準的SAP HANA檔案備份。
@@ -91,4 +90,3 @@ drwxr-xr-- 4 ss1adm sapsys       4096 Nov 19 05:11 ..
 -rw-r----- 1 ss1adm sapsys     159744 Nov 23 08:46 SnapCenter_SnapCenter_BlockIntegrityCheck_Weekly_11-23-2019_06.00.07.8397_databackup_0_1
 -rw-r----- 1 ss1adm sapsys 1577066496 Nov 23 08:46 SnapCenter_SnapCenter_BlockIntegrityCheck_Weekly_11-23-2019_06.00.07.8397_databackup_1_1
 ....
-link:saphana-br-scs-restore-and-recovery.html["下一步：還原與還原。"]

@@ -1106,9 +1106,7 @@
   <block id="efcd9df071a570f7c5ed3559b172bce3" category="section-title">SUSE Linux Enterprise Server 12和15</block>
   <block id="ebb8355d8accfb697b6808ce518c8666" category="paragraph">從SUSE Linux Enterprise Server（SLES）12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="68d9ac2d7e973e347e878b223355bf31" category="inline-link">SAP附註3024346</block>
-  <block id="fe039cc1acff15ac3ebdef50867dad8e" category="paragraph">如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「show rpc.tcp_ma_slot_table_entries」參數。如果檔案不存在、則必須先新增下列行來建立：</block>
   <block id="82740b25df395d68a79118ebc5c4da80" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
-  <block id="384d34c5cb85a44702029243289c3645" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「unrpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="c2e770dd6d768668395e4b8d3b9291d1" category="paragraph">從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="4142bd640477d1c4292c7fcbb3bb1f57" category="section-title">在/HANA /共享磁碟區中建立子目錄</block>
   <block id="67435e0588f5cb039a7fb0f4578e90a7" category="admonition">這些範例顯示SID=NF2的SAP HANA資料庫。</block>
@@ -1143,7 +1141,6 @@
   <block id="aff8bbab4f16423ec5907aed644aead6" category="list-text">執行「mount–a」、在所有主機上掛載檔案系統。</block>
   <block id="b6002aa673859c29cc8fc6915c01cf54" category="paragraph">下一個範例顯示使用NFSv4.1的多主機SAP HANA資料庫、使用SID=NF2的資料與記錄檔系統、以及使用NFSv3的「/HANA /共享」和「USP/SAP/NF2」檔案系統。NFS傳輸大小為1MB、用於讀取、256k用於寫入。</block>
   <block id="2555851d01cabd281a371497bed0a9a9" category="list-text">將所需的檔案系統新增至所有主機上的「etc/stb'組態檔」。</block>
-  <block id="4292e3e460b31d735c080ccc8524778e" category="admonition">每個資料庫主機的「USP/SAP/NF2」檔案系統各不相同。以下範例顯示「/NF2_shared_usr- sap-host1」。</block>
   <block id="7f5e79baae33aa1aca5c990882a844cb" category="summary">NFS版本4及更新版本需要使用者驗證。此驗證可透過使用集中式使用者管理工具（例如輕量型目錄存取傳輸協定（LDAP）伺服器或本機使用者帳戶）來完成。下列各節將說明如何設定本機使用者帳戶。</block>
   <block id="e3a77a70624c57f3f0e2fc7075e4f75f" category="doc">NFSv4的SAP HANA安裝準備</block>
   <block id="3e0be3ed453ef480d348366ac9692e0b" category="paragraph">在SAP HANA軟體開始安裝之前、必須在SAP HANA主機和儲存控制器上手動建立管理使用者「&lt;idadm&gt;'」和「sapsys」群組。</block>
@@ -1201,7 +1198,6 @@
   <block id="ae8838acb9cb389ab57ac7e29427fe50" category="paragraph">從SAP HANA 2.0開始、「hdbparam」已被淘汰、參數移至「global.ini`」。這些參數可以使用SQL命令或SAP HANA Studio來設定。如需詳細資料、請參閱SAP附註<block ref="6af86c07e5a30516e9705c5fc7252793" category="inline-link-rx"></block>。參數也可在global.ini中設定、如下所示：</block>
   <block id="57011fe1859f006c6ec7d602edb7a5a4" category="paragraph">從SAP HANA 2.0 SPS5開始、您可以使用「setParanaret.py」指令碼來設定正確的參數：</block>
   <block id="e41020e64935329a6db54f4c483b9113" category="summary">本節所述的所有主機設定步驟均適用於實體伺服器上的SAP HANA環境、以及在VMware vSphere上執行的SAP HANA。</block>
-  <block id="c60051ea586d490f1e69166ac39409e5" category="paragraph">如果使用NFSv3連接儲存設備、則必須在「/etc/modprobe.d/SUNrpc.conf」中設定「unrpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="179a425489e8da15ef704b42e37645c8" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
   <block id="e19cf298e039e5acff1dbe7e98090d84" category="paragraph">您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。</block>
   <block id="5491b828c5fede318e582fdb0621d64f" category="paragraph">從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
@@ -4425,7 +4421,6 @@
   <block id="ecf911b27dfacab49658bef695c01f50" category="list-text">FAS2720、FAS2750、FAS8300、FAS8700、FAS9000、 和FAS9500。如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
   <block id="9b340c29d45c75265853d640bc6a1e05" category="list-text">FAS2720、FAS2750、FAS8200、FAS8300、FAS8700、 FAS9000、FAS9500</block>
   <block id="8293eb8037b07e6a99273e0e69a21b6f" category="paragraph">從SUSE Linux Enterprise Server 12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
-  <block id="9f7a362263a005504b84698373ae8acb" category="paragraph">如果使用NFSv3連接儲存設備、您必須在「/etc/modprobe.d/SUNrpc.conf」中設定參數「show rpc.tcp_ma_slot_table_entries」。如果檔案不存在、您必須先新增下列行來建立檔案：</block>
   <block id="6ed4f46c3f6437e250cb69f8684772f4" category="list-text"><block ref="6ed4f46c3f6437e250cb69f8684772f4" category="inline-link-rx"></block></block>
   <block id="24d3ef74df0d2ceedb42c4a4c33104d4" category="list-text"><block ref="24d3ef74df0d2ceedb42c4a4c33104d4" category="inline-link-rx"></block></block>
   <block id="a52e74dbfc20d705ac349fdd5b3d0188" category="list-text"><block ref="a52e74dbfc20d705ac349fdd5b3d0188" category="inline-link-rx"></block></block>
@@ -4437,12 +4432,10 @@
   <block id="537754f62b9e3072d7b143e82ea96f51" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。如需詳細資訊、請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="64de99f49b55f96ef81b9f1d7d3ef301" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="a02f77a47cb5c9004f19c8c78d662cd5" category="admonition">適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
-  <block id="8af9dcc6bc45874f6dab0a351794996a" category="admonition">效能測試顯示、「nconnect = 8」可為資料磁碟區提供良好的讀取結果。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
   <block id="b35bcba907dc97a5b6020488961f3307" category="admonition">NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。如需其他資訊、請參閱Linux廠商文件。</block>
   <block id="dbe18498a47f8eb26e80012f0c049b0d" category="paragraph">以下範例顯示單一主機SAP HANA資料庫、其中SID=NF2使用NFSv3、NFS傳輸大小為1MB（讀取）、256k（寫入）。若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：</block>
   <block id="afd4f67ca3483f6b519e8ebc2a53dcea" category="admonition">從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱<block ref="c8345b27d24ece14a320acdc31cc02d7" category="inline-link-rx"></block> （需要SAP登入）。</block>
   <block id="e7a66fb065da642109c3abf1481bfcd0" category="paragraph">根據NFS版本和ONTAP 發行版、會使用不同的掛載選項。下列檔案系統必須掛載到主機：</block>
-  <block id="d1805ea655a389bcd86b519f65f01560" category="admonition">效能測試顯示、「nconnect = 8」提供良好的讀取結果、尤其是資料磁碟區。記錄寫入作業可能會因為較少的工作階段而受益、例如「nconnect = 2」。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
   <block id="6f7cbdc39f9acbcde843e913e06a5bd8" category="summary">若要取消委任複製的系統、必須事先停止並準備好。之後即可啟動系統銷毀工作流程。</block>
   <block id="7c4bf45739108965dce4dca9b396f39d" category="doc">SAP Lama取消資源配置工作流程-系統破壞</block>
   <block id="ce5e3f676f90c441971cc56d6dffe08e" category="paragraph">下圖強調系統銷毀工作流程執行的主要步驟。</block>
@@ -4801,4 +4794,22 @@
   <block id="93f305eb7fa597fc876f2e0744abf06b" category="paragraph">這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
   <block id="848bda1dea8289263932caf2d35de15b" category="paragraph">這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
   <block id="c673a1530232358f588ada362c289d7f" category="sidebar">何處可找到其他資訊</block>
+  <block id="e08842ba37eacff4f1a5b7fcf9749dc3" category="paragraph">。<block ref="6f72acaebcb9a0de6696aaf3508a6144" prefix=" " category="inline-code"></block> 參數必須在中設定<block ref="8ad2bc27658297501e1a64bf77a1fd56" prefix=" " category="inline-code"></block>。如果檔案不存在、則必須先新增下列行來建立：</block>
+  <block id="b7de930c0dd2d22c43e147a8da62d970" category="admonition">效能測試顯示<block ref="6ad27604f562c1a2600540bd7f1094d4" prefix=" " category="inline-code"></block> 提供良好的讀取結果、尤其是資料磁碟區的讀取結果。記錄寫入可能會因為工作階段數量較少而受益、例如<block ref="b3e16d81f1f84d087c55c1815a58a64c" prefix=" " category="inline-code"></block>。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
+  <block id="d7d1e0b01aa98fdaaa388843234520d5" category="admonition">NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。</block>
+  <block id="953d9b4b8aec5e0f96c90ef8b3d12b68" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽的數量應根據下列規則進行調整：
+工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。
+在主持人、這將由您來形容<block ref="0e1f4d10d02df866bcbb3247ad4ee7bd" prefix=" " category="inline-code"></block>
+然後重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 <block ref="ab5c20669050c73ba24d89c4b271e9e7" category="inline-link-macro-rx"></block></block>
+  <block id="075d23786d3ed7499b8d563bd41298ef" category="admonition">。<block ref="68727786e22b015e3091f141273c8e9a" prefix=" " category="inline-code"></block> 每個資料庫主機的檔案系統都不同。以下範例顯示<block ref="7b5a8b70c72ff791a6c938600aa48468" prefix=" " category="inline-code"></block>。</block>
+  <block id="61dc8147d5af95ff65e5beeeceb8d669" category="cell">變更 NFSv4.x 工作階段插槽數量
+  選用</block>
+  <block id="3a61ec547beefb69b89d0843ea4c03bd" category="cell">設定進階
+NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
+設定 admin</block>
+  <block id="7de8b31e6597c345c3a3966bd41f80a2" category="admonition">效能測試顯示<block ref="6ad27604f562c1a2600540bd7f1094d4" prefix=" " category="inline-code"></block> 為資料磁碟區提供良好的讀取結果。記錄寫入可能會因為工作階段數量較少而受益、例如<block ref="b3e16d81f1f84d087c55c1815a58a64c" prefix=" " category="inline-code"></block>。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
+  <block id="3efa710e585bff45d9c6786442911c9d" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽的數量應根據下列規則進行調整：
+工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。
+在主持人、這將由您來形容<block ref="0e1f4d10d02df866bcbb3247ad4ee7bd" prefix=" " category="inline-code"></block>
+然後重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 <block ref="f5e012a6f36bf833f75aec36ff8eee0f" category="inline-link-macro-rx"></block></block>
 </blocks>

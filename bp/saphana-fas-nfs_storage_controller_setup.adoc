@@ -345,6 +345,12 @@ image:saphana-fas-nfs_image18.jpg["錯誤：缺少圖形影像"]
 
 
 | 停用NFSv4數值ID | NFS modify -vserver <vserver_name>-vv4數值ID已停用 
+
+
+| 變更 NFSv4.x 工作階段插槽數量
+  選用 | 設定進階
+NFS 修改 -vserver hana -v4.x-Session-num-stholds <value>
+設定 admin 
 |===
 
 NOTE: 請注意、停用數字識別碼需要使用者管理、如所述 link:saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html["NFSv4的SAP HANA安裝準備。"]

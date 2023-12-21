@@ -13,8 +13,6 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_hana_database_recovery_01.html["上一篇：Hana資料庫恢復。"]
-
 本解決方案自原始發佈以來、已進行下列技術變更。
 
 [cols="25,25,50"]

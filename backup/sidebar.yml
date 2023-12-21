@@ -64,7 +64,7 @@ entries:
     url: "/backup/saphana-br-scs-restore-and-recovery.html"
   - title: 進階組態與調校
     url: "/backup/saphana-br-scs-advanced-configuration-and-tuning.html"
-  - title: 何處可找到其他資訊
+  - title: 何處可以找到其他資訊和版本歷程記錄
     url: "/backup/saphana-br-scs-where-to-find-additional-information.html"
 - title: SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
   type: solutions
@@ -83,6 +83,8 @@ entries:
     url: "/backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html"
   - title: 何處可找到其他資訊
     url: "/backup/saphana-sr-scs-where-to-find-additional-information_overview.html"
+  - title: 版本歷程記錄
+    url: "/backup/saphana-sr-scs-version-history.html"
 - title: SAP HANA災難恢復Azure NetApp Files 功能
   type: solutions
   entries:
@@ -128,6 +130,8 @@ entries:
       url: "/backup/saphana-dr-anf_mount_the_volumes_at_the_target_host.html"
     - title: HANA資料庫恢復
       url: "/backup/saphana-dr-anf_hana_database_recovery_01.html"
+    - title: 更新歷史記錄
+      url: "/backup/saphana-dr-anf_update_history.html"
 - title: SAP HANA災難恢復與儲存複寫
   url: "/backup/saphana-dr-sr_pdf_link.html"
 - title: 使用SnapCreator進行SAP HANA備份與還原

@@ -4,7 +4,7 @@ permalink: lifecycle/libelle-sc-where-to-find-additional-information.html
 keywords:  
 summary:  
 ---
-= 何處可找到其他資訊
+= 何處可以找到其他資訊和版本歷程記錄
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -21,3 +21,14 @@ summary:
 https://docs.netapp.com["https://docs.netapp.com"^]
 
 
+
+
+
+== 版本歷程記錄
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2022 年 4 月 | 初始版本。 
+|===

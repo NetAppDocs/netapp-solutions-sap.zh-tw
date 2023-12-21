@@ -13,8 +13,6 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-where-to-find-additional-information_overview.html["上一步：何處可找到其他資訊。"]
-
 |===
 | 版本 | 日期 | 文件版本歷程記錄 
 

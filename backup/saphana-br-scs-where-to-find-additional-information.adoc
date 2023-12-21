@@ -4,7 +4,7 @@ permalink: backup/saphana-br-scs-where-to-find-additional-information.html
 keywords:  
 summary:  
 ---
-= 何處可找到其他資訊
+= 何處可以找到其他資訊和版本歷程記錄
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -41,3 +41,77 @@ https://www.netapp.com/pdf.html?item=/media/17195-tr4018pdf.pdf["https://www.net
 https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf"^]
 
 
+
+
+
+== 版本歷程記錄
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2017年7月  a| 
+* 初始版本。
+
+
+
+
+| 1.1版 | 2017 年 9 月  a| 
+* 新增「進階組態與調校」一節。
+* 小幅修正。
+
+
+
+
+| 2.0版 | 2018 年 3 月  a| 
+* SnapCenter 4.0 的更新內容：
+新的資料 Volume 資源
+改善單一檔案 SnapRestore 作業
+
+
+
+
+| 3.0版 | 2020 年 1 月  a| 
+* 新增SnapCenter 「概念與最佳實務做法」一節。
+* SnapCenter 4.3 更新內容：
+自動探索
+自動化還原與還原
+支援 HANA MDC 多個租戶
+單一租戶還原作業
+
+
+
+
+| 3.1版 | 2020年7月  a| 
+* 小幅更新與修正：
+SnapCenter 4.3.1 支援 NFSv4
+SSL 通訊組態
+IBM Power 上的 Linux 集中外掛部署
+
+
+
+
+| 3.2版 | 2020 年 11 月  a| 
+* 新增HANA 2.0 SPS5所需的資料庫使用者權限。
+
+
+
+
+| 3.3版 | 2021 年 5 月  a| 
+* 已更新SSL hdbsql組態區段。
+* 新增Linux LVM支援。
+
+
+
+
+| 3.4版 | 2021 年 8 月  a| 
+* 新增停用自動探索組態說明。
+
+
+
+
+| 3.5版 | 2022 年 2 月  a| 
+* 針對SnapCenter 採用HANA系統複寫技術的HANA系統、提供支援支援支援支援的部分更新內容、包括支援支援的部分。
+
+
+|===

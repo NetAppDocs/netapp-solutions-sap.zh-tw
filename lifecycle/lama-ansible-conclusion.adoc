@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: lifecycle/lama-ansible-conclusion.html 
-keywords: conclusion, additional information 
+keywords: conclusion, additional information, version history 
 summary: 將Ansible等現代化自動化架構整合到SAP Lama資源配置工作流程中、可讓客戶擁有靈活的解決方案、以因應標準或更複雜的基礎架構需求。 
 ---
 = 結論
@@ -67,3 +67,14 @@ https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/737a99e
 https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]
 
 
+
+
+
+== 版本歷程記錄
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2023 年 1 月 | 初始版本 
+|===

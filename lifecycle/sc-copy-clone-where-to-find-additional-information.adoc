@@ -4,7 +4,7 @@ permalink: lifecycle/sc-copy-clone-where-to-find-additional-information.html
 keywords:  
 summary:  
 ---
-= 何處可找到其他資訊
+= 何處可以找到其他資訊和版本歷程記錄
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -41,3 +41,21 @@ https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introducti
 http://www.netapp.com/us/solutions/applications/sap/index.aspx["http://www.netapp.com/us/solutions/applications/sap/index.aspx"^]
 
 
+
+
+
+== 版本歷程記錄
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2018年2月 | 初始版本。 
+
+
+| 2.0版 | 2021年2月 | 完整重新寫入功能涵蓋SnapCenter 範圍涵蓋整個過程、以及改良的自動化指令碼。
+系統更新與系統複製作業的新工作流程說明。 
+
+
+| 3.0版 | 2022 年 5 月 | 更新的流程：更新流程：SnapCenter 
+|===

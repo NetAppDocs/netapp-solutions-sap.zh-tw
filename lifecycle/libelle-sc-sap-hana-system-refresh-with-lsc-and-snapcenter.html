@@ -1,0 +1,3824 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>SAP HANA系統使用LSC和SnapCenter 功能更新</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="SAP HANA系統使用LSC和SnapCenter 功能更新" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+	<meta property="og:description" content="本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與SnapCenter S基 部之間的整合支援所有SAP支援的資料庫。不過、我們必須區分SAP Anywhere和SAP HANA、因為SAP HANA提供的集中通訊主機不適用於SAP Anywhere。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/netapp-solutions-sap/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與SnapCenter S基 部之間的整合支援所有SAP支援的資料庫。不過、我們必須區分SAP Anywhere和SAP HANA、因為SAP HANA提供的集中通訊主機不適用於SAP Anywhere。">
+  <meta name="keywords" content=" prerequisites, limitations, lab setup, standard installation, central communication host, system refresh"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/netapp-solutions-sap/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/netapp-solutions-sap/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/netapp-solutions-sap/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/netapp-solutions-sap/js/na-search.js'></script><script src='/zh-tw/netapp-solutions-sap/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/zh-tw/netapp-solutions-sap/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/netapp-solutions-sap/js/jszip.min.js'></script><script src='/zh-tw/netapp-solutions-sap/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/zh-tw/netapp-solutions-sap/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/tw">
+                <image id="ie-header-logo" src="/zh-tw/netapp-solutions-sap/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">文件</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/zh-tw/netapp-solutions-sap/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">繁體中文</span>
+                    <img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/zh-tw/netapp-solutions-sap/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">所有 NetApp</span>
+                    <img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">支援</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">知識庫</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">訓練</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/zh-tw/netapp-solutions-sap/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/zh-tw/netapp-solutions-sap/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">所有文件</a>
+    </li>
+    
+    
+
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/zh-tw/netapp-solutions-sap/">-->
+      NetApp Solutions SAP
+    <!--</a>-->
+  </div>
+</div>
+
+            
+
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/zh-tw/netapp-solutions-sap/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/zh-tw/netapp-solutions-sap/search.html" 
+        data-type="widget"
+        data-placeholder="搜尋說明文件"
+        data-no-results-found="找不到 {query} 的結果"
+        data-did-you-mean="搜尋 {suggestion}。"
+        data-no-results-found-did-you-mean="找不到 {query} 的結果。您的意思是 {suggestion} 嗎？"
+        data-results-found="找到 {hitCount} 個結果"
+        data-error-message="發生錯誤。請再試一次。"
+        data-error-reset="重設搜尋"
+        data-sk-es-pf-indexes="" 
+        data-flavor="">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP解決方案"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/netapp-solutions-sap/index.html">
+        SAP解決方案
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="最佳實務做法"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 最佳實務做法</div>-->
+         最佳實務做法
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南</div>-->
+         《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="簡介"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_introduction.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html">
+        簡介
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架構"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_architecture.html">
+        架構
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存規模調整"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_storage_sizing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_storage_sizing.html">
+        儲存規模調整
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="基礎架構設定與組態"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 基礎架構設定與組態</div>-->
+         基礎架構設定與組態
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="基礎架構設定與組態總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_infrastructure_setup_and_configuration_overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_infrastructure_setup_and_configuration_overview.html">
+        基礎架構設定與組態總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAN架構設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_san_fabric_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_san_fabric_setup.html">
+        SAN架構設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="時間同步"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_time_synchronization.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_time_synchronization.html">
+        時間同步
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存控制器設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_storage_controller_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA儲存連接器API"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_sap_hana_storage_connector_api.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_sap_hana_storage_connector_api.html">
+        SAP HANA儲存連接器API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="主機設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_host_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_host_setup.html">
+        主機設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA的I/O堆疊組態"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA軟體安裝"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_sap_hana_software_installation.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="為SAP HANA單一主機系統新增額外的資料Volume分割區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html">
+        為SAP HANA單一主機系統新增額外的資料Volume分割區
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可找到其他資訊"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_where_to_find_additional_information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新歷史記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_fc_update_history.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_fc_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》</div>-->
+         《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="簡介"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_introduction.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html">
+        簡介
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架構"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_architecture.html">
+        架構
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存規模調整"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_storage_sizing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_storage_sizing.html">
+        儲存規模調整
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="基礎架構設定與組態"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 基礎架構設定與組態</div>-->
+         基礎架構設定與組態
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_network_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_network_setup.html">
+        網路設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="時間同步"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_time_synchronization.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_time_synchronization.html">
+        時間同步
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存控制器設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_storage_controller_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="主機設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_host_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_host_setup.html">
+        主機設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFSv4的SAP HANA安裝準備"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html">
+        NFSv4的SAP HANA安裝準備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA的I/O堆疊組態"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA資料Volume大小"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_sap_hana_data_volume_size.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_sap_hana_data_volume_size.html">
+        SAP HANA資料Volume大小
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA軟體安裝"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_sap_hana_software_installation.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增其他資料Volume分割區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html">
+        新增其他資料Volume分割區
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可找到其他資訊"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_where_to_find_additional_information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新歷史記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_aff_nfs_update_history.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_aff_nfs_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》</div>-->
+         《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="簡介"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_introduction.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_introduction.html">
+        簡介
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架構"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_architecture.html">
+        架構
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存規模調整"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_storage_sizing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_storage_sizing.html">
+        儲存規模調整
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="基礎架構設定與組態"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 基礎架構設定與組態</div>-->
+         基礎架構設定與組態
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_network_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_network_setup.html">
+        網路設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="時間同步"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_time_synchronization.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_time_synchronization.html">
+        時間同步
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存控制器設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_storage_controller_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="主機設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_host_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_host_setup.html">
+        主機設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFSv4的SAP HANA安裝準備"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html">
+        NFSv4的SAP HANA安裝準備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA的I/O堆疊組態"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA資料Volume大小"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_sap_hana_data_volume_size.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_sap_hana_data_volume_size.html">
+        SAP HANA資料Volume大小
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA軟體安裝"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_sap_hana_software_installation.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增其他資料Volume分割區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html">
+        新增其他資料Volume分割區
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可找到其他資訊"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_where_to_find_additional_information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新歷史記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-fas-nfs_update_history.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana-fas-nfs_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="《SAP HANA on FAS with FCP Configuration Guide》（英文）"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 《SAP HANA on FAS with FCP Configuration Guide》（英文）</div>-->
+         《SAP HANA on FAS with FCP Configuration Guide》（英文）
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="簡介"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_introduction.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_introduction.html">
+        簡介
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架構"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_architecture.html">
+        架構
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存規模調整"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_storage_sizing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_storage_sizing.html">
+        儲存規模調整
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="基礎架構設定與組態"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 基礎架構設定與組態</div>-->
+         基礎架構設定與組態
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="基礎架構設定與組態總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_infrastructure_setup_and_configuration_overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_infrastructure_setup_and_configuration_overview.html">
+        基礎架構設定與組態總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAN架構設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_san_fabric_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_san_fabric_setup.html">
+        SAN架構設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="時間同步"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_time_synchronization.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_time_synchronization.html">
+        時間同步
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存控制器設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_storage_controller_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_storage_controller_setup.html">
+        儲存控制器設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA儲存連接器API"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_sap_hana_storage_connector_api.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_sap_hana_storage_connector_api.html">
+        SAP HANA儲存連接器API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="主機設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_host_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_host_setup.html">
+        主機設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA的I/O堆疊組態"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html">
+        SAP HANA的I/O堆疊組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA軟體安裝"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_sap_hana_software_installation.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_sap_hana_software_installation.html">
+        SAP HANA軟體安裝
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="為SAP HANA單一主機系統新增額外的資料Volume分割區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html">
+        為SAP HANA單一主機系統新增額外的資料Volume分割區
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可找到其他資訊"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_where_to_find_additional_information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_where_to_find_additional_information.html">
+        何處可找到其他資訊
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新歷史記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana_fas_fc_update_history.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/bp/saphana_fas_fc_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="IBM Power Systems上的SAP HANA與AFF 採用NFS的NetApp Sibs系統"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/saphana-ibm-aff-nfs_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/bp/saphana-ibm-aff-nfs_pdf_link.html">
+        IBM Power Systems上的SAP HANA與AFF 採用NFS的NetApp Sibs系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP搭配Oracle on UNIX和NFS搭配NetApp ONTAP 功能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/sap-oracle-snapman_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/bp/sap-oracle-snapman_pdf_link.html">
+        SAP搭配Oracle on UNIX和NFS搭配NetApp ONTAP 功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP搭配Microsoft SQL Server在Windows上使用ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/bp/sap-sqls-sc_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/bp/sap-sqls-sc_pdf_link.html">
+        SAP搭配Microsoft SQL Server在Windows上使用ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="備份、還原及災難恢復"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 備份、還原及災難恢復</div>-->
+         備份、還原及災難恢復
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復</div>-->
+         SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-overview.html">
+        總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Amazon FSX for ONTAP Sfor Sf.進行備份與還原"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html">
+        使用Amazon FSX for ONTAP Sfor Sf.進行備份與還原
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架構SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-snapcenter-architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-snapcenter-architecture.html">
+        架構SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="組態SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-snapcenter-configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-snapcenter-configuration.html">
+        組態SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援備份作業SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-snapcenter-backup-operations.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-snapcenter-backup-operations.html">
+        支援備份作業SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="非資料磁碟區的備份"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-backup-of-non-data-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-backup-of-non-data-volumes.html">
+        非資料磁碟區的備份
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用功能進行備份複寫SnapVault"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 利用功能進行備份複寫SnapVault</div>-->
+         利用功能進行備份複寫SnapVault
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-backup-replication-with-snapvault_overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-backup-replication-with-snapvault_overview.html">
+        總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在FSX上設定ONTAP 適用於Sfxfon檔案系統的複寫關係"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html">
+        在FSX上設定ONTAP 適用於Sfxfon檔案系統的複寫關係
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將備份SVM新增SnapCenter 至"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-add-a-backup-svm-to-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-add-a-backup-svm-to-snapcenter.html">
+        將備份SVM新增SnapCenter 至
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立SnapCenter 新的支援複寫功能的更新功能"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html">
+        建立SnapCenter 新的支援複寫功能的更新功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增原則至資源保護"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-add-a-policy-to-resource-protection.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-add-a-policy-to-resource-protection.html">
+        新增原則至資源保護
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用複寫建立備份"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-create-a-backup-with-replication.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-create-a-backup-with-replication.html">
+        使用複寫建立備份
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從二線儲存設備還原及還原"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-restore-and-recover-from-secondary-storage.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-restore-and-recover-from-secondary-storage.html">
+        從二線儲存設備還原及還原
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可找到其他資訊"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/amazon-fsx-where-to-find-additional-information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/amazon-fsx-where-to-find-additional-information.html">
+        何處可找到其他資訊
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA利用SnapCenter NetApp備份與還原"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> SAP HANA利用SnapCenter NetApp備份與還原</div>-->
+         SAP HANA利用SnapCenter NetApp備份與還原
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-overview.html">
+        總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架構SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-architecture.html">
+        架構SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA備份解決方案SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-sap-hana-backup-solution.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-sap-hana-backup-solution.html">
+        SAP HANA備份解決方案SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="概念與最佳實務做法SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-concepts-and-best-practices.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-concepts-and-best-practices.html">
+        概念與最佳實務做法SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="本報告所使用的實驗室設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-lab-setup-used-for-this-report.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-lab-setup-used-for-this-report.html">
+        本報告所使用的實驗室設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="組態SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-configuration.html">
+        組態SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="初始組態SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-initial-configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-initial-configuration.html">
+        初始組態SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA資料庫備份的資源專屬組態SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html">
+        SAP HANA資料庫備份的資源專屬組態SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="非資料磁碟區備份的資源特定組態SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html">
+        非資料磁碟區備份的資源特定組態SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料庫備份"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-database-backups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-database-backups.html">
+        資料庫備份
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="區塊完整性檢查"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-block-integrity-check.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-block-integrity-check.html">
+        區塊完整性檢查
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="還原與還原"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-restore-and-recovery.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-restore-and-recovery.html">
+        還原與還原
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="進階組態與調校"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-advanced-configuration-and-tuning.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-advanced-configuration-and-tuning.html">
+        進階組態與調校
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可以找到其他資訊和版本歷程記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-br-scs-where-to-find-additional-information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-br-scs-where-to-find-additional-information.html">
+        何處可以找到其他資訊和版本歷程記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地</div>-->
+         BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="BlueXP Backup and Recovery for SAP HANA - 總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/hana-hycl-backup-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/hana-hycl-backup-overview.html">
+        BlueXP Backup and Recovery for SAP HANA - 總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 SAP HANA 的 BlueXP 備份與恢復"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/hana-hycl-backup-conf.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/hana-hycl-backup-conf.html">
+        設定 SAP HANA 的 BlueXP 備份與恢復
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="還原 SAP HANA BlueXP 備份"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/hana-hycl-backup-restore.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/hana-hycl-backup-restore.html">
+        還原 SAP HANA BlueXP 備份
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="其他資訊和版本歷程記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/hana-hycl-backup-info-version.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/hana-hycl-backup-info-version.html">
+        其他資訊和版本歷程記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA系統複寫利用SnapCenter 功能進行備份與還原"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> SAP HANA系統複寫利用SnapCenter 功能進行備份與還原</div>-->
+         SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA系統複寫總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-sap-hana-system-replication-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-sap-hana-system-replication-overview.html">
+        SAP HANA系統複寫總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存Snapshot備份與SAP系統複寫"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html">
+        儲存Snapshot備份與SAP系統複寫
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統複寫的組態選項SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html">
+        SAP系統複寫的組態選項SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用資源群組進行的功能組態設定SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html">
+        使用資源群組進行的功能組態設定SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用單一資源進行組態設定SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html">
+        使用單一資源進行組態設定SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從在其他主機上建立的備份進行還原與還原"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html">
+        從在其他主機上建立的備份進行還原與還原
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可找到其他資訊"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-where-to-find-additional-information_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-where-to-find-additional-information_overview.html">
+        何處可找到其他資訊
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="版本歷程記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-sr-scs-version-history.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-sr-scs-version-history.html">
+        版本歷程記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA災難恢復Azure NetApp Files 功能"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> SAP HANA災難恢復Azure NetApp Files 功能</div>-->
+         SAP HANA災難恢復Azure NetApp Files 功能
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料保護總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_data_protection_overview_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html">
+        資料保護總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="災難恢復解決方案比較"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_disaster_recovery_solution_comparison.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_disaster_recovery_solution_comparison.html">
+        災難恢復解決方案比較
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Anf SAP HANA跨區域複寫"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Anf SAP HANA跨區域複寫</div>-->
+         Anf SAP HANA跨區域複寫
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA跨區域複寫總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html">
+        SAP HANA跨區域複寫總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA跨區域複寫的組態選項"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html">
+        SAP HANA跨區域複寫的組態選項
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="要求與最佳實務做法"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_requirements_and_best_practices.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_requirements_and_best_practices.html">
+        要求與最佳實務做法
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="實驗室設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_lab_setup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_lab_setup.html">
+        實驗室設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ANF跨區域複寫的組態步驟"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html">
+        ANF跨區域複寫的組態步驟
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="監控ANF跨區域複寫"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_monitoring_anf_cross-region_replication.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_monitoring_anf_cross-region_replication.html">
+        監控ANF跨區域複寫
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="災難恢復測試"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 災難恢復測試</div>-->
+         災難恢復測試
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="災難恢復測試總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_disaster_recovery_testing_overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_disaster_recovery_testing_overview.html">
+        災難恢復測試總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="準備目標主機"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_prepare_the_target_host.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_prepare_the_target_host.html">
+        準備目標主機
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="根據災難恢復站台的快照備份建立新的磁碟區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html">
+        根據災難恢復站台的快照備份建立新的磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在目標主機上掛載新的磁碟區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_mount_the_new_volumes_at_the_target_host.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_mount_the_new_volumes_at_the_target_host.html">
+        在目標主機上掛載新的磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="HANA資料庫恢復"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_hana_database_recovery.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_hana_database_recovery.html">
+        HANA資料庫恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="災難恢復容錯移轉"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 災難恢復容錯移轉</div>-->
+         災難恢復容錯移轉
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="災難恢復容錯移轉總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_disaster_recovery_failover_overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_disaster_recovery_failover_overview.html">
+        災難恢復容錯移轉總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="準備目標主機"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_prepare_the_target_host_01.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_prepare_the_target_host_01.html">
+        準備目標主機
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="中斷和刪除複寫對等關係"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_break_and_delete_replication_peering.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_break_and_delete_replication_peering.html">
+        中斷和刪除複寫對等關係
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在目標主機上掛載磁碟區"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_mount_the_volumes_at_the_target_host.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_mount_the_volumes_at_the_target_host.html">
+        在目標主機上掛載磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="HANA資料庫恢復"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_hana_database_recovery_01.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_hana_database_recovery_01.html">
+        HANA資料庫恢復
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新歷史記錄"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-anf_update_history.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-anf_update_history.html">
+        更新歷史記錄
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA災難恢復與儲存複寫"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-dr-sr_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html">
+        SAP HANA災難恢復與儲存複寫
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用SnapCreator進行SAP HANA備份與還原"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-bandr-sc_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/backup/saphana-bandr-sc_pdf_link.html">
+        使用SnapCreator進行SAP HANA備份與還原
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用NetApp儲存設備和CommVault軟體進行SAP HANA備份與恢復"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-commvault_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/backup/saphana-commvault_pdf_link.html">
+        使用NetApp儲存設備和CommVault軟體進行SAP HANA備份與恢復
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NetApp All SAN Array上的SAP HANA：現代化的SAN、資料保護與災難恢復"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/backup/saphana-san_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/backup/saphana-san_pdf_link.html">
+        NetApp All SAN Array上的SAP HANA：現代化的SAN、資料保護與災難恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="生命週期管理"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 生命週期管理</div>-->
+         生命週期管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Ansible的NetApp SAP Landscape Management整合"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用Ansible的NetApp SAP Landscape Management整合</div>-->
+         使用Ansible的NetApp SAP Landscape Management整合
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="簡介"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-introduction.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-introduction.html">
+        簡介
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統複製、複製及重新整理案例"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html">
+        SAP系統複製、複製及重新整理案例
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統重新整理、複製及複製的使用案例"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html">
+        系統重新整理、複製及複製的使用案例
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NetApp SAP Lama整合使用Ansible"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-netapp-sap-lama-integration-using-ansible.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-netapp-sap-lama-integration-using-ansible.html">
+        NetApp SAP Lama整合使用Ansible
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="實作範例"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-example-implementation.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-example-implementation.html">
+        實作範例
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP Lama資源配置工作流程-複製系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-sap-lama-provisioning-workflow-clone-system.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-sap-lama-provisioning-workflow-clone-system.html">
+        SAP Lama資源配置工作流程-複製系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP Lama取消資源配置工作流程-系統破壞"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html">
+        SAP Lama取消資源配置工作流程-系統破壞
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP Lama資源配置工作流程-複製系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-sap-lama-provisioning-workflow-copy-system.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-sap-lama-provisioning-workflow-copy-system.html">
+        SAP Lama資源配置工作流程-複製系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP Lama資源配置工作流程-系統更新"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-sap-lama-provisioning-workflow-system-refresh.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-sap-lama-provisioning-workflow-system-refresh.html">
+        SAP Lama資源配置工作流程-系統更新
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="提供者指令碼組態和可執行的方針"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html">
+        提供者指令碼組態和可執行的方針
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="結論"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/lama-ansible-conclusion.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/lama-ansible-conclusion.html">
+        結論
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化</div>-->
+         利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="簡介"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-introduction.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html">
+        簡介
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統複製、重新整理及複製案例"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html">
+        SAP系統複製、重新整理及複製案例
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統更新與複製的使用案例"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html">
+        系統更新與複製的使用案例
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統更新工作流程概述SnapCenter （含）"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html">
+        SAP系統更新工作流程概述SnapCenter （含）
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統複製工作流程概述SnapCenter （含）"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html">
+        SAP系統複製工作流程概述SnapCenter （含）
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統實體複製工作流程概述SnapCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html">
+        SAP系統實體複製工作流程概述SnapCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA系統使用儲存快照備份來重新整理作業工作流程"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html">
+        SAP HANA系統使用儲存快照備份來重新整理作業工作流程
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="自動化範例指令碼"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-automation-example-scripts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-automation-example-scripts.html">
+        自動化範例指令碼
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA系統更新SnapCenter 功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html">
+        SAP HANA系統更新SnapCenter 功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP系統以SnapCenter 功能複製"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html">
+        SAP系統以SnapCenter 功能複製
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可以找到其他資訊和版本歷程記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/sc-copy-clone-where-to-find-additional-information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/sc-copy-clone-where-to-find-additional-information.html">
+        何處可以找到其他資訊和版本歷程記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用Libelle SystemCopy自動化SAP系統複製作業"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 利用Libelle SystemCopy自動化SAP系統複製作業</div>-->
+         利用Libelle SystemCopy自動化SAP系統複製作業
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/libelle-sc-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-overview.html">
+        總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA系統使用LSC和SnapCenter 功能更新"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html">
+        SAP HANA系統使用LSC和SnapCenter 功能更新
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html">
+        SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="何處可以找到其他資訊和版本歷程記錄"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/lifecycle/libelle-sc-where-to-find-additional-information.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-where-to-find-additional-information.html">
+        何處可以找到其他資訊和版本歷程記錄
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="將NetApp儲存設備與SAP Landscape Management整合"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="https://www.netapp.com/us/media/tr-4018.pdf" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://www.netapp.com/us/media/tr-4018.pdf">
+        將NetApp儲存設備與SAP Landscape Management整合
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="解決方案簡介"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/netapp-solutions-sap/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/netapp-solutions-sap/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 解決方案簡介</div>-->
+         解決方案簡介
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA生命週期管理"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/briefs/saphana-lm-sb_pdf_link.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/netapp-solutions-sap/briefs/saphana-lm-sb_pdf_link.html">
+        SAP HANA生命週期管理
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="SAP HANA備份與還原"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="https://www.netapp.com/us/media/sb-3965.pdf" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://www.netapp.com/us/media/sb-3965.pdf">
+        SAP HANA備份與還原
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="SAP HANA災難恢復"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="https://www.netapp.com/us/media/sb-3968.pdf" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://www.netapp.com/us/media/sb-3968.pdf">
+        SAP HANA災難恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="SAP解決方案FlexPod"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/flexpod/ent-db/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="https://docs.netapp.com/us-en/flexpod/ent-db/index.html">
+        SAP解決方案FlexPod
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="NetApp解決方案"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/netapp-solutions/" 
+    ><a class="ie-sidebar-menuitem-1 " href="https://docs.netapp.com/us-en/netapp-solutions/">
+        NetApp解決方案
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律聲明"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html" 
+      dale-entry-url="/reference_legal_notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/netapp-solutions-sap/reference_legal_notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/zh-tw/netapp-solutions-sap"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/zh-tw/netapp-solutions-sap"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/netapp-solutions-sap/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">SAP HANA系統使用LSC和SnapCenter 功能更新</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-11-17 09:25:11 +0000">11/17/2023</time>
+        
+    
+    
+        <span>貢獻者
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/zh-tw/netapp-solutions-sap/images/discuss-sm.svg" alt="" class="github-icon" />建議變更</span>
+        <img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions-sap.zh-tw/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/zh-tw/netapp-solutions-sap/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html&page-title=SAP HANA系統使用LSC和SnapCenter 功能更新" class="page-nav-contribute-link" role="button">請求文件變更</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions-sap/blob/main/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.adoc" class="page-nav-contribute-link" role="button">編輯本頁</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >瞭解如何貢獻</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/zh-tw/netapp-solutions-sap/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/zh-tw/netapp-solutions-sap/pdfs/fullsite-sidebar/SAP商業應用程式與SAP_HANA資料庫解決方案.pdf" >
+                    <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>此文件 PDF 的網站</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/最佳實務做法.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            最佳實務做法
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_NetApp_AFF___採用FCP組態的NetApp系統_指南.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_NetApp_AFF___採用NFS的NetApp系統組態指南_.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_NetApp_FAS___採用NFS的NetApp系統組態指南_.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/_SAP_HANA_on_FAS_with_FCP_Configuration_Guide__英文_.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            《SAP HANA on FAS with FCP Configuration Guide》（英文）
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/基礎架構設定與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            基礎架構設定與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/備份_還原及災難恢復.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            備份、還原及災難恢復
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA_on_Amazon_FSX_for_NetApp_ONTAP_Sf_利用SnapCenter_NetApp進行備份與恢復.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/利用功能進行備份複寫SnapVault.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            利用功能進行備份複寫SnapVault
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA利用SnapCenter_NetApp備份與還原.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            SAP HANA利用SnapCenter NetApp備份與還原
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/BlueXP_SAP_HANA_備份與恢復_雲端物件儲存設備做為備份目的地.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA系統複寫利用SnapCenter_功能進行備份與還原.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/SAP_HANA災難恢復Azure_NetApp_Files_功能.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            SAP HANA災難恢復Azure NetApp Files 功能
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/Anf_SAP_HANA跨區域複寫.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Anf SAP HANA跨區域複寫
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/災難恢復測試.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            災難恢復測試
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/災難恢復容錯移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            災難恢復容錯移轉
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/生命週期管理.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            生命週期管理
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/使用Ansible的NetApp_SAP_Landscape_Management整合.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用Ansible的NetApp SAP Landscape Management整合
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/利用SnapCenter_功能實現SAP_HANA系統複製與複製作業自動化.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/利用Libelle_SystemCopy自動化SAP系統複製作業.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            利用Libelle SystemCopy自動化SAP系統複製作業
+          </a>
+          
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/netapp-solutions-sap/pdfs/sidebar/解決方案簡介.pdf" 
+            
+          >
+            <img src="/zh-tw/netapp-solutions-sap/images/pdf-icon.png" alt="" width="16" height="16"/>
+            解決方案簡介
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/zh-tw/netapp-solutions-sap/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>個別的 PDF 文件集合<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與SnapCenter 支援SAP的所有資料庫均可整合。不過、我們必須區分SAP Anywhere和SAP HANA、因為SAP HANA提供的集中通訊主機不適用於SAP Anywhere。</p>
+</div>
+<div class="paragraph">
+<p>SAP Anyca的預設SnapCenter 值為安裝本地的程序、SnapCenter 除了資料庫伺服器的對應資料庫外掛程式、還可從該代理程式進行安裝。</p>
+</div>
+<div class="paragraph">
+<p>本節SnapCenter 以SAP HANA資料庫為範例、說明LSC與列舉功能之間的整合。如先前針對SAP HANA所述、SnapCenter 安裝下列兩種不同的選項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>標準SnapCenter 版的Sfor Agent與SAP HANA外掛程式安裝</strong>。SnapCenter *在標準安裝中、SAP HANA資料庫伺服器會在本機安裝該代理程式與SAP HANA外掛程式。</p>
+</li>
+<li>
+<p><strong>使用中央通訊主機進行的支援安裝</strong>。*中央通訊主機安裝了支援資料庫相關作業的支援中心、SAP HANA外掛程式和HANA資料庫用戶端、可在環境中備份及還原多個SAP HANA系統的SAP HANA資料庫。SnapCenter SnapCenter因此、中央通訊主機不需要安裝完整的SAP HANA資料庫系統。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如需這些SnapCenter 不同的支援代理程式和SAP HANA資料庫外掛程式安裝選項的詳細資訊、請參閱技術報告 <a href="https://www.netapp.com/pdf.html?item=/media/12405-tr4614pdf.pdf" target="_blank" rel="noopener">"TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用"</a>。</p>
+</div>
+<div class="paragraph">
+<p>以下各節將強調使用SnapCenter 標準安裝或中央通訊主機、將LSC與支援功能整合的差異。值得注意的是、無論安裝選項和使用的資料庫為何、未反白顯示的所有組態步驟都是相同的。</p>
+</div>
+<div class="paragraph">
+<p>若要從來源資料庫執行自動Snapshot複本型備份、並為新的目標資料庫建立複本、LSC與SnapCenter Sfor之間所述的整合會使用中所述的組態選項和指令碼 <a href="https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html" target="_blank" rel="noopener">"TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="總覽">總覽</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下圖顯示了SAP系統更新生命週期的典型高層工作流程SnapCenter 、其中包含不含LSC的現象：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>目標系統的一次性初始安裝與準備。</p>
+</li>
+<li>
+<p>手動預先處理（匯出授權、使用者、印表機等）。</p>
+</li>
+<li>
+<p>如有必要、刪除目標系統上已存在的實體複本。</p>
+</li>
+<li>
+<p>將現有的來源系統Snapshot複本複製到SnapCenter 由NetApp執行的目標系統。</p>
+</li>
+<li>
+<p>手動SAP後處理作業（匯入授權、使用者、印表機、停用批次工作等）。</p>
+</li>
+<li>
+<p>系統可作為測試或QA系統使用。</p>
+</li>
+<li>
+<p>當要求新的系統重新整理時、工作流程會在步驟2重新啟動。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>SAP客戶知道、下圖中以綠色顯示的手動步驟非常耗時且容易出錯。使用LSC和SnapCenter 合並功能時、這些手動步驟會以可靠且可重複的方式與LSC一起執行、並提供內部和外部稽核所需的所有必要記錄。</p>
+</div>
+<div class="paragraph">
+<p>下圖概述SnapCenter型SAP系統的一般更新程序。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image1.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="先決條件與限制">先決條件與限制</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>必須滿足下列先決條件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>必須安裝此元件。SnapCenter來源和目標系統必須在SnapCenter 標準安裝或使用中央通訊主機時、以支援功能進行設定。您可以在來源系統上建立Snapshot複本。</p>
+</li>
+<li>
+<p>儲存後端必須在SnapCenter 下列影像中正確設定、如下圖所示。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image2.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>接下來的兩個映像涵蓋SnapCenter 在每個資料庫伺服器本機安裝的標準安裝、其中包含了本機安裝的Oracle for Agent和SAP HANA外掛程式。</p>
+</div>
+<div class="paragraph">
+<p>來源資料庫上必須安裝此程式及適當的資料庫外掛程式。SnapCenter</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image3.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>必須在目標資料庫上安裝該程式和適當的資料庫外掛程式。SnapCenter</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image4.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下列影像說明中央通訊主機部署、SnapCenter 其中將駐點代理程式、SAP HANA外掛程式及SAP HANA資料庫用戶端安裝在集中式伺服器（例如SnapCenter 、還原伺服器）上、以管理全域多個SAP HANA系統。</p>
+</div>
+<div class="paragraph">
+<p>必須在中央通訊主機上安裝支援程式、SAP HANA資料庫外掛程式和HANA資料庫用戶端。SnapCenter</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image5.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>來源資料庫的備份必須在SnapCenter 功能表中正確設定、才能成功建立Snapshot複本。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image6.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>LSC主機和LSC工作人員必須安裝在SAP環境中。在此部署中、我們也在SnapCenter 目標SAP資料庫伺服器上安裝LSC主機、並在目標SAP資料庫伺服器上安裝LSC工作人員。更多詳細資訊請參閱下節「」<a href="#實驗室設定">實驗室設定</a>。」</p>
+</div>
+<div class="paragraph">
+<p>文件資源：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/snapcenter/" target="_blank" rel="noopener">"資訊中心SnapCenter"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.com/pdf.html?item=/media/12403-tr4700.pdf" target="_blank" rel="noopener">"TR-47700：SnapCenter 適用於Oracle資料庫的支援"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.com/pdf.html?item=/media/12405-tr4614pdf.pdf" target="_blank" rel="noopener">"TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html" target="_blank" rel="noopener">"TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"</a></p>
+</li>
+<li>
+<p><a href="https://fieldportal.netapp.com/content/883721" target="_blank" rel="noopener">"TR-4769 - SnapCenter 《最佳實務做法與規模調整準則》"</a></p>
+</li>
+<li>
+<p><a href="https://library.netapp.com/ecm/ecm_download_file/ECMLP2880726" target="_blank" rel="noopener">"《英文）》第4.6版Cmdlet參考指南SnapCenter"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="實驗室設定">實驗室設定</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本節說明在示範資料中心中設定的架構範例。此設定分為標準安裝和使用中央通訊主機的安裝。</p>
+</div>
+<div class="sect2">
+<h3 id="標準安裝">標準安裝</h3>
+<div class="paragraph">
+<p>下圖顯示SnapCenter 一套標準安裝、其中來源與目標資料庫伺服器上的來源與目標資料庫伺服器、均安裝了包含資料庫外掛程式在內的Rse-Agent。在實驗室設定中、我們安裝了SAP HANA外掛程式。此外、LSC員工也安裝在目標伺服器上。為了簡化並減少虛擬伺服器的數量、我們在SnapCenter 支援服務器上安裝了LSC主機。下圖說明不同元件之間的通訊。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image7.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="集中通訊主機">集中通訊主機</h3>
+<div class="paragraph">
+<p>下圖顯示使用中央通訊主機的設定。在此組態中SnapCenter 、專屬伺服器上安裝了包含SAP HANA外掛程式和HANA資料庫用戶端的功能。在此設定中、我們使用SnapCenter 支援服務器來安裝中央通訊主機。此外、LSC工作人員也再次安裝在目標伺服器上。為了簡化並減少虛擬伺服器的數量、我們決定也在SnapCenter 該伺服器上安裝LSC主機。不同元件之間的通訊如下圖所示。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image8.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="libelle-systemcopy的初始一次性準備步驟">Libelle SystemCopy的初始一次性準備步驟</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LSC安裝有三個主要元件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* LSC master。*顧名思義、這是主元件、可控制以Libelle為基礎之系統複本的自動工作流程。在示範環境中、LSC主機安裝在SnapCenter SURL伺服器上。</p>
+</li>
+<li>
+<p>* LSC員工* LSC員工是Libelle軟體的一部分、通常在目標SAP系統上執行、並執行自動化系統複本所需的指令碼。在示範環境中、LSC員工安裝在目標SAP HANA應用程式伺服器上。</p>
+</li>
+<li>
+<p>* LSC衛星* LSC衛星是Libelle軟體的一部分、可在必須執行進一步指令碼的協力廠商系統上執行。LSC主機也能同時發揮LSC衛星系統的作用。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>我們首先定義LSC內的所有相關系統、如下圖所示：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* 172.30.15.35* SAP來源系統和SAP HANA來源系統的IP位址。</p>
+</li>
+<li>
+<p>* 172.30.15.3*此組態的LSC主機和LSC子系統IP位址。由於我們在SnapCenter S還原 伺服器上安裝了LSC主機、SnapCenter 因此此Windows主機上已有更新版的支援程式、因為這些程式是SnapCenter 在安裝過程中安裝的。因此、我們決定啟用此系統的LSC衛星角色、並在此SnapCenter 主機上執行所有的NetApp PowerShell Cmdlet。如果您使用不同的系統、請務必SnapCenter 根據SnapCenter 《支援》文件、在此主機上安裝《支援系統》Cmdlet。</p>
+</li>
+<li>
+<p>* 172.30.15.36.* SAP目的地系統、SAP HANA目的地系統及LSC員工的IP位址。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>您也可以使用IP位址、主機名稱或完整網域名稱、而非IP位址。</p>
+</div>
+<div class="paragraph">
+<p>下圖顯示主要、工作者、衛星、SAP來源、SAP目標、 來源資料庫和目標資料庫。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image9.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>對於主要整合、我們必須再次將組態步驟分隔成標準安裝、並使用中央通訊主機進行安裝。</p>
+</div>
+<div class="sect2">
+<h3 id="標準安裝-2">標準安裝</h3>
+<div class="paragraph">
+<p>本節說明使用標準安裝時所需的組態步驟、SnapCenter 其中來源系統和目標系統上安裝了哪些組件和必要的資料庫外掛程式。使用標準安裝時、掛載實體磁碟區及還原目標系統所需的所有工作、都是從SnapCenter 伺服器本身的目標資料庫系統上執行的程式庫代理程式執行。這可讓您存取SnapCenter 所有與實體複製相關的詳細資料、這些詳細資料可透過來自於該代理程式的環境變數取得。因此、您只需要在LSC複製階段建立一個額外工作。此工作會在來源資料庫系統上執行Snapshot複製程序、並在目標資料庫系統上執行實體複製與還原程序。所有SnapCenter 的相關工作都是使用在LSC工作「NTAP_system_clone」中輸入的PowerShell指令碼來觸發。</p>
+</div>
+<div class="paragraph">
+<p>下圖顯示複製階段的LSC工作組態。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image10.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下圖重點說明「NTAP_system_clone」程序的組態。因為您正在執行PowerShell指令碼、所以此Windows PowerShell指令碼會在衛星系統上執行。在這種情況SnapCenter 下、這是安裝有LSC主機的S不到 位伺服器、也可做為衛星系統。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image11.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>由於LSC必須瞭解Snapshot複本、複製及還原作業是否成功、因此您必須定義至少兩種傳回程式碼類型。其中一個程式碼用於成功執行指令碼、另一個程式碼用於指令碼的失敗執行、如下圖所示。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果執行成功、則必須從指令碼將「LSC：OK」寫入標準輸出。</p>
+</li>
+<li>
+<p>如果執行失敗、則必須從指令碼將「LSC:ERROR」寫入標準輸出。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image12.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下圖顯示PowerShell指令碼的一部分、該指令碼必須執行才能在來源資料庫系統上執行Snapshot型備份、並在目標資料庫系統上執行實體複本。指令碼不打算完成。相反地、指令碼會顯示LSC與SnapCenter S灘 的整合外觀、以及設定的簡易程度。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image13.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>由於指令碼是在LSC主機上執行（也就是子系統）、SnapCenter 因此必須以具有適當權限的Windows使用者身分執行Sing Server上的LSC主機、以便在SnapCenter S還原 中執行備份與複製作業。若要驗證使用者是否擁有適當權限、使用者應能在SnapCenter UI中執行Snapshot複本和複製。</p>
+</div>
+<div class="paragraph">
+<p>無需在SnapCenter S什麼 伺服器上執行LSC主機和LSC衛星。LSC主機和LSC衛星可在任何Windows機器上執行。在LSC衛星上執行PowerShell指令碼的先決條件、是SnapCenter Windows Server上已安裝了SetvPowerShell Cmdlet。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="集中通訊主機-2">集中通訊主機</h3>
+<div class="paragraph">
+<p>若要SnapCenter 使用中央通訊主機整合LSC與Sfor、唯一必須進行的調整只能在複製階段執行。Snapshot複本和實體複本是使用SnapCenter 中央通訊主機上的支援中心代理程式所建立。因此、新建立的磁碟區的所有詳細資料只能在中央通訊主機上使用、而無法在目標資料庫伺服器上使用。不過、目標資料庫伺服器需要這些詳細資料、才能掛載複製磁碟區並執行還原。這就是複製階段需要執行兩項額外工作的原因。在中央通訊主機上執行一項工作、並在目標資料庫伺服器上執行一項工作。這兩項工作如下圖所示。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* NTAP_system_clone _cp.*此工作會使用PowerShell指令碼、在SnapCenter 中央通訊主機上執行必要的支援功能、建立Snapshot複本和複本。因此、這項工作會在LSC衛星上執行、我們的執行個體是在Windows上執行的LSC主控裝置。此指令碼會收集有關複本和新建立之磁碟區的所有詳細資料、並將其交給在目標資料庫伺服器上執行的LSC工作人員執行的第二項工作「NTAP_MNT_recover _CP」。</p>
+</li>
+<li>
+<p>* NTAP_MNT_recover_cp.*此工作會停止目標SAP系統和SAP HANA資料庫、卸載舊磁碟區、然後根據先前工作「NTAP_system_clone _CP」所傳遞的參數來掛載新建立的儲存實體磁碟區。然後還原並還原目標SAP HANA資料庫。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image14.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下圖重點說明工作「NTAP_system_clone _CP」的組態設定。這是在衛星系統上執行的Windows PowerShell指令碼。在此案例中、衛星系統是SnapCenter 安裝有LSC主機的S不到 伺服器。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image15.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>由於LSC必須瞭解Snapshot複製與複製作業是否成功、因此您必須定義至少兩種傳回程式碼類型：一個傳回程式碼可成功執行指令碼、另一個傳回程式碼則可失敗執行指令碼、如下圖所示。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果執行成功、則必須從指令碼將「LSC：OK」寫入標準輸出。</p>
+</li>
+<li>
+<p>如果執行失敗、則必須從指令碼將「LSC:ERROR」寫入標準輸出。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image16.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下圖顯示PowerShell指令碼的一部分、必須執行才能在SnapCenter 中央通訊主機上使用該代理程式執行Snapshot複本和複本。指令碼並不完整。而是使用指令碼來顯示LSC和SnapCenter 合並功能之間的整合、以及如何輕鬆設定。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image17.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>如前所述、您必須將複製磁碟區的名稱交給下一個工作「NTAP_MNT_recover _CP」、以便將複製磁碟區掛載到目標伺服器上。複製磁碟區的名稱也稱為交會路徑、儲存在變數'$JFunctionPath'中。將工作移交至後續的LSC工作、是透過自訂的LSC變數來達成。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>echo $JunctionPath &gt; $_task(current, custompath1)_$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>由於指令碼是在LSC主機上執行（也就是子系統）、SnapCenter 因此必須以具有適當權限的Windows使用者身分、在SnapCenter S還原 伺服器上執行備份與複製作業。若要驗證是否擁有適當的權限、使用者應能在SnapCenter 該GUI中執行Snapshot複本和複製。</p>
+</div>
+<div class="paragraph">
+<p>下圖重點說明工作「NTAP_MNT_recover_CP」的組態設定。因為我們想要執行Linux Shell指令碼、所以這是在目標資料庫系統上執行的命令指令碼。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image18.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>由於LSC必須注意掛載複製磁碟區、以及還原及還原目標資料庫是否成功、因此我們必須定義至少兩種傳回程式碼類型。其中一個程式碼用於成功執行指令碼、另一個程式碼用於指令碼執行失敗、如下圖所示。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果執行成功、則必須從指令碼將「LSC：OK」寫入標準輸出。</p>
+</li>
+<li>
+<p>如果執行失敗、則必須從指令碼將「LSC:ERROR」寫入標準輸出。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image19.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下圖顯示用於停止目標資料庫、卸載舊磁碟區、掛載複製磁碟區、以及還原及還原目標資料庫的部分Linux Shell指令碼。在先前的工作中、交會路徑會寫入LSC變數。下列命令會讀取此LSC變數、並將值儲存在Linux Shell指令碼的「$JFunctionPath'」變數中。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>JunctionPath=$_include($_task(NTAP_SYSTEM_CLONE_CP, custompath1)_$, 1, 1)_$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>目標系統上的LSC工作人員以「&lt;sidaadm&gt;'」的形式執行、但掛載命令必須以root使用者的身分執行。這就是為什麼您必須建立「CUS_plugin_host_wraper_script.sh」的原因。指令碼「cent_plugin_host_wraper_script.sh」是從工作「NTAP_MNT_recovery _CP」中使用「show」命令來呼叫。指令碼使用「show」命令、會以UID 0執行、我們可以執行所有後續步驟、例如卸載舊磁碟區、掛載複製磁碟區、以及還原及還原目標資料庫。若要使用「sudo」啟用指令碼執行、必須在「/etc/udoers'」中新增下列行：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>hn6adm ALL=(root) NOPASSWD:/usr/local/bin/H06/central_plugin_host_wrapper_script.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image20.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sap-hana系統更新作業">SAP HANA系統更新作業</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>現在LSC和NetApp SnapCenter 供應器之間的所有必要整合工作都已經完成、因此只要按一下滑鼠、就能開始全自動SAP系統更新。</p>
+</div>
+<div class="paragraph">
+<p>下圖顯示標準安裝中的「NTAP」工作「System」（系統）「Clone」（複製）。如您所見、建立Snapshot複本和實體複本、在目標資料庫伺服器上掛載實體複本磁碟區、以及還原及還原目標資料庫、所花的時間約為14分鐘。值得一說的是、使用Snapshot和NetApp FlexClone技術、這項工作的持續時間幾乎與來源資料庫的大小無關。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image21.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+<div class="paragraph">
+<p>下圖顯示使用中央通訊主機時的兩項工作：「NTAP_system_clone _CP」和「NTAP_MNT_recovery _CP」。如您所見、建立Snapshot複本、複製、在目標資料庫伺服器上掛載複本磁碟區、以及還原及還原目標資料庫、所需時間約12分鐘。使用標準安裝時、執行這些步驟所需的時間大致相同。同樣地、Snapshot與NetApp FlexClone技術也能讓這些工作持續快速地完成、而且不受來源資料庫的大小限制。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/libelle-sc-image22.png" alt="錯誤：缺少圖形影像"></span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/zh-tw/netapp-solutions-sap/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/zh-tw/netapp-solutions-sap/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">在本頁</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">使用條款</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隱私權政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">傳送有關本網頁的意見反應</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/netapp-solutions-sap/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/netapp-solutions-sap/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/netapp-solutions-sap/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/netapp-solutions-sap/js/ie-tabbed-blocks.js'></script>
+    <script src='/zh-tw/netapp-solutions-sap/js/ie-sidebar.js'></script>
+  </body>
+
+</html>

@@ -21,9 +21,9 @@ summary: 本節說明如何使用 BlueXP 還原 SAP HANA 備份。
 . 按一下  與您要還原的資料庫相對應的 * 檢視詳細資料 * 。+
 image:hana-hycl-back-image38.jpeg["hana hycl-back 影像 38 、 width=624 、 height =305"]
 . 選取所需的備份、然後選擇儲存匯出。+
-image:hana-hycl-back-image39.jpeg["Ein Bild 、 das Text 、 Screenshot 、 Software 、 Computersymbol en ä lt 。Automatisch generierte Beschreibung,width=624,height=308"]
+image:hana-hycl-back-image39.jpeg["寬度 = 624 、高度 = 308"]
 . 提供所需選項： +
-image:hana-hycl-back-image40.jpeg["Ein Bild 、 das Text 、 Screenshot 、 Software 、 Computersymbol en ä lt 。Automatisch generierte Beschreibung,width=624,height=308"]
+image:hana-hycl-back-image40.jpeg["寬度 = 624 、高度 = 308"]
 +
 .. 對於 NAS 環境、請指定要將從物件存放區還原的磁碟區匯出至的主機的 FQDN 或 IP 位址。
 .. 對於 SAN 環境、請指定主機的啟動器、將從物件存放區還原的磁碟區 LUN 對應到該主機的啟動器。

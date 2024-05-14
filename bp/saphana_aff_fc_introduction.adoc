@@ -4,7 +4,7 @@ permalink: bp/saphana_aff_fc_introduction.html
 keywords: introduction, raw device mapping, rdm, tailored data center integration, FCP datastore 
 summary: NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。獲認證的企業級儲存平台以NetApp ONTAP 的整套軟體為特色。 
 ---
-= TR-4436：AFF 採用Fibre Channel Protocol的NetApp穩定系統上的SAP HANA
+= 採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -23,7 +23,7 @@ NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭�
 
 本認證適用於下列機型：
 
-* AFF A150 、 AFF A250 、 AFF A400 、 AFF A800 、 AFF A900
+* AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A90 、 AFF A900 、 AFF A1K
 * AFF C250 、 AFF C400 、 AFF C800
 * ASA A250 、 ASA A400 、 ASA A800 、 ASA A900
 * ASA C250 、 ASA C400 、 ASA C800

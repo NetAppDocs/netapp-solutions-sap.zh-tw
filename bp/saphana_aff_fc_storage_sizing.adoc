@@ -64,7 +64,9 @@ NOTE: 此計算方式與所使用的儲存控制器無關。新增更多磁碟�
 
 === NS224 NVMe機櫃
 
-第一層機櫃最少可容納 12 個 NVMe SSD 、最多可支援 18 個 SAP HANA 主機。完整配置的機櫃最多可支援48台SAP HANA主機。
+一個 NVMe SSD （資料）最多可支援 5 個 SAP HANA 主機。
+SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
+同樣適用於 AFF A800 、 AFF A70 和 AFF A90 系統的內部 NVMe 磁碟。
 
 
 NOTE: 新增更多磁碟櫃並不會增加儲存控制器可支援的SAP HANA主機數量上限。

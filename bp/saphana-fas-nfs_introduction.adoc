@@ -4,7 +4,7 @@ permalink: bp/saphana-fas-nfs_introduction.html
 keywords: sap, hana, fas, systems, nfs, configuration, guide 
 summary: NetApp FAS 產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。通過認證的企業級儲存系統以NetApp ONTAP 的整套軟體為特色。 
 ---
-= TR-4290：《SAP HANA on NetApp FAS 》（採用NFS組態的SAP HANA）指南
+= NetApp FAS 系統上的 SAP HANA with NFS 組態指南
 :allow-uri-read: 
 
 
@@ -14,7 +14,7 @@ NetApp FAS 產品系列已通過認證、可在量身打造的資料中心整合
 
 此認證目前僅適用於下列機型：
 
-* FAS2720、FAS2750、FAS8300、FAS8700、FAS9000、 和FAS9500。如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["SAP HANA硬體目錄已通過認證且受到支援"^]。
+* FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 和 FAS9500 。如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["SAP HANA硬體目錄已通過認證且受到支援"^]。
 
 
 本文件說明ONTAP NFS版本3（NFSv3）傳輸協定或NFS版本4（NFSv4.1）傳輸協定的功能不完整組態需求。

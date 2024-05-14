@@ -4,17 +4,17 @@ permalink: bp/saphana_fas_fc_introduction.html
 keywords: sap, hana, fas, systems, fibre, channel, protocol, configuration, data, vmware, vsphere 
 summary: NetApp FAS 產品系列已通過認證、可與TDI專案中的SAP HANA搭配使用。通過認證的企業級儲存平台、其特色為NetApp ONTAP 功能完善的作業系統。 
 ---
-= TR-4384：FAS 《SAP HANA on NetApp》《採用光纖通道傳輸協定的NetApp系統組態指南》
+= 採用光纖通道傳輸協定的 NetApp FAS 系統上的 SAP HANA 組態指南
 :allow-uri-read: 
 
 
-NetApp公司Nils Baer和Marco. Schoen
+NetApp的Marco. Schoen
 
 NetApp FAS 產品系列已通過認證、可與TDI專案中的SAP HANA搭配使用。通過認證的企業級儲存平台、其特色為NetApp ONTAP 功能完善的作業系統。
 
 此認證適用於下列機型：
 
-* FAS2720、FAS2750、FAS8200、FAS8300、FAS8700、 FAS9000、FAS9500
+* FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS9500
 
 
 如需NetApp SAP HANA認證儲存解決方案的完整清單、請參閱 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["獲得認證且支援的SAP HANA硬體目錄"^]。

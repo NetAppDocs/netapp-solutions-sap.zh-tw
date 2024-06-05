@@ -24,6 +24,12 @@ SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資
 
 
 
+== NetApp FlexGroup Volumes
+
+SAP HANA 不支援使用 NetApp FlexGroup Volumes 。由於 SAP HANA 架構的緣故、使用 FlexGroup Volumes 並未帶來任何效益、也可能導致效能問題。
+
+
+
 == NetApp Volume 和 Aggregate Encryption
 
 SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。
@@ -42,7 +48,7 @@ QoS可用於限制共享控制器上特定SAP HANA系統或無SAP應用程式的
 
 
 
-=== NetApp FabricPool
+== NetApp FabricPool
 
 NetApp FabricPool 的支援技術不得用於SAP HANA系統中的主動式主要檔案系統。這包括資料和記錄區域的檔案系統、以及「/HANA /共享」檔案系統。如此會導致無法預測的效能、尤其是在SAP HANA系統啟動期間。
 

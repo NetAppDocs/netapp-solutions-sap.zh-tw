@@ -4682,4 +4682,11 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="47e4a9a1322865b7fd49caaf0207408a" category="list-text">AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A900 、 AFF A90 、 AFF A1K</block>
   <block id="a004afbb2c9ff596c570f05cacd1d651" category="section-title">NetApp FlexGroup Volumes</block>
   <block id="cfb6b0dd52bfc75b4646448807e41154" category="paragraph">SAP HANA 不支援使用 NetApp FlexGroup Volumes 。由於 SAP HANA 架構的緣故、使用 FlexGroup Volumes 並未帶來任何效益、也可能導致效能問題。</block>
+  <block id="0500aa4516d90775e7cd20e0b45fa4ad" category="sidebar">組態最佳實務做法</block>
+  <block id="bb5dc731b06d417365e41cb2d0230213" category="sidebar">影片與示範</block>
+  <block id="d6b9ea32b921a9f56de32062ba4b94f3" category="sidebar">部落格</block>
+  <block id="8625e1de7be14c39b1d14dc03d822497" category="sidebar">工具</block>
+  <block id="1f934c6200615c74e6839ca55ae1e6cf" category="sidebar">備份、還原及災難恢復</block>
+  <block id="d57e0763c47c99218375572fbdd307a1" category="sidebar">所有SAP解決方案</block>
+  <block id="91770f038cd944a1d3b9b347edeb2b10" category="sidebar">新增功能</block>
 </blocks>

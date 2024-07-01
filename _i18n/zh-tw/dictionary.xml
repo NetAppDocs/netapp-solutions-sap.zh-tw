@@ -7,17 +7,11 @@
   <block id="cd0aa799857a204938b1d6cabb99618f" category="doc">SAP的新功能</block>
   <block id="ff0018dfdf641d75e04d581743c81f22" category="paragraph">最新的SAP解決方案與解決方案輔助文件總覽。</block>
   <block id="84f6a50de79d49013e595a0b9fd524e0" category="inline-link-macro">TR-4905：SAP HANA利用Azure NetApp Files NetApp服務在支援的基礎上進行備份與恢復SnapCenter</block>
-  <block id="da322257c020829271a011f2bf2ef3af" category="list-text"><block ref="da322257c020829271a011f2bf2ef3af" category="inline-link-macro-rx"></block></block>
   <block id="48d5e63e9107995e8ea0ce708339c7bd" category="inline-link-macro">TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用</block>
-  <block id="7aa50c591cbe872ef050a10a3796443e" category="list-text"><block ref="7aa50c591cbe872ef050a10a3796443e" category="inline-link-macro-rx"></block></block>
   <block id="8290e539e87b39f4743f2a941a37d00d" category="inline-link-macro">TR-4435：《SAP HANA on NetApp AFF Sing Systems with NFS -組態指南》</block>
-  <block id="dcf135c7c1ec1f076814d863eae8e3c4" category="list-text"><block ref="dcf135c7c1ec1f076814d863eae8e3c4" category="inline-link-macro-rx"></block></block>
   <block id="91e3a26ea4105ecd20561989c3c58a32" category="inline-link-macro">TR-4290：《SAP HANA on NetApp FAS 》（採用NFS的SAP HANA系統）組態指南</block>
-  <block id="a71fa770921bd674dcee08ea9faa63c3" category="list-text"><block ref="a71fa770921bd674dcee08ea9faa63c3" category="inline-link-macro-rx"></block></block>
   <block id="088c8c258db90c09658a39d2839f52b0" category="inline-link-macro">TR-4384：FAS 《SAP HANA on NetApp》《採用光纖通道傳輸協定的NetApp系統組態指南》</block>
-  <block id="f41d298f4547e5d08ab439536a1d45a7" category="list-text"><block ref="f41d298f4547e5d08ab439536a1d45a7" category="inline-link-macro-rx"></block></block>
   <block id="0db6b81db5bd35e1eef1e83e154c3cb5" category="inline-link-macro">TR-4436：AFF 採用Fibre Channel Protocol的NetApp穩定系統上的SAP HANA</block>
-  <block id="c98757f0e8d45370ae0d173f16cb73e3" category="list-text"><block ref="c98757f0e8d45370ae0d173f16cb73e3" category="inline-link-macro-rx"></block></block>
   <block id="c54076227bebe4b120f17a0f5a22ce81" category="summary">NetApp針對SAP與SAP HANA提供豐富的技術報告、經過驗證的設計、影片、部落格與解決方案簡介。</block>
   <block id="269e48a148be46c6e5fb065e74629d57" category="doc">SAP商業應用程式與SAP HANA資料庫解決方案</block>
   <block id="dd39ffa36b8ed682c45520c7d7dc8517" category="summary">SAP生命週期管理的工具與秘訣</block>
@@ -4689,4 +4683,161 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="1f934c6200615c74e6839ca55ae1e6cf" category="sidebar">備份、還原及災難恢復</block>
   <block id="d57e0763c47c99218375572fbdd307a1" category="sidebar">所有SAP解決方案</block>
   <block id="91770f038cd944a1d3b9b347edeb2b10" category="sidebar">新增功能</block>
+  <block id="db5a8e62a598aa08b2923f3210fec1a3" category="summary">本文件著重於將 NetApp ® Snapshot ™和 FlexClone ® 技術整合至 Alpaca 自動化工作流程。</block>
+  <block id="e7ffc6df7629952bee1f92657458fbac" category="doc">SB-4293 ：使用羊駝和 NetApp SnapCenter 將 SAP 系統複製、重新整理和複製工作流程自動化</block>
+  <block id="c0c4b60d27032c028c91440e9d3be949" category="section-title">解決方案總覽</block>
+  <block id="86418a2229dc17869377db8ccf58db56" category="paragraph">SAP 系統與解決方案的營運非常複雜。不過、對於使用 SAP 的公司而言、系統和服務是其業務流程的核心。SAP 系統管理員可將系統複製和更新作業等日常例行作業自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。</block>
+  <block id="fbcecadd64701c98813e5bc5accb7a85" category="paragraph">雲端和任何地方（羊駝）套件是一套全方位的管理介面、可主動將環境自動化、讓您在 SAP 環境中進行詳細的監督與監控。Alpaca 簡化並加速 SAP 基礎架構作業、確保最佳可用度和透明度。它提供全方位的工具、可管理整個環境（包括基礎架構）、並主動通知服務中斷、工作中斷和壅塞等異常情況。此套件的設計可在內部部署、混合式和全雲端環境中順暢運作、包括多雲端情境、確保能適應任何基礎架構。此模組型架構可自動化標準和一般 SAP 管理工作、以及在停機期間進行容錯移轉等複雜案例。 系統管理員 / 專家、營運商和經理、羊駝讓這些專業人員擁有高度的控管和自動化能力。</block>
+  <block id="9d632cae336dd853f201c88c832e2cb7" category="inline-image-macro">羊駝平台的圖表</block>
+  <block id="82020173d38ee27d458fbdf847bfc42e" category="paragraph"><block ref="82020173d38ee27d458fbdf847bfc42e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7323cb77cd037c30e7a9a2a0dc1eacb9" category="paragraph">本文件說明 Alpaca 如何與 ® 整合、 NetApp SnapCenter ® 是協調 Snapshot 型備份、執行還原及建立 FlexClone Volume 的工具。這項整合可讓 SAP 管理員大幅加速 SAP 系統日常作業工作。NetApp Snapshot 、 FlexClone 和 SnapRestore ® 技術可加速備份、還原和複製作業、因為 NetApp 的儲存技術是以指標為基礎。這種方法很快、而且也能降低複製作業期間的儲存負荷、因為只有新的和變更的資料（非現有資料）必須寫入儲存媒體。無論是內部部署的 NetApp 儲存系統、還是三家主要雲端供應商之一的 NetApp 儲存解決方案、都是如此。</block>
+  <block id="bf8dd94f74c5878ba969abeeef0286d1" category="section-title">目標對象</block>
+  <block id="a34a4fdc22dc4d566081e48a846fbf5a" category="paragraph">本文件的目標對象是已手動執行 SAP 系統複本的 SAP 系統管理員、並希望使用羊駝來自動化此活動。結合 NetApp Snapshot 和 FlexClone 技術（由 NetApp SnapCenter 協調）與 Alpaca 工作流程的目標、是縮短完全自動化 SAP 系統複本的持續時間。</block>
+  <block id="3d308ecb8420d2579b7d359b7ad94bb5" category="paragraph">術語 SAP 系統複本通常是三種不同程序的同義詞： SAP 系統複本、 SAP 系統複本和 SAP 系統重新整理。請務必區分這些作業、因為工作流程和使用案例不同。</block>
+  <block id="622b88e8f99c2f21460dccf5dc97f1d7" category="list-text">* SAP 系統複製 * 。SAP 系統複本是來源 SAP 系統的相同複本。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。在系統複製作業中、主機名稱、執行個體編號和安全識別碼（ SID ）保持不變。因此、務必為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊。</block>
+  <block id="da4f81a65278754f8234bd6f906c0e40" category="inline-image-macro">顯示 SAP 系統複本的映像</block>
+  <block id="1b937a8a58ab58bc1c61e59ac1b52925" category="paragraph"><block ref="1b937a8a58ab58bc1c61e59ac1b52925" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c363bfedad13dec17e913676bcbc4371" category="list-text">* SAP 系統複本 * 。SAP 系統複本是新目標 SAP 系統的設定、其中包含來源 SAP 系統的資料。例如、新的目標系統可能是額外的測試系統、其中包含正式作業系統的資料。來源和目標系統的主機名稱、執行個體編號和 SID 不同。 新系統不會與來源系統隔離。</block>
+  <block id="0317fd7042e1a3bbd1897d5d7f7a2cc6" category="inline-image-macro">顯示 SAP 系統複本的影像</block>
+  <block id="3f8fbc4328976ab1bb4502f3763520b2" category="paragraph"><block ref="3f8fbc4328976ab1bb4502f3763520b2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0820369f4405acedd8305fd09350a9e9" category="list-text">* SAP 系統更新 * 。SAP 系統重新整理是使用來源 SAP 系統的資料來重新整理現有目標 SAP 系統。目標系統通常是 SAP 傳輸環境（例如沙箱系統）的一部分、會以正式作業系統的資料進行重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。</block>
+  <block id="a5c1cb5f56a681e17c4285d9eccac7b1" category="inline-image-macro">顯示 SAP 系統重新整理的影像</block>
+  <block id="942f47e7ef3ead6cb8f92c69276f36c3" category="paragraph"><block ref="942f47e7ef3ead6cb8f92c69276f36c3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="444724efd6db7acaf8cd0d5c32fcfd71" category="paragraph">雖然這是三種不同的使用案例、但資料管理程序仍維持不變。這三種使用案例都使用相同的基礎資料管理技術： NetApp Snapshot 和 FlexClone 。</block>
+  <block id="8f4c7939e8a42e023939df947aba54f6" category="section-title">解決方案技術</block>
+  <block id="e664b92ee975da28ca5e768b9a88dd26" category="paragraph">整體解決方案包含以下主要元件：</block>
+  <block id="2a4c6f6c82937e9f31385452f76b0a8d" category="list-text">已安裝 SnapCenter 代理程式和 SnapCenter 資料庫外掛程式的 SAP 來源系統</block>
+  <block id="eafc29f547c05517926b01ee4b438905" category="list-text">已安裝 SnapCenter 代理程式和 SnapCenter 資料庫外掛程式的 SAP 目標系統</block>
+  <block id="9ab707fdba87d81c6d7c3e949c63b277" category="list-text">設定 SAP 來源和 SAP 目標系統的 Alpaca 系統</block>
+  <block id="ee9a1ac4f9e7a6bec1deed8ff9c2f8fb" category="list-text">NetApp SnapCenter 伺服器</block>
+  <block id="5d0a666f7f8f7d38d3fc377ab72d2ac5" category="list-text">NetApp 儲存系統：</block>
+  <block id="55e0c6f2677f63db92df47ec0b324167" category="list-text">實體內部部署硬體： AFF 、 AFF 、 AASA A 、 AASA C 或 FAS 系列</block>
+  <block id="251aab5f02e944d9704621e71f85578b" category="list-text">內部部署的軟體定義儲存設備： ONTAP ® Select</block>
+  <block id="f01a2a485dbdb94ed94e78580907767c" category="list-text">NetApp 雲端儲存設備：</block>
+  <block id="9a5b3a6c19cc79e8803fb4a381f09917" category="list-text">Cloud Volumes ONTAP for AWS 、 Google Cloud 或 Azure</block>
+  <block id="7450cfde7058dc5e1f7909d0280fd7ae" category="list-text">Azure NetApp Files</block>
+  <block id="4d82a1ec1af02725042c8c785564ee7a" category="list-text">Amazon FSX for NetApp ONTAP 產品</block>
+  <block id="12237a5e9a92287b4283682895d22d2f" category="paragraph">下圖顯示了 Alpaca 伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統、以及所有項目的整合方式。其目標是使用 SnapCenter REST API 、盡可能讓整合更靈活、以確保在現有元件內已完成的組態工作能得到最大重複使用。</block>
+  <block id="a58f060b570a241814715299c91f3fad" category="inline-image-macro">顯示羊駝伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統的影像、以及所有項目的整合方式</block>
+  <block id="f4ca65fb5c61e96bb0d6eed9c0ca8715" category="paragraph"><block ref="f4ca65fb5c61e96bb0d6eed9c0ca8715" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bf9bdab57c82171f2cc9bcebdc37b2c2" category="section-title">使用案例摘要</block>
+  <block id="ae1c63d0fd8dbf1fb4e91fd0923187d9" category="paragraph">在幾種情況下、來源系統的資料必須提供給目標系統、以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集執行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層的多項工作、視自動化層級而定、可能需要數天的時間。</block>
+  <block id="18636c25be7e0e796a8ec39fe4f0c60e" category="paragraph">若要加速作業、自動化工作、並消除基礎架構、資料庫和應用程式層級的人為錯誤、您可以使用羊駝工作流程。這項整合不需要將備份從來源系統還原至目標系統、因為這項作業既耗時又耗用大量資源、而是使用 NetApp Snapshot 和 FlexClone 技術。啟動資料庫所需的所有工作都會在幾分鐘內完成、而非數小時內完成。複製程序所需的時間並不取決於資料庫的大小、因此、即使是非常大型的系統也只需幾分鐘就能建立。藉由在作業系統和資料庫層級以及 SAP 後處理端自動化工作、 Alpaca 可進一步縮短執行時間。</block>
+  <block id="8ca12d6eeda659345e54817d871b4153" category="paragraph">下圖顯示使用自動化時、可能會改善作業效率。</block>
+  <block id="19a6f9f39008e36ec42310a1697de210" category="inline-image-macro">顯示使用自動化時可能改善營運效率的影像</block>
+  <block id="4c6eb0132e4ccfcc9ed228d27e5cfc29" category="paragraph"><block ref="4c6eb0132e4ccfcc9ed228d27e5cfc29" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5005b13528d942f6d5a5d831e88ad106" category="section-title">整合技術元件</block>
+  <block id="3b6949e0ff3c710337d9cd603b9c2515" category="paragraph">SnapCenter 在 Alpaca 工作流程中的實際整合包括使用 Shell 指令碼來存取 NetApp SnapCenter REST API 。這項 REST API 型整合可建立 SAP 來源系統的 Snapshot 複本、建立 FlexClone Volume 、並將其裝載到 SAP 目標系統。儲存設備和 SAP 管理員知道如何開發由 SnapCenter 觸發並由 SnapCenter 代理程式執行的指令碼、以自動化例行的日常作業工作。這種鬆散結合的架構會透過 Shell 指令碼觸發 SnapCenter 工作、讓他們能夠重複使用現有的自動化程序、以羊駝作為端點對端點自動化的工作流程引擎、更快達到所需的結果。</block>
+  <block id="3ca92e57dea12993b0c6ac16e5820353" category="paragraph">Alpaca 與 NetApp 資料管理技術的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與精力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。</block>
+  <block id="6bf71f730c6c54b2134e90f286791cc7" category="paragraph">由於系統重新整理、複本、複本和災難恢復測試都是非常敏感的程序、因此實作這樣的解決方案可以節省寶貴的管理時間。它也能強化業務單位員工對 SAP 系統管理員的信任。他們將瞭解可以節省多少疑難排解時間、以及複製系統以進行測試或其他用途有多容易。無論來源和目標系統是在內部部署、公有雲、混合雲或混合式多雲端中的何處運作、都是如此。</block>
+  <block id="9c87573265b253410a84d81b471a29e1" category="paragraph">若要深入瞭解本文件所含資訊、請參閱下列文件與網站：</block>
+  <block id="7c80105b450d2a7097856f0c1a47f684" category="inline-link-macro">羊駝</block>
+  <block id="daf59c2df9bdef54e4fcbfb2596f3319" category="list-text"><block ref="daf59c2df9bdef54e4fcbfb2596f3319" category="inline-link-macro-rx"></block></block>
+  <block id="897625d5a9449080791ca6991d9163d6" category="list-text"><block ref="897625d5a9449080791ca6991d9163d6" category="inline-link-macro-rx"></block></block>
+  <block id="2115d0e1d828c5a28a9742411342fc04" category="inline-link-macro">SnapCenter 伺服器和外掛程式支援 REST API</block>
+  <block id="36ac9e3e7c1dda5e31be15c68d614e8a" category="list-text"><block ref="36ac9e3e7c1dda5e31be15c68d614e8a" category="inline-link-macro-rx"></block></block>
+  <block id="c2668ce859de558fa49ef70b7eacbb3b" category="cell">版本 0.1</block>
+  <block id="338602028883e3e3e93d7fad17905696" category="cell">04.2024</block>
+  <block id="d40cd11c66986e96040133cd69280e6a" category="cell">第一稿。</block>
+  <block id="96d7dc7b222d6abde2ea184b5e0fc02b" category="cell">版本 0.2</block>
+  <block id="b61612a45af76461f6f16d12a1e3a473" category="cell">2024 年 6 月</block>
+  <block id="8d6c86885133ff76b8d68daf86e29551" category="cell">轉換成 HTML 格式</block>
+  <block id="2190de7e3e03ad3aa87d37ce1d799634" category="summary">本文件說明 Avantra 如何與 NetApp SnapCenter ® 平台整合。</block>
+  <block id="fc437f8a9ad8cff38c5229c700d66600" category="doc">SB-4294 ：利用 Avantra 和 NetApp SnapCenter 將 SAP 系統複製、重新整理和複製工作流程自動化</block>
+  <block id="e85e6812e10c0d3ed470223879ee4a2e" category="paragraph">SAP 系統和解決方案的營運非常複雜。然而、對於使用 SAP 的公司而言、這些系統和服務是其業務流程的核心。SAP 系統管理員可將日常例行作業（例如系統複製和重新整理作業）自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。</block>
+  <block id="6b040b255b68d643f860cc0c42d60c26" category="paragraph">本文件著重於將 NetApp ® Snapshot ™和 FlexClone ® 技術整合至 Avantra 自動化工作流程。Avantra 是一款 IT 管理平台、著重於 IT 作業與服務的自動化管理。它提供監控、自動化及管理 IT 基礎架構的解決方案、以提升 IT 系統的效率與可靠性。Avantra 可讓企業主動監控其 IT 環境、及早偵測問題、並執行自動化行動以進行疑難排解或最佳化系統效能。此平台通常與其他 IT 管理工具整合、可部署於各種環境、例如雲端、內部部署和混合式基礎架構。</block>
+  <block id="9290f6edd05ab74ce976da8a1bd79627" category="paragraph">本文件說明 Avantra 如何與 NetApp SnapCenter ® 平台整合。NetApp SnapCenter 是用於協調 Snapshot 型備份、執行還原及建立 FlexClone Volume 的工具。這項整合可讓 SAP 管理員使用 NetApp 技術、大幅加速 SAP 系統的日常營運工作。Snapshot 、 FlexClone 和 NetApp SnapRestore ® 軟體可加速備份、還原和複製作業、因為 NetApp 儲存技術是以指標為基礎。這種方法很快。它也能降低複製作業期間的儲存負荷、因為無論是內部部署的 NetApp 儲存系統、或是三大雲端供應商之一的 NetApp 儲存解決方案、只有新資料和變更的資料會寫入儲存媒體。</block>
+  <block id="d62c5e03ce9e8ec0422f7decd2dfd9bf" category="paragraph">本文件的目標對象是先前曾手動執行 SAP 系統複本、並想要使用 Avantra 將此活動自動化的 SAP 系統管理員。將 NetApp Snapshot 和 FlexClone 技術（由 NetApp SnapCenter 協調）與 Avantra 工作流程結合在一起的目標是全面自動化 SAP 系統複本、以加快其速度。</block>
+  <block id="75c0f54f014e4ab6e3f22f5cd507650c" category="paragraph">術語 SAP 系統複本通常是三種不同程序的總括術語： SAP 系統複製、 SAP 系統複本和 SAP 系統重新整理。請務必區分不同的作業、因為工作流程和使用案例不同。</block>
+  <block id="ed89e0187c6fe54d2628ba3c924c9c94" category="list-text">* SAP 系統複製 * 。SAP 系統複本是來源 SAP 系統的相同複本。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。在系統複製作業中、主機名稱、執行個體編號和安全識別碼（ SID ）保持不變。因此、為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊、這一點非常重要。</block>
+  <block id="29fa3c48f12e6309c32da9e61f69bd28" category="inline-image-macro">顯示 SAP 系統複製的影像</block>
+  <block id="fb37eef62a9f3eb5c99bffedd0024c1f" category="paragraph"><block ref="fb37eef62a9f3eb5c99bffedd0024c1f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b587c7fd00a525678062695450301092" category="list-text">* SAP 系統複本 * 。SAP 系統複本是新目標 SAP 系統的設定、其中包含來源 SAP 系統的資料。例如、目標系統可能是額外的測試系統、其中包含正式作業系統的資料。來源和目標系統的主機名稱、執行個體編號和 SID 不同。 新系統不會與來源系統隔離。</block>
+  <block id="16638dad50a76bca5e7a86dc7294fc2c" category="inline-image-macro">顯示 SAP 系統複本的影像</block>
+  <block id="6393f88818ef94108486ce2601a4732e" category="paragraph"><block ref="6393f88818ef94108486ce2601a4732e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fbd198ef31d57ae3a5f9b9fb5639e948" category="list-text">* SAP 系統更新。 *SAP 系統重新整理是使用來源 SAP 系統的資料來重新整理現有目標 SAP 系統。目標系統通常是 SAP 傳輸環境（例如沙箱系統）的一部分、會以正式作業系統的資料進行重新整理。來源和目標系統的主機名稱、執行個體編號和 SID 不同。</block>
+  <block id="a7d281aa380b84143ba85c264cace3d9" category="inline-image-macro">顯示 SAP 系統重新整理的影像</block>
+  <block id="1036db93beffe95b80fff8d0ba735af9" category="paragraph"><block ref="1036db93beffe95b80fff8d0ba735af9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="59159350e4004274c8676b9d48b16a41" category="paragraph">雖然我們有三種不同的使用案例、但資料管理程序仍維持不變。這三種使用案例都採用相同的基礎資料管理技術： NetApp Snapshot 和 FlexClone 。</block>
+  <block id="9f502a9c7a5bc34e196821573f56b625" category="list-text">已安裝 SnapCenter 代理程式和 SnapCenter 資料庫外掛程式的 SAP 來源系統</block>
+  <block id="03c806031b59c42ed3e4c7683d699982" category="list-text">已安裝 SnapCenter 代理程式和 SnapCenter 資料庫外掛程式的 SAP 目標系統</block>
+  <block id="14472d6a98b6c5946fee1bdeaaa9d46d" category="list-text">Avantra 系統具備已設定的 SAP 來源和 SAP 目標系統</block>
+  <block id="c287b1e946c387c0a7339a652e03b5ce" category="list-text">實體內部部署硬體： NetApp AFF A 系列、 AFF C 系列、 ASA A 系列、 ASA C 系列或 FAS 系列</block>
+  <block id="b0904b80e0af825ba00610ce914a3ac9" category="list-text">內部部署的軟體定義儲存設備： NetApp ONTAP ® Select</block>
+  <block id="f61f14ca64e865d9739d260389f4af92" category="list-text">AWS 、 Google Cloud 或 Azure 中的 NetApp Cloud Volumes ONTAP ®</block>
+  <block id="842a4e33040fe08e0af52e5aaf27c55f" category="list-text">Amazon FSX for NetApp ONTAP （ AWS ）</block>
+  <block id="fd559ee283f10c8dbc8f698f620ac779" category="paragraph">下圖顯示 Avantra 伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統、以及一切如何整合。其目標是使用 SnapCenter REST API 盡可能靈活地整合、以最大程度地重複使用現有元件內已完成的組態工作。</block>
+  <block id="f6482dcb2b1a382097c11d3774a029ac" category="inline-image-macro">顯示 Avantra 伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統、以及一切如何整合的影像</block>
+  <block id="32f81f33d6e774f336864df9e87bc44f" category="paragraph"><block ref="32f81f33d6e774f336864df9e87bc44f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3086cba5137fd0545d778e498d9cd6e2" category="paragraph">若要縮短時間、自動化作業工作、並消除基礎架構、資料庫和應用程式層級的人為錯誤、您可以使用 Avantra 工作流程。這項整合不需要從來源系統還原備份到目標系統、因為這項作業耗時且耗用大量資源、而是使用 NetApp Snapshot 和 FlexClone 技術。啟動資料庫所需的所有工作都會在幾分鐘內完成、而非數小時。複製程序所需的時間並不取決於資料庫的大小、因此、即使是非常大型的系統也只需幾分鐘就能建立。Avantra 可在作業系統和資料庫層級以及 SAP 後處理端自動化工作、進一步縮短執行時間。</block>
+  <block id="6a3fec98537c549a047e819f8599d98d" category="paragraph">下圖顯示使用自動化時、可能會改善作業效率。</block>
+  <block id="4c7048f952442b8f6d998ab516777056" category="paragraph"><block ref="4c7048f952442b8f6d998ab516777056" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7d8c66dbd94dc77e4312c93bd7586097" category="section-title">整合不同的技術元件</block>
+  <block id="878da1642730c1593c6b76bdb0d9fda8" category="paragraph">SnapCenter 在 Avantra 工作流程中的實際整合包括使用 JavaScript 來存取 NetApp SnapCenter REST API 。這項 REST API 型整合可建立 SAP 來源系統的 Snapshot 複本、建立 FlexClone Volume 、並將其裝載到 SAP 目標系統。</block>
+  <block id="f07c14433779a55a296b481246a75c8e" category="paragraph">儲存設備和 SAP 管理員已投入時間和專業知識、開發由 SnapCenter 觸發並由 SnapCenter 代理程式執行的指令碼、以自動化重複發生的日常作業工作。這種鬆散結合的架構使用 JavaScript 來觸發 SnapCenter 工作、讓他們能夠重複使用現有的自動化程序、以 Avantra 作為端點對端點自動化的工作流程引擎、更快達到所需的結果。</block>
+  <block id="08d13577d2c770db53482bcfe9f627e4" category="paragraph">Avantra 與 NetApp 資料管理技術的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與心力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。</block>
+  <block id="cf3525ddd7a64e1adddcca6e929f690e" category="paragraph">由於系統重新整理、複本、複本和災難恢復測試都是非常敏感的程序、因此實作這樣的解決方案可以節省寶貴的管理時間。它也能強化業務單位員工對 SAP 系統管理員的信任：他們將會瞭解可以節省多少疑難排解時間、以及複製系統以進行測試或其他用途有多容易。無論來源和目標系統是在內部部署、公有雲、混合式或混合式多雲端環境中、無論在何處營運、此解決方案都能提供這些優勢。</block>
+  <block id="bf0f42271b1628d48d24ff9e96c0a40d" category="paragraph">若要深入瞭解本文所述資訊、請檢閱下列文件與網站：</block>
+  <block id="b97f5ca6428e5b00c71db4299dfc3d6f" category="inline-link-macro">Avantra</block>
+  <block id="2fc4f84f847c8ac3075ea580dfac45a1" category="list-text"><block ref="2fc4f84f847c8ac3075ea580dfac45a1" category="inline-link-macro-rx"></block></block>
+  <block id="bf51eb5d79e16ead1ceda527dda582b6" category="inline-link-macro">支援REST API以供SnapCenter 支援Sfor Sfor Sfor Sfor Server和外掛程式</block>
+  <block id="857bb4eb3e8e725c7b53c4c49b9f8f61" category="list-text"><block ref="857bb4eb3e8e725c7b53c4c49b9f8f61" category="inline-link-macro-rx"></block></block>
+  <block id="9d04f10ec6d5f74dbca6cec4d7147125" category="cell">03.2024</block>
+  <block id="313d8d29b054407c3e1bee8fe2e46793" category="cell">整合 NetApp 同仁的意見回饋。</block>
+  <block id="fb4990156c52dedabc6397ade7e76401" category="cell">版本 0.3</block>
+  <block id="21a718b5ebef012a391d552cfaa4536e" category="cell">整合式要求的變更必須符合 NetApp 品牌設定標準</block>
+  <block id="420d57080e1f02fbdb40396ad217482c" category="cell">版本 0.4</block>
+  <block id="e6fe0ae39ed3c7447d6a4da5d99ea3a2" category="summary">本文件著重於使用 Ansible Playbooks 和自訂指令碼、將 NetApp ® 儲存系統整合至 SAP Landscape Management （ Lama ）、無論是在內部部署、公有雲基礎架構即服務（ IaaS ）環境或混合雲環境。</block>
+  <block id="566e3b562a12b1ef1896ee777b47ed0c" category="doc">SB-4292 ： SAP 自動化與 Ansible</block>
+  <block id="1dc246d1e2dc4afc0e866ed9c1e00b34" category="paragraph">本文件著重於使用 Ansible Playbooks 和自訂指令碼、將 NetApp ® 儲存系統整合至 SAP Landscape Management （ Lama ）、無論是在內部部署、公有雲基礎架構即服務（ IaaS ）環境或混合雲環境。</block>
+  <block id="375a68bbd8b09c30759cb49ee66744c6" category="paragraph">SAP 系統非常複雜。但對於使用 SAP 的公司而言、這些系統是其業務流程的核心。SAP 系統管理員可將日常例行作業工作自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。</block>
+  <block id="a54e766cb8511b4b8768f1ba8fef2b0b" category="paragraph">本文件著重於使用 Ansible Playbooks 和自訂指令碼、將 NetApp ® 儲存系統整合至 SAP Landscape Management （ Lama ）、無論是在內部部署、公有雲基礎架構即服務（ IaaS ）環境或混合雲環境。這項整合可讓 SAP 管理員使用 NetApp Snapshot ™和 NetApp FlexClone ® 技術來加速 SAP 系統更新工作。</block>
+  <block id="3ed6d491000fa37ba8451c450195b4d8" category="paragraph">本文件的目標對象是沒有太多（或任何） Ansible 自動化經驗的 SAP 系統管理員。這應該有助於您開始使用 Ansible 、執行第一本教戰手冊、以及設定並執行第一次 SAP Lama 系統更新作業。</block>
+  <block id="0bd125fc3eb80484cd714efb009c33da" category="paragraph">術語 SAP 系統複本通常是三種不同程序的同義詞： SAP 系統複本、 SAP 系統複本和 SAP 系統重新整理。請務必區分不同的作業、因為工作流程和使用案例不同。</block>
+  <block id="984d103d2ea6cdfaf50c6458b93d5060" category="list-text">* SAP 系統複製 * 。SAP 系統複本是來源 SAP 系統的相同複本。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。在系統複製作業中、主機名稱、執行個體編號和安全識別碼（ SID ）保持不變。因此、為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊、這一點非常重要。</block>
+  <block id="a06496f6b8f5d994759b94c9bc228c07" category="list-text">* SAP 系統複本 * 。SAP 系統複本是新目標 SAP 系統的設定、其中包含來源 SAP 系統的資料。例如、新的目標系統可能是額外的測試系統、其中包含正式作業系統的資料。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。</block>
+  <block id="a4806533200f7204846fc0516880a512" category="list-text">* SAP 系統更新 * 。SAP 系統重新整理是使用來源 SAP 系統的資料來重新整理現有目標 SAP 系統。目標系統通常是 SAP 傳輸環境的一部分、例如品質保證系統、會以正式作業系統的資料進行重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。</block>
+  <block id="9e5ec677b1b1648311e97cf94e0b2d0e" category="paragraph">下圖顯示與 NetApp 儲存相關的 SAP 系統複製、複製及重新整理 Lama 工作流程步驟。</block>
+  <block id="f74def37972ee4394be8cad5651663f7" category="inline-image-macro">顯示與 NetAppstorage 相關的 SAP 系統複製、複製及重新整理 Lama 工作流程步驟的影像</block>
+  <block id="26fa64ddac14c561cb8700ddd04d2768" category="paragraph"><block ref="26fa64ddac14c561cb8700ddd04d2768" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="54881e79c7640a505cefd7ba1f3b20cc" category="list-text">SAP Lama 系統</block>
+  <block id="4eebc5ed40ce93bfc87d749fb237b7a3" category="list-text">NetApp 儲存系統</block>
+  <block id="0bbb1b0fa380975becacfe2ebad8efcb" category="list-text">已安裝 SAP Host Agent 的 Ansible 控制節點。我們建議您使用 Red Hat Ansible Automation Platform 、因為它提供其他優點、例如：</block>
+  <block id="3a02ab6c19eb5b6b13f624909cbdd908" category="list-text">使用 AI 產生自動化工作的程式碼建議</block>
+  <block id="9ed57c8ba167159dadbe28961386f0ee" category="list-text">利用事件導向的自動化功能、減少手動工作</block>
+  <block id="585e67e2ba5c513b961c51dd9ccc25fd" category="list-text">定義一致且可攜帶</block>
+  <block id="c2348bd887e6c8f4e4cb3e1ecc4c7168" category="list-text">跨環境擴充自動化</block>
+  <block id="ba9d2fdcf1098320fd5ab8e8940c1d46" category="list-text">利用預先封裝的內容加速自動化</block>
+  <block id="ea936622c0742d5330429e7e68527d8a" category="list-text">利用豐富的報告和觀察指標來追蹤和管理自動化</block>
+  <block id="4db35d276f281c64f50cfa4e820ff070" category="list-text">建立工作、模組和教戰手冊</block>
+  <block id="352646e3f8da3248d7552209da6eab5f" category="paragraph">下圖顯示 SAP Lama 和 NetApp 儲存系統如何透過專用 Ansible Playbooks 整合在專屬 Ansible 主機上、由 SAP 主機代理程式執行的 Shell 指令碼觸發。</block>
+  <block id="a4afd73c26d98d43a41848b904c8e361" category="inline-image-macro">此影像顯示 SAP Lama 和 NetApp 儲存系統如何透過專用 Ansible Playbooks 整合在專屬 Ansible 主機上、由從 SAP 主機代理程式執行的 Shell 指令碼觸發</block>
+  <block id="209692e856fceee655a52e1abaa65592" category="paragraph"><block ref="209692e856fceee655a52e1abaa65592" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="385f57610e19e7eac92f41a1dc35251b" category="paragraph">若要加速並自動化基礎架構和資料庫層的必要工作、您可以使用 SAP Lama 和 NetApp 複製工作流程。SAP Lama 不需要將備份從來源系統還原至目標系統、而是使用 NetApp Snapshot 和 FlexClone 技術、讓資料庫啟動所需的工作可以在幾分鐘內完成、而非幾小時內完成、如下圖所示。複製程序所需的時間並不取決於資料庫的大小、因此、即使是非常大型的系統也能在幾分鐘內建立。您可以將作業系統、資料庫層和 SAP 後處理端的工作自動化、進一步縮短執行時間。</block>
+  <block id="4babb6cd725c24c36d2e3770f6a5f825" category="inline-image-macro">顯示使用自動化時可能改善營運效率的影像</block>
+  <block id="e9bcb357a56a02c9bd8533df7d0dd0ca" category="paragraph"><block ref="e9bcb357a56a02c9bd8533df7d0dd0ca" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1b99d3bbfb2ea06147cee599d13b4d4d" category="paragraph">若要使用 Ansible 將 SAP Lama 與 NetApp 儲存系統整合、您需要一個可執行 Ansible Playbooks 的節點。我們建議您使用 Ansible Automation Platform 。若要在此主機上執行 Shell 指令碼和 Ansible Playbooks （從 SAP Lama 開始）、您需要在此伺服器上執行 SAP Host Agent 。SAP Host Agent 會接管與 SAP Lama 的雙向通訊、並執行將觸發實際教戰手冊的 Shell 指令碼。</block>
+  <block id="a1350e44a1de9e3b2a31107d1a80273c" category="paragraph">這種鬆散結合的架構可讓您自由從 SAP Lama 和 SAP Lama 外部開始工作流程。只需設定一次教戰手冊和對應邏輯、即可用於不同的情境和使用案例。</block>
+  <block id="992397c8c640ca562524a875b68a5b54" category="paragraph">NetApp 、 SAP Lama 和 Ansible Automation Platform 的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與心力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。</block>
+  <block id="c28874e4beb098c91d1e1c3be126df41" category="paragraph">由於系統重新整理、複本、複本和災難恢復測試都是實作此類解決方案的非常敏感的程序、因此可節省寶貴的管理時間。它也能強化組織其他成員對 SAP 系統管理員的信任：他們會發現複製系統以供測試或其他用途有多容易、以及可以節省多少疑難排解時間。</block>
+  <block id="8aadfa67c47b74f799fb7a826a48ba03" category="inline-link-macro">使用適用於 NetApp ONTAP ® 的 Ansible Playbooks 、將持續的第 1 天和第 2 天作業自動化</block>
+  <block id="9f642d22ffdfa2b795d80b29088d3fb0" category="list-text"><block ref="9f642d22ffdfa2b795d80b29088d3fb0" category="inline-link-macro-rx"></block></block>
+  <block id="3ddd20790842649d51a5cc4b6f01db26" category="inline-link-macro">NetApp 特定的 Ansible 文件</block>
+  <block id="f12dd99ccfdacc7ea0c21003056e4741" category="list-text"><block ref="f12dd99ccfdacc7ea0c21003056e4741" category="inline-link-macro-rx"></block></block>
+  <block id="fef9e784fccd2c3b2ebf4bfcd80e0305" category="inline-link-macro">NetApp ONTAP Ansible 模組與完整文件</block>
+  <block id="0603ed1da71fc41c57bbabf1699bdbde" category="list-text"><block ref="0603ed1da71fc41c57bbabf1699bdbde" category="inline-link-macro-rx"></block></block>
+  <block id="bdbdb20cc2fc78414e07344a2494b8a4" category="inline-link-macro">Red Hat Ansible Automation Platform</block>
+  <block id="b4da856a893c686c8e2e2539db5024fe" category="list-text"><block ref="b4da856a893c686c8e2e2539db5024fe" category="inline-link-macro-rx"></block></block>
+  <block id="16734dca3a95bfa535c02733aff6eba1" category="cell">03.2023</block>
+  <block id="8badbfef801c8224f9c3f8be1ed7b075" category="cell">01.2024</block>
+  <block id="30f75d5b61876317b00ce9486a8a0160" category="cell">檢閱並進行一些小修正</block>
+  <block id="922130bb4d233bc9ae97cdcc043fb765" category="list-text"><block ref="922130bb4d233bc9ae97cdcc043fb765" category="inline-link-macro-rx"></block></block>
+  <block id="b111feeb1a57d6042e16d90fef6de225" category="list-text"><block ref="b111feeb1a57d6042e16d90fef6de225" category="inline-link-macro-rx"></block></block>
+  <block id="497e8a2b3efcb98884dd2467a68d0809" category="list-text"><block ref="497e8a2b3efcb98884dd2467a68d0809" category="inline-link-macro-rx"></block></block>
+  <block id="f4f158efc25013d7991ed21314e14f62" category="list-text"><block ref="f4f158efc25013d7991ed21314e14f62" category="inline-link-macro-rx"></block></block>
+  <block id="5cbfe26b0216d2cab45c3572761c632a" category="list-text"><block ref="5cbfe26b0216d2cab45c3572761c632a" category="inline-link-macro-rx"></block></block>
+  <block id="2d054d2c04367ef468912c670a8d2ce8" category="list-text"><block ref="2d054d2c04367ef468912c670a8d2ce8" category="inline-link-macro-rx"></block></block>
+  <block id="411b5f626e19bcfe479b7a04afe0a756" category="sidebar">透過 Ansible 和 NetApp SnapCenter 實現 SAP 自動化</block>
+  <block id="286f4dd45534d6e8839dc5cb0fc36cee" category="sidebar">運用 Alpaca 和 NetApp SnapCenter 實現 SAP 自動化</block>
+  <block id="314dcde42b7b98639a9e719950095987" category="sidebar">利用 Avantra 和 NetApp SnapCenter 實現 SAP 自動化</block>
 </blocks>

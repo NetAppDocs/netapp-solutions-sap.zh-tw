@@ -17,10 +17,10 @@ keywords: 'netapp, solutions, SAP, what"s new'
 [role="lead"]
 最新的SAP解決方案與解決方案輔助文件總覽。
 
-* link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_saphome/backup/saphana-backup-anf-overview.html["TR-4905：SAP HANA利用Azure NetApp Files NetApp服務在支援的基礎上進行備份與恢復SnapCenter"]
-* link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_saphome/backup/saphana-dr-anf_data_protection_overview_overview.html["TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用"]
-* link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_saphome/bp/saphana_aff_nfs_introduction.html["TR-4435：《SAP HANA on NetApp AFF Sing Systems with NFS -組態指南》"]
-* link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_saphome/bp/saphana-fas-nfs_introduction.html["TR-4290：《SAP HANA on NetApp FAS 》（採用NFS的SAP HANA系統）組態指南"]
-* link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_saphome/bp/saphana_fas_fc_introduction.html["TR-4384：FAS 《SAP HANA on NetApp》《採用光纖通道傳輸協定的NetApp系統組態指南》"]
-* link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_saphome/bp/saphana_aff_fc_introduction.html["TR-4436：AFF 採用Fibre Channel Protocol的NetApp穩定系統上的SAP HANA"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["TR-4905：SAP HANA利用Azure NetApp Files NetApp服務在支援的基礎上進行備份與恢復SnapCenter"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html["TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["TR-4435：《SAP HANA on NetApp AFF Sing Systems with NFS -組態指南》"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana-fas-nfs_introduction.html["TR-4290：《SAP HANA on NetApp FAS 》（採用NFS的SAP HANA系統）組態指南"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_fas_fc_introduction.html["TR-4384：FAS 《SAP HANA on NetApp》《採用光纖通道傳輸協定的NetApp系統組態指南》"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html["TR-4436：AFF 採用Fibre Channel Protocol的NetApp穩定系統上的SAP HANA"]
 

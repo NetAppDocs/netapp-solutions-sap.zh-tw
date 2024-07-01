@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: briefs/sap-avantra-automation.html 
+keywords: sb-4294, sap, avantra, provisioning, lifecycle, management, automation, landscape 
+summary: 本文件說明 Avantra 如何與 NetApp SnapCenter ® 平台整合。 
+---
+= SB-4294 ：利用 Avantra 和 NetApp SnapCenter 將 SAP 系統複製、重新整理和複製工作流程自動化
+:allow-uri-read: 
+
+
+[role="lead"]
+本文件說明 Avantra 如何與 NetApp SnapCenter ® 平台整合。
+
+
+
+== 解決方案總覽
+
+SAP 系統和解決方案的營運非常複雜。然而、對於使用 SAP 的公司而言、這些系統和服務是其業務流程的核心。SAP 系統管理員可將日常例行作業（例如系統複製和重新整理作業）自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。
+
+本文件著重於將 NetApp ® Snapshot ™和 FlexClone ® 技術整合至 Avantra 自動化工作流程。Avantra 是一款 IT 管理平台、著重於 IT 作業與服務的自動化管理。它提供監控、自動化及管理 IT 基礎架構的解決方案、以提升 IT 系統的效率與可靠性。Avantra 可讓企業主動監控其 IT 環境、及早偵測問題、並執行自動化行動以進行疑難排解或最佳化系統效能。此平台通常與其他 IT 管理工具整合、可部署於各種環境、例如雲端、內部部署和混合式基礎架構。
+
+本文件說明 Avantra 如何與 NetApp SnapCenter ® 平台整合。NetApp SnapCenter 是用於協調 Snapshot 型備份、執行還原及建立 FlexClone Volume 的工具。這項整合可讓 SAP 管理員使用 NetApp 技術、大幅加速 SAP 系統的日常營運工作。Snapshot 、 FlexClone 和 NetApp SnapRestore ® 軟體可加速備份、還原和複製作業、因為 NetApp 儲存技術是以指標為基礎。這種方法很快。它也能降低複製作業期間的儲存負荷、因為無論是內部部署的 NetApp 儲存系統、或是三大雲端供應商之一的 NetApp 儲存解決方案、只有新資料和變更的資料會寫入儲存媒體。
+
+
+
+=== 目標對象
+
+本文件的目標對象是先前曾手動執行 SAP 系統複本、並想要使用 Avantra 將此活動自動化的 SAP 系統管理員。將 NetApp Snapshot 和 FlexClone 技術（由 NetApp SnapCenter 協調）與 Avantra 工作流程結合在一起的目標是全面自動化 SAP 系統複本、以加快其速度。
+
+
+
+=== SAP系統複製、複製及重新整理案例
+
+術語 SAP 系統複本通常是三種不同程序的總括術語： SAP 系統複製、 SAP 系統複本和 SAP 系統重新整理。請務必區分不同的作業、因為工作流程和使用案例不同。
+
+* * SAP 系統複製 * 。SAP 系統複本是來源 SAP 系統的相同複本。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。在系統複製作業中、主機名稱、執行個體編號和安全識別碼（ SID ）保持不變。因此、為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊、這一點非常重要。
+
+
+image:sap-avantra-image1.png["顯示 SAP 系統複製的影像"]
+
+* * SAP 系統複本 * 。SAP 系統複本是新目標 SAP 系統的設定、其中包含來源 SAP 系統的資料。例如、目標系統可能是額外的測試系統、其中包含正式作業系統的資料。來源和目標系統的主機名稱、執行個體編號和 SID 不同。 新系統不會與來源系統隔離。
+
+
+image:sap-avantra-image2.png["顯示 SAP 系統複本的影像"]
+
+* * SAP 系統更新。 *SAP 系統重新整理是使用來源 SAP 系統的資料來重新整理現有目標 SAP 系統。目標系統通常是 SAP 傳輸環境（例如沙箱系統）的一部分、會以正式作業系統的資料進行重新整理。來源和目標系統的主機名稱、執行個體編號和 SID 不同。
+
+
+image:sap-avantra-image3.png["顯示 SAP 系統重新整理的影像"]
+
+雖然我們有三種不同的使用案例、但資料管理程序仍維持不變。這三種使用案例都採用相同的基礎資料管理技術： NetApp Snapshot 和 FlexClone 。
+
+
+
+=== 解決方案技術
+
+整體解決方案包含以下主要元件：
+
+* 已安裝 SnapCenter 代理程式和 SnapCenter 資料庫外掛程式的 SAP 來源系統
+* 已安裝 SnapCenter 代理程式和 SnapCenter 資料庫外掛程式的 SAP 目標系統
+* Avantra 系統具備已設定的 SAP 來源和 SAP 目標系統
+* NetApp SnapCenter 伺服器
+* NetApp 儲存系統：
++
+** 實體內部部署硬體： NetApp AFF A 系列、 AFF C 系列、 ASA A 系列、 ASA C 系列或 FAS 系列
+** 內部部署的軟體定義儲存設備： NetApp ONTAP ® Select
+** NetApp 雲端儲存設備：
++
+*** AWS 、 Google Cloud 或 Azure 中的 NetApp Cloud Volumes ONTAP ®
+*** Azure NetApp Files
+*** Amazon FSX for NetApp ONTAP （ AWS ）
+
+
+
+
+
+
+下圖顯示 Avantra 伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統、以及一切如何整合。其目標是使用 SnapCenter REST API 盡可能靈活地整合、以最大程度地重複使用現有元件內已完成的組態工作。
+
+image:sap-avantra-image4.png["顯示 Avantra 伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統、以及一切如何整合的影像"]
+
+
+
+=== 使用案例摘要
+
+在幾種情況下、來源系統的資料必須提供給目標系統、以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集執行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層的多項工作、視自動化層級而定、可能需要數天的時間。
+
+若要縮短時間、自動化作業工作、並消除基礎架構、資料庫和應用程式層級的人為錯誤、您可以使用 Avantra 工作流程。這項整合不需要從來源系統還原備份到目標系統、因為這項作業耗時且耗用大量資源、而是使用 NetApp Snapshot 和 FlexClone 技術。啟動資料庫所需的所有工作都會在幾分鐘內完成、而非數小時。複製程序所需的時間並不取決於資料庫的大小、因此、即使是非常大型的系統也只需幾分鐘就能建立。Avantra 可在作業系統和資料庫層級以及 SAP 後處理端自動化工作、進一步縮短執行時間。
+
+下圖顯示使用自動化時、可能會改善作業效率。
+
+image:sap-avantra-image5.png["顯示使用自動化時可能改善營運效率的影像"]
+
+
+
+=== 整合不同的技術元件
+
+SnapCenter 在 Avantra 工作流程中的實際整合包括使用 JavaScript 來存取 NetApp SnapCenter REST API 。這項 REST API 型整合可建立 SAP 來源系統的 Snapshot 複本、建立 FlexClone Volume 、並將其裝載到 SAP 目標系統。
+
+儲存設備和 SAP 管理員已投入時間和專業知識、開發由 SnapCenter 觸發並由 SnapCenter 代理程式執行的指令碼、以自動化重複發生的日常作業工作。這種鬆散結合的架構使用 JavaScript 來觸發 SnapCenter 工作、讓他們能夠重複使用現有的自動化程序、以 Avantra 作為端點對端點自動化的工作流程引擎、更快達到所需的結果。
+
+
+
+== 結論
+
+Avantra 與 NetApp 資料管理技術的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與心力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。
+
+由於系統重新整理、複本、複本和災難恢復測試都是非常敏感的程序、因此實作這樣的解決方案可以節省寶貴的管理時間。它也能強化業務單位員工對 SAP 系統管理員的信任：他們將會瞭解可以節省多少疑難排解時間、以及複製系統以進行測試或其他用途有多容易。無論來源和目標系統是在內部部署、公有雲、混合式或混合式多雲端環境中、無論在何處營運、此解決方案都能提供這些優勢。
+
+
+
+== 何處可找到其他資訊
+
+若要深入瞭解本文所述資訊、請檢閱下列文件與網站：
+
+* link:https://www.avantra.com/["Avantra"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]
+* link:https://docs.netapp.com/us-en/snapcenter/sc-automation/reference_supported_rest_apis.html["支援REST API以供SnapCenter 支援Sfor Sfor Sfor Sfor Server和外掛程式"]
+
+
+
+
+== 版本歷程記錄
+
+[cols="25,25,50"]
+|===
+| 版本 | 日期 | 更新摘要 
+
+
+| 版本 0.1 | 03.2024 | 第一稿。 
+
+
+| 版本 0.2 | 03.2024 | 整合 NetApp 同仁的意見回饋。 
+
+
+| 版本 0.3 | 04.2024 | 整合式要求的變更必須符合 NetApp 品牌設定標準 
+
+
+| 版本 0.4 | 2024 年 6 月 | 轉換成 HTML 格式 
+|===

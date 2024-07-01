@@ -8,3 +8,9 @@ entries:
   url: https://www.netapp.com/us/media/sb-3965.pdf
 - title: SAP HANA災難恢復
   url: https://www.netapp.com/us/media/sb-3968.pdf
+- title: 透過 Ansible 和 NetApp SnapCenter 實現 SAP 自動化
+  url: "/briefs/sap-lama-ansible.html"
+- title: 運用 Alpaca 和 NetApp SnapCenter 實現 SAP 自動化
+  url: "/briefs/sap-alpaca-automation.html"
+- title: 利用 Avantra 和 NetApp SnapCenter 實現 SAP 自動化
+  url: "/briefs/sap-avantra-automation.html"

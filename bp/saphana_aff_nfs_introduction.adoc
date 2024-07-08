@@ -32,6 +32,9 @@ NOTE: NetApp AFF C 系列需要 NetApp ONTAP 9.13.1 或更新版本
 本文件說明ONTAP NFS傳輸協定第3版（NFSv3）或NFS傳輸協定第4版（NFSv4.1）的功能不完整組態需求。
 
 
+NOTE: 僅支援 NFS 版本 3 或 4.1 。不支援 NFS 版本 1 、 2 、 4.0 和 4.2 。
+
+
 NOTE: 本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效能的必要條件。變更任何未列出的設定或功能、可能會導致效能降低或發生非預期的行為、而且只有在NetApp支援部門告知時才應這麼做。
 
 您AFF 可以在下列連結中找到使用FCP的NetApp Sfor Systems組態指南、FAS 以及使用NFS或FCP的適用於Sfor Sfor Sfor Sfor Sfor Sfor Sfor Sfor the Systems：

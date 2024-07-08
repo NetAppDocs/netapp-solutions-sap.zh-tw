@@ -4840,4 +4840,5 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="411b5f626e19bcfe479b7a04afe0a756" category="sidebar">透過 Ansible 和 NetApp SnapCenter 實現 SAP 自動化</block>
   <block id="286f4dd45534d6e8839dc5cb0fc36cee" category="sidebar">運用 Alpaca 和 NetApp SnapCenter 實現 SAP 自動化</block>
   <block id="314dcde42b7b98639a9e719950095987" category="sidebar">利用 Avantra 和 NetApp SnapCenter 實現 SAP 自動化</block>
+  <block id="15a34eec6990a710b230cba1946c00f5" category="admonition">僅支援 NFS 版本 3 或 4.1 。不支援 NFS 版本 1 、 2 、 4.0 和 4.2 。</block>
 </blocks>

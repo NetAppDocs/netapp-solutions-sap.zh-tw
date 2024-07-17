@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html 
-keywords: prerequisites, lab setup, target host, users, ports, sap services, file system mounts, 
-summary: 本節提供SAP系統複製作業的逐步說明、可用來設定修復系統以解決邏輯毀損問題。 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
 ---
 = SAP系統以SnapCenter 功能複製
 :hardbreaks:
@@ -13,24 +13,39 @@ summary: 本節提供SAP系統複製作業的逐步說明、可用來設定修�
 :imagesdir: ./../media/
 
 
-[role="lead"]
 本節提供SAP系統複製作業的逐步說明、可用來設定修復系統以解決邏輯毀損問題。
 
+下圖摘要說明使用 SnapCenter 執行 SAP 系統複製作業所需的步驟。
 
-NOTE: 實驗室設定與驗證不包括SAP應用程式服務。然而、SAP應用程式服務所需的步驟會在文件中反白顯示。
+. 準備目標主機。
+. SnapCenter Clone 可為 SAP HANA 共享 Volume 建立工作流程。
+. 啟動SAP HANA服務。
+. SnapCenter Clone 可為 SAP HANA 資料 Volume 建立工作流程、包括資料庫還原。
+. SAP HANA 系統現在可做為修復系統使用。
++
 
-image:sc-copy-clone-image10.png["錯誤：缺少圖形影像"]
+NOTE: 如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。SAP HANA 共用磁碟區可繼續裝載。
+
++
+如果不再需要系統、請執行下列步驟進行清理程序。
+
+. SAP HANA 資料 Volume 的 SnapCenter 複製刪除工作流程、包括資料庫關機。
+. 停止SAP HANA服務。
+. SAP HANA 共用 Volume 的 SnapCenter 複製刪除工作流程。
+
+
+image:sc-copy-clone-image9.png[""]
 
 
 
 == 先決條件與限制
 
-以下各節所述的工作流程、對於HANA系統架構和SnapCenter 支援功能有幾項先決條件和限制。
+下列各節所述的工作流程、對於 SAP HANA 系統架構和 SnapCenter 組態有一些先決條件和限制。
 
-* 上述工作流程適用於單一租戶的單一主機SAP HANA MDC系統。
-* 必須在目標主機上部署才能執行自動化指令碼的支援功能。SnapCenter無需在HANA來源系統主機上安裝HANA外掛程式。
-* 此工作流程已通過NFS驗證。用來掛載HANA共享Volume的自動化指令碼「sh-mount-volume．sh」不支援FCP。此步驟必須手動完成、或是延伸指令碼。
-* 上述工作流程僅適用於SnapCenter 更新版本的版本不含更新版本的版本。較舊版本的工作流程略有不同。
+* 上述工作流程適用於單一主機 SAP HANA MDC 系統。不支援多個主機系統。
+* SnapCenter SAP HANA 外掛程式必須部署在目標主機上、才能執行自動化指令碼。
+* 此工作流程已通過NFS驗證。用於裝載 SAP HANA 共用磁碟區的自動化 `script sc-mount-volume.sh`功能不支援 FCP 。此步驟必須手動完成、或是延伸指令碼。
+* 所述工作流程僅適用於 SnapCenter 5.0 或更新版本。
 
 
 
@@ -41,14 +56,15 @@ image:sc-copy-clone-image10.png["錯誤：缺少圖形影像"]
 
 使用下列軟體版本：
 
-* 圖4：SnapCenter6 P1
-* Hana系統：Hana 2.0 SPS6修訂版61
-* VMware 6.7.0
-* SLES 15 SP2
-* 根據組態指南設定的所有HANA系統均為1.7P7All HANA ONTAP https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"^]。根據最佳實務做法指南來設定支援對象的支援與HANA資源SnapCenter https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]。
+* SnapCenter 5.0
+* SAP HANA 系統： Hana 2.0 SPS6 修訂版 61
+* SLES 15
+* 1.7P7 ONTAP
 
 
-image:sc-copy-clone-image42.png["錯誤：缺少圖形影像"]
+所有 SAP HANA 系統都必須根據組態指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"]。SnapCenter 和 SAP HANA 資源是根據最佳實務指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"]。
+
+image:sc-copy-clone-image41.png[""]
 
 
 
@@ -56,13 +72,13 @@ image:sc-copy-clone-image42.png["錯誤：缺少圖形影像"]
 
 本節說明做為系統複製目標之伺服器所需的準備步驟。
 
-在正常運作期間、目標主機可能會用於其他用途、例如HANA QA或測試系統。因此、大多數上述步驟都必須在要求系統複製作業時執行。另一方面、相關的組態檔（例如：「etc/stabs」和「usr/sap/sapservices」）可以準備好、然後只需複製組態檔即可投入正式作業。
+在正常作業期間、目標主機可能會用於其他用途、例如 SAP HANA QA 或測試系統。因此、大多數上述步驟都必須在要求系統複製作業時執行。另一方面、只要複製組態檔案、就能準備和等相關組態檔案 `/etc/fstab` `/usr/sap/sapservices`、然後將其投入生產。
 
-目標主機準備工作也包括關閉HANA QA或測試系統。
+目標主機準備工作也包括關閉 SAP HANA QA 或測試系統。
 
 
 
-=== 目標伺服器主機名稱和IP位址
+=== * 目標伺服器主機名稱和 IP 位址 *
 
 目標伺服器的主機名稱必須與來源系統的主機名稱相同。IP位址可能不同。
 
@@ -74,17 +90,17 @@ NOTE: 在實驗室設定中、我們只從目標系統的觀點、在內部變�
 
 
 
-=== 安裝所需軟體
+=== * 安裝必要的軟體 *
 
-SAP主機代理程式軟體必須安裝在目標伺服器上。如需完整資訊、請參閱 https://help.sap.com/viewer/9f03f1852ce94582af41bb49e0a667a7/103/en-US["SAP主機代理程式"^] SAP說明入口網站。
+SAP主機代理程式軟體必須安裝在目標伺服器上。如需完整資訊、請參閱 https://help.sap.com/doc/saphelp_nw73ehp1/7.31.19/en-US/8b/92b1cf6d5f4a7eac40700295ea687f/content.htm?no_cache=true["SAP主機代理程式"] SAP 說明入口網站上的。
 
-必須使用支援內部的ADD主機作業、在目標主機上部署該程式。SnapCenter SnapCenter
+SnapCenter SAP HANA 外掛程式必須使用 SnapCenter 內的 ADD 主機作業部署在目標主機上。
 
 
 
-=== 設定使用者、連接埠和SAP服務
+=== * 設定使用者、連接埠和 SAP 服務 *
 
-SAP HANA資料庫所需的使用者和群組必須可在目標伺服器上使用。通常會使用集中式使用者管理、因此不需要在目標伺服器上執行任何組態步驟。HANA資料庫所需的連接埠必須在目標主機上設定。您可以將「/etc/services」檔案複製到目標伺服器、從來源系統複製組態。
+SAP HANA資料庫所需的使用者和群組必須可在目標伺服器上使用。通常會使用集中式使用者管理、因此不需要在目標伺服器上執行任何組態步驟。必須在目標主機上設定 SAP HANA 資料庫所需的連接埠。您可以將 /etc/services 檔案複製到目標伺服器、從來源系統複製組態。
 
 所需的SAP服務項目必須可在目標主機上使用。您可以將「/usr/sap/sapservices」檔案複製到目標伺服器、從來源系統複製組態。下列輸出顯示實驗室設定所需的SAP HANA資料庫項目。
 
@@ -102,174 +118,175 @@ limit.descriptors=1048576
 由於來源系統已設定不同的記錄備份磁碟區、因此必須準備好空白記錄備份磁碟區、並將其掛載至與來源系統相同的掛載點。
 
 ....
-hana- 1:/# cat /etc/fstab
+hana-1:/# cat /etc/fstab
 192.168.175.117:/SS1_repair_log_mnt00001 /hana/log/SS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 192.168.175.117:/SS1_repair_log_backup /mnt/log-backup nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 ....
 在記錄Volume hdb*中、您必須以與來源系統相同的方式建立子目錄。
 
 ....
-hana- 1:/ # ls -al /hana/log/SS1/mnt00001/
+hana-1:/ # ls -al /hana/log/SS1/mnt00001/
 total 16
-drwxrwxrwx 5 root   root   4096 Dec  1 06:15 .
-drwxrwxrwx 1 root   root     16 Nov 30 08:56 ..
-drwxr-xr-- 2 ss1adm sapsys 4096 Dec  1 06:14 hdb00001
-drwxr-xr-- 2 ss1adm sapsys 4096 Dec  1 06:15 hdb00002.00003
-drwxr-xr-- 2 ss1adm sapsys 4096 Dec  1 06:15 hdb00003.00003
+drwxrwxrwx 5 root root 4096 Dec 1 06:15 .
+drwxrwxrwx 1 root root 16 Nov 30 08:56 ..
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:14 hdb00001
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:15 hdb00002.00003
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:15 hdb00003.00003
 ....
 在記錄備份磁碟區中、您必須為系統和租戶資料庫建立子目錄。
 
 ....
-hana- 1:/ # ls -al /mnt/log-backup/
+hana-1:/ # ls -al /mnt/log-backup/
 total 12
-drwxr-xr-x 4 root root 4096 Dec  1 04:48 .
-drwxr-xr-x 1 root root   48 Dec  1 03:42 ..
-drwxrwxrwx 2 root root 4096 Dec  1 06:15 DB_SS1
-drwxrwxrwx 2 root root 4096 Dec  1 06:14 SYSTEMDB
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 04:48 .
+drwxr-xr-- 2 ss1adm sapsys 4896 Dec 1 03:42 ..
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:15 DB_SS1
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:14 SYSTEMDB
 ....
 
 
-=== 準備檔案系統掛載
+=== * 準備檔案系統掛載 *
 
 您必須為資料和共享磁碟區準備掛載點。
 
-舉例來說、必須建立目錄「/Hana / data/SS1/mnt00001」、「Hana / shared」和「USR /SAP/SS1」。
+在我們的範例中、必須建立目錄 `/hana/data/SS1/mnt00001` `/hana/shared` 和 `usr/sap/SS1` 。
 
 
 
-=== 準備特定於SID的組態檔以供SnapCenter 指令碼使用
+=== * 準備指令碼執行 *
 
-您必須建立SnapCenter 一套組態檔案、以供執行自動化指令碼「sc-system-refresh.sh」。
+您必須將目標系統上應執行的指令碼新增至 SnapCenter 所允許的命令組態檔。
 
 ....
-hana- 1:/mnt/sapcc-share/SAP-System-Refresh # cat sc-system-refresh-SS1.cfg
-# ---------------------------------------------
-# Target database specific parameters
-# ---------------------------------------------
-# hdbuserstore key, which should be used to connect to the target database
-KEY="SS1KEY"
-# Used storage protocol, NFS or FCP
-PROTOCOL
+hana-7:/opt/NetApp/snapcenter/scc/etc # cat /opt/NetApp/snapcenter/scc/etc/allowed_commands.config
+command: mount
+command: umount
+command: /mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh
+command: /mnt/sapcc-share/SAP-System-Refresh/sc-mount-volume.sh
+hana-7:/opt/NetApp/snapcenter/scc/etc #
 ....
 
 
 == 複製HANA共享磁碟區
 
-. 從來源系統SS1共用磁碟區選取Snapshot備份、然後按一下從備份複製。
-+
-image:sc-copy-clone-image43.png["錯誤：缺少圖形影像"]
+. 從來源系統 SS1 共用磁碟區選取 Snapshot 備份、然後按一下 Clone （複製）。
 
-. 選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標SID與來源系統保持相同的SID、在我們的範例中、這就是SS1。
-+
-image:sc-copy-clone-image44.png["錯誤：缺少圖形影像"]
+
+image:sc-copy-clone-image42.png[""]
+
+. 選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標 SID 與來源系統保持相同的 SID 。在我們的例子 SS1 中。
+
+
+image:sc-copy-clone-image43.png[""]
 
 . 輸入含有所需命令列選項的掛載指令碼。
 +
 
-NOTE: HANA系統使用單一磁碟區來執行「/HANA /共享」、以及「usr/sap/ss1」、並依照組態指南的建議、在子目錄中分隔 https://www.netapp.com/media/17238-tr4435.pdf["SAP HANA on NetApp AFF 的NFS系統"^]。指令碼「shc-mount-volume．sh」使用特殊的命令列選項來支援此組態的掛載路徑。如果掛載路徑命令列選項等於「usr-sap-and -shared」、指令碼就會在磁碟區中掛載子目錄「shared」（共用）和「usr-sap"（usr-sap）。
+NOTE: SAP HANA 系統使用單一 Volume for `/hana/shared` 和 `/usr/sap/SS1`、並依照組態指南中的建議、在子目錄中分隔 https://www.netapp.com/media/17238-tr4435.pdf["SAP HANA on NetApp AFF 的NFS系統"]。指令碼 `sc-mount-volume.sh` 使用裝載路徑的特殊命令列選項來支援此組態。如果掛載路徑命令列選項等於 usr-sap-and 共享、指令碼會將共用子目錄和 usr-sap 相應地掛載到磁碟區中。
 
-+
-image:sc-copy-clone-image45.png["錯誤：缺少圖形影像"]
+
+
+image:sc-copy-clone-image44.png[""]
 
 . 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。
-+
-image:sc-copy-clone-image46.png["錯誤：缺少圖形影像"]
 
-. 「c- mount-volume．sh」指令碼的記錄檔會顯示執行掛載作業的不同步驟。
-+
+
+image:sc-copy-clone-image45.png[""]
+
+. sc-mount-volume.sh 指令碼的記錄檔會顯示掛載作業執行的不同步驟。
+
+
 ....
 20201201041441###hana-1###sc-mount-volume.sh: Adding entry in /etc/fstab.
 20201201041441###hana-1###sc-mount-volume.sh: 192.168.175.117://SS1_shared_Clone_05132205140448713/usr-sap /usr/sap/SS1 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 20201201041441###hana-1###sc-mount-volume.sh: Mounting volume: mount /usr/sap/SS1.
-20201201041441###hana-1###sc-mount-volume.sh: 192.168.175.117: /SS1_shared_Clone_05132205140448713/shared /hana/shared nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
+20201201041441###hana-1###sc-mount-volume.sh: 192.168.175.117:/SS1_shared_Clone_05132205140448713/shared /hana/shared nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 20201201041441###hana-1###sc-mount-volume.sh: Mounting volume: mount /hana/shared.
 20201201041441###hana-1###sc-mount-volume.sh: usr-sap-and-shared mounted successfully.
 20201201041441###hana-1###sc-mount-volume.sh: Change ownership to ss1adm.
 ....
-. 當完成流程時、目標主機上會掛載「USP/SAP/SS1」和「/Hana /共享」檔案系統。SnapCenter
-+
+. 當 SnapCenter 工作流程完成時、會在目標主機上掛載 /usr/sap/ss1 和 /ha/shared 檔案系統。
+
+
 ....
 hana-1:~ # df
-Filesystem                                                       1K-blocks     Used Available Use% Mounted on
-192.168.175.117:/SS1_repair_log_mnt00001                         262144000      320 262143680   1% /hana/log/SS1/mnt00001
-192.168.175.100:/sapcc_share                                    1020055552 53485568 966569984   6% /mnt/sapcc-share
-192.168.175.117:/SS1_repair_log_backup                           104857600      256 104857344   1% /mnt/log-backup
-192.168.175.117: /SS1_shared_Clone_05132205140448713/usr-sap  262144064 10084608 252059456   4% /usr/sap/SS1
-192.168.175.117: /SS1_shared_Clone_05132205140448713/shared   262144064 10084608 252059456   4% /hana/shared
+Filesystem 1K-blocks Used Available Use% Mounted on
+192.168.175.117:/SS1_repair_log_mnt00001 262144000 320 262143680 1% /hana/log/SS1/mnt00001
+192.168.175.100:/sapcc_share 1020055552 53485568 966569984 6% /mnt/sapcc-share
+192.168.175.117:/SS1_repair_log_backup 104857600 256 104857344 1% /mnt/log-backup
+192.168.175.117:/SS1_shared_Clone_05132205140448713/usr-sap 262144064 10084608 252059456 4% /usr/sap/SS1
+192.168.175.117:/SS1_shared_Clone_05132205140448713/shared 262144064 10084608 252059456 4% /hana/shared
 ....
 . 在這個功能中SnapCenter 、您可以看到複製磁碟區的新資源。
-+
-image:sc-copy-clone-image47.png["錯誤：缺少圖形影像"]
 
-. 現在推出「/HANA /共享」磁碟區、SAP HANA服務就能啟動。
-+
+
+image:sc-copy-clone-image46.png[""]
+
+. 現在 /Hana / 共享磁碟區已經可用、 SAP HANA 服務就可以啟動。
+
+
 ....
 hana-1:/mnt/sapcc-share/SAP-System-Refresh # systemctl start sapinit
 ....
-. SAP主機代理程式和sapstartsrv程序現在已啟動。
-+
+. SAP 主機代理程式和 sapstartsrv 程序現在已啟動。
+
+
 ....
 hana-1:/mnt/sapcc-share/SAP-System-Refresh # ps -ef |grep sap
-root     12377     1  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
-sapadm   12403     1  0 04:34 ?        00:00:00 /usr/lib/systemd/systemd --user
-sapadm   12404 12403  0 04:34 ?        00:00:00 (sd-pam)
-sapadm   12434     1  1 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/sapstartsrv pf=/usr/sap/hostctrl/exe/host_profile -D
-root     12485 12377  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
-root     12486 12485  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
-ss1adm   12504     1  0 04:34 ?        00:00:00 /usr/sap/SS1/HDB00/exe/sapstartsrv pf=/usr/sap/SS1/SYS/profile/SS1_HDB00_hana-1 -D -u ss1adm
-root     12582 12486  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
-root     12585  7613  0 04:34 pts/0    00:00:00 grep --color=auto sap
+root 12377 1 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
+sapadm 12403 1 0 04:34 ? 00:00:00 /usr/lib/systemd/systemd --user
+sapadm 12404 12403 0 04:34 ? 00:00:00 (sd-pam)
+sapadm 12434 1 1 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/sapstartsrv pf=/usr/sap/hostctrl/exe/host_profile -D
+root 12485 12377 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
+root 12486 12485 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
+ss1adm 12504 1 0 04:34 ? 00:00:00 /usr/sap/SS1/HDB00/exe/sapstartsrv pf=/usr/sap/SS1/SYS/profile/SS1_HDB00_hana-1 -D -u ss1adm
+root 12582 12486 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
+root 12585 7613 0 04:34 pts/0 00:00:00 grep --color=auto sap
 hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 ....
 
 
-
-
 == 複製其他SAP應用程式服務
 
-其他SAP應用程式服務的複製方式與SAP HANA共享Volume相同、如一節所述<<複製HANA共享磁碟區>>。」 當然、SAP應用程式伺服器所需的儲存磁碟區也必須以SnapCenter 不受影響的方式加以保護。
+其他 SAP 應用程式服務的複製方式與 SAP HANA 共用磁碟區相同、如「複製 SAP HANA 共用磁碟區」一節所述。當然、 SAP 應用程式伺服器所需的儲存磁碟區也必須使用 SnapCenter 加以保護。
 
-您必須將必要的服務項目新增至「USP/SAP/sapservices」、而且必須準備好連接埠、使用者和檔案系統掛載點（例如、「USP/SAP/SID'」）。
+您必須將必要的服務項目新增至 /usr/sap/sapservices 、而且必須準備好連接埠、使用者和檔案系統掛載點（例如、 /usr/sap/sSID ）。
 
 
 
 == 複製資料磁碟區並恢復HANA資料庫
 
-. 從來源系統SS1選取HANA Snapshot備份。
+. 從來源系統 SS1 選取 SAP HANA Snapshot 備份。
+
+
+image:sc-copy-clone-image47.png[""]
+
+. 選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標 SID 與來源系統保持相同的 SID 。在我們的例子 SS1 中
+
+
+image:sc-copy-clone-image48.png[""]
+
+. 使用必要的命令列選項輸入複製後指令碼。
 +
-image:sc-copy-clone-image48.png["錯誤：缺少圖形影像"]
 
-. 選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。目標SID與來源系統保持相同的SID；在我們的範例中、這是SS1。
-+
-image:sc-copy-clone-image49.png["錯誤：缺少圖形影像"]
-
-. 使用所需的命令列選項輸入掛載和後複製指令碼。
-+
-
-NOTE: 還原作業的指令碼會將HANA資料庫恢復至Snapshot作業的時間點、而且不會執行任何轉送還原。如果需要將恢復轉送到特定時間點、則必須手動執行恢復。手動轉送還原也需要在目標主機上提供來源系統的記錄備份。
-
-+
-image:sc-copy-clone-image50.png["錯誤：缺少圖形影像"]
+NOTE: 恢復作業的指令碼會將 SAP HANA 資料庫還原至 Snapshot 作業的時間點、且不會執行任何轉送還原。如果需要將恢復轉送到特定時間點、則必須手動執行恢復。手動轉送還原也需要在目標主機上提供來源系統的記錄備份。
 
 
+
+image:sc-copy-clone-image23.png[""]
 
 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。
 
-image:sc-copy-clone-image51.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image49.png[""]
 
-「sc-system-refresh.sh」指令碼的記錄檔會顯示執行掛載和還原作業的不同步驟。
+指令碼的記錄檔 `sc-system-refresh` 會顯示掛載和還原作業所執行的不同步驟。
 
 ....
-20201201052114###hana-1###sc-system-refresh.sh: Adding entry in /etc/fstab.
-20201201052114###hana-1###sc-system-refresh.sh: 192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605 /hana/data/SS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
-20201201052114###hana-1###sc-system-refresh.sh: Mounting data volume: mount /hana/data/SS1/mnt00001.
-20201201052114###hana-1###sc-system-refresh.sh: Data volume mounted successfully.
-20201201052114###hana-1###sc-system-refresh.sh: Change ownership to ss1adm.
 20201201052124###hana-1###sc-system-refresh.sh: Recover system database.
 20201201052124###hana-1###sc-system-refresh.sh: /usr/sap/SS1/HDB00/exe/Python/bin/python /usr/sap/SS1/HDB00/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
 20201201052156###hana-1###sc-system-refresh.sh: Wait until SAP HANA database is started ....
-20201201052156###hana-1###sc-system-refresh.sh: Status:  GRAY
-20201201052206###hana-1###sc-system-refresh.sh: Status:  GREEN
+20201201052156###hana-1###sc-system-refresh.sh: Status: GRAY
+20201201052206###hana-1###sc-system-refresh.sh: Status: GREEN
 20201201052206###hana-1###sc-system-refresh.sh: SAP HANA database is started.
 20201201052206###hana-1###sc-system-refresh.sh: Source system has a single tenant and tenant name is identical to source SID: SS1
 20201201052206###hana-1###sc-system-refresh.sh: Target tenant will have the same name as target SID: SS1.
@@ -279,17 +296,14 @@ image:sc-copy-clone-image51.png["錯誤：缺少圖形影像"]
 20201201052241###hana-1###sc-system-refresh.sh: Checking availability of Indexserver for tenant SS1.
 20201201052241###hana-1###sc-system-refresh.sh: Recovery of tenant database SS1 succesfully finished.
 20201201052241###hana-1###sc-system-refresh.sh: Status: GREEN
-....
-執行掛載與還原作業之後、HANA資料磁碟區便會掛載到目標主機上。
-
-....
+After the recovery operation, the HANA database is running and the data volume is mounted at the target host.
 hana-1:/mnt/log-backup # df
-Filesystem                                                       1K-blocks     Used Available Use% Mounted on
-192.168.175.117:/SS1_repair_log_mnt00001                         262144000   760320 261383680   1% /hana/log/SS1/mnt00001
-192.168.175.100:/sapcc_share                                    1020055552 53486592 966568960   6% /mnt/sapcc-share
-192.168.175.117:/SS1_repair_log_backup                           104857600      512 104857088   1% /mnt/log-backup
-192.168.175.117: /SS1_shared_Clone_05132205140448713/usr-sap  262144064 10090496 252053568   4% /usr/sap/SS1
-192.168.175.117: /SS1_shared_Clone_05132205140448713/shared   262144064 10090496 252053568   4% /hana/shared
-192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605           262144064  3732864 258411200   2% /hana/data/SS1/mnt00001
+Filesystem 1K-blocks Used Available Use% Mounted on
+192.168.175.117:/SS1_repair_log_mnt00001 262144000 760320 261383680 1% /hana/log/SS1/mnt00001
+192.168.175.100:/sapcc_share 1020055552 53486592 966568960 6% /mnt/sapcc-share
+192.168.175.117:/SS1_repair_log_backup 104857600 512 104857088 1% /mnt/log-backup
+192.168.175.117:/SS1_shared_Clone_05132205140448713/usr-sap 262144064 10090496 252053568 4% /usr/sap/SS1
+192.168.175.117:/SS1_shared_Clone_05132205140448713/shared 262144064 10090496 252053568 4% /hana/shared
+192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605 262144064 3732864 258411200 2% /hana/data/SS1/mnt00001
 ....
-HANA系統現已推出、可作為修復系統使用。
+SAP HANA 系統現已推出、可作為維修系統使用。

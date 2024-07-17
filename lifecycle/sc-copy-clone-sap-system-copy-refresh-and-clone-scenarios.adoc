@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
-permalink: lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html 
-keywords: sap system refresh, system copy, system clone, 
-summary: SAP系統複本一詞通常是三種不同程序的同義詞、分別是SAP系統重新整理、SAP系統複本或SAP系統複製作業。請務必區分不同的作業、因為工作流程和使用案例各不相同。 
+permalink: lifecycle/sc-copy-clone-sap-system-copy-refresh-and-clone-scenarios.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
 ---
 = SAP系統複製、重新整理及複製案例
 :hardbreaks:
@@ -13,7 +13,6 @@ summary: SAP系統複本一詞通常是三種不同程序的同義詞、分別�
 :imagesdir: ./../media/
 
 
-[role="lead"]
 SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統重新整理、SAP系統複本或SAP系統複製作業。請務必區分不同的作業、因為工作流程和使用案例各不相同。
 
 * * SAP系統重新整理* SAP系統重新整理是以來源SAP系統的資料來重新整理現有目標SAP系統。目標系統通常是SAP傳輸環境的一部分、例如品質保證系統、會以正式作業系統的資料重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。
@@ -21,10 +20,6 @@ SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統重新�
 * * SAP系統複製。* SAP系統複製是來源SAP系統的相同複製。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。使用系統複製作業時、主機名稱、執行個體編號和SID會維持不變。因此、為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊、這一點非常重要。
 
 
-下圖說明系統重新整理、系統複本或系統複製作業期間必須執行的主要步驟。藍色方塊表示可透過SnapCenter VMware自動執行的步驟、而綠色方塊則表示必須SnapCenter 在非VMware執行的步驟、無論是手動或使用協力廠商工具。
+下圖說明在系統重新整理、系統複本或系統複製作業期間必須執行的主要步驟。藍色方塊表示可使用 SnapCenter 自動執行的步驟、灰色方塊則表示必須在 SnapCenter 外部手動或使用協力廠商工具執行的步驟。
 
-這三項作業都可以使用SAP Lama和NetApp Storage Services Connector完全自動化。如需詳細資料、請參閱 https://www.netapp.com/us/media/tr-4018.pdf["整合NetApp ONTAP 系統與SAP Landscape Management"^]。
-
-NetApp也與Libelle合作 https://www.libelle.com["www.libelle.com"^] 整合SnapCenter 以利貝爾系統複製進行的還原複製、以自動化SAP的處理前和後處理。如需詳細的解決方案說明、請參閱 link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-overview.html["利用Libelle SystemCopy自動化SAP系統複製作業"^]。
-
-image:sc-copy-clone-image2.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image2.png[""]

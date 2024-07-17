@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: lifecycle/sc-copy-clone-introduction.html 
-keywords: tr4667, 4667, overview, introduction 
-summary: NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置、如下圖所示。 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
 ---
 = TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業
 :hardbreaks:
@@ -11,44 +11,63 @@ summary: NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA
 :icons: font
 :linkattrs: 
 :imagesdir: ./../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
 
 
 NetApp公司Nils Bauer
 
+
+
+== 簡介
+
 在現今瞬息萬變的商業環境中、公司必須持續提供創新、並迅速回應瞬息萬變的市場。在這種競爭情況下、在工作流程中實現更大彈性的公司、可以更有效地因應市場需求。
 
-瞬息萬變的市場需求也會影響公司的SAP環境、使其需要定期整合、變更及更新。IT部門必須以較少的資源和較短的時間來實作這些變更。在部署這些變更時、將風險降至最低需要進行徹底的測試和訓練、這需要額外的SAP系統、並提供實際的正式作業資料。
+瞬息萬變的市場需求也會影響公司的SAP環境、使其需要定期整合、變更及更新。IT部門必須以較少的資源和較短的時間來實作這些變更。部署這些變更時將風險降到最低、需要進行徹底的測試和訓練、因為需要使用正式作業中的實際資料來增加SAP系統。
 
 傳統的SAP生命週期管理方法來配置這些系統、主要是以手動程序為基礎。這些手動程序通常容易出錯且耗時、會延遲創新及回應業務需求。
 
-NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置、如下圖所示。
+NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置、如下圖所示。這些解決方案適用於內部部署執行的 SAP HANA 、或是在 Azure NetApp Files （ anf ）或 Amazon FSX for NetApp ONTAP （適用於 ONTAP 的 FSX ）上的雲端環境中執行的 SAP HANA 。
 
-image:sc-copy-clone-image1.png["錯誤：缺少圖形影像"]
-
-
-
-== 應用程式整合的Snapshot備份作業
-
-在儲存層上建立應用程式一致的NetApp Snapshot備份、是本文件所述系統複製與系統複製作業的基礎。儲存型Snapshot備份是使用SnapCenter 適用於SAP HANA的NetApp還原外掛程式和SAP HANA資料庫提供的介面來建立。此功能可在SAP HANA備份目錄中登錄Snapshot備份、以便將備份用於還原與還原、以及複製作業。SnapCenter
+image:sc-copy-clone-image1.png[""]
 
 
 
-== 異地備份及/或災難恢復資料複寫
+=== * 應用程式整合式 Snapshot 備份作業 *
 
-應用程式一致的Snapshot備份可在儲存層複製到異地備份站台、或SnapCenter 是由他人控制的災難恢復站台。複寫作業是根據區塊變更而進行、因此空間和頻寬都能達到極高的效率。
+在儲存層上建立應用程式一致的 Snapshot 備份、是本文件所述系統複本和系統複製作業的基礎。儲存型Snapshot備份是使用SnapCenter 適用於SAP HANA的NetApp還原外掛程式和SAP HANA資料庫提供的介面來建立。此功能可在SAP HANA備份目錄中登錄Snapshot備份、以便將備份用於還原與還原、以及複製作業。SnapCenter
 
 
 
-== 使用任何Snapshot備份進行SAP系統複製或複製作業
+=== * 異地備份及 / 或災難恢復資料複寫 *
+
+應用程式一致的Snapshot備份可在儲存層複製到異地備份站台、或SnapCenter 是由他人控制的災難恢復站台。複寫是以變更的區塊和新的區塊為基礎、因此空間和頻寬效率都很高。
+
+
+
+=== * 使用任何 Snapshot 備份來執行 SAP 系統複本或複製作業 *
 
 NetApp技術與軟體整合可讓您使用來源系統的任何Snapshot備份來執行SAP系統複製或複製作業。此Snapshot備份可從SAP正式作業系統所使用的相同儲存設備、用於異地備份的儲存設備、或災難恢復站台的儲存設備中選取。這種靈活度可讓您視需要將開發與測試系統與正式作業區分開、並涵蓋其他案例、例如在災難恢復站台測試災難恢復。
 
 
+NOTE: 內部部署 NetApp 系統和 Amazon FSX for NetApp ONTAP 均支援從異地備份或災難恢復儲存設備進行複製。只能在來源磁碟區建立 Azure NetApp Files 複本。
 
-== 自動化與整合
+
+
+=== * 整合自動化 *
 
 SAP測試系統的資源配置有多種情境和使用案例、您可能也有不同的自動化層級需求。適用於SAP的NetApp軟體產品可整合至SAP的資料庫與生命週期管理產品、以支援不同的自動化情境與層級。
 
 採用SAP HANA外掛程式的NetApp SnapCenter 功能可根據應用程式一致的Snapshot備份來配置所需的儲存磁碟區、並可執行所有必要的主機和資料庫作業、直到啟動的SAP HANA資料庫。視使用案例而定、可能需要SAP系統複製、系統複製、系統重新整理或SAP後處理等其他手動步驟。下一節將說明更多詳細資料。
 
-SAP測試系統的全自動化端點對端點資源配置、可透過SAP Landscape Management（Lama）來執行。NetApp Storage Services Connector可整合至SAP Lama、並在儲存層為SAP Lama提供必要的作業。如需詳細資料、請參閱 https://www.netapp.com/us/media/tr-4018.pdf["整合NetApp ONTAP 系統與SAP Landscape Management"^]。
+SAP 測試系統的完整自動化端對端配置可透過協力廠商工具和 NetApp 功能整合來執行。如需更多詳細資料、請參閱：
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/lama-ansible-introduction.html["TR-4953：使用Ansible的NetApp SAP Landscape Management整合"]
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-overview.html["TR-4929 ：使用 Libelle SystemCopy 自動化 SAP 系統複製作業（ netapp.com ）"]
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/briefs/sap-alpaca-automation.html#solution-overview["將 SAP 系統複製與擴大機自動化； #44 ；重新整理與擴大； #44 ；以及使用羊駝和 NetApp SnapCenter 複製工作流程"]
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/briefs/sap-avantra-automation.html#solution-overview["將 SAP 系統複製與擴大機自動化； #44 ；重新整理與擴大； #44 ；並使用 Avantra 和 NetApp SnapCenter 複製工作流程"]

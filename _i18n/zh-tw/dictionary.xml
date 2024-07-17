@@ -3411,142 +3411,48 @@
   <block id="c7b35ad7f0a4691a80ff05970187ddeb" category="paragraph">最後一個使用案例是能夠在不停止複寫的情況下執行災難恢復容錯移轉測試、因此不會影響災難恢復設定的RTO和恢復點目標（RPO）。當使用FSX for ONTAP the Sfor NetApp SnapMirror複寫將資料複寫到災難恢復站台時、正式作業Snapshot備份也可在災難恢復站台上使用、然後再用來建立新的磁碟區以進行災難恢復測試。</block>
   <block id="265110f4d7e59b2f94484d2789a052ba" category="paragraph"><block ref="265110f4d7e59b2f94484d2789a052ba" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0a6bfe5423e343fa9ae1504fcfa72370" category="sidebar">SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復</block>
-  <block id="2520bc20ed8f06d07a35a217bc3733db" category="summary">SAP複製工作流程類似於系統重新整理工作流程的初始步驟。包含VMware的流程SnapCenter 包含五個主要步驟、如下圖所示。</block>
-  <block id="1766338061a6090980d332c6df579283" category="doc">SAP系統複製工作流程概述SnapCenter （含）</block>
-  <block id="7aa8b886cbd1e8e0f72f49cd8f14f5e1" category="list-text">目標系統的初始安裝與準備。</block>
-  <block id="170367c3a1937dad3cc726eb6d0fc622" category="list-text">這個實體複製建立工作流程。SnapCenter</block>
-  <block id="c7f9bfe1b7700991d822d31d7701e893" category="list-text">此為「實體複製切割」工作流程（選用）SnapCenter 。</block>
-  <block id="71c5a4c3d62b2754b16c0e0374d9853c" category="list-text">SAP後處理（手動或搭配協力廠商工具）。</block>
-  <block id="501bdef8be53a1b43a09160704c1c22b" category="list-text">新系統可作為測試/ QA系統使用。</block>
-  <block id="1a3fd559c45e149503b7a31b829fdf49" category="paragraph"><block ref="1a3fd559c45e149503b7a31b829fdf49" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b68813bdd3217ea1e1219746a10db990" category="summary">FlexClone技術可實現快速資源配置程序、並可大幅節省容量、因為修復系統通常只會在短時間內使用。</block>
   <block id="4918362f7575b370dea00cbbd262d325" category="doc">SAP系統實體複製工作流程概述SnapCenter</block>
-  <block id="df8b846e57e91f637f1a98c60c3d4e4e" category="paragraph">下圖摘要說明使用SnapCenter NetApp執行SAP系統複製作業所需的步驟。</block>
-  <block id="6c6b1904ee50bc5e034aac55ab21693e" category="list-text">針對HANA共享磁碟區建立流程。SnapCenter</block>
   <block id="093ee2daaf21be64a5bb2ed4343fb467" category="list-text">啟動SAP HANA服務。</block>
-  <block id="657fb933950024a575e9f7b1b8e010a3" category="list-text">以實體複製建立HANA資料磁碟區的工作流程、包括資料庫還原。SnapCenter</block>
-  <block id="13ec00296afef73e5f8d0b209af5d984" category="list-text">HANA系統現在可作為修復系統使用。</block>
-  <block id="3b93426fba5c9b07ba74ba6c905b1eff" category="admonition">如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。HANA共享磁碟區可以繼續掛載。</block>
   <block id="369cc9284a0690b16f7e5e6fc7eedd89" category="paragraph">如果不再需要系統、請執行下列步驟進行清理程序。</block>
-  <block id="c8db5d0b568841f0c7edd14c95272fe9" category="list-text">HANA資料磁碟區的還原刪除工作流程、包括資料庫關機。SnapCenter</block>
   <block id="d220a66485a5f2da02d8844477577f2d" category="list-text">停止SAP HANA服務。</block>
-  <block id="75553bbd45118bc9af4f506ea0928b95" category="list-text">HANA共享磁碟區的實體複製刪除工作流程。SnapCenter</block>
-  <block id="af85c76e749d10207fb237a6cbbfc8d8" category="paragraph"><block ref="af85c76e749d10207fb237a6cbbfc8d8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="babe89dd8942b06138b66c6f4c3f3fff" category="inline-link-macro">「SAP系統實體複製」SnapCenter</block>
   <block id="6e9193241d90d638068ce0f269752a62" category="paragraph">章節 <block ref="a4506d7466a9fbf36dd3c26b9a984ae5" category="inline-link-macro-rx"></block> 提供系統複製工作流程的詳細逐步說明。</block>
-  <block id="f354a9cadcf2f6a3fe818f35cc2127ae" category="summary">執行SAP HANA系統更新所需的步驟、取決於來源系統租戶組態、以及目標系統所需的租戶名稱、如下圖所示。</block>
-  <block id="cf67a3b9648300993952961c0bddddd8" category="doc">SAP HANA系統使用儲存快照備份來重新整理作業工作流程</block>
-  <block id="6c2ff06798395ff7e93405fe680e438b" category="paragraph">由於租戶名稱是在系統資料庫中設定、因此在還原系統資料庫之後、來源系統的租戶名稱也可在目標系統上使用。因此、目標系統的租戶只能以來源租戶的相同名稱來還原、如下圖選項1所示。如果目標系統的租戶名稱必須不同、則必須先以來源租戶的相同名稱來還原租戶、然後重新命名為所需的目標租戶名稱。這是下圖中的選項2。</block>
-  <block id="bc6be1b4b97d1163c8a0bea0b3e493be" category="paragraph">此規則的例外情況是、只有單一租戶的HANA系統、租戶名稱與系統SID相同。此組態是初次安裝HANA後的預設設定。HANA資料庫會標示此特定組態。在這種情況下、目標系統的租戶還原可以使用目標系統的租戶名稱來執行、而且必須與目標系統的系統SID相同。下圖選項3顯示此工作流程。</block>
-  <block id="f210346b47439daee1d54fff79a1a9a8" category="admonition">一旦來源系統執行任何租戶建立、重新命名或丟棄作業、HANA資料庫就會刪除此組態旗標。因此、即使已將組態恢復至租戶= SID、旗標也無法再使用、而且無法再使用工作流程3的租戶還原例外。在此情況下、選項2是必要的工作流程。</block>
-  <block id="6b398b121f328682662cbb74d8d5903d" category="paragraph"><block ref="6b398b121f328682662cbb74d8d5903d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="29352ddc2d68fa9b97c559469efda55e" category="paragraph">此圖顯示初始安裝MDC單一租戶的組態旗標。</block>
-  <block id="5d10a4f5ad861e984a9902fef04c507f" category="paragraph"><block ref="5d10a4f5ad861e984a9902fef04c507f" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="35728520c8c65fa51d15b44dc8c6d6e5" category="summary">支援各種工作流程、可讓您從任何現有的Snapshot備份管理資料集的複本。SnapCenter這套複製資料集FlexClone Volume可用於從來源系統快速配置HANA資料Volume、並將其附加至目標系統。因此、它非常適合執行QA、測試、沙箱或訓練系統的系統更新作業。</block>
   <block id="5567a4429aece8d2bfac765da9d65e55" category="doc">SAP系統更新工作流程概述SnapCenter （含）</block>
-  <block id="33948d0127a19507f5aeec9c99ba322c" category="paragraph">此類實體複製工作流程可處理儲存層上所有必要的作業、並可利用指令碼來執行主機專屬和HANA資料庫專屬的作業。SnapCenter在本文中、我們使用指令碼來執行目標主機上的掛載和卸載作業、以及HANA資料庫的還原和關機作業。利用指令碼進一步自動化的流程可處理所有必要的HANA資料庫作業、但不涵蓋任何必要的SAP後處理步驟。SnapCenterSAP後置處理必須手動執行、或使用協力廠商工具執行。</block>
-  <block id="07bf829af468c554b26b886107d2e8a9" category="inline-link-macro">「自動化範例指令碼」。</block>
-  <block id="71bac6ae0cfe28a058c25a8f51c50d6d" category="admonition">使用指令碼自動執行的所有步驟、也可以手動執行。不過、對於目標主機的掛載作業、您需要知道FlexClone Volume的儲存系統交會路徑。交叉路徑在SnapCenter 視覺上看不到、因此您需要直接在儲存系統上查詢交會路徑、或是使用簡單的指令碼、在SnapCenter 目標主機上提供各種版本的支援環境變數。如需詳細資訊、請參閱一節 <block ref="f09e683370135f6dedfca208b8dde8fa" category="inline-link-macro-rx"></block></block>
-  <block id="76ff2412c1a96785e74a3945950a922a" category="paragraph">SAP系統更新流程SnapCenter 搭配使用VMware技術、包含五個主要步驟、如下圖所示。</block>
   <block id="2398bee7e215208312bd1fd15c402a64" category="list-text">目標系統的一次性初始安裝與準備。</block>
-  <block id="82e05f9cb002e0a1f14937e1b4384cd8" category="list-text">SAP後置處理（手動或搭配協力廠商工具）。</block>
-  <block id="3f522cf6b00c62989892f56696f4f462" category="list-text">系統可作為測試/ QA系統使用。</block>
-  <block id="d3f74aca91e434f8f77657bb30f4b01f" category="list-text">當要求新的系統重新整理時、SnapCenter 使用「實體複製刪除」工作流程來移除FlexClone磁碟區、並使用步驟2重新啟動重新整理。</block>
-  <block id="4126d00521b83457dbb104ecdd088631" category="paragraph"><block ref="4126d00521b83457dbb104ecdd088631" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ce0b1ecb3f8bfc806a477a8dfa431ea0" category="paragraph">在大多數情況下、目標測試/ QA系統至少會使用幾週、而FlexClone容量節約效益在一到兩週後就不再存在。重要的是、來源系統的Snapshot備份必須從FlexClone磁碟區釋出、以便SnapCenter 透過不受影響的資料保留管理功能加以刪除。因此、NetApp建議您立即或在數天後分割FlexClone Volume。複製分割作業不會封鎖複製磁碟區的使用、因此可在HANA資料庫使用期間隨時執行。</block>
   <block id="0056927d09a94ad9d99ae19f1ae65777" category="admonition">分割FlexClone Volume時SnapCenter 、將刪除在目標系統上建立的所有備份。</block>
-  <block id="d7042db521c3031288a499b741210224" category="paragraph">包括實體複本分割在內的重新整理作業包含下列步驟（下圖）。</block>
-  <block id="837c1a7092ca06093a81099db86da8c1" category="list-text">目標系統的一次性初始安裝與準備。</block>
   <block id="8aebb15edb2abfa5d96c34de17486875" category="list-text">實體複製建立工作流程。SnapCenter</block>
-  <block id="5196a2cb5b7533ecf4e268c7b346a1b3" category="list-text">實體複製切割工作流程。SnapCenter</block>
-  <block id="770d2ecd0548c9ea7ceb18483bdeb137" category="list-text">現在、系統可做為測試/ QA系統使用。</block>
-  <block id="d8a1945286ed5528fa3bf3bf82aa14eb" category="list-text">當要求新的系統重新整理時、SnapCenter 使用「建立流程」功能來執行額外的關機和卸載步驟。</block>
   <block id="2f02093c9e2d7667a513ad0bebeed79c" category="admonition">先前分割的舊資料磁碟區、必須在儲存系統上手動刪除。</block>
-  <block id="61cecf1f6d2b65f9db95504f9c3b5c20" category="paragraph">下圖說明使用SnapCenter 含實體複本切割功能的SAP系統更新工作流程總覽。</block>
-  <block id="e411a494be4f2c10b3faa22a1dc3b34e" category="paragraph"><block ref="e411a494be4f2c10b3faa22a1dc3b34e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bf2ace2832642b55dc83b6716197376d" category="inline-link-macro">「SAP HANA系統更新SnapCenter 功能與更新功能」</block>
   <block id="83f3645d9ca2a90e24d8292c68c44ee9" category="paragraph">章節 <block ref="03ef541d09405ce284f5845fef8fc171" category="inline-link-macro-rx"></block> 提供兩個系統重新整理工作流程的詳細逐步說明。</block>
   <block id="dc5972f4834e498bc24fcfa79ab4832e" category="summary">本節提供SAP系統複製作業的逐步說明、可用來設定修復系統以解決邏輯毀損問題。</block>
   <block id="91e262c7cc6612696dc2e8b343ccd3fa" category="doc">SAP系統以SnapCenter 功能複製</block>
-  <block id="ffefa136567c9bce814e06e202bf39a5" category="admonition">實驗室設定與驗證不包括SAP應用程式服務。然而、SAP應用程式服務所需的步驟會在文件中反白顯示。</block>
   <block id="52f78b138165376783e782c4e6583ca9" category="section-title">先決條件與限制</block>
-  <block id="941aff5aa3403626a81cc9bdeda3c978" category="paragraph">以下各節所述的工作流程、對於HANA系統架構和SnapCenter 支援功能有幾項先決條件和限制。</block>
-  <block id="0690296e4fd61fa9dded075121c912fc" category="list-text">上述工作流程適用於單一租戶的單一主機SAP HANA MDC系統。</block>
-  <block id="ec3932ac89d1c96f286080a9337e4278" category="list-text">必須在目標主機上部署才能執行自動化指令碼的支援功能。SnapCenter無需在HANA來源系統主機上安裝HANA外掛程式。</block>
-  <block id="ee3fbfdb1dd6cd4597f33c1efa4f0758" category="list-text">此工作流程已通過NFS驗證。用來掛載HANA共享Volume的自動化指令碼「sh-mount-volume．sh」不支援FCP。此步驟必須手動完成、或是延伸指令碼。</block>
-  <block id="782706ac0958bde2b750e3de0b75550a" category="list-text">上述工作流程僅適用於SnapCenter 更新版本的版本不含更新版本的版本。較舊版本的工作流程略有不同。</block>
-  <block id="622b9f9f92968ade655dadd32b7f91a9" category="paragraph">下圖顯示用於系統複製作業的實驗室設定。</block>
   <block id="3722e4213a96d42e9f9a969b7f28bf9c" category="paragraph">使用下列軟體版本：</block>
-  <block id="7cc7838ef5244a98d6f64a04dd4aeed6" category="list-text">圖4：SnapCenter6 P1</block>
-  <block id="178d83362e608d5b686e6f83e46db144" category="list-text">Hana系統：Hana 2.0 SPS6修訂版61</block>
-  <block id="3a8852ac51fa4936260676a40523e314" category="list-text">VMware 6.7.0</block>
-  <block id="742f3621a1fbf8a6a061df1aa75f1b03" category="list-text">SLES 15 SP2</block>
   <block id="629a677a12d5ce146953ce7f089d9494" category="inline-link">SAP HANA on NetApp AFF 的NFS系統</block>
-  <block id="ff7ee7b7ca8351554223b4200c6564dc" category="list-text">根據組態指南設定的所有HANA系統均為1.7P7All HANA ONTAP<block ref="9042a1cec9cc6f21384e148006094985" category="inline-link-rx"></block>。根據最佳實務做法指南來設定支援對象的支援與HANA資源SnapCenter<block ref="f70d28502828defa3eb13d3b730673fb" category="inline-link-rx"></block>。</block>
-  <block id="ef025a7d89bd64ae2fa7dff71373d950" category="paragraph"><block ref="ef025a7d89bd64ae2fa7dff71373d950" category="inline-image-macro-rx" type="image"></block></block>
   <block id="311d495fe9e684d64927a5a6c5ea754b" category="section-title">目標主機準備</block>
   <block id="45bdd686062a6e366f360ed4be35e2d6" category="paragraph">本節說明做為系統複製目標之伺服器所需的準備步驟。</block>
-  <block id="d13d26ea3c2e52e2bba8c90daf3e6966" category="paragraph">在正常運作期間、目標主機可能會用於其他用途、例如HANA QA或測試系統。因此、大多數上述步驟都必須在要求系統複製作業時執行。另一方面、相關的組態檔（例如：「etc/stabs」和「usr/sap/sapservices」）可以準備好、然後只需複製組態檔即可投入正式作業。</block>
-  <block id="dc7033e5c84635d07cf8825b6e15c568" category="paragraph">目標主機準備工作也包括關閉HANA QA或測試系統。</block>
   <block id="b69071a45ad28f853ea645b7bdce7c78" category="admonition">必須建立適當的目標伺服器隔離、使其無法與其他系統通訊。如果沒有適當的屏障、則複製的正式作業系統可能會與其他正式作業系統交換資料。</block>
   <block id="d47c82608e9c54c2177ab011e592cd3a" category="admonition">在實驗室設定中、我們只從目標系統的觀點、在內部變更目標系統的主機名稱。外部主機仍可使用主機名稱Hana - 7存取主機。登入主機時、主機本身就是Hana（1）。</block>
-  <block id="36845bdd5a76b6bbbf4d901da04ec5f4" category="paragraph">必須使用支援內部的ADD主機作業、在目標主機上部署該程式。SnapCenter SnapCenter</block>
   <block id="11ba9045ace190d52590b95322ebbe99" category="section-title">準備記錄和記錄備份磁碟區</block>
   <block id="c3dc73ef5b64395a593922e549e1489c" category="paragraph">由於您不需要從來源系統複製記錄磁碟區、而且任何還原都是使用清除記錄選項執行、因此必須在目標主機上準備一個空的記錄磁碟區。</block>
   <block id="3480283b2df2bb5abbf5fc8dc0d3334c" category="paragraph">由於來源系統已設定不同的記錄備份磁碟區、因此必須準備好空白記錄備份磁碟區、並將其掛載至與來源系統相同的掛載點。</block>
   <block id="f589ee4577bcd9213118347f1cc22d38" category="paragraph">在記錄Volume hdb*中、您必須以與來源系統相同的方式建立子目錄。</block>
   <block id="83706c0c7217c1bc161fae80897bb12f" category="paragraph">在記錄備份磁碟區中、您必須為系統和租戶資料庫建立子目錄。</block>
   <block id="b0801fc20ca88c457d0193f04f91045f" category="paragraph">您必須為資料和共享磁碟區準備掛載點。</block>
-  <block id="c8b581f04f2da2cf41b3514fa8deddee" category="paragraph">舉例來說、必須建立目錄「/Hana / data/SS1/mnt00001」、「Hana / shared」和「USR /SAP/SS1」。</block>
-  <block id="e739a1d8673a03b9e93493bce7137da3" category="section-title">準備特定於SID的組態檔以供SnapCenter 指令碼使用</block>
-  <block id="cd25e1af49bc0a863b5c3acf8d919782" category="paragraph">您必須建立SnapCenter 一套組態檔案、以供執行自動化指令碼「sc-system-refresh.sh」。</block>
   <block id="7a509a4c06e4915ff64b195bf2803fb5" category="section-title">複製HANA共享磁碟區</block>
-  <block id="c2e6f34ab0c3137d404e7be7870fa00a" category="list-text">從來源系統SS1共用磁碟區選取Snapshot備份、然後按一下從備份複製。</block>
-  <block id="9479cade44efcb27b3c0a62f4208885b" category="paragraph"><block ref="9479cade44efcb27b3c0a62f4208885b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="89691fc0f16a91d4901d2a4d7164493e" category="list-text">選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標SID與來源系統保持相同的SID、在我們的範例中、這就是SS1。</block>
-  <block id="2472cb70469d0fcc59ea579a34dc1340" category="paragraph"><block ref="2472cb70469d0fcc59ea579a34dc1340" category="inline-image-macro-rx" type="image"></block></block>
   <block id="8ae991813efd55da49ac68bbc88f63ba" category="list-text">輸入含有所需命令列選項的掛載指令碼。</block>
-  <block id="b0704925bc5bea80a03806a5f5017568" category="admonition">HANA系統使用單一磁碟區來執行「/HANA /共享」、以及「usr/sap/ss1」、並依照組態指南的建議、在子目錄中分隔<block ref="b7649e38f11c8b09b37711f6fbcf2088" category="inline-link-rx"></block>。指令碼「shc-mount-volume．sh」使用特殊的命令列選項來支援此組態的掛載路徑。如果掛載路徑命令列選項等於「usr-sap-and -shared」、指令碼就會在磁碟區中掛載子目錄「shared」（共用）和「usr-sap"（usr-sap）。</block>
-  <block id="db82954a5439eff4f1d679234ca68295" category="paragraph"><block ref="db82954a5439eff4f1d679234ca68295" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cc896021fb024f9f0a119749d16f42c6" category="list-text">中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。</block>
-  <block id="b963046719df96770d7ddc1c5af67d7d" category="paragraph"><block ref="b963046719df96770d7ddc1c5af67d7d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="72d3e9e22bd36b3b46999b7f5b9aa1a7" category="list-text">「c- mount-volume．sh」指令碼的記錄檔會顯示執行掛載作業的不同步驟。</block>
-  <block id="3354083e1ade3f55174dd1aec90b6e10" category="list-text">當完成流程時、目標主機上會掛載「USP/SAP/SS1」和「/Hana /共享」檔案系統。SnapCenter</block>
   <block id="fb14d9cdc6b29f21dde7c843415b0e30" category="list-text">在這個功能中SnapCenter 、您可以看到複製磁碟區的新資源。</block>
-  <block id="5184f4a4fdc0d636e0c4439f7d0d530a" category="paragraph"><block ref="5184f4a4fdc0d636e0c4439f7d0d530a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="787798927a9e01f37cf1f2b12782268c" category="list-text">現在推出「/HANA /共享」磁碟區、SAP HANA服務就能啟動。</block>
-  <block id="00b4aea8ca661a80df56438138e5a6ef" category="list-text">SAP主機代理程式和sapstartsrv程序現在已啟動。</block>
   <block id="e75e233d1a0d5dfc08414007ca9b4ddb" category="section-title">複製其他SAP應用程式服務</block>
-  <block id="29a0134a82b203378a4fec07c8d30065" category="paragraph">其他SAP應用程式服務的複製方式與SAP HANA共享Volume相同、如一節所述<block ref="5b1d1e8204f1ce06ab667e6607dd71e0" category="inline-xref-macro-rx"></block>。」 當然、SAP應用程式伺服器所需的儲存磁碟區也必須以SnapCenter 不受影響的方式加以保護。</block>
-  <block id="79b2df01271f96878cbcb0ea44bbd7a0" category="paragraph">您必須將必要的服務項目新增至「USP/SAP/sapservices」、而且必須準備好連接埠、使用者和檔案系統掛載點（例如、「USP/SAP/SID'」）。</block>
   <block id="2184a1291c65d3b3b536d54f7d596a25" category="section-title">複製資料磁碟區並恢復HANA資料庫</block>
-  <block id="409067f391f0443fce74e99eafe8a1ee" category="list-text">從來源系統SS1選取HANA Snapshot備份。</block>
-  <block id="8981362219ab300b1e0063c0374ae662" category="paragraph"><block ref="8981362219ab300b1e0063c0374ae662" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="69cdd6e77df0fcbd8187dadbf5e5c0b3" category="list-text">選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。目標SID與來源系統保持相同的SID；在我們的範例中、這是SS1。</block>
-  <block id="c19176afcd3227597520e8b7875b93e6" category="paragraph"><block ref="c19176afcd3227597520e8b7875b93e6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1a647d84638cf480b069da0b497b7e5d" category="list-text">使用所需的命令列選項輸入掛載和後複製指令碼。</block>
-  <block id="15d48db8dbfbe71e50402d54efb10365" category="admonition">還原作業的指令碼會將HANA資料庫恢復至Snapshot作業的時間點、而且不會執行任何轉送還原。如果需要將恢復轉送到特定時間點、則必須手動執行恢復。手動轉送還原也需要在目標主機上提供來源系統的記錄備份。</block>
-  <block id="a0c9bab045b9ddad34300cf37b8411e9" category="paragraph"><block ref="a0c9bab045b9ddad34300cf37b8411e9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="08998266f7cb1a354e3febc706e98833" category="paragraph"><block ref="08998266f7cb1a354e3febc706e98833" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="96d0be67148d5ea0b988513277fca416" category="paragraph">「sc-system-refresh.sh」指令碼的記錄檔會顯示執行掛載和還原作業的不同步驟。</block>
-  <block id="9371d9155ae7adbf26a3481b9528e6d9" category="paragraph">執行掛載與還原作業之後、HANA資料磁碟區便會掛載到目標主機上。</block>
-  <block id="b13431d1ac2704ecb1fb9ec732bca88c" category="paragraph">HANA系統現已推出、可作為修復系統使用。</block>
   <block id="bc4fe2352063642d68529f2aa0ca7ca3" category="list-text">NetApp 產品文件</block>
   <block id="fa4af55c3fdbce23e96d2cf73261fa5b" category="inline-link"><block ref="fa4af55c3fdbce23e96d2cf73261fa5b" category="inline-link-rx"></block></block>
   <block id="2e85fc867cab94d246e0bf6043b361cd" category="paragraph"><block ref="2e85fc867cab94d246e0bf6043b361cd" category="inline-link-rx"></block></block>
-  <block id="c75e5611c366c76c5c9a0af0a9532fb4" category="summary">SAP系統複本一詞通常是三種不同程序的同義詞、分別是SAP系統重新整理、SAP系統複本或SAP系統複製作業。請務必區分不同的作業、因為工作流程和使用案例各不相同。</block>
   <block id="14eeebfaf0a3f6c3f31d03561a918d1d" category="doc">SAP系統複製、重新整理及複製案例</block>
   <block id="63d77ab1313f4f81998ac664534d61f8" category="paragraph">SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統重新整理、SAP系統複本或SAP系統複製作業。請務必區分不同的作業、因為工作流程和使用案例各不相同。</block>
   <block id="2524d9452b0a981704b4a6ee5d325ae9" category="list-text">* SAP系統重新整理* SAP系統重新整理是以來源SAP系統的資料來重新整理現有目標SAP系統。目標系統通常是SAP傳輸環境的一部分、例如品質保證系統、會以正式作業系統的資料重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。</block>
   <block id="70163042bd4905ce5700fc7a0ebfb1ab" category="list-text">* SAP系統複本。* SAP系統複本是新目標SAP系統的設定、其中含有來自來源SAP系統的資料。例如、新的目標系統可能是另一個含有正式作業系統資料的測試系統。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。</block>
   <block id="9d987abf3f9fb4867efa110ffee16b77" category="list-text">* SAP系統複製。* SAP系統複製是來源SAP系統的相同複製。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。使用系統複製作業時、主機名稱、執行個體編號和SID會維持不變。因此、為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊、這一點非常重要。</block>
-  <block id="17b4b3b92e56681d19761a021d9cfa3b" category="paragraph">下圖說明系統重新整理、系統複本或系統複製作業期間必須執行的主要步驟。藍色方塊表示可透過SnapCenter VMware自動執行的步驟、而綠色方塊則表示必須SnapCenter 在非VMware執行的步驟、無論是手動或使用協力廠商工具。</block>
-  <block id="2a39adbe314ab2d3ca27f709c77c853a" category="inline-link">整合NetApp ONTAP 系統與SAP Landscape Management</block>
-  <block id="67d7a5531f7d837d39bf473ae02fb0b0" category="paragraph">這三項作業都可以使用SAP Lama和NetApp Storage Services Connector完全自動化。如需詳細資料、請參閱<block ref="a13d781a0803b9540621516c1b4376a3" category="inline-link-rx"></block>。</block>
-  <block id="bddc59e4f7f67a4d785497bfd06f2fd6" category="inline-link-macro">利用Libelle SystemCopy自動化SAP系統複製作業</block>
-  <block id="740197237f4608b855d01d89dd68880c" category="inline-link">www.libelle.com</block>
-  <block id="e4f10763472c63e1fd6c7a6d8ebb7526" category="paragraph">NetApp也與Libelle合作<block ref="6162d527da418b61f12bbe43cff5a2df" category="inline-link-rx"></block> 整合SnapCenter 以利貝爾系統複製進行的還原複製、以自動化SAP的處理前和後處理。如需詳細的解決方案說明、請參閱 <block ref="1ae2635161bddbc5be99b75be3f2bd9a" category="inline-link-macro-rx"></block>。</block>
-  <block id="734f6d6122e9b0d740289d0d0a3e6555" category="paragraph"><block ref="734f6d6122e9b0d740289d0d0a3e6555" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bf71c2f30ce593737e5676b615d679b7" category="summary">本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與SnapCenter S基 部之間的整合支援所有SAP支援的資料庫。不過、我們必須區分SAP Anywhere和SAP HANA、因為SAP HANA提供的集中通訊主機不適用於SAP Anywhere。</block>
   <block id="1a69541a93d21817ebaad2102f643fb1" category="doc">SAP HANA系統使用LSC和SnapCenter 功能更新</block>
   <block id="d6a68c1e93d6606c28c5465a88d436c9" category="paragraph">本節說明如何將LSC與NetApp SnapCenter 功能區整合。LSC與SnapCenter 支援SAP的所有資料庫均可整合。不過、我們必須區分SAP Anywhere和SAP HANA、因為SAP HANA提供的集中通訊主機不適用於SAP Anywhere。</block>
@@ -3650,55 +3556,20 @@
   <block id="94660e32faf98b602eb41f1b3e5752c8" category="paragraph"><block ref="94660e32faf98b602eb41f1b3e5752c8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="7ae2a6447550be2b8594e4607e4a7453" category="paragraph">下圖顯示使用中央通訊主機時的兩項工作：「NTAP_system_clone _CP」和「NTAP_MNT_recovery _CP」。如您所見、建立Snapshot複本、複製、在目標資料庫伺服器上掛載複本磁碟區、以及還原及還原目標資料庫、所需時間約12分鐘。使用標準安裝時、執行這些步驟所需的時間大致相同。同樣地、Snapshot與NetApp FlexClone技術也能讓這些工作持續快速地完成、而且不受來源資料庫的大小限制。</block>
   <block id="70cba9cd73b22ae39380d2cbcf53ac6d" category="paragraph"><block ref="70cba9cd73b22ae39380d2cbcf53ac6d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="362c26abf7af5442c5d449bb2075123f" category="inline-link"><block ref="362c26abf7af5442c5d449bb2075123f" category="inline-link-rx"></block></block>
-  <block id="428b7c3b557c016c4e280ca7305fafbe" category="paragraph"><block ref="428b7c3b557c016c4e280ca7305fafbe" category="inline-link-rx"></block></block>
-  <block id="e61238a14181b36aa57a53b7e2f1ce7e" category="list-text"><block ref="e61238a14181b36aa57a53b7e2f1ce7e" category="inline-link-rx"></block></block>
-  <block id="5abea00f163fbfaf287f7d7bf3d56515" category="inline-link"><block ref="5abea00f163fbfaf287f7d7bf3d56515" category="inline-link-rx"></block></block>
-  <block id="08d3e53921f22babd48e40151c9c8a2d" category="paragraph"><block ref="08d3e53921f22babd48e40151c9c8a2d" category="inline-link-rx"></block></block>
-  <block id="385733e4132cdcc96b0a35704a97d643" category="list-text"><block ref="385733e4132cdcc96b0a35704a97d643" category="inline-link-rx"></block></block>
   <block id="3f50f7ed267e090adcfbab165f2e5c47" category="list-text">TR-4436：NetApp All Flash FAS 的SAP HANA搭載Fibre Channel Protocol</block>
-  <block id="4c361fcdd2690df8b614197d1376ce01" category="inline-link"><block ref="4c361fcdd2690df8b614197d1376ce01" category="inline-link-rx"></block></block>
-  <block id="12c13219923113504598b1314ea3454c" category="paragraph"><block ref="12c13219923113504598b1314ea3454c" category="inline-link-rx"></block></block>
   <block id="abb522bb2ca57b2c5746580a64109029" category="list-text">TR-4435：SAP HANA on NetApp All Flash FAS 的NFS系統</block>
-  <block id="f493247973297a32e1c0884f990577fe" category="inline-link"><block ref="f493247973297a32e1c0884f990577fe" category="inline-link-rx"></block></block>
-  <block id="114424331356280012de3c1ecdc95bf0" category="paragraph"><block ref="114424331356280012de3c1ecdc95bf0" category="inline-link-rx"></block></block>
-  <block id="6b41430e7ec93dd6cafb0e46de268b8c" category="list-text">NetApp SAP軟體解決方案產品頁面</block>
-  <block id="4fe93d029c188ed918aa4e4a2498ecb0" category="inline-link"><block ref="4fe93d029c188ed918aa4e4a2498ecb0" category="inline-link-rx"></block></block>
-  <block id="48f967e98dd7651648ec4b74e1c56b13" category="paragraph"><block ref="48f967e98dd7651648ec4b74e1c56b13" category="inline-link-rx"></block></block>
-  <block id="ad60b8b05274e402a4498c82d95225d1" category="summary">NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置、如下圖所示。</block>
   <block id="856228be68913d2211ee02f22a38e8e9" category="paragraph">在現今瞬息萬變的商業環境中、公司必須持續提供創新、並迅速回應瞬息萬變的市場。在這種競爭情況下、在工作流程中實現更大彈性的公司、可以更有效地因應市場需求。</block>
-  <block id="69c3a79c1804cbae032d6195f6cacac7" category="paragraph">瞬息萬變的市場需求也會影響公司的SAP環境、使其需要定期整合、變更及更新。IT部門必須以較少的資源和較短的時間來實作這些變更。在部署這些變更時、將風險降至最低需要進行徹底的測試和訓練、這需要額外的SAP系統、並提供實際的正式作業資料。</block>
   <block id="3f764a0345ec7999f352204a5b3fdddd" category="paragraph">傳統的SAP生命週期管理方法來配置這些系統、主要是以手動程序為基礎。這些手動程序通常容易出錯且耗時、會延遲創新及回應業務需求。</block>
-  <block id="a5ddf82af10e90e54f80f1c95a97c3f4" category="paragraph"><block ref="a5ddf82af10e90e54f80f1c95a97c3f4" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b3994c00931c89a0a503c3ac46453065" category="section-title">應用程式整合的Snapshot備份作業</block>
-  <block id="6243c53e13fe45e2f2d8139d84df9fc3" category="paragraph">在儲存層上建立應用程式一致的NetApp Snapshot備份、是本文件所述系統複製與系統複製作業的基礎。儲存型Snapshot備份是使用SnapCenter 適用於SAP HANA的NetApp還原外掛程式和SAP HANA資料庫提供的介面來建立。此功能可在SAP HANA備份目錄中登錄Snapshot備份、以便將備份用於還原與還原、以及複製作業。SnapCenter</block>
   <block id="a401037b1fd939681f3b1d35a4cf1871" category="section-title">異地備份及/或災難恢復資料複寫</block>
-  <block id="1330cf26bb73ed79d4f5ce73055208da" category="paragraph">應用程式一致的Snapshot備份可在儲存層複製到異地備份站台、或SnapCenter 是由他人控制的災難恢復站台。複寫作業是根據區塊變更而進行、因此空間和頻寬都能達到極高的效率。</block>
-  <block id="c080449f164d4f10c7e09760a05892b1" category="section-title">使用任何Snapshot備份進行SAP系統複製或複製作業</block>
   <block id="081ba012afe11bcd1b8a6bd63696006b" category="paragraph">NetApp技術與軟體整合可讓您使用來源系統的任何Snapshot備份來執行SAP系統複製或複製作業。此Snapshot備份可從SAP正式作業系統所使用的相同儲存設備、用於異地備份的儲存設備、或災難恢復站台的儲存設備中選取。這種靈活度可讓您視需要將開發與測試系統與正式作業區分開、並涵蓋其他案例、例如在災難恢復站台測試災難恢復。</block>
   <block id="9a44f200391ceb970e5a7d2117387553" category="section-title">自動化與整合</block>
   <block id="56d0fbc6603d3792bb6ace3eeba4640c" category="paragraph">SAP測試系統的資源配置有多種情境和使用案例、您可能也有不同的自動化層級需求。適用於SAP的NetApp軟體產品可整合至SAP的資料庫與生命週期管理產品、以支援不同的自動化情境與層級。</block>
   <block id="9faeb8f5b5338bf989de461d80bdda01" category="paragraph">採用SAP HANA外掛程式的NetApp SnapCenter 功能可根據應用程式一致的Snapshot備份來配置所需的儲存磁碟區、並可執行所有必要的主機和資料庫作業、直到啟動的SAP HANA資料庫。視使用案例而定、可能需要SAP系統複製、系統複製、系統重新整理或SAP後處理等其他手動步驟。下一節將說明更多詳細資料。</block>
-  <block id="dee484fd236b3a8c6df508ff1a995b0b" category="paragraph">SAP測試系統的全自動化端點對端點資源配置、可透過SAP Landscape Management（Lama）來執行。NetApp Storage Services Connector可整合至SAP Lama、並在儲存層為SAP Lama提供必要的作業。如需詳細資料、請參閱<block ref="a13d781a0803b9540621516c1b4376a3" category="inline-link-rx"></block>。</block>
   <block id="51804259bd2554b5e3aed937261760cc" category="summary">在本文件中、有兩個指令碼可用於進一步自動化SnapCenter 建立及複製刪除作業。</block>
   <block id="d648af91bd5d8a9bfbf67955f22a64fc" category="doc">自動化範例指令碼</block>
-  <block id="f7766c06cfb3d8eda8ed33fc1adc40c2" category="list-text">指令碼「shc-system-refresh.sh」用於系統更新和系統複製工作流程、以執行HANA資料磁碟區的掛載和卸載作業、以及HANA資料庫的還原和關機作業。</block>
-  <block id="86f2aadf0f2fc8e480ba7d3db06806f7" category="list-text">指令碼「shc-mount-volume．sh」可用於系統實體複製工作流程、以執行HANA共享磁碟區的掛載和卸載作業。</block>
-  <block id="98d5cd937b8c3364f24d00295990f0bf" category="admonition">範例指令碼是以原樣提供、NetApp不支援。您可以透過電子郵件向mailto：ng-sapcc@netapp.com [ng-sapcc@netapp.com ^]索取指令碼。</block>
   <block id="1895adf39b38ef18443a63aa503d8314" category="section-title">指令碼sc-system-refresh.sh</block>
-  <block id="d914d56d7c4dbe25fe358724cadd161c" category="paragraph">範例指令碼「shc-system-refresh.sh」用於執行SAP HANA資料磁碟區的掛載和卸載作業、以及還原和關機作業。指令碼是以SnapCenter 特定命令列選項在「創建及複製刪除流程」中呼叫、如下圖所示。</block>
-  <block id="9fc49ab8b12deb9a63ed3abcc0c81388" category="paragraph">指令碼為一般指令碼、並設定有特定於SID的組態檔和環境變數、SnapCenter 這些變數可在執行指令碼時由S時 使用。指令碼和組態檔必須在系統重新整理作業的目標主機上可用。如果指令碼用於多個目標主機、您可以提供NFS共用、讓指令碼可供所有目標主機使用。</block>
-  <block id="689a66fe0c7eeb024e2d965566e00fd1" category="admonition">目前版本的指令碼支援單一容器、單一用戶租戶或多個用戶配置的單一主機系統。不支援SAP HANA多主機系統。</block>
-  <block id="37f03f9473f314543df0c566e5f574d7" category="admonition">指令碼支援使用NFS或Fibre Channel（FC）作為儲存傳輸協定的HANA系統。</block>
-  <block id="b101fedc7521206f4f9ba31bb8e44827" category="paragraph"><block ref="b101fedc7521206f4f9ba31bb8e44827" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9f44c7e376181d4ca0921e1d3a50fda8" category="section-title">支援的租戶還原作業</block>
-  <block id="f7c6da6e7aefea19fdfc498a2ec0bc76" category="inline-link-macro">「使用儲存快照備份的SAP HANA系統更新作業流程」</block>
-  <block id="7b4411b02c60488071d427057429a2e8" category="paragraph">如一節所述 <block ref="d94d29d329c6f57fb83f9f1927159f1b" category="inline-link-macro-rx"></block> 目標系統上可能的租戶還原作業取決於來源系統的租戶組態。指令碼「shc-system-refresh.sh」支援所有租戶還原作業、這些作業可能取決於來源系統組態、如下表所示。</block>
   <block id="8d56fe5a88639964171b4bbd96f2e00a" category="paragraph">如果目標系統需要不同的租戶名稱、則必須在恢復作業之後手動重新命名租戶。</block>
-  <block id="90c9f514d641c6546821f3d099ea3057" category="cell">Hana系統</block>
-  <block id="6fdfd09c74753f84071cba9ce0611394" category="cell">來源系統的租戶組態</block>
-  <block id="30132596f3bd792ed24a69cf1fdae843" category="cell">目標系統的租戶組態</block>
-  <block id="44209cba336c1d303fb4e247025f798c" category="cell">單一容器</block>
   <block id="004c7f829dcf842443fd006747d3de9f" category="cell">單一租戶</block>
   <block id="c71db1f0ff2bac482804f98b63405342" category="cell">來源租戶名稱等於來源SID</block>
   <block id="d929ba5e22f3284a57126c2edcb90be7" category="cell">目標租戶名稱等於目標SID</block>
@@ -3706,34 +3577,9 @@
   <block id="7f0af4df67950a3197c9553be6bc7ba8" category="cell">目標租戶名稱等於來源租戶名稱</block>
   <block id="78872edb0be427b181e6e8e7190de742" category="cell">多個用戶的MDC</block>
   <block id="82a6e1233b922d8cab83fc7d0256ab6a" category="cell">任何租戶名稱</block>
-  <block id="fa75de1ed62040e81bcf2dbd0bef5d62" category="cell">只會恢復第一個租戶、並與來源租戶具有相同的名稱。</block>
-  <block id="651d7ef2e8c3366e98b7826592f95fa7" category="section-title">特定於SID的組態檔</block>
-  <block id="b2a76bbf3423d7ba72553b6a469b19d9" category="paragraph">此指令碼使用組態檔來設定數個目標系統專屬的參數。組態檔必須具有特定於SID的檔案名稱「sc-system-refresh- sID.cfg/」。</block>
-  <block id="ecb1d9dfedf1541c7998a2f4588663ba" category="admonition">使用目標系統的hdbuserstore金鑰設定的資料庫使用者、必須存在於來源資料庫中、且必須擁有正確的權限才能允許資料庫還原。</block>
-  <block id="d0f60714a1ed3782abba56ac9489b10c" category="paragraph">下表顯示組態檔參數。</block>
-  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">說明</block>
-  <block id="3b5949e0c26b87767a4752a276de9570" category="cell">金鑰</block>
-  <block id="3a0cdfb5467246a2065933013464dc24" category="cell">例如：QS1KEY</block>
-  <block id="a7b3be749b6be09f50b485c82887cb5d" category="cell">SAP HANA hdbuserstore金鑰、應用於目標SAP HANA資料庫的還原作業。必須為目標主機上的使用者&lt;SID&gt;adm設定金鑰。</block>
-  <block id="83a59f4531c50a35ebc414248499e7df" category="cell">傳輸協定</block>
-  <block id="9954f1758a74f9ece72459a8aca46883" category="cell">NFS或FCP</block>
-  <block id="56147a88cf9e0102ad8e2873cc800991" category="cell">儲存傳輸協定、用於連接HANA資料庫資料Volume。</block>
-  <block id="f6e70b0472340b97ea218873e7a5cde0" category="paragraph">下列輸出顯示SAP HANA系統的範例組態檔：「ID=QS1」。</block>
   <block id="9ba220b8314947bfb807aaa20db482fa" category="section-title">局部環境變數SnapCenter</block>
   <block id="c05a52fae37942af7adad0d02ba87fee" category="paragraph">提供一組環境變數、可在目標主機上執行的指令碼中使用。SnapCenter指令碼會使用這些變數來判斷相關的組態設定。</block>
-  <block id="ba25c653128001bcf08bf808ced252a9" category="list-text">指令碼變數「HANA架構」是用來判斷單一容器或MDC系統所需的還原作業。</block>
-  <block id="ec5eb366ca755ac2bc471a5bd1cd07cd" category="list-text">衍生自'HANA資料庫類型'環境變數</block>
-  <block id="43cc589a910d8d9a1f87d79d6dde8f77" category="list-text">例如：「mDC\SS1_HANA資料庫類型=多重容器」</block>
-  <block id="860b544d5df250512091fa01e8d6c131" category="list-text">指令碼變數「租戶名單、來源租戶」和「OURCE_SID」可用來判斷恢復作業的目標租戶名稱。</block>
-  <block id="810fd5e22aed350a845d5152e2792d97" category="list-text">衍生自'租 戶資料庫名稱'環境變數</block>
-  <block id="180716d3619e705d1aa63e83bbd6fb0c" category="list-text">例如：「MDC\SM1_租 戶資料庫名稱= TENANT1、TENANT2」</block>
-  <block id="9da824d922a311daa6550bc58ba65f12" category="list-text">指令碼變數「torage、jane_path」用於掛載作業。</block>
-  <block id="984b9615b6eb4137fbe36d80e6c215bf" category="list-text">衍生自'Clone磁碟區_mount_path'環境變數</block>
-  <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="list-text">例如：</block>
   <block id="3e88016e64c25f9d19a24a1f021ac09a" category="section-title">指令碼sc-mount-volume.sh</block>
-  <block id="5d5e8180e8e28f025880fcba510f9534" category="paragraph">範例指令碼「shc - mount-volume．sh」用於執行任何Volume的掛載和卸載。指令碼可用來掛載HANA共享磁碟區與SAP HANA系統實體複製作業。指令碼是以SnapCenter 特定命令列選項在「創建及複製刪除流程」中呼叫、如下圖所示。</block>
-  <block id="d7024a5c2d5ed7203f976d4b75f475b4" category="admonition">指令碼支援使用NFS做為儲存傳輸協定的HANA系統。</block>
-  <block id="45f8afeea5c6274f6a448f8526c68aa8" category="paragraph"><block ref="45f8afeea5c6274f6a448f8526c68aa8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="29e2dd6e9c1ba11d2dd4b2729177f644" category="list-text">衍生自'Clone磁碟區_mount_path'環境變數。</block>
   <block id="14d04d54afbe1cbf1d1c652d03b4ab5b" category="section-title">取得SnapCenter 局部環境變數的指令碼</block>
   <block id="f849fc808040266d8c8e8176608047f5" category="paragraph">如果不應使用自動化指令碼、而且應手動執行這些步驟、您必須知道FlexClone Volume的儲存系統交會路徑。交叉路徑在SnapCenter 視覺上看不到、因此您需要直接在儲存系統上查詢交會路徑、或是使用簡單的指令碼、在SnapCenter 目標主機上提供各種版本的支援環境變數。此指令碼必須新增為SnapCenter 執行此動作的掛載作業指令碼、才能執行此動作。</block>
@@ -3773,168 +3619,42 @@
   <block id="0a2e09fa683bd368c81839911e03b708" category="paragraph">本文的其餘部分分為兩部分。第一部分說明NetApp SnapCenter 功能與Libelle SystemCopy的整合、適用於SAP HANA、以及在ONTAP 內部部署的NetApp作業系統上執行SAP Anywhere系統。第二部分說明AzAcSnap與LSC的整合、適用於在Microsoft Azure上執行Azure NetApp Files 的SAP HANA系統、並提供功能。儘管底層ONTAP 的不穩定技術相同、Azure NetApp Files 但與原生ONTAP 的不穩定安裝相比、支援不同的介面和工具整合（例如AzacSnap）。</block>
   <block id="3af0a07313f24e03257baf4f77dca35c" category="summary">在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。</block>
   <block id="8632014b0a82d2a229bc13ad57a2ac7e" category="doc">系統更新與複製的使用案例</block>
-  <block id="4ef50dae8742b31bd8ec2d69e25fdef1" category="paragraph">下圖說明SAP系統的重新整理、複製及複製作業。</block>
-  <block id="031d22d85a5da16f3ba181da66c12ecd" category="paragraph"><block ref="031d22d85a5da16f3ba181da66c12ecd" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="461e187f7dadcae3439069c475efba9c" category="paragraph">利用還原複製工作流程、可加速並自動化基礎架構和資料庫層的必要工作。SnapCenter與其將備份從來源系統還原至目標系統、SnapCenter 不如使用NetApp Snapshot複本和NetApp FlexClone技術、如此一來、啟動HANA資料庫所需的工作、只需幾分鐘即可完成、而非數小時、如下圖所示。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。</block>
-  <block id="d1a24aa3152d972fcab200a268e7235f" category="paragraph">下圖說明QA、測試、沙箱或訓練系統的資料更新。</block>
-  <block id="bcc93bdc05fd8eec85752da1e432d248" category="paragraph"><block ref="bcc93bdc05fd8eec85752da1e432d248" category="inline-image-macro-rx" type="image"></block></block>
   <block id="00b4ead5541ced0624c52fdc64a84c14" category="inline-link-macro">「SAP HANA系統更新SnapCenter 功能可讓您實現更多效益。」</block>
   <block id="42f2ef2ba52b6a85eaf58f1a330f7210" category="paragraph">系統重新整理作業的工作流程將在一節中說明 <block ref="e55292fa4cf2ac9dc22d1926cd366aca" category="inline-link-macro-rx"></block></block>
   <block id="c93a3b395dcad6d7d4701c7ae95fc9d7" category="section-title">解決邏輯毀損問題</block>
   <block id="af5083b35bb63e06e5abf6eb41bc6a64" category="paragraph">邏輯毀損可能是由軟體錯誤、人為錯誤或破壞所造成。遺憾的是、邏輯毀損問題通常無法透過標準的高可用度與災難恢復解決方案來解決。因此、視發生邏輯毀損的層級、應用程式、檔案系統或儲存設備而定、有時無法滿足最短停機時間和最大資料遺失需求。</block>
   <block id="a57853f44c435f203fab190cb2f37b09" category="paragraph">最糟的情況是SAP應用程式的邏輯毀損。SAP應用程式通常會在不同應用程式彼此通訊及交換資料的環境中運作。因此、還原及還原發生邏輯毀損的SAP系統並非建議的方法。將系統還原至毀損發生前的某個時間點、會導致資料遺失。此外、SAP環境也不再同步、需要額外的後處理。</block>
   <block id="40d7615d00f208b51b1e36048899ef14" category="paragraph">與其還原SAP系統、更好的方法是嘗試在個別的修復系統中分析問題、以修正系統內的邏輯錯誤。根本原因分析需要業務程序和應用程式擁有者的參與。在此案例中、您會根據邏輯毀損發生之前所儲存的資料、建立修復系統（正式作業系統的複本）。在修復系統中、所需的資料可匯出並匯入正式作業系統。使用這種方法、不需要停止正式作業系統、而且在最佳情況下、不會遺失任何資料或只會遺失一小部分資料。</block>
-  <block id="2791cdc032a8ce86baaddd3e7e010995" category="paragraph">在設定修復系統時、靈活度和速度是關鍵。有了NetApp儲存型Snapshot備份、就能使用NetApp FlexClone技術建立多個一致的資料庫映像、如下圖所示。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。</block>
-  <block id="c1e885ff16ee900105c65331fffef05d" category="paragraph"><block ref="c1e885ff16ee900105c65331fffef05d" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3d7345edeeb5411d19faf37f4b0c3c2b" category="inline-link-macro">「SAP系統利用SnapCenter 功能進行實體複製。」</block>
   <block id="cd54fd82fa6c906e20ebfd1a171d8845" category="paragraph">修復系統建立的工作流程將在一節中說明 <block ref="cfd6c85725a07b8a62d48c44cdaafa1a" category="inline-link-macro-rx"></block></block>
   <block id="5286abcb37bc2a905758c905666d0e5d" category="paragraph">有效的災難恢復策略需要測試所需的工作流程。測試可證明策略是否有效、以及內部文件是否足夠。此外、系統管理員也能訓練所需的程序。</block>
   <block id="f693601db2c33356395c1020a3b09d61" category="paragraph">使用SnapMirror進行儲存複寫、可在不影響RTO和RPO的情況下執行災難恢復測試。災難恢復測試可在不中斷資料複寫的情況下執行。</block>
   <block id="f4ee3b1ed515524d4ecf1ed0eb6009df" category="paragraph">非同步和同步SnapMirror的災難恢復測試會在災難恢復目標上使用Snapshot備份和FlexClone磁碟區。</block>
-  <block id="7e6c953c75eaf106e6a44189131fd8f0" category="paragraph">下圖說明災難恢復測試。</block>
-  <block id="53b525b68641353affc24f8c4e64c1d2" category="paragraph"><block ref="53b525b68641353affc24f8c4e64c1d2" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="23d78a8119a85afc982e82f6af3a08a0" category="paragraph">詳細的逐步說明可在技術報告中找到<block ref="52b379c796572c84dee3ce1ed1c3826b" category="inline-link-rx"></block>。</block>
-  <block id="270e0c458007c88cf15cb7fbdb4890eb" category="summary">本節將逐步說明SAP HANA資料庫的不同系統更新作業選項。</block>
   <block id="ed6366424ce9a66f8fb6ed2d75c90f8a" category="doc">SAP HANA系統更新SnapCenter 功能</block>
   <block id="b28e3552f08f48399d98c4e3f2ebf170" category="paragraph">下節將逐步說明SAP HANA資料庫的不同系統更新作業選項。</block>
   <block id="ca6901d32a1871c68df005c11893ef03" category="paragraph">本節涵蓋下列案例。</block>
   <block id="2a995a569260d18dbea0c475b32b5070" category="list-text">無需複製分割作業即可更新SAP HANA系統。</block>
-  <block id="577d45313453f242dbed0d7091f85dd2" category="list-text">從主儲存設備複製、租戶名稱等於該SID</block>
-  <block id="0519c794e8dee044b6955a224b3fd694" category="list-text">從異地備份儲存設備複製、租戶名稱等於該SID</block>
-  <block id="1694cd7363603670d079a64892e40f2e" category="list-text">從主儲存設備複製、租戶名稱不等同於SID</block>
   <block id="f5dda657758ce85749d3b1d78126301c" category="list-text">Clone刪除作業</block>
   <block id="eec94e3f3d2ba5db3a1e72117c9ba511" category="list-text">SAP HANA系統以複製分割作業進行更新</block>
   <block id="25c0305dfdc1e02814116467a7b1157d" category="list-text">複製分割作業</block>
-  <block id="df239f38953986dc1710f0064101678e" category="paragraph"><block ref="df239f38953986dc1710f0064101678e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="549857ff78ff15b9e6eef9c923be04a8" category="list-text">上述工作流程適用於單一主機SAP HANA的多個租戶共享系統。自動化指令碼不支援SAP HANA多個主機系統。</block>
-  <block id="4d00e36a56a9005825e75e625320710e" category="list-text">必須在目標主機上部署才能執行自動化指令碼的支援功能。SnapCenterHANA來源系統主機不需要安裝HANA外掛程式。</block>
-  <block id="04e121499bbff104b16f959e82fdc314" category="list-text">上述工作流程僅適用於SnapCenter 更新版本的版本不含更新版本的版本。較舊版本的工作流程略有不同。</block>
-  <block id="10b6f8ea3f6024502051c00f3b3b0b95" category="list-text">這些工作流程適用於使用NFS和FCP的HANA系統。</block>
-  <block id="37225e9225b6516b9c93db3aa013bf01" category="paragraph">下圖顯示用於不同系統重新整理作業選項的實驗室設定。</block>
-  <block id="fe9696b9b6183d7296d0f7aa65607960" category="list-text">從主要儲存設備或異地備份儲存設備複製；租戶名稱等於該SID。</block>
-  <block id="138283049fef5ee154f142eed601b5d6" category="list-text">來源HANA系統：SS1搭配租戶SS1</block>
-  <block id="aff8e91d94f3ad4019e97e0b4ea356ae" category="list-text">目標HANA系統：QS1搭配租戶QS1</block>
-  <block id="ea9d307953e5c9d327e185c56c644cc8" category="list-text">從主要儲存設備複製；租戶名稱不等於SID。</block>
-  <block id="487bb1c30f5b6f5ae0ef610473fdf2e7" category="list-text">來源HANA系統：SM1搭配Tanant1和Tenant2</block>
-  <block id="d0e79a527c5c25c3a33fc58ffd7c3cf5" category="list-text">目標HANA系統：QS1搭配Tenant1</block>
-  <block id="02ab5e821b3157aebb569eef485fa62b" category="list-text">資料4.6P1 SnapCenter</block>
-  <block id="b1ae86bc2b6247190d86e3b5e996c089" category="list-text">Hana系統：Hana 2.0 SPS6修訂版61和HANA 2.0 SPS5修訂版52</block>
   <block id="bdb9d4569afec846fc12c6671235c013" category="list-text">1.7P7 ONTAP</block>
-  <block id="93e2ec534a7e1e8ee8969d773ba67200" category="paragraph">所有HANA系統均根據組態指南進行設定<block ref="9042a1cec9cc6f21384e148006094985" category="inline-link-rx"></block>。根據最佳實務做法指南來設定支援對象的支援與HANA資源SnapCenter<block ref="f70d28502828defa3eb13d3b730673fb" category="inline-link-rx"></block>。</block>
-  <block id="713278b17c5cd7faa41b36cab2cd3bf1" category="paragraph"><block ref="713278b17c5cd7faa41b36cab2cd3bf1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f730f78b62e0154b1968bf5a9cfaa272" category="section-title">初始一次性準備步驟</block>
-  <block id="63c1495b9d918ac3c7b4a93cbe522b61" category="paragraph">在初始步驟中、必須安裝目標HANA系統和SAP應用程式服務、然後在SnapCenter 支援中心內設定HANA系統。</block>
-  <block id="55caeb55e7746649bb2f1b652c080d85" category="list-text">安裝HANA目標系統和SAP應用程式服務</block>
-  <block id="be9dc20d998d7ee2c72693d2cc60c146" category="list-text">如中所述、SnapCenter 在功能方面設定HANA系統<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block></block>
-  <block id="fb8729d55caeeef457cfc3e2a43785ec" category="list-text">HANA資料庫使用者的組態SnapCenter 、以利執行還原備份作業。此使用者必須在來源和目標系統上相同。</block>
-  <block id="39bbfe03089cb7b26b516f3bc9e2d339" category="list-text">使用上述備份使用者設定hdbuserstore金鑰。</block>
-  <block id="59747ddc5dc366ea4ef5ef2a6377f839" category="list-text">在SnapCenter 目標主機上部署支援對象HANA外掛程式。HANA系統SnapCenter 是由NetApp自動發現的。</block>
-  <block id="acf3db297a0ad4bb5ffe3672ff5e2cb4" category="list-text">HANA資源保護組態（選用）。</block>
   <block id="c339e6217e1e3820b4e0049fdf784407" category="paragraph">初始安裝之後、第一次SAP系統重新整理作業會以下列步驟準備：</block>
-  <block id="192e0eea8d38ced1355dab03d63f645e" category="list-text">關閉SAP應用程式服務並鎖定HANA系統。</block>
-  <block id="d44c7e15d174646982dd84b2b319ab03" category="list-text">卸載HANA資料Volume。</block>
   <block id="d15ae9c4b3386df38b1c8b39d279b83b" category="section-title">從主儲存設備複製、租戶名稱等於SID</block>
-  <block id="4cb440919c14b7b5becb14d046d8cbd2" category="paragraph">本節說明HANA系統重新整理工作流程、其中來源和目標系統的租戶名稱與SID相同。儲存複製會在主要儲存設備上執行、並使用指令碼「sc-system-refresh.sh」進一步自動化。</block>
-  <block id="5573f8a92c5b5d3d2e529b15cacad43f" category="paragraph">下圖說明使用租戶名稱= SID從主要儲存設備進行複製。</block>
-  <block id="2bf5c8938c42515ad64387b48218a975" category="paragraph"><block ref="2bf5c8938c42515ad64387b48218a975" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bf53d2bd10de0b4d63b8b4e5961de63a" category="paragraph">工作流程包含下列步驟：</block>
-  <block id="07c961d286f81d1b5db9494f6035284f" category="list-text">如果目標HANA系統已在SnapCenter 不受保護的情況下受到保護、則必須先移除保護。</block>
-  <block id="14ec8064529be3c2a6ffe3291f642e34" category="list-text">開啟SnapCenter 「還原複製精靈」。</block>
-  <block id="b732ccdc3bf0ac2eceafe40d284c26ba" category="list-text">從來源HANA系統SS1選取Snapshot備份。</block>
-  <block id="c5bc1108bafaeb9ba090c6a052e5414a" category="list-text">選取目標主機並提供其儲存網路介面。</block>
-  <block id="a54279d2a51634ebef5deaa1d8116b38" category="list-text">提供目標系統的SID（範例中為QS1）。</block>
-  <block id="eba76588ce04243b401c5094333bd738" category="list-text">提供掛載和後複製作業的指令碼。</block>
-  <block id="7947e028a44fed4e753a83137b2c74d1" category="list-text">若要執行SnapCenter 還原複製作業、請完成下列步驟：</block>
-  <block id="bef154bddec648665d006827252d3def" category="list-text">根據所選的來源HANA系統Snapshot備份建立FlexClone Volume。</block>
-  <block id="173f11496853aa1e59d7f974652558d1" category="list-text">將FlexClone Volume匯出至目標主機儲存網路介面。</block>
-  <block id="23fd77fb734d35c9438efda6db8a81aa" category="list-text">執行掛載作業指令碼。</block>
-  <block id="d9bb55c29020321c081427f79add7a65" category="list-text">FlexClone Volume會以資料Volume的形式掛載於目標主機。</block>
-  <block id="1ae80716711a2da01db96f27079fa144" category="list-text">將擁有權變更為qs1adm。</block>
-  <block id="adfc4f5f95fd14fe5e97864c6d86f868" category="list-text">執行複製後作業指令碼。</block>
   <block id="3341903edb9816045da3c0ee4d66d7c0" category="list-text">恢復系統資料庫。</block>
   <block id="b60470565d8fe8651182cb2c066bac7d" category="list-text">恢復租戶名稱= QS1的租戶資料庫。</block>
-  <block id="adc2b9c278da13b528d00324aaeb5cdd" category="list-text">啟動SAP應用程式服務。</block>
-  <block id="e1c708e2804c337ef823929e99a3455d" category="list-text">或者、也可以保護SnapCenter 目標HANA資源。</block>
   <block id="c5ba90ff83ae13b97d609a49e54c1ae6" category="paragraph">下列螢幕擷取畫面顯示必要步驟。</block>
-  <block id="f004e2eef151bcdf5bd7ea895d76ca67" category="list-text">從來源系統SS1選取Snapshot備份、然後按一下從備份複製。</block>
-  <block id="3d6e57c014fe290dc79aa90e27dddf88" category="paragraph"><block ref="3d6e57c014fe290dc79aa90e27dddf88" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2beea213cf9a65bc8a70c66c0f77391d" category="list-text">選取安裝目標系統QS1的主機。輸入QS1作為目標SID。NFS匯出IP位址必須是目標主機的儲存網路介面。</block>
-  <block id="43fd51d416af6e9f18b014529be516b2" category="admonition">此處輸入的目標SID可控制SnapCenter 如何管理實體複本。如果目標SnapCenter 主機上的目標SID已在支援中設定、SnapCenter 則只需將實體複本指派給主機即可。如果目標主機上未設定該SID、SnapCenter 則會建立新的資源。</block>
-  <block id="758363fa84c32651f9292f2a5cc32a28" category="paragraph"><block ref="758363fa84c32651f9292f2a5cc32a28" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="92e40993ee50730e77531cba9693e2c8" category="list-text">使用所需的命令列選項輸入掛載和後複製指令碼。</block>
-  <block id="1da094df1dab4d426de4957e68eb4990" category="paragraph"><block ref="1da094df1dab4d426de4957e68eb4990" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9d94d2cd136d267b823119465ff12cce" category="list-text">中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到2分鐘。</block>
-  <block id="668232ce8d31f584760f2f4a5780959e" category="paragraph"><block ref="668232ce8d31f584760f2f4a5780959e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="15ad79b2ed70013562c0d01be6d5c47a" category="list-text">「sc-system-refresh.sh」指令碼的記錄檔會顯示執行掛載和還原作業的不同步驟。指令碼會自動偵測到來源系統有單一租戶、且名稱與來源系統SID SS1相同。因此指令碼會使用租戶名稱QS1來復原租戶。</block>
-  <block id="ae412af2cf9a8a129cdb2a54dad8cbeb" category="inline-link-macro">「使用儲存快照備份的SAP HANA系統更新作業流程、」</block>
-  <block id="afcb1f460a479b434bc2e1c6660ebbcd" category="admonition">如果來源租戶名稱與來源租戶ID相同、但與預設租戶組態旗標相同、請參閱一節 <block ref="ed7f275ab757734a24425cd920afe9f7" category="inline-link-macro-rx"></block> 不再設定、恢復作業會失敗、必須手動執行。</block>
   <block id="0b5d0b2bad6c93484f679ba8419a784f" category="list-text">完成「視覺化」工作後SnapCenter 、可在來源系統的拓撲檢視中看到實體複本。</block>
-  <block id="88f19da46d22f2f8414d0a0a8867a6b6" category="paragraph"><block ref="88f19da46d22f2f8414d0a0a8867a6b6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="eb7be2e609f53d976252980a5fb13056" category="list-text">HANA資料庫現在正在執行、SAP應用程式服務也可以啟動。</block>
-  <block id="fd11ad04c8bb5382877ffe14a2c9c2b9" category="list-text">如果您想要保護目標HANA系統、則必須在SnapCenter 功能區中設定資源保護。</block>
-  <block id="bb78481c3ee74e7c2f67d913b4b7b5ef" category="paragraph"><block ref="bb78481c3ee74e7c2f67d913b4b7b5ef" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="77dab2103eaa63111d90367492942c5d" category="section-title">從異地備份儲存設備複製、租戶名稱等於SID</block>
-  <block id="dcc6549ce81731114e4cf1ce74ef63ca" category="paragraph">本節說明HANA系統重新整理工作流程、其中來源和目標系統的租戶名稱與SID相同。儲存複製會在異地備份儲存設備上執行、並使用指令碼「sc-system-refresh.sh」進一步自動化。</block>
-  <block id="a1004bdbfd5d0adc8808c6558359668c" category="paragraph"><block ref="a1004bdbfd5d0adc8808c6558359668c" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="29cec1274f240553a4ff462962cb67ef" category="paragraph">HANA系統重新整理工作流程中、主要與異地備份儲存複製的唯一差異、在於SnapCenter 選擇了使用效益技術的Snapshot備份。若要進行異地備份儲存複製、必須先選取次要備份。</block>
-  <block id="837e411cb06fd2fb7816981174a4edc4" category="paragraph"><block ref="837e411cb06fd2fb7816981174a4edc4" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="157c12f15ead2ce03155298b5993cf4c" category="paragraph">如果所選備份有多個次要儲存位置、您需要選取所需的目的地Volume。</block>
-  <block id="327d949e6fd9f7292c445b433b47a8c5" category="paragraph"><block ref="327d949e6fd9f7292c445b433b47a8c5" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="78184728d775ae4a002e4a173ee4900a" category="paragraph">所有後續步驟都與從主儲存設備複製的工作流程相同、如「」一節所述<block ref="c97beb62b14d7af628661ab1b7083442" category="inline-xref-macro-rx"></block>。」</block>
-  <block id="76aa27a87d3422dbfbd64167d0ee13a1" category="section-title">使用租戶名稱不等於SID的主儲存設備複製</block>
-  <block id="246cdc6844a0e538e4f6603d3729feee" category="paragraph">本節說明HANA系統重新整理工作流程、其中來源的租戶名稱與SID不相等。儲存複製會在主要儲存設備上執行、並使用指令碼「sc-system-refresh.sh」進一步自動化。</block>
-  <block id="4673c340c8aa985d02926436427cf9eb" category="paragraph"><block ref="4673c340c8aa985d02926436427cf9eb" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fb5bae147fa2b5448fb954976b70afc3" category="paragraph">所需的SnapCenter 步驟與本節中所述相同<block ref="c97beb62b14d7af628661ab1b7083442" category="inline-xref-macro-rx"></block>。」 不同之處在於指令碼「sc-system-refresh.sh」中的租戶還原作業。</block>
-  <block id="2b68c12375c80ea7202f0761c4fec2f7" category="paragraph">如果指令碼偵測到來源系統租戶名稱不同於來源系統的SID、則目標系統上的租戶還原會使用與來源租戶相同的租戶名稱執行。如果目標租戶名稱應該有不同的名稱、則之後必須手動重新命名租戶。</block>
-  <block id="1dbd1d4931ef272ce46f923c3cc14deb" category="admonition">如果來源系統有多個租戶、指令碼只會恢復第一個租戶。其他租戶必須手動恢復。</block>
   <block id="3a6409fe6b4d53ff3f6b240aac5341a9" category="paragraph">新的SAP HANA系統更新作業是透過SnapCenter 使用「取消實體複製」作業來清理目標系統、以開始執行。</block>
-  <block id="e2ce46f9cc8de206cfbfd637042c4b0b" category="admonition">SAP應用程式服務不會以SnapCenter 不含實體複製刪除的工作流程停止。指令碼可以在關機功能內擴充、或是必須手動停止應用程式服務。</block>
-  <block id="a3401f0667947c2b63c2b4a3fed9e267" category="paragraph">如果目標HANA系統已在SnapCenter 不受保護的情況下受到保護、則必須先移除保護。在目標系統的拓撲檢視中、按一下移除保護。</block>
-  <block id="989eccbebcc495e2fe59a81e515b0985" category="paragraph"><block ref="989eccbebcc495e2fe59a81e515b0985" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="3e15eddacbaee9932214636dff97abc2" category="paragraph"><block ref="3e15eddacbaee9932214636dff97abc2" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="90c309f11ecd1ac79e33675f70945513" category="paragraph">複製刪除工作流程現在會以下列步驟執行：</block>
-  <block id="be9bc84ed210547ec7c14180e17bf5b9" category="list-text">在來源系統的拓撲檢視中選取實體複本、然後按一下刪除。</block>
-  <block id="4ad31e486af5b781eb51270c2d16f306" category="paragraph"><block ref="4ad31e486af5b781eb51270c2d16f306" category="inline-image-macro-rx" type="image"></block></block>
   <block id="fd3b9e0c6370bb8b1bc50684358716e2" category="list-text">輸入預先複製的指令行選項、然後卸載指令碼。</block>
-  <block id="61602eb9c1606a0cc9997652ab5014da" category="paragraph"><block ref="61602eb9c1606a0cc9997652ab5014da" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e33bfba94c90e7d4b42f179784bd6f9e" category="paragraph"><block ref="e33bfba94c90e7d4b42f179784bd6f9e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ab6c6ce6391f56063487189d2fcf7a78" category="list-text">「sc-system-refresh.sh」指令碼的記錄檔會顯示關機和卸載作業步驟。</block>
   <block id="651c5cde8d72dbd0c53ab15e99678b9b" category="list-text">SAP HANA重新整理作業現在可以使用SnapCenter 「建立實體複本」作業重新啟動。</block>
   <block id="eefd7414dd589e4a4133686b9fc64373" category="section-title">SAP HANA系統透過實體複本分割作業進行更新</block>
-  <block id="803bcd228d1c94485bf2b18ff9f11f49" category="paragraph">如果系統更新作業的目標系統使用時間較長（超過1-2週）、則通常不會有任何FlexClone容量節約效益。此外、SnapCenter 來源系統的相依Snapshot備份也會遭到封鎖、而非由資訊保留管理部門刪除。</block>
-  <block id="08eaabb3aed4565ef294e8813596fa2e" category="paragraph">因此、在大多數情況下、將FlexClone磁碟區分割為系統重新整理作業的一部分是合理的做法。</block>
-  <block id="9cb37b148747af7977290265de6e3e8e" category="admonition">複製分割作業不會封鎖複製磁碟區的使用、因此可在HANA資料庫使用期間隨時執行。</block>
-  <block id="360ba780d29018e88a0631d411374c56" category="admonition">利用複製分割作業SnapCenter 、將SnapCenter 會刪除在目標系統上建立的所有備份、並將其儲存在資訊庫中。對於NetApp AFF 功能區系統、複製分割作業會將Snapshot複本保留在磁碟區上、僅供FAS 由效益管理系統刪除Snapshot複本ONTAP 。這是SnapCenter 一個已知的錯誤、將在未來的版本中解決。</block>
   <block id="0760f364c123ffeb65230ca87dd8d091" category="paragraph">在來源系統的拓撲檢視中、選取實體複本並按一下實體複本分割、即可啟動位於實體複本的實體複本分割工作流程SnapCenter 。</block>
-  <block id="9af9c37e3998035f8bc3f6a36b5bdda8" category="paragraph"><block ref="9af9c37e3998035f8bc3f6a36b5bdda8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0bb89be537550b86187cea5cf67ac2da" category="paragraph">下一個畫面會顯示預覽、提供分割Volume所需容量的相關資訊。</block>
-  <block id="c7d002d1f2e180b92480b04daf204c3e" category="paragraph"><block ref="c7d002d1f2e180b92480b04daf204c3e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="32da2ef1aadc17a0c37d725aa68059c6" category="paragraph">這個職務記錄會顯示複本分割作業的進度。SnapCenter</block>
-  <block id="75caa100dec7744d82e6a0dddbbe4934" category="paragraph"><block ref="75caa100dec7744d82e6a0dddbbe4934" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b1f6480dba4de873a5c13f1a5eb6cb22" category="paragraph">回到來源系統的拓撲檢視時、無法再看到實體複本。分割磁碟區現在已獨立於來源系統的Snapshot備份。</block>
-  <block id="4e279ef56c8dec1eb92fb5b6e29f4a53" category="paragraph"><block ref="4e279ef56c8dec1eb92fb5b6e29f4a53" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c1581e8de0ba932c7d6f7e03047baaa5" category="paragraph"><block ref="c1581e8de0ba932c7d6f7e03047baaa5" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="875e31e8ed3564eab8486ddbbf14da98" category="paragraph">複製分割作業之後的重新整理工作流程、與沒有複製分割的作業略有不同。完成複製分割作業之後、不再需要執行複製刪除作業、因為目標資料磁碟區不再是FlexClone磁碟區。</block>
-  <block id="44b1c469b04e22c1b02dfc159d42b76f" category="list-text">如果目標HANA系統已在SnapCenter 不受保護的情況下受到保護、則必須先移除保護。</block>
-  <block id="a3a1751a895917b2a93271ecd142a988" category="list-text">進入SnapCenter 「還原複製精靈」。</block>
-  <block id="9b7d4441890df21b59985f2678aecdbf" category="list-text">從來源HANA系統SS1選取Snapshot備份。</block>
-  <block id="c28023e6646ca3cb43502a132cd326bf" category="list-text">選取目標主機、並提供目標主機的儲存網路介面。</block>
-  <block id="34e82d25d19905b44504ec1f9a6074e0" category="list-text">提供用於預複製、掛載和後複製作業的指令碼。</block>
   <block id="955fc654ce08874287363442ae3a05e7" category="list-text">實體複製作業：SnapCenter</block>
-  <block id="c6b0b90b778034587b6c6ec42e911ba3" category="list-text">將擁有權變更為qs1adm。</block>
-  <block id="9d811d9640890f043797b252de118ff9" category="list-text">恢復系統資料庫。</block>
-  <block id="89323a923dd015f1c1a63e0e7b037191" category="list-text">使用租戶名稱= QS1來還原租戶資料庫。</block>
-  <block id="8ed643b400f5b8818c206d496ca25b2a" category="list-text">手動刪除舊的分割目標Volume。</block>
-  <block id="2da0fbf285f68c883efe64e56c6fb6a8" category="list-text">從來源系統SS1選取Snapshot備份、然後按一下「Clone from Backup（從備份複製）」。</block>
-  <block id="39413e8f3a99f75b4799f7561d4b5e28" category="paragraph"><block ref="39413e8f3a99f75b4799f7561d4b5e28" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d8167b3338beef6747a1140d7dbb1db4" category="admonition">此處輸入的目標SID可控制SnapCenter 如何管理實體複本。如果目標SnapCenter 主機上的目標SID已在支援中設定、SnapCenter 則只需將實體複本指派給主機即可。如果目標主機上未設定該SID、SnapCenter 則會建立新的資源。</block>
-  <block id="4278fbd4b12a3d37e896d2fb2c50112a" category="paragraph"><block ref="4278fbd4b12a3d37e896d2fb2c50112a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f16fb3c3571534cf8d9dab0d59140a70" category="list-text">使用所需的命令列選項、輸入預先複製、掛載及後複製指令碼。在預先複製步驟中、指令碼用於關閉HANA資料庫並卸載資料Volume。</block>
-  <block id="075ef9c0fea2bfef2fedf09421e97520" category="paragraph"><block ref="075ef9c0fea2bfef2fedf09421e97520" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="4c3598a628eabf81182fedcb2644641a" category="list-text">中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到2分鐘。</block>
-  <block id="2773ed031ad7078870b82d19da26d408" category="paragraph"><block ref="2773ed031ad7078870b82d19da26d408" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0879aa8ce4f24e250f4ff6b532ca0e85" category="list-text">「sc-system-refresh.sh」指令碼的記錄檔會顯示關機、卸載、掛載及還原作業所執行的不同步驟。指令碼會自動偵測到來源系統有單一租戶、且名稱與來源系統SID SS1相同。因此指令碼會使用租戶名稱QS1來復原租戶。</block>
-  <block id="0dea17e6f635ab0c3868e15ed7f49829" category="list-text">重新整理作業完成後、舊的目標資料Volume仍存在、必須以手動方式刪除、例如ONTAP 使用「靜態系統管理程式」。</block>
   <block id="76a5308fe89a8e782a72010d9a7ee852" category="section-title">利用PowerShell指令碼實現工作流程自動化SnapCenter</block>
   <block id="c0ff26b620598b6000a1bcf255a128c6" category="paragraph">在前幾節中、使用SnapCenter 者介面執行不同的工作流程。所有的工作流程也可以透過PowerShell指令碼或REST API呼叫來執行、以進一步實現自動化。下列各節說明下列工作流程的基本PowerShell指令碼範例。</block>
   <block id="2021b3b77c933e0e9fc9d56a3a552caf" category="list-text">建立實體複本</block>
@@ -3944,7 +3664,6 @@
   <block id="81040d6711353f30feae62b8255cac0a" category="paragraph">以下簡單的指令碼說明SnapCenter 如何使用PowerShell命令執行實體複製建立作業。執行「New-SmClone」命令時、會使用實驗室環境所需的命令列選項、以及先前討論的自動化指令碼。SnapCenter</block>
   <block id="f01358f0b3c6557b9a0d6ca899e3caeb" category="paragraph">畫面輸出會顯示實體複本建立PowerShell指令碼的執行。</block>
   <block id="60af87a36f879c4e11b6fe3ca1c7243f" category="paragraph">以下簡單的指令碼示範SnapCenter 如何使用PowerShell命令執行循環複製刪除作業。使用實驗室環境所需的命令列選項和之前討論的自動化指令碼、執行「移除短完整複製」命令。SnapCenter</block>
-  <block id="e76ca097f489e790c48bef1cede72490" category="paragraph">畫面輸出會顯示複製刪除PowerShell指令碼的執行。</block>
   <block id="1ac85619672d3775188dd5a646cde2e7" category="summary">在Azure上使用Azure NetApp Files 適用於SAP HANA、Oracle和DB2的功能、可為客戶提供NetApp ONTAP 支援原生Microsoft Azure NetApp Files 支援服務的進階資料管理和資料保護功能。</block>
   <block id="7795765c3d2e54c77f3ddad7877f93e2" category="doc">SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新</block>
   <block id="fa93527877c31a5c6e9ce20800f4865c" category="inline-link">SAP HANA適用的Azure NetApp Files</block>
@@ -4409,9 +4128,7 @@
   <block id="db25c2a4ae3ce67c8d33eb9795cd39de" category="paragraph">從SAP HANA 2.0 SPS4開始、您可以設定額外的資料磁碟區分割、以便為SAP HANA租戶資料庫的資料磁碟區設定兩個以上的磁碟區。您也可以擴充至超過單一磁碟區的大小和效能限制。</block>
   <block id="bc30fa07361c376b0079c00d85091f1e" category="paragraph">SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存控制器。SAP HANA主機與儲存控制器之間的資料通訊是以NFS傳輸協定為基礎。</block>
   <block id="1ffe19554e4db8e2355d91449e77fa5a" category="paragraph">如果交換器或網路介面卡（NIC）發生故障、建議使用備援交換基礎架構來提供容錯SAP HANA主機對儲存設備連線。交換器可能會將個別連接埠效能與連接埠通道集合起來、以便在主機層級顯示為單一邏輯實體。</block>
-  <block id="d8535d2acd7e24f64c8caeb65fde3cad" category="paragraph">如前一節所述、SnapCenter 透過任何現有的Snapshot備份、即可管理資料集的複本、並可將這些資料集快速配置至任何目標系統。將正式作業資料配置至修復系統以解決邏輯毀損的速度至關重要、因為通常需要重設修復系統並選擇不同的正式作業資料集。</block>
   <block id="93f305eb7fa597fc876f2e0744abf06b" category="paragraph">這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
-  <block id="848bda1dea8289263932caf2d35de15b" category="paragraph">這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
   <block id="e08842ba37eacff4f1a5b7fcf9749dc3" category="paragraph">。<block ref="6f72acaebcb9a0de6696aaf3508a6144" prefix=" " category="inline-code"></block> 參數必須在中設定<block ref="8ad2bc27658297501e1a64bf77a1fd56" prefix=" " category="inline-code"></block>。如果檔案不存在、則必須先新增下列行來建立：</block>
   <block id="b7de930c0dd2d22c43e147a8da62d970" category="admonition">效能測試顯示<block ref="6ad27604f562c1a2600540bd7f1094d4" prefix=" " category="inline-code"></block> 提供良好的讀取結果、尤其是資料磁碟區的讀取結果。記錄寫入可能會因為工作階段數量較少而受益、例如<block ref="b3e16d81f1f84d087c55c1815a58a64c" prefix=" " category="inline-code"></block>。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
   <block id="d7d1e0b01aa98fdaaa388843234520d5" category="admonition">NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。</block>
@@ -4463,11 +4180,7 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="abb14d21829ba186172f6e1d0b64b55b" category="cell">2023 年 1 月</block>
   <block id="dfd02aef9802f4824ead7c08b8f81f1f" category="cell">初始版本</block>
   <block id="36098c0d1c3de71d8727b1543bace633" category="cell">2022 年 4 月</block>
-  <block id="c7b0e86345062bedaccd6a5198bf3a08" category="section-title">版本歷程記錄</block>
   <block id="95798f037b7bacec7599a19423a6bb64" category="cell">2018年2月</block>
-  <block id="4a6be73b305b889cfd4f3834bd0f1680" category="cell">完整重新寫入功能涵蓋SnapCenter 範圍涵蓋整個過程、以及改良的自動化指令碼。
-系統更新與系統複製作業的新工作流程說明。</block>
-  <block id="23bb02d00145cbbee811d75260628934" category="cell">更新的流程：更新流程：SnapCenter</block>
   <block id="8e070ffcf4d959eabcd3559b9bb17ec6" category="sidebar">何處可以找到其他資訊和版本歷程記錄</block>
   <block id="2c7a6a1ad3b3855b3dd5766cc2c1b15c" category="summary">本節說明如何使用 BlueXP 還原 SAP HANA 備份。</block>
   <block id="8513aa8ec75c0057744a444420581eac" category="doc">還原 SAP HANA BlueXP 備份</block>
@@ -4841,4 +4554,313 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="286f4dd45534d6e8839dc5cb0fc36cee" category="sidebar">運用 Alpaca 和 NetApp SnapCenter 實現 SAP 自動化</block>
   <block id="314dcde42b7b98639a9e719950095987" category="sidebar">利用 Avantra 和 NetApp SnapCenter 實現 SAP 自動化</block>
   <block id="15a34eec6990a710b230cba1946c00f5" category="admonition">僅支援 NFS 版本 3 或 4.1 。不支援 NFS 版本 1 、 2 、 4.0 和 4.2 。</block>
+  <block id="d566ef5684ce668e2e233d4eaf1bc9bc" category="summary">SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。</block>
+  <block id="336f9054ed6c40bfa87995259d52c441" category="list-text">指令碼<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block>.sh 用於系統重新整理和系統複製工作流程、以執行 SAP HANA 資料庫的恢復和關機作業。</block>
+  <block id="aa0032fd81eb09be326e909e196e2530" category="list-text">此指令碼<block ref="7475fe06dd4f4cf4edc0c5536fb55aa4" prefix=" " category="inline-code"></block> 用於系統複製工作流程、以執行 SAP HANA 共用磁碟區的掛載和卸載作業。</block>
+  <block id="49ca516bb882e077657e5caf44f5554c" category="admonition">範例指令碼是以原樣提供、NetApp不支援。您可以透過電子郵件至 ng-sapcc@netapp.com 申請指令碼。</block>
+  <block id="ec86531daff86121e81aad761a9a2690" category="paragraph">範例指令碼<block ref="3b7212a09a85af46251eb075db2a1a3f" prefix=" " category="inline-code"></block> 用於執行恢復和關機作業。指令碼會在 SnapCenter 工作流程中使用特定的命令列選項來呼叫、複製建立和複製刪除、如下圖所示。</block>
+  <block id="6fb4e29ab144b52fbcda87e4d76c8e72" category="paragraph">指令碼為一般指令碼、可讀取所有必要參數、例如來自目標系統的 SID 。指令碼必須可在系統重新整理作業的目標主機上使用。必須在目標系統上為使用者 &lt;SID&gt; 設定 hdb 使用者存放區金鑰。金鑰必須允許存取 SAP HANA 系統資料庫、並提供還原作業的權限。金鑰的名稱必須是 &lt;TARGET-SID&gt; KEY.</block>
+  <block id="3c014f6281927540111102bce68d0558" category="paragraph">腳本將日誌文件寫入執行日誌文件的<block ref="c05a8d917e2f24fc448cfc8148b37936" prefix=" " category="inline-code"></block>同一目錄。</block>
+  <block id="a080c4899461aaff7b3f15fee991c3ee" category="admonition">目前版本的指令碼支援單一主機系統的 MDC 單一租戶或 MDC 多租戶組態。不支援SAP HANA多主機系統。</block>
+  <block id="513607bfd7235d89f6d6002d0639ec6f" category="paragraph"><block ref="513607bfd7235d89f6d6002d0639ec6f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cb110c7da4ff7c2a06badbb62ec1653b" category="paragraph">如「 SAP HANA 系統使用儲存快照重新整理作業工作流程」一節所述、目標系統可能的租戶恢復作業取決於來源系統的租戶組態。指令碼<block ref="3b7212a09a85af46251eb075db2a1a3f" prefix=" " category="inline-code"></block> 支援所有租戶恢復作業、這些作業可能視來源系統組態而定、如下表所示。</block>
+  <block id="1ef2b56ddfcd99f390770f6561dd39eb" category="cell">SAP HANA 系統</block>
+  <block id="eb2c4fe5704d6239af3e788b691acb39" category="cell">租戶組態 + 來源系統</block>
+  <block id="be1cf788ffbccce8c3a6384d5c26bda3" category="cell">產生的租戶組態 + 位於目標系統</block>
+  <block id="007b28be8cfeffaa18a794ecdfc270ce" category="cell">所有租戶都會恢復、而且會與來源租戶擁有相同的名稱。</block>
+  <block id="86fdcb026a68ce13c9b6d32c97d35e44" category="paragraph">範例指令碼<block ref="7475fe06dd4f4cf4edc0c5536fb55aa4" prefix=" " category="inline-code"></block> 用於執行任何磁碟區的掛載和卸載。此指令碼可用於透過 SAP HANA 系統複製作業來掛載 SAP HANA 共用磁碟區。指令碼會在 SnapCenter 工作流程中使用特定的命令列選項來呼叫、複製建立和複製刪除、如下圖所示。</block>
+  <block id="c5b136d95c05fafb00b08d1b6de1298f" category="admonition">此指令碼支援使用 NFS 做為儲存傳輸協定的 SAP HANA 系統。</block>
+  <block id="3e5850dfba7f2625c832da1ddf5362bd" category="paragraph"><block ref="3e5850dfba7f2625c832da1ddf5362bd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b09246e75feeec9e487b59536bd8a9f6" category="list-text">指令碼變數<block ref="39bd1f4447a9d2f7774d0f0e74e3bdbf" prefix=" " category="inline-code"></block> 用於掛載作業。</block>
+  <block id="fc4b53712edbb1a5d2bb0efb910def4f" category="list-text"><block ref="0ac10a7b46d56b5cde60023a9baed25b" prefix="" category="inline-code"></block></block>
+  <block id="f59340f31d7d375c72c0b4a9b1d9742d" category="list-text">例如：<block ref="558125a9317a2a85b66f3a4e57d5f2a6" prefix=" " category="inline-code"></block></block>
+  <block id="05ebd5b68d560730417ec3a7cebf8f0c" category="paragraph">例如：<block ref="d3214244532fad50dea7d8ad9dd48289" prefix=" " category="inline-code"></block></block>
+  <block id="d8936b3ac6f55edd9850b165b9222bd3" category="doc">使用儲存快照備份來執行 SAP HANA 系統更新作業的考量事項</block>
+  <block id="99a19cb6edc6f11b19ea813ec205ff66" category="section-title">目標系統的租戶名稱</block>
+  <block id="57ae5f35f217b1a419a04e5d9c231880" category="paragraph">執行 SAP HANA 系統重新整理所需的步驟取決於來源系統租戶組態、以及目標系統所需的租戶名稱、如下圖所示。</block>
+  <block id="2272aa1a0ba3525f3f73d9547239e789" category="paragraph">由於租戶名稱是在系統資料庫中設定、因此在還原系統資料庫之後、來源系統的租戶名稱也可在目標系統上使用。因此、目標系統上的租戶只能以與來源租戶相同的名稱進行復原、如選項 1 所示。如果目標系統的租戶名稱必須不同、則必須先以來源租戶的相同名稱來還原租戶、然後重新命名為所需的目標租戶名稱。這是選項 2 。</block>
+  <block id="81eb74990998ec7670788a4b5d26b6d5" category="paragraph">這項規則的例外情況是 SAP HANA 系統只有單一租戶、其中租戶名稱與系統 SID 相同。此組態是初始 SAP HANA 安裝後的預設設定。SAP HANA 資料庫會標記此特定組態。在這種情況下、目標系統的租戶還原可以使用目標系統的租戶名稱來執行、而且必須與目標系統的系統SID相同。此工作流程會顯示在選項 3 中。</block>
+  <block id="62b2eae75a95f0f95105ee2a3dd86456" category="admonition">一旦任何租戶在來源系統上執行建立、重新命名或刪除作業、 SAP HANA 資料庫就會刪除此組態旗標。因此、即使已將組態恢復至租戶= SID、旗標也無法再使用、而且無法再使用工作流程3的租戶還原例外。在此情況下、選項2是必要的工作流程。</block>
+  <block id="67c176c50d07e5c9dfa6246c6a9558ce" category="paragraph"><block ref="67c176c50d07e5c9dfa6246c6a9558ce" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="84c8915c1ea8b7217c21405eab94da60" category="paragraph"><block ref="84c8915c1ea8b7217c21405eab94da60" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="590a83044f8275cb44757e91bd9c3b98" category="section-title">採用 SAP HANA 加密技術的系統更新工作流程</block>
+  <block id="ed0497f02ad9f417117b309a43ded20a" category="paragraph">啟用 SAP HANA 持續性加密後、您必須採取其他步驟、才能在目標系統上恢復 SAP HANA 資料庫。</block>
+  <block id="6b8ec54bea4ea8f350ee72bf85d3197e" category="paragraph">在來源系統上、您需要為系統資料庫以及所有租戶資料庫建立加密根金鑰的備份。備份檔案必須複製到目標系統、而且必須先從備份匯入根金鑰、然後才能執行還原作業。</block>
+  <block id="04237ca9906c07207034914aa0a28d82" category="paragraph">另請參閱<block ref="359a6667f10cfbec6ec52789f37c6e2a" category="inline-link-rx"></block>。</block>
+  <block id="886ad05cbab7f831b411778c068cf8fe" category="section-title">根金鑰備份</block>
+  <block id="cd171c61a6c45e294f3c2dacc7604931" category="paragraph">如果根金鑰有任何變更、則永遠需要備份根金鑰。備份命令需要使用 DBID 做為 CLI 參數。可使用以下 SQL 陳述式來識別 DBID 。</block>
+  <block id="7378c7c63b3d40237b2274a52bc5e518" category="paragraph"><block ref="7378c7c63b3d40237b2274a52bc5e518" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3ce4fd31388596ecdf4aa9f1d9a0dbc4" category="inline-link">備份根金鑰 | SAP 說明入口網站</block>
+  <block id="f282798b107e6bd69bc9acc72b3efd4f" category="paragraph">以下步驟提供 SAP HANA 管理指南中的 SQL 陳述與進一步文件<block ref="d8ff24c5498b932cc400dcdc7a192184" category="inline-link-rx"></block> 、說明單一租戶 SS1 的 HANA 系統所需作業、並在來源系統上執行。</block>
+  <block id="336adde13fb7bcd7ee2cc8512c4e28c1" category="list-text">設定系統和租戶（ SS1 ）資料庫的備份密碼（如果尚未完成）。</block>
+  <block id="52a807914c4090676f1da43186acbb62" category="list-text">為系統和租戶（ SS1 ）資料庫建立根金鑰備份。</block>
+  <block id="6c6f42bf225663c8095edb7191abafeb" category="list-text">驗證根金鑰備份（選用）</block>
+  <block id="af9e006c18dd68581986b528bd3587ed" category="section-title">在目標系統匯入根金鑰</block>
+  <block id="da9228e0010f7027b69ecf2177e4e0df" category="paragraph">第一次執行系統重新整理作業時、一開始就需要匯入根金鑰。如果根金鑰未在來源系統中變更、則不需要額外匯入。匯入命令需要 DBID 做為 CLI 參數。DBID 的識別方式與根金鑰備份的識別方式相同。</block>
+  <block id="e11644d1968838d5f12339cef8291bb4" category="list-text">在我們的設定中、根金鑰會從來源系統複製到 NFS 共用</block>
+  <block id="3c23689c9bd2b975721e1135bd6927a6" category="list-text">現在可以使用 hdbnsutil 匯入根金鑰。系統和租戶資料庫的 DBID 必須隨命令一起提供。也需要備份密碼。</block>
+  <block id="9a35e9fdafa89a1bf9716ff9ad8fae50" category="section-title">根金鑰匯入（如果目標不存在 DBID ）</block>
+  <block id="2af112c8b5eb82cec7858ff26e1c8899" category="paragraph">如前一章所述、系統和所有租戶資料庫的根金鑰都需要 DBID 。雖然系統資料庫一律為 DBID=0 、但租戶資料庫可以有不同的 DBID 。</block>
+  <block id="e3ccd284e851e427ba23b8cc6fe5dc5d" category="paragraph"><block ref="e3ccd284e851e427ba23b8cc6fe5dc5d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f04f1954909c57195f4a0f8986e0190c" category="paragraph">以上輸出顯示 DBID=3 和 DBID=4 的兩個租戶。如果目標系統尚未裝載 DBID=4 的租戶、則根金鑰匯入將會失敗。在這種情況下、您需要先恢復系統資料庫、然後再匯入 DBID=4 租戶的金鑰。</block>
+  <block id="3733c3274128a83f463e1febad4cb73a" category="paragraph">NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置、如下圖所示。這些解決方案適用於內部部署執行的 SAP HANA 、或是在 Azure NetApp Files （ anf ）或 Amazon FSX for NetApp ONTAP （適用於 ONTAP 的 FSX ）上的雲端環境中執行的 SAP HANA 。</block>
+  <block id="528495c586f277ad55b4bdb8ca968ac8" category="paragraph"><block ref="528495c586f277ad55b4bdb8ca968ac8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="253f7d7cde63d67097785efdf27d8e0c" category="section-title">* 應用程式整合式 Snapshot 備份作業 *</block>
+  <block id="f695e91ee04884971f5a7436b91e4be8" category="paragraph">在儲存層上建立應用程式一致的 Snapshot 備份、是本文件所述系統複本和系統複製作業的基礎。儲存型Snapshot備份是使用SnapCenter 適用於SAP HANA的NetApp還原外掛程式和SAP HANA資料庫提供的介面來建立。此功能可在SAP HANA備份目錄中登錄Snapshot備份、以便將備份用於還原與還原、以及複製作業。SnapCenter</block>
+  <block id="291d1a2808e806584ab1c34cbb1a18c0" category="section-title">* 異地備份及 / 或災難恢復資料複寫 *</block>
+  <block id="70919c30c9aaacd076b6aad76e43d879" category="paragraph">應用程式一致的Snapshot備份可在儲存層複製到異地備份站台、或SnapCenter 是由他人控制的災難恢復站台。複寫是以變更的區塊和新的區塊為基礎、因此空間和頻寬效率都很高。</block>
+  <block id="ba9e50e0a1abcf0eeed3341c8d182a39" category="section-title">* 使用任何 Snapshot 備份來執行 SAP 系統複本或複製作業 *</block>
+  <block id="1400c6c3a81a83b42b2e1bfa00b4f08d" category="admonition">內部部署 NetApp 系統和 Amazon FSX for NetApp ONTAP 均支援從異地備份或災難恢復儲存設備進行複製。只能在來源磁碟區建立 Azure NetApp Files 複本。</block>
+  <block id="7e22a4a705cb1e44da3a7fa13d9330fb" category="section-title">* 整合自動化 *</block>
+  <block id="86aedb2a5d0e4cc1e18959a121d927a4" category="paragraph">SAP 測試系統的完整自動化端對端配置可透過協力廠商工具和 NetApp 功能整合來執行。如需更多詳細資料、請參閱：</block>
+  <block id="0d3a34f8f2f65da1aab448f0cef55601" category="paragraph"><block ref="0d3a34f8f2f65da1aab448f0cef55601" category="inline-link-rx"></block></block>
+  <block id="bcaeb718111fd28a80ff0468446a8cca" category="inline-link">TR-4929 ：使用 Libelle SystemCopy 自動化 SAP 系統複製作業（ netapp.com ）</block>
+  <block id="107ac79d952c7eb2bd9be77492e3f580" category="paragraph"><block ref="107ac79d952c7eb2bd9be77492e3f580" category="inline-link-rx"></block></block>
+  <block id="b86922f81f8fbdc269eb147c0132320d" category="inline-link">將 SAP 系統複製與擴大機自動化； #44 ；重新整理與擴大； #44 ；以及使用羊駝和 NetApp SnapCenter 複製工作流程</block>
+  <block id="e1f1030df08efb36640b5cef2cf335df" category="paragraph"><block ref="d27595d323fd1e6688825ef5f48b58ba" category="inline-link-rx"></block></block>
+  <block id="ef9c1ed1eec5b69c3ed64cd0c51e91f5" category="inline-link">將 SAP 系統複製與擴大機自動化； #44 ；重新整理與擴大； #44 ；並使用 Avantra 和 NetApp SnapCenter 複製工作流程</block>
+  <block id="33d46668d501c0fd2d88d560367b301e" category="paragraph"><block ref="612e0940831df733c80bffb77d00a0fb" category="inline-link-rx"></block></block>
+  <block id="5e159ddb5310fc1d30282d2680fcae12" category="paragraph">如前一節所述、SnapCenter 透過任何現有的Snapshot備份、即可管理資料集的複本、並可將這些資料集快速配置至任何目標系統。將正式作業資料靈活且敏捷地配置至修復系統、以因應邏輯毀損、這是非常重要的、因為通常需要重設修復系統並選擇不同的正式作業資料集。FlexClone技術可實現快速資源配置程序、並可大幅節省容量、因為修復系統通常只會在短時間內使用。</block>
+  <block id="99f37d6bcbc15f5a2f030419d3a43170" category="paragraph">下圖摘要說明使用 SnapCenter 執行 SAP 系統複製作業所需的步驟。</block>
+  <block id="6adc11bc6e0f34c4086c389511eccf77" category="list-text">SnapCenter Clone 可為 SAP HANA 共享 Volume 建立工作流程。</block>
+  <block id="3334a5d45d4ab3ed5e8fac320282f236" category="list-text">SnapCenter Clone 可為 SAP HANA 資料 Volume 建立工作流程、包括資料庫還原。</block>
+  <block id="11733d6a63d8e319f8af4dfdbae0f156" category="list-text">SAP HANA 系統現在可做為修復系統使用。</block>
+  <block id="19c1631605a596df1a5aa9b6ada6f550" category="list-text">SAP HANA 資料 Volume 的 SnapCenter 複製刪除工作流程、包括資料庫關機（使用自動化指令碼時）。</block>
+  <block id="2496728194ae81963fd344f8d300397c" category="list-text">SAP HANA 共用 Volume 的 SnapCenter 複製刪除工作流程。</block>
+  <block id="d9de7f702e8fd112fa358cb13b6860e3" category="admonition">如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。不需要重新整理 SAP HANA 共用磁碟區。</block>
+  <block id="d78490913780bff06fd939995a9b82b9" category="paragraph"><block ref="d78490913780bff06fd939995a9b82b9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c46ef19a1340287af560e4a95498efff" category="paragraph">SnapCenter 提供的工作流程可讓您從任何現有的 Snapshot 備份管理資料集的複本。這套複製資料集FlexClone Volume可用於從來源系統快速配置HANA資料Volume、並將其附加至目標系統。因此、它非常適合執行QA、測試、沙箱或訓練系統的系統更新作業。</block>
+  <block id="e33a7ba0a145b92332e5a214da5f0b7e" category="paragraph">此類實體複製工作流程可處理儲存層上所有必要的作業、並可利用指令碼來執行主機專屬和HANA資料庫專屬的作業。SnapCenter在本文件中、我們會使用指令碼來執行 HANA 資料庫恢復和關機作業。利用指令碼進一步自動化的流程可處理所有必要的HANA資料庫作業、但不涵蓋任何必要的SAP後處理步驟。SnapCenterSAP 後置處理必須手動執行、或使用協力廠商工具執行。</block>
+  <block id="f58b84023a4279ee2a567eb3c380fb35" category="paragraph">使用 SnapCenter 的 SAP 系統重新整理工作流程包含五個主要步驟、如下圖所示。</block>
+  <block id="c6fa61b09f8df64b162b460b69ac8069" category="list-text">目標系統的一次性初始安裝與準備</block>
+  <block id="0158f9b30056021a175e96d4f836415b" category="list-text">SnapCenter HANA 外掛程式必須安裝在新的目標系統上、而且 HANA 系統必須在 SnapCenter 中設定</block>
+  <block id="8415b5eee52c3d01b2d370fe398a5951" category="list-text">目標系統必須停止、且必須卸載 HANA 資料磁碟區</block>
+  <block id="8fe61949b8b56ec8da525f4acbba93de" category="list-text">SnapCenter 複製建立工作流程</block>
+  <block id="9ebae8e0bfc2f8e5b5b9a6e8a00fca6a" category="list-text">SnapCenter 會建立所選來源系統快照的 FlexClone Volume</block>
+  <block id="eb273cd7f5324ffbf92aeecff9ff3a97" category="list-text">SnapCenter 會將 FlexClone Volume 掛載到目標系統</block>
+  <block id="56b43ec1d85e7efde50be2f2d2ead918" category="list-text">目標 HANA 資料庫的恢復作業可以在指令碼後自動<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block> 執行、也可以手動執行</block>
+  <block id="937826f7ea9205ca3512d509a6ca8a78" category="list-text">SAP 後處理（手動或搭配協力廠商工具）</block>
+  <block id="020b657f2ba667b7c8125459d9f08450" category="list-text">系統現在可做為測試 / QA 系統使用。</block>
+  <block id="e849346a4770c0465337a49c10973303" category="list-text">要求新的系統重新整理時、會使用 SnapCenter 複製刪除工作流程來移除 FlexClone Volume</block>
+  <block id="8e91d4bf6d06ab88552ea7233f10f6a1" category="list-text">如果目標 HANA 系統已在 SnapCenter 中受到保護、則必須先移除保護、才能啟動複製刪除工作流程。</block>
+  <block id="96888e9c90caae0063e746ed75f814e1" category="list-text">HANA 系統必須以 SnapCenter 預先指令碼的形式、手動停止或自動停止<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block></block>
+  <block id="fb4b6d894aa9bb0e852938feaa8dbd6f" category="list-text">SnapCenter 會卸載 HANA 資料磁碟區</block>
+  <block id="fc7b39f931e97a5620b60594593a3ded" category="list-text">SnapCenter 刪除 FlexClone Volume</block>
+  <block id="01cd3fe546b8551fcb17aab105bfd54d" category="list-text">使用步驟 2 重新啟動重新整理。</block>
+  <block id="73c1cbe6ace9d2c05246be695e08d78e" category="paragraph"><block ref="73c1cbe6ace9d2c05246be695e08d78e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="29455d0165f5fd37f1ddd0e1acde2d19" category="paragraph">在大多數情況下、目標測試 / QA 系統會使用至少幾週。由於 FlexClone Volume 正在封鎖來源系統磁碟區的 Snapshot 、因此根據來源系統磁碟區的區塊變更率、此 Snapshot 將需要額外的容量。對於正式作業來源系統而言、每天平均變更率為 20% 、封鎖的 Snapshot 將在 5 天後達到 100% 。因此、如果複本是以正式作業來源系統為基礎、 NetApp 建議您立即或幾天後分割 FlexClone Volume 。複製分割作業不會封鎖複製磁碟區的使用、因此可在HANA資料庫使用期間隨時執行。</block>
+  <block id="fec549457b5ca8b6fab2e0ae6d6e75a6" category="admonition">使用 SnapCenter 和 Azure NetApp Files 時、複製分割作業無法使用、因為 Azure NetApp Files 一律會在建立後分割複本。</block>
+  <block id="6f1539c5dce675aa44b87f7f9f369176" category="paragraph">包括複製分割的重新整理作業包含下列步驟。</block>
+  <block id="4fe3df0af2aa4e5f9eacca7e203e19cb" category="list-text">FlexClone Volume 是使用 SnapCenter 複製分割工作流程分割的。</block>
+  <block id="f53badcf937e2258faf81fb846c9c3d4" category="list-text">當要求新的系統重新整理時、請使用下列手動步驟來完成清理</block>
+  <block id="4d6aae36d78746a9a8fe6767a99cb8e7" category="list-text">如果目標 HANA 系統已在 SnapCenter 中受到保護、則必須移除保護。</block>
+  <block id="dc2c5e947a6cab89514335a13dc423e1" category="list-text">HANA 系統必須手動停止</block>
+  <block id="7c66351a8e30aafa989ed12950bed825" category="list-text">必須卸載 HANA 資料磁碟區、並移除 SnapCenter 的 Fstab 項目（手動工作）</block>
+  <block id="4f3ccebe28c7263ecea06dc05e27be97" category="paragraph"><block ref="4f3ccebe28c7263ecea06dc05e27be97" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="69de215ba3fc3f69bd238db63e732bab" category="paragraph">視 SAP HANA 資料庫組態而定、會執行或需要準備其他步驟。下表提供摘要。</block>
+  <block id="48a431e7da72cf4ddb716b44e3bd3022" category="cell">來源系統</block>
+  <block id="f07b20b3bf641e75d700e21df41afa86" category="cell">來源系統組態</block>
+  <block id="445749c81622e3f4b55555307ee1b829" category="cell">SnapCenter 與 SAP HANA 作業</block>
+  <block id="02d433082554aa78e77702e422da1369" category="cell">MDC 單一租戶 + SID = 租戶名稱</block>
+  <block id="4538fddc8b1e4453fc76236736640432" category="cell">標準組</block>
+  <block id="0ab4f55de764dc8394643b349b083994" category="cell">SnapCenter 複製作業和選擇性的恢復指令碼執行。</block>
+  <block id="0a65e6a9e8d4b8b7c8582184102df1c5" category="cell">SAP HANA 持續性加密</block>
+  <block id="014c18a7ee780910ba664b6a0b978c06" category="cell">一開始、或者如果根金鑰在來源系統上已變更、則必須先在目標系統上匯入根金鑰備份、然後才能執行還原。</block>
+  <block id="89d86b9ec09c7f3b392bb43ea2eb6dd6" category="cell">SAP HANA 系統複寫來源</block>
+  <block id="99626cfc8b134a9568590f75a1fa39e9" category="cell">不需執行其他步驟。如果目標系統未設定 HSR 、則會維持獨立的系統。</block>
+  <block id="55e4c24dca21aa659ae4ad4a62764c3a" category="cell">SAP HANA 多個分割區</block>
+  <block id="9045ec7ce843df8f562cdac52976a8ef" category="cell">無需額外的步驟、但必須在具有相同命名慣例的目標系統上、提供 SAP HANA 磁碟區分割的掛載點（只有不同的 SID ）。</block>
+  <block id="747e7c5207b7c8c7b7c0d19a45e85b9a" category="paragraph">或是具有 SID &lt;&gt; 租戶名稱的 MDC 單租戶 +</block>
+  <block id="b202c7fafecac4cc268100693b999ff4" category="cell">SnapCenter 複製作業和選擇性的恢復指令碼執行。指令碼會恢復所有租戶。如果目標系統名稱中不存在租戶或租戶名稱、則在 SAP HANA 恢復作業期間會自動建立必要的目錄。租戶名稱將與來源相同、如有需要、需要在恢復後重新命名。</block>
+  <block id="fd8ed9109131dae1c0a52003f1f433ad" category="cell">如果來源系統的 DBID 在目標系統之前不存在、則必須先還原系統資料庫、然後才能匯入此租用戶的根金鑰備份。</block>
+  <block id="eda5c3cd479d8bf56791258422f9d2e9" category="cell">Hana 系統複寫來源</block>
+  <block id="fee1d7f7b5a29f13c080fff62b1a3b65" category="cell">HANA 多個分割區</block>
+  <block id="c8c7f73988a5c0973f17af8df0cb4dd9" category="list-text">從主要儲存設備複製、租戶名稱等於 SID</block>
+  <block id="05590d33a5380f7b50af20fb1efa88b5" category="list-text">從異地備份儲存設備進行複製</block>
+  <block id="11a5026e03c97eab61a881708b9b49c8" category="list-text">從具有多個租戶的主要儲存設備進行複製</block>
+  <block id="3c25d22c9021a2e592956ec113805a27" category="paragraph">下列各節所述的工作流程、對於 SAP HANA 系統架構和 SnapCenter 組態有一些先決條件和限制。</block>
+  <block id="e5e449d642ed48f133072437710b3002" category="list-text">上述工作流程僅適用於 SnapCenter 5.0 或更新版本。</block>
+  <block id="2878c2c0b8a2905a221c10c60a633bb9" category="list-text">上述工作流程適用於單一主機SAP HANA的多個租戶共享系統。SAP HANA 不涵蓋多個主機系統。</block>
+  <block id="ee1298a4094419180908c6a8f9750843" category="list-text">SnapCenter SAP HANA 外掛程式必須部署在目標主機上、才能啟用 SnapCenter 自動探索及執行自動化指令碼。</block>
+  <block id="831c78892fc4855cb4580e43283bcc00" category="list-text">工作流程適用於實體主機上使用 NFS 或 FCP 的 SAP HANA 系統、或是使用客體內 NFS 裝載的虛擬主機。</block>
+  <block id="82265800899596c16d78fb324ee99ee9" category="paragraph">下圖顯示用於不同系統重新整理作業選項的實驗室設定。</block>
+  <block id="c1ccc7a2f7826dbffdffce4e5624e1e7" category="list-text">從主要儲存設備或異地備份儲存設備複製；租戶名稱等於 SID 。</block>
+  <block id="2392da269b7d67c099f828cb74ad9c1b" category="list-text">來源 SAP HANA 系統： SS1 with Tenant SS1</block>
+  <block id="ef01d4b10ea3ed41d87666599cdf399d" category="list-text">目標 SAP HANA 系統：具有租戶 QS1 的 QS1</block>
+  <block id="95cc06694d517f9353d6b698b3b3bdc2" category="list-text">從主要儲存設備複製；多個租戶。</block>
+  <block id="7c0d7757d3e67c52576fa49494e0d690" category="list-text">來源 SAP HANA 系統： SM1 搭配 Tenant1 和 Tenant2</block>
+  <block id="5d18cafd8986f8849c2f6bc0ff09d24f" category="list-text">目標 SAP HANA 系統： QS1 搭配 Tenant1 和 Tenant2</block>
+  <block id="8e07dd0a7cef005f474929f3ccd8ab15" category="list-text">SnapCenter 5.0</block>
+  <block id="0efafb1fb3d4bc2c365cbbb3af0533af" category="list-text">SAP HANA 系統： Hana 2.0 SPS7 修訂版 73</block>
+  <block id="f77a693c238b55e124aad6c742f7abd9" category="list-text">SLES 15</block>
+  <block id="20e87fcd4bc1712b811d18af13b0e6d6" category="list-text">部分9.14P1 ONTAP</block>
+  <block id="e317060a7d536b1601805ade8ddc6de6" category="paragraph">所有 SAP HANA 系統都必須根據組態指南進行設定<block ref="dd07d4eccacfe7e5709724c01c4e864d" category="inline-link-rx"></block>。SnapCenter 和 SAP HANA 資源是根據最佳實務指南進行設定<block ref="bcd43d19ab2603538e662bd52af2d1e8" category="inline-link-rx"></block>。</block>
+  <block id="dc5d3e1c4d4a351a646d2140f4b495ca" category="paragraph"><block ref="dc5d3e1c4d4a351a646d2140f4b495ca" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9cf594fe38671c761a0b6e93fb10d913" category="paragraph">在初始步驟中、目標 SAP HANA 系統必須在 SnapCenter 中設定。</block>
+  <block id="cefc420e25b581b96f90b91e0ff4cce1" category="list-text">安裝 SAP HANA 目標系統</block>
+  <block id="1598dcdc48c7cde690d109b2290d0744" category="list-text">如所述、在 SnapCenter 中設定 SAP HANA 系統<block ref="acbd530cb7125fe2d3874791af43931e" category="inline-link-rx"></block></block>
+  <block id="e7c20caad0a94652e99b08f067f64ee4" category="list-text">SAP HANA 資料庫使用者的 SnapCenter 備份作業組態此使用者在來源和目標系統上必須相同。</block>
+  <block id="628c9d08d98e85f5ed00ff90d451d924" category="list-text">使用上述備份使用者設定 &lt;sid&gt; 的 hdbuserstore 金鑰。如果使用自動化指令碼進行還原、金鑰名稱必須是 &lt;SID&gt; KEY</block>
+  <block id="b0f3533d0b597ddb0a9a7b416ea89e64" category="list-text">在目標主機上部署 SnapCenter SAP HANA 外掛程式。SnapCenter 會自動探索 SAP HANA 系統。</block>
+  <block id="645ee22e308ea0aafb5d3acc44bd0dcf" category="list-text">SAP HANA 資源保護組態（選用）</block>
+  <block id="3719947e600560be28eef96cf84ecefb" category="list-text">關閉目標 SAP HANA 系統</block>
+  <block id="4a44e0462a55038e478c10bd7443f236" category="list-text">卸載 SAP HANA 資料 Volume 。</block>
+  <block id="db196b5d964c1f53d6294ccf9014b550" category="paragraph">您必須將目標系統應執行的指令碼新增至 SnapCenter 允許的命令組態檔。</block>
+  <block id="5a299bcf5b5a9319251be4bb7bfdff03" category="paragraph">本節說明 SAP HANA 系統重新整理工作流程、其中來源和目標系統的租戶名稱與 SID 相同。儲存複製是在主要儲存設備上執行、而還原則是使用指令碼自動執行<block ref="3b7212a09a85af46251eb075db2a1a3f" prefix=" " category="inline-code"></block>。</block>
+  <block id="058606d529f56439f7f7f647ba9ce8c9" category="paragraph"><block ref="058606d529f56439f7f7f647ba9ce8c9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="03f09cb006153d192d8c9fe50e970086" category="inline-link-macro">「使用儲存快照備份來執行 SAP HANA 系統更新作業的考量」</block>
+  <block id="157deab9bdbae6356460f733c40a755d" category="list-text">如果在來源系統啟用 SAP HANA 持續性加密、則必須匯入一次加密根金鑰。如果金鑰在來源系統中已變更、也需要匯入。請參閱第章 <block ref="d89aa6607c9a60fbeb604656c86f4d61" category="inline-link-macro-rx"></block></block>
+  <block id="d04adce820ccdbc17e627f19eb666286" category="list-text">如果目標 SAP HANA 系統已在 SnapCenter 中受到保護、則必須先移除保護。</block>
+  <block id="0b66e7539f72334708449da2e12d9bea" category="list-text">從來源 SAP HANA 系統 SS1 選取 Snapshot 備份。</block>
+  <block id="b7de32cf0e13a0111d1b6c1b89e593ac" category="list-text">選取目標主機並提供目標主機的儲存網路介面。</block>
+  <block id="82f2589d399b8ea3a554792f2d8df999" category="list-text">在範例 QS1 中提供目標系統的 SID</block>
+  <block id="c9717f36d77a03c5f881f50aaab1f447" category="list-text">也可以選擇提供指令碼以作為複製後作業進行還原。</block>
+  <block id="0917c92ee20b51dab8079504f8afb4d6" category="list-text">根據選定的 SAP HANA 來源系統 Snapshot 備份來建立 FlexClone Volume 。</block>
+  <block id="ff94c3eee45cbfae940f9add0b4eb508" category="list-text">將 FlexClone Volume 匯出至目標主機儲存網路介面或 igroup 。</block>
+  <block id="07ade2cb0f2a92cfb2ee5a43961f3e10" category="list-text">在目標主機上執行掛載 FlexClone Volume 的掛載作業。</block>
+  <block id="314c2cce5caa9e6fcd928fc9c35302d1" category="list-text">執行複製後作業恢復指令碼（若先前已設定）。否則、必須在 SnapCenter 工作流程完成時手動進行還原。</block>
+  <block id="fc37d233917d319533af32bb51dba4ff" category="list-text">您也可以選擇在 SnapCenter 中保護目標 SAP HANA 資源。</block>
+  <block id="eb4b39872c9b3c2192257f6c1418c394" category="list-text">從來源系統 SS1 選取 Snapshot 備份、然後按一下 Clone （複製）。</block>
+  <block id="1728a6372764a3d82e0b0449afbb0e48" category="paragraph"><block ref="1728a6372764a3d82e0b0449afbb0e48" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="45cb930cdf8bda3887a5e6b8bcf538b8" category="admonition">輸入的目標 SID 控制 SnapCenter 如何管理複製的資源。如果已在 SnapCenter 中設定具有目標 SID 的資源、並與外掛主機相符、 SnapCenter 只會將該複本指派給此資源。如果目標主機上未設定該SID、SnapCenter 則會建立新的資源。</block>
+  <block id="bd49bd38980d1a48b9ac573cdf9cc7fe" category="admonition">在您開始複製工作流程之前、請務必先在 SnapCenter 中設定目標系統資源和主機。否則、 SnapCenter 所建立的新資源將不支援自動探索、而上述工作流程將無法運作。</block>
+  <block id="ceb04cd0d59c7e8afe21c16c80d7bc4d" category="paragraph"><block ref="ceb04cd0d59c7e8afe21c16c80d7bc4d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6b70c14bef490b5b4a9c096761e1d9ce" category="paragraph">在光纖通道 SAN 設定中、不需要匯出 IP 位址、但您需要在下一個畫面中提供使用的傳輸協定。</block>
+  <block id="2b23cdd09cd3ee449ae9f62aa220bc15" category="admonition">螢幕擷取畫面顯示使用 FiberChannel 連線的不同實驗室設定。</block>
+  <block id="e4b000015ee3fb16f198a83650fc7969" category="paragraph"><block ref="e4b000015ee3fb16f198a83650fc7969" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="344030e6ecb93d504aa09e4bcdbc434e" category="paragraph"><block ref="344030e6ecb93d504aa09e4bcdbc434e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0893fd1866670782e0403c79e13cedce" category="paragraph">有了 Azure NetApp Files 和手動 QoS 容量集區、您必須為新的磁碟區提供最大處理量。請確定容量集區有足夠的保留空間、否則複製工作流程將會失敗。</block>
+  <block id="984e3ff8040e7c400c8af9ccde982a58" category="admonition">螢幕擷取畫面顯示在 Microsoft Azure with Azure NetApp Files 中執行的不同實驗室設定。</block>
+  <block id="70190f0079e52734d56c182a410b40b5" category="paragraph"><block ref="70190f0079e52734d56c182a410b40b5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a246e063e5a58db55d7ef2e1bb5b2753" category="list-text">使用必要的命令列選項、輸入選擇性的複製後指令碼。在此範例中、我們使用複製後指令碼來執行 SAP HANA 資料庫還原。</block>
+  <block id="d3ad86fad295fc93b71f7df09015ead2" category="paragraph"><block ref="d3ad86fad295fc93b71f7df09015ead2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4b553d5e2901b3bd5ebdeaeaf95deb09" category="admonition">如前所述、恢復指令碼的使用是選擇性的。也可以在 SnapCenter 複製工作流程完成後手動進行還原。</block>
+  <block id="180bfaef4a78bba04a268efdcb9583d8" category="admonition">恢復作業的指令碼會使用 Clear logs 作業將 SAP HANA 資料庫恢復到 Snapshot 的時間點、而且不會執行任何轉送還原。如果需要將恢復轉送到特定時間點、則必須手動執行恢復。手動轉送還原也需要在目標主機上提供來源系統的記錄備份。</block>
+  <block id="ebfa595f3cfff6397d5505668de0daaf" category="list-text">中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到3分鐘。</block>
+  <block id="3ce2b96a343e7853615703028fde3f51" category="paragraph"><block ref="3ce2b96a343e7853615703028fde3f51" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="35ae1427629c6141347a56f0f206a9aa" category="list-text">指令碼的記錄檔<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block> 會顯示針對還原作業所執行的不同步驟。指令碼會從系統資料庫讀取租戶清單、並執行所有現有租戶的恢復。</block>
+  <block id="29bd83c9d2d10ace6ade928c4d5f35ac" category="paragraph"><block ref="29bd83c9d2d10ace6ade928c4d5f35ac" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="484ee70604ccba123df2c8b647e52d46" category="list-text">SAP HANA 資料庫目前正在執行中。</block>
+  <block id="85766798d4ef3cbf9aab9706b8710129" category="list-text">若要保護目標 SAP HANA 系統、您必須按一下目標系統資源來執行自動探索。</block>
+  <block id="e3f6bcac50eb1a9061d8e8a7c206156a" category="paragraph"><block ref="e3f6bcac50eb1a9061d8e8a7c206156a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="371c81f2e3f355a3efc6d7a2704e44fe" category="paragraph">當自動探索程序完成時、新的複製磁碟區會列在儲存佔用空間區段中。</block>
+  <block id="966e7eb117b0336d40d8e3fb342fbc39" category="paragraph"><block ref="966e7eb117b0336d40d8e3fb342fbc39" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="93b753d711577984a6f989bbe3b0d5c7" category="paragraph">再次按一下資源、即可為重新整理的 QS1 系統設定資料保護。</block>
+  <block id="4c02a3e900a8d575c701bdc9324c7e53" category="paragraph"><block ref="4c02a3e900a8d575c701bdc9324c7e53" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="15be6cf7fdcb22e17d63f0e911172b26" category="paragraph">本節說明 SAP HANA 系統重新整理工作流程、來源和目標系統的租戶名稱與 SID 相同。儲存複製是在異地備份儲存區執行、並使用 SC-system-refresh.sh 指令碼進一步自動化。</block>
+  <block id="93adae720039af6da67b90a5b6ce6660" category="paragraph"><block ref="586b24272163ba1e7c48090e5fb29076" category="inline-image-macro-rx" type="image"></block> 在 SAP HANA 系統重新整理工作流程中、主要與異地備份儲存複製的唯一差異、就是在 SnapCenter 中選擇 Snapshot 備份。對於異地備份儲存複製、必須先選取次要備份、然後再選取 Snapshot 備份。</block>
+  <block id="618ec9112b783206291751eb7feb1300" category="paragraph"><block ref="618ec9112b783206291751eb7feb1300" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="eb60f75b56b459c5a2055a06898489e3" category="paragraph">如果所選備份有多個次要儲存位置、您需要選擇所需的目的地 Volume 。</block>
+  <block id="ae2899a08c29c8becc75ad9c970bbaaa" category="paragraph"><block ref="ae2899a08c29c8becc75ad9c970bbaaa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="029ffd9a3919273510e46b6290e3b8f7" category="paragraph">所有後續步驟都與從主要儲存設備進行複製的工作流程相同。</block>
+  <block id="4962363e29e7acb600c871b9a2e605d7" category="section-title">複製具有多個租戶的 SAP HANA 系統</block>
+  <block id="ed7b7ec143380db464dc6cf992d44bca" category="paragraph">本節說明 SAP HANA 系統更新工作流程、其中包含多個租戶。儲存複製是在主要儲存設備上執行、並使用指令碼進一步自動化<block ref="3b7212a09a85af46251eb075db2a1a3f" prefix=" " category="inline-code"></block>。</block>
+  <block id="c59aad4fc0675668378bd3d155dcdca6" category="paragraph"><block ref="c59aad4fc0675668378bd3d155dcdca6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="af91ea812cfad225a7ca2a1b156b3ce8" category="paragraph">SnapCenter 中的必要步驟與「從主儲存設備複製、租戶名稱等於 SID 」一節中所述相同。唯一的差異在於指令碼內的租戶恢復作業<block ref="3b7212a09a85af46251eb075db2a1a3f" prefix=" " category="inline-code"></block>、所有租戶都會在該作業中恢復。</block>
+  <block id="37a2727e344d9facb9435dc33b8e61d4" category="paragraph">如果目標 SAP HANA 系統已在 SnapCenter 中受到保護、則必須先移除保護。在目標系統的拓撲檢視中、按一下移除保護。</block>
+  <block id="9de8473b21ff03236d0c22b8e66fb32b" category="paragraph">現在、複製刪除工作流程會以下列步驟執行。</block>
+  <block id="4163c4375ee84108e7464bed795c7892" category="list-text">在來源系統的拓撲檢視中選取複本、然後按一下刪除。</block>
+  <block id="1070db8c371a50ad6d56bd54f3a4d510" category="paragraph"><block ref="1070db8c371a50ad6d56bd54f3a4d510" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d3445aaf473a9660d0c0ab016e8e88f9" category="paragraph"><block ref="d3445aaf473a9660d0c0ab016e8e88f9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cf52c36f96ae7145c840cb9091521aa9" category="paragraph"><block ref="cf52c36f96ae7145c840cb9091521aa9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="307887031775930c6a8e1e3bced427b1" category="list-text">指令碼的記錄檔<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block> 會顯示關機和卸載作業步驟。</block>
+  <block id="11166cbb1d1517e978936ba177acabdd" category="paragraph">如果系統重新整理作業的目標系統計畫要使用較長的時間範圍、則將 FlexClone Volume 分割為系統重新整理作業的一部分是合理的做法。</block>
+  <block id="69b329311d07b607f52569715e798844" category="admonition">複製分割作業不會封鎖複製的 Volume 使用、因此可在 SAP HANA 資料庫使用期間隨時執行。</block>
+  <block id="e92bb8c6f438e94fa791d43bdb4dcbcd" category="admonition">使用 Azure NetApp Files 時、複製分割作業無法使用、因為 Azure NetApp Files 一律會在建立後分割複本。</block>
+  <block id="28879d55e5d4fe7c3342d1e5551c3d27" category="paragraph"><block ref="28879d55e5d4fe7c3342d1e5551c3d27" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fe3d41488550993f558c8ba9f7951d2f" category="paragraph"><block ref="fe3d41488550993f558c8ba9f7951d2f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3952a54129885db7fad06806deeb64e8" category="paragraph"><block ref="3952a54129885db7fad06806deeb64e8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b0418a29ab57c4166b0221cb9ca10482" category="paragraph">在 SnapCenter 的資源檢視中、目標系統 QS1 現在不再標記為複製的資源。回到來源系統的拓撲檢視時、無法再看到實體複本。分割磁碟區現在已獨立於來源系統的Snapshot備份。</block>
+  <block id="29655062f654e12962ad803f7ff29dd4" category="paragraph"><block ref="29655062f654e12962ad803f7ff29dd4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="017a3e042445cc1e55e0318bb15b3264" category="paragraph"><block ref="017a3e042445cc1e55e0318bb15b3264" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4a1abc6199d49f198914fd8d148bf5c0" category="paragraph">複製分割作業之後的重新整理工作流程、與沒有複製分割的作業略有不同。在複製分割作業之後、不需要複製刪除作業、因為目標資料 Volume 不再是 FlexClone Volume 。</block>
+  <block id="7dfe8874c51c5d084185151f12846337" category="list-text">SAP HANA 資料庫必須關閉、資料磁碟區必須卸載、且必須移除 SnapCenter 建立的 Fstab 項目。這些步驟必須手動執行。</block>
+  <block id="023a58384ef01abf43f481c807b63886" category="list-text">現在、 SnapCenter 複製建立工作流程可以依照前幾節所述執行。</block>
+  <block id="c877627d59d4aabd928b804662a092c9" category="list-text">重新整理作業之後、舊的目標資料磁碟區仍然存在、必須手動刪除、例如使用 ONTAP 系統管理員。</block>
+  <block id="b15c25b8eded6042b31638d675f46bbb" category="paragraph">畫面輸出會顯示 clone – delete.ps1 PowerShell 指令碼的執行。</block>
+  <block id="c02f461d6bc735814c693a2961f876d0" category="admonition">如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。SAP HANA 共用磁碟區可繼續裝載。</block>
+  <block id="3a76181089e0a4d1760e6aee32bf113f" category="list-text">SAP HANA 資料 Volume 的 SnapCenter 複製刪除工作流程、包括資料庫關機。</block>
+  <block id="5c1f104318aa49fc440eebd55451b8ee" category="list-text">上述工作流程適用於單一主機 SAP HANA MDC 系統。不支援多個主機系統。</block>
+  <block id="db2df21a0523790017cef08c7f5c3eaa" category="list-text">SnapCenter SAP HANA 外掛程式必須部署在目標主機上、才能執行自動化指令碼。</block>
+  <block id="679aaef31443a5734d1e57a79b042625" category="list-text">此工作流程已通過NFS驗證。用於裝載 SAP HANA 共用磁碟區的自動化<block ref="9042a1dcfe3f159e3f1da35f8f9052d7" prefix=" " category="inline-code"></block>功能不支援 FCP 。此步驟必須手動完成、或是延伸指令碼。</block>
+  <block id="b344b862744c6785533cff671e8e9106" category="list-text">所述工作流程僅適用於 SnapCenter 5.0 或更新版本。</block>
+  <block id="f4c86ccde3feda7d831a21fb6b56af67" category="paragraph">下圖顯示用於系統複製作業的實驗室設定。</block>
+  <block id="b7840bade6da17d016ba5336a5c3aaa7" category="list-text">SAP HANA 系統： Hana 2.0 SPS6 修訂版 61</block>
+  <block id="c7f7b0c805980fb6eb7a327dc76efd24" category="paragraph"><block ref="c7f7b0c805980fb6eb7a327dc76efd24" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="af05a28023ad2e8de362143859a247fd" category="paragraph">在正常作業期間、目標主機可能會用於其他用途、例如 SAP HANA QA 或測試系統。因此、大多數上述步驟都必須在要求系統複製作業時執行。另一方面、只要複製組態檔案、就能準備和等相關組態檔案<block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block><block ref="32e243072177237fcbc533f525dd494c" prefix=" " category="inline-code"></block>、然後將其投入生產。</block>
+  <block id="e9c407386493da0488ffd728b9d23d75" category="paragraph">目標主機準備工作也包括關閉 SAP HANA QA 或測試系統。</block>
+  <block id="b43670ab546cad4f1187a024f2655141" category="section-title">* 目標伺服器主機名稱和 IP 位址 *</block>
+  <block id="82c0bd942f14ac535ea2ec3308abb419" category="section-title">* 安裝必要的軟體 *</block>
+  <block id="03471c13e336e3a43d05ecf4cc3b50f1" category="paragraph">SAP主機代理程式軟體必須安裝在目標伺服器上。如需完整資訊、請參閱<block ref="442ac416f46b28c63828de9c422750a6" category="inline-link-rx"></block> SAP 說明入口網站上的。</block>
+  <block id="19de9f5ceba0710bef9910d02b8c00be" category="paragraph">SnapCenter SAP HANA 外掛程式必須使用 SnapCenter 內的 ADD 主機作業部署在目標主機上。</block>
+  <block id="8500f355a94e4036a165523b43519009" category="section-title">* 設定使用者、連接埠和 SAP 服務 *</block>
+  <block id="cbd9861da1634998fdbec0f1674bffaf" category="paragraph">SAP HANA資料庫所需的使用者和群組必須可在目標伺服器上使用。通常會使用集中式使用者管理、因此不需要在目標伺服器上執行任何組態步驟。必須在目標主機上設定 SAP HANA 資料庫所需的連接埠。您可以將 /etc/services 檔案複製到目標伺服器、從來源系統複製組態。</block>
+  <block id="0fe0a84b026a92619e0b883f8ace7f05" category="section-title">* 準備檔案系統掛載 *</block>
+  <block id="6e1bc5bbe01a1cf6f8a91aa5f717dfbd" category="paragraph">在我們的範例中、必須建立目錄<block ref="8d71e4e8f2c69228b36f61ec92ff6e55" prefix=" " category="inline-code"></block><block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> 和<block ref="f2540a99f8fb2005adffa67040796a39" prefix=" " category="inline-code"></block> 。</block>
+  <block id="e1ef880ffbb207865c6448e388da62a2" category="section-title">* 準備指令碼執行 *</block>
+  <block id="20f8e33f71e1aadeaebae17a3a593359" category="paragraph">您必須將目標系統上應執行的指令碼新增至 SnapCenter 所允許的命令組態檔。</block>
+  <block id="5c233cde12edcc7cd9a5040d286ad73d" category="list-text">從來源系統 SS1 共用磁碟區選取 Snapshot 備份、然後按一下 Clone （複製）。</block>
+  <block id="2df16c6b36babdd1fec2170e385f0c66" category="paragraph"><block ref="2df16c6b36babdd1fec2170e385f0c66" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6369c2aa65382d97cfb630036e611bc6" category="list-text">選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標 SID 與來源系統保持相同的 SID 。在我們的例子 SS1 中。</block>
+  <block id="b8dcabff31bc1e48404a7025400d28c9" category="paragraph"><block ref="b8dcabff31bc1e48404a7025400d28c9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d34b5709e6a166be641ea2c1daf9a200" category="admonition">SAP HANA 系統使用單一 Volume for<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> 和<block ref="332a4b8a50d2a34eacd47a3800f13b64" prefix=" " category="inline-code"></block>、並依照組態指南中的建議、在子目錄中分隔<block ref="c2b719b056d061b07c80fb1a1992ad81" category="inline-link-rx"></block>。指令碼<block ref="7475fe06dd4f4cf4edc0c5536fb55aa4" prefix=" " category="inline-code"></block> 使用裝載路徑的特殊命令列選項來支援此組態。如果掛載路徑命令列選項等於 usr-sap-and 共享、指令碼會將共用子目錄和 usr-sap 相應地掛載到磁碟區中。</block>
+  <block id="527f5450b6deeb4b37d01ab169776078" category="paragraph"><block ref="527f5450b6deeb4b37d01ab169776078" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fc85d3d93a940166679a1ff3ce2858c7" category="list-text">中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。</block>
+  <block id="18c8b6f2f514f2070b1effd4a7077b02" category="paragraph"><block ref="18c8b6f2f514f2070b1effd4a7077b02" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="70bc6b2748946208934f890668f6e3ad" category="list-text">sc-mount-volume.sh 指令碼的記錄檔會顯示掛載作業執行的不同步驟。</block>
+  <block id="48a54a3a578b8e3e928361dc37dc0b17" category="list-text">當 SnapCenter 工作流程完成時、會在目標主機上掛載 /usr/sap/ss1 和 /ha/shared 檔案系統。</block>
+  <block id="4980eece853c0501fce41ec3f23ae9d1" category="paragraph"><block ref="4980eece853c0501fce41ec3f23ae9d1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f5aed610591d8d0f471cd94b9ec0b07b" category="list-text">現在 /Hana / 共享磁碟區已經可用、 SAP HANA 服務就可以啟動。</block>
+  <block id="e6c84cae702fee0b7de0005e27cafd83" category="list-text">SAP 主機代理程式和 sapstartsrv 程序現在已啟動。</block>
+  <block id="b4570d56ed8039388696e01590c23ef0" category="paragraph">其他 SAP 應用程式服務的複製方式與 SAP HANA 共用磁碟區相同、如「複製 SAP HANA 共用磁碟區」一節所述。當然、 SAP 應用程式伺服器所需的儲存磁碟區也必須使用 SnapCenter 加以保護。</block>
+  <block id="cd366cfea7a5fb3bf24ebeea8fb49f63" category="paragraph">您必須將必要的服務項目新增至 /usr/sap/sapservices 、而且必須準備好連接埠、使用者和檔案系統掛載點（例如、 /usr/sap/sSID ）。</block>
+  <block id="d0365f13b3672003f3890d0f741af6b6" category="list-text">從來源系統 SS1 選取 SAP HANA Snapshot 備份。</block>
+  <block id="0c2fa82ab58b339cf51037856f18a418" category="paragraph"><block ref="0c2fa82ab58b339cf51037856f18a418" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3aac5dfc2f5dcdace5aa92b15faf9364" category="list-text">選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標 SID 與來源系統保持相同的 SID 。在我們的例子 SS1 中</block>
+  <block id="ca1d86a49549a639608ea185fa3ca9ba" category="paragraph"><block ref="ca1d86a49549a639608ea185fa3ca9ba" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="49cb46f6fb695d36680d613409cecb98" category="list-text">使用必要的命令列選項輸入複製後指令碼。</block>
+  <block id="bd56a8d936792c44272149daeaa73c61" category="admonition">恢復作業的指令碼會將 SAP HANA 資料庫還原至 Snapshot 作業的時間點、且不會執行任何轉送還原。如果需要將恢復轉送到特定時間點、則必須手動執行恢復。手動轉送還原也需要在目標主機上提供來源系統的記錄備份。</block>
+  <block id="b1d08d3002879f03f53e8042e1e9726e" category="paragraph"><block ref="b1d08d3002879f03f53e8042e1e9726e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="30d1c8855084004ff5efd83a1b2ac199" category="paragraph">指令碼的記錄檔<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block> 會顯示掛載和還原作業所執行的不同步驟。</block>
+  <block id="b9a43783881462b22ed1b9304e93a208" category="paragraph">SAP HANA 系統現已推出、可作為維修系統使用。</block>
+  <block id="1a859eefed9ce4c295aedc96dfafaf4f" category="paragraph">下圖說明在系統重新整理、系統複本或系統複製作業期間必須執行的主要步驟。藍色方塊表示可使用 SnapCenter 自動執行的步驟、灰色方塊則表示必須在 SnapCenter 外部手動或使用協力廠商工具執行的步驟。</block>
+  <block id="741635f8af775f5d4a42697e28bd2dc9" category="paragraph"><block ref="741635f8af775f5d4a42697e28bd2dc9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a7602bcc4a327a853c0bc9244c8d5cf7" category="doc">支援的基礎架構和情境</block>
+  <block id="000ce6bcdcf462bf4ae7ce71777101b1" category="paragraph">本文件涵蓋在內部部署 NetApp 系統上執行的 SAP HANA 系統、適用於 NetApp ONTAP 系統的 Amazon FSX 和 Azure NetApp Files 上的 SAP HANA 系統重新整理和複製案例。然而、並非每個儲存平台都提供所有功能和情境。下表摘要說明支援的組態。</block>
+  <block id="2186ce34f5e82979ca155ca8a50f154e" category="paragraph">在文件中、我們使用的是在內部部署 NetApp 系統上執行的 SAP HANA 環境、其中 NFS 是儲存傳輸協定。大部分的工作流程步驟在不同平台上都是相同的、如果有差異、則會在本文件中強調顯示。</block>
+  <block id="9dc9e3437e4c7ab520eea0bc890ec77d" category="cell">* 內部部署 NetApp 系統 *</block>
+  <block id="dc590521b479337b3c16fdc9b86fa862" category="cell">* AWS FSX for NetApp ONTAP *</block>
+  <block id="502138babd0f5b6a19480328fd806740" category="cell">* Azure NetApp Files *</block>
+  <block id="9b8bdf7379e889d83ab24e782c87d2ac" category="cell">儲存傳輸協定</block>
+  <block id="0f59ffbf177067a2b43529c379b9a941" category="cell">NFS 、 Fibre Channel</block>
+  <block id="1d1a594959ec615f56516f5d0f5e8ddb" category="cell">NFS</block>
+  <block id="cd390e0f91519da01691549afef00620" category="cell">精簡複製（ FlexClone ）</block>
+  <block id="0255a9cd10f452086da62b59f792a1f2" category="cell">否、目前的 anf 版本一律會分割複製的 Volume</block>
+  <block id="382b0f5185773fa0f67a8ed8056c7759" category="cell">不適用</block>
+  <block id="9f1d8d71503bb95d72fe41f56c48761a" category="cell">從主要複製</block>
+  <block id="3f78baa2e72d94c1e4ae14fd035d05aa" category="cell">從異地備份進行複製</block>
+  <block id="13a880a9528cd60eb10631adb9802946" category="cell">在 DR 站台進行複製</block>
+  <block id="07973f5db801b7bc6b863fe0aae5ee4a" category="cell">是、但未整合至 SnapCenter</block>
+  <block id="16fc6bd74d4496ed31fe8ee50e1887ee" category="section-title">QA、測試、沙箱或訓練系統的資料更新</block>
+  <block id="4c389111624b4072b0a39ad27ea4f31d" category="paragraph"><block ref="eb1fce75bdf8769da88aef5c4c695bba" category="inline-image-macro-rx" type="image"></block> SnapCenter 複製工作流程可用於加速和自動化基礎架構和資料庫層的必要工作。SnapCenter 不需要將備份從來源系統還原至目標系統、而是使用 NetApp Snapshot 複本和 NetApp FlexClone 技術、因此只需幾分鐘即可完成所需的工作、而無需花費數小時。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。啟動時間取決於資料庫大小、以及資料庫伺服器與儲存系統之間的連線能力。</block>
+  <block id="fd8d453527594dde641ce599ec9bad19" category="paragraph"><block ref="fd8d453527594dde641ce599ec9bad19" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="862c3e3761bf683136ee838de2c0c203" category="paragraph">在設定維修系統時、靈活度和敏捷度至關重要。使用 NetApp 儲存型 Snapshot 備份時、可使用多個一致的資料庫映像、使用 NetApp FlexClone 技術建立正式作業系統的複本。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。</block>
+  <block id="593d446168b0ff4d8c0e23380cc3cf13" category="paragraph"><block ref="593d446168b0ff4d8c0e23380cc3cf13" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2792124a69a48ece7030f9b29701007b" category="paragraph">有效的災難恢復策略需要測試所需的工作流程。測試可證明策略是否有效、以及內部文件是否足夠。也可讓系統管理員訓練所需的程序。</block>
+  <block id="28bf5ca8cd970b443f0f4d8f0726259b" category="paragraph"><block ref="9cb66dfb2c1402be5b4384e2c9d65bbe" category="inline-image-macro-rx" type="image"></block> 詳細的逐步說明可在技術報告中找到</block>
+  <block id="0ca7de0d8a3d9d654f0a2d183f1c4aef" category="inline-link">TR-4646 ： SAP HANA 災難恢復與儲存複寫（ netapp.com ）</block>
+  <block id="80020ad1d665e32a8c5ddfadfd1c3415" category="paragraph"><block ref="80020ad1d665e32a8c5ddfadfd1c3415" category="inline-link-rx"></block></block>
+  <block id="acbd601ce9bb8719c9759926bade423c" category="paragraph"><block ref="acbd601ce9bb8719c9759926bade423c" category="inline-link-rx"></block></block>
+  <block id="4b3309d5f0ac80977c53b53f174cf02b" category="inline-link">SAP Business Application 與 SAP HANA 資料庫解決方案（ netapp.com ）</block>
+  <block id="3726ec9ff4cd44edb2e6ef5e5bb1d348" category="list-text"><block ref="3726ec9ff4cd44edb2e6ef5e5bb1d348" category="inline-link-rx"></block></block>
+  <block id="27dddf76b26ab304508f853d7098db14" category="list-text"><block ref="27dddf76b26ab304508f853d7098db14" category="inline-link-rx"></block></block>
+  <block id="86c4432fecfe5c3e73043d258208eaaf" category="list-text"><block ref="86c4432fecfe5c3e73043d258208eaaf" category="inline-link-rx"></block></block>
+  <block id="1b9bc9e191e6ba94ef8d56cbe1b56fe0" category="list-text"><block ref="1b9bc9e191e6ba94ef8d56cbe1b56fe0" category="inline-link-rx"></block></block>
+  <block id="30faa411b1b825f32746a6c578400e17" category="list-text"><block ref="30faa411b1b825f32746a6c578400e17" category="inline-link-rx"></block></block>
+  <block id="13c64b27eec62224a0e9d23f11305c82" category="list-text"><block ref="9784d3fec4562f5e098705a8bd1c3e5c" category="inline-link-rx"></block></block>
+  <block id="41c4e889d50776d54c370695fcfa5d29" category="list-text"><block ref="a0b4539ba20396fdc40c0e0863f20241" category="inline-link-rx"></block></block>
+  <block id="73018ba6d8f50b92b992ab316f15a0a6" category="paragraph">完整重新寫入功能涵蓋SnapCenter 範圍涵蓋整個過程、以及改良的自動化指令碼。+ 系統重新整理和系統複製作業的新工作流程說明。</block>
+  <block id="30dac510a408bf8be8dd4336d96b482f" category="cell">適用於 SnapCenter 4.6 P1 的變更工作流程</block>
+  <block id="f66bc2df80ac37f354b591907be92e18" category="cell">2024 年 7 月</block>
+  <block id="17fb9a63c15de98fb13578ff5b945b03" category="paragraph">文件涵蓋內部部署的 NetApp 系統、 適用於 ONTAP 和 Azure NetApp Files 的 FSX + 全新 SnapCenter 5.0 作業會在複製建立和刪除工作流程時掛載和卸載 + 為光纖通道 SAN 新增特定步驟 + 為 Azure NetApp Files 新增特定步驟 + 調整和簡化指令碼 +<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block> 已啟用 SAP HANA 的必要步驟 Volume 加密</block>
 </blocks>

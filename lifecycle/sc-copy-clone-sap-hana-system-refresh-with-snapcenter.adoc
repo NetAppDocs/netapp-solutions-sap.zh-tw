@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html 
-keywords: prerequisites, lab setup, clone name, sid, clone create, clone delete 
-summary: 本節將逐步說明SAP HANA資料庫的不同系統更新作業選項。 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
 ---
 = SAP HANA系統更新SnapCenter 功能
 :hardbreaks:
@@ -13,42 +13,66 @@ summary: 本節將逐步說明SAP HANA資料庫的不同系統更新作業選項
 :imagesdir: ./../media/
 
 
-[role="lead"]
 下節將逐步說明SAP HANA資料庫的不同系統更新作業選項。
 
+image:sc-copy-clone-image7.png[""]
 
-NOTE: 實驗室設定與驗證不包括SAP應用程式服務。然而、SAP應用程式服務所需的步驟會在文件中反白顯示。
+視 SAP HANA 資料庫組態而定、會執行或需要準備其他步驟。下表提供摘要。
 
+[cols="26%,30%,44%"]
+|===
+| 來源系統 | 來源系統組態 | SnapCenter 與 SAP HANA 作業 
+
+
+| MDC 單一租戶 + SID = 租戶名稱 | 標準組 | SnapCenter 複製作業和選擇性的恢復指令碼執行。 
+
+
+|  | SAP HANA 持續性加密 | 一開始、或者如果根金鑰在來源系統上已變更、則必須先在目標系統上匯入根金鑰備份、然後才能執行還原。 
+
+
+|  | SAP HANA 系統複寫來源 | 不需執行其他步驟。如果目標系統未設定 HSR 、則會維持獨立的系統。 
+
+
+|  | SAP HANA 多個分割區 | 無需額外的步驟、但必須在具有相同命名慣例的目標系統上、提供 SAP HANA 磁碟區分割的掛載點（只有不同的 SID ）。 
+
+
+ a| 
+多個用戶的MDC
+
+或是具有 SID <> 租戶名稱的 MDC 單租戶 +
+| 標準組 | SnapCenter 複製作業和選擇性的恢復指令碼執行。指令碼會恢復所有租戶。如果目標系統名稱中不存在租戶或租戶名稱、則在 SAP HANA 恢復作業期間會自動建立必要的目錄。租戶名稱將與來源相同、如有需要、需要在恢復後重新命名。 
+
+
+|  | SAP HANA 持續性加密 | 如果來源系統的 DBID 在目標系統之前不存在、則必須先還原系統資料庫、然後才能匯入此租用戶的根金鑰備份。 
+
+
+|  | Hana 系統複寫來源 | 不需執行其他步驟。如果目標系統未設定 HSR 、則會維持獨立的系統。 
+
+
+|  | HANA 多個分割區 | 無需額外的步驟、但必須在具有相同命名慣例的目標系統上、提供 SAP HANA 磁碟區分割的掛載點（只有不同的 SID ）。 
+|===
 本節涵蓋下列案例。
 
 * 無需複製分割作業即可更新SAP HANA系統。
-+
-** 從主儲存設備複製、租戶名稱等於該SID
-** 從異地備份儲存設備複製、租戶名稱等於該SID
-** 從主儲存設備複製、租戶名稱不等同於SID
-** Clone刪除作業
-
-
+* 從主要儲存設備複製、租戶名稱等於 SID
+* 從異地備份儲存設備進行複製
+* 從具有多個租戶的主要儲存設備進行複製
+* Clone刪除作業
 * SAP HANA系統以複製分割作業進行更新
-+
-** 從主儲存設備複製、租戶名稱等於該SID
-** 複製分割作業
+* 從主要儲存設備複製、租戶名稱等於 SID
+* 複製分割作業
 
-
-
-
-image:sc-copy-clone-image15.png["錯誤：缺少圖形影像"]
 
 
 
 == 先決條件與限制
 
-以下各節所述的工作流程、對於HANA系統架構和SnapCenter 支援功能有幾項先決條件和限制。
+下列各節所述的工作流程、對於 SAP HANA 系統架構和 SnapCenter 組態有一些先決條件和限制。
 
-* 上述工作流程適用於單一主機SAP HANA的多個租戶共享系統。自動化指令碼不支援SAP HANA多個主機系統。
-* 必須在目標主機上部署才能執行自動化指令碼的支援功能。SnapCenterHANA來源系統主機不需要安裝HANA外掛程式。
-* 上述工作流程僅適用於SnapCenter 更新版本的版本不含更新版本的版本。較舊版本的工作流程略有不同。
-* 這些工作流程適用於使用NFS和FCP的HANA系統。
+* 上述工作流程僅適用於 SnapCenter 5.0 或更新版本。
+* 上述工作流程適用於單一主機SAP HANA的多個租戶共享系統。SAP HANA 不涵蓋多個主機系統。
+* SnapCenter SAP HANA 外掛程式必須部署在目標主機上、才能啟用 SnapCenter 自動探索及執行自動化指令碼。
+* 工作流程適用於實體主機上使用 NFS 或 FCP 的 SAP HANA 系統、或是使用客體內 NFS 裝載的虛擬主機。
 
 
 
@@ -57,88 +81,90 @@ image:sc-copy-clone-image15.png["錯誤：缺少圖形影像"]
 
 下圖顯示用於不同系統重新整理作業選項的實驗室設定。
 
-. 從主要儲存設備或異地備份儲存設備複製；租戶名稱等於該SID。
+* 從主要儲存設備或異地備份儲存設備複製；租戶名稱等於 SID 。
 +
-.. 來源HANA系統：SS1搭配租戶SS1
-.. 目標HANA系統：QS1搭配租戶QS1
+** 來源 SAP HANA 系統： SS1 with Tenant SS1
+** 目標 SAP HANA 系統：具有租戶 QS1 的 QS1
 
 
-. 從主要儲存設備複製；租戶名稱不等於SID。
+* 從主要儲存設備複製；多個租戶。
 +
-.. 來源HANA系統：SM1搭配Tanant1和Tenant2
-.. 目標HANA系統：QS1搭配Tenant1
+** 來源 SAP HANA 系統： SM1 搭配 Tenant1 和 Tenant2
+** 目標 SAP HANA 系統： QS1 搭配 Tenant1 和 Tenant2
 
 
 
 
 使用下列軟體版本：
 
-* 資料4.6P1 SnapCenter
-* Hana系統：Hana 2.0 SPS6修訂版61和HANA 2.0 SPS5修訂版52
-* VMware 6.7.0
-* SLES 15 SP2
-* 1.7P7 ONTAP
+* SnapCenter 5.0
+* SAP HANA 系統： Hana 2.0 SPS7 修訂版 73
+* SLES 15
+* 部分9.14P1 ONTAP
 
 
-所有HANA系統均根據組態指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"^]。根據最佳實務做法指南來設定支援對象的支援與HANA資源SnapCenter https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]。
+所有 SAP HANA 系統都必須根據組態指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"]。SnapCenter 和 SAP HANA 資源是根據最佳實務指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"]。
 
-image:sc-copy-clone-image16.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image16.png[""]
 
 
 
 == 初始一次性準備步驟
 
-在初始步驟中、必須安裝目標HANA系統和SAP應用程式服務、然後在SnapCenter 支援中心內設定HANA系統。
+在初始步驟中、目標 SAP HANA 系統必須在 SnapCenter 中設定。
 
-. 安裝HANA目標系統和SAP應用程式服務
-. 如中所述、SnapCenter 在功能方面設定HANA系統 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]
+. 安裝 SAP HANA 目標系統
+. 如所述、在 SnapCenter 中設定 SAP HANA 系統 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"]
 +
-.. HANA資料庫使用者的組態SnapCenter 、以利執行還原備份作業。此使用者必須在來源和目標系統上相同。
-.. 使用上述備份使用者設定hdbuserstore金鑰。
-.. 在SnapCenter 目標主機上部署支援對象HANA外掛程式。HANA系統SnapCenter 是由NetApp自動發現的。
-.. HANA資源保護組態（選用）。
+.. SAP HANA 資料庫使用者的 SnapCenter 備份作業組態此使用者在來源和目標系統上必須相同。
+.. 使用上述備份使用者設定 <sid> 的 hdbuserstore 金鑰。如果使用自動化指令碼進行還原、金鑰名稱必須是 <SID> KEY
+.. 在目標主機上部署 SnapCenter SAP HANA 外掛程式。SnapCenter 會自動探索 SAP HANA 系統。
+.. SAP HANA 資源保護組態（選用）
 
 
 
 
 初始安裝之後、第一次SAP系統重新整理作業會以下列步驟準備：
 
-. 關閉SAP應用程式服務並鎖定HANA系統。
-. 卸載HANA資料Volume。
+. 關閉目標 SAP HANA 系統
+. 卸載 SAP HANA 資料 Volume 。
 
 
+您必須將目標系統應執行的指令碼新增至 SnapCenter 允許的命令組態檔。
+
+....
+hana-7:/opt/NetApp/snapcenter/scc/etc # cat /opt/NetApp/snapcenter/scc/etc/allowed_commands.config
+command: mount
+command: umount
+command: /mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh
+hana-7:/opt/NetApp/snapcenter/scc/etc #
+....
 
 
 == 從主儲存設備複製、租戶名稱等於SID
 
-本節說明HANA系統重新整理工作流程、其中來源和目標系統的租戶名稱與SID相同。儲存複製會在主要儲存設備上執行、並使用指令碼「sc-system-refresh.sh」進一步自動化。
+本節說明 SAP HANA 系統重新整理工作流程、其中來源和目標系統的租戶名稱與 SID 相同。儲存複製是在主要儲存設備上執行、而還原則是使用指令碼自動執行 `sc-system-refresh.sh`。
 
-下圖說明使用租戶名稱= SID從主要儲存設備進行複製。
-
-image:sc-copy-clone-image17.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image17.png[""]
 
 工作流程包含下列步驟：
 
-. 如果目標HANA系統已在SnapCenter 不受保護的情況下受到保護、則必須先移除保護。
-. 開啟SnapCenter 「還原複製精靈」。
+. 如果在來源系統啟用 SAP HANA 持續性加密、則必須匯入一次加密根金鑰。如果金鑰在來源系統中已變更、也需要匯入。請參閱第章 link:sc-copy-clone-considerations-for-sap-hana-system-refresh-operations-using-snapshot-backups.html["「使用儲存快照備份來執行 SAP HANA 系統更新作業的考量」"]
+. 如果目標 SAP HANA 系統已在 SnapCenter 中受到保護、則必須先移除保護。
+. 實體複製建立工作流程。SnapCenter
 +
-.. 從來源HANA系統SS1選取Snapshot備份。
-.. 選取目標主機並提供其儲存網路介面。
-.. 提供目標系統的SID（範例中為QS1）。
-.. 提供掛載和後複製作業的指令碼。
+.. 從來源 SAP HANA 系統 SS1 選取 Snapshot 備份。
+.. 選取目標主機並提供目標主機的儲存網路介面。
+.. 在範例 QS1 中提供目標系統的 SID
+.. 也可以選擇提供指令碼以作為複製後作業進行還原。
 
 
-. 若要執行SnapCenter 還原複製作業、請完成下列步驟：
+. 實體複製作業：SnapCenter
 +
-.. 根據所選的來源HANA系統Snapshot備份建立FlexClone Volume。
-.. 將FlexClone Volume匯出至目標主機儲存網路介面。
-.. 執行掛載作業指令碼。
-+
-*** FlexClone Volume會以資料Volume的形式掛載於目標主機。
-*** 將擁有權變更為qs1adm。
-
-
-.. 執行複製後作業指令碼。
+.. 根據選定的 SAP HANA 來源系統 Snapshot 備份來建立 FlexClone Volume 。
+.. 將 FlexClone Volume 匯出至目標主機儲存網路介面或 igroup 。
+.. 在目標主機上執行掛載 FlexClone Volume 的掛載作業。
+.. 執行複製後作業恢復指令碼（若先前已設定）。否則、必須在 SnapCenter 工作流程完成時手動進行還原。
 +
 *** 恢復系統資料庫。
 *** 恢復租戶名稱= QS1的租戶資料庫。
@@ -146,135 +172,195 @@ image:sc-copy-clone-image17.png["錯誤：缺少圖形影像"]
 
 
 
-. 啟動SAP應用程式服務。
-. 或者、也可以保護SnapCenter 目標HANA資源。
+. 您也可以選擇在 SnapCenter 中保護目標 SAP HANA 資源。
 
 
 下列螢幕擷取畫面顯示必要步驟。
 
-. 從來源系統SS1選取Snapshot備份、然後按一下從備份複製。
-+
-image:sc-copy-clone-image18.png["錯誤：缺少圖形影像"]
+. 從來源系統 SS1 選取 Snapshot 備份、然後按一下 Clone （複製）。
+
+
+image:sc-copy-clone-image18.png[""]
 
 . 選取安裝目標系統QS1的主機。輸入QS1作為目標SID。NFS匯出IP位址必須是目標主機的儲存網路介面。
 +
 
-NOTE: 此處輸入的目標SID可控制SnapCenter 如何管理實體複本。如果目標SnapCenter 主機上的目標SID已在支援中設定、SnapCenter 則只需將實體複本指派給主機即可。如果目標主機上未設定該SID、SnapCenter 則會建立新的資源。
+NOTE: 輸入的目標 SID 控制 SnapCenter 如何管理複製的資源。如果已在 SnapCenter 中設定具有目標 SID 的資源、並與外掛主機相符、 SnapCenter 只會將該複本指派給此資源。如果目標主機上未設定該SID、SnapCenter 則會建立新的資源。
 
 +
-image:sc-copy-clone-image19.png["錯誤：缺少圖形影像"]
 
-. 使用所需的命令列選項輸入掛載和後複製指令碼。
-+
-image:sc-copy-clone-image20.png["錯誤：缺少圖形影像"]
+NOTE: 在您開始複製工作流程之前、請務必先在 SnapCenter 中設定目標系統資源和主機。否則、 SnapCenter 所建立的新資源將不支援自動探索、而上述工作流程將無法運作。
 
-. 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到2分鐘。
-+
-image:sc-copy-clone-image21.png["錯誤：缺少圖形影像"]
 
-. 「sc-system-refresh.sh」指令碼的記錄檔會顯示執行掛載和還原作業的不同步驟。指令碼會自動偵測到來源系統有單一租戶、且名稱與來源系統SID SS1相同。因此指令碼會使用租戶名稱QS1來復原租戶。
-+
 
-NOTE: 如果來源租戶名稱與來源租戶ID相同、但與預設租戶組態旗標相同、請參閱一節 link:sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups["「使用儲存快照備份的SAP HANA系統更新作業流程、」"] 不再設定、恢復作業會失敗、必須手動執行。
+image:sc-copy-clone-image19.png[""]
 
-+
+在光纖通道 SAN 設定中、不需要匯出 IP 位址、但您需要在下一個畫面中提供使用的傳輸協定。
+
+
+NOTE: 螢幕擷取畫面顯示使用 FiberChannel 連線的不同實驗室設定。
+
+image:sc-copy-clone-image20.png[""]
+
+image:sc-copy-clone-image21.png[""]
+
+有了 Azure NetApp Files 和手動 QoS 容量集區、您必須為新的磁碟區提供最大處理量。請確定容量集區有足夠的保留空間、否則複製工作流程將會失敗。
+
+
+NOTE: 螢幕擷取畫面顯示在 Microsoft Azure with Azure NetApp Files 中執行的不同實驗室設定。
+
+image:sc-copy-clone-image22.png[""]
+
+. 使用必要的命令列選項、輸入選擇性的複製後指令碼。在此範例中、我們使用複製後指令碼來執行 SAP HANA 資料庫還原。
+
+
+image:sc-copy-clone-image23.png[""]
+
+
+NOTE: 如前所述、恢復指令碼的使用是選擇性的。也可以在 SnapCenter 複製工作流程完成後手動進行還原。
+
+
+NOTE: 恢復作業的指令碼會使用 Clear logs 作業將 SAP HANA 資料庫恢復到 Snapshot 的時間點、而且不會執行任何轉送還原。如果需要將恢復轉送到特定時間點、則必須手動執行恢復。手動轉送還原也需要在目標主機上提供來源系統的記錄備份。
+
+. 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到3分鐘。
+
+
+image:sc-copy-clone-image24.png[""]
+
+. 指令碼的記錄檔 `sc-system-refresh` 會顯示針對還原作業所執行的不同步驟。指令碼會從系統資料庫讀取租戶清單、並執行所有現有租戶的恢復。
+
+
 ....
-20220421045731###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421045731###hana-7###sc-system-refresh.sh: Unmounting data volume.
-20220421045731###hana-7###sc-system-refresh.sh: umount /hana/data/QS1/mnt00001
-20220421045731###hana-7###sc-system-refresh.sh: Deleting /etc/fstab entry.
-20220421045731###hana-7###sc-system-refresh.sh: Data volume unmounted successfully.
-20220421052009###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421052009###hana-7###sc-system-refresh.sh: Adding entry in /etc/fstab.
-20220421052009###hana-7###sc-system-refresh.sh: 192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605 /hana/data/QS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
-20220421052009###hana-7###sc-system-refresh.sh: Mounting data volume: mount /hana/data/QS1/mnt00001.
-20220421052009###hana-7###sc-system-refresh.sh: Data volume mounted successfully.
-20220421052009###hana-7###sc-system-refresh.sh: Change ownership to qs1adm.
-20220421052019###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421052019###hana-7###sc-system-refresh.sh: Recover system database.
-20220421052019###hana-7###sc-system-refresh.sh: /usr/sap/QS1/HDB11/exe/Python/bin/python /usr/sap/QS1/HDB11/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
-20220421052049###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is started ....
-20220421052049###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421052059###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421052110###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421052120###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421052130###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421052130###hana-7###sc-system-refresh.sh: SAP HANA database is started.
-20220421052130###hana-7###sc-system-refresh.sh: Source Tenant: SS1
-20220421052130###hana-7###sc-system-refresh.sh: Source SID: SS1
-20220421052130###hana-7###sc-system-refresh.sh: Source system has a single tenant and tenant name is identical to source SID: SS1
-20220421052130###hana-7###sc-system-refresh.sh: Target tenant will have the same name as target SID: QS1.
-20220421052130###hana-7###sc-system-refresh.sh: Recover tenant database QS1.
-20220421052130###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY RECOVER DATA FOR QS1 USING SNAPSHOT CLEAR LOG
-0 rows affected (overall time 35.259489 sec; server time 35.257522 sec)
-20220421052206###hana-7###sc-system-refresh.sh: Checking availability of Indexserver for tenant QS1.
-20220421052206###hana-7###sc-system-refresh.sh: Recovery of tenant database QS1 succesfully finished.
-20220421052206###hana-7###sc-system-refresh.sh: Status: GREEN
+20240425112328###hana-7###sc-system-refresh.sh: Script version: 3.0
+hana-7:/mnt/sapcc-share/SAP-System-Refresh # cat sap-system-refresh-QS1.log
+20240425112328###hana-7###sc-system-refresh.sh: ******************* Starting script: recovery operation **************************
+20240425112328###hana-7###sc-system-refresh.sh: Recover system database.
+20240425112328###hana-7###sc-system-refresh.sh: /usr/sap/QS1/HDB11/exe/Python/bin/python /usr/sap/QS1/HDB11/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
+20240425112346###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is started ....
+20240425112347###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425112357###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425112407###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425112417###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425112428###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425112438###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425112448###hana-7###sc-system-refresh.sh: Status: GREEN
+20240425112448###hana-7###sc-system-refresh.sh: HANA system database started.
+20240425112448###hana-7###sc-system-refresh.sh: Checking connection to system database.
+20240425112448###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY 'select * from sys.m_databases;'
+DATABASE_NAME,DESCRIPTION,ACTIVE_STATUS,ACTIVE_STATUS_DETAILS,OS_USER,OS_GROUP,RESTART_MODE,FALLBACK_SNAPSHOT_CREATE_TIME
+"SYSTEMDB","SystemDB-QS1-11","YES","","","","DEFAULT",?
+"QS1","QS1-11","NO","ACTIVE","","","DEFAULT",?
+2 rows selected (overall time 16.225 msec; server time 860 usec)
+20240425112448###hana-7###sc-system-refresh.sh: Succesfully connected to system database.
+20240425112449###hana-7###sc-system-refresh.sh: Tenant databases to recover: QS1
+20240425112449###hana-7###sc-system-refresh.sh: Found inactive tenants(QS1) and starting recovery
+20240425112449###hana-7###sc-system-refresh.sh: Recover tenant database QS1.
+20240425112449###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY RECOVER DATA FOR QS1 USING SNAPSHOT CLEAR LOG
+0 rows affected (overall time 22.138599 sec; server time 22.136268 sec)
+20240425112511###hana-7###sc-system-refresh.sh: Checking availability of Indexserver for tenant QS1.
+20240425112511###hana-7###sc-system-refresh.sh: Recovery of tenant database QS1 succesfully finished.
+20240425112511###hana-7###sc-system-refresh.sh: Status: GREEN
+20240425112511###hana-7###sc-system-refresh.sh: ******************* Finished script: recovery operation **************************
+hana-7:/mnt/sapcc-share/SAP-System-Refresh
 ....
 . 完成「視覺化」工作後SnapCenter 、可在來源系統的拓撲檢視中看到實體複本。
-+
-image:sc-copy-clone-image22.png["錯誤：缺少圖形影像"]
-
-. HANA資料庫現在正在執行、SAP應用程式服務也可以啟動。
-. 如果您想要保護目標HANA系統、則必須在SnapCenter 功能區中設定資源保護。
-+
-image:sc-copy-clone-image23.png["錯誤：缺少圖形影像"]
 
 
+image:sc-copy-clone-image25.png[""]
+
+. SAP HANA 資料庫目前正在執行中。
+. 若要保護目標 SAP HANA 系統、您必須按一下目標系統資源來執行自動探索。
 
 
+image:sc-copy-clone-image26.png[""]
 
-== 從異地備份儲存設備複製、租戶名稱等於SID
+當自動探索程序完成時、新的複製磁碟區會列在儲存佔用空間區段中。
 
-本節說明HANA系統重新整理工作流程、其中來源和目標系統的租戶名稱與SID相同。儲存複製會在異地備份儲存設備上執行、並使用指令碼「sc-system-refresh.sh」進一步自動化。
+image:sc-copy-clone-image27.png[""]
 
-image:sc-copy-clone-image24.png["錯誤：缺少圖形影像"]
+再次按一下資源、即可為重新整理的 QS1 系統設定資料保護。
 
-HANA系統重新整理工作流程中、主要與異地備份儲存複製的唯一差異、在於SnapCenter 選擇了使用效益技術的Snapshot備份。若要進行異地備份儲存複製、必須先選取次要備份。
-
-image:sc-copy-clone-image25.png["錯誤：缺少圖形影像"]
-
-如果所選備份有多個次要儲存位置、您需要選取所需的目的地Volume。
-
-image:sc-copy-clone-image26.png["錯誤：缺少圖形影像"]
-
-所有後續步驟都與從主儲存設備複製的工作流程相同、如「」一節所述<<從主儲存設備複製、租戶名稱等於SID>>。」
+image:sc-copy-clone-image28.png[""]
 
 
 
-== 使用租戶名稱不等於SID的主儲存設備複製
+== 從異地備份儲存設備進行複製
 
-本節說明HANA系統重新整理工作流程、其中來源的租戶名稱與SID不相等。儲存複製會在主要儲存設備上執行、並使用指令碼「sc-system-refresh.sh」進一步自動化。
+本節說明 SAP HANA 系統重新整理工作流程、來源和目標系統的租戶名稱與 SID 相同。儲存複製是在異地備份儲存區執行、並使用 SC-system-refresh.sh 指令碼進一步自動化。
 
-image:sc-copy-clone-image27.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image29.png[""] 在 SAP HANA 系統重新整理工作流程中、主要與異地備份儲存複製的唯一差異、就是在 SnapCenter 中選擇 Snapshot 備份。對於異地備份儲存複製、必須先選取次要備份、然後再選取 Snapshot 備份。
 
-所需的SnapCenter 步驟與本節中所述相同<<從主儲存設備複製、租戶名稱等於SID>>。」 不同之處在於指令碼「sc-system-refresh.sh」中的租戶還原作業。
+image:sc-copy-clone-image30.png[""]
 
-如果指令碼偵測到來源系統租戶名稱不同於來源系統的SID、則目標系統上的租戶還原會使用與來源租戶相同的租戶名稱執行。如果目標租戶名稱應該有不同的名稱、則之後必須手動重新命名租戶。
+如果所選備份有多個次要儲存位置、您需要選擇所需的目的地 Volume 。
+
+image:sc-copy-clone-image31.png[""]
+
+所有後續步驟都與從主要儲存設備進行複製的工作流程相同。
 
 
-NOTE: 如果來源系統有多個租戶、指令碼只會恢復第一個租戶。其他租戶必須手動恢復。
+
+== 複製具有多個租戶的 SAP HANA 系統
+
+本節說明 SAP HANA 系統更新工作流程、其中包含多個租戶。儲存複製是在主要儲存設備上執行、並使用指令碼進一步自動化 `sc-system-refresh.sh`。
+
+image:sc-copy-clone-image32.png[""]
+
+SnapCenter 中的必要步驟與「從主儲存設備複製、租戶名稱等於 SID 」一節中所述相同。唯一的差異在於指令碼內的租戶恢復作業 `sc-system-refresh.sh`、所有租戶都會在該作業中恢復。
 
 ....
-20201118121320###hana-7###sc-system-refresh.sh: Adding entry in /etc/fstab.
-20201118121320###hana-7###sc-system-refresh.sh: 192.168.175.117:/Scc71107fe-3211-498a-b6b3-d7d3591d7448 /hana/data/QS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
-20201118121320###hana-7###sc-system-refresh.sh: Mounting data volume: mount /hana/data/QS1/mnt00001.
-20201118121320###hana-7###sc-system-refresh.sh: Data volume mounted successfully.
-20201118121320###hana-7###sc-system-refresh.sh: Change ownership to qs1adm.
-20201118121330###hana-7###sc-system-refresh.sh: Recover system database.
-20201118121330###hana-7###sc-system-refresh.sh: /usr/sap/QS1/HDB11/exe/Python/bin/python /usr/sap/QS1/HDB11/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
-20201118121402###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is started ....
-20201118121402###hana-7###sc-system-refresh.sh: Status:  GRAY
-20201118121412###hana-7###sc-system-refresh.sh: Status:  GREEN
-20201118121412###hana-7###sc-system-refresh.sh: SAP HANA database is started.
-20201118121412###hana-7###sc-system-refresh.sh: Source system contains more than one tenant, recovery will only be executed for the first tenant.
-20201118121412###hana-7###sc-system-refresh.sh: List of tenants: TENANT1,TENANT2
-20201118121412###hana-7###sc-system-refresh.sh: Recover tenant database TENANT1.
-20201118121412###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY RECOVER DATA FOR TENANT1 USING SNAPSHOT CLEAR LOG
-0 rows affected (overall time 34.777174 sec; server time 34.775540 sec)
-20201118121447###hana-7###sc-system-refresh.sh: Checking availability of Indexserver for tenant TENANT1.
-20201118121447###hana-7###sc-system-refresh.sh: Recovery of tenant database TENANT1 succesfully finished.
-20201118121447###hana-7###sc-system-refresh.sh: Status: GREEN
+20240430070214###hana-7###sc-system-refresh.sh: **********************************************************************************
+20240430070214###hana-7###sc-system-refresh.sh: Script version: 3.0
+20240430070214###hana-7###sc-system-refresh.sh: ******************* Starting script: recovery operation **************************
+20240430070214###hana-7###sc-system-refresh.sh: Recover system database.
+20240430070214###hana-7###sc-system-refresh.sh: /usr/sap/QS1/HDB11/exe/Python/bin/python /usr/sap/QS1/HDB11/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
+[140310725887808, 0.008] >> starting recoverSys (at Tue Apr 30 07:02:15 2024)
+[140310725887808, 0.008] args: ()
+[140310725887808, 0.008] keys: \{'command': 'RECOVER DATA USING SNAPSHOT CLEAR LOG'}
+using logfile /usr/sap/QS1/HDB11/hana-7/trace/backup.log
+recoverSys started: ============2024-04-30 07:02:15 ============
+testing master: hana-7
+hana-7 is master
+shutdown database, timeout is 120
+stop system
+stop system on: hana-7
+stopping system: 2024-04-30 07:02:15
+stopped system: 2024-04-30 07:02:15
+creating file recoverInstance.sql
+restart database
+restart master nameserver: 2024-04-30 07:02:20
+start system: hana-7
+sapcontrol parameter: ['-function', 'Start']
+sapcontrol returned successfully:
+2024-04-30T07:02:32-04:00 P0023828 18f2eab9331 INFO RECOVERY RECOVER DATA finished successfully
+recoverSys finished successfully: 2024-04-30 07:02:33
+[140310725887808, 17.548] 0
+[140310725887808, 17.548] << ending recoverSys, rc = 0 (RC_TEST_OK), after 17.540 secs
+20240430070233###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is started ....
+20240430070233###hana-7###sc-system-refresh.sh: Status: GRAY
+20240430070243###hana-7###sc-system-refresh.sh: Status: GRAY
+20240430070253###hana-7###sc-system-refresh.sh: Status: GRAY
+20240430070304###hana-7###sc-system-refresh.sh: Status: GRAY
+20240430070314###hana-7###sc-system-refresh.sh: Status: GREEN
+20240430070314###hana-7###sc-system-refresh.sh: HANA system database started.
+20240430070314###hana-7###sc-system-refresh.sh: Checking connection to system database.
+20240430070314###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY 'select * from sys.m_databases;'
+20240430070314###hana-7###sc-system-refresh.sh: Succesfully connected to system database.
+20240430070314###hana-7###sc-system-refresh.sh: Tenant databases to recover: TENANT2
+TENANT1
+20240430070314###hana-7###sc-system-refresh.sh: Found inactive tenants(TENANT2
+TENANT1) and starting recovery
+20240430070314###hana-7###sc-system-refresh.sh: Recover tenant database TENANT2.
+20240430070314###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY RECOVER DATA FOR TENANT2 USING SNAPSHOT CLEAR LOG
+20240430070335###hana-7###sc-system-refresh.sh: Checking availability of Indexserver for tenant TENANT2.
+20240430070335###hana-7###sc-system-refresh.sh: Recovery of tenant database TENANT2 succesfully finished.
+20240430070335###hana-7###sc-system-refresh.sh: Status: GREEN
+20240430070335###hana-7###sc-system-refresh.sh: Recover tenant database TENANT1.
+20240430070335###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY RECOVER DATA FOR TENANT1 USING SNAPSHOT CLEAR LOG
+20240430070349###hana-7###sc-system-refresh.sh: Checking availability of Indexserver for tenant TENANT1.
+20240430070350###hana-7###sc-system-refresh.sh: Recovery of tenant database TENANT1 succesfully finished.
+20240430070350###hana-7###sc-system-refresh.sh: Status: GREEN
+20240430070350###hana-7###sc-system-refresh.sh: ******************* Finished script: recovery operation **************************
 ....
 
 
@@ -282,50 +368,48 @@ NOTE: 如果來源系統有多個租戶、指令碼只會恢復第一個租戶�
 
 新的SAP HANA系統更新作業是透過SnapCenter 使用「取消實體複製」作業來清理目標系統、以開始執行。
 
+如果目標 SAP HANA 系統已在 SnapCenter 中受到保護、則必須先移除保護。在目標系統的拓撲檢視中、按一下移除保護。
 
-NOTE: SAP應用程式服務不會以SnapCenter 不含實體複製刪除的工作流程停止。指令碼可以在關機功能內擴充、或是必須手動停止應用程式服務。
+現在、複製刪除工作流程會以下列步驟執行。
 
-如果目標HANA系統已在SnapCenter 不受保護的情況下受到保護、則必須先移除保護。在目標系統的拓撲檢視中、按一下移除保護。
+. 在來源系統的拓撲檢視中選取複本、然後按一下刪除。
 
-image:sc-copy-clone-image28.png["錯誤：缺少圖形影像"]
 
-image:sc-copy-clone-image29.png["錯誤：缺少圖形影像"]
-
-複製刪除工作流程現在會以下列步驟執行：
-
-. 在來源系統的拓撲檢視中選取實體複本、然後按一下刪除。
-+
-image:sc-copy-clone-image30.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image33.png[""]
 
 . 輸入預先複製的指令行選項、然後卸載指令碼。
-+
-image:sc-copy-clone-image31.png["錯誤：缺少圖形影像"]
+
+
+image:sc-copy-clone-image34.png[""]
 
 . 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。
-+
-image:sc-copy-clone-image32.png["錯誤：缺少圖形影像"]
 
-. 「sc-system-refresh.sh」指令碼的記錄檔會顯示關機和卸載作業步驟。
-+
+
+image:sc-copy-clone-image35.png[""]
+
+. 指令碼的記錄檔 `sc-system-refresh` 會顯示關機和卸載作業步驟。
+
+
 ....
-20220421070643###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421070643###hana-7###sc-system-refresh.sh: Stopping HANA database.
-20220421070643###hana-7###sc-system-refresh.sh: sapcontrol -nr 11 -function StopSystem HDB
-21.04.2022 07:06:43
+20240425111042###hana-7###sc-system-refresh.sh: **********************************************************************************
+20240425111042###hana-7###sc-system-refresh.sh: Script version: 3.0
+20240425111042###hana-7###sc-system-refresh.sh: ******************* Starting script: shutdown operation **************************
+20240425111042###hana-7###sc-system-refresh.sh: Stopping HANA database.
+20240425111042###hana-7###sc-system-refresh.sh: sapcontrol -nr 11 -function StopSystem HDB
+25.04.2024 11:10:42
 StopSystem
 OK
-20220421070643###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is stopped ....
-20220421070643###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421070653###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421070703###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421070714###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421070724###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421070724###hana-7###sc-system-refresh.sh: SAP HANA database is stopped.
-20220421070728###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421070728###hana-7###sc-system-refresh.sh: Unmounting data volume.
-20220421070728###hana-7###sc-system-refresh.sh: umount /hana/data/QS1/mnt00001
-20220421070728###hana-7###sc-system-refresh.sh: Deleting /etc/fstab entry.
-20220421070728###hana-7###sc-system-refresh.sh: Data volume unmounted successfully.
+20240425111042###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is stopped ....
+20240425111042###hana-7###sc-system-refresh.sh: Status: GREEN
+20240425111052###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425111103###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425111113###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425111123###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425111133###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425111144###hana-7###sc-system-refresh.sh: Status: YELLOW
+20240425111154###hana-7###sc-system-refresh.sh: Status: GRAY
+20240425111154###hana-7###sc-system-refresh.sh: SAP HANA database is stopped.
+20240425111154###hana-7###sc-system-refresh.sh: ******************* Finished script: shutdown operation **************************
 ....
 . SAP HANA重新整理作業現在可以使用SnapCenter 「建立實體複本」作業重新啟動。
 
@@ -334,141 +418,40 @@ OK
 
 == SAP HANA系統透過實體複本分割作業進行更新
 
-如果系統更新作業的目標系統使用時間較長（超過1-2週）、則通常不會有任何FlexClone容量節約效益。此外、SnapCenter 來源系統的相依Snapshot備份也會遭到封鎖、而非由資訊保留管理部門刪除。
-
-因此、在大多數情況下、將FlexClone磁碟區分割為系統重新整理作業的一部分是合理的做法。
+如果系統重新整理作業的目標系統計畫要使用較長的時間範圍、則將 FlexClone Volume 分割為系統重新整理作業的一部分是合理的做法。
 
 
-NOTE: 複製分割作業不會封鎖複製磁碟區的使用、因此可在HANA資料庫使用期間隨時執行。
+NOTE: 複製分割作業不會封鎖複製的 Volume 使用、因此可在 SAP HANA 資料庫使用期間隨時執行。
 
 
-NOTE: 利用複製分割作業SnapCenter 、將SnapCenter 會刪除在目標系統上建立的所有備份、並將其儲存在資訊庫中。對於NetApp AFF 功能區系統、複製分割作業會將Snapshot複本保留在磁碟區上、僅供FAS 由效益管理系統刪除Snapshot複本ONTAP 。這是SnapCenter 一個已知的錯誤、將在未來的版本中解決。
+NOTE: 使用 Azure NetApp Files 時、複製分割作業無法使用、因為 Azure NetApp Files 一律會在建立後分割複本。
 
 在來源系統的拓撲檢視中、選取實體複本並按一下實體複本分割、即可啟動位於實體複本的實體複本分割工作流程SnapCenter 。
 
-image:sc-copy-clone-image33.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image36.png[""]
 
 下一個畫面會顯示預覽、提供分割Volume所需容量的相關資訊。
 
-image:sc-copy-clone-image34.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image37.png[""]
 
 這個職務記錄會顯示複本分割作業的進度。SnapCenter
 
-image:sc-copy-clone-image35.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image38.png[""]
 
-回到來源系統的拓撲檢視時、無法再看到實體複本。分割磁碟區現在已獨立於來源系統的Snapshot備份。
+在 SnapCenter 的資源檢視中、目標系統 QS1 現在不再標記為複製的資源。回到來源系統的拓撲檢視時、無法再看到實體複本。分割磁碟區現在已獨立於來源系統的Snapshot備份。
 
-image:sc-copy-clone-image36.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image39.png[""]
 
-image:sc-copy-clone-image37.png["錯誤：缺少圖形影像"]
+image:sc-copy-clone-image40.png[""]
 
-複製分割作業之後的重新整理工作流程、與沒有複製分割的作業略有不同。完成複製分割作業之後、不再需要執行複製刪除作業、因為目標資料磁碟區不再是FlexClone磁碟區。
+複製分割作業之後的重新整理工作流程、與沒有複製分割的作業略有不同。在複製分割作業之後、不需要複製刪除作業、因為目標資料 Volume 不再是 FlexClone Volume 。
 
 工作流程包含下列步驟：
 
-. 如果目標HANA系統已在SnapCenter 不受保護的情況下受到保護、則必須先移除保護。
-. 進入SnapCenter 「還原複製精靈」。
-+
-.. 從來源HANA系統SS1選取Snapshot備份。
-.. 選取目標主機、並提供目標主機的儲存網路介面。
-.. 提供用於預複製、掛載和後複製作業的指令碼。
-
-
-. 實體複製作業：SnapCenter
-+
-.. 根據所選的來源HANA系統Snapshot備份建立FlexClone Volume。
-.. 將FlexClone Volume匯出至目標主機儲存網路介面。
-.. 執行掛載作業指令碼。
-+
-*** FlexClone Volume會以資料Volume的形式掛載於目標主機。
-*** 將擁有權變更為qs1adm。
-
-
-.. 執行複製後作業指令碼。
-+
-*** 恢復系統資料庫。
-*** 使用租戶名稱= QS1來還原租戶資料庫。
-
-
-
-
-. 手動刪除舊的分割目標Volume。
-. 或者、也可以保護SnapCenter 目標HANA資源。
-
-
-下列螢幕擷取畫面顯示必要步驟。
-
-. 從來源系統SS1選取Snapshot備份、然後按一下「Clone from Backup（從備份複製）」。
-+
-image:sc-copy-clone-image38.png["錯誤：缺少圖形影像"]
-
-. 選取安裝目標系統QS1的主機。輸入QS1作為目標SID。NFS匯出IP位址必須是目標主機的儲存網路介面。
-+
-
-NOTE: 此處輸入的目標SID可控制SnapCenter 如何管理實體複本。如果目標SnapCenter 主機上的目標SID已在支援中設定、SnapCenter 則只需將實體複本指派給主機即可。如果目標主機上未設定該SID、SnapCenter 則會建立新的資源。
-
-+
-image:sc-copy-clone-image39.png["錯誤：缺少圖形影像"]
-
-. 使用所需的命令列選項、輸入預先複製、掛載及後複製指令碼。在預先複製步驟中、指令碼用於關閉HANA資料庫並卸載資料Volume。
-+
-image:sc-copy-clone-image40.png["錯誤：缺少圖形影像"]
-
-. 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到2分鐘。
-+
-image:sc-copy-clone-image41.png["錯誤：缺少圖形影像"]
-
-. 「sc-system-refresh.sh」指令碼的記錄檔會顯示關機、卸載、掛載及還原作業所執行的不同步驟。指令碼會自動偵測到來源系統有單一租戶、且名稱與來源系統SID SS1相同。因此指令碼會使用租戶名稱QS1來復原租戶。
-+
-....
-20220421080553###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421080553###hana-7###sc-system-refresh.sh: Stopping HANA database.
-20220421080553###hana-7###sc-system-refresh.sh: sapcontrol -nr 11 -function StopSystem HDB
-21.04.2022 08:05:53
-StopSystem
-OK
-20220421080553###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is stopped ….
-20220421080554###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421080604###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421080614###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421080624###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421080624###hana-7###sc-system-refresh.sh: SAP HANA database is stopped.
-20220421080628###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421080628###hana-7###sc-system-refresh.sh: Unmounting data volume.
-20220421080628###hana-7###sc-system-refresh.sh: umount /hana/data/QS1/mnt00001
-20220421080628###hana-7###sc-system-refresh.sh: Deleting /etc/fstab entry.
-20220421080628###hana-7###sc-system-refresh.sh: Data volume unmounted successfully.
-20220421080639###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421080639###hana-7###sc-system-refresh.sh: Adding entry in /etc/fstab.
-20220421080639###hana-7###sc-system-refresh.sh: 192.168.175.117:/SS1_data_mnt00001_Clone_0421220806358029 /hana/data/QS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
-20220421080639###hana-7###sc-system-refresh.sh: Mounting data volume: mount /hana/data/QS1/mnt00001.
-20220421080639###hana-7###sc-system-refresh.sh: Data volume mounted successfully.
-20220421080639###hana-7###sc-system-refresh.sh: Change ownership to qs1adm.
-20220421080649###hana-7###sc-system-refresh.sh: Version: 1.1
-20220421080649###hana-7###sc-system-refresh.sh: Recover system database.
-20220421080649###hana-7###sc-system-refresh.sh: /usr/sap/QS1/HDB11/exe/Python/bin/python /usr/sap/QS1/HDB11/exe/python_support/recoverSys. – --comma“d "RECOVER DATA USING SNAPSHOT CLEAR ”OG"
-20220421080719###hana-7###sc-system-refresh.sh: Wait until SAP HANA database is started ....
-20220421080719###hana-7###sc-system-refresh.sh: Status:  GRAY
-20220421080730###hana-7###sc-system-refresh.sh: Status:  YELLOW
-20220421080740###hana-7###sc-system-refresh.sh: Status:  YELLOW
-20220421080750###hana-7###sc-system-refresh.sh: Status:  YELLOW
-20220421080800###hana-7###sc-system-refresh.sh: Status:  YELLOW
-20220421080810###hana-7###sc-system-refresh.sh: Status:  YELLOW
-20220421080821###hana-7###sc-system-refresh.sh: Status:  YELLOW
-20220421080831###hana-7###sc-system-refresh.sh: Status:  GREEN
-20220421080831###hana-7###sc-system-refresh.sh: SAP HANA database is started.
-20220421080831###hana-7###sc-system-refresh.sh: Source Tenant: SS1
-20220421080831###hana-7###sc-system-refresh.sh: Source SID: SS1
-20220421080831###hana-7###sc-system-refresh.sh: Source system has a single tenant and tenant name is identical to source SID: SS1
-20220421080831###hana-7###sc-system-refresh.sh: Target tenant will have the same name as target SID: QS1.
-20220421080831###hana-7###sc-system-refresh.sh: Recover tenant database QS1.
-20220421080831###hana-7###sc-system-refresh.sh: /usr/sap/QS1/SYS/exe/hdb/hdbsql -U QS1KEY RECOVER DATA FOR QS1 USING SNAPSHOT CLEAR LOG
-0 rows affected (overall time 37.900516 sec; server time 37.897472 sec)
-20220421080909###hana-7###sc-system-refresh.sh: Checking availability of Indexserver for tenant QS1.
-20220421080909###hana-7###sc-system-refresh.sh: Recovery of tenant database QS1 succesfully finished.
-20220421080909###hana-7###sc-system-refresh.sh: Status: GREEN
-....
-. 重新整理作業完成後、舊的目標資料Volume仍存在、必須以手動方式刪除、例如ONTAP 使用「靜態系統管理程式」。
+. 如果目標 SAP HANA 系統已在 SnapCenter 中受到保護、則必須先移除保護。
+. SAP HANA 資料庫必須關閉、資料磁碟區必須卸載、且必須移除 SnapCenter 建立的 Fstab 項目。這些步驟必須手動執行。
+. 現在、 SnapCenter 複製建立工作流程可以依照前幾節所述執行。
+. 重新整理作業之後、舊的目標資料磁碟區仍然存在、必須手動刪除、例如使用 ONTAP 系統管理員。
 
 
 
@@ -479,10 +462,11 @@ OK
 
 * 建立實體複本
 * 刪除實體複本
-
-
++
 
 NOTE: 範例指令碼是以原樣提供、NetApp不支援。
+
+
 
 所有指令碼都必須在PowerShell命令視窗中執行。在執行指令碼之前、SnapCenter 必須使用「Open-SmConnection」命令建立與該伺服器的連線。
 
@@ -493,14 +477,14 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。
 以下簡單的指令碼說明SnapCenter 如何使用PowerShell命令執行實體複製建立作業。執行「New-SmClone」命令時、會使用實驗室環境所需的命令列選項、以及先前討論的自動化指令碼。SnapCenter
 
 ....
-$BackupName='SnapCenter_LocalSnap_Hourly_05-16-2022_11.00.01.0153'
-$JobInfo=New-SmClone -AppPluginCode hana -BackupName $BackupName -Resources @{"Host"="hana-1.sapcc.stl.netapp.com";"UID"="MDC\SS1"} -CloneToInstance hana-7.sapcc.stl.netapp.com -mountcommand '/mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh mount QS1' -postclonecreatecommands '/mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh recover QS1' -NFSExportIPs 192.168.175.75 -CloneUid 'MDC\QS1'
+$BackupName='SnapCenter_hana-1_LocalSnap_Hourly_06-25-2024_03.00.01.8458'
+$JobInfo=New-SmClone -AppPluginCode hana -BackupName $BackupName -Resources @\{"Host"="hana-1.sapcc.stl.netapp.com";"UID"="MDC\SS1"} -CloneToInstance hana-7.sapcc.stl.netapp.com -postclonecreatecommands '/mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh recover' -NFSExportIPs 192.168.175.75 -CloneUid 'MDC\QS1'
 # Get JobID of clone create job
-$Job=Get-SmJobSummaryReport | ?{$_.JobType -eq "Clone" } | ?{$_.JobName -Match $BackupName} | ?{$_.Status -eq "Running"}
+$Job=Get-SmJobSummaryReport | ?\{$_.JobType -eq "Clone" } | ?\{$_.JobName -Match $BackupName} | ?\{$_.Status -eq "Running"}
 $JobId=$Job.SmJobId
 Get-SmJobSummaryReport -JobId $JobId
 # Wait until job is finished
-do { $Job=Get-SmJobSummaryReport -JobId $JobId; write-host $Job.Status; sleep 20 } while ( $Job.Status -Match "Running" )
+do \{ $Job=Get-SmJobSummaryReport -JobId $JobId; write-host $Job.Status; sleep 20 } while ( $Job.Status -Match "Running" )
 Write-Host " "
 Get-SmJobSummaryReport -JobId $JobId
 Write-Host "Clone create job has been finshed."
@@ -508,19 +492,23 @@ Write-Host "Clone create job has been finshed."
 畫面輸出會顯示實體複本建立PowerShell指令碼的執行。
 
 ....
-PS C:\NetApp> .\clone-create.ps1
-SmJobId            : 31887
+PS C:\Windows\system32> C:\NetApp\clone-create.ps1
+SmJobId : 110382
 JobCreatedDateTime :
-JobStartDateTime   : 5/17/2022 3:19:06 AM
-JobEndDateTime     :
-JobDuration        :
-JobName            : Clone from backup 'SnapCenter_LocalSnap_Hourly_05-13-2022_03.00.01.8016'
-JobDescription     :
-Status             : Running
-IsScheduled        : False
-JobError           :
-JobType            : Clone
-PolicyName         :
+JobStartDateTime : 6/26/2024 9:55:34 AM
+JobEndDateTime :
+JobDuration :
+JobName : Clone from backup 'SnapCenter_hana-1_LocalSnap_Hourly_06-25-2024_03.00.01.8458'
+JobDescription :
+Status : Running
+IsScheduled : False
+JobError :
+JobType : Clone
+PolicyName :
+JobResultData :
+Running
+Running
+Running
 Running
 Running
 Running
@@ -529,21 +517,20 @@ Running
 Running
 Running
 Completed
-
-SmJobId            : 31887
+SmJobId : 110382
 JobCreatedDateTime :
-JobStartDateTime   : 5/17/2022 3:19:06 AM
-JobEndDateTime     : 5/17/2022 3:21:14 AM
-JobDuration        : 00:02:07.7530310
-JobName            : Clone from backup 'SnapCenter_LocalSnap_Hourly_05-13-2022_03.00.01.8016'
-JobDescription     :
-Status             : Completed
-IsScheduled        : False
-JobError           :
-JobType            : Clone
-PolicyName         :
+JobStartDateTime : 6/26/2024 9:55:34 AM
+JobEndDateTime : 6/26/2024 9:58:50 AM
+JobDuration : 00:03:16.6889170
+JobName : Clone from backup 'SnapCenter_hana-1_LocalSnap_Hourly_06-25-2024_03.00.01.8458'
+JobDescription :
+Status : Completed
+IsScheduled : False
+JobError :
+JobType : Clone
+PolicyName :
+JobResultData :
 Clone create job has been finshed.
-PS C:\NetApp>
 ....
 
 
@@ -552,51 +539,51 @@ PS C:\NetApp>
 以下簡單的指令碼示範SnapCenter 如何使用PowerShell命令執行循環複製刪除作業。使用實驗室環境所需的命令列選項和之前討論的自動化指令碼、執行「移除短完整複製」命令。SnapCenter
 
 ....
-$CloneInfo=Get-SmClone |?{$_.CloneName -Match "hana-1_sapcc_stl_netapp_com_hana_MDC_SS1" }
+$CloneInfo=Get-SmClone |?\{$_.CloneName -Match "hana-1_sapcc_stl_netapp_com_hana_MDC_SS1" }
 $JobInfo=Remove-SmClone -CloneName $CloneInfo.CloneName -PluginCode hana -PreCloneDeleteCommands '/mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh shutdown QS1' -UnmountCommands '/mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh umount QS1' -Confirm: $False
 Get-SmJobSummaryReport -JobId $JobInfo.Id
 # Wait until job is finished
-do { $Job=Get-SmJobSummaryReport -JobId $JobInfo.Id; write-host $Job.Status; sleep 20 } while ( $Job.Status -Match "Running" )
+do \{ $Job=Get-SmJobSummaryReport -JobId $JobInfo.Id; write-host $Job.Status; sleep 20 } while ( $Job.Status -Match "Running" )
 Write-Host " "
 Get-SmJobSummaryReport -JobId $JobInfo.Id
 Write-Host "Clone delete job has been finshed."
 PS C:\NetApp>
 ....
-畫面輸出會顯示複製刪除PowerShell指令碼的執行。
+畫面輸出會顯示 clone – delete.ps1 PowerShell 指令碼的執行。
 
 ....
-PS C:\NetApp> .\clone-delete.ps1
-SmJobId            : 31888
+PS C:\Windows\system32> C:\NetApp\clone-delete.ps1
+SmJobId : 110386
 JobCreatedDateTime :
-JobStartDateTime   : 5/17/2022 3:24:29 AM
-JobEndDateTime     :
-JobDuration        :
-JobName            : Deleting clone 'hana-1_sapcc_stl_netapp_com_hana_MDC_SS1__clone__31887_MDC_SS1_05-17-2022_03.19.14'
-JobDescription     :
-Status             : Running
-IsScheduled        : False
-JobError           :
-JobType            : DeleteClone
-PolicyName         :
-Running
+JobStartDateTime : 6/26/2024 10:01:33 AM
+JobEndDateTime :
+JobDuration :
+JobName : Deleting clone 'hana-1_sapcc_stl_netapp_com_hana_MDC_SS1__clone__110382_MDC_SS1_04-22-2024_09.54.34'
+JobDescription :
+Status : Running
+IsScheduled : False
+JobError :
+JobType : DeleteClone
+PolicyName :
+JobResultData :
 Running
 Running
 Running
 Running
 Completed
-
-SmJobId            : 31888
+SmJobId : 110386
 JobCreatedDateTime :
-JobStartDateTime   : 5/17/2022 3:24:29 AM
-JobEndDateTime     : 5/17/2022 3:25:57 AM
-JobDuration        : 00:01:27.7598430
-JobName            : Deleting clone 'hana-1_sapcc_stl_netapp_com_hana_MDC_SS1__clone__31887_MDC_SS1_05-17-2022_03.19.14'
-JobDescription     :
-Status             : Completed
-IsScheduled        : False
-JobError           :
-JobType            : DeleteClone
-PolicyName         :
+JobStartDateTime : 6/26/2024 10:01:33 AM
+JobEndDateTime : 6/26/2024 10:02:38 AM
+JobDuration : 00:01:05.5658860
+JobName : Deleting clone 'hana-1_sapcc_stl_netapp_com_hana_MDC_SS1__clone__110382_MDC_SS1_04-22-2024_09.54.34'
+JobDescription :
+Status : Completed
+IsScheduled : False
+JobError :
+JobType : DeleteClone
+PolicyName :
+JobResultData :
 Clone delete job has been finshed.
-PS C:\NetApp>
+PS C:\Windows\system32>
 ....

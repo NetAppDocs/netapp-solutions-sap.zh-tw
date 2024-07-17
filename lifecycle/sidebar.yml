@@ -33,17 +33,17 @@ entries:
   - title: 簡介
     url: "/lifecycle/sc-copy-clone-introduction.html"
   - title: SAP系統複製、重新整理及複製案例
-    url: "/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html"
+    url: "/lifecycle/sc-copy-clone-sap-system-copy-refresh-and-clone-scenarios.html"
   - title: 系統更新與複製的使用案例
     url: "/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html"
+  - title: 支援的基礎架構和情境
+    url: "/lifecycle/sc-copy-clone-supported-infrastructure-and-scenarios.html"
   - title: SAP系統更新工作流程概述SnapCenter （含）
     url: "/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html"
-  - title: SAP系統複製工作流程概述SnapCenter （含）
-    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html"
   - title: SAP系統實體複製工作流程概述SnapCenter
     url: "/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html"
-  - title: SAP HANA系統使用儲存快照備份來重新整理作業工作流程
-    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html"
+  - title: 使用儲存快照備份來執行 SAP HANA 系統更新作業的考量事項
+    url: "/lifecycle/sc-copy-clone-considerations-for-sap-hana-system-refresh-operations-using-snapshot-backups.html"
   - title: 自動化範例指令碼
     url: "/lifecycle/sc-copy-clone-automation-example-scripts.html"
   - title: SAP HANA系統更新SnapCenter 功能

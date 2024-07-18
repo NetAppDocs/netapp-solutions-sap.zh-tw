@@ -18,34 +18,34 @@ summary: 本節說明如何設定備份複寫原則。
 
 . 提供原則名稱。
 +
-image:amazon-fsx-image79.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image79.png[錯誤：缺少圖形影像]
 
 . 選取Snapshot備份和排程頻率。每日通常用於備份複寫。
 +
-image:amazon-fsx-image80.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image80.png[錯誤：缺少圖形影像]
 
 . 選取Snapshot備份的保留。
 +
-image:amazon-fsx-image81.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image81.png[錯誤：缺少圖形影像]
 
 +
 這是主儲存設備每日執行Snapshot備份的保留時間。先前已使用位於該層級的add rule命令、在還原目標中設定次要備份的保留。SnapVault ONTAP請參閱「在FSx上設定ONTAP 適用於不支援的檔案系統的複寫關係」（xref）。
 
 +
-image:amazon-fsx-image82.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image82.png[錯誤：缺少圖形影像]
 
 . 選取「更新SnapVault 」功能變數、並提供自訂標籤。
 +
 此標籤必須符合ONTAP 「ADD規則」命令所提供的SnapMirror標籤、位於景點的層級。
 
 +
-image:amazon-fsx-image83.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image83.png[錯誤：缺少圖形影像]
 
 +
-image:amazon-fsx-image84.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image84.png[錯誤：缺少圖形影像]
 
 
 
 現在SnapCenter 已設定新的功能更新原則。
 
-image:amazon-fsx-image85.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image85.png[錯誤：缺少圖形影像]

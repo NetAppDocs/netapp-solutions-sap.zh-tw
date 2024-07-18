@@ -37,4 +37,4 @@ ANF跨區域複寫可在不影響RTO和RPO的情況下進行災難恢復測試�
 
 以下小節將詳細說明這些步驟。
 
-image:saphana-dr-anf_image18.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image18.png[錯誤：缺少圖形影像]

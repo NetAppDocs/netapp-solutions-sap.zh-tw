@@ -27,11 +27,11 @@ summary: 從其他SAP HANA主機建立的備份還原作業、是SnapCenter 兩�
 . 主機1隨即啟動、並自動啟動主機1的系統複寫重新同步。
 
 
-image:saphana-sr-scs-image48.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image48.png[錯誤：缺少圖形影像]
 
 下圖顯示SAP HANA備份目錄、並重點說明在主機1建立的備份、用於還原與還原作業。
 
-image:saphana-sr-scs-image49.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image49.png[錯誤：缺少圖形影像]
 
 還原作業包括下列步驟：
 
@@ -42,7 +42,7 @@ image:saphana-sr-scs-image49.png["錯誤：缺少圖形影像"]
 
 在支援中、會選取備份並啟動複製作業。SnapCenter
 
-image:saphana-sr-scs-image50.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image50.png[錯誤：缺少圖形影像]
 
 您必須提供複製伺服器和NFS匯出IP位址。
 
@@ -51,11 +51,11 @@ NOTE: 在單一資源的組態中、SAP HANA外掛程式並未安裝在資料庫
 
 + SnapCenter 在包含獨立資源的支援功能組態中、HANA資料庫主機被選取為複製伺服器、並使用掛載指令碼將複本掛載至目標主機。
 
-image:saphana-sr-scs-image51.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image51.png[錯誤：缺少圖形影像]
 
 若要判斷掛載複製磁碟區所需的交會路徑、請查看複製工作的工作記錄、如下圖所示。
 
-image:saphana-sr-scs-image52.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image52.png[錯誤：缺少圖形影像]
 
 現在可以掛載複製的Volume。
 

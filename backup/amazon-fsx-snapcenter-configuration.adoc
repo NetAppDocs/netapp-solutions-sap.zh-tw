@@ -42,7 +42,7 @@ HANA 2.0 SPS5版本可變更所需的權限：備份管理、目錄讀取、資�
 
 對於SAP HANA MDC系統、您必須在系統資料庫中建立使用者、因為系統和租戶資料庫的所有備份命令都是使用系統資料庫執行。
 
-image:amazon-fsx-image9.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image9.png[錯誤：缺少圖形影像]
 
 以下命令用於具有「<SID>adm'使用者的使用者存放區組態：
 
@@ -90,31 +90,31 @@ hdbsql SYSTEMDB=>
 
 . 在這個UI中、選取「儲存系統」SnapCenter 。
 +
-image:amazon-fsx-image10.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image10.png[錯誤：缺少圖形影像]
 
 +
 您可以選擇儲存系統類型ONTAP 、也可以是「SVM」或ONTAP 「叢集」。在下列範例中、已選取SVM管理。
 
 +
-image:amazon-fsx-image11.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image11.png[錯誤：缺少圖形影像]
 
 . 若要新增儲存系統並提供所需的主機名稱和認證、請按一下「New（新增）」。
 +
 SVM使用者不需要是vsadmin使用者、如下圖所示。一般而言、使用者是在SVM上設定、並指派執行備份與還原作業所需的權限。如需必要權限的相關資訊、請參閱 http://docs.netapp.com/ocsc-43/index.jsp?topic=%2Fcom.netapp.doc.ocsc-isg%2Fhome.html["《安裝指南》SnapCenter"^] 在標題為ONTAP 「最低要求的權限」一節中。
 
 +
-image:amazon-fsx-image12.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image12.png[錯誤：缺少圖形影像]
 
 . 若要設定儲存平台、請按一下「更多選項」。
 . 選擇All Flash FAS 支援作為儲存系統、以確保FSX- for ONTAP the FSX-的授權可供SnapCenter 使用。
 +
-image:amazon-fsx-image13.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image13.png[錯誤：缺少圖形影像]
 
 +
 SVM的「sAPCA-Hana - SVM」現已設定SnapCenter 於SVM中。
 
 +
-image:amazon-fsx-image14.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image14.png[錯誤：缺少圖形影像]
 
 
 
@@ -126,11 +126,11 @@ image:amazon-fsx-image14.png["錯誤：缺少圖形影像"]
 
 . 移至「設定」、選取「認證」、然後按一下「新增」。
 +
-image:amazon-fsx-image15.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image15.png[錯誤：缺少圖形影像]
 
 . 在實驗室設定中、我們在SnapCenter HANA主機上設定了新的使用者「支援」、用於外掛部署。您必須啟用Sudo prvilleges、如下圖所示。
 +
-image:amazon-fsx-image16.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image16.png[錯誤：缺少圖形影像]
 
 
 
@@ -164,15 +164,15 @@ hana-1:/etc/ssh #
 
 . 在主機索引標籤中、按一下新增。
 +
-image:amazon-fsx-image17.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image17.png[錯誤：缺少圖形影像]
 
 . 提供主機資訊、並選取要安裝的SAP HANA外掛程式。按一下「提交」。
 +
-image:amazon-fsx-image18.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image18.png[錯誤：缺少圖形影像]
 
 . 確認指紋。
 +
-image:amazon-fsx-image19.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image19.png[錯誤：缺少圖形影像]
 
 +
 HANA與Linux外掛程式的安裝會自動啟動。安裝完成後、主機的狀態欄會顯示「Configure VMware Plug-in（設定VMware外掛程式）」。可偵測SAP HANA外掛程式是否安裝在虛擬化環境中。SnapCenter這可能是VMware環境或公有雲供應商的環境。在這種情況SnapCenter 下、功能表會顯示設定Hypervisor的警告。
@@ -181,19 +181,19 @@ HANA與Linux外掛程式的安裝會自動啟動。安裝完成後、主機的�
 您可以使用下列步驟移除警告訊息。
 
 +
-image:amazon-fsx-image20.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image20.png[錯誤：缺少圖形影像]
 
 +
 .. 從「設定」索引標籤、選取「全域設定」。
 .. 針對Hypervisor設定、選取VM Hs Hs iSCSI Direct Attached Disk或NFS for All hosts（VM有iSCSI Direct附加磁碟或NFS用於所有主機）、然後更新設定。
 +
-image:amazon-fsx-image21.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image21.png[錯誤：缺少圖形影像]
 
 +
 現在畫面會顯示Linux外掛程式和HANA外掛程式、並顯示執行狀態。
 
 +
-image:amazon-fsx-image22.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image22.png[錯誤：缺少圖形影像]
 
 
 
@@ -221,35 +221,35 @@ image:amazon-fsx-image22.png["錯誤：缺少圖形影像"]
 
 . 移至「設定」>「原則」、然後按一下「新增」。
 +
-image:amazon-fsx-image23.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image23.png[錯誤：缺少圖形影像]
 
 . 輸入原則名稱和說明。按一下「下一步」
 +
-image:amazon-fsx-image24.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image24.png[錯誤：缺少圖形影像]
 
 . 選取備份類型做為「Snapshot Based」（快照型）、然後選取「Hourly」（每小時）
 +
 排程本身稍後會設定HANA資源保護組態。
 
 +
-image:amazon-fsx-image25.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image25.png[錯誤：缺少圖形影像]
 
 . 設定隨需備份的保留設定。
 +
-image:amazon-fsx-image26.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image26.png[錯誤：缺少圖形影像]
 
 . 設定複寫選項。在這種情況下、未SnapVault 選取任何更新功能。
 +
-image:amazon-fsx-image27.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image27.png[錯誤：缺少圖形影像]
 
 +
-image:amazon-fsx-image28.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image28.png[錯誤：缺少圖形影像]
 
 
 
 現在已設定新原則。
 
-image:amazon-fsx-image29.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image29.png[錯誤：缺少圖形影像]
 
 
 
@@ -260,22 +260,22 @@ image:amazon-fsx-image29.png["錯誤：缺少圖形影像"]
 . 移至「設定」>「原則」、然後按一下「新增」。
 . 輸入原則名稱和說明。按一下「下一步」
 +
-image:amazon-fsx-image30.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image30.png[錯誤：缺少圖形影像]
 
 . 將備份類型設為「檔案型」、並將排程頻率設為「每週」。排程本身稍後會設定HANA資源保護組態。
 +
-image:amazon-fsx-image31.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image31.png[錯誤：缺少圖形影像]
 
 . 設定隨需備份的保留設定。
 +
-image:amazon-fsx-image32.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image32.png[錯誤：缺少圖形影像]
 
 . 在「摘要」頁面上、按一下「完成」。
 +
-image:amazon-fsx-image33.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image33.png[錯誤：缺少圖形影像]
 
 +
-image:amazon-fsx-image34.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image34.png[錯誤：缺少圖形影像]
 
 
 
@@ -290,63 +290,63 @@ image:amazon-fsx-image34.png["錯誤：缺少圖形影像"]
 您也可以按一下「重新整理資源」、在「資源」畫面中手動觸發自動探索程序。
 
 +
-image:amazon-fsx-image35.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image35.png[錯誤：缺少圖形影像]
 
 . 提供HANA資料庫的使用者存放區金鑰。
 +
-image:amazon-fsx-image36.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image36.png[錯誤：缺少圖形影像]
 
 +
 第二層自動探索程序會從探索租戶資料和儲存設備佔用空間資訊開始。
 
 +
-image:amazon-fsx-image37.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image37.png[錯誤：缺少圖形影像]
 
 . 在「Resources（資源）」索引標籤中、按兩下資源以設定資源保護。
 +
-image:amazon-fsx-image38.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image38.png[錯誤：缺少圖形影像]
 
 . 設定Snapshot複本的自訂名稱格式。
 +
 NetApp建議使用自訂Snapshot複本名稱、輕鬆識別已建立哪些備份、以及使用何種原則和排程類型。在Snapshot複本名稱中新增排程類型、即可區分排程備份與隨需備份。隨需備份的「排程名稱」字串為空白、而排程備份則包含字串「每小時」、「每日」、「或每週」。
 
 +
-image:amazon-fsx-image39.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image39.png[錯誤：缺少圖形影像]
 
 . 不需要在「應用程式設定」頁面上進行任何特定設定。按一下「下一步」
 +
-image:amazon-fsx-image40.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image40.png[錯誤：缺少圖形影像]
 
 . 選取要新增至資源的原則。
 +
-image:amazon-fsx-image41.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image41.png[錯誤：缺少圖形影像]
 
 . 定義區塊完整性檢查原則的排程。
 +
 在此範例中、此設定為每週一次。
 
 +
-image:amazon-fsx-image42.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image42.png[錯誤：缺少圖形影像]
 
 . 定義本機Snapshot原則的排程。
 +
 在此範例中、每6小時設定一次。
 
 +
-image:amazon-fsx-image43.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image43.png[錯誤：缺少圖形影像]
 
 +
-image:amazon-fsx-image44.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image44.png[錯誤：缺少圖形影像]
 
 . 提供電子郵件通知的相關資訊。
 +
-image:amazon-fsx-image45.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image45.png[錯誤：缺少圖形影像]
 
 +
-image:amazon-fsx-image46.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image46.png[錯誤：缺少圖形影像]
 
 
 
 HANA資源組態現已完成、您可以執行備份。
 
-image:amazon-fsx-image47.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image47.png[錯誤：缺少圖形影像]

@@ -59,4 +59,4 @@ summary: 本技術報告所使用的實驗室設定包含五種不同的SAP HANA
 
 下圖顯示實驗室設定。
 
-image:saphana-br-scs-image21.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image21.png[錯誤：缺少圖形影像]

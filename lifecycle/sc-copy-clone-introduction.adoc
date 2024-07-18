@@ -31,7 +31,7 @@ NetApp公司Nils Bauer
 
 NetApp的SAP生命週期管理最佳化解決方案已整合至SAP HANA資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置、如下圖所示。這些解決方案適用於內部部署執行的 SAP HANA 、或是在 Azure NetApp Files （ anf ）或 Amazon FSX for NetApp ONTAP （適用於 ONTAP 的 FSX ）上的雲端環境中執行的 SAP HANA 。
 
-image:sc-copy-clone-image1.png[""]
+image::sc-copy-clone-image1.png[SC 複本複本影像 1]
 
 
 

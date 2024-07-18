@@ -48,7 +48,7 @@ NOTE: HANA 2.0 SPS5版本已變更所需的權限：備份管理、目錄讀取�
 
 NOTE: 對於SAP HANA MDC系統、必須在系統資料庫中建立使用者、因為系統和租戶資料庫的所有備份命令都是使用系統資料庫執行。
 
-image:saphana-br-scs-image53.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image53.png[錯誤：缺少圖形影像]
 
 在安裝SAP HANA外掛程式和SAP hdbsql用戶端的HANA外掛程式主機上、必須設定使用者存放區金鑰。
 
@@ -163,7 +163,7 @@ C:\Program Files\sap\hdbclient>
 
 NOTE: 關係的排程必須設定為「無」、因為SnapCenter 這會觸發SnapVault 更新。
 
-image:saphana-br-scs-image54.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image54.png[錯誤：缺少圖形影像]
 
 下圖顯示保護原則。保護關係所使用的保護原則定義了SnapMirror標籤、以及將備份保留在二線儲存設備上。在我們的範例中、使用的標籤是「DAIY」、保留值設為5。
 
@@ -173,7 +173,7 @@ NOTE: 所建立原則中的SnapMirror標籤必須符合SnapCenter 在功能複�
 
 NOTE: 異地備份儲存設備的備份保留是由本政策所定義、並由ONTAP 支援者加以控制。
 
-image:saphana-br-scs-image55.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image55.png[錯誤：缺少圖形影像]
 
 
 
@@ -203,18 +203,18 @@ SAP HANA系統的SID是SS2。
 hdbuserstore金鑰必須與HANA資料庫SS2的金鑰相符。在我們的範例中、我們是SS2KEY。
 
 +
-image:saphana-br-scs-image56.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image56.png[錯誤：缺少圖形影像]
 
 +
 
 NOTE: 對於SAP HANA多主機系統、必須包含所有主機的hdbuserstore金鑰、如下圖所示。如果第一個金鑰無法運作、則會嘗試連線至清單中的第一個金鑰、並繼續處理另一個案例。SnapCenter這是在多主機系統中支援HANA容錯移轉的必要項目、其中包含工作主機和待命主機。
 
 +
-image:saphana-br-scs-image57.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image57.png[錯誤：缺少圖形影像]
 
 .. 選取儲存系統（SVM）和磁碟區名稱所需的資料。
 +
-image:saphana-br-scs-image58.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image58.png[錯誤：缺少圖形影像]
 
 +
 
@@ -225,14 +225,14 @@ NOTE: 對於光纖通道SAN組態、也需要選取LUN。
 NOTE: 對於SAP HANA多主機系統、必須選取SAP HANA系統的所有資料磁碟區、如下圖所示。
 
 +
-image:saphana-br-scs-image59.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image59.png[錯誤：缺少圖形影像]
 
 +
 此時會顯示資源組態的摘要畫面。
 
 .. 按一下「Finish（完成）」以新增SAP HANA資料庫。
 +
-image:saphana-br-scs-image60.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image60.png[錯誤：缺少圖形影像]
 
 .. 完成資源組態後、請依照「」一節所述、執行資源保護的組態設定<<資源保護組態>>。」
 
@@ -251,17 +251,17 @@ NOTE: SAP HANA外掛程式需要Java 64位元1.8版。在部署SAP HANA外掛程
 . 在主機索引標籤中、按一下新增。
 . 提供主機資訊、並選取要安裝的SAP HANA外掛程式。按一下「提交」。
 +
-image:saphana-br-scs-image61.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image61.png[錯誤：缺少圖形影像]
 
 . 確認指紋。
 +
-image:saphana-br-scs-image62.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image62.png[錯誤：缺少圖形影像]
 
 +
 HANA外掛程式和Linux外掛程式的安裝會自動啟動。安裝完成後、主機的狀態欄會顯示為執行中。畫面也會顯示Linux外掛程式已與HANA外掛程式一起安裝。
 
 +
-image:saphana-br-scs-image63.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image63.png[錯誤：缺少圖形影像]
 
 +
 外掛程式安裝完成後、HANA資源的自動探索程序會自動啟動。在「資源」畫面中、會建立一個新的資源、並以紅色掛鎖圖示標示為鎖定。
@@ -272,21 +272,21 @@ image:saphana-br-scs-image63.png["錯誤：缺少圖形影像"]
 NOTE: 您也可以按一下「重新整理資源」、在「資源」畫面中手動觸發自動探索程序。
 
 +
-image:saphana-br-scs-image64.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image64.png[錯誤：缺少圖形影像]
 
 . 提供HANA資料庫的使用者存放區金鑰。
 +
-image:saphana-br-scs-image65.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image65.png[錯誤：缺少圖形影像]
 
 +
 第二層自動探索程序會從探索租戶資料和儲存設備佔用空間資訊開始。
 
 . 按一下「詳細資料」、在資源拓撲檢視中檢閱HANA資源組態資訊。
 +
-image:saphana-br-scs-image66.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image66.png[錯誤：缺少圖形影像]
 
 +
-image:saphana-br-scs-image67.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image67.png[錯誤：缺少圖形影像]
 
 +
 資源組態完成後、必須依照下節所述執行資源保護組態。
@@ -318,41 +318,41 @@ NOTE: NetApp建議使用自訂Snapshot複本名稱、輕鬆識別已建立哪些
 NOTE: 即使在原則組態中為隨需備份定義了保留、但只有在執行另一個隨需備份時、才會執行內部管理。因此、通常必須在SnapCenter 還原中手動刪除隨需備份、以確保這些備份也會在SAP HANA備份目錄中刪除、而且記錄備份管理作業不會以舊的隨需備份為基礎。
 
 +
-image:saphana-br-scs-image68.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image68.png[錯誤：缺少圖形影像]
 
 
 
 . 不需要在「應用程式設定」頁面上進行任何特定設定。按一下「下一步」
 +
-image:saphana-br-scs-image69.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image69.png[錯誤：缺少圖形影像]
 
 . 選取要新增至資源的原則。
 +
-image:saphana-br-scs-image70.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image70.png[錯誤：缺少圖形影像]
 
 . 定義「本地管理單元」原則的排程（在此範例中、每四小時一次）。
 +
-image:saphana-br-scs-image71.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image71.png[錯誤：缺少圖形影像]
 
 . 定義LocalSnapAndSnapVault原則的排程（本範例中為每天一次）。
 +
-image:saphana-br-scs-image72.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image72.png[錯誤：缺少圖形影像]
 
 . 定義區塊完整性檢查原則的排程（在此範例中、每週一次）。
 +
-image:saphana-br-scs-image73.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image73.png[錯誤：缺少圖形影像]
 
 . 提供電子郵件通知的相關資訊。
 +
-image:saphana-br-scs-image74.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image74.png[錯誤：缺少圖形影像]
 
 . 在「摘要」頁面上、按一下「完成」。
 +
-image:saphana-br-scs-image75.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image75.png[錯誤：缺少圖形影像]
 
 . 現在可在拓撲頁面上建立隨需備份。排定的備份會根據組態設定執行。
 +
-image:saphana-br-scs-image76.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image76.png[錯誤：缺少圖形影像]
 
 
 
@@ -396,4 +396,4 @@ Exit /b 0
 
 下圖顯示資源保護組態畫面中的「Post Quiesce」命令。
 
-image:saphana-br-scs-image77.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image77.png[錯誤：缺少圖形影像]

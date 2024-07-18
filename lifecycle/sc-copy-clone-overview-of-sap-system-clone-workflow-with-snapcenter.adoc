@@ -34,6 +34,6 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 
 NOTE: 如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。不需要重新整理 SAP HANA 共用磁碟區。
 
-image:sc-copy-clone-image9.png[""]
+image::sc-copy-clone-image9.png[SC 複本複本影像 9.]
 
 章節 link:sc-copy-clone-sap-system-clone-with-snapcenter.html["「SAP系統實體複製」SnapCenter"] 提供系統複製工作流程的詳細逐步說明。

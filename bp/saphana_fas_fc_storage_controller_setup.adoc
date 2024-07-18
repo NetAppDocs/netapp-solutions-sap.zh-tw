@@ -82,11 +82,11 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 使用HDD時、最多可將兩個DS2246磁碟櫃或四個DS224C磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
 
-image:saphana_fas_fc_image10.png["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image10.png[錯誤：缺少圖形影像]
 
 使用SSD時、最多可將一個磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。使用DS224C磁碟櫃時、也可以使用四路徑SAS纜線、但不需要。
 
-image:saphana_fas_fc_image11.png["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image11.png[錯誤：缺少圖形影像]
 
 
 
@@ -100,7 +100,7 @@ image:saphana_fas_fc_image11.png["錯誤：缺少圖形影像"]
 
 下圖顯示八部SAP HANA主機的組態。每個儲存控制器均連接四台SAP HANA主機。配置兩個獨立的集合體、每個儲存控制器各一個。每個Aggregate均設定4 x 10 = 40個資料磁碟（HDD）。
 
-image:saphana_fas_fc_image12.png["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image12.png[錯誤：缺少圖形影像]
 
 
 
@@ -110,7 +110,7 @@ image:saphana_fas_fc_image12.png["錯誤：缺少圖形影像"]
 
 下圖顯示12台SAP HANA主機的組態、這些主機執行於12Gb SAS機櫃上、並設定ADPv2。每個儲存控制器連接六台SAP HANA主機。配置四個獨立的集合體、每個儲存控制器各兩個。每個Aggregate都配置有11個磁碟、其中有9個資料和兩個同位元檢查磁碟分割區。每個控制器都有兩個備用磁碟分割可供使用。
 
-image:saphana_fas_fc_image13.jpg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image13.jpg[錯誤：缺少圖形影像]
 
 
 
@@ -124,13 +124,13 @@ image:saphana_fas_fc_image13.jpg["錯誤：缺少圖形影像"]
 
 在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的四個生命期（稱為「fc_*」）的快照。
 
-image:saphana_fas_fc_image14.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image14.jpeg[錯誤：缺少圖形影像]
 
 在使用ONTAP NetApp 9.8 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。
 
 下圖說明ONTAP 使用NetApp 9.8 System Manager建立SVM和LIF。
 
-image:saphana_fas_fc_image15.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image15.jpeg[錯誤：缺少圖形影像]
 
 
 
@@ -138,7 +138,7 @@ image:saphana_fas_fc_image15.jpeg["錯誤：缺少圖形影像"]
 
 FCP連接埠集用於定義特定igroup要使用哪些lip。一般而言、針對HANA系統所建立的所有LIF都會放置在相同的連接埠集中。下圖顯示名稱為32g的連接埠集組態、其中包含已建立的四個LIF。
 
-image:saphana_fas_fc_image16.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image16.jpeg[錯誤：缺少圖形影像]
 
 
 NOTE: 使用NetApp 9.8時、不需要連接埠集、但可透過命令列建立及使用。ONTAP
@@ -164,7 +164,7 @@ NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝�
 
 下圖顯示SS3_HANA的啟動器清單。igroup包含伺服器的所有WWPN、並指派給儲存控制器的連接埠集。
 
-image:saphana_fas_fc_image17.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image17.jpeg[錯誤：缺少圖形影像]
 
 
 
@@ -175,7 +175,7 @@ image:saphana_fas_fc_image17.jpeg["錯誤：缺少圖形影像"]
 
 NOTE: 如果SAP HANA系統只使用高可用度（HA）配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。
 
-image:saphana_fas_fc_image18.jpg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image18.jpg[錯誤：缺少圖形影像]
 
 每部SAP HANA主機都會設定資料Volume、記錄Volume和「/HANA /共享」的Volume。下表顯示四個SAP HANA單一主機系統的組態範例。
 
@@ -254,7 +254,7 @@ NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/si
 
 NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和記錄磁碟區也可以儲存在同一個儲存控制器上。
 
-image:saphana_fas_fc_image19.jpg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image19.jpg[錯誤：缺少圖形影像]
 
 每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下圖顯示4+1多主機SAP HANA系統的組態範例。
 
@@ -380,38 +380,38 @@ NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap
 
 . 在NetApp ONTAP NetApp®System Manager中啟動Create LUN Wizard（建立LUN精靈）。
 +
-image:saphana_fas_fc_image20.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image20.jpeg[錯誤：缺少圖形影像]
 
 . 輸入LUN名稱、選取LUN類型、然後輸入LUN的大小。
 +
-image:saphana_fas_fc_image21.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image21.jpeg[錯誤：缺少圖形影像]
 
 . 輸入磁碟區名稱和託管Aggregate。
 +
-image:saphana_fas_fc_image22.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image22.jpeg[錯誤：缺少圖形影像]
 
 . 選取LUN應對應的igroup。
 +
-image:saphana_fas_fc_image23.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image23.jpeg[錯誤：缺少圖形影像]
 
 . 提供QoS設定。
 +
-image:saphana_fas_fc_image24.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image24.jpeg[錯誤：缺少圖形影像]
 
 . 按一下「摘要」頁面上的「下一步」。
 +
-image:saphana_fas_fc_image25.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image25.jpeg[錯誤：缺少圖形影像]
 
 . 按一下「完成」頁面上的「完成」。
 +
-image:saphana_fas_fc_image26.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image26.jpeg[錯誤：缺少圖形影像]
 
 . 針對每個LUN重複步驟2至7。
 +
 下圖顯示所有需要建立以進行2+1多主機設定的LUN摘要。
 
 +
-image:saphana_fas_fc_image27.jpeg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image27.jpeg[錯誤：缺少圖形影像]
 
 
 

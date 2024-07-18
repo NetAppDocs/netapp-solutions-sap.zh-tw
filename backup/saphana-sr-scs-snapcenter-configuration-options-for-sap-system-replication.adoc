@@ -20,7 +20,7 @@ summary: 本頁說明SAP系統複寫的組態選項。
 * 使用虛擬IP位址的兩部SAP HANA主機只需單SnapCenter 一的支援資源。
 
 
-image:saphana-sr-scs-image5.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image5.png[錯誤：缺少圖形影像]
 
 從推出支援自動探索HANA系統的功能之一開始SnapCenter 、SnapCenter 此系統已設定為HANA系統複寫關係。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源會結合在資源群組中、SnapCenter 且支援自動識別哪個主機為主要或次要主機、並據此執行所需的備份作業。由現象中心建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上刪除舊備份。
 

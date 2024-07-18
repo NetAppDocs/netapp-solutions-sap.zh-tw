@@ -23,13 +23,13 @@ NOTE: 我們假設虛擬IP位址一律繫結至主要SAP HANA主機。虛擬IP�
 
 SAP HANA備份目錄和SnapCenter 整套資源包括在主機1上建立的備份。
 
-image:saphana-sr-scs-image27.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image27.png[錯誤：缺少圖形影像]
 
 下圖顯示容錯移轉到主機2之後的備份作業、以及從主機2複寫到主機1的作業。使用在資源資源中設定的虛擬IP位址自動與主機2通訊。SnapCenter SnapCenter現在可在主機2建立備份。由下列兩個Snapshot複本建立：SnapCenter 在主機2的資料磁碟區建立資料庫一致的備份、以及在主機1的資料磁碟區建立損毀映像Snapshot複本。SAP HANA備份目錄和SnapCenter 整套資源現在包括在主機1建立的備份、以及在主機2建立的備份。
 
 資料與記錄備份的管理作業是根據定義SnapCenter 的還原原則、無論主主機或次主機為何、都會刪除備份。
 
-image:saphana-sr-scs-image28.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image28.png[錯誤：缺少圖形影像]
 
 如一節所述 link:saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html["儲存Snapshot備份與SAP系統複寫"]、使用儲存型Snapshot備份的還原作業會有所不同、視需要還原的備份而定。請務必識別備份所在的主機、以判斷是否可在本機儲存磁碟區執行還原、或是必須在其他主機的儲存磁碟區執行還原。
 
@@ -37,7 +37,7 @@ image:saphana-sr-scs-image28.png["錯誤：缺少圖形影像"]
 
 下圖說明備份主機的識別。
 
-image:saphana-sr-scs-image29.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image29.png[錯誤：缺少圖形影像]
 
 
 
@@ -45,7 +45,7 @@ image:saphana-sr-scs-image29.png["錯誤：缺少圖形影像"]
 
 下圖顯示實驗室設定、以及所需SnapCenter 的功能表組態總覽。
 
-image:saphana-sr-scs-image30.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image30.png[錯誤：缺少圖形影像]
 
 若要執行備份作業、無論哪一台SAP HANA主機為主要主機、甚至當一台主機當機時、SnapCenter 都必須將SAP HANA外掛程式部署在中央外掛主機上。在實驗室設定中、SnapCenter 我們將該伺服器當作中央外掛主機、並在SnapCenter 該伺服器上部署SAP HANA外掛程式。
 
@@ -58,18 +58,18 @@ hdbuserstore.exe -u SYSTEM set SSRKEY ssr-vip:31013 SNAPCENTER <password>
 
 在支援區中、資源的設定如下圖所示、使用之前設定的使用者儲存金鑰、以及將支援區伺服器設定為「hdbsql"通訊主機。SnapCenter SnapCenter
 
-image:saphana-sr-scs-image31.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image31.png[錯誤：缺少圖形影像]
 
 這兩部SAP HANA主機的資料磁碟區都包含在儲存設備佔用空間組態中、如下圖所示。
 
-image:saphana-sr-scs-image32.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image32.png[錯誤：缺少圖形影像]
 
 如前所述、SnapCenter 不知道備份的建立位置。因此、NetApp建議您在SnapCenter 該支援工作流程中新增備份前指令碼、以識別目前哪個主機是主要SAP HANA主機。您可以使用新增至備份工作流程的SQL陳述式來執行此識別、如下圖所示。
 
 ....
 Select host from “SYS”.M_DATABASE
 ....
-image:saphana-sr-scs-image33.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image33.png[錯誤：缺少圖形影像]
 
 
 
@@ -81,18 +81,18 @@ image:saphana-sr-scs-image33.png["錯誤：缺少圖形影像"]
 
 下圖顯示將主機1作為主要主機的備份工作記錄。
 
-image:saphana-sr-scs-image34.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image34.png[錯誤：缺少圖形影像]
 
 此圖顯示將主機2作為主要主機的備份工作記錄。
 
-image:saphana-sr-scs-image35.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image35.png[錯誤：缺少圖形影像]
 
 下圖顯示SAP HANA Studio中的SAP HANA備份目錄。SAP HANA資料庫上線時、SAP HANA Studio會顯示建立備份的SAP HANA主機。
 
 
 NOTE: 檔案系統上的SAP HANA備份目錄在還原與還原作業期間使用、不包含建立備份的主機名稱。當資料庫關閉時、識別主機的唯一方法是將備份目錄項目與兩個SAP HANA主機的「backup.log」檔案合併。
 
-image:saphana-sr-scs-image36.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image36.png[錯誤：缺少圖形影像]
 
 
 
@@ -106,7 +106,7 @@ image:saphana-sr-scs-image36.png["錯誤：缺少圖形影像"]
 
 如果您需要使用在主機2（T2）上建立的備份來還原、這是位於主機2儲存磁碟區的Snapshot複本、則必須將備份提供給主機1。您可以從備份建立NetApp FlexClone複本、將FlexClone複本掛載到主機1、然後將資料複製到原始位置、藉此提供此備份。
 
-image:saphana-sr-scs-image37.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image37.png[錯誤：缺少圖形影像]
 
 透過單SnapCenter 一的資源支援組態、可在兩個SAP HANA系統複寫主機的兩個儲存磁碟區上建立Snapshot複本。只有在主要SAP HANA主機的儲存磁碟區建立的Snapshot備份、才能用於轉送恢復。在次要SAP HANA主機的儲存磁碟區建立的Snapshot複本、是無法用於轉送恢復的當機映像。
 
@@ -120,7 +120,7 @@ image:saphana-sr-scs-image37.png["錯誤：缺少圖形影像"]
 
 下圖以SnapCenter 單一的「資源不全」組態來描述還原作業。
 
-image:saphana-sr-scs-image38.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image38.png[錯誤：缺少圖形影像]
 
 
 
@@ -137,33 +137,33 @@ image:saphana-sr-scs-image38.png["錯誤：缺少圖形影像"]
 . 主機2隨即啟動、並自動啟動主機2的系統複寫重新同步。
 
 
-image:saphana-sr-scs-image39.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image39.png[錯誤：缺少圖形影像]
 
 下圖顯示SAP HANA Studio中的SAP HANA備份目錄。反白顯示的備份顯示在主機1的T1上建立的備份。
 
-image:saphana-sr-scs-image40.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image40.png[錯誤：缺少圖形影像]
 
 SAP HANA Studio會啟動還原與還原作業。如下圖所示、在還原與還原工作流程中、無法看到建立備份的主機名稱。
 
 
 NOTE: 在我們的測試案例中、當資料庫仍在線上時、我們能夠識別SAP HANA Studio中正確的備份（在主機1建立的備份）。如果資料庫無法使用、您必須查看SnapCenter 還原工作記錄、以識別正確的備份。
 
-image:saphana-sr-scs-image41.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image41.png[錯誤：缺少圖形影像]
 
 在支援中、系統會選取備份、並執行檔案層級的還原作業。SnapCenter在檔案層級還原畫面中、只會選取主機1磁碟區、以便只還原有效的備份。
 
-image:saphana-sr-scs-image42.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image42.png[錯誤：缺少圖形影像]
 
 還原作業完成後、SAP HANA Studio的備份會以綠色強調顯示。您不需要輸入額外的記錄備份位置、因為備份目錄中包含主機1和主機2的記錄備份檔案路徑。
 
-image:saphana-sr-scs-image43.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image43.png[錯誤：缺少圖形影像]
 
 轉送恢復完成後、會啟動次要主機（主機2）、並啟動SAP HANA系統複寫重新同步。
 
 
 NOTE: 即使次要主機是最新的（未執行主機2的還原作業）、SAP HANA仍會執行所有資料的完整複寫。這是SAP HANA系統複寫還原與還原作業之後的標準行為。
 
-image:saphana-sr-scs-image44.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image44.png[錯誤：缺少圖形影像]
 
 
 
@@ -180,14 +180,14 @@ image:saphana-sr-scs-image44.png["錯誤：缺少圖形影像"]
 . 主機2隨即啟動、並自動啟動主機2的系統複寫重新同步。
 
 
-image:saphana-sr-scs-image45.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image45.png[錯誤：缺少圖形影像]
 
 SAP HANA Studio的還原與還原作業與本節所述的步驟相同 link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html#snapcenter-restore-of-the-valid-backup-only["僅還原有效的備份SnapCenter"]。
 
 若要執行還原作業、請選取SnapCenter 「完整資源」。兩個主機的磁碟區都會還原。
 
-image:saphana-sr-scs-image46.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image46.png[錯誤：缺少圖形影像]
 
 轉送恢復完成後、會啟動次要主機（主機2）、並啟動SAP HANA系統複寫重新同步。將執行所有資料的完整複寫。
 
-image:saphana-sr-scs-image47.png["錯誤：缺少圖形影像"]
+image::saphana-sr-scs-image47.png[錯誤：缺少圖形影像]

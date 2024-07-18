@@ -26,9 +26,9 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 
 NOTE: 一旦任何租戶在來源系統上執行建立、重新命名或刪除作業、 SAP HANA 資料庫就會刪除此組態旗標。因此、即使已將組態恢復至租戶= SID、旗標也無法再使用、而且無法再使用工作流程3的租戶還原例外。在此情況下、選項2是必要的工作流程。
 
-image:sc-copy-clone-image10.png[""]
+image::sc-copy-clone-image10.png[SC 複本複本影像 10.]
 
-image:sc-copy-clone-image11.png[""]
+image::sc-copy-clone-image11.png[SC 複本複本影像 11.]
 
 
 
@@ -46,7 +46,7 @@ image:sc-copy-clone-image11.png[""]
 
 如果根金鑰有任何變更、則永遠需要備份根金鑰。備份命令需要使用 DBID 做為 CLI 參數。可使用以下 SQL 陳述式來識別 DBID 。
 
-image:sc-copy-clone-image12.png[""]
+image::sc-copy-clone-image12.png[SC 複本複本影像 12.]
 
 以下步驟提供 SAP HANA 管理指南中的 SQL 陳述與進一步文件 https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b1e7562e2c704c19bd86f2f9f4feedc4.html["備份根金鑰 | SAP 說明入口網站"] 、說明單一租戶 SS1 的 HANA 系統所需作業、並在來源系統上執行。
 
@@ -126,6 +126,6 @@ qs1adm@hana-7:/usr/sap/QS1/HDB11>
 
 如前一章所述、系統和所有租戶資料庫的根金鑰都需要 DBID 。雖然系統資料庫一律為 DBID=0 、但租戶資料庫可以有不同的 DBID 。
 
-image:sc-copy-clone-image13.png[""]
+image::sc-copy-clone-image13.png[SC 複本複本影像 13.]
 
 以上輸出顯示 DBID=3 和 DBID=4 的兩個租戶。如果目標系統尚未裝載 DBID=4 的租戶、則根金鑰匯入將會失敗。在這種情況下、您需要先恢復系統資料庫、然後再匯入 DBID=4 租戶的金鑰。

@@ -18,11 +18,11 @@ summary: 在多種情況下、來源系統的資料必須提供給目標系統�
 
 這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。
 
-image:lama-ansible-image2.png["此影像說明從主要開發環境到暫時性專案分割、修復系統、訓練系統和SANbox系統的環境工作流程。它會顯示系統更新、系統複製和系統複製用於這些不同用途的位置。"]
+image::lama-ansible-image2.png[此影像說明從主要開發環境到暫時性專案分割、修復系統、訓練系統和SANbox系統的環境工作流程。它會顯示系統更新、系統複製和系統複製用於這些不同用途的位置。]
 
 SAP Lama和NetApp複製工作流程可用於加速及自動化基礎架構和資料庫層的必要工作。SAP Lama不需要將備份從來源系統還原至目標系統、而是使用NetApp Snapshot複本和NetApp FlexClone技術、因此可在數分鐘內完成所需的工作、而非數小時內完成、如下圖所示。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。透過自動化作業系統和資料庫層以及SAP後處理端的工作、進一步縮短執行時間。
 
-image:lama-ansible-image3.png["此映像顯示使用和不使用NetApp Snapshot複本的複製程序與NetApp FlexClone技術之間的比較、可大幅加快程序的執行速度。"]
+image::lama-ansible-image3.png[此映像顯示使用和不使用NetApp Snapshot複本的複製程序與NetApp FlexClone技術之間的比較、可大幅加快程序的執行速度。]
 
 
 
@@ -36,7 +36,7 @@ image:lama-ansible-image3.png["此映像顯示使用和不使用NetApp Snapshot�
 
 在設定修復系統時、靈活度和速度是關鍵。有了NetApp儲存型Snapshot備份、就能使用NetApp FlexClone技術建立多個一致的資料庫映像、以建立正式作業系統的複本。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。
 
-image:lama-ansible-image4.png["此映像說明使用FlexClone技術從複製系統建立修復系統的逐步程序。"]
+image::lama-ansible-image4.png[此映像說明使用FlexClone技術從複製系統建立修復系統的逐步程序。]
 
 
 
@@ -48,4 +48,4 @@ image:lama-ansible-image4.png["此映像說明使用FlexClone技術從複製系�
 
 SAP Lama可用來協調整個測試程序、也可負責網路隔離、目標主機維護等。
 
-image:lama-ansible-image5.png["此映像描述一線資料中心的NetApp儲存系統、本機災難恢復資料中心和遠端災難恢復資料中心之間的關係。它們同時透過同步SnapMirror和非同步SnapMirror關係進行連線。"]
+image::lama-ansible-image5.png[此映像描述一線資料中心的NetApp儲存系統、本機災難恢復資料中心和遠端災難恢復資料中心之間的關係。它們同時透過同步SnapMirror和非同步SnapMirror關係進行連線。]

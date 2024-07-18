@@ -215,4 +215,4 @@ NetApp進行效能測試、以定義最佳價值。下表列出必須在SAP測�
 
 下圖摘要說明規模調整程序。
 
-image:saphana_fas_fc_image8.jpg["錯誤：缺少圖形影像"]
+image::saphana_fas_fc_image8.jpg[錯誤：缺少圖形影像]

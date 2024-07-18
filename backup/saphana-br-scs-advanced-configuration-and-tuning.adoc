@@ -119,7 +119,7 @@ hana-2:/opt/NetApp/snapcenter/scc/etc #
 . 使用命令「et - SmConfigSettings - Plugin -主機名稱< pluginhostname>- PluginCode Hana - configSettings @｛"log_cleanup_disable"="Y"｝」、即可針對IP或主機名稱所指定的SAP HANA外掛程式主機'<pluginhostname>'進行設定（請參閱下圖）。
 
 
-image:saphana-br-scs-image154.jpeg["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image154.jpeg[錯誤：缺少圖形影像]
 
 
 
@@ -127,7 +127,7 @@ image:saphana-br-scs-image154.jpeg["錯誤：缺少圖形影像"]
 
 可偵測SAP HANA外掛程式是否安裝在虛擬化環境中。SnapCenter這可能是VMware環境或SnapCenter 公有雲供應商的不完整安裝。在這種情況SnapCenter 下、如下圖所示、顯示設定Hypervisor的警告。
 
-image:saphana-br-scs-image34.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image34.png[錯誤：缺少圖形影像]
 
 可以全域抑制此警告。在這種情況下SnapCenter 、由於不知道虛擬化環境、因此不會顯示這些警告。
 
@@ -137,7 +137,7 @@ image:saphana-br-scs-image34.png["錯誤：缺少圖形影像"]
 . 針對Hypervisor設定、選取VM Hs Hs iSCSI Direct Attached Disk或NFS for All hosts（VM有iSCSI Direct附加磁碟或NFS用於所有主機）、然後更新設定。
 
 
-image:saphana-br-scs-image155.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image155.png[錯誤：缺少圖形影像]
 
 
 
@@ -162,7 +162,7 @@ NOTE: 這可能會導致保留額外的記錄備份、即使異地備份儲存�
 
 在資源的拓撲檢視中、SnapCenter 當選擇次要備份時、會在異地備份儲存設備上顯示備份、如下面的快照所示。利用「重新整理」圖示執行清除作業、以同步處理此資源的備份。SnapCenter
 
-image:saphana-br-scs-image156.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image156.png[錯誤：缺少圖形影像]
 
 
 
@@ -173,7 +173,7 @@ image:saphana-br-scs-image156.png["錯誤：缺少圖形影像"]
 . 在SnapCenter 還原伺服器上啟動PowerShell命令視窗。
 . 開啟SnapCenter 與「還原伺服器」的連線、然後在SnapCenter 登入視窗中輸入「還原系統管理員」認證資料。
 +
-image:saphana-br-scs-image157.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image157.png[錯誤：缺少圖形影像]
 
 . 若要將排程從每週變更為每日、請使用Cmdlet「Set- SmSchedule」。
 +
@@ -213,6 +213,6 @@ PS C:\Users\scadmin> Check the configuration using the Windows Task Scheduler.
 ....
 . 您可以在Windows工作排程器中檢查工作內容。
 +
-image:saphana-br-scs-image158.png["錯誤：缺少圖形影像"]
+image::saphana-br-scs-image158.png[錯誤：缺少圖形影像]
 
 

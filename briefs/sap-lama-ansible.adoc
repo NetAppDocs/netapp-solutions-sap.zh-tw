@@ -43,7 +43,7 @@ SAP 系統非常複雜。但對於使用 SAP 的公司而言、這些系統是�
 
 下圖顯示與 NetApp 儲存相關的 SAP 系統複製、複製及重新整理 Lama 工作流程步驟。
 
-image:sap-lama-image1.png["顯示與 NetAppstorage 相關的 SAP 系統複製、複製及重新整理 Lama 工作流程步驟的影像"]
+image::sap-lama-image1.png[顯示與 NetAppstorage 相關的 SAP 系統複製、複製及重新整理 Lama 工作流程步驟的影像]
 
 
 
@@ -68,7 +68,7 @@ image:sap-lama-image1.png["顯示與 NetAppstorage 相關的 SAP 系統複製、
 
 下圖顯示 SAP Lama 和 NetApp 儲存系統如何透過專用 Ansible Playbooks 整合在專屬 Ansible 主機上、由 SAP 主機代理程式執行的 Shell 指令碼觸發。
 
-image:sap-lama-image2.png["此影像顯示 SAP Lama 和 NetApp 儲存系統如何透過專用 Ansible Playbooks 整合在專屬 Ansible 主機上、由從 SAP 主機代理程式執行的 Shell 指令碼觸發"]
+image::sap-lama-image2.png[此影像顯示 SAP Lama 和 NetApp 儲存系統如何透過專用 Ansible Playbooks 整合在專屬 Ansible 主機上、由從 SAP 主機代理程式執行的 Shell 指令碼觸發]
 
 
 
@@ -80,7 +80,7 @@ image:sap-lama-image2.png["此影像顯示 SAP Lama 和 NetApp 儲存系統如�
 
 下圖顯示使用自動化時、可能會改善作業效率。
 
-image:sap-lama-image3.png["顯示使用自動化時可能改善營運效率的影像"]
+image::sap-lama-image3.png[顯示使用自動化時可能改善營運效率的影像]
 
 
 

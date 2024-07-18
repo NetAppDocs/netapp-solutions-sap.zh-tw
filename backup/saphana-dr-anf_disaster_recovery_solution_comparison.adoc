@@ -22,7 +22,7 @@ summary: 全方位的災難恢復解決方案必須能讓客戶從主要站台�
 
 本文件討論兩區災難恢復解決方案的不同實作選項。
 
-image:saphana-dr-anf_image3.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image3.png[錯誤：缺少圖形影像]
 
 
 
@@ -52,7 +52,7 @@ SAP HANA系統複寫可在下列兩種模式之一中操作：
 
 下圖說明SAP HANA系統複寫。
 
-image:saphana-dr-anf_image4.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image4.png[錯誤：缺少圖形影像]
 
 
 
@@ -86,7 +86,7 @@ RTO主要取決於在災難恢復站台啟動HANA資料庫、以及將資料載�
 
 ANF跨區域複寫可讓您在不影響RPO和RTO的情況下測試DR工作流程。這是透過建立磁碟區複製並將其附加至DR測試伺服器來達成的。
 
-image:saphana-dr-anf_image5.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image5.png[錯誤：缺少圖形影像]
 
 
 

@@ -26,7 +26,7 @@ SAP 系統與解決方案的營運非常複雜。不過、對於使用 SAP 的�
 
 雲端和任何地方（羊駝）套件是一套全方位的管理介面、可主動將環境自動化、讓您在 SAP 環境中進行詳細的監督與監控。Alpaca 簡化並加速 SAP 基礎架構作業、確保最佳可用度和透明度。它提供全方位的工具、可管理整個環境（包括基礎架構）、並主動通知服務中斷、工作中斷和壅塞等異常情況。此套件的設計可在內部部署、混合式和全雲端環境中順暢運作、包括多雲端情境、確保能適應任何基礎架構。此模組型架構可自動化標準和一般 SAP 管理工作、以及在停機期間進行容錯移轉等複雜案例。 系統管理員 / 專家、營運商和經理、羊駝讓這些專業人員擁有高度的控管和自動化能力。
 
-image:sap-alpaca-image1.png["羊駝平台的圖表"]
+image::sap-alpaca-image1.png[羊駝平台的圖表]
 
 本文件說明 Alpaca 如何與 ® 整合、 NetApp SnapCenter ® 是協調 Snapshot 型備份、執行還原及建立 FlexClone Volume 的工具。這項整合可讓 SAP 管理員大幅加速 SAP 系統日常作業工作。NetApp Snapshot 、 FlexClone 和 SnapRestore ® 技術可加速備份、還原和複製作業、因為 NetApp 的儲存技術是以指標為基礎。這種方法很快、而且也能降低複製作業期間的儲存負荷、因為只有新的和變更的資料（非現有資料）必須寫入儲存媒體。無論是內部部署的 NetApp 儲存系統、還是三家主要雲端供應商之一的 NetApp 儲存解決方案、都是如此。
 
@@ -45,17 +45,17 @@ image:sap-alpaca-image1.png["羊駝平台的圖表"]
 * * SAP 系統複製 * 。SAP 系統複本是來源 SAP 系統的相同複本。SAP系統複製通常用於解決邏輯毀損或測試災難恢復案例。在系統複製作業中、主機名稱、執行個體編號和安全識別碼（ SID ）保持不變。因此、務必為目標系統建立適當的網路屏障、以確保不會與正式作業環境進行通訊。
 
 
-image:sap-alpaca-image2.png["顯示 SAP 系統複本的映像"]
+image::sap-alpaca-image2.png[顯示 SAP 系統複本的映像]
 
 * * SAP 系統複本 * 。SAP 系統複本是新目標 SAP 系統的設定、其中包含來源 SAP 系統的資料。例如、新的目標系統可能是額外的測試系統、其中包含正式作業系統的資料。來源和目標系統的主機名稱、執行個體編號和 SID 不同。 新系統不會與來源系統隔離。
 
 
-image:sap-alpaca-image3.png["顯示 SAP 系統複本的影像"]
+image::sap-alpaca-image3.png[顯示 SAP 系統複本的影像]
 
 * * SAP 系統更新 * 。SAP 系統重新整理是使用來源 SAP 系統的資料來重新整理現有目標 SAP 系統。目標系統通常是 SAP 傳輸環境（例如沙箱系統）的一部分、會以正式作業系統的資料進行重新整理。來源系統和目標系統的主機名稱、執行個體編號和SID各不相同。
 
 
-image:sap-alpaca-image4.png["顯示 SAP 系統重新整理的影像"]
+image::sap-alpaca-image4.png[顯示 SAP 系統重新整理的影像]
 
 雖然這是三種不同的使用案例、但資料管理程序仍維持不變。這三種使用案例都使用相同的基礎資料管理技術： NetApp Snapshot 和 FlexClone 。
 
@@ -86,7 +86,7 @@ image:sap-alpaca-image4.png["顯示 SAP 系統重新整理的影像"]
 
 下圖顯示了 Alpaca 伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統、以及所有項目的整合方式。其目標是使用 SnapCenter REST API 、盡可能讓整合更靈活、以確保在現有元件內已完成的組態工作能得到最大重複使用。
 
-image:sap-alpaca-image5.png["顯示羊駝伺服器、 NetApp SnapCenter 伺服器、 NetApp 儲存系統、 SAP 來源和 SAP 目標系統的影像、以及所有項目的整合方式"]
+image::sap-alpaca-image5.png[顯示 Alpaca 伺服器的影像,the NetApp SnapCenter server,the NetApp storage system]
 
 
 
@@ -98,7 +98,7 @@ image:sap-alpaca-image5.png["顯示羊駝伺服器、 NetApp SnapCenter 伺服�
 
 下圖顯示使用自動化時、可能會改善作業效率。
 
-image:sap-alpaca-image6.png["顯示使用自動化時可能改善營運效率的影像"]
+image::sap-alpaca-image6.png[顯示使用自動化時可能改善營運效率的影像]
 
 
 

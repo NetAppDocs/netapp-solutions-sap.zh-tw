@@ -32,4 +32,4 @@ summary: 視記錄備份複寫是否屬於災難恢復設定的一部分而定�
 
 以下小節將詳細說明這些步驟、下圖說明災難容錯移轉測試。
 
-image:saphana-dr-anf_image26.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image26.png[錯誤：缺少圖形影像]

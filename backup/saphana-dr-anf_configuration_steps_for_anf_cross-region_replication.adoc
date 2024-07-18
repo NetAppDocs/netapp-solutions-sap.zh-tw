@@ -66,27 +66,27 @@ NOTE: 磁碟區的配額可以根據容量需求來設定、因為磁碟區效�
 
 NOTE: 如果容量集區已設定手動QoS、除了容量需求之外、您也可以設定處理量。與上述相同、您可以在正常作業期間以低值設定處理量、並在發生災難恢復容錯移轉時增加處理量。
 
-image:saphana-dr-anf_image10.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image10.png[錯誤：缺少圖形影像]
 
 在「傳輸協定」索引標籤中、您必須提供網路傳輸協定、網路路徑和匯出原則。
 
 
 NOTE: 傳輸協定必須與來源Volume所使用的傳輸協定相同。
 
-image:saphana-dr-anf_image11.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image11.png[錯誤：缺少圖形影像]
 
 在複寫索引標籤中、您必須設定來源Volume ID和複寫排程。對於資料Volume複寫、我們設定了實驗室設定的每日複寫排程。
 
 
 NOTE: 來源Volume ID可從來源Volume的Properties（屬性）畫面複製。
 
-image:saphana-dr-anf_image12.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image12.png[錯誤：缺少圖形影像]
 
 最後、您必須提供目標Volume的ID、以授權來源Volume進行複寫。
 
 
 NOTE: 您可以從目的地Volume的Properties（屬性）畫面複製目的地Volume ID。
 
-image:saphana-dr-anf_image13.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image13.png[錯誤：缺少圖形影像]
 
 HANA共享磁碟區和記錄備份磁碟區必須執行相同的步驟。

@@ -22,4 +22,4 @@ SAP系統複本一詞通常是三種不同程序的同義詞：SAP系統重新�
 
 下圖說明在系統重新整理、系統複本或系統複製作業期間必須執行的主要步驟。藍色方塊表示可使用 SnapCenter 自動執行的步驟、灰色方塊則表示必須在 SnapCenter 外部手動或使用協力廠商工具執行的步驟。
 
-image:sc-copy-clone-image2.png[""]
+image::sc-copy-clone-image2.png[SC 複本複本影像 2.]

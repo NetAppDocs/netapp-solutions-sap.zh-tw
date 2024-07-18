@@ -27,7 +27,7 @@ summary: 解決方案驗證是以SAP HANA單一主機系統執行。Anf的Micros
 
 下圖說明實驗室設定。
 
-image:saphana-dr-anf_image7.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image7.png[錯誤：缺少圖形影像]
 
 
 
@@ -39,8 +39,8 @@ image:saphana-dr-anf_image7.png["錯誤：缺少圖形影像"]
 
 下圖顯示HANA資料磁碟區的Snapshot備份。
 
-image:saphana-dr-anf_image8.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image8.png[錯誤：缺少圖形影像]
 
 下圖顯示SAP HANA備份目錄。
 
-image:saphana-dr-anf_image9.png["錯誤：缺少圖形影像"]
+image::saphana-dr-anf_image9.png[錯誤：缺少圖形影像]

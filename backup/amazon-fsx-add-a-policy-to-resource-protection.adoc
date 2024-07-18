@@ -16,8 +16,8 @@ summary: 本節說明如何將原則新增至資源保護。
 [role="lead"]
 您必須將新原則新增至HANA資源保護組態、如下圖所示。
 
-image:amazon-fsx-image86.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image86.png[錯誤：缺少圖形影像]
 
 我們的設定定義了每日排程。
 
-image:amazon-fsx-image87.png["錯誤：缺少圖形影像"]
+image::amazon-fsx-image87.png[錯誤：缺少圖形影像]

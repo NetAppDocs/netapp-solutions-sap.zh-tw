@@ -23,5 +23,4 @@ keywords: netapp, solutions, SAP, best practices, videos, demos
 
 * link:https://media.netapp.com/video-detail/71853836-ac06-50bf-a579-01ff36851580/sap-hana-runs-best-on-netapp-infrastructure-brk-1114-2["SAP HANA在NetApp基礎架構上執行效能最佳"^]
 * link:https://media.netapp.com/video-detail/60bf8c7c-d14d-5463-b839-4e1c8daca1a3/sap-on-azure-netapp-files-overview-and-updates-brk-1453-2["SAP on Azure NetApp Files NetApp：概述與更新"^]
-* link:https://media.netapp.com/video-detail/ae49e691-f67d-5d1e-97b8-6b81bb4a7bd7/using-netapp-block-and-object-storage-for-sap-data-intelligence["使用NetApp Block和Object Storage for SAP Data Intelligence"^]
 

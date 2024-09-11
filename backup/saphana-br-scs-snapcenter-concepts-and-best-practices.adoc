@@ -34,7 +34,7 @@ summary: 本節說明SnapCenter 與SAP HANA資源組態與部署相關的概念�
 
 下圖摘要說明相依性。有關HANA部署選項的詳細資訊、請參閱「SAP HANA外掛程式的部署選項」一節。
 
-image::saphana-br-scs-image9.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image9.png[saphana br SCS 影像 9.]
 
 
 NOTE: HANA和Linux外掛程式目前僅適用於Intel系統。如果HANA資料庫是在IBM Power Systems上執行、則必須使用中央HANA外掛主機。
@@ -101,7 +101,7 @@ NOTE: HANA外掛程式部署於HANA資料庫主機時、預設會自動探索資
 
 透過SAP HANA外掛程式與SAP HANA資料庫進行通訊。SnapCenterSAP HANA外掛程式使用SAP HANA hdbsqll用戶端軟體、對SAP HANA資料庫執行SQL命令。SAP HANA hdbuserstore用於提供使用者認證、主機名稱及連接埠資訊、以存取SAP HANA資料庫。
 
-image::saphana-br-scs-image10.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image10.png[saphana br SCS 影像 10.]
 
 
 NOTE: SAP HANA外掛程式和SAP hdbsql用戶端軟體（包含hdbuserstore組態工具）必須一起安裝在同一部主機上。
@@ -122,7 +122,7 @@ NOTE: SAP HANA外掛程式和SAP hdbsql用戶端軟體（包含hdbuserstore組�
 
 下圖顯示SnapCenter 將此伺服器用作中央外掛主機的組態。SAP HANA外掛程式和SAP hdbsql用戶端軟體安裝在SnapCenter Singe伺服器上。
 
-image::saphana-br-scs-image11.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image11.png[saphana br SCS 影像 11.]
 
 由於HANA外掛程式可透過網路使用hdbClient與受管理的HANA資料庫進行通訊、SnapCenter 因此您不需要在個別HANA資料庫主機上安裝任何的任何元件。透過使用中央HANA外掛主機來保護HANA資料庫、所有使用者存放區金鑰都是針對託管資料庫進行設定。SnapCenter
 
@@ -139,7 +139,7 @@ image::saphana-br-scs-image11.png[錯誤：缺少圖形影像]
 
 NOTE: 獨立的中央外掛程式主機也可以是Windows主機。
 
-image::saphana-br-scs-image12.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image12.png[saphana br SCS 影像 12.]
 
 上一節所述的功能可用度限制、也適用於個別的中央外掛程式主機。
 
@@ -151,7 +151,7 @@ image::saphana-br-scs-image12.png[錯誤：缺少圖形影像]
 
 下圖顯示每個SAP HANA資料庫主機上安裝SAP HANA外掛程式的組態。
 
-image::saphana-br-scs-image13.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image13.png[saphana br SCS 版本 13.]
 
 當HANA外掛程式安裝在每個個別HANA資料庫主機上時、所有功能（例如自動探索、自動還原與還原）都可使用。此外、還可以在HA組態中設定此伺服器SnapCenter 。
 
@@ -165,9 +165,9 @@ NetApp建議針對所有支援自動探索的HANA系統組態、在HANA資料庫
 
 以下兩個圖顯示SnapCenter 混合式外掛程式部署、無論是搭配使用此功能的伺服器、或是以獨立的Linux主機作為中央外掛程式主機。這兩種部署之間唯一的差異是選用HA組態。
 
-image::saphana-br-scs-image14.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image14.png[saphana br SCS 影像 14.]
 
-image::saphana-br-scs-image15.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image15.png[saphana br SCS 影像 15.]
 
 
 
@@ -299,7 +299,7 @@ NOTE: 當一或多個租戶停止時、SAP不支援針對MDC系統進行Snapshot
 
 下圖顯示備份工作流程的總覽。
 
-image::saphana-br-scs-image16.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image16.png[saphana br SCS 版本 16]
 
 
 
@@ -365,7 +365,7 @@ NOTE: 只有在記錄備份管理未停用時、才會執行此步驟。
 
 下圖概述不同的工作流程、以及每項作業的相依性。以下各節將詳細說明不同的作業。
 
-image::saphana-br-scs-image17.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image17.png[saphana br SCS 影像 17.]
 
 
 
@@ -534,7 +534,7 @@ Hana單一容器和HANA MDC單一租戶系統已自動探索、可利用SnapCent
 * *以手動還原完成資源。* SnapCenter 如果您選取「No Recovery」（無還原）、則會停止HANA資料庫、並執行所需的檔案系統（卸載、掛載）和還原作業。您必須手動還原系統和租戶資料庫。
 
 
-image::saphana-br-scs-image18.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image18.png[saphana br SCS 版本 18]
 
 
 
@@ -548,7 +548,7 @@ image::saphana-br-scs-image18.png[錯誤：缺少圖形影像]
 
 工作流程與上一節所述相同。
 
-image::saphana-br-scs-image19.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image19.png[saphana br SCS 版本 19]
 
 
 
@@ -558,7 +558,7 @@ image::saphana-br-scs-image19.png[錯誤：缺少圖形影像]
 
 針對手動設定的HANA資源、SnapCenter 如下圖所示、僅支援手動恢復。手動還原的工作流程與前幾節所述相同。
 
-image::saphana-br-scs-image20.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image20.png[saphana br SCS 版本 20]
 
 
 

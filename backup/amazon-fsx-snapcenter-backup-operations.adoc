@@ -28,21 +28,21 @@ summary: 本節說明如何建立隨需Snapshot備份和隨需區塊完整性檢
 
 . 在頂端列中、選取「立即備份」圖示以開始隨需備份。
 +
-image::amazon-fsx-image48.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image48.png[Amazon FSX 影像 48]
 
 . 從下拉式清單中、選取備份原則「LocalSnap」、然後按一下「備份」開始隨需備份。
 +
-image::amazon-fsx-image49.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image49.png[Amazon FSX 影像 49]
 
 +
-image::amazon-fsx-image50.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image50.png[Amazon FSX 影像 50]
 
 +
 前五個工作的記錄會顯示在拓撲檢視底部的「活動」區域中。
 
 . 按一下「活動」區域中的工作活動列時、會顯示工作詳細資料。您可以按一下「檢視記錄」來開啟詳細的工作記錄
 +
-image::amazon-fsx-image51.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image51.png[Amazon FSX 影像 51.]
 
 +
 備份完成後、拓撲檢視中會顯示新項目。備份名稱的命名慣例與一節中定義的Snapshot名稱相同 link:amazon-fsx-snapcenter-configuration.html#configure-and-protect-a-hana-resource["「設定及保護HANA資源」。"]
@@ -51,16 +51,16 @@ image::amazon-fsx-image51.png[錯誤：缺少圖形影像]
 您必須關閉並重新開啟拓撲檢視、才能查看更新的備份清單。
 
 +
-image::amazon-fsx-image52.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image52.png[Amazon FSX 影像 52]
 
 +
 在SAP HANA備份目錄中SnapCenter 、還原備份名稱會儲存為「Comment（註解）」欄位、以及「外部備份ID（EBID）」。下圖顯示系統資料庫和租戶資料庫PFX的下圖。
 
 +
-image::amazon-fsx-image53.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image53.png[Amazon FSX 影像 53.]
 
 +
-image::amazon-fsx-image54.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image54.png[Amazon FSX 影像 54]
 
 
 
@@ -82,19 +82,19 @@ sapcc-hana-svm::>
 
 透過選取原則BlockIntegrityCheck、隨需區塊完整性檢查作業的執行方式與Snapshot備份工作相同。使用此原則排程備份時SnapCenter 、將為系統和租戶資料庫建立標準的SAP HANA檔案備份。
 
-image::amazon-fsx-image55.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image55.png[Amazon FSX 影像 55]
 
-image::amazon-fsx-image56.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image56.png[Amazon FSX 影像 56]
 
 不像Snapshot複製型備份那樣顯示區塊完整性檢查。SnapCenter而摘要卡則會顯示檔案型備份的數量和先前備份的狀態。
 
-image::amazon-fsx-image57.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image57.png[Amazon FSX 影像 57]
 
 SAP HANA備份目錄會顯示系統和租戶資料庫的項目。下圖顯示SnapCenter 系統和租戶資料庫備份目錄中的「區塊完整性檢查」。
 
-image::amazon-fsx-image58.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image58.png[Amazon FSX 影像 58]
 
-image::amazon-fsx-image59.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image59.png[Amazon FSX 影像 59]
 
 成功的區塊完整性檢查可建立標準的SAP HANA資料備份檔案。使用已設定HANA資料庫的備份路徑進行檔案型資料備份作業。SnapCenter
 

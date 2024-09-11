@@ -28,15 +28,15 @@ summary: 非資料磁碟區的備份是SAP HANA外掛程式的整合部分。只
 
 . 從「資源」索引標籤中選取「非資料磁碟區」、然後按一下「新增SAP HANA資料庫」。
 +
-image::saphana-br-scs-image78.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image78.png[saphana br SCS 影像 78]
 
 . 在「新增SAP HANA資料庫」對話方塊的步驟之一中、於「資源類型」清單中選取「非資料磁碟區」。指定要用於資源的資源名稱、相關的SID和SAP HANA外掛程式主機、然後按一下「Next（下一步）」。
 +
-image::saphana-br-scs-image79.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image79.png[saphana br SCS 版本 79]
 
 . 將SVM和儲存磁碟區新增為儲存設備佔用空間、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image80.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image80.png[saphana br SCS 版本 80]
 
 . 在摘要步驟中、按一下完成以儲存設定。
 . 針對所有必要的非資料磁碟區重複這些步驟。
@@ -49,7 +49,7 @@ NOTE: 非資料Volume資源的資料保護功能與SAP HANA資料庫資源的工
 下圖顯示已設定的非資料Volume資源清單。
 
 +
-image::saphana-br-scs-image81.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image81.png[saphana br SCS 版本 81.]
 
 
 

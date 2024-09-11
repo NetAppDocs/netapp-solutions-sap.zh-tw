@@ -30,46 +30,46 @@ summary: 非資料磁碟區的備份是SnapCenter 整合在整個過程中的一
 
 . 從「資源」索引標籤中選取「非資料磁碟區」、然後按一下「新增SAP HANA資料庫」。
 +
-image::amazon-fsx-image60.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image60.png[Amazon FSX 影像 60]
 
 . 在「新增SAP HANA資料庫」對話方塊的步驟之一中、於「資源類型」清單中選取「非資料磁碟區」。指定要用於資源的資源名稱、相關的SID和SAP HANA外掛程式主機、然後按一下「Next（下一步）」。
 +
-image::amazon-fsx-image61.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image61.png[Amazon FSX 影像 61.]
 
 . 將SVM和儲存磁碟區新增為儲存設備佔用空間、然後按「Next（下一步）」。
 +
-image::amazon-fsx-image62.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image62.png[Amazon FSX 影像 62]
 
 . 若要儲存設定、請在摘要步驟中按一下「完成」。
 +
-image::amazon-fsx-image63.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image63.png[Amazon FSX 影像 63.]
 
 +
 全新的非資料磁碟區現已新增SnapCenter 至功能區。按兩下新資源以執行資源保護。
 
 +
-image::amazon-fsx-image64.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image64.png[Amazon FSX 影像 64]
 
 +
 資源保護的執行方式與HANA資料庫資源之前所述相同。
 
 . 您現在可以按一下「立即備份」來執行備份。
 +
-image::amazon-fsx-image65.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image65.png[Amazon FSX 影像 65]
 
 . 選取原則並開始備份作業。
 +
-image::amazon-fsx-image66.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image66.png[Amazon FSX 影像 66]
 
 
 
 這個職務記錄會顯示個別的工作流程步驟。SnapCenter
 
-image::amazon-fsx-image67.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image67.png[Amazon FSX 影像 67]
 
 新的備份現在可在非資料磁碟區資源的資源檢視中看到。
 
-image::amazon-fsx-image68.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image68.png[Amazon FSX 影像 68]
 
 
 
@@ -119,38 +119,38 @@ image::amazon-fsx-image68.png[錯誤：缺少圖形影像]
 
 . 選擇SnapCenter 要用於還原作業的支援。
 +
-image::amazon-fsx-image69.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image69.png[Amazon FSX 影像 69]
 
 . 選取還原範圍和類型。
 +
 HANA MDC單一租戶系統的標準案例是使用完整資源進行磁碟區還原。若為具有多個租戶的HANA MDC系統、您可能只想還原單一租戶。如需單一租戶還原的詳細資訊、請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-restore-and-recovery.html["還原與還原（netapp.com）"^]。
 
 +
-image::amazon-fsx-image70.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image70.png[Amazon FSX 影像 70]
 
 . 選取「恢復範圍」、並提供記錄備份和目錄備份的位置。
 +
 使用HANA global.ini檔案中的預設路徑或變更路徑、預先填入記錄和目錄備份位置。SnapCenter
 
 +
-image::amazon-fsx-image71.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image71.png[Amazon FSX 影像 71.]
 
 . 輸入選擇性的預先還原命令。
 +
-image::amazon-fsx-image72.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image72.png[Amazon FSX 影像 72.]
 
 . 輸入可選的還原後命令。
 +
-image::amazon-fsx-image73.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image73.png[Amazon FSX 影像 73]
 
 . 若要開始還原與還原作業、請按一下「Finish（完成）」。
 +
-image::amazon-fsx-image74.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image74.png[Amazon FSX 影像 74]
 
 +
 執行還原與還原作業。SnapCenter此範例顯示還原與還原工作的工作詳細資料。
 
 +
-image::amazon-fsx-image75.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image75.png[Amazon FSX 影像 75]
 
 

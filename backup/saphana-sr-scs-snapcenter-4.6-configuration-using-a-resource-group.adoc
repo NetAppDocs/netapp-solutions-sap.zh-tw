@@ -37,48 +37,48 @@ ss2adm@hana- 4:/ > hdbuserstore set SS2KEY hana-4:33313 SNAPCENTER <password>
 . 建立資源群組、包括主機和設定保護。
 
 
-image::saphana-sr-scs-image6.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image6.png[saphana SR SCS 影像 6.]
 
 在SnapCenter 兩個HANA主機上安裝完「支援HANA」外掛程式之後、HANA系統會以SnapCenter 與其他自動探索資源相同的方式顯示在「支援資訊」檢視中。從功能表支援的支援範本SnapCenter 中、會顯示額外的一欄、顯示HANA系統複寫的狀態（啟用/停用、主要/次要）。
 
-image::saphana-sr-scs-image7.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image7.png[saphana SR SCS 影像 7.]
 
 只要按一下資源SnapCenter 、即可要求HANA系統的HANA使用者儲存金鑰。
 
-image::saphana-sr-scs-image8.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image8.png[saphana SR SCS 影像 8.]
 
 執行其他自動探索步驟、SnapCenter 並顯示資源詳細資料。使用本檢視中列出的是系統複寫狀態和次要伺服器。SnapCenter
 
-image::saphana-sr-scs-image9.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image9.png[saphana SR SCS 影像 9.]
 
 對第二個HANA資源執行相同步驟之後、自動探索程序就會完成、而且兩個HANA資源都會設定SnapCenter 在更新中。
 
-image::saphana-sr-scs-image10.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image10.png[saphana SR SCS 影像 10.]
 
 若為採用HANA系統複寫的系統、您必須設定SnapCenter 一個包含兩個HANA資源在內的資源群組。
 
-image::saphana-sr-scs-image11.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image11.png[saphana SR SCS 影像 11.]
 
 NetApp建議使用自訂的Snapshot名稱格式、其中應包含主機名稱、原則及排程。
 
-image::saphana-sr-scs-image12.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image12.png[saphana SR SCS 影像 12.]
 
 您必須將兩個HANA主機新增至資源群組。
 
-image::saphana-sr-scs-image13.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image13.png[saphana SR SCS 版本 13.]
 
 原則和排程是針對資源群組進行設定。
 
 
 NOTE: 原則中定義的保留會用於兩個HANA主機。例如、如果原則中定義保留10、則兩個主機的備份總和會作為刪除備份的準則。如果是在目前的主要或次要主機上建立最舊的備份、則該備份會獨立刪除。SnapCenter
 
-image::saphana-sr-scs-image14.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image14.png[saphana SR SCS 影像 14.]
 
 資源群組組組態現在已完成、可以執行備份。
 
-image::saphana-sr-scs-image15.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image15.png[saphana SR SCS 影像 15.]
 
-image::saphana-sr-scs-image16.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image16.png[saphana SR SCS 影像 16.]
 
 
 
@@ -86,38 +86,38 @@ image::saphana-sr-scs-image16.png[錯誤：缺少圖形影像]
 
 執行資源群組的備份作業時SnapCenter 、支援功能可識別哪個主機為主要主機、而且只會在主要主機上觸發備份。這表示只會快照主主機的資料磁碟區。在我們的範例中、Hana 3是目前的主要主機、並在此主機上執行備份。
 
-image::saphana-sr-scs-image17.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image17.png[saphana SR SCS 影像 17.]
 
 這個職務記錄顯示目前主要主機Hana 3的身分識別作業和備份執行。SnapCenter
 
-image::saphana-sr-scs-image18.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image18.png[saphana SR SCS 影像 18.]
 
 Snapshot備份現已在主要HANA資源建立。備份名稱中包含的主機名稱顯示Hana（3）。
 
-image::saphana-sr-scs-image19.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image19.png[saphana SR SCS 影像 19.]
 
 同樣的Snapshot備份也可在HANA備份目錄中看到。
 
-image::saphana-sr-scs-image20.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image20.png[saphana SR SCS 版本 20]
 
 如果執行接管作業、則進一步SnapCenter 的還原備份功能現在會將前二級主機（Hana–4）識別為主要主機、並在Hana–4執行備份作業。同樣地、只會快照新一級主機（Hana - 4）的資料磁碟區。
 
 
 NOTE: 此功能的驗證邏輯僅涵蓋HANA主機處於一線二線關係或其中一台HANA主機離線的情況。SnapCenter
 
-image::saphana-sr-scs-image21.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image21.png[saphana SR SCS 影像 21.]
 
 這個職務記錄顯示目前主要主機Hana 4上的識別作業和備份執行。SnapCenter
 
-image::saphana-sr-scs-image22.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image22.png[saphana SR SCS 影像 22.]
 
 Snapshot備份現已在主要HANA資源建立。備份名稱中包含的主機名稱顯示Hana：4。
 
-image::saphana-sr-scs-image23.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image23.png[saphana SR SCS 影像 23.]
 
 同樣的Snapshot備份也可在HANA備份目錄中看到。
 
-image::saphana-sr-scs-image24.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image24.png[saphana SR SCS 影像 24]
 
 
 
@@ -139,7 +139,7 @@ NOTE: 如果長期未執行對次要主機的接管、SnapVault 次要主機上�
 
 NOTE: 無法清除SnapVault 所有的不完整Snapshot複本、因為一個Snapshot複本會被封鎖為同步點。如果也需要刪除最新的Snapshot複本、SnapVault 就必須刪除該複寫關係。在此情況下、NetApp建議刪除HANA備份目錄中的備份、以解除記錄備份保留管理的封鎖。
 
-image::saphana-sr-scs-image25.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image25.png[saphana SR SCS 版本 25]
 
 
 
@@ -155,7 +155,7 @@ image::saphana-sr-scs-image25.png[錯誤：缺少圖形影像]
 
 下圖說明在這兩個站台執行多個移轉並建立Snapshot備份的案例。在目前狀態下、主機Hana 3是主要主機、而最新的備份則是T4、這是在主機Hana 3建立的。如果您需要執行還原與還原作業、備份T1和T4可在SnapCenter 還原與還原。在主機Hana 4（T2、T3）建立的備份、無法使用SnapCenter 還原功能還原。這些備份必須手動複製到Hana 3的資料磁碟區以進行還原。
 
-image::saphana-sr-scs-image26.png[錯誤：缺少圖形影像]
+image::saphana-sr-scs-image26.png[saphana SR SCS 版本 26.]
 
 還原與還原作業針對SnapCenter 某個資源群組組組態、與自動探索的非系統複寫設定相同。所有的還原和自動還原選項均可供使用。如需詳細資料、請參閱技術報告 https://www.netapp.com/us/media/tr-4614.pdf["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]。
 

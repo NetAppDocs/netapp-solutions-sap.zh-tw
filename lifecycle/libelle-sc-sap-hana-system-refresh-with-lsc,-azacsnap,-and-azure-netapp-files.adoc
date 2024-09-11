@@ -30,7 +30,7 @@ Snapshot複製備份是隨需建立或定期建立的、作為備份策略的一
 
 系統可作為測試或QA系統使用。當要求新的系統重新整理時、工作流程會以步驟2重新啟動。所有剩餘的複製磁碟區都必須手動刪除。
 
-image::libelle-sc-image23.png[錯誤：缺少圖形影像]
+image::libelle-sc-image23.png[Libelle SC 影像 23.]
 
 
 
@@ -44,7 +44,7 @@ image::libelle-sc-image23.png[錯誤：缺少圖形影像]
 
 一般而言、AzAcSnap有兩種部署選項、如下圖所示。
 
-image::libelle-sc-image24.png[錯誤：缺少圖形影像]
+image::libelle-sc-image24.png[Libelle SC 影像 24.]
 
 AzAcSnap可安裝並在集中儲存所有資料庫組態檔案的中央Linux VM上執行、AzAcSnap則可存取所有資料庫（透過hdbsqll用戶端）及所有資料庫的設定HANA使用者儲存金鑰。透過分散式部署、AzAcSnap會個別安裝在每個資料庫主機上、通常只會儲存本機資料庫的DB組態。LSC整合支援這兩種部署選項。不過、我們在本文件的實驗室設定中採用混合式方法。AzAcSnap與所有DB組態檔案一起安裝在中央NFS共用區上。此集中式安裝共用是以「/mnt/software/AZACSNAP/snapshot工具」安裝在所有VM上。然後在資料庫VM本機上執行此工具。
 
@@ -54,7 +54,7 @@ AzAcSnap可安裝並在集中儲存所有資料庫組態檔案的中央Linux VM�
 
 Libelle SystemCopy部署包含下列元件：
 
-image::libelle-sc-image25.png[錯誤：缺少圖形影像]
+image::libelle-sc-image25.png[Libelle SC 影像]
 
 * * LSC Master。*顧名思義、這是主元件、可控制以Libelle為基礎之系統複本的自動工作流程。
 * * LSC Worker。* LSC員工通常在目標SAP系統上執行、並執行自動化系統複本所需的指令碼。
@@ -65,7 +65,7 @@ Libelle SystemCopy（LSC）GUI必須安裝在適當的VM上。在本次實驗室
 
 安裝LSC之後、必須根據LSC準則執行來源和目標資料庫的基本組態。下列影像顯示本文件的實驗室環境組態。如需來源及目標SAP系統與資料庫的詳細資訊、請參閱下一節。
 
-image::libelle-sc-image26.png[錯誤：缺少圖形影像]
+image::libelle-sc-image26.png[Libelle SC 影像 26.]
 
 您也應該為SAP系統設定適當的標準工作清單。如需LSC安裝與組態的詳細資訊、請參閱LSC安裝套件的LSC使用手冊。
 
@@ -85,7 +85,7 @@ SAP系統重新整理整合一律會使用來源系統最新成功的Snapshot複
 
 下圖顯示實驗室設定。
 
-image::libelle-sc-image27.png[錯誤：缺少圖形影像]
+image::libelle-sc-image27.png[Libelle SC 影像 27.]
 
 其中包含下列系統、軟體版本和Azure NetApp Files 《不含資料的更新：
 
@@ -107,7 +107,7 @@ image::libelle-sc-image27.png[錯誤：缺少圖形影像]
 
 在執行第一次SAP系統重新整理之前、您必須先整合Azure NetApp Files AzAcSnap執行的以Snapshot複製與複製為基礎的儲存作業。您也必須執行輔助指令碼、以啟動和停止資料庫、以及掛載或卸載Azure NetApp Files 等功能。所有必要的工作都會在LSC中以自訂工作的形式執行、作為複製階段的一部分。下圖顯示LSC工作清單中的自訂工作。
 
-image::libelle-sc-image28.png[錯誤：缺少圖形影像]
+image::libelle-sc-image28.png[Libelle SC 影像 28.]
 
 此處將詳細說明所有五項複製工作。在其中一些工作中、會使用範例指令碼「shc-system-refresh.sh」來進一步自動化所需的SAP HANA資料庫還原作業、以及掛載和卸載資料磁碟區。指令碼在系統輸出中使用「LSC：Successful」訊息、表示LSC執行成功。如需自訂工作和可用參數的詳細資料、請參閱LSC使用手冊和LSC開發人員指南。此實驗室環境中的所有工作都會在目標DB VM上執行。
 
@@ -144,7 +144,7 @@ sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh shutdown $_sys
 ....
 指令碼「shc-system-refresh.sh」使用兩個參數：「shutdown」命令和DB SID、以使用sapControl來停止SAP HANA資料庫。系統輸出會重新導向至標準LSC記錄檔。如前所述、我們會使用「LSC：成功」訊息來表示成功執行。
 
-image::libelle-sc-image29.png[錯誤：缺少圖形影像]
+image::libelle-sc-image29.png[Libelle SC 影像]
 
 
 
@@ -175,7 +175,7 @@ NOTE: 由於AzacSnap命令的輸出無法變更、因此無法使用預設的「
 
 下圖顯示AzAcSnap還原至新的Volume成功訊息。
 
-image::libelle-sc-image30.png[錯誤：缺少圖形影像]
+image::libelle-sc-image30.png[Libelle SC 影像]
 
 
 
@@ -209,34 +209,34 @@ sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh recover $_syst
 
 已為備份目錄中所列的P01來源資料庫建立定期和隨需的Snapshot複本。
 
-image::libelle-sc-image31.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image31.jpg[Libelle SC 影像]
 
 在重新整理作業中、使用了3月12日的最新備份。在備份詳細資料區段中、會列出此備份的外部備份ID（EBID）。這是Azure NetApp Files 針對下列圖片所示的相關Snapshot複本備份、在支援資料的資料捲上。
 
-image::libelle-sc-image32.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image32.jpg[Libelle SC 影像 32.]
 
 若要開始重新整理作業、請在LSC GUI中選取正確的組態、然後按一下「Start Execution（開始執行）」。
 
-image::libelle-sc-image33.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image33.jpg[Libelle SC 影像]
 
 LSC會開始執行檢查階段的工作、接著執行預先階段的設定工作。
 
-image::libelle-sc-image34.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image34.jpg[Libelle SC 影像]
 
 作為「預先」階段的最後一步、目標SAP系統會停止。在下列「複製」階段中、會執行上一節所述的步驟。首先、目標SAP HANA資料庫會停止、舊Azure NetApp Files 版的還原Volume會從作業系統中卸載。
 
-image::libelle-sc-image35.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image35.jpg[Libelle SC 影像]
 
 然後、ZAZACSNAPRESORE工作會從P01系統的現有Snapshot複本建立新的Volume做為複本。下列兩張圖片顯示LSC GUI中的工作記錄、Azure NetApp Files 以及Azure入口網站中的複製版的SURE。
 
-image::libelle-sc-image36.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image36.jpg[Libelle SC 影像 36.]
 
-image::libelle-sc-image37.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image37.jpg[Libelle SC 影像]
 
 然後、此新磁碟區會掛載到目標DB主機上、系統資料庫和租戶資料庫會使用內含的Snapshot複本來還原。成功還原之後、SAP HANA資料庫會自動啟動。SAP HANA資料庫的這項啟動、大部分時間都是在複製階段。無論資料庫大小為何、其餘步驟通常會在數秒到數分鐘內完成。下圖顯示如何使用SAP提供的python還原指令碼來還原系統資料庫。
 
-image::libelle-sc-image38.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image38.jpg[Libelle SC 影像 38.]
 
 複製階段結束後、LSC會繼續執行後續階段的所有已定義步驟。當系統重新整理程序完全完成時、目標系統會重新啟動並執行、而且完全可用。使用本實驗室系統、SAP系統重新整理的總執行時間約為25分鐘、其中複製階段僅需5分鐘。
 
-image::libelle-sc-image39.jpg[錯誤：缺少圖形影像]
+image::libelle-sc-image39.jpg[Libelle SC 影像]

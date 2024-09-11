@@ -88,7 +88,7 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 NOTE: 使用DS224C磁碟櫃時、也可以使用四路徑SAS纜線、但不需要。
 
-image::saphana_aff_nfs_image13.png[錯誤：缺少圖形影像]
+image::saphana_aff_nfs_image13.png[saphana AFF NFS 影像 13.]
 
 
 
@@ -96,7 +96,7 @@ image::saphana_aff_nfs_image13.png[錯誤：缺少圖形影像]
 
 每個NS224 NVMe磁碟櫃都使用每個控制器兩個100GbE連接埠來連接。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2（如Aggregate組態一章所述）也用於NS224磁碟櫃。下圖說明NVMe磁碟機的磁碟櫃連線。
 
-image::saphana_aff_nfs_image14.jpg[錯誤：缺少圖形影像]
+image::saphana_aff_nfs_image14.jpg[saphana AFF NFS 影像 14.]
 
 
 
@@ -106,7 +106,7 @@ image::saphana_aff_nfs_image14.jpg[錯誤：缺少圖形影像]
 
 下圖顯示12台SAP HANA主機的組態、這些主機執行於12Gb SAS機櫃上、並設定ADPv2。每個儲存控制器連接六台SAP HANA主機。配置四個獨立的集合體、每個儲存控制器各兩個。每個Aggregate都配置有11個磁碟、其中有9個資料和兩個同位元檢查磁碟分割區。每個控制器都有兩個備用磁碟分割可供使用。
 
-image::saphana_aff_nfs_image15.jpg[錯誤：缺少圖形影像]
+image::saphana_aff_nfs_image15.jpg[saphana AFF NFS 影像 15.]
 
 
 
@@ -154,7 +154,7 @@ NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和�
 
 NOTE: 如果資料和記錄磁碟區儲存在同一個控制器上、則必須使用兩個不同的生命體來執行從伺服器到儲存設備的存取：一個LIF用於存取資料磁碟區、另一個LIF用於存取記錄磁碟區。
 
-image::saphana_aff_nfs_image16.jpg[錯誤：缺少圖形影像]
+image::saphana_aff_nfs_image16.jpg[saphana AFF NFS 影像 16.]
 
 每部SAP HANA主機都會設定資料Volume、記錄Volume和「/HANA /共享」的Volume。下表顯示單一主機SAP HANA系統的組態範例。
 
@@ -199,7 +199,7 @@ NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和�
 
 NOTE: 如果資料和記錄磁碟區儲存在同一個控制器上、則必須使用兩個不同的生命體來執行從伺服器到儲存設備的存取：一個LIF用於存取資料磁碟區、另一個LIF用於存取記錄磁碟區。
 
-image::saphana_aff_nfs_image17.jpg[錯誤：缺少圖形影像]
+image::saphana_aff_nfs_image17.jpg[saphana AFF NFS 影像 17.]
 
 每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下表顯示具有四個作用中主機的多主機SAP HANA系統組態範例。
 

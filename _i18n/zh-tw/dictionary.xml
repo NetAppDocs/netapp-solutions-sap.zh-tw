@@ -22,22 +22,16 @@
   <block id="6408743c7b0a502fe49fed25ac968c17" category="summary">討論SAP生命週期管理的一系列影片與示範</block>
   <block id="18c100c6d8f14819ac80ee276eb251a6" category="doc">SAP生命週期管理影片與示範</block>
   <block id="1e36c812f9450a024b52c0b4085d0776" category="paragraph">重點介紹SAP生命週期管理的影片與示範總覽。</block>
-  <block id="d67e81d44a24d3d9987a4b28774f0464" category="inline-link-macro">降低風險並提高SAP專案的品質</block>
   <block id="5673b57ca1dc3ec2a9c2adcc115e3718" category="inline-link-macro">確保業務單位在面臨非預期事件時能持續運作</block>
   <block id="5fb4ff4d48cdc2aa80ff2d0945e1a23c" category="inline-link-macro">使用案例SnapCenter</block>
-  <block id="36276bf8617d4835834e31d796e6e917" category="inline-link-macro">SAP系統複製搭配Libelle和SnapCenter</block>
   <block id="824aec17cb9bd27843cf6addb92b57fc" category="summary">系列影片與示範、重點介紹SAP解決方案</block>
   <block id="293e9d744a4c2a3dfc4088f7b8aa25d5" category="doc">SAP解決方案影片與示範</block>
   <block id="2259bdd472d4d2949e3eea23b5e4ef34" category="paragraph">重點介紹SAP解決方案的影片和示範總覽。</block>
   <block id="aa5b0840e871ca382a477398de4a7243" category="section-title">SAP組態最佳實務做法影片與示範</block>
   <block id="c482c0b5b51f55ba9a7c2dcdee1f4339" category="inline-link-macro">SAP HANA在NetApp基礎架構上執行效能最佳</block>
   <block id="442aae40221b985ca5667a9e47a977f6" category="inline-link-macro">SAP on Azure NetApp Files NetApp：概述與更新</block>
-  <block id="b3c2b25543d55b6202de3f9de0d4f7ab" category="inline-link-macro">使用NetApp Block和Object Storage for SAP Data Intelligence</block>
   <block id="ed2640c6c02db4ce182af25c797097d8" category="section-title">SAP備份、還原與災難恢復影片與示範</block>
-  <block id="e96d40a0320cf0061a3275c5aeda86d9" category="inline-link-macro">確保SAP應用程式可用度、並將停機時間降至最低</block>
-  <block id="84ead1de39ae75908e5ae205b8846191" category="inline-link-macro">在Azure NetApp Files 整個過程中最佳化SAP HANA的資料保護</block>
   <block id="eabc448bcef35b3d5eb92882f22f6f0c" category="inline-link-macro">SAP HANA的災難恢復選項</block>
-  <block id="a6c0b9b2156c13772cbe82711c8b07b9" category="inline-link-macro">SAP HANA災難恢復搭配ANF與跨區域複寫</block>
   <block id="08a3dd34b6649d68580f425952a735ac" category="summary">討論SAP備份、還原及災難恢復的一系列影片與示範</block>
   <block id="fc405c6c18eb854c5bfa5e386da6706c" category="paragraph">重點介紹SAP備份、還原及災難恢復的影片與示範總覽。</block>
   <block id="375187184a6023d3a0c03cb49eac0f2f" category="summary">討論SAP組態最佳實務做法的一系列部落格</block>
@@ -110,7 +104,6 @@
   <block id="e0f43a4c6e28079f6afdc78865b7782e" category="admonition">請參閱相關的SAP附註、以瞭解作業系統組態準則和HANA專屬的Linux核心相依性。如需詳細資訊、請參閱SAP附註2235581：SAP HANA支援的作業系統。</block>
   <block id="c28f239d8c4b11cfe19d1dcf078100b9" category="section-title">SAP HANA量身打造的資料中心整合</block>
   <block id="5d75848b6169b06c4cd7d6a8c2ec2337" category="paragraph">NetApp AFF 支援的儲存控制器已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。如需SAP HANA TDI架構總覽、請參閱下圖。</block>
-  <block id="341d84aa26cb4521474864e04ea2a63b" category="inline-image-macro">錯誤：缺少圖形影像</block>
   <block id="14a31d6554fa48b10cc86d1aaf656a07" category="inline-link">SAP HANA量身打造的資料中心整合常見問題集</block>
   <block id="9282f2106e2ecc166cf241e78c58163e" category="list-text"><block ref="9282f2106e2ecc166cf241e78c58163e" category="inline-link-rx"></block></block>
   <block id="244d98fed97800c3bc8073163dc1e3b2" category="inline-link">SAP HANA儲存需求</block>
@@ -122,9 +115,7 @@
   <block id="f02780ddcfc1bddf0683bf8de02155d5" category="inline-link-macro">VMware vSphere上的SAP HANA -虛擬化-社群維客</block>
   <block id="181fc43b08ba57214c4bbd2448ec470d" category="list-text"><block ref="181fc43b08ba57214c4bbd2448ec470d" category="inline-link-macro-rx"></block></block>
   <block id="685faeffbf3c0039314a5071b5798f2c" category="inline-link-macro">在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議</block>
-  <block id="cf67b8f52627ca93f03f86a0a17c027c" category="list-text"><block ref="cf67b8f52627ca93f03f86a0a17c027c" category="inline-link-macro-rx"></block></block>
   <block id="6a3ba410820602029c0289b87ca24a63" category="inline-link-macro">在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議</block>
-  <block id="f889a715c2c77a76b725f272585bdf07" category="list-text"><block ref="f889a715c2c77a76b725f272585bdf07" category="inline-link-macro-rx"></block></block>
   <block id="ab1b1647c4e88f4d70b589d5781012ca" category="inline-link-macro">2161991- VMware vSphere組態準則- SAP One Support啟動板（需要登入）</block>
   <block id="302092b20c647fa4f675ff96913675f9" category="list-text"><block ref="302092b20c647fa4f675ff96913675f9" category="inline-link-macro-rx"></block></block>
   <block id="caedd77305f36805e5e9f71196bad9dc" category="summary">每部SAP HANA伺服器都必須具有至少8Gbps頻寬的備援FCP SAN連線。對於連接至儲存控制器的每個SAP HANA主機、儲存控制器必須至少設定8Gbps的頻寬。</block>
@@ -165,7 +156,6 @@
   <block id="304f30474edd152dc34aef7dbb123607" category="cell">2.0版</block>
   <block id="d97683d280d36a8f907f655c8ae74044" category="cell">2017年2月</block>
   <block id="053aaab3b6a6f68ce7ea49ba7b9f8fee" category="cell">全新NetApp儲存系統與磁碟櫃ONTAP 全新功能以更新功能推出全新的SAP HANA版本（SLES12 SP1與RHEL 7.2）</block>
-  <block id="f26acbf3c7c6f56c2924d8f11f414022" category="cell">2.1版</block>
   <block id="27328ef4198621c47c9eed9d679e106e" category="cell">2017年7月</block>
   <block id="486ac802b593e5c6576c88cd6ce4d040" category="cell">次要更新</block>
   <block id="46b9839969e4bc429da9cc245c756450" category="cell">3.0版</block>
@@ -183,7 +173,6 @@
   <block id="5d431191212b0f13c81937d63ee45577" category="cell">4.0版</block>
   <block id="8aa90565fb34d8b0aeab74ab74ffdf4a" category="cell">2021年2月</block>
   <block id="0eb0e7ad4cb166bbccd693c2caa1bacd" category="cell">Linux LVM支援新的NetApp儲存系統新作業系統版本（SLES15SP2、RHEL 8）</block>
-  <block id="f61a9f4c3fce94c521ff33cc50c285ab" category="cell">4.1版</block>
   <block id="9a4bface9098ff4cd4b35cca641c0042" category="cell">2021年4月</block>
   <block id="f389acb9c3b9da7fd00873307beefaf2" category="cell">新增VMware vSphere專屬資訊</block>
   <block id="e6bbcb3e4d889de6d1cf73dee0f9eac9" category="inline-link-macro">SAP HANA on NetApp AFF 的NFS系統</block>
@@ -275,11 +264,9 @@
   <block id="f458c876961fbe066dc1f94b4d8f0606" category="list-text">在備份與還原作業期間、SAP HANA資料庫主機、網路或儲存設備的效能不會降低</block>
   <block id="ca34922c96391967c8028dc44cd98e22" category="list-text">根據區塊變更、將具空間效益且具頻寬效益的複寫至二線儲存設備</block>
   <block id="c67ddee39e41dfe63b7c798d76514143" category="inline-link">TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）</block>
-  <block id="34a61102005a53f987add91d18ab2a11" category="paragraph">如需SAP HANA備份與還原解決方案的詳細資訊、請參閱<block ref="f91ad5f72ca89ecac47641fa01cbfa5f" category="inline-link-rx"></block>。</block>
   <block id="dd44a87fdee6157429ed3ab3b6e9ead4" category="section-title">SAP HANA災難恢復</block>
   <block id="1901dda5acbabe5dc59a8bf332104608" category="paragraph">SAP HANA災難恢復可在資料庫層上使用SAP HANA系統複寫、或是在儲存層上使用儲存複寫技術。下節概述以儲存複寫為基礎的災難恢復解決方案。</block>
   <block id="1ff29e7b597f9f2f9d2a5edf1b79532b" category="inline-link">TR-4646：SAP HANA災難恢復與儲存複寫</block>
-  <block id="2ba75f8f28d5b6b2cfee56e1346047f8" category="paragraph">如需SAP HANA災難恢復解決方案的詳細資訊、請參閱<block ref="dfa76f526e34dee57bfae58022907510" category="inline-link-rx"></block>。</block>
   <block id="524130dbe5da3e0bed566e873780d92c" category="section-title">以SnapMirror為基礎的儲存複寫</block>
   <block id="4d7265e8ab9e98481c57ad3467a13264" category="paragraph">下圖顯示使用同步SnapMirror複寫至本機災難恢復資料中心的三站台災難恢復解決方案、以及使用非同步SnapMirror將資料複寫至遠端災難恢復資料中心。</block>
   <block id="ccb93370e2c5ea05681c87d10716cb76" category="paragraph">使用同步SnapMirror進行資料複寫可提供歸零的RPO。主要與本機DR資料中心之間的距離限制在100公里左右。</block>
@@ -292,35 +279,15 @@
   <block id="f831142d32986e69abb23ade52461f9f" category="paragraph">下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。</block>
   <block id="4bb047f8c530785002e490ef17fa725e" category="doc">何處可找到其他資訊</block>
   <block id="345245c83d2b2c4c2a5eb9f2887da627" category="paragraph">若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：</block>
-  <block id="8fd6557b141d2028a09650e620b8db62" category="inline-link">www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf</block>
-  <block id="156ab83547a69207813015793bfe2332" category="paragraph"><block ref="156ab83547a69207813015793bfe2332" category="inline-link-rx"></block></block>
-  <block id="e5610b49e37e1a9ca8d3ccf645895af2" category="inline-link"><block ref="e5610b49e37e1a9ca8d3ccf645895af2" category="inline-link-rx"></block></block>
-  <block id="ed1a4cf8e74958e746c53d94aee28736" category="paragraph"><block ref="ed1a4cf8e74958e746c53d94aee28736" category="inline-link-rx"></block></block>
   <block id="0efd230d120bc177f0918dac852f2cf2" category="list-text">SAP認證的SAP HANA企業儲存硬體</block>
-  <block id="5436be3b15621c53306ed17c9721265a" category="inline-link"><block ref="5436be3b15621c53306ed17c9721265a" category="inline-link-rx"></block></block>
-  <block id="a33fe1a52fed6bf7e934c86f0fa54fcb" category="paragraph"><block ref="a33fe1a52fed6bf7e934c86f0fa54fcb" category="inline-link-rx"></block></block>
-  <block id="609ca29747ea8303cd5fa3fb9470668d" category="inline-link"><block ref="609ca29747ea8303cd5fa3fb9470668d" category="inline-link-rx"></block></block>
-  <block id="38657a01715c45b59546cbf0d906ef65" category="paragraph"><block ref="38657a01715c45b59546cbf0d906ef65" category="inline-link-rx"></block></block>
   <block id="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link"><block ref="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link-rx"></block></block>
   <block id="3710f13cc62644ea40b0af38f0b1198e" category="paragraph"><block ref="3710f13cc62644ea40b0af38f0b1198e" category="inline-link-rx"></block></block>
-  <block id="36355d63733febc8629c7068b9264aba" category="list-text">TR-4646：SAP HANA Disaster Recovery搭配使用SnapCenter NetApp HANA外掛程式的儲存複寫功能</block>
   <block id="6137d44b5191549a06e7bea8ffd942d3" category="inline-link"><block ref="6137d44b5191549a06e7bea8ffd942d3" category="inline-link-rx"></block></block>
   <block id="62658c7987e92cf3967ab8bdd1e66d18" category="paragraph"><block ref="62658c7987e92cf3967ab8bdd1e66d18" category="inline-link-rx"></block></block>
   <block id="1ffb329e128f9f021221cb333667e643" category="inline-link"><block ref="1ffb329e128f9f021221cb333667e643" category="inline-link-rx"></block></block>
   <block id="026a8e661ca1c91258a93024c126a529" category="paragraph"><block ref="026a8e661ca1c91258a93024c126a529" category="inline-link-rx"></block></block>
-  <block id="d3f52fc82e5e1c25912db41874144b01" category="list-text">TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統</block>
-  <block id="ed4d2f627a13537ec50cc73b8aab9434" category="inline-link">www.netapp.com/us/media/tr-4338.pdf</block>
-  <block id="f3cf3d4bafab3435fc6438043df8d588" category="paragraph"><block ref="f3cf3d4bafab3435fc6438043df8d588" category="inline-link-rx"></block></block>
-  <block id="bb41f5e2046d2c100d796ce09315ce5a" category="list-text">TR-4667：使用SnapCenter NetApp 4.0 SAP HANA外掛程式來自動化SAP系統複本</block>
   <block id="c54847a2046020d06d345fd8b61fc169" category="list-text">NetApp文件中心</block>
-  <block id="c9617ae303d0bce89d13bebecca2ea1b" category="inline-link"><block ref="c9617ae303d0bce89d13bebecca2ea1b" category="inline-link-rx"></block></block>
-  <block id="bf78332b32395471af72955679895502" category="paragraph"><block ref="bf78332b32395471af72955679895502" category="inline-link-rx"></block></block>
-  <block id="ca6b4c114aab9ce885b2e3f3375cf6a1" category="list-text">NetApp AFF 解決方案儲存系統資源</block>
-  <block id="29381d3b46032a1fd6af6512d8c47b4a" category="inline-link"><block ref="29381d3b46032a1fd6af6512d8c47b4a" category="inline-link-rx"></block></block>
-  <block id="65fdf1bbdd083420089318972c99c550" category="paragraph"><block ref="65fdf1bbdd083420089318972c99c550" category="inline-link-rx"></block></block>
   <block id="1f97b7a68d0268791593f9152a2471f4" category="list-text">SAP HANA軟體解決方案</block>
-  <block id="1dccfff04324701476d4ae813651374e" category="inline-link">www.netapp.com/us/solutions/applications/sap/index.aspx#sap-hana</block>
-  <block id="df02d530b506eb0d3a627cf87375e921" category="paragraph"><block ref="df02d530b506eb0d3a627cf87375e921" category="inline-link-rx"></block></block>
   <block id="3823dde38e881edb5563cdd3b64099ba" category="summary">以下是SAP HANA軟體安裝需求。</block>
   <block id="d62e297e0f46d31deba4b84efdfafc32" category="paragraph">SAP HANA軟體安裝不需要為單一主機系統做任何額外準備。</block>
   <block id="2c5a7a5ceaf9ad774a81a7201b4dd250" category="paragraph">若要在多主機系統上安裝SAP HANA、請完成下列步驟：</block>
@@ -555,11 +522,7 @@
   <block id="86c976bd97e98538a78594cffd1f4347" category="cell">全新NetApp儲存系統全新作業系統版本（SLES12 SP3與Red Hat Enterprise Linux 7.4）額外的小型更新SAP HANA 2.0 SPS3</block>
   <block id="bbfb6d5a145f45ac380d5c56707a3b3f" category="cell">2019年9月</block>
   <block id="b2741985b04e7a670dd01c660734116f" category="cell">新作業系統發行次要更新</block>
-  <block id="c3687f641cfdd19b41b8fe6f7cb68897" category="cell">4.2版</block>
   <block id="e3e03be4a83995541c9aa6cd468adfff" category="cell">全新AFF ASA 的Ses跨 系列儲存系統自SAP HANA 2.0 SPS4以來、推出多項資料分割功能</block>
-  <block id="e1b61136672bccd13e6828fe7987e4f6" category="cell">4.3版</block>
-  <block id="738e4f16a24a9e74c1f67ae2e7c02f3b" category="cell">5.0版</block>
-  <block id="62819fc3af1b125ec2e633ccd65a3cba" category="cell">5.1版</block>
   <block id="825584759100661fac8be910e01502e6" category="summary">您必須同步儲存控制器與SAP HANA資料庫主機之間的時間。</block>
   <block id="07f50886cb51dc3f90123d42cf009896" category="summary">SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。</block>
   <block id="adff62b08f2c542a637f6a31fbda8673" category="paragraph">SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。</block>
@@ -574,9 +537,7 @@
   <block id="7be39960baf9da92a5fd16aff336d896" category="list-text">加快備份速度（幾分鐘）</block>
   <block id="e48202a443acc7da9527083f2193be67" category="list-text">加快儲存層的還原速度（幾分鐘）</block>
   <block id="0fc3856f751e6cb653d303821aef3541" category="list-text">在備份期間、不會影響SAP HANA資料庫主機、網路或儲存設備的效能</block>
-  <block id="8992a3e8c438bc5d1cfda7ee49ec843f" category="paragraph">如需SAP HANA備份與還原解決方案的詳細資訊、請SnapCenter 參閱<block ref="f91ad5f72ca89ecac47641fa01cbfa5f" category="inline-link-rx"></block>。</block>
   <block id="3228fe22c23747656168738709bc6bd1" category="paragraph">SAP HANA災難恢復可透過SAP系統複寫在資料庫層上執行、或是使用儲存複寫技術在儲存層上執行。下節概述以儲存複寫為基礎的災難恢復解決方案。</block>
-  <block id="a1714349685014d0362e5cbbd09f2c0b" category="paragraph">如需使用SnapCenter NetApp的SAP HANA災難恢復解決方案詳細資訊、請參閱<block ref="b44c9af0a29f9fd7a04d2aec65a6c8ef" category="inline-link-rx"></block>。</block>
   <block id="ad3b35bfc8ee4f5dee91390584d5b8cd" category="paragraph">下圖顯示三站台災難恢復解決方案、使用同步SnapMirror複寫到本機DR資料中心、以及使用非同步SnapMirror將資料複寫到遠端DR資料中心。</block>
   <block id="d8c167d8f4fbaa19b28b96b8f9830293" category="paragraph">災難恢復站台的伺服器可在正常運作期間用作開發/測試系統。發生災難時、開發/測試系統必須關閉、並以DR正式作業伺服器的形式啟動。</block>
   <block id="c3a14b2b8a8f3abd4f577b36ff5a89d7" category="paragraph">下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。</block>
@@ -597,7 +558,6 @@
   <block id="5f6e041a9634120ceb1ee084f6acde8a" category="inline-link">SAP附註2235581–SAP HANA支援的作業系統</block>
   <block id="10fba2fd8d2b0860517a92eefbfce26b" category="paragraph">在SAP HANA多主機環境中、標準SAP HANA儲存連接器可在SAP HANA主機容錯移轉時提供屏障。請務必參閱相關的SAP附註、以瞭解作業系統組態準則和HANA特定的Linux核心相依性。如需詳細資訊、請參閱<block ref="362348e4aadbc3b1dc4fa3ddcce8fb65" category="inline-link-rx"></block>。</block>
   <block id="e13ebe7bf91deecb41098f3561e752bf" category="paragraph">NetApp AFF 支援的儲存系統已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。下圖顯示架構總覽。</block>
-  <block id="1c00cdc071680932dbe093eee9f348e7" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項如所述 <block ref="0f1147a043e687692dc16c07b278ec3b" category="inline-link-macro-rx"></block>。</block>
   <block id="d39f50075dc9ec7266b5156c1d0ce319" category="summary">以下各節提供SAP HANA基礎架構的設定與組態準則。</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="doc">總覽</block>
   <block id="98453eecb7a0821c9f84e894eeb80b6f" category="paragraph">以下各節提供SAP HANA基礎架構的設定與組態準則。其中包含設定SAP HANA所需的所有步驟。系統會建立SVM來裝載資料。在這些章節中、使用下列組態範例：</block>
@@ -617,10 +577,8 @@
   <block id="4b0b2617da1a441d88f736d71d3ac092" category="cell">新增磁碟規模調整選項及新增SSD組態新增Red Hat Enterprise Linux OS組態、新增SAP HANA儲存連接器資訊、以新增有關VMware組態的資訊</block>
   <block id="76bc3a375f8e5795348c2e28143619d9" category="cell">2014年11月</block>
   <block id="db4466d6123c2bcdc9153e35eed5d67a" category="cell">更新儲存設備規模區段</block>
-  <block id="618bd2c932463ac5cdbf61a8a11129b7" category="cell">2.2版</block>
   <block id="bde49e4082500b233767ac0393f52c97" category="cell">2015年1月</block>
   <block id="18b29171bb9db10940df132fe30b02ef" category="cell">更新儲存連接器API區段、更新Aggregate和Volume組態</block>
-  <block id="71b25740d9a5ec039b5d6a1c55f0bd02" category="cell">2.3版</block>
   <block id="e9d3c4f3be58e8eb9a2fe5ef80b5dbcd" category="cell">2015年3月</block>
   <block id="adceb3eeeca6d2e6e13cc707f1047b4d" category="cell">新增SAP HANA SPS9的STONITH實作新增運算節點設定與HANA安裝區段</block>
   <block id="6c37787225b6b2fa9a3a2d7f9c7b9b1f" category="cell">新增NFSv3支援cDOT更新的sysctl參數、其中包含SAP HANA的I/O參數、以及HWVAL &gt; SPS10的I/O參數</block>
@@ -628,22 +586,15 @@
   <block id="3d4f06d9a20e1dd80d32a7be99445018" category="cell">全新NetApp儲存系統和磁碟櫃ONTAP 支援40GbE的全新功能全新作業系統版本（SUSE Linux Enterprise Server12 SP1和Red Hat Enterprise Linux 7.2）全新SAP HANA版本</block>
   <block id="4880361a9deda058baa93a9609f49c06" category="cell">全新NetApp儲存系統新版作業系統（SUSE Linux Enterprise Server 12 SP3與Red Hat Enterprise Linux 7.4）SAP HANA 2.0 SPS3的其他小幅變更</block>
   <block id="b48c54ef40f55cf60865e423133eea27" category="cell">全新作業系統版本（SUSE Linux Enterprise Server 12 SP4、SUSE Linux Enterprise Server 15和Red Hat Enterprise Linux 7.6 MAX Data</block>
-  <block id="0b0eef8f1e851afe6b131cf612887364" category="cell">5.2版</block>
   <block id="42aef0714dca75b922449334f8354e29" category="cell">2019年12月</block>
   <block id="be4ee54ca2edc105b3af0d346b4fab97" category="cell">全新NetApp儲存系統全新作業系統版本SUSE Linux Enterprise Server 15 SP1</block>
-  <block id="f82abf5460f6063b37d14a41a7afceb1" category="cell">5.3版</block>
   <block id="342aa26fa2cc7e365c1b819a4e86b6f1" category="cell">2020年3月</block>
   <block id="d41615a4f21c04431fed0afc578baede" category="cell">支援NFSv3新版作業系統的nconnect Red Hat Enterprise Linux 8</block>
-  <block id="4e34602dd848f28c88462ee499addd05" category="cell">版本5.4.</block>
   <block id="0fa56213ed5deea97598ccd1f1d3db87" category="cell">2020年5月</block>
   <block id="1ab89c4e611ba31faab0f6bdb2081951" category="cell">自SAP HANA 2.0 SPS4以來、推出多項資料分割功能</block>
-  <block id="5ff2ce30f1ed8ad6f7e86aad1d43f427" category="cell">5.5版</block>
-  <block id="0a8d47ca9f632c416a369fde81c14d1d" category="cell">5.6版</block>
   <block id="a5667679a016ee66ef9bc45c1a173b3b" category="cell">2020年12月</block>
   <block id="cdd33367f29c689bcb60e79e248c660e" category="cell">支援nconnect for NFSv4.1、從ONTAP 更新版本的作業系統更新至更新版本的SAP HANA開始</block>
-  <block id="3cc049a85ec03d6c7c7e7cee3943f656" category="cell">5.7版</block>
   <block id="6ed1463e8ca682ff7a3d60ed388dcefe" category="cell">變更主機網路設定及其他小幅變更</block>
-  <block id="716757e4f3fb9dcb1e2980b92d42e652" category="cell">5.8版</block>
   <block id="c6bdef625cb67c9d4ef94200ba60efb0" category="doc">基礎架構設定與組態</block>
   <block id="912023f4eba0bf223e908e20d22ff92f" category="paragraph">以下各節提供SAP HANA基礎架構設定與組態準則、並說明設定SAP HANA系統所需的所有步驟。在這些章節中、使用下列組態範例：</block>
   <block id="3ad7f7aed9ec06eff738c0dcda85c37c" category="summary">從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區。這可讓您為SAP HANA租戶資料庫的資料磁碟區設定兩個以上的磁碟區、並擴充至超過單一磁碟區的大小和效能限制。</block>
@@ -908,22 +859,6 @@
   <block id="c047f42ac7558995af3a7e8b7e1c8c65" category="paragraph">規模調整程序需要詳細資料、例如正式作業和非正式作業SAP HANA主機數量、每個主機的RAM大小、以及儲存型Snapshot複本的備份保留期間。SAP HANA主機數量決定了儲存控制器和所需磁碟數量。</block>
   <block id="72512f57a9671c8fd7e4e6c720f19f86" category="paragraph">在容量調整期間、會使用RAM大小、每個SAP HANA主機磁碟上的淨資料大小、以及Snapshot複本備份保留期間做為輸入。</block>
   <block id="019dc6de8e76037cb2c701eebcc7885a" category="summary">若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站。</block>
-  <block id="9e9bd8073039e8b9017ce3890a88b07f" category="list-text">在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議<block ref="c53e7d8b68aab8589d1fe2ae632d97f1" category="inline-link-rx"></block></block>
-  <block id="69d8738d5b71d896a0dc1609b971b14d" category="inline-link">www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf</block>
-  <block id="74b1b173720e87b0062e2526ef199eeb" category="list-text">在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議<block ref="325bd10ade5d3352b63a0d91230eab8c" category="inline-link-rx"></block></block>
-  <block id="f223211a9eb0e2e3ef2fdf31819a1c08" category="list-text">SAP認證的SAP HANA企業儲存硬體<block ref="b2901b5fadd797c41e96b0d0d1767b47" category="inline-link-rx"></block></block>
-  <block id="f14e467c65ef4ff721da90c5b9cbf5ea" category="list-text">SAP HANA儲存需求<block ref="c08aa13f8ebb327df5fe69e0ae014187" category="inline-link-rx"></block></block>
-  <block id="b85044843e3efc484beb8f17420d8426" category="inline-link">www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html</block>
-  <block id="ca31417d8418184dd2ad737980499409" category="list-text">SAP HANA量身打造的資料中心整合常見問題集<block ref="d0f0386672baea12e027b5a778b51eba" category="inline-link-rx"></block></block>
-  <block id="a8da6448607bf45f80e5204b8be68e27" category="inline-link">www.netapp.com/us/media/tr-4646.pdf</block>
-  <block id="24e1d80ffab5b1fa2978d571e09f1a25" category="list-text">TR-4646：SAP HANA災難恢復與儲存複寫<block ref="5535bb7ff97847d56c64f89c0a96ede0" category="inline-link-rx"></block></block>
-  <block id="ab7f9021522a52600fca371af06629f2" category="inline-link">www.netapp.com/us/media/tr-4614.pdf</block>
-  <block id="c5c650b56fbb9fa65cf9e47fde05f179" category="list-text">TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）<block ref="a50e21e630f35731790436c759fca5b7" category="inline-link-rx"></block></block>
-  <block id="0a96172d42ff3da65b0f1c7bc827f84e" category="list-text">TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統<block ref="98a7d509ee148a118d5943b98dac0880" category="inline-link-rx"></block></block>
-  <block id="f15eda444a7f3c1908338e1801c55307" category="inline-link">www.netapp.com/us/media/tr-4667.pdf</block>
-  <block id="69e9c5891ea0d7c109eca9d776a28922" category="list-text">NetApp文件中心<block ref="25f769ea9202a023ba9c99acedadbda6" category="inline-link-rx"></block></block>
-  <block id="e9de988fb4a8df63ad9aa891e14b766c" category="list-text">NetApp FAS 解決方案儲存系統資源<block ref="b8ffe4c4013882c10001270e8b487ee3" category="inline-link-rx"></block></block>
-  <block id="06c9004a0f2fcfcfd8f0e4998e26ceea" category="list-text">SAP HANA軟體解決方案<block ref="f8e283f33fb9df1008b8f59ee91b76be" category="inline-link-rx"></block></block>
   <block id="ae36d6b58fffa77bdfe0d08c2e56cf30" category="summary">從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區。此功能可讓您針對SAP HANA租戶資料庫的資料磁碟區設定兩個以上的LUN、並可擴充至超過單一LUN的大小和效能限制。</block>
   <block id="347050b0ee6af8facb503abbf8ce92c2" category="doc">為SAP HANA單一主機系統新增額外的資料Volume分割區</block>
   <block id="2a986cf5abe7b7785ffcdece33cfc433" category="admonition">不需要使用多個分割區來達成SAP HANA KPI。單一分割區的單一LUN即符合所需的KPI。</block>
@@ -945,18 +880,7 @@
   <block id="beb45bc6e1a41c7a0a9e399cd74843b5" category="section-title">新增額外的datavolume分割區</block>
   <block id="cccc40b2b949eb5631f1a7625e3bbb28" category="paragraph">若要將額外的資料流磁碟分割新增至租戶資料庫、請針對租戶資料庫執行下列SQL陳述式。每個額外的LUN可以有不同的路徑：</block>
   <block id="f63d5e470adeffe7633a6b7dd6a766f0" category="paragraph">您必須同步儲存控制器與SAP HANA資料庫主機之間的時間。所有儲存控制器和所有SAP HANA主機都必須設定相同的時間伺服器。</block>
-  <block id="e716d4cf191a23eed050de97f30c7734" category="list-text">在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議<block ref="156ab83547a69207813015793bfe2332" category="inline-link-rx"></block></block>
-  <block id="970dbae95adcaf61c533fc0168c59d92" category="list-text">在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議<block ref="ed1a4cf8e74958e746c53d94aee28736" category="inline-link-rx"></block></block>
   <block id="77187c93e0b43c549228506243592b1f" category="inline-link"><block ref="77187c93e0b43c549228506243592b1f" category="inline-link-rx"></block></block>
-  <block id="0a3bd9b406b68c67e9ecedb9de02fb0b" category="list-text">SAP認證的SAP HANA企業儲存硬體<block ref="e40283d3953ee3d843b92518a02ffe78" category="inline-link-rx"></block></block>
-  <block id="e0a1169f5eb8d266a87ee416bfe69d83" category="list-text">SAP HANA儲存需求<block ref="38657a01715c45b59546cbf0d906ef65" category="inline-link-rx"></block></block>
-  <block id="e13abf2b6c9591fe151e9286fa5e75a5" category="list-text">SAP HANA量身打造的資料中心整合常見問題集<block ref="3710f13cc62644ea40b0af38f0b1198e" category="inline-link-rx"></block></block>
-  <block id="6f907eb751f7fabe2c63aee8b3529b14" category="list-text">TR-4646：SAP HANA災難恢復與儲存複寫<block ref="62658c7987e92cf3967ab8bdd1e66d18" category="inline-link-rx"></block></block>
-  <block id="7a28a9c1676d9980d4743396ec41e05e" category="list-text">TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）<block ref="026a8e661ca1c91258a93024c126a529" category="inline-link-rx"></block></block>
-  <block id="0aeac98f03977f60da41b25c44ab1d16" category="list-text">TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統<block ref="f3cf3d4bafab3435fc6438043df8d588" category="inline-link-rx"></block></block>
-  <block id="af970b7f5802a374d53f2c5d39adb076" category="list-text">NetApp文件中心<block ref="bf78332b32395471af72955679895502" category="inline-link-rx"></block></block>
-  <block id="f089acce3f0d6fcaced91a0696005dff" category="list-text">NetApp FAS 解決方案儲存系統資源<block ref="65fdf1bbdd083420089318972c99c550" category="inline-link-rx"></block></block>
-  <block id="1d2d39f411f870989256ab7ea42e9394" category="list-text">SAP HANA軟體解決方案<block ref="71aa61c769ce3c313ee996249b3ba484" category="inline-link-rx"></block></block>
   <block id="8bc14f0cb78851f59e85c1d447c2c99f" category="section-title">服務品質</block>
   <block id="37464f39e18200cea48c4d9c6761a91b" category="paragraph">在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。</block>
   <block id="67a6bbb8d3e29659ce53d34fa70d088f" category="paragraph">使用「純快照」分層原則是可行的、FabricPool 而且通常可在備份目標（例如NetApp SnapVault SnapMirror或SnapMirror目的地）上使用SnapMirror。</block>
@@ -1201,9 +1125,7 @@
   <block id="403661a7cc1e3bdbdbb3bc83a0e07b79" category="paragraph">所有NetApp儲存控制器上的支援功能軟體均內建備份機制、可在運作時備份SAP HANA資料庫、不會影響效能。ONTAP以儲存為基礎的NetApp Snapshot備份是完全受支援且整合的備份解決方案、適用於SAP HANA單一容器、以及具有單一租戶或多個租戶的SAP HANA多租戶資料庫容器（MDC）系統。</block>
   <block id="d27691a65309de7a848f265e2a85db07" category="paragraph">NetApp SnapMirror技術可將在單一儲存系統上建立的Snapshot複本複製到SnapCenter 由他人控制的二線備份儲存系統。然後可以針對主要儲存設備上的每個備份集、以及次要儲存系統上的備份集、定義不同的備份保留原則。SAP HANA版的支援功能可自動管理保留Snapshot複製型資料備份與記錄備份、包括備份目錄的管理作業。SnapCenterSAP HANA的支援功能還可執行檔案型備份、執行SAP HANA資料庫的區塊完整性檢查。SnapCenter</block>
   <block id="37a72a4ef96da2b1b4de8dfd6a6578e1" category="paragraph">相較於傳統的檔案型備份、以儲存為基礎的Snapshot備份具有顯著的優勢。這些優勢包括但不限於：</block>
-  <block id="174308ff465221226aee11e550ae48e1" category="admonition">如需SAP HANA備份與還原解決方案的詳細資訊、請參閱<block ref="f91ad5f72ca89ecac47641fa01cbfa5f" category="inline-link-rx"></block>。</block>
   <block id="a87b95aa164115fe66d032fbca70ca68" category="paragraph">SAP HANA災難恢復（DR）可在資料庫層上使用SAP HANA系統複寫、或是在儲存層上使用儲存複寫技術。下節概述以儲存複寫為基礎的災難恢復解決方案。</block>
-  <block id="bbd9cd279c4821dc8442f0cee747a314" category="paragraph">如需SAP HANA災難恢復解決方案的詳細資訊、請參閱<block ref="dfa76f526e34dee57bfae58022907510" category="inline-link-rx"></block>。</block>
   <block id="c51b24aaab462fd7294e78e8c4e9e241" category="summary">本節說明SAP HANA主機專屬的儲存網路設定。</block>
   <block id="8e07acfd1437feec339a101261f3d33e" category="list-text">在VMware設定中、必須將專屬的VMXNET3網路介面卡指派給每個執行中的虛擬機器。如需進一步的要求、請參閱「簡介」中提及的相關文件。</block>
   <block id="44597b05bc198603e6227f2548462391" category="paragraph">在儲存層、會設定四個作用中連線、為每個SAP HANA主機提供10Gb處理量。此外、每個儲存控制器上都會設定一個備用介面。</block>
@@ -1220,13 +1142,8 @@
   <block id="10ac19f67b5c625d18963e0639db41ec" category="cell">3.4版</block>
   <block id="1f8f179d086bf23bb88de92da36a278f" category="cell">支援SAP HANA 2.0 SPS4提供多個資料Volume分割區</block>
   <block id="27cf29d3ba2e543cc0a860ffea48422c" category="cell">3.5版</block>
-  <block id="03b575c94f6241e48ac06a45c8ae1da0" category="cell">版本3.6</block>
   <block id="bca5b2fa001874580bf261991fd79806" category="cell">支援nconnect for NFSv4.1、從ONTAP 推出全新SAP HANA版本的更新OS版本開始</block>
-  <block id="2f1608c7920dcb5d09df4373ee6cef94" category="cell">3.7版</block>
   <block id="896435116179bed2dde76b00414b4fa5" category="cell">新的NetApp儲存系統會在主機網路設定中發生些微變更</block>
-  <block id="68be744220cfff40ab15d535a912c8a0" category="list-text">TR-4646：SAP HANA災難恢復搭配使用SnapCenter NetApp HANA外掛程式的非同步儲存複寫</block>
-  <block id="b4142d7007d4ca027509ca5370c0f3e9" category="list-text">NetApp FAS 解決方案儲存系統資源</block>
-  <block id="71aa61c769ce3c313ee996249b3ba484" category="paragraph"><block ref="71aa61c769ce3c313ee996249b3ba484" category="inline-link-rx"></block></block>
   <block id="ae2868fd55605b6107ba93c6890a3b53" category="summary">從SAP HANA 1.0 SPS10開始、SAP引進參數來調整IO行為、並針對所使用的檔案和儲存系統最佳化資料庫。</block>
   <block id="834a8b3050b2226b4812fb49026571b3" category="paragraph">從SAP HANA 2.0開始、「hdbparam」已被淘汰、參數已移至「global.ini`」。這些參數可以使用SQL命令或SAP HANA Studio來設定。如需詳細資料、請參閱SAP附註<block ref="6af86c07e5a30516e9705c5fc7252793" category="inline-link-rx"></block>。您也可以在global.ini中設定參數、如下列文字所示：</block>
   <block id="31835039a339b5b0f4d95c207e26b5e3" category="paragraph">自SAP HANA 2.0 SPS5以來、可使用「SetPar出aretector.py」指令碼來設定正確的參數：</block>
@@ -3287,11 +3204,8 @@
   <block id="ac8d5bfc0cf9544d6cc1869d7061a604" category="paragraph">然後、此新磁碟區會掛載到目標DB主機上、系統資料庫和租戶資料庫會使用內含的Snapshot複本來還原。成功還原之後、SAP HANA資料庫會自動啟動。SAP HANA資料庫的這項啟動、大部分時間都是在複製階段。無論資料庫大小為何、其餘步驟通常會在數秒到數分鐘內完成。下圖顯示如何使用SAP提供的python還原指令碼來還原系統資料庫。</block>
   <block id="bb19e82722621ce22f94d846c584a966" category="paragraph">複製階段結束後、LSC會繼續執行後續階段的所有已定義步驟。當系統重新整理程序完全完成時、目標系統會重新啟動並執行、而且完全可用。使用本實驗室系統、SAP系統重新整理的總執行時間約為25分鐘、其中複製階段僅需5分鐘。</block>
   <block id="aed4be0abac71ea3a4ee20b172e42949" category="sidebar">利用Libelle SystemCopy自動化SAP系統複製作業</block>
-  <block id="2c5d95d1e63dd18b275493c1704ed479" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化</block>
   <block id="bc2cda4f2510d2d58906aedd61e82e50" category="inline-link"><block ref="bc2cda4f2510d2d58906aedd61e82e50" category="inline-link-rx"></block></block>
   <block id="acae3e0452c3127b0c142245461a61ae" category="paragraph"><block ref="acae3e0452c3127b0c142245461a61ae" category="inline-link-rx"></block></block>
-  <block id="6aa1ba1b9f6e5fae64ea9d88054f4805" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化<block ref="637c8239b2db20891c482cfa0b2e2b23" category="inline-link-rx"></block></block>
-  <block id="7e00b6917da8eaba0d8e9182e2234480" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化<block ref="acae3e0452c3127b0c142245461a61ae" category="inline-link-rx"></block></block>
   <block id="845479810e43d8fc64263c1a762de016" category="paragraph">若要從來源資料庫執行自動Snapshot複本型備份、並為新的目標資料庫建立複本、LSC與SnapCenter Sfor之間所述的整合會使用中所述的組態選項和指令碼 <block ref="6cb270d5a2712c948be937faf1cb1d50" category="inline-link-macro-rx"></block>。</block>
   <block id="66988e72fd271cabc6a7489ab70e1a4f" category="list-text"><block ref="66988e72fd271cabc6a7489ab70e1a4f" category="inline-link-rx"></block></block>
   <block id="5c427e461906a4b90dc3d5777ec58bfa" category="paragraph">雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。如需不同使用案例的詳細資訊、請參閱技術報告<block ref="d89e94a6aaf703375bdbc4104c3e8227" category="inline-link-rx"></block>。</block>
@@ -3605,7 +3519,6 @@
   <block id="bc30fa07361c376b0079c00d85091f1e" category="paragraph">SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存控制器。SAP HANA主機與儲存控制器之間的資料通訊是以NFS傳輸協定為基礎。</block>
   <block id="1ffe19554e4db8e2355d91449e77fa5a" category="paragraph">如果交換器或網路介面卡（NIC）發生故障、建議使用備援交換基礎架構來提供容錯SAP HANA主機對儲存設備連線。交換器可能會將個別連接埠效能與連接埠通道集合起來、以便在主機層級顯示為單一邏輯實體。</block>
   <block id="93f305eb7fa597fc876f2e0744abf06b" category="paragraph">這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
-  <block id="e08842ba37eacff4f1a5b7fcf9749dc3" category="paragraph">。<block ref="6f72acaebcb9a0de6696aaf3508a6144" prefix=" " category="inline-code"></block> 參數必須在中設定<block ref="8ad2bc27658297501e1a64bf77a1fd56" prefix=" " category="inline-code"></block>。如果檔案不存在、則必須先新增下列行來建立：</block>
   <block id="b7de930c0dd2d22c43e147a8da62d970" category="admonition">效能測試顯示<block ref="6ad27604f562c1a2600540bd7f1094d4" prefix=" " category="inline-code"></block> 提供良好的讀取結果、尤其是資料磁碟區的讀取結果。記錄寫入可能會因為工作階段數量較少而受益、例如<block ref="b3e16d81f1f84d087c55c1815a58a64c" prefix=" " category="inline-code"></block>。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
   <block id="d7d1e0b01aa98fdaaa388843234520d5" category="admonition">NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。</block>
   <block id="953d9b4b8aec5e0f96c90ef8b3d12b68" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽的數量應根據下列規則進行調整：
@@ -4255,13 +4168,495 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="3011dd9126a94f9a666a7fd4dc5610ae" category="paragraph">詳細的逐步說明可在技術報告中找到</block>
   <block id="0a93e03f240cb8b42069573a99818021" category="list-text"><block ref="0a93e03f240cb8b42069573a99818021" category="inline-link-macro-rx"></block></block>
   <block id="77b50001f65f6144e393afa83a9d4e21" category="list-text"><block ref="77b50001f65f6144e393afa83a9d4e21" category="inline-link-macro-rx"></block></block>
-  <block id="ac94faeb4f3a2c19cbff27de5edf7c3d" category="list-text"><block ref="ac94faeb4f3a2c19cbff27de5edf7c3d" category="inline-link-macro-rx"></block></block>
-  <block id="769a56e6a2d7cc689b61d13a608afdcf" category="list-text"><block ref="769a56e6a2d7cc689b61d13a608afdcf" category="inline-link-macro-rx"></block></block>
-  <block id="34132f76907288db0e5acc88b699349f" category="list-text"><block ref="34132f76907288db0e5acc88b699349f" category="inline-link-macro-rx"></block></block>
   <block id="a5cf81e748f3b3e6fad26b2e3470f879" category="list-text"><block ref="a5cf81e748f3b3e6fad26b2e3470f879" category="inline-link-macro-rx"></block></block>
-  <block id="3a45e49c1772de2900939131e021fa41" category="list-text"><block ref="3a45e49c1772de2900939131e021fa41" category="inline-link-macro-rx"></block></block>
-  <block id="4d95a1c44f1bef40694360da5b9a600b" category="list-text"><block ref="4d95a1c44f1bef40694360da5b9a600b" category="inline-link-macro-rx"></block></block>
   <block id="87c8349f2562b9df828a79206981328c" category="list-text"><block ref="87c8349f2562b9df828a79206981328c" category="inline-link-macro-rx"></block></block>
   <block id="20a0dcae2f540339bbf69dbaa7f0050a" category="list-text"><block ref="20a0dcae2f540339bbf69dbaa7f0050a" category="inline-link-macro-rx"></block></block>
-  <block id="bdd953fb1656612c27158a06dfa9be52" category="list-text"><block ref="bdd953fb1656612c27158a06dfa9be52" category="inline-link-macro-rx"></block></block>
+  <block id="4e5ae341560efcd98656c39143566e4b" category="image-alt">Amazon FSX 影像 76</block>
+  <block id="57c9602da3883f8af6a22d5d6a3ace87" category="image-alt">Amazon FSX 影像 77</block>
+  <block id="e592b9bd5f5618b757a1bc681dca72ff" category="image-alt">Amazon FSX 影像 78</block>
+  <block id="a808595bb32c1e05ec637b2acc6d0c74" category="image-alt">Amazon FSX 影像 86</block>
+  <block id="5bc7eaaacb1929c9e985b9c322c2e24d" category="image-alt">Amazon FSX 影像 87</block>
+  <block id="0d6ceb4e12067d3eaa7bf00dfd9df426" category="image-alt">Amazon FSX 影像 1</block>
+  <block id="06c9fa1730c325d3cd3ed4abe20a666d" category="image-alt">Amazon FSX 影像 2.</block>
+  <block id="a23895f15c5838590499d555141b8a8b" category="image-alt">Amazon FSX 影像 3.</block>
+  <block id="94c13966ad02e7f93ccca509903cb3bb" category="image-alt">Amazon FSX Image4</block>
+  <block id="9afe1d44b843b1e38c2aaf96edbd165d" category="image-alt">Amazon FSX 影像 60</block>
+  <block id="be3cf1bd50f74ed4dd6e8526728692dd" category="image-alt">Amazon FSX 影像 61.</block>
+  <block id="d4a864de287e755e9ab7de1082efbe4c" category="image-alt">Amazon FSX 影像 62</block>
+  <block id="32750a364676050c598dd4ac93cf7ee0" category="image-alt">Amazon FSX 影像 63.</block>
+  <block id="23448722f46538847f624fa7324df0d4" category="image-alt">Amazon FSX 影像 64</block>
+  <block id="9035bc1e558abd3c02ff5ecc7d0955ee" category="image-alt">Amazon FSX 影像 65</block>
+  <block id="b84e863336c1c98e3c3c89791f8e60a6" category="image-alt">Amazon FSX 影像 66</block>
+  <block id="63d428d1439ee0524a3ef9da35ad8119" category="image-alt">Amazon FSX 影像 67</block>
+  <block id="da7501ff08f05edd48f2e5f6e5dbb0da" category="image-alt">Amazon FSX 影像 68</block>
+  <block id="ba7492c7eff15b4df8ffd19e75787268" category="image-alt">Amazon FSX 影像 69</block>
+  <block id="afb09b61c9f8ca2ae38135f624d2793a" category="image-alt">Amazon FSX 影像 70</block>
+  <block id="2569a595e4961b09622c52c016a41873" category="image-alt">Amazon FSX 影像 71.</block>
+  <block id="e000e091fed554fd20c745469e86abfe" category="image-alt">Amazon FSX 影像 72.</block>
+  <block id="dffd24f1028dd9a51c944ac44fc3d9ad" category="image-alt">Amazon FSX 影像 73</block>
+  <block id="706ab09a292c07573cd25261e25699c2" category="image-alt">Amazon FSX 影像 74</block>
+  <block id="193a0f3de5920811f53b9f2e7b8c3b50" category="image-alt">Amazon FSX 影像 75</block>
+  <block id="abe53b840ede1893a3b6a5769acf93f8" category="image-alt">Amazon FSX 影像 8.</block>
+  <block id="6f5b8831d044c314b8a259013b351a1d" category="image-alt">Amazon FSX 影像 88</block>
+  <block id="fedbe5791ad0d2edbfd565bbdeeb4d46" category="image-alt">Amazon FSX 影像 89</block>
+  <block id="f5d3adb9f8ee10283aab9dd96731fe7f" category="image-alt">Amazon FSX 影像 90</block>
+  <block id="ea62f16c69ab0a3b431c1c6bc333dd49" category="image-alt">Amazon FSX 影像 91</block>
+  <block id="80a4438a175f51d3d9a49a5677f1147c" category="image-alt">Amazon FSX 影像 79</block>
+  <block id="f4625e49eb64aaafef3304e83e26aa1f" category="image-alt">Amazon FSX 影像 80</block>
+  <block id="c23ee02158b2870b9883eb008cfda782" category="image-alt">Amazon FSX 影像 81</block>
+  <block id="a46ccf974052685217205387d2588cb5" category="image-alt">Amazon FSX 影像 82</block>
+  <block id="9935624c2edd1b032a9f67c84421382d" category="image-alt">Amazon FSX 影像 83.</block>
+  <block id="aaf32edf8648b99bd9522c63fde1e9c7" category="image-alt">Amazon FSX 影像 84</block>
+  <block id="464089806337d289379c8b63b68cbcb6" category="image-alt">Amazon FSX 影像 85</block>
+  <block id="605d3720209498a4eeb44689f0fd037d" category="image-alt">Amazon FSX 影像 92</block>
+  <block id="1a58fbfdc3fd13ab15b78d04302a4780" category="image-alt">Amazon FSX 影像 93</block>
+  <block id="b5cc9919fd12305c3ef3cf5d64871e82" category="image-alt">Amazon FSX 影像 5.</block>
+  <block id="4db7d15d5ac4d33e9fbc7c7f0cb7bfe3" category="image-alt">Amazon FSX 影像 6.</block>
+  <block id="57f2b4a3fb68a49a0eaa5fda11a3ba1c" category="image-alt">Amazon FSX 影像 7.</block>
+  <block id="b82661a634c255aa6f2805fd4f6b0728" category="image-alt">Amazon FSX 影像 48</block>
+  <block id="436284f9759d822e96a634225264a468" category="image-alt">Amazon FSX 影像 49</block>
+  <block id="1f9af8270a50bfe062131236b4e00780" category="image-alt">Amazon FSX 影像 50</block>
+  <block id="2b0f8c7ea2b9c2fe7d2a9f30ce761b7d" category="image-alt">Amazon FSX 影像 51.</block>
+  <block id="ed2070aafdbf2efb65b709e1a9a16d23" category="image-alt">Amazon FSX 影像 52</block>
+  <block id="15816f6c8ab63b5bca5711e57eb9d7bd" category="image-alt">Amazon FSX 影像 53.</block>
+  <block id="c2baa88487dc1e201880c7ec2eb26c28" category="image-alt">Amazon FSX 影像 54</block>
+  <block id="9e290a6c943c5a38ada617a89cab98a5" category="image-alt">Amazon FSX 影像 55</block>
+  <block id="ab8d148fde69f680573458cff1714ca8" category="image-alt">Amazon FSX 影像 56</block>
+  <block id="3a32f95c74dd7ded88d7b3c3756c78e4" category="image-alt">Amazon FSX 影像 57</block>
+  <block id="6083dde773a7749e1de709565758118f" category="image-alt">Amazon FSX 影像 58</block>
+  <block id="e86e98ad64a7b98693208bf7695e2e89" category="image-alt">Amazon FSX 影像 59</block>
+  <block id="a165e9a9d989fde195669bc0bf098efa" category="image-alt">Amazon FSX 影像 9.</block>
+  <block id="9b803600b829e98808964f7e0914ccf9" category="image-alt">Amazon FSX 影像 10.</block>
+  <block id="a623d55339c5bde6c7b5466b7dd1753b" category="image-alt">Amazon FSX 影像 11.</block>
+  <block id="2d37573ef166e17717fbeb5df6ed2c26" category="image-alt">Amazon FSX 影像 12.</block>
+  <block id="3adbb99fc635e1af623ed2d32d019ed6" category="image-alt">Amazon FSX 影像 13.</block>
+  <block id="ffae942621c767941890ccab8c8b0943" category="image-alt">Amazon FSX 影像 14.</block>
+  <block id="5191463009a7e93410afbbb792682b3f" category="image-alt">Amazon FSX 影像 15.</block>
+  <block id="f135cddb02eddf70cbbc9a12c55f7024" category="image-alt">Amazon FSX 影像 16.</block>
+  <block id="8327b40fca543f47fb9cf9bd7114d50e" category="image-alt">Amazon FSX 影像 17.</block>
+  <block id="8c5f0fa32ae8598e06858e67282035b7" category="image-alt">Amazon FSX 影像 18.</block>
+  <block id="5c29ab4de83f27d2d6d9dbbc2238d4d3" category="image-alt">Amazon FSX 影像</block>
+  <block id="f0b49b3179d19d914fb443254640a962" category="image-alt">Amazon FSX 影像 20</block>
+  <block id="a6116a0114ae1d3df1652ba5404a60f4" category="image-alt">Amazon FSX 影像 21.</block>
+  <block id="ea89b31f722023612270150ebf313495" category="image-alt">Amazon FSX 影像 22.</block>
+  <block id="f91d73a9c60cee750ca6bf239cbc91e7" category="image-alt">Amazon FSX 影像 23.</block>
+  <block id="5f22d636cbb044b66d6eee67879bb761" category="image-alt">Amazon FSX 影像 24</block>
+  <block id="dc6b0a6a25f526e5fb5d0ebb2516bddf" category="image-alt">Amazon FSX 影像 25</block>
+  <block id="abf8c395a41b718670ecf7a6b7b822fa" category="image-alt">Amazon FSX 影像 26.</block>
+  <block id="b92e3d9dcd257f798db437c82ec024eb" category="image-alt">Amazon FSX 影像 27.</block>
+  <block id="b61c7e22fbd87d78c8c42dacde2cda9d" category="image-alt">Amazon FSX 影像 28</block>
+  <block id="6acedfab928127a8258c01ffe62504b6" category="image-alt">Amazon FSX 影像</block>
+  <block id="f394c39eff6b58f1f996f9817cc37f5a" category="image-alt">Amazon FSX 影像 30</block>
+  <block id="f358423a4399cac03731a4fa0d9f769a" category="image-alt">Amazon FSX 影像 31</block>
+  <block id="e6c5079d75b6a84cb0b089a447d1b4f1" category="image-alt">Amazon FSX 影像 32.</block>
+  <block id="77ecd0395783c6c5e82c90164cf4276f" category="image-alt">Amazon FSX 影像 33.</block>
+  <block id="7906392d75b1eccc56d6a5f523f57640" category="image-alt">Amazon FSX 影像 34</block>
+  <block id="cbe58ae220d4cb71e2326c807dd55c93" category="image-alt">Amazon FSX 影像 35</block>
+  <block id="7fe67820f5ab8459234f51906121d829" category="image-alt">Amazon FSX 影像 36.</block>
+  <block id="ed982506eee32bde9238153309e4f7b2" category="image-alt">Amazon FSX 影像 37</block>
+  <block id="60cfafc2dfc182be41aa644f494786e4" category="image-alt">Amazon FSX 影像 38.</block>
+  <block id="f827d38a4a627c13cbe42ed7845b163a" category="image-alt">Amazon FSX 影像 39</block>
+  <block id="627ca5caa91bcc8ea44fb2925e9c2147" category="image-alt">Amazon FSX 影像 40</block>
+  <block id="3505049f00ecccb9eba66f9e891393d3" category="image-alt">Amazon FSX 影像 41.</block>
+  <block id="ff5b6c16625be7fbe7ddd1ed79835193" category="image-alt">Amazon FSX 影像 42.</block>
+  <block id="5e4e0077e9ecae29651a789ba4d23a84" category="image-alt">Amazon FSX 影像 43.</block>
+  <block id="db3d0600ac75527803d2a8880204912f" category="image-alt">Amazon FSX 影像 44</block>
+  <block id="69617460966e1e8c8980b864c4c778e0" category="image-alt">Amazon FSX 影像 45</block>
+  <block id="19a9b907b7f185aa26ded76628e3790e" category="image-alt">Amazon FSX 影像 46</block>
+  <block id="0302ba128a4e3ebd3147c4bf8abd000c" category="image-alt">Amazon FSX 影像 47</block>
+  <block id="b451558345361d9b49b9fd8e9fd26c76" category="image-alt">saphana br SCS 影像 154.</block>
+  <block id="bedbeb204cfee664a1a9bf8766d60cd5" category="image-alt">saphana br SCS 版本 34</block>
+  <block id="86c9e029da4b4295aea3a800c54be05e" category="image-alt">saphana br SCS 影像 155.</block>
+  <block id="9f776ab4496e8f80effb18d7ea449d9c" category="image-alt">saphana br SCS 影像 156.</block>
+  <block id="7f52d60b7171580c37767bce2fa7686e" category="image-alt">saphana br SCS 版本 157</block>
+  <block id="e0f2e8aaf92767abf1769ebd3db8399a" category="image-alt">saphana br SCS 影像 158</block>
+  <block id="15cd87abfcf7ceb53ad12aedd6a8d0d5" category="image-alt">saphana br SCS 版本 94</block>
+  <block id="1e73fe542a30464def9088e2d294933d" category="image-alt">saphana br SCS 版本 95</block>
+  <block id="0193e6485ed98b4f4a6d7adcaedc114e" category="image-alt">saphana br SCS 版本 82.</block>
+  <block id="a488e40b139c0697fcda922f93c517f4" category="image-alt">saphana br SCS 影像 83.</block>
+  <block id="3181c7ec160423b88f2a6e8e501b4fd6" category="image-alt">saphana br SCS 版本 84.</block>
+  <block id="e160ea1e6fde7fffc96236ca37f25992" category="image-alt">saphana br SCS 影像 85</block>
+  <block id="c3e738aaaa1cf947df0b4aa96ae27de5" category="image-alt">saphana br SCS 影像 86</block>
+  <block id="2384cd44e69167b7b0846f4634296ee4" category="image-alt">saphana br SCS image86.5</block>
+  <block id="820cd08119fdf54fc136b3a3e8dc31c8" category="image-alt">saphana br SCS 版本 87</block>
+  <block id="f93a211019ffe1bdc3566fa26f3ddfb4" category="image-alt">saphana br SCS 版本 88</block>
+  <block id="0a36cc9e8d826989bf00651312df211f" category="image-alt">saphana br SCS 影像 89</block>
+  <block id="dd365197b4a5e0b6f7e8efee5655f7eb" category="image-alt">saphana br SCS 版本 90</block>
+  <block id="13ad02f54ae78a2c0bff0856653d583c" category="image-alt">saphana br SCS 影像 91.</block>
+  <block id="bf934713ae382933c5d099f61ac1864c" category="image-alt">saphana br SCS 影像 92</block>
+  <block id="ee3479f0159c8bfa9ed32bd3c1d3ead9" category="image-alt">saphana br SCS 版本 93</block>
+  <block id="e84801ba440a3a826a5e32f6ec6243c7" category="image-alt">saphana br SCS 影像 21.</block>
+  <block id="f7b1649db4d9d166128377f5916094ee" category="image-alt">saphana br SCS 影像 1</block>
+  <block id="4d32bd24e535107fa5e5cf7bb297857d" category="image-alt">saphana br SCS 影像 2.</block>
+  <block id="61aa75b0f9d1888db85b4d5303403de1" category="image-alt">saphana br SCS 影像 3.</block>
+  <block id="40c754b56b8cc015d5d6a77e79b9d53e" category="image-alt">saphana br SCS Image4</block>
+  <block id="4ba7a64a15a101218031770158edb889" category="image-alt">saphana br SCS 影像 5.</block>
+  <block id="067ef47398f2813dfb70f53e21ce125e" category="image-alt">saphana br SCS 版本 96</block>
+  <block id="d009b59af26578a825118c95d8ea9b56" category="image-alt">saphana br SCS 影像 97</block>
+  <block id="3872f2d0297144d546b0a9eb34624cd1" category="image-alt">saphana br SCS 影像 98</block>
+  <block id="9179a5efec4976939a2717edac2b715a" category="image-alt">saphana br SCS 影像 99</block>
+  <block id="dd6fa5a5c9a6175824d6502a3e066d9c" category="image-alt">saphana br SCS image100</block>
+  <block id="305f57324a7a74d7883e65d91cbcaf43" category="image-alt">saphana br SCS 影像 101</block>
+  <block id="46970fa1fd841580a458f867e47fafd5" category="image-alt">saphana br SCS 影像 102.</block>
+  <block id="7f72d722847e8cea191fbf0955e3cbf1" category="image-alt">saphana br SCS 影像 103.</block>
+  <block id="c196d3f52e7db7c1de16397a9192becc" category="image-alt">saphana br SCS 影像 104.</block>
+  <block id="e8add5373001efc95cd1eefdc79453e1" category="image-alt">saphana br SCS 影像 105.</block>
+  <block id="a904ef364175490bbd2d35599d101511" category="image-alt">saphana br SCS 影像 106.</block>
+  <block id="1ee32537b8328884f6440f3f706f10dd" category="image-alt">saphana br SCS 影像 107-</block>
+  <block id="cf50e8d996b3fa339ebef5f2dc27cc7f" category="image-alt">saphana br SCS 影像 108.</block>
+  <block id="6a068ac1164f0e85bc5b890dcbe73f5b" category="image-alt">saphana br SCS 影像 109.</block>
+  <block id="e1e37e2a1e848647a50e9f043e71e34d" category="image-alt">saphana br SCS 影像 110</block>
+  <block id="824cd1c40e610369b4b1fa4a6b2ca8b0" category="image-alt">saphana br SCS 影像 111.</block>
+  <block id="31ac3bd29668b7f34e51a10dc12c35ea" category="image-alt">saphana br SCS 影像 112</block>
+  <block id="f9ee3b55bd8372affbb53ca498119770" category="image-alt">saphana br SCS 版本 113</block>
+  <block id="201d7953c0f1834ff59cf48a12b28fd0" category="image-alt">saphana br SCS 影像 114.</block>
+  <block id="047879018f86fb6598b56fba3855c254" category="image-alt">saphana br SCS 影像 115</block>
+  <block id="b5564ea373abb37fc2eba3c11eac8830" category="image-alt">saphana br SCS 影像 116.</block>
+  <block id="b6c9a8a76f1a8c8350927656a2390f40" category="image-alt">saphana br SCS 影像 117.</block>
+  <block id="07ffb2d11afc100c610303bc7594a495" category="image-alt">saphana br SCS 影像 118</block>
+  <block id="85fa23c86621897c1e0e4e521541d5b5" category="image-alt">saphana br SCS 影像 119</block>
+  <block id="443589843292d0cf7d3789fa5c459f44" category="image-alt">saphana br SCS 影像 120</block>
+  <block id="6ef7f3be4322c4b21e3d151ebe84c6d8" category="image-alt">saphana br SCS 影像 121.</block>
+  <block id="bfa74a67cb10168b04fbb07d68715825" category="image-alt">saphana br SCS 影像 122.</block>
+  <block id="fe200521767d0d15c714f16e8e6028d6" category="image-alt">saphana br SCS 影像 123.</block>
+  <block id="3282ea1695201cd127a16240be5bad21" category="image-alt">saphana br SCS 版本 124.</block>
+  <block id="de66ca262932eb8f24f9f07be87d0603" category="image-alt">saphana br SCS 影像 125.</block>
+  <block id="b8a826b87547af05181bb51436623120" category="image-alt">saphana br SCS 版本 126.</block>
+  <block id="1889fae83b4016ca8e8935f3d290b138" category="image-alt">saphana br SCS 影像 127.</block>
+  <block id="4850d8e212c135fb90f29abb26cd78a2" category="image-alt">saphana br SCS 影像 128</block>
+  <block id="3ce38a12bf3f4cf56b1f20e8ea97309b" category="image-alt">saphana br SCS 版本 129.</block>
+  <block id="16be6aae8ec520e0a8994324177c65e6" category="image-alt">saphana br SCS 影像 130</block>
+  <block id="1971988d74fd150ad8f86cff3b9f7f42" category="image-alt">saphana br SCS 影像 131.</block>
+  <block id="42b1af0c2e5e3bced1a55a4524a3c738" category="image-alt">saphana br SCS 版本 132.</block>
+  <block id="f5af6a8ed0d66acf18caea877f73f680" category="image-alt">saphana br SCS 影像 133.</block>
+  <block id="553e8f1c51520b7b78e4c61974b9f3c2" category="image-alt">saphana br SCS 版本 134.</block>
+  <block id="5ac781537fb8070c76e363921ae422da" category="image-alt">saphana br SCS 影像 135-135</block>
+  <block id="f012477d233c56b6e8bd12df42263171" category="image-alt">saphana br SCS 影像 136</block>
+  <block id="5ec282e8dc975302dcd528af5ccb51b1" category="image-alt">saphana br SCS 影像 137.</block>
+  <block id="daa4ead09a691e6fedbd47756d4b13e1" category="image-alt">saphana br SCS 影像 138</block>
+  <block id="737b09239ea2be00fa89cb728e6a406a" category="image-alt">saphana br SCS 影像 139.</block>
+  <block id="c662beccb568d0274955929c9b93c359" category="image-alt">saphana br SCS 影像 140</block>
+  <block id="7a6f9edada570c617779474e9c58e84b" category="image-alt">saphana br SCS 影像 141.</block>
+  <block id="e33a5537daa1fecd0524c6dad33ad95c" category="image-alt">saphana br SCS 影像 142.</block>
+  <block id="53daa9bd5b9f8ccc09d50e5d13aca672" category="image-alt">saphana br SCS 影像 143.</block>
+  <block id="b7d522760b192cd3b574207ad6cb65a5" category="image-alt">saphana br SCS 版本 144.</block>
+  <block id="5e310aafffa8418e239fc1e0378de45a" category="image-alt">saphana br SCS 影像 145.</block>
+  <block id="6e8fc5a8f1f624631a2289c3634478e6" category="image-alt">saphana br SCS 版本 146</block>
+  <block id="236dc76cd17253156df1e7ecd309fb55" category="image-alt">saphana br SCS 版本 147</block>
+  <block id="4c5cea524a9ab9e502d0fe64c20baa2e" category="image-alt">saphana br SCS 版本 148</block>
+  <block id="67d31bcc38c89bcdfed10bf782fb430e" category="image-alt">saphana br SCS 版本 149.</block>
+  <block id="aadf36f035d62a3f33fb404d695a12ee" category="image-alt">saphana br SCS 影像 150</block>
+  <block id="3c33f0252148e6fb10f48fe3aaa972e0" category="image-alt">saphana br SCS 影像 151.</block>
+  <block id="2fe8bcc350a756ab80e3eca4456638a5" category="image-alt">saphana br SCS 影像 152.</block>
+  <block id="da3f5637842fcf0343ef47396aefc6e8" category="image-alt">saphana br SCS 影像 153.</block>
+  <block id="5b15a5eb9d693486c6b0041e513d1471" category="image-alt">saphana br SCS 版本 6.</block>
+  <block id="466a6922649f2d966cc574ed22f03e86" category="image-alt">saphana br SCS 影像 9.</block>
+  <block id="079f790100be851cacc15c68094d33ae" category="image-alt">saphana br SCS 影像 10.</block>
+  <block id="65c243569e275c82873962ec7260faeb" category="image-alt">saphana br SCS 影像 11.</block>
+  <block id="098349f3c014bd3171aa022a5ae5a039" category="image-alt">saphana br SCS 影像 12.</block>
+  <block id="3d31e6fdd1a0e35e96acf704e276b537" category="image-alt">saphana br SCS 版本 13.</block>
+  <block id="f8620ab7597c0c159583ac0ab8a18f19" category="image-alt">saphana br SCS 影像 14.</block>
+  <block id="767108947b72940db007d78ae607ce4c" category="image-alt">saphana br SCS 影像 15.</block>
+  <block id="1748347c7dc8e2be6f1224d0bd61a557" category="image-alt">saphana br SCS 版本 16</block>
+  <block id="f739c60f0266a96b7f66b37ea8f0a140" category="image-alt">saphana br SCS 影像 17.</block>
+  <block id="ba891b7bbef7ded6c34bdcaddddd6632" category="image-alt">saphana br SCS 版本 18</block>
+  <block id="7540861a9eeb8c3d06c8eb595c755cae" category="image-alt">saphana br SCS 版本 19</block>
+  <block id="9dc2c46f2486730bb660420205e53d46" category="image-alt">saphana br SCS 版本 20</block>
+  <block id="a65f36fa36cfac7ce257d271aeadf34d" category="image-alt">saphana br SCS 影像 22.</block>
+  <block id="49ca175a8cf3117d0683f89106ad8f47" category="image-alt">saphana br SCS 影像 23.</block>
+  <block id="25f8f0fd921918061363dce1a14a8053" category="image-alt">saphana br SCS 版本 24</block>
+  <block id="1895447be6efc4561fd7f08dbc78d1b4" category="image-alt">saphana br SCS 版本 25</block>
+  <block id="546c2f8f1a6d7db6b79f4ee130cf0771" category="image-alt">saphana br SCS 版本 26</block>
+  <block id="d8552f713155677556bcf5f95b31906c" category="image-alt">saphana br SCS 版本 27</block>
+  <block id="9493fdb1c34baa981b0cf2cd9ff33074" category="image-alt">saphana br SCS 版本 28</block>
+  <block id="6c64292393d5b15db5faff7682cbc4e3" category="image-alt">saphana br SCS 版本 29</block>
+  <block id="fecf924f001e6bad69c577b0ea35a8b2" category="image-alt">saphana br SCS 版本 30</block>
+  <block id="fcc71096b3baed7f650bf04aedf921ea" category="image-alt">saphana br SCS 版本 31</block>
+  <block id="9be710b70cce8e56c646048b2cf1f8cd" category="image-alt">saphana br SCS 影像 32.</block>
+  <block id="4cf99e31490b4280c80998cc216ac03a" category="image-alt">saphana br SCS 版本 33</block>
+  <block id="59668d78f2444f8328997a18d1ea6cb0" category="image-alt">saphana br SCS 版本 35</block>
+  <block id="045a6044559f5566941d7f8a49952bcc" category="image-alt">saphana br SCS 影像 36.</block>
+  <block id="d45137d06d93a520f91d06654706352d" category="image-alt">saphana br SCS 版本 37</block>
+  <block id="77be07f66ca6a30f6dc76d22969b0c44" category="image-alt">saphana br SCS 影像 38.</block>
+  <block id="f23ee78a7e87858ff08ebcdc07ddaefe" category="image-alt">saphana br SCS 版本 39</block>
+  <block id="ea376e80d52dca5d9f4155b28fcc4210" category="image-alt">saphana br SCS 版本 40</block>
+  <block id="89fc6ec03699cacd515272660665f251" category="image-alt">saphana br SCS 版本 41.</block>
+  <block id="21364037462923d7f0ff9fa0267e148f" category="image-alt">saphana br SCS 版本 42.</block>
+  <block id="8c48dcadf7fde1ab7d73f2b6d252aa5f" category="image-alt">saphana br SCS 影像 43.</block>
+  <block id="9ebad9ecbfc66e3140455ca7833a18e6" category="image-alt">saphana br SCS 版本 44</block>
+  <block id="461df75a7d97742f6f7cf289be4407e0" category="image-alt">saphana br SCS 影像 45</block>
+  <block id="18eebbdd78ec778bf533d530b6972e39" category="image-alt">saphana br SCS 版本 46</block>
+  <block id="12c0688111c7fcd916dc14222d68f56f" category="image-alt">saphana br SCS 影像 47</block>
+  <block id="eae54b4cca11c96d0846e925942a0e29" category="image-alt">saphana br SCS 版本 48</block>
+  <block id="4fd967339b16495705987d51d01edbc0" category="image-alt">saphana br SCS 版本 49</block>
+  <block id="93d069cd593b9292757e26041461ed11" category="image-alt">saphana br SCS 影像 50</block>
+  <block id="5f1560849fb472855b8128c93e518b5f" category="image-alt">saphana br SCS 影像 51.</block>
+  <block id="34db42b43129fec1d30c6ae6cdc87c22" category="image-alt">saphana br SCS 版本 52</block>
+  <block id="94272f510dc6f3e330a3b4aefbda07e3" category="image-alt">saphana br SCS 影像 78</block>
+  <block id="a58295c2d58a578014c00f2e9c3c8205" category="image-alt">saphana br SCS 版本 79</block>
+  <block id="7a7d220cd12e76861df0f771cbb3a7ec" category="image-alt">saphana br SCS 版本 80</block>
+  <block id="2cac7b525ff32a1a6e6ba3ae5a3e28e5" category="image-alt">saphana br SCS 版本 81.</block>
+  <block id="c698114f54d974848f807e8a45246b9a" category="image-alt">saphana br SCS 影像 53.</block>
+  <block id="8ebaa4c070173324853a290b7fede02d" category="image-alt">saphana br SCS 影像 54</block>
+  <block id="5cb34e6774cad7e0c6d0e807bc1bc841" category="image-alt">saphana br SCS 版本 55</block>
+  <block id="882bcae26b004371bf1f621c00b8a15a" category="image-alt">saphana br SCS 版本 56</block>
+  <block id="925d6a5874b29df67168c6e5ad021f5b" category="image-alt">saphana br SCS 影像 57</block>
+  <block id="7fe59739e30463b403366e7e9343b311" category="image-alt">saphana br SCS 影像 58</block>
+  <block id="d5aede587fce96732e6745a9a0ba2326" category="image-alt">saphana br SCS 影像 59</block>
+  <block id="0935b095d0afd85190f13933cd64da40" category="image-alt">saphana br SCS 版本 60</block>
+  <block id="7fef82177b4a15b50548003ad02e4d32" category="image-alt">saphana br SCS 影像 61.</block>
+  <block id="9afb79697e5f817e35ac027b7c77790d" category="image-alt">saphana br SCS 版本 62</block>
+  <block id="747d9ce931d0ba9364d0211a045585d5" category="image-alt">saphana br SCS 影像 63.</block>
+  <block id="982ee6796258baadb0b030ff9d3734f1" category="image-alt">saphana br SCS 影像 64</block>
+  <block id="f6dbbbb7a05d4ee65aabcb68963e1578" category="image-alt">saphana br SCS 影像 65</block>
+  <block id="e831d5f614e23fab7aa3bb15d063fbde" category="image-alt">saphana br SCS 影像 66</block>
+  <block id="b20836ef9f7e9f8a869b9d26d7f62053" category="image-alt">saphana br SCS 影像 67</block>
+  <block id="316154a1729180cf73b78bd31cae5e9c" category="image-alt">saphana br SCS 影像 68</block>
+  <block id="30ae70e6e064e22a774c8c11aa3b8b74" category="image-alt">saphana br SCS 影像 69</block>
+  <block id="95d7339c40dff7f562fb113d55f2188e" category="image-alt">saphana br SCS 版本 70</block>
+  <block id="7ba9edf2ff1eaf10d336870b69545c2b" category="image-alt">saphana br SCS 影像 71.</block>
+  <block id="f93c90523a18973679bd67f693e42ef0" category="image-alt">saphana br SCS 版本 72</block>
+  <block id="dca13e1d2b99d7bda0ff371e20dfd589" category="image-alt">saphana br SCS 版本 73</block>
+  <block id="e6c45053952587a0d2c0d3a1f7572a41" category="image-alt">saphana br SCS 版本 74</block>
+  <block id="6b84fdbb4d3376db197b80a1f2a3ccdc" category="image-alt">saphana br SCS 版本 75</block>
+  <block id="41dd5c827bdc326849641ad40cc3fb06" category="image-alt">saphana br SCS 版本 76</block>
+  <block id="805a15eea656fef9742ae418f436d968" category="image-alt">saphana br SCS 版本 77</block>
+  <block id="6763121a3236fab63440e65a287c8375" category="image-alt">saphana br SCS 版本 7.</block>
+  <block id="bddf9565096d191264598a10fc026c9b" category="image-alt">saphana br SCS 影像 8.</block>
+  <block id="d4cab71f4748e3f9a90875ab7b074c71" category="image-alt">saphana Dr anf image27.</block>
+  <block id="780cde0eab89462de1f2a83023959bc6" category="image-alt">saphana Dr anf image28.</block>
+  <block id="23e9e296bd9ed6424ca74106a38830eb" category="image-alt">saphana Dr anf image29.</block>
+  <block id="dc9e36834250306b315317b99bb47a95" category="image-alt">saphana Dr anf image30.</block>
+  <block id="0dbdc9150ef81aafa9911e68743e3bb4" category="image-alt">saphana Dr anf 影像 6.</block>
+  <block id="2548641529423a9b71d9db035c24d9af" category="image-alt">saphana Dr anf image10.</block>
+  <block id="779ac1b64a544ca3548fec0943113573" category="image-alt">saphana Dr anf image11.</block>
+  <block id="1a17f771dc1ecdbecb887b4f35f957f5" category="image-alt">saphana Dr anf image12.</block>
+  <block id="215959cc9a542c9fac71da96a59ccbcd" category="image-alt">saphana Dr anf image13.</block>
+  <block id="9ae2662a51438b17a8877bcd5cbc2c92" category="image-alt">saphana Dr anf image19.</block>
+  <block id="1fd47eee1ece12a13d654be04b1df5db" category="image-alt">saphana Dr anf image20.</block>
+  <block id="8c13881a9d8f127bfe54cd524415763d" category="image-alt">saphana Dr anf image21.</block>
+  <block id="c69f0e494b83a93a458b067867b1a6a9" category="image-alt">saphana Dr anf image22.</block>
+  <block id="e8bc914b68c2087790a1e26c52adf532" category="image-alt">saphana Dr anf image23.</block>
+  <block id="5768021c96879ef07ea4804f6aa5c167" category="image-alt">saphana Dr anf image24.</block>
+  <block id="eaebc36cbfc07109dfe29f7469c7215f" category="image-alt">saphana Dr anf image25.</block>
+  <block id="0e1060a8b54c433e68c29b979bf56139" category="image-alt">saphana Dr anf image2.</block>
+  <block id="01521a88c779cab00a1a62085525c911" category="image-alt">saphana Dr anf image26.</block>
+  <block id="0c4a7bb3cc004b5be27e15ffae250347" category="image-alt">saphana Dr anf image3.</block>
+  <block id="b2df7cd4ebd78ffcf83573b0ecd29a03" category="image-alt">saphana Dr anf Image4.</block>
+  <block id="f8a6b25f7ffec8fdb705fadd2bafd666" category="image-alt">saphana Dr anf 影像 5.</block>
+  <block id="ea4bc37b0fffdd37cc6fa792c112fc31" category="image-alt">saphana Dr anf image18.</block>
+  <block id="885ecd7ffc16d9232ce1a8efb5323468" category="image-alt">saphana Dr anf image7.</block>
+  <block id="2f15dd840b8227455450d002232058a0" category="image-alt">saphana Dr anf image8.</block>
+  <block id="fbbb3948e15c38ba5d4ead0bde8f66df" category="image-alt">saphana Dr anf image9.</block>
+  <block id="0bf4135990cb963372821501e0c3a423" category="image-alt">saphana Dr anf image14.</block>
+  <block id="721e08f270f54fd7ea1e820c6a8dbb35" category="image-alt">saphana Dr anf image15.</block>
+  <block id="08e96f4c170bd2435e62cf7d6a0bd7f8" category="image-alt">saphana Dr anf image16.</block>
+  <block id="1a015a2d7fb94133b3f0d29ebdfecce2" category="image-alt">saphana Dr anf image17.</block>
+  <block id="009ae09c7bbfdc94d0216429874428c5" category="image-alt">saphana SR SCS 影像 48</block>
+  <block id="1355e78517d9ddbbbc4ed5e4070141df" category="image-alt">saphana SR SCS 影像 49</block>
+  <block id="a59d61c7e7584f58b4c58fff18d44ab8" category="image-alt">saphana SR SCS 影像 50</block>
+  <block id="50c07a9c7a08c442fab73e27e618525b" category="image-alt">saphana SR SCS 影像 51.</block>
+  <block id="c2b6e97ca6ab08b983347442c06c1bf4" category="image-alt">saphana SR SCS 影像 52.</block>
+  <block id="391a454dd71fd04b7224547fc56447db" category="image-alt">saphana SR SCS 影像 1.</block>
+  <block id="f22a2811ad4193b15579386d1d22fbde" category="image-alt">saphana SR SCS 影像 2.</block>
+  <block id="ec3aab371d3422e92262ec5014431217" category="image-alt">saphana SR SCS 影像 6.</block>
+  <block id="83c04ad92d3916444e90d0a65c53b5fc" category="image-alt">saphana SR SCS 影像 7.</block>
+  <block id="3599e29618abe0f68a710afc6fc7f2cb" category="image-alt">saphana SR SCS 影像 8.</block>
+  <block id="a6c061430121b0bc72427b3e17a8a230" category="image-alt">saphana SR SCS 影像 9.</block>
+  <block id="f07a42eaff672ab5898fd4d74d1d2a34" category="image-alt">saphana SR SCS 影像 10.</block>
+  <block id="f6bad74483efca80efd94e4881546ae6" category="image-alt">saphana SR SCS 影像 11.</block>
+  <block id="c65ebaa1294ed5bafa9e2b72c27e5c38" category="image-alt">saphana SR SCS 影像 12.</block>
+  <block id="b52e65e0589fe41f9cbd9e7e68cd44d8" category="image-alt">saphana SR SCS 版本 13.</block>
+  <block id="09b01adb7d08ccee61e0cce4237d8235" category="image-alt">saphana SR SCS 影像 14.</block>
+  <block id="a55fe2b43d3eae5a1a367b2d2a9c1bf8" category="image-alt">saphana SR SCS 影像 15.</block>
+  <block id="c0c67365b4e24c098c5653bcd19bf742" category="image-alt">saphana SR SCS 影像 16.</block>
+  <block id="ce777724fce97590066bbb6d2e5ea133" category="image-alt">saphana SR SCS 影像 17.</block>
+  <block id="17321bbd61721fd14242b7672a9a3891" category="image-alt">saphana SR SCS 影像 18.</block>
+  <block id="b106574704f24635024f54f89aeded20" category="image-alt">saphana SR SCS 影像 19.</block>
+  <block id="a8c08db1bfe61e9e930dda1d4bd6cba8" category="image-alt">saphana SR SCS 版本 20</block>
+  <block id="830a7042f3856906acea3c28c209ff6f" category="image-alt">saphana SR SCS 影像 21.</block>
+  <block id="027674854bcdbb015ced37678a2b72ad" category="image-alt">saphana SR SCS 影像 22.</block>
+  <block id="eee32750e41c1da31bccfebca17746f7" category="image-alt">saphana SR SCS 影像 23.</block>
+  <block id="a9fe3f1bcda520dc725e125c4808aafc" category="image-alt">saphana SR SCS 影像 24</block>
+  <block id="4a7f55ea6180522961afa63fdaf31548" category="image-alt">saphana SR SCS 版本 25</block>
+  <block id="1b5268faf439207e26214799d7982d25" category="image-alt">saphana SR SCS 版本 26.</block>
+  <block id="41d7b17d5633e81e3836229171d1c133" category="image-alt">saphana SR SCS 影像 5.</block>
+  <block id="fe337b3b28f42e5e46ff480f4b08ced6" category="image-alt">saphana SR SCS 影像 27.</block>
+  <block id="f61da96323b79ce9559894b2e4bf3c9d" category="image-alt">saphana SR SCS 影像 28.</block>
+  <block id="4dae39ae6010563d2887b01e64991001" category="image-alt">saphana SR SCS 影像 29.</block>
+  <block id="e0f40a8c5dc6d41860f4a8db0038fc0b" category="image-alt">saphana SR SCS 版本 30</block>
+  <block id="9c6dc575ce52c48bfc30678faee8a6db" category="image-alt">saphana SR SCS 影像 31.</block>
+  <block id="fc34465376c1a3a76103fd9238cc4922" category="image-alt">saphana SR SCS 影像 32.</block>
+  <block id="b88a39a715bd2e46aa2b6dcbc19aea34" category="image-alt">saphana SR SCS 影像 33.</block>
+  <block id="e5f29caea7447122493ce55526c68547" category="image-alt">saphana SR SCS 影像 34.</block>
+  <block id="6b2fac5f7c1160b2bb5f3071041dd3a5" category="image-alt">saphana SR SCS 影像 35.</block>
+  <block id="fad069aaeadaeb4b6f82659c2479e31e" category="image-alt">saphana SR SCS 影像 36.</block>
+  <block id="7a289ef67e16a91f4c1fd314d529b3a8" category="image-alt">saphana SR SCS 影像</block>
+  <block id="80d0f1ccc1bb1f095b6f1f2f9160b924" category="image-alt">saphana SR SCS 影像 38.</block>
+  <block id="68753243efb40a8e524817cbd64a1ded" category="image-alt">saphana SR SCS 影像 39.</block>
+  <block id="1c3797e807575915243a1e9258365771" category="image-alt">saphana SR SCS 影像 40</block>
+  <block id="dd8903d38983fd56ff8515b70974252c" category="image-alt">saphana SR SCS 影像 41.</block>
+  <block id="08553a0a5998b00f4cc6047c9e10099e" category="image-alt">saphana SR SCS 版本 42.</block>
+  <block id="03e08618b4e2e371373269157165e2eb" category="image-alt">saphana SR SCS 影像 43.</block>
+  <block id="ff8ff5de65732d5e4d2c50b8ea8676ce" category="image-alt">saphana SR SCS 影像 44</block>
+  <block id="caa18bcd6af2f99147d8f40c82f7f5d5" category="image-alt">saphana SR SCS 影像 45</block>
+  <block id="d0e805ebde01bf0ea7e75ddcf6f89c6f" category="image-alt">saphana SR SCS 影像 46</block>
+  <block id="5a759bbdf8eac55611820b2e22154976" category="image-alt">saphana SR SCS 影像 47</block>
+  <block id="4cc3946b45efdbbfbdfbb1d2ee2509c2" category="image-alt">saphana SR SCS 影像 3.</block>
+  <block id="f7e9bef551bfbb4cd0e9e0fcbacae265" category="image-alt">saphana SR SCS Image4</block>
+  <block id="0329f0d63d72ab837eb486c6540154c3" category="image-alt">saphana FAS NFS 影像 19.</block>
+  <block id="27fc53623cd1587d962e99bf79cbe39c" category="image-alt">saphana FAS NFS 影像 2.</block>
+  <block id="0cd573f28d84a534d1642b8c87ad7893" category="image-alt">saphana FAS NFS 影像 3.</block>
+  <block id="250cc36ec9488adb7c5313b6716e785a" category="image-alt">saphana FAS NFS 映像 4.</block>
+  <block id="57b64cb66f1a225f57cad218c9a2c364" category="image-alt">saphana FAS NFS 影像 5.</block>
+  <block id="f8b6795ee49fb1c011263a0e2f759f06" category="image-alt">saphana FAS NFS 影像 6.</block>
+  <block id="b0be0a2f6c57f7c66aa9ab049763af3a" category="paragraph">如需使用 SnapCenter 的 SAP HANA 備份與還原解決方案的詳細資訊<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>、請參閱。</block>
+  <block id="c2107d876323ca6269d87dd4ef892a8a" category="paragraph">如需 SAP HANA 災難恢復解決方案的詳細資訊<block ref="22d31f63af3553980c791e5bf538fbdd" category="inline-link-rx"></block>、請參閱。</block>
+  <block id="813d38d054e6b90b3f2e86c11bf987a8" category="image-alt">saphana FAS NFS 影像 7.</block>
+  <block id="78d212e9768e64b08686304417601bf6" category="image-alt">saphana FAS NFS 影像 8.</block>
+  <block id="ca306cc3ea67a18b19a50d7232e95b39" category="image-alt">saphana FAS NFS 影像 1.</block>
+  <block id="78439f11ea8c9762eac371e8475447aa" category="inline-link">《 SAP HANA on VMware vSphere 最佳實務做法與參考架構指南》</block>
+  <block id="52d5e1f1eef3e549b479feffef1c376c" category="list-text"><block ref="52d5e1f1eef3e549b479feffef1c376c" category="inline-link-rx"></block></block>
+  <block id="7d3d582af4ec816f172f1571385d5900" category="image-alt">saphana FAS NFS 影像 10.</block>
+  <block id="2c4c35383c1ed336d51b6ed3a30dba81" category="image-alt">saphana FAS NFS 影像 11.</block>
+  <block id="f58b92c23df6e88c929f933eb208d224" category="image-alt">saphana FAS NFS 影像 12.</block>
+  <block id="749ad82733bd8ad91ee14da3131e3e47" category="image-alt">saphana FAS NFS 影像 13.</block>
+  <block id="3644f8390a0c7221f83e68c82bfd8921" category="image-alt">saphana FAS NFS 影像 14.</block>
+  <block id="91ace28ab4ac1e703ad789584d05c76a" category="image-alt">saphana FAS NFS 影像 15.</block>
+  <block id="1f9849f0624c1d546d253c15b90d332b" category="image-alt">saphana FAS NFS 影像 16.</block>
+  <block id="17e2caf31a35fa66ec182fc98809b5f3" category="image-alt">saphana FAS NFS 影像 17.</block>
+  <block id="426a6d6ef44baef9eaf26fff5e6f5a61" category="image-alt">saphana FAS NFS 影像 18.</block>
+  <block id="49086dbebfa583770637bf2ad2b61d35" category="image-alt">saphana FAS NFS 影像 9.</block>
+  <block id="1b70ac0a972fddf1e1a33e6ed9df49c7" category="cell">2022 年 9 月</block>
+  <block id="3c3691e44e6ff923dc83662b2f7e1001" category="cell">全新 OS 版本</block>
+  <block id="6d6bbe0ff14c220c87649b72d24ad927" category="cell">2023 年 8 月</block>
+  <block id="588e591ee2a91af94d3b4c16b18b9baf" category="cell">全新儲存系統（ AFF C 系列）</block>
+  <block id="c33f6b520ad3c202db9ed1b825ac8b3d" category="cell">2023 年 12 月</block>
+  <block id="573a46f547eae3963940bf6d5022971e" category="cell">更新主機設定修改的 nconnect 設定新增了 NFSv4.1 工作階段的相關資訊</block>
+  <block id="5b44aad20fbc2491f38bc99fd2eb8086" category="cell">2024 年 5 月</block>
+  <block id="0a961d2cbb588be1d5a93b4774cf6ef1" category="cell">全新儲存系統（ AFF A 系列）</block>
+  <block id="f31f11743f1dfba18e9f008e2956d24e" category="cell">2024 年 9 月</block>
+  <block id="e4a9c264a13e2ec5faac7a73cf8d0e8c" category="cell">次要更新</block>
+  <block id="6563b589bfb682a295eb4dbf184e1b18" category="inline-link"><block ref="6563b589bfb682a295eb4dbf184e1b18" category="inline-link-rx"></block></block>
+  <block id="fa739a180dd6fb933e2dd37f3e1df5fb" category="paragraph"><block ref="fa739a180dd6fb933e2dd37f3e1df5fb" category="inline-link-rx"></block></block>
+  <block id="ad4cceb9c7b19c473483b955f4ab9465" category="inline-link"><block ref="ad4cceb9c7b19c473483b955f4ab9465" category="inline-link-rx"></block></block>
+  <block id="d63a01df24ee4ea8980a2cdd59f7e8da" category="paragraph"><block ref="d63a01df24ee4ea8980a2cdd59f7e8da" category="inline-link-rx"></block></block>
+  <block id="362c26abf7af5442c5d449bb2075123f" category="inline-link"><block ref="362c26abf7af5442c5d449bb2075123f" category="inline-link-rx"></block></block>
+  <block id="428b7c3b557c016c4e280ca7305fafbe" category="paragraph"><block ref="428b7c3b557c016c4e280ca7305fafbe" category="inline-link-rx"></block></block>
+  <block id="617096ec70226b1decdd03cd7aa674d4" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化</block>
+  <block id="e40283d3953ee3d843b92518a02ffe78" category="paragraph"><block ref="e40283d3953ee3d843b92518a02ffe78" category="inline-link-rx"></block></block>
+  <block id="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link"><block ref="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link-rx"></block></block>
+  <block id="55162df4eaa40993b4b04219f5dd5e87" category="paragraph"><block ref="55162df4eaa40993b4b04219f5dd5e87" category="inline-link-rx"></block></block>
+  <block id="59298016353cfaad8318719db5cd21c0" category="inline-link"><block ref="59298016353cfaad8318719db5cd21c0" category="inline-link-rx"></block></block>
+  <block id="60eff1c8782a5c7cf39a41c25435a428" category="paragraph"><block ref="60eff1c8782a5c7cf39a41c25435a428" category="inline-link-rx"></block></block>
+  <block id="1ed30de01dd39d4265fc770c7164dbe6" category="image-alt">saphana AFF 光纖通道影像 20</block>
+  <block id="b6ed5866fdd9092fb994283e94d51b57" category="image-alt">saphana AFF 光纖通道影像 2.</block>
+  <block id="b1c2ffb2afabee5f20c2b1acb138f272" category="image-alt">saphana AFF 光纖通道影像 3.</block>
+  <block id="e4a033c94d3dd2cf54044111401c33c4" category="image-alt">saphana AFF 光纖通道 Image4</block>
+  <block id="e8e19d8f6d619ea818bb1172985f162f" category="image-alt">saphana AFF 光纖通道影像 5.</block>
+  <block id="b4e4244754290debb9944132a8a13b5a" category="paragraph">如需 SAP HANA 備份與還原解決方案的詳細資訊<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>、請參閱。</block>
+  <block id="d16b4f84cd157485300860392dfd3360" category="image-alt">saphana AFF 光纖通道影像 6.</block>
+  <block id="70643266de3e94853e1047b5d968c478" category="image-alt">saphana AFF 光纖通道影像 7.</block>
+  <block id="e8776c7a20b190473710ace685d0f668" category="image-alt">saphana AFF 光纖通道影像 1</block>
+  <block id="3e506f546ee07a96caecb3240e314bd8" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在<block ref="ca5e92233d54e7d83162f25f0a78384f" category="inline-link-macro-rx"></block>中有詳細說明。</block>
+  <block id="677d1924bd18d30beeb1f810fb98ebe2" category="image-alt">saphana AFF 光纖通道影像 9.</block>
+  <block id="d6be01313c56893385b55ead9d801d01" category="image-alt">saphana AFF 光纖通道影像 10.</block>
+  <block id="744b5853a7a0281bb875cfda0df6a5f8" category="image-alt">saphana AFF 光纖通道影像 11.</block>
+  <block id="06fdad9e827243b262ccff9b458a681b" category="image-alt">saphana AFF 光纖通道影像 12.</block>
+  <block id="da3b252777b5d61a625833ca4bb50dba" category="image-alt">saphana AFF 光纖通道影像 13.</block>
+  <block id="aa66a347dc43bdd8162f898e9733a1f6" category="image-alt">saphana AFF 光纖通道影像 14.</block>
+  <block id="40a67b3878496b0390dcb420bff15b88" category="image-alt">saphana AFF 光纖通道影像 15.</block>
+  <block id="36962ad76ccaab5c5c0b14b25aef4191" category="image-alt">saphana AFF 光纖通道影像 16.</block>
+  <block id="4166eb0e092a1cac0b50e96d67cf4c55" category="image-alt">saphana AFF 光纖通道影像 17.</block>
+  <block id="5d753fa89a9587a29dd7a21096e9b299" category="image-alt">saphana AFF 光纖通道影像 18.</block>
+  <block id="07531bd0a8a754b2639763d87b8b55c0" category="image-alt">saphana AFF 光纖通道影像</block>
+  <block id="1c12e98c82784c403f4d23546d87dc29" category="image-alt">saphana AFF 光纖通道影像 8.</block>
+  <block id="33b44e8ee44c258fb0b7631dd321158c" category="image-alt">saphana AFF NFS 影像 18.</block>
+  <block id="8f6b40020391d7a6b5fded20182de087" category="image-alt">saphana AFF NFS 影像 2.</block>
+  <block id="2f15c9de27b943fd87ba19efac1222c3" category="image-alt">saphana AFF NFS 影像 3.</block>
+  <block id="82e0ca521b1b1c2a7b31cfa9730e47c5" category="image-alt">saphana AFF NFS 映像 4.</block>
+  <block id="9b0eb89adcf4e5c537c6a0cc49c682db" category="image-alt">saphana AFF NFS 影像 5.</block>
+  <block id="1c6ee4d1aff1d1a86f8506ca1e86ad2e" category="image-alt">saphana AFF NFS 影像 6.</block>
+  <block id="87d809e67c582d30f01f52b1815397b1" category="admonition">如需 SAP HANA 備份與還原解決方案的詳細資訊<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>、請參閱。</block>
+  <block id="4c3f99597dbfcb425074a87054f88a80" category="paragraph">如需 SAP HANA 災難恢復解決方案的詳細資訊<block ref="22d31f63af3553980c791e5bf538fbdd" category="inline-link-rx"></block>、請參閱。</block>
+  <block id="87e0a3e3bcfef076992226f3c9ba367b" category="image-alt">saphana AFF NFS 影像 7.</block>
+  <block id="34b55e47320c900eb454d4da131393c0" category="image-alt">saphana AFF NFS 影像 8.</block>
+  <block id="9ef6c01264c1afacd8d9a8ebcf833bd4" category="image-alt">saphana AFF NFS 影像 1.</block>
+  <block id="0811fae8ccc520c15576006bef574cb9" category="image-alt">saphana AFF NFS 影像 10.</block>
+  <block id="bc5c62785de0f27b21a901341ca0a4b1" category="image-alt">saphana AFF NFS 影像 11.</block>
+  <block id="370f1bb01a1d05edbec6c39e695de7fa" category="image-alt">saphana AFF NFS 影像 12.</block>
+  <block id="36c0dc225f9b1d7f17b1f9abefe035eb" category="image-alt">saphana AFF NFS 影像 13.</block>
+  <block id="fdf46a762bb57a762d7433f7d9cd2567" category="image-alt">saphana AFF NFS 影像 14.</block>
+  <block id="e59b0571d179b5c7206136146101a51d" category="image-alt">saphana AFF NFS 影像 15.</block>
+  <block id="0418c37f5a569fcc6be85770c12fb0c0" category="image-alt">saphana AFF NFS 影像 16.</block>
+  <block id="a78497720875fdde5aee04c9b14c41d6" category="image-alt">saphana AFF NFS 影像 17.</block>
+  <block id="7573cbca8b3a3ecbbd4ffd7352d6438e" category="image-alt">saphana AFF NFS 影像 9.</block>
+  <block id="4c3591d081d9ed1b86c6bd8ee70a49a9" category="image-alt">saphana FAS 光纖通道影像 28</block>
+  <block id="22d81fa4e19a18937f578dbab38d0a4e" category="image-alt">saphana FAS 光纖通道影像 2.</block>
+  <block id="f2511c84807525f542d73d5e8ffbdb7e" category="image-alt">saphana FAS 光纖通道影像 3.</block>
+  <block id="498153f8cbf07178fde4b8b7d721b2e7" category="image-alt">saphana FAS 光纖通道 Image4</block>
+  <block id="93d2e6cc4ae702d45770ba1354e804f0" category="image-alt">saphana FAS 光纖通道影像 5.</block>
+  <block id="b526150fb3e3e29b0a0731441a140c0e" category="paragraph">如需使用 SnapCenter 的 SAP HANA 災難恢復解決方案的詳細資訊<block ref="22d31f63af3553980c791e5bf538fbdd" category="inline-link-rx"></block>、請參閱。</block>
+  <block id="81c7c5b2f44d49befaaaa1d08637a900" category="image-alt">saphana FAS 光纖通道影像 6.</block>
+  <block id="48c7ae45ff994319ff43d9bf66ab11ea" category="image-alt">saphana FAS 光纖通道影像 7.</block>
+  <block id="7362c4a2aac2bfb9e077a886aa0511df" category="image-alt">saphana FAS 光纖通道影像 1</block>
+  <block id="3b01ff32b927c4a520dbebc9cbd019c3" category="image-alt">saphana FAS 光纖通道影像 9.</block>
+  <block id="8897c300b4f0cfe81be60f6e9c3b987c" category="image-alt">saphana FAS 光纖通道影像 10.</block>
+  <block id="8677a2a08bc8403247ce4c7ad93f2033" category="image-alt">saphana FAS 光纖通道影像 11.</block>
+  <block id="d3d6ab21a05e508434a4011b0a61488c" category="image-alt">saphana FAS 光纖通道影像 12.</block>
+  <block id="de8bcc2f78b90472661fff6dd24d81a6" category="image-alt">saphana FAS 光纖通道影像 13.</block>
+  <block id="ecde7d060386adb18d7f154f30b717cc" category="image-alt">saphana FAS 光纖通道影像 14.</block>
+  <block id="a3427bbcb41c8d1bf7d0511444565f82" category="image-alt">saphana FAS 光纖通道影像 15.</block>
+  <block id="333d73607fcaa4cb3e529d2c87217087" category="image-alt">saphana FAS 光纖通道影像 16.</block>
+  <block id="8986d0851b329ded1d30bf477a864428" category="image-alt">saphana FAS 光纖通道影像 17.</block>
+  <block id="50db7e7bddfcb29afcecd6941e8efd4a" category="image-alt">saphana FAS 光纖通道影像 18.</block>
+  <block id="06aa0f09bd5f53ff898724ee2e475499" category="image-alt">saphana FAS 光纖通道影像</block>
+  <block id="2f596cd5735a1a71e7655c322aa0d70e" category="image-alt">saphana FAS 光纖通道影像 20</block>
+  <block id="bbeac381914d7fcf26369e9e7c3596cb" category="image-alt">saphana FAS 光纖通道影像 21.</block>
+  <block id="51f78a6be57e9c36a7efa3ed12b22b90" category="image-alt">saphana FAS 光纖通道影像 22.</block>
+  <block id="787b1b68c400f8458f214373db5aa4a6" category="image-alt">saphana FAS 光纖通道影像</block>
+  <block id="3b1f82d0d9082fceb879b52f9afc4ad3" category="image-alt">saphana FAS fc 影像 24</block>
+  <block id="7803a9677478f101ad7f6521051d65dc" category="image-alt">saphana FAS 光纖通道影像</block>
+  <block id="5e445ed2c657636cd7d8ed930e833e03" category="image-alt">saphana FAS 光纖通道影像 26.</block>
+  <block id="3f0233fff39f63cd85d2711fd114c8fb" category="image-alt">saphana FAS 光纖通道影像 27.</block>
+  <block id="987e9f6dfcf9a680eb9d137afe8f9512" category="image-alt">saphana FAS 光纖通道影像 8.</block>
+  <block id="eae278f34ab47e5f905ce95990267237" category="image-alt">Libelle SC 影像 23.</block>
+  <block id="bb4f624270ebb361ea5d057d947cdae4" category="image-alt">Libelle SC 影像 24.</block>
+  <block id="66005d39f327a1f8b02985490c3ee9a6" category="image-alt">Libelle SC 影像</block>
+  <block id="722ca3c6eb6609d7d4290f014675751f" category="image-alt">Libelle SC 影像 26.</block>
+  <block id="801ad4a2b6fc4bbe3a644c3a23dfebed" category="image-alt">Libelle SC 影像 27.</block>
+  <block id="d9d30a1c09fbbd592c08008000c113ed" category="image-alt">Libelle SC 影像 28.</block>
+  <block id="e88828941bac4eb43f09680959d59599" category="image-alt">Libelle SC 影像</block>
+  <block id="702d4aa5b3701ff237a3ed5610c0d5e0" category="image-alt">Libelle SC 影像</block>
+  <block id="deea1d8025c417c1e45d4969fc28ccd7" category="image-alt">Libelle SC 影像</block>
+  <block id="c394b9f905cd5bdc74514c3f42440cfc" category="image-alt">Libelle SC 影像 32.</block>
+  <block id="c9f24283daf4f256e8dcc9d920ca0ee6" category="image-alt">Libelle SC 影像</block>
+  <block id="c586435a563a26efe85b2e1e67deb2eb" category="image-alt">Libelle SC 影像</block>
+  <block id="ef19d5c7028add56b3126cf281628237" category="image-alt">Libelle SC 影像</block>
+  <block id="cb2ddb7c3699d79535474200bfba90b3" category="image-alt">Libelle SC 影像 36.</block>
+  <block id="505ba0898cfae389489fb40ccd988e01" category="image-alt">Libelle SC 影像</block>
+  <block id="73902334122fa8bce6e7c3ae8e427dea" category="image-alt">Libelle SC 影像 38.</block>
+  <block id="d3b75d34be0c70e445d4748000fe3694" category="image-alt">Libelle SC 影像</block>
+  <block id="0f6b39e41e06646839e997306a6e9e22" category="image-alt">Libelle SC 影像 1</block>
+  <block id="dcfe636ce4f8ca4e89157a1a1d52ebaf" category="image-alt">Libelle SC 影像 2.</block>
+  <block id="c6424ae0590de1e673514cc31bb57404" category="image-alt">Libelle SC 影像 3.</block>
+  <block id="8a71814fabdc91a62f8e316c27f29a6c" category="image-alt">Libelle SC Image4</block>
+  <block id="f7cb15fed797fd9ed6fdad9ace8cb3f5" category="image-alt">Libelle SC 影像 5.</block>
+  <block id="3305a9cf0068d3b7166ec8ce70080a54" category="image-alt">Libelle SC 影像 6.</block>
+  <block id="931f64f5f59aef238ffc1b55b26e7404" category="image-alt">Libelle SC 影像 7.</block>
+  <block id="8c1abd83f7ea1c8c72d09ad8f76f7b3f" category="image-alt">Libelle SC 影像 8.</block>
+  <block id="fcb97e3630fd937729ef66b534909b37" category="image-alt">Libelle SC 影像 9.</block>
+  <block id="6042b13ecfe004eb10897bb4a27f1518" category="image-alt">Libelle SC 影像 10.</block>
+  <block id="f5a3deb57cc321373518ebd68dc1f287" category="image-alt">Libelle SC 影像 11.</block>
+  <block id="37a388aa7355d307199a457e319727c2" category="image-alt">Libelle SC 影像 12.</block>
+  <block id="bed869cc8c1329c7fd5597e47131ec68" category="image-alt">Libelle SC 影像 13.</block>
+  <block id="0b98f3ced1142325ea7ddf23fdaa316c" category="image-alt">Libelle SC 影像 14.</block>
+  <block id="db4eb8fd4576dbc2de26e2bf3a33f6e5" category="image-alt">Libelle SC 影像 15.</block>
+  <block id="6797c8231454f87f7bf16b9fa3712569" category="image-alt">Libelle SC 影像 16.</block>
+  <block id="2514d93276e740ff7ef5d4751dfe2ae4" category="image-alt">Libelle SC 影像 17.</block>
+  <block id="190ea184e29ac944892c39ef97a32014" category="image-alt">Libelle SC 影像 18.</block>
+  <block id="474fed427ab5e036620e870562dec2f6" category="image-alt">Libelle SC 影像 19.</block>
+  <block id="6395037f7750d6be6aff988267257e55" category="image-alt">Libelle SC 影像 20</block>
+  <block id="bfdb49dd2a171da3c1e099a90033ad1a" category="image-alt">Libelle SC 影像 21.</block>
+  <block id="5c20e498e2f91b0f0ef90fcd469db559" category="image-alt">Libelle SC 影像 22.</block>
 </blocks>

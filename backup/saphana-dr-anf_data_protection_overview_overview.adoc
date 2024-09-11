@@ -16,7 +16,7 @@ Nils Baier、NetApp Ralf Klahr、Microsoft
 
 若要開發全方位的災難恢復原則、客戶必須瞭解資料保護和災難恢復所需的商業應用程式需求和技術功能。下圖概述資料保護。
 
-image::saphana-dr-anf_image2.png[錯誤：缺少圖形影像]
+image::saphana-dr-anf_image2.png[saphana Dr anf image2.]
 
 
 

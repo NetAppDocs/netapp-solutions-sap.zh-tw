@@ -40,14 +40,13 @@ net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
+options sunrpc tcp_max_slot_table_entries = 128
 ....
 
 NOTE: 適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。如需詳細資訊、請參閱 https://launchpad.support.sap.com/#/notes/3024346["SAP附註3024346"^] （需要SAP登入）。
 
-。 `sunrpc.tcp_max_slot_table_entries` 參數必須在中設定 `/etc/modprobe.d/sunrpc.conf`。如果檔案不存在、則必須先新增下列行來建立：
-
 ....
-options sunrpc tcp_max_slot_table_entries=128
+
 ....
 
 
@@ -55,11 +54,6 @@ options sunrpc tcp_max_slot_table_entries=128
 
 您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。
 
-。 `sunrpc.tcp_max_slot_table_entries` 參數必須在中設定 `/etc/modprobe.d/sunrpc.conf`。如果檔案不存在、則必須先新增下列行來建立：
-
-....
-options sunrpc tcp_max_slot_table_entries=128
-....
 從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。
 
 ....
@@ -74,6 +68,7 @@ net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
+options sunrpc tcp_max_slot_table_entries = 128
 ....
 
 NOTE: 從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System角色for SAP（Ansible）來套用這些設定。請參閱 https://launchpad.support.sap.com/#/notes/3024346["SAP附註3024346"^] （需要SAP登入）。

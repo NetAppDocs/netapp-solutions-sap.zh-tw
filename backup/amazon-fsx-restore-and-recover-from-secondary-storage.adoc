@@ -18,10 +18,10 @@ summary: 本節說明如何從次要儲存設備還原及還原。
 
 若要擷取次要儲存設備上所有備份的清單、請SnapCenter 在「還原拓撲」檢視中、按一下「Vault複本」、然後選取備份、再按一下「還原」。
 
-image::amazon-fsx-image92.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image92.png[Amazon FSX 影像 92]
 
 還原對話方塊會顯示次要位置。
 
-image::amazon-fsx-image93.png[錯誤：缺少圖形影像]
+image::amazon-fsx-image93.png[Amazon FSX 影像 93]
 
 進一步的還原和還原步驟與先前在主要儲存設備上進行Snapshot備份所涵蓋的步驟相同。

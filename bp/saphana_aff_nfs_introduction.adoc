@@ -79,7 +79,7 @@ NOTE: 請參閱相關的SAP附註、以瞭解作業系統組態準則和HANA專�
 
 NetApp AFF 支援的儲存控制器已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。如需SAP HANA TDI架構總覽、請參閱下圖。
 
-image::saphana_aff_nfs_image1.png[錯誤：缺少圖形影像]
+image::saphana_aff_nfs_image1.png[saphana AFF NFS 影像 1.]
 
 如需更多有關產品SAP HANA系統的先決條件與建議資訊、請參閱下列資源：
 
@@ -99,7 +99,6 @@ image::saphana_aff_nfs_image1.png[錯誤：缺少圖形影像]
 如需搭配SAP HANA使用vSphere的詳細資訊、請參閱下列連結：
 
 * link:https://wiki.scn.sap.com/wiki/display/VIRTUALIZATION/SAP+HANA+on+VMware+vSphere["VMware vSphere上的SAP HANA -虛擬化-社群維客"^]
-* link:http://www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf["在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議"^]
-* link:http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf["在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議"^]
+* https://core.vmware.com/resource/sap-hana-vmware-vsphere-best-practices-and-reference-architecture-guide#introduction["《 SAP HANA on VMware vSphere 最佳實務做法與參考架構指南》"^]
 * link:https://launchpad.support.sap.com/#/notes/2161991["2161991- VMware vSphere組態準則- SAP One Support啟動板（需要登入）"^]
 

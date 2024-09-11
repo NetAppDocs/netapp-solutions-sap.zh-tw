@@ -35,7 +35,7 @@ summary: 本節說明SnapCenter 初始的驗證組態、包括儲存系統、認
 
 . 登入SnapCenter 到「伺服器GUI」。
 +
-image::saphana-br-scs-image23.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image23.png[saphana br SCS 影像 23.]
 
 . 選取儲存系統。
 +
@@ -43,7 +43,7 @@ image::saphana-br-scs-image23.png[錯誤：缺少圖形影像]
 NOTE: 在畫面中、您可以選擇儲存系統類型ONTAP 、即「SVM」或ONTAP 「叢集」。如果您在SVM層級上設定儲存系統、則需要為每個SVM設定管理LIF。此外、SnapCenter 您也可以在叢集層級使用「不二」管理存取。以下範例使用SVM管理。
 
 +
-image::saphana-br-scs-image24.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image24.png[saphana br SCS 版本 24]
 
 . 按一下「New（新增）」以新增儲存系統、並提供所需的主機名稱和認證資料。
 +
@@ -51,7 +51,7 @@ image::saphana-br-scs-image24.png[錯誤：缺少圖形影像]
 NOTE: SVM使用者不需要是vsadmin使用者、如螢幕擷取畫面所示。一般而言、使用者是在SVM上設定、並指派執行備份與還原作業所需的權限。如需必要權限的詳細資料、請參閱 http://docs.netapp.com/ocsc-43/index.jsp?topic=%2Fcom.netapp.doc.ocsc-isg%2Fhome.html["《安裝指南》SnapCenter"^] 在標題為ONTAP 「最低要求的權限」一節中。
 
 +
-image::saphana-br-scs-image25.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image25.png[saphana br SCS 版本 25]
 
 . 按一下「更多選項」以設定儲存平台。
 +
@@ -62,11 +62,11 @@ image::saphana-br-scs-image25.png[錯誤：缺少圖形影像]
 NOTE: 對於用作SnapVault SnapMirror或SnapMirror目標的系統、請選取次要圖示。
 
 +
-image::saphana-br-scs-image26.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image26.png[saphana br SCS 版本 26]
 
 . 視需要新增其他儲存系統。在我們的範例中、我們新增了額外的異地備份儲存設備和災難恢復儲存設備。
 +
-image::saphana-br-scs-image27.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image27.png[saphana br SCS 版本 27]
 
 
 
@@ -76,22 +76,22 @@ image::saphana-br-scs-image27.png[錯誤：缺少圖形影像]
 
 . 移至「設定」、選取「認證」、然後按一下「新增」。
 +
-image::saphana-br-scs-image28.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image28.png[saphana br SCS 版本 28]
 
 . 提供使用者在Linux系統上用於外掛程式安裝的認證資料。
 +
-image::saphana-br-scs-image29.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image29.png[saphana br SCS 版本 29]
 
 . 提供使用者在Windows系統上用於外掛程式安裝的認證資料。
 +
-image::saphana-br-scs-image30.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image30.png[saphana br SCS 版本 30]
 
 +
 下圖顯示已設定的認證資料。
 
 
 
-image::saphana-br-scs-image31.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image31.png[saphana br SCS 版本 31]
 
 
 
@@ -104,17 +104,17 @@ NOTE: SAP HANA外掛程式需要Java 64位元1.8版。在部署SAP HANA外掛程
 
 . 移至主機、然後按一下新增。
 +
-image::saphana-br-scs-image32.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image32.png[saphana br SCS 影像 32.]
 
 . 提供所需的主機資訊。按一下「提交」。
 +
-image::saphana-br-scs-image33.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image33.png[saphana br SCS 版本 33]
 
 +
 下圖顯示部署HANA外掛程式後的所有已設定主機。
 
 +
-image::saphana-br-scs-image34.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image34.png[saphana br SCS 版本 34]
 
 
 
@@ -161,31 +161,31 @@ HANA_HDBSQL_CMD=/usr/sap/hdbclient/hdbsql
 
 . 移至「設定」>「原則」、然後按一下「新增」。
 +
-image::saphana-br-scs-image35.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image35.png[saphana br SCS 版本 35]
 
 . 輸入原則名稱和說明。按一下「下一步」
 +
-image::saphana-br-scs-image36.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image36.png[saphana br SCS 影像 36.]
 
 . 選取備份類型做為「Snapshot Based」（快照型）、然後選取「Hourly」（每小時）
 +
-image::saphana-br-scs-image37.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image37.png[saphana br SCS 版本 37]
 
 . 設定隨需備份的保留設定。
 +
-image::saphana-br-scs-image38.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image38.png[saphana br SCS 影像 38.]
 
 . 設定排程備份的保留設定。
 +
-image::saphana-br-scs-image39.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image39.png[saphana br SCS 版本 39]
 
 . 設定複寫選項。在這種情況下、未SnapVault 選取任何更新功能。
 +
-image::saphana-br-scs-image40.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image40.png[saphana br SCS 版本 40]
 
 . 在「摘要」頁面上、按一下「完成」。
 +
-image::saphana-br-scs-image41.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image41.png[saphana br SCS 版本 41.]
 
 
 
@@ -196,19 +196,19 @@ image::saphana-br-scs-image41.png[錯誤：缺少圖形影像]
 . 移至「設定」>「原則」、然後按一下「新增」。
 . 輸入原則名稱和說明。按一下「下一步」
 +
-image::saphana-br-scs-image42.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image42.png[saphana br SCS 版本 42.]
 
 . 將備份類型設為「Snapshot Based（根據Snapshot）」、排程頻率設為「每日」。
 +
-image::saphana-br-scs-image43.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image43.png[saphana br SCS 影像 43.]
 
 . 設定隨需備份的保留設定。
 +
-image::saphana-br-scs-image44.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image44.png[saphana br SCS 版本 44]
 
 . 設定排程備份的保留設定。
 +
-image::saphana-br-scs-image45.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image45.png[saphana br SCS 影像 45]
 
 . 建立本機Snapshot複本後、請選取「更新SnapVault 」。
 +
@@ -216,11 +216,11 @@ image::saphana-br-scs-image45.png[錯誤：缺少圖形影像]
 NOTE: 次要原則標籤必須與儲存層資料保護組態中的SnapMirror標籤相同。請參閱一節 link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#configuration-of-data-protection-to-off-site-backup-storage["「將資料保護組態設定為異地備份儲存設備。」"]
 
 +
-image::saphana-br-scs-image46.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image46.png[saphana br SCS 版本 46]
 
 . 在「摘要」頁面上、按一下「完成」。
 +
-image::saphana-br-scs-image47.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image47.png[saphana br SCS 影像 47]
 
 
 
@@ -231,28 +231,28 @@ image::saphana-br-scs-image47.png[錯誤：缺少圖形影像]
 . 移至「設定」>「原則」、然後按一下「新增」。
 . 輸入原則名稱和說明。按一下「下一步」
 +
-image::saphana-br-scs-image48.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image48.png[saphana br SCS 版本 48]
 
 . 將備份類型設為「檔案型」、並將排程頻率設為「每週」。
 +
-image::saphana-br-scs-image49.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image49.png[saphana br SCS 版本 49]
 
 . 設定隨需備份的保留設定。
 +
-image::saphana-br-scs-image50.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image50.png[saphana br SCS 影像 50]
 
 . 設定排程備份的保留設定。
 +
-image::saphana-br-scs-image50.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image50.png[saphana br SCS 影像 50]
 
 . 在「摘要」頁面上、按一下「完成」。
 +
-image::saphana-br-scs-image51.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image51.png[saphana br SCS 影像 51.]
 
 +
 下圖顯示已設定原則的摘要。
 
 +
-image::saphana-br-scs-image52.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image52.png[saphana br SCS 版本 52]
 
 

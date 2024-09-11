@@ -22,15 +22,15 @@ Volume複寫延遲時間是瞭解RPO期望的實用價值。例如、記錄備�
 
 以下螢幕快照顯示HANA資料Volume的複寫狀態。
 
-image::saphana-dr-anf_image14.png[錯誤：缺少圖形影像]
+image::saphana-dr-anf_image14.png[saphana Dr anf image14.]
 
 以下螢幕快照顯示HANA記錄備份磁碟區的複寫狀態。
 
-image::saphana-dr-anf_image15.png[錯誤：缺少圖形影像]
+image::saphana-dr-anf_image15.png[saphana Dr anf image15.]
 
 以下螢幕快照顯示HANA共享Volume的複寫狀態。
 
-image::saphana-dr-anf_image16.png[錯誤：缺少圖形影像]
+image::saphana-dr-anf_image16.png[saphana Dr anf image16.]
 
 
 
@@ -41,4 +41,4 @@ image::saphana-dr-anf_image16.png[錯誤：缺少圖形影像]
 
 NOTE: 在來源和目標磁碟區中、也會建立SnapMirror Snapshot複本、以用於重新同步和複寫更新作業。從HANA資料庫的觀點來看、這些Snapshot複本的應用程式不一致；只有透過AzaCSnap建立的應用程式一致快照、才能用於HANA恢復作業。
 
-image::saphana-dr-anf_image17.png[錯誤：缺少圖形影像]
+image::saphana-dr-anf_image17.png[saphana Dr anf image17.]

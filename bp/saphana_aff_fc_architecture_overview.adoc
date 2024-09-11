@@ -19,7 +19,7 @@ SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存
 
 下圖顯示八部SAP HANA主機連接至儲存HA配對的組態範例。
 
-image::saphana_aff_fc_image2.png[錯誤：缺少圖形影像]
+image::saphana_aff_fc_image2.png[saphana AFF 光纖通道影像 2.]
 
 此架構可從兩個層面擴充：
 
@@ -29,8 +29,8 @@ image::saphana_aff_fc_image2.png[錯誤：缺少圖形影像]
 
 下圖顯示儲存控制器連接更多SAP HANA主機的組態範例。在此範例中、需要更多磁碟櫃來滿足16台SAP HANA主機的容量和效能需求。視總處理量需求而定、您必須新增額外的FC連線至儲存控制器。
 
-image::saphana_aff_fc_image3.png[錯誤：缺少圖形影像]
+image::saphana_aff_fc_image3.png[saphana AFF 光纖通道影像 3.]
 
 SAP HANA環境不受部署AFF 的整個系統的影響、也可藉由新增任何認證的儲存控制器來滿足所需的節點密度、如下圖所示。
 
-image::saphana_aff_fc_image4.png[錯誤：缺少圖形影像]
+image::saphana_aff_fc_image4.png[saphana AFF 光纖通道 Image4]

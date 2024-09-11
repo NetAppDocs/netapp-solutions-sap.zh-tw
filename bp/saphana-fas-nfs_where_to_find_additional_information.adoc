@@ -16,16 +16,40 @@ summary: 若要深入瞭解本文件所述資訊、請參閱下列文件和/或�
 [role="lead"]
 若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
 
-* 在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議 http://www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf["www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf"^]
-* 在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議 http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf["www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf"^]
-* SAP認證的SAP HANA企業儲存硬體 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html["https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html"^]
-* SAP HANA儲存需求 http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html["http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html"^]
-* SAP HANA量身打造的資料中心整合常見問題集 http://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html"^]
-* TR-4646：SAP HANA災難恢復與儲存複寫 http://www.netapp.com/us/media/tr-4646.pdf["www.netapp.com/us/media/tr-4646.pdf"^]
-* TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能） http://www.netapp.com/us/media/tr-4614.pdf["www.netapp.com/us/media/tr-4614.pdf"^]
-* TR-4338：採用NetApp FAS 功能的VMware vSphere上的SAP HANA與AFF VMware系統 http://www.netapp.com/us/media/tr-4338.pdf["www.netapp.com/us/media/tr-4338.pdf"^]
-* TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化 https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["www.netapp.com/us/media/tr-4667.pdf"^]
-* NetApp文件中心 https://www.netapp.com/us/documentation/index.aspx["https://www.netapp.com/us/documentation/index.aspx"^]
-* NetApp FAS 解決方案儲存系統資源 https://mysupport.netapp.com/info/web/ECMLP2676498.html["https://mysupport.netapp.com/info/web/ECMLP2676498.html"^]
-* SAP HANA軟體解決方案 http://www.netapp.com/us/solutions/applications/sap/index.aspx["www.netapp.com/us/solutions/applications/sap/index.aspx#sap-hana"^]
+* SAP HANA軟體解決方案
++
+https://www.netapp.com/sap-solutions/["https://www.netapp.com/sap-solutions/"^]
+
+* TR-4646：SAP HANA災難恢復與儲存複寫
++
+https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html["https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html"^]
+
+* TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）
++
+https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html"^]
+
+* TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化
++
+https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html"^]
+
+* NetApp文件中心
++
+https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]
+
+* SAP認證的SAP HANA企業儲存硬體
++
+http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html["http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html"^]
+
+* SAP HANA儲存需求
++
+https://www.sap.com/documents/2024/03/146274d3-ae7e-0010-bca6-c68f7e60039b.html["https://www.sap.com/documents/2024/03/146274d3-ae7e-0010-bca6-c68f7e60039b.html"^]
+
+* SAP HANA量身打造的資料中心整合常見問題集
++
+https://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["https://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html"^]
+
+* 《 SAP HANA on VMware vSphere 最佳實務做法與參考架構指南》
++
+https://core.vmware.com/resource/sap-hana-vmware-vsphere-best-practices-and-reference-architecture-guide#introduction["https://core.vmware.com/resource/sap-hana-vmware-vsphere-best-practices-and-reference-architecture-guide#introduction"^]
+
 

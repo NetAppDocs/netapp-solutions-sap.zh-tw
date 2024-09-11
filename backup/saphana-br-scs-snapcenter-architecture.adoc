@@ -28,4 +28,4 @@ summary: 提供統一化、可擴充的平台、提供應用程式一致的資�
 
 下圖說明SnapCenter 各個元件。
 
-image::saphana-br-scs-image6.png[錯誤：缺少圖形影像]
+image::saphana-br-scs-image6.png[saphana br SCS 版本 6.]

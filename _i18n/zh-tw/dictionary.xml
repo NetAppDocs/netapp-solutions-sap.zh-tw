@@ -283,9 +283,7 @@
   <block id="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link"><block ref="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link-rx"></block></block>
   <block id="3710f13cc62644ea40b0af38f0b1198e" category="paragraph"><block ref="3710f13cc62644ea40b0af38f0b1198e" category="inline-link-rx"></block></block>
   <block id="6137d44b5191549a06e7bea8ffd942d3" category="inline-link"><block ref="6137d44b5191549a06e7bea8ffd942d3" category="inline-link-rx"></block></block>
-  <block id="62658c7987e92cf3967ab8bdd1e66d18" category="paragraph"><block ref="62658c7987e92cf3967ab8bdd1e66d18" category="inline-link-rx"></block></block>
   <block id="1ffb329e128f9f021221cb333667e643" category="inline-link"><block ref="1ffb329e128f9f021221cb333667e643" category="inline-link-rx"></block></block>
-  <block id="026a8e661ca1c91258a93024c126a529" category="paragraph"><block ref="026a8e661ca1c91258a93024c126a529" category="inline-link-rx"></block></block>
   <block id="c54847a2046020d06d345fd8b61fc169" category="list-text">NetApp文件中心</block>
   <block id="1f97b7a68d0268791593f9152a2471f4" category="list-text">SAP HANA軟體解決方案</block>
   <block id="3823dde38e881edb5563cdd3b64099ba" category="summary">以下是SAP HANA軟體安裝需求。</block>
@@ -1682,7 +1680,6 @@
   <block id="5b969ece692bee20925041517740d2fc" category="list-text">SAP HANA多租戶資料庫容器（MDC）多租戶：SAP HANA 2.0 SPS4及更新版本</block>
   <block id="6c176e9f73681cb91e72213cd5479748" category="section-title">更新版本SnapCenter</block>
   <block id="04c675594bfdb975329fb2cae491292b" category="inline-link">TR-4719 SAP HANA系統複寫、備份與還原功能SnapCenter 、搭配使用</block>
-  <block id="aae76d22bc3f2bf6ef22eac2524e307a" category="paragraph">從版本4.6開始SnapCenter 、支援自動探索在HANA系統複寫關係中設定的HANA系統。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源組合在一個資源群組中、SnapCenter 而不只能自動識別哪個主機是主要或次要主機、然後會相應地執行所需的備份作業。使用現象建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上也刪除舊備份。下圖顯示高層級的概觀。如需詳細說明SnapCenter 、請參閱<block ref="38177f415a52ec30f36bcda7961c5014" category="inline-link-rx"></block>。</block>
   <block id="4854d6f0814f33fab723d723df86a202" category="summary">以下說明HANA資料庫還原的步驟</block>
   <block id="7bda2d80ff35cc44a2e131e0160f8093" category="paragraph">以下小節將說明使用複寫的記錄備份進行還原的程序、以及不使用轉送還原的程序。使用系統資料庫的HANA恢復指令碼和租戶資料庫的hdbsql命令來執行恢復。</block>
   <block id="59c7c30c56560af87e5171c311185571" category="section-title">恢復至最新的HANA資料Volume備份儲存點</block>
@@ -1727,7 +1724,6 @@
   <block id="b565830d52dbf51243943462fb70fe59" category="list-text">資源群組的主要使用案例是、客戶想要使用SnapCenter 以支援使用者資訊技術建立的備份、以便透過SAP Landscape Management進行系統複製。下一節將說明這一點。</block>
   <block id="ba5da7a68f8cd5eca48e3df6086a98c0" category="section-title">搭配使用功能與SAP橫向管理SnapCenter</block>
   <block id="98d29b74b4819c66a9b3a065f317875a" category="inline-link">TR-4018：整合NetApp ONTAP 的NetApp系統與SAP Landscape Management</block>
-  <block id="2a728bce1ee3f9b0668ed8945b2f39dd" category="paragraph">有了SAP Landscape Management（SAP Lama）、客戶就能在內部部署資料中心及雲端執行的系統中、管理複雜的SAP系統環境。SAP Lama搭配NetApp Storage Services Connector（SSC）、可以使用Snapshot和FlexClone技術執行儲存作業、例如SAP系統複製的複製和複寫、複製和重新整理使用案例。這可讓您根據儲存複製技術、將SAP系統複本完全自動化、同時也包括所需的SAP後處理。如需NetApp SAP Lama解決方案的詳細資訊、請參閱<block ref="0fb87918d74d379028390fd706baf741" category="inline-link-rx"></block>。</block>
   <block id="35e271fbf0a1d067faf29bb2e12cf833" category="paragraph">NetApp SSC和SAP Lama可以直接使用NetApp SSC建立隨需Snapshot複本、但也可以使用SnapCenter 使用以效益技術建立的Snapshot複本。若要使用SnapCenter 還原備份做為SAP Lama系統複製與複製作業的基礎、必須符合下列先決條件：</block>
   <block id="55fb179ba0dbaef14f4ae67701ba967c" category="list-text">SAP Lama要求所有磁碟區都包含在備份中、包括SAP HANA資料、記錄和共享磁碟區。</block>
   <block id="a45b79d50cacf7594adf94e98d02fe12" category="list-text">所有儲存Snapshot名稱必須相同。</block>
@@ -2190,7 +2186,6 @@
   <block id="32423786e97f4f83fdc90f030727503b" category="paragraph">下圖顯示實驗室設定、以及所需SnapCenter 的功能表組態總覽。</block>
   <block id="c1968668fc5cbc2c5e8b49c18c362b55" category="paragraph">若要執行備份作業、無論哪一台SAP HANA主機為主要主機、甚至當一台主機當機時、SnapCenter 都必須將SAP HANA外掛程式部署在中央外掛主機上。在實驗室設定中、SnapCenter 我們將該伺服器當作中央外掛主機、並在SnapCenter 該伺服器上部署SAP HANA外掛程式。</block>
   <block id="bd5c6333eef324e59a3de18aa6e29173" category="paragraph">使用者是在HANA資料庫中建立來執行備份作業。使用者儲存金鑰是在SnapCenter 安裝SAP HANA外掛程式的伺服器上設定。使用者儲存金鑰包含SAP HANA系統複寫主機的虛擬IP位址（「shSR-VIP」）。</block>
-  <block id="5a2cdf3fb46c8f521d96d7e7bc4c9b2f" category="paragraph">如需SAP HANA外掛程式部署選項和使用者儲存區組態的詳細資訊、請參閱技術報告TR-4614：<block ref="ec9daba0660d1e2512cb8193f8c16297" category="inline-link-rx"></block>。</block>
   <block id="d7e2061a39f4790783431f1963349b9b" category="paragraph">在支援區中、資源的設定如下圖所示、使用之前設定的使用者儲存金鑰、以及將支援區伺服器設定為「hdbsql"通訊主機。SnapCenter SnapCenter</block>
   <block id="2a64b18e126555fa2ca4e7fb0bf3bc37" category="paragraph">這兩部SAP HANA主機的資料磁碟區都包含在儲存設備佔用空間組態中、如下圖所示。</block>
   <block id="90323af735fbe3861cb8bc49a36914b1" category="paragraph">如前所述、SnapCenter 不知道備份的建立位置。因此、NetApp建議您在SnapCenter 該支援工作流程中新增備份前指令碼、以識別目前哪個主機是主要SAP HANA主機。您可以使用新增至備份工作流程的SQL陳述式來執行此識別、如下圖所示。</block>
@@ -2552,7 +2547,6 @@
   <block id="b39fd9047d2089b24c418d3512b8c903" category="paragraph">支援針對採用HANA系統複寫的HANA系統進行自動探索。SnapCenter在備份作業期間、支援識別主要和次要HANA主機的邏輯、同時處理兩個HANA主機之間的保留管理。SnapCenter此外、HANA系統複寫環境現在也能使用自動化還原與還原功能。</block>
   <block id="6a24c6a18054ecbcf8919b90f4ff5eb8" category="section-title">適用於HANA系統複寫環境的功能SnapCenter</block>
   <block id="ef7979296ea2465331699c64e5450ad0" category="paragraph">下圖顯示本章所使用的實驗室設定。兩台HANA主機Hana（Hana）3和Hana（Hana）4均設定HANA系統複寫。</block>
-  <block id="3ca4a9c5f67351b7924bb2876dc1e870" category="paragraph">為HANA系統資料庫建立資料庫使用者SnapCenter 「支援」、並具備執行備份與還原作業所需的權限（請參閱<block ref="ec9daba0660d1e2512cb8193f8c16297" category="inline-link-rx"></block>）。HANA使用者存放區金鑰必須在兩個主機上使用上述資料庫使用者進行設定。</block>
   <block id="3719dabf545d56e27391b4c1bb73b944" category="paragraph">從高層面來看、您必須執行下列步驟、才能在SnapCenter 整個過程中設定HANA系統複寫。</block>
   <block id="bc1873525b8d9ae5c49626cd6b47592c" category="list-text">在主要和次要主機上安裝HANA外掛程式。系統會執行自動探索、並偵測每個主要或次要主機的HANA系統複寫狀態。</block>
   <block id="3b7407b92790f4d78d820c6ebd3e159d" category="list-text">執行SnapCenter 「設定資料庫」、並提供「hdbuserstore」金鑰。將執行更多自動探索作業。</block>
@@ -2585,7 +2579,6 @@
   <block id="dc89ca90a524118bdb23dfe95009d16c" category="paragraph">由於支援Snapshot備份、區塊完整性檢查作業、HANA備份目錄項目、以及兩個HANA主機之間的記錄備份（若未停用）、因此無論目前的主要或次要主機為何、都能順利保留資料。SnapCenter無論目前的主要或次要主機是否需要刪除作業、HANA目錄中的備份（資料和記錄）和項目都會根據定義的保留來刪除。換句話說、如果執行接管作業和（或）將複寫設定為另一個方向、則不需要手動互動。</block>
   <block id="b622880d7effd20d409afc8f9d337338" category="paragraph">如果SnapVault 資料保護策略中包含了使用效益複寫功能、則特定案例需要手動互動、如一節所述 <block ref="d418ccf14dbb0e729818939bd00e84be" category="inline-xref-macro-rx"></block>。</block>
   <block id="6db8f8c174516b1dc5a1f3305fe43190" category="paragraph">下圖說明在這兩個站台執行多個移轉並建立Snapshot備份的案例。在目前狀態下、主機Hana 3是主要主機、而最新的備份則是T4、這是在主機Hana 3建立的。如果您需要執行還原與還原作業、備份T1和T4可在SnapCenter 還原與還原。在主機Hana 4（T2、T3）建立的備份、無法使用SnapCenter 還原功能還原。這些備份必須手動複製到Hana 3的資料磁碟區以進行還原。</block>
-  <block id="801b7a55bf3ed44abb2d821602e1c449" category="paragraph">還原與還原作業針對SnapCenter 某個資源群組組組態、與自動探索的非系統複寫設定相同。所有的還原和自動還原選項均可供使用。如需詳細資料、請參閱技術報告<block ref="f91ad5f72ca89ecac47641fa01cbfa5f" category="inline-link-rx"></block>。</block>
   <block id="dd8cf04faf0e63219895ef355bac05f9" category="summary">一系列討論SAP生命週期管理的部落格</block>
   <block id="ab6524564d590a2cf59d10dcc63ff99e" category="paragraph">強調SAP生命週期管理的部落格總覽。</block>
   <block id="677f2e7e550075f7bbbdac91e0918f2f" category="sidebar">SAP解決方案</block>
@@ -4054,7 +4047,6 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="862c3e3761bf683136ee838de2c0c203" category="paragraph">在設定維修系統時、靈活度和敏捷度至關重要。使用 NetApp 儲存型 Snapshot 備份時、可使用多個一致的資料庫映像、使用 NetApp FlexClone 技術建立正式作業系統的複本。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。</block>
   <block id="2792124a69a48ece7030f9b29701007b" category="paragraph">有效的災難恢復策略需要測試所需的工作流程。測試可證明策略是否有效、以及內部文件是否足夠。也可讓系統管理員訓練所需的程序。</block>
   <block id="0ca7de0d8a3d9d654f0a2d183f1c4aef" category="inline-link">TR-4646 ： SAP HANA 災難恢復與儲存複寫（ netapp.com ）</block>
-  <block id="80020ad1d665e32a8c5ddfadfd1c3415" category="paragraph"><block ref="80020ad1d665e32a8c5ddfadfd1c3415" category="inline-link-rx"></block></block>
   <block id="acbd601ce9bb8719c9759926bade423c" category="paragraph"><block ref="acbd601ce9bb8719c9759926bade423c" category="inline-link-rx"></block></block>
   <block id="4b3309d5f0ac80977c53b53f174cf02b" category="inline-link">SAP Business Application 與 SAP HANA 資料庫解決方案（ netapp.com ）</block>
   <block id="3726ec9ff4cd44edb2e6ef5e5bb1d348" category="list-text"><block ref="3726ec9ff4cd44edb2e6ef5e5bb1d348" category="inline-link-rx"></block></block>
@@ -4659,4 +4651,12 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="6395037f7750d6be6aff988267257e55" category="image-alt">Libelle SC 影像 20</block>
   <block id="bfdb49dd2a171da3c1e099a90033ad1a" category="image-alt">Libelle SC 影像 21.</block>
   <block id="5c20e498e2f91b0f0ef90fcd469db559" category="image-alt">Libelle SC 影像 22.</block>
+  <block id="292ed8e9851502aa4feb9eef4c6dbb13" category="paragraph">有了SAP Landscape Management（SAP Lama）、客戶就能在內部部署資料中心及雲端執行的系統中、管理複雜的SAP系統環境。SAP Lama搭配NetApp Storage Services Connector（SSC）、可以使用Snapshot和FlexClone技術執行儲存作業、例如SAP系統複製的複製和複寫、複製和重新整理使用案例。這可讓您根據儲存複製技術、將SAP系統複本完全自動化、同時也包括所需的SAP後處理。如需 NetApp SAP Lama 解決方案的詳細資訊，請<block ref="f5cd59812ce597d8b57d775862213a16" category="inline-link-rx"></block>參閱。</block>
+  <block id="d5e4b2586a8501ff7c2a392297c5cd32" category="paragraph">從版本4.6開始SnapCenter 、支援自動探索在HANA系統複寫關係中設定的HANA系統。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源組合在一個資源群組中、SnapCenter 而不只能自動識別哪個主機是主要或次要主機、然後會相應地執行所需的備份作業。使用現象建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上也刪除舊備份。下圖顯示高層級的概觀。如<block ref="cfe50e5b56f8a98ece306a69e546da3e" category="inline-link-rx"></block>需在 SnapCenter 中設定及操作 HANA 系統複寫功能 HANA 系統的詳細說明、請參閱。</block>
+  <block id="327e1549c6e9c105d7e59532ef1fba1f" category="paragraph">資料庫使用者「 SnapCenter 」是為 HANA 系統資料庫所建立、其中包含執行備份與還原作業所需的 Privileges （請參閱<block ref="f70d28502828defa3eb13d3b730673fb" category="inline-link-rx"></block>）。HANA使用者存放區金鑰必須在兩個主機上使用上述資料庫使用者進行設定。</block>
+  <block id="b6bdc022b54b8889f22ced290e380f7f" category="paragraph">還原與還原作業針對SnapCenter 某個資源群組組組態、與自動探索的非系統複寫設定相同。所有的還原和自動還原選項均可供使用。有關詳細信息，請參閱技術報告<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>。</block>
+  <block id="b28e30b0b029ff7eb11d8b2655e78dba" category="paragraph">您可以在技術報告 TR-4614 中找到 SAP HANA 外掛部署選項和使用者存放區組態的詳細資訊：<block ref="f70d28502828defa3eb13d3b730673fb" category="inline-link-rx"></block>。</block>
+  <block id="74aaeb9485407660c737f5870ea94649" category="paragraph"><block ref="74aaeb9485407660c737f5870ea94649" category="inline-link-rx"></block></block>
+  <block id="e5e2a6bf28307550240d9ed91bbb0fa0" category="paragraph"><block ref="e5e2a6bf28307550240d9ed91bbb0fa0" category="inline-link-rx"></block></block>
+  <block id="bc83c6be4c9eaece698b7eb18b8517a0" category="paragraph"><block ref="bc83c6be4c9eaece698b7eb18b8517a0" category="inline-link-rx"></block></block>
 </blocks>

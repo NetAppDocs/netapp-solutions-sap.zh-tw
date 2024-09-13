@@ -54,7 +54,7 @@ image::saphana-sr-scs-image30.png[saphana SR SCS 版本 30]
 ....
 hdbuserstore.exe -u SYSTEM set SSRKEY ssr-vip:31013 SNAPCENTER <password>
 ....
-如需SAP HANA外掛程式部署選項和使用者儲存區組態的詳細資訊、請參閱技術報告TR-4614： https://www.netapp.com/us/media/tr-4614.pdf["SAP HANA利用SnapCenter 功能進行備份與還原"^]。
+您可以在技術報告 TR-4614 中找到 SAP HANA 外掛部署選項和使用者存放區組態的詳細資訊： https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]。
 
 在支援區中、資源的設定如下圖所示、使用之前設定的使用者儲存金鑰、以及將支援區伺服器設定為「hdbsql"通訊主機。SnapCenter SnapCenter
 

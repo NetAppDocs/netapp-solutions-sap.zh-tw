@@ -57,6 +57,6 @@ image::sc-copy-clone-image6.png[SC 複本複本影像 6.]
 
 詳細的逐步說明可在技術報告中找到
 
-https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html["TR-4646 ： SAP HANA 災難恢復與儲存複寫（ netapp.com ）"]
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["TR-4646 ： SAP HANA 災難恢復與儲存複寫（ netapp.com ）"]
 
 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html["TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用"]

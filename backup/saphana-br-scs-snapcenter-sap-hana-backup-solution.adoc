@@ -119,6 +119,6 @@ image::saphana-br-scs-image7.png[saphana br SCS 版本 7.]
 
 == 更新版本SnapCenter
 
-從版本4.6開始SnapCenter 、支援自動探索在HANA系統複寫關係中設定的HANA系統。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源組合在一個資源群組中、SnapCenter 而不只能自動識別哪個主機是主要或次要主機、然後會相應地執行所需的備份作業。使用現象建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上也刪除舊備份。下圖顯示高層級的概觀。如需詳細說明SnapCenter 、請參閱 https://www.netapp.com/us/media/tr-4719.pdf["TR-4719 SAP HANA系統複寫、備份與還原功能SnapCenter 、搭配使用"^]。
+從版本4.6開始SnapCenter 、支援自動探索在HANA系統複寫關係中設定的HANA系統。每部主機都使用其實體IP位址（主機名稱）及儲存層上的個別資料磁碟區進行設定。這兩SnapCenter 個支援資源組合在一個資源群組中、SnapCenter 而不只能自動識別哪個主機是主要或次要主機、然後會相應地執行所需的備份作業。使用現象建立的Snapshot和檔案型備份保留管理SnapCenter 會在兩個主機上執行、以確保在目前的次要主機上也刪除舊備份。下圖顯示高層級的概觀。如 https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["TR-4719 SAP HANA系統複寫、備份與還原功能SnapCenter 、搭配使用"^]需在 SnapCenter 中設定及操作 HANA 系統複寫功能 HANA 系統的詳細說明、請參閱。
 
 image::saphana-br-scs-image8.png[saphana br SCS 影像 8.]

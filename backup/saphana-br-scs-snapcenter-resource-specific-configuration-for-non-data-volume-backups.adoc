@@ -73,7 +73,7 @@ image::saphana-br-scs-image81.png[saphana br SCS 版本 81.]
 
 == 搭配使用功能與SAP橫向管理SnapCenter
 
-有了SAP Landscape Management（SAP Lama）、客戶就能在內部部署資料中心及雲端執行的系統中、管理複雜的SAP系統環境。SAP Lama搭配NetApp Storage Services Connector（SSC）、可以使用Snapshot和FlexClone技術執行儲存作業、例如SAP系統複製的複製和複寫、複製和重新整理使用案例。這可讓您根據儲存複製技術、將SAP系統複本完全自動化、同時也包括所需的SAP後處理。如需NetApp SAP Lama解決方案的詳細資訊、請參閱 https://www.netapp.com/us/media/tr-4018.pdf["TR-4018：整合NetApp ONTAP 的NetApp系統與SAP Landscape Management"^]。
+有了SAP Landscape Management（SAP Lama）、客戶就能在內部部署資料中心及雲端執行的系統中、管理複雜的SAP系統環境。SAP Lama搭配NetApp Storage Services Connector（SSC）、可以使用Snapshot和FlexClone技術執行儲存作業、例如SAP系統複製的複製和複寫、複製和重新整理使用案例。這可讓您根據儲存複製技術、將SAP系統複本完全自動化、同時也包括所需的SAP後處理。如需 NetApp SAP Lama 解決方案的詳細資訊，請 https://www.netapp.com/pdf.html?item=/media/17195-tr4018pdf.pdf["TR-4018：整合NetApp ONTAP 的NetApp系統與SAP Landscape Management"^]參閱。
 
 NetApp SSC和SAP Lama可以直接使用NetApp SSC建立隨需Snapshot複本、但也可以使用SnapCenter 使用以效益技術建立的Snapshot複本。若要使用SnapCenter 還原備份做為SAP Lama系統複製與複製作業的基礎、必須符合下列先決條件：
 

@@ -25,7 +25,7 @@ NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭�
 
 * AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A90 、 AFF A900 、 AFF A1K
 * AFF C250 、 AFF C400 、 AFF C800
-* ASA A250 、 ASA A400 、 ASA A800 、 ASA A900
+* ASA A250 、 ASA A400 、 ASA A70 、 ASA A800 、 ASA A900 、 ASA A90 、 ASA A1K
 * ASA C250 、 ASA C400 、 ASA C800
 +
 

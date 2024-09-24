@@ -14,7 +14,7 @@ NetApp FAS 產品系列已通過認證、可與TDI專案中的SAP HANA搭配使�
 
 此認證適用於下列機型：
 
-* FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS9500
+* FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90
 
 
 如需NetApp SAP HANA認證儲存解決方案的完整清單、請參閱 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["獲得認證且支援的SAP HANA硬體目錄"^]。

@@ -520,7 +520,6 @@
   <block id="86c976bd97e98538a78594cffd1f4347" category="cell">全新NetApp儲存系統全新作業系統版本（SLES12 SP3與Red Hat Enterprise Linux 7.4）額外的小型更新SAP HANA 2.0 SPS3</block>
   <block id="bbfb6d5a145f45ac380d5c56707a3b3f" category="cell">2019年9月</block>
   <block id="b2741985b04e7a670dd01c660734116f" category="cell">新作業系統發行次要更新</block>
-  <block id="e3e03be4a83995541c9aa6cd468adfff" category="cell">全新AFF ASA 的Ses跨 系列儲存系統自SAP HANA 2.0 SPS4以來、推出多項資料分割功能</block>
   <block id="825584759100661fac8be910e01502e6" category="summary">您必須同步儲存控制器與SAP HANA資料庫主機之間的時間。</block>
   <block id="07f50886cb51dc3f90123d42cf009896" category="summary">SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。</block>
   <block id="adff62b08f2c542a637f6a31fbda8673" category="paragraph">SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。</block>
@@ -3493,7 +3492,6 @@
   <block id="2976619a79e897d24427ec6796aa4a70" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。
 請將這些區段的預設重試時間間隔保持在 10 秒內。</block>
   <block id="73d4ace7e434b8709f5a930ad845d6d6" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。請在這些區段內保留預設的重試時間間隔10秒。</block>
-  <block id="f24901db79bd7adbcfdc97deb6526be7" category="list-text">ASA A250 、 ASA A400 、 ASA A800 、 ASA A900</block>
   <block id="7165d8e624155bf7a4889b98927f605c" category="list-text">ASA C250 、 ASA C400 、 ASA C800</block>
   <block id="ba7dc8a883957fda819c429f468dc4d0" category="admonition">NetApp AFF 和 ASA C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
   <block id="b5816060ccee493fc8a2946c9d33de20" category="paragraph">您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備份。</block>
@@ -3644,9 +3642,7 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
 同樣適用於 AFF A800 、 AFF A70 和 AFF A90 系統的內部 NVMe 磁碟。</block>
   <block id="aa73ef84825182521094d3998757610f" category="list-text">AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A90 、 AFF A900 、 AFF A1K</block>
   <block id="9c485d8d0a0f2d60633001b05d342eed" category="doc">NetApp FAS 系統上的 SAP HANA with NFS 組態指南</block>
-  <block id="fca506837272f34f78a90c0996a60efd" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 和 FAS9500 。如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
   <block id="b7bda169ccba06e8cbcf02ba0fab5928" category="doc">採用光纖通道傳輸協定的 NetApp FAS 系統上的 SAP HANA 組態指南</block>
-  <block id="73961a76af53f6ae0a515ec774963fc8" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS9500</block>
   <block id="a56f5f8ccd94f38be4e8a0f1faf81823" category="doc">NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南</block>
   <block id="ef6ac0da06e1bd8eabd965442ae5668d" category="paragraph">NetApp 的 Marco sch(n</block>
   <block id="47e4a9a1322865b7fd49caaf0207408a" category="list-text">AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A900 、 AFF A90 、 AFF A1K</block>
@@ -4659,4 +4655,9 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="74aaeb9485407660c737f5870ea94649" category="paragraph"><block ref="74aaeb9485407660c737f5870ea94649" category="inline-link-rx"></block></block>
   <block id="e5e2a6bf28307550240d9ed91bbb0fa0" category="paragraph"><block ref="e5e2a6bf28307550240d9ed91bbb0fa0" category="inline-link-rx"></block></block>
   <block id="bc83c6be4c9eaece698b7eb18b8517a0" category="paragraph"><block ref="bc83c6be4c9eaece698b7eb18b8517a0" category="inline-link-rx"></block></block>
+  <block id="43f4de9c790b46b4e976d930374377ea" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90 您可以在上找到 NetApp 認證的 SAP HANA 儲存解決方案的完整清單<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
+  <block id="a36cfc2690f8671748f584abb16bdd04" category="cell">全新儲存系統</block>
+  <block id="df23cd28bc74a571210f66246272e69f" category="list-text">ASA A250 、 ASA A400 、 ASA A70 、 ASA A800 、 ASA A900 、 ASA A90 、 ASA A1K</block>
+  <block id="0fba9f2a3fbb4cfbaed44806cd9933a2" category="cell">全新儲存系統（ ASA A 系列）</block>
+  <block id="6b31c1796a51111b23246e86a060d273" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90</block>
 </blocks>

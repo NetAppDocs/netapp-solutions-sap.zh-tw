@@ -10,8 +10,11 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+版本歷程記錄：
 
 |===
 | 版本 | 日期 | 文件版本歷程記錄 

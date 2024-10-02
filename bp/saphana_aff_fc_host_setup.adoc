@@ -10,7 +10,7 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

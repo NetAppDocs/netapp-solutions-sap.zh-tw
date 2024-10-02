@@ -10,8 +10,11 @@ summary: 本技術報告提供使用 NetApp BlueXP 應用程式備份 nad 恢復
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+本技術報告提供使用 NetApp BlueXP 應用程式備份 nad 恢復的 SAP HANA 資料保護最佳實務做法。本文件涵蓋概念、組態建議及作業工作流程、包括組態、備份作業、 和還原作業。
 
 
 
@@ -36,7 +39,7 @@ BlueXP 備份與還原在 NetApp BlueXP 中以 SaaS 形式執行、並運用架�
 內部部署儲存設備與雲端儲存區之間的資料傳輸受到端點對端保護、可在靜止時使用 AES 256 位元加密、傳輸中使用 TLS/HTTPS 加密、以及客戶管理金鑰（ CMK ）支援。+
 備份的資料可以儲存在不可改變且無法磨滅的 WORM 狀態。從物件儲存設備存取資料的唯一方法是將資料還原至 NetApp ONTAP 型儲存設備、包括 NetApp CVO 。
 
-image::hana-hycl-back-image1.png[Ein Bild,624,450]
+image:hana-hycl-back-image1.png["Ein Bild 、 das Text 、 Screenshot 、 Diagramm 、 Kreis enthä lt 。Automatisch generierte Beschreibung,width=624,height =450"]
 
 
 

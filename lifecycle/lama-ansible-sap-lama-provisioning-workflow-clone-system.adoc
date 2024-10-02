@@ -10,74 +10,74 @@ summary: 在本節中、我們將介紹以來源SAP系統HN9搭配HANA資料庫H
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
 下圖重點說明使用系統複製工作流程執行的主要步驟。
 
-image::lama-ansible-image17.png[工作流程圖、包含儲存複製、準備系統、啟動隔離和啟動系統等步驟。]
+image:lama-ansible-image17.png["工作流程圖、包含儲存複製、準備系統、啟動隔離和啟動系統等步驟。"]
 
 在本節中、我們將介紹以來源SAP系統HN9搭配HANA資料庫H09為基礎的完整SAP Lama系統複製工作流程。下圖概述工作流程執行的步驟。
 
-image::lama-ansible-image18.png[此映像描述工作流程中執行的步驟、包括建立複製的系統組態、建立儲存Snapshot與Clone、建立掛載點組態、設定自訂內容、以及準備與啟動系統。]
+image:lama-ansible-image18.png["此映像描述工作流程中執行的步驟、包括建立複製的系統組態、建立儲存Snapshot與Clone、建立掛載點組態、設定自訂內容、以及準備與啟動系統。"]
 
 . 若要開始複製工作流程、請在功能表樹狀結構中開啟* Provisioning *、然後選取來源系統（在我們的HN9範例中）。然後啟動* Clone System*精靈。
 +
-image::lama-ansible-image19.png[此螢幕擷取畫面說明資源配置系統檢視。它包含兩個系統。]
+image:lama-ansible-image19.png["此螢幕擷取畫面說明資源配置系統檢視。它包含兩個系統。"]
 
 . 輸入要求的值。精靈的畫面1會詢問複製系統的集區名稱。此步驟會指定要在其上啟動複製系統的執行個體（虛擬或實體）。預設為將系統複製到與目標系統相同的資源池中。
 +
-image::lama-ansible-image20.png[Clone System Wizard（複製系統精靈）畫面1、提供目標系統的基本資料。]
+image:lama-ansible-image20.png["Clone System Wizard（複製系統精靈）畫面1、提供目標系統的基本資料。"]
 
 . 精靈的畫面2會要求啟動新SAP執行個體的目標主機。此執行個體的目標主機可從上一個畫面所指定的主機集區中選取。每個執行個體或服務都可以在不同的主機上啟動。在我們的範例中、這三項服務都是在同一部主機上執行。
 +
-image::lama-ansible-image21.png[Clone System Wizard（複製系統精靈）畫面2提供目標系統的主機選擇。]
+image:lama-ansible-image21.png["Clone System Wizard（複製系統精靈）畫面2提供目標系統的主機選擇。"]
 
 . 請提供畫面3所要求的資訊、以要求提供虛擬主機名稱和網路。一般而言、主機名稱會保留在DNS中、因此IP位址會隨之預先填入。
 +
-image::lama-ansible-image22.png[Clone System Wizard（複製系統精靈）畫面3可讓您提供虛擬主機名稱和網路。]
+image:lama-ansible-image22.png["Clone System Wizard（複製系統精靈）畫面3可讓您提供虛擬主機名稱和網路。"]
 
 . 在畫面4中、會列出自訂的實體複本作業。提供一個複本和一個* SnapPostfi*名稱、分別用於FlexClone Volume和Snapshot名稱的儲存實體複製作業。如果您將這些欄位保留空白、則會在供應商指令碼的變數區段中設定預設值 `netapp_clone.sh` 已使用。
 +
-image::lama-ansible-image23.png[在Clone System Wizard（Clone系統精靈）畫面4中、自訂Clone選項會以作業參數的形式列出。]
+image:lama-ansible-image23.png["在Clone System Wizard（Clone系統精靈）畫面4中、自訂Clone選項會以作業參數的形式列出。"]
 
 . 在畫面5中、會選取資料庫一致性選項。在我們的範例中、我們選擇*線上：複製執行中的DB*。
 +
-image::lama-ansible-image24.png[在Clone System Wizard（Clone System精靈）畫面5中、會列出Database Consistency（資料庫一致性）選項、並選取Online：Clone Running DB（線上：複製執行]
+image:lama-ansible-image24.png["在Clone System Wizard（Clone System精靈）畫面5中、會列出Database Consistency（資料庫一致性）選項、並選取Online：Clone Running DB（線上：複製執行"]
 
 . 在畫面6中、只有執行租戶複製時才需要輸入。
 +
-image::lama-ansible-image25.png[在Clone System Wizard（複製系統精靈）畫面6中、如果執行租戶複製、您可以提供使用者名稱和密碼。]
+image:lama-ansible-image25.png["在Clone System Wizard（複製系統精靈）畫面6中、如果執行租戶複製、您可以提供使用者名稱和密碼。"]
 
 . 在畫面7中、可以設定系統隔離。
 +
-image::lama-ansible-image26.png[在Clone System Wizard（Clone系統精靈）畫面7中、您可以定義允許的傳出連線以進行系統隔離。]
+image:lama-ansible-image26.png["在Clone System Wizard（Clone系統精靈）畫面7中、您可以定義允許的傳出連線以進行系統隔離。"]
 
 . 在畫面8中、摘要頁面包含所有設定、可在工作流程開始之前進行最終確認。按一下「*執行*」以啟動工作流程。
 +
-image::lama-ansible-image27.png[Clone System Wizard（複製系統精靈）畫面8提供輸入資訊的摘要。]
+image:lama-ansible-image27.png["Clone System Wizard（複製系統精靈）畫面8提供輸入資訊的摘要。"]
 
 +
 SAP Lama現在會執行組態中指示的所有動作。這些行動包括建立儲存磁碟區複製及匯出、將其掛載至目標主機、新增隔離防火牆規則、以及啟動HANA資料庫和SAP服務。
 
 . 您可以在*監控*功能表下監控複製工作流程的進度。
 +
-image::lama-ansible-image28.png[「他的螢幕快照說明系統複製程序的監控畫面。」]
+image:lama-ansible-image28.png["「他的螢幕快照說明系統複製程序的監控畫面。」"]
 
 +
 在詳細記錄中、會在Ansible節點執行* Clone Volume *和* Modify mountpoints and add Custom Properties *作業 `sap-jump` 主機：這些步驟會針對每項服務、HANA資料庫、SAP中央服務及SAP即服務執行。
 
 +
-image::lama-ansible-image29.png[此螢幕擷取畫面會顯示詳細記錄中所述的各種作業、並顯示系統複製畫面。]
+image:lama-ansible-image29.png["此螢幕擷取畫面會顯示詳細記錄中所述的各種作業、並顯示系統複製畫面。"]
 
 . 選取* Clone Volumes（複製磁碟區）*工作、就會顯示該步驟的詳細記錄、並顯示執行Ansible教戰手冊的內容。您可以看到、這是Ansible教戰手冊 `netapp_lama_CloneVolumes.yml` 針對每個HANA資料庫Volume、資料、記錄及共享執行。
 +
-image::lama-ansible-image30.png[此畫面描述詳細記錄Volume Clone的記錄。]
+image:lama-ansible-image30.png["此畫面描述詳細記錄Volume Clone的記錄。"]
 
 . 在步驟*修改掛載點和新增自訂內容*的詳細資訊檢視中、您可以找到執行指令碼所傳遞的掛載點和自訂屬性相關資訊。
 +
-image::lama-ansible-image31.png[更多記錄資訊]
+image:lama-ansible-image31.png["更多記錄資訊"]
 
 
 

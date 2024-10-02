@@ -2,7 +2,6 @@
 indexpage:
   title: SAP商業應用程式與SAP HANA資料庫解決方案
   summary: NetApp針對SAP與SAP HANA提供豐富的技術報告、經過驗證的設計、影片、部落格與解決方案簡介。
-  keywords: netapp, solutions, sap, hana
   lead: NetApp針對SAP與SAP HANA提供豐富的技術報告、經過驗證的設計、影片、部落格與解決方案簡介。
   tiles:
   - title: 組態最佳實務做法

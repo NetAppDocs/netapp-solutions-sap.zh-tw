@@ -10,9 +10,10 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 在本文件中、有兩個指令碼可用於進一步自動化SnapCenter 建立及複製刪除作業。
 
 * 指令碼 `sc-system-refresh`.sh 用於系統重新整理和系統複製工作流程、以執行 SAP HANA 資料庫的恢復和關機作業。
@@ -36,7 +37,7 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。您可以透過電�
 
 NOTE: 目前版本的指令碼支援單一主機系統的 MDC 單一租戶或 MDC 多租戶組態。不支援SAP HANA多主機系統。
 
-image::sc-copy-clone-image14.png[SC 複本複本影像 14.]
+image:sc-copy-clone-image14.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -68,7 +69,7 @@ image::sc-copy-clone-image14.png[SC 複本複本影像 14.]
 
 NOTE: 此指令碼支援使用 NFS 做為儲存傳輸協定的 SAP HANA 系統。
 
-image::sc-copy-clone-image15.png[SC 複本複本影像 15.]
+image:sc-copy-clone-image15.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 

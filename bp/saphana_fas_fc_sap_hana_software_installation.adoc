@@ -10,7 +10,7 @@ summary: 以下是SAP HANA軟體安裝需求。
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

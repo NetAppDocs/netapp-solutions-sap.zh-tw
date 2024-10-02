@@ -10,7 +10,7 @@ summary: 在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -18,7 +18,7 @@ summary: 在實驗室設定中、我們在ONTAP 第二個AWS可用度區域中�
 
 如第章所述 link:amazon-fsx-snapcenter-architecture.html#data-protection-strategy["「資料保護策略」"]、複寫目標必須是ONTAP 另一個可用區域中的第二個FSXfor the Sf2檔案系統、才能避免ONTAP 發生適用於該文件系統的主要FSX故障。此外、HANA共享磁碟區也應複寫至次要FSXfor ONTAP the Sfor the Sf二 檔案系統。
 
-image::amazon-fsx-image8.png[Amazon FSX 影像 8.]
+image:amazon-fsx-image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 

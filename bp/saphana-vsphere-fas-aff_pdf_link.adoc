@@ -13,13 +13,14 @@ summary: 這份參考架構文件可協助客戶在VMware vSphere虛擬機器（
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
-NetApp的Tobias Brandl
-
-Erik Rieger、VMware Bhumik Patel
-
+[role="lead"]
 這份參考架構文件可協助客戶在VMware vSphere虛擬機器（VM）和NetApp FAS 支援區及All Flash FAS 功能（AFF VMware）儲存系統上、設計及部署SAP HANA單一主機與多個主機解決方案。此參考架構是一套已部署且記錄在案的解決方案、以現有VMware與NetApp客戶的經驗、實際模擬及NetApp工程實驗室驗證為基礎。本文件可協助客戶完成整個專案生命週期、包括需求評估、解決方案設計、安裝及管理。
+
+作者：
+
+Tobias Brandl 、 NetApp Erik Rieger 、 Bhumik Patel 、 VMware
 
 link:https://www.netapp.com/pdf.html?item=/media/17192-tr4338pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17192-tr4338pdf.pdf"]

@@ -10,6 +10,8 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./ent-apps-db/media/
+:imagesdir: ../media/
 
 
+[role="lead"]
+本文件涵蓋 SAP HANA 的跨區域複寫。

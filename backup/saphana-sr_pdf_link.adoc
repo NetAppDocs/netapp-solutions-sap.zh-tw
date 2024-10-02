@@ -10,11 +10,12 @@ summary: TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式如何在SAP HANA系統複寫環境中用於備份與還原。
 
 NetApp公司Nils Bauer
-
-TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式如何在SAP HANA系統複寫環境中用於備份與還原。
 
 link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf"]

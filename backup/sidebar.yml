@@ -3,7 +3,6 @@ section: backup
 title: 備份、還原及災難恢復
 entries:
 - title: SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復
-  type: solutions
   entries:
   - title: 總覽
     url: "/backup/amazon-fsx-overview.html"
@@ -36,7 +35,6 @@ entries:
   - title: 何處可找到其他資訊
     url: "/backup/amazon-fsx-where-to-find-additional-information.html"
 - title: SAP HANA利用SnapCenter NetApp備份與還原
-  type: solutions
   entries:
   - title: 總覽
     url: "/backup/saphana-br-scs-overview.html"
@@ -67,7 +65,6 @@ entries:
   - title: 何處可以找到其他資訊和版本歷程記錄
     url: "/backup/saphana-br-scs-where-to-find-additional-information.html"
 - title: BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
-  type: solutions
   entries:
   - title: BlueXP Backup and Recovery for SAP HANA - 總覽
     url: "/backup/hana-hycl-backup-overview.html"
@@ -78,7 +75,6 @@ entries:
   - title: 其他資訊和版本歷程記錄
     url: "/backup/hana-hycl-backup-info-version.html"
 - title: SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
-  type: solutions
   entries:
   - title: SAP HANA系統複寫總覽
     url: "/backup/saphana-sr-scs-sap-hana-system-replication-overview.html"
@@ -97,7 +93,6 @@ entries:
   - title: 版本歷程記錄
     url: "/backup/saphana-sr-scs-version-history.html"
 - title: SAP HANA災難恢復Azure NetApp Files 功能
-  type: solutions
   entries:
   - title: 資料保護總覽
     url: "/backup/saphana-dr-anf_data_protection_overview_overview.html"

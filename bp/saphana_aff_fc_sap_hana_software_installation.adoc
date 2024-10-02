@@ -10,7 +10,7 @@ summary: 本節說明在單一主機和多主機系統上安裝SAP HANA所需的
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

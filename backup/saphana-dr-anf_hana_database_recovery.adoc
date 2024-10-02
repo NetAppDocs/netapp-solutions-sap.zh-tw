@@ -10,7 +10,7 @@ summary: 以下說明HANA資料庫還原的步驟
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: 只有具備容錯移轉功能的多主機環境才需要儲存連接�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

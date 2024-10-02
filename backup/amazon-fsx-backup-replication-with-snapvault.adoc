@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: amazon-fsx-backup-replication-with-snapvault.html 
+permalink: backup/amazon-fsx-backup-replication-with-snapvault.html 
 keywords:  
 summary:  
 ---
@@ -10,6 +10,8 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
+[role="lead"]
+本文件說明如何使用 SnapVault 建立備份。

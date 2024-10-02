@@ -10,7 +10,7 @@ summary: 本節說明如何設定系統、以便在單一主機和多主機系�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

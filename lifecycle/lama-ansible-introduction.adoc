@@ -10,13 +10,13 @@ summary: SAP Landscape Management（Lama）可讓SAP系統管理員將SAP系統�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
-
-NetApp Nils Bauer的Michael Schloser
 
 [role="lead"]
 SAP Landscape Management（Lama）可讓SAP系統管理員將SAP系統作業自動化、包括端點對端點SAP系統複製、複製及重新整理作業。
+
+作者： Michael Schlosser 、 Nils Bauer 、 NetApp
 
 NetApp提供一系列豐富的Ansible模組、讓SAP Lama透過SAP Lama Automation Studio存取NetApp Snapshot和FlexClone等技術。這些技術有助於簡化及加速SAP系統複製、複製及更新作業。
 

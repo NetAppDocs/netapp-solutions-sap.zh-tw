@@ -10,7 +10,7 @@ summary: 本節所述的所有步驟均適用於實體伺服器上的SAP HANA環
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

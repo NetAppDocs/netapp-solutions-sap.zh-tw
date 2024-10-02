@@ -10,7 +10,7 @@ summary: SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -20,7 +20,7 @@ SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊
 
 不像Snapshot複製型備份那樣顯示區塊完整性檢查。SnapCenter而摘要卡則會顯示檔案型備份的數量和先前備份的狀態。
 
-image::saphana-br-scs-image94.png[saphana br SCS 版本 94]
+image:saphana-br-scs-image94.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 區塊完整性檢查備份無法使用SnapCenter 無法刪除的UI、但可以使用PowerShell命令加以刪除。
 
@@ -70,7 +70,7 @@ PS C:\Users\scadmin>
 ....
 SAP HANA備份目錄會顯示系統和租戶資料庫的項目。下圖顯示SnapCenter 系統資料庫備份目錄中的「區塊完整性檢查」。
 
-image::saphana-br-scs-image95.png[saphana br SCS 版本 95]
+image:saphana-br-scs-image95.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 成功的區塊完整性檢查可建立標準的SAP HANA資料備份檔案。支援使用HANA資料庫中設定的備份路徑進行檔案型資料備份作業。SnapCenter
 

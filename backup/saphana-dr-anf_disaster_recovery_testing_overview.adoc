@@ -10,7 +10,7 @@ summary: 若要實作有效的災難恢復策略、您必須測試所需的工�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -37,4 +37,4 @@ ANF跨區域複寫可在不影響RTO和RPO的情況下進行災難恢復測試�
 
 以下小節將詳細說明這些步驟。
 
-image::saphana-dr-anf_image18.png[saphana Dr anf image18.]
+image:saphana-dr-anf_image18.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

@@ -10,7 +10,7 @@ summary: 您必須同步儲存控制器與SAP HANA資料庫主機之間的時間
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

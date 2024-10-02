@@ -10,9 +10,10 @@ summary: 由於系統和儲存設備設定有大量可用選項、因此應將�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 由於系統和儲存設備設定有大量可用選項、因此應將實作範例當作個別系統設定和組態需求的範本。
 
 
@@ -40,13 +41,13 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。您可以透過電�
 
 下圖顯示我們使用的實驗室設定。用於系統實體複製作業的來源SAP系統HN9、包括資料庫H09、SAP CS和SAP、以及安裝在同一部主機（SAP-lnx32）上執行的服務 https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/737a99e86f8743bdb8d1f6cf4b862c79.html["可調整的設計"^] 已啟用。根據準備了可Ansible控制節點 https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["NetApp ONTAP 的Ansible教戰手冊"^] 文件。
 
-SAP主機代理程式也安裝在此主機上。NetApp供應商指令碼和Ansible實戰手冊均在Ansible控制節點上設定、如所述 link:ama-ansible-appendix--provider-script-configuration-and-ansible-playbooks.html["「附錄：供應商指令碼組態。」"]
+SAP主機代理程式也安裝在此主機上。NetApp 提供者指令碼和 Ansible 教戰手冊是在 Ansible 控制節點上設定的、如所述link:lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html["「附錄：供應商指令碼組態。」"]
 
 主機 `sap-lnx49` 是做為SAP Lama複製作業的目標、而隔離就緒功能則是在該處設定。
 
 不同的SAP系統（HNA做為來源、HN2做為目標）用於系統複製和重新整理作業、因為這裡已啟用「複製後自動化」（CA）。
 
-image::lama-ansible-image7.png[此映像描述各種SAP主機代理程式、以及它們如何透過NFS掛載與NetApp儲存設備互動。SAP Lama執行個體也會顯示。]
+image:lama-ansible-image7.png["此映像描述各種SAP主機代理程式、以及它們如何透過NFS掛載與NetApp儲存設備互動。SAP Lama執行個體也會顯示。"]
 
 實驗室設定使用下列軟體版本：
 
@@ -70,19 +71,19 @@ image::lama-ansible-image7.png[此映像描述各種SAP主機代理程式、以�
 
 供應商定義是在SAP Lama的Automation Studio中執行、如下列螢幕擷取畫面所示。此實作範例使用單一供應商定義、用於不同的自訂資源配置步驟和作業掛勾、如前所述。
 
-image::lama-ansible-image8.png[SAP Lama GUI中SAP供應商定義的快照。]
+image:lama-ansible-image8.png["SAP Lama GUI中SAP供應商定義的快照。"]
 
 供應商 `netapp_clone` 定義為指令碼 `netapp_clone.sh` 已在SAP主機代理程式註冊。SAP主機代理程式會在中央主機上執行 `sap-jump`也可作為Ansible控制節點。
 
-image::lama-ansible-image9.png[「一般」索引標籤下名為NetApp_clone的個別供應商定義快照。顯示「摘要」區段、「用途」區段和「選項」區段。]
+image:lama-ansible-image9.png["「一般」索引標籤下名為NetApp_clone的個別供應商定義快照。顯示「摘要」區段、「用途」區段和「選項」區段。"]
 
 「*使用於*」索引標籤會顯示供應商所使用的自訂作業。自訂資源配置的組態* NetAppClon*和自訂勾點*刪除NetAppClon*和*刪除NetAppClone Refresh*會顯示在下一章中。
 
-image::lama-ansible-image10.png[使用中區段的快照、以及使用定義的自訂作業清單。在此範例中、我們會看到「刪除NetAppClone」、「刪除NetAppClone重新整理」和「NetAppClone」。]
+image:lama-ansible-image10.png["使用中區段的快照、以及使用定義的自訂作業清單。在此範例中、我們會看到「刪除NetAppClone」、「刪除NetAppClone重新整理」和「NetAppClone」。"]
 
 執行資源配置工作流程時會要求使用* ClonePostFix*和* SnapPostFix*參數、並用於Snapshot和FlexClone磁碟區名稱。
 
-image::lama-ansible-image11.png[「參數」區段的快照、內含兩個參數清單：CLonePostFix和SnapPostFix。]
+image:lama-ansible-image11.png["「參數」區段的快照、內含兩個參數清單：CLonePostFix和SnapPostFix。"]
 
 
 
@@ -90,7 +91,7 @@ image::lama-ansible-image11.png[「參數」區段的快照、內含兩個參數
 
 在SAP Lama自訂資源配置組態中、先前所述的客戶供應商會用來取代資源配置工作流程步驟* Clone Volumes *和* PostCloneworet*。
 
-image::lama-ansible-image12.png[自訂資源配置畫面的快照。會列出ClonewoVolumes和FinalizeClonVolumes的程序。]
+image:lama-ansible-image12.png["自訂資源配置畫面的快照。會列出ClonewoVolumes和FinalizeClonVolumes的程序。"]
 
 
 
@@ -98,15 +99,15 @@ image::lama-ansible-image12.png[自訂資源配置畫面的快照。會列出Clo
 
 如果系統隨系統銷毀工作流程一起刪除、則會使用勾號*刪除NetAppClon*來呼叫供應商定義 `netapp_clone`。系統重新整理工作流程期間會使用*刪除NetApp Clone Refresh*勾選、因為執行期間會保留執行個體。
 
-image::lama-ansible-image13.png[包含自訂勾點的「自訂勾點」畫面快照「刪除NetAppClone重新整理」和「刪除NetAppClone」。]
+image:lama-ansible-image13.png["包含自訂勾點的「自訂勾點」畫面快照「刪除NetAppClone重新整理」和「刪除NetAppClone」。"]
 
 請務必設定*使用Mount Data XML作為自訂掛勾、以便SAP Lama將掛載點組態的資訊提供給供應商。
 
-image::lama-ansible-image14.png[使用刪除 NetAppClone 一般畫面的螢幕擷取畫面]
+image:lama-ansible-image14.png["「刪除NetAppClone一般」畫面的快照、並反白顯示「使用Mount Data XML yes」。"]
 
 為了確保只有在使用自訂資源配置工作流程建立系統時、才會使用及執行自訂資源勾、系統會新增下列限制。
 
-image::lama-ansible-image15.png[「刪除NetAppClone限制」頁面的快照。包含名為「Custom Clone Process name（Static）（自訂複製程序名稱（靜態））」的單一限制。]
+image:lama-ansible-image15.png["「刪除NetAppClone限制」頁面的快照。包含名為「Custom Clone Process name（Static）（自訂複製程序名稱（靜態））」的單一限制。"]
 
 如需使用自訂掛勾的詳細資訊、請參閱 https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/139eca2f925e48738a20dbf0b56674c5.html["SAP Lama文件"^]。
 
@@ -116,4 +117,4 @@ image::lama-ansible-image15.png[「刪除NetAppClone限制」頁面的快照。�
 
 若要啟用來源系統的自訂資源配置工作流程、必須在組態中進行調整。必須選取「*使用自訂資源配置程序*」核取方塊以及對應的自訂資源配置定義。
 
-image::lama-ansible-image16.png[SAP Lama組態>系統>系統詳細資料畫面的快照。「使用自訂資源配置程序」核取方塊會反白顯示。]
+image:lama-ansible-image16.png["SAP Lama 組態 > 系統 > 系統詳細資料畫面的螢幕擷取畫面。「使用自訂資源配置程序」核取方塊會反白顯示。"]

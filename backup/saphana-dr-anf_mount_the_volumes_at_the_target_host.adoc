@@ -10,7 +10,7 @@ summary: '現在、磁碟區可以根據先前建立的「etc/stb"檔案、在�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: SAP HANA預設為每個SAP HANA服務只使用一個資料磁碟區。�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

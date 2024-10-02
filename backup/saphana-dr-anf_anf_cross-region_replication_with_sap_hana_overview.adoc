@@ -10,8 +10,10 @@ summary: 跨區域複寫的應用程式無關資訊可在下列位置找到。
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
-如需跨區域複寫的不受應用程式限制資訊、請參閱 https://docs.microsoft.com/en-us/azure/azure-netapp-files/["本文檔| Microsoft文件Azure NetApp Files"^] 在概念和操作指南章節中。
+跨區域複寫的應用程式不受限資訊可在下列位置找到。
+
+link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/["本文檔| Microsoft文件Azure NetApp Files"^]在概念和使用方法指南章節中。

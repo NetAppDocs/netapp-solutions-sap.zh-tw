@@ -10,12 +10,13 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 下節將逐步說明SAP HANA資料庫的不同系統更新作業選項。
 
-image::sc-copy-clone-image7.png[SC 複本複本影像 7.]
+image:sc-copy-clone-image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 視 SAP HANA 資料庫組態而定、會執行或需要準備其他步驟。下表提供摘要。
 
@@ -105,7 +106,7 @@ image::sc-copy-clone-image7.png[SC 複本複本影像 7.]
 
 所有 SAP HANA 系統都必須根據組態指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"]。SnapCenter 和 SAP HANA 資源是根據最佳實務指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"]。
 
-image::sc-copy-clone-image16.png[SC 複本複本影像 16.]
+image:sc-copy-clone-image16.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -145,7 +146,7 @@ hana-7:/opt/NetApp/snapcenter/scc/etc #
 
 本節說明 SAP HANA 系統重新整理工作流程、其中來源和目標系統的租戶名稱與 SID 相同。儲存複製是在主要儲存設備上執行、而還原則是使用指令碼自動執行 `sc-system-refresh.sh`。
 
-image::sc-copy-clone-image17.png[SC 複本複本影像 17.]
+image:sc-copy-clone-image17.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 工作流程包含下列步驟：
 
@@ -180,7 +181,7 @@ image::sc-copy-clone-image17.png[SC 複本複本影像 17.]
 . 從來源系統 SS1 選取 Snapshot 備份、然後按一下 Clone （複製）。
 
 
-image::sc-copy-clone-image18.png[SC 複製複本影像 18.]
+image:sc-copy-clone-image18.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取安裝目標系統QS1的主機。輸入QS1作為目標SID。NFS匯出IP位址必須是目標主機的儲存網路介面。
 +
@@ -193,28 +194,28 @@ NOTE: 在您開始複製工作流程之前、請務必先在 SnapCenter 中設�
 
 
 
-image::sc-copy-clone-image19.png[SC 複製複本影像 19.]
+image:sc-copy-clone-image19.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 在光纖通道 SAN 設定中、不需要匯出 IP 位址、但您需要在下一個畫面中提供使用的傳輸協定。
 
 
 NOTE: 螢幕擷取畫面顯示使用 FiberChannel 連線的不同實驗室設定。
 
-image::sc-copy-clone-image20.png[SC 複本複本影像 20.]
+image:sc-copy-clone-image20.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
-image::sc-copy-clone-image21.png[SC 複本複本影像 21.]
+image:sc-copy-clone-image21.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 有了 Azure NetApp Files 和手動 QoS 容量集區、您必須為新的磁碟區提供最大處理量。請確定容量集區有足夠的保留空間、否則複製工作流程將會失敗。
 
 
 NOTE: 螢幕擷取畫面顯示在 Microsoft Azure with Azure NetApp Files 中執行的不同實驗室設定。
 
-image::sc-copy-clone-image22.png[SC 複本複本影像 22.]
+image:sc-copy-clone-image22.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 使用必要的命令列選項、輸入選擇性的複製後指令碼。在此範例中、我們使用複製後指令碼來執行 SAP HANA 資料庫還原。
 
 
-image::sc-copy-clone-image23.png[SC 複本複本影像 23.]
+image:sc-copy-clone-image23.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 NOTE: 如前所述、恢復指令碼的使用是選擇性的。也可以在 SnapCenter 複製工作流程完成後手動進行還原。
@@ -225,7 +226,7 @@ NOTE: 恢復作業的指令碼會使用 Clear logs 作業將 SAP HANA 資料庫�
 . 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。工作詳細資料也顯示、包括資料庫還原在內的整體執行時間不到3分鐘。
 
 
-image::sc-copy-clone-image24.png[SC 複本複本影像 24.]
+image:sc-copy-clone-image24.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 指令碼的記錄檔 `sc-system-refresh` 會顯示針對還原作業所執行的不同步驟。指令碼會從系統資料庫讀取租戶清單、並執行所有現有租戶的恢復。
 
@@ -266,21 +267,21 @@ hana-7:/mnt/sapcc-share/SAP-System-Refresh
 . 完成「視覺化」工作後SnapCenter 、可在來源系統的拓撲檢視中看到實體複本。
 
 
-image::sc-copy-clone-image25.png[SC 複本複本影像 25.]
+image:sc-copy-clone-image25.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . SAP HANA 資料庫目前正在執行中。
 . 若要保護目標 SAP HANA 系統、您必須按一下目標系統資源來執行自動探索。
 
 
-image::sc-copy-clone-image26.png[SC 複本複本影像 26.]
+image:sc-copy-clone-image26.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 當自動探索程序完成時、新的複製磁碟區會列在儲存佔用空間區段中。
 
-image::sc-copy-clone-image27.png[SC 複本複本影像 27.]
+image:sc-copy-clone-image27.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 再次按一下資源、即可為重新整理的 QS1 系統設定資料保護。
 
-image::sc-copy-clone-image28.png[SC 複本複本影像 28.]
+image:sc-copy-clone-image28.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -288,15 +289,13 @@ image::sc-copy-clone-image28.png[SC 複本複本影像 28.]
 
 本節說明 SAP HANA 系統重新整理工作流程、來源和目標系統的租戶名稱與 SID 相同。儲存複製是在異地備份儲存區執行、並使用 SC-system-refresh.sh 指令碼進一步自動化。
 
-image::sc-copy-clone-image29.png[SC 複本複本影像 29.]
+image:sc-copy-clone-image29.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"] 在 SAP HANA 系統重新整理工作流程中、主要與異地備份儲存複製的唯一差異、就是在 SnapCenter 中選擇 Snapshot 備份。對於異地備份儲存複製、必須先選取次要備份、然後再選取 Snapshot 備份。
 
-在 SAP HANA 系統重新整理工作流程中、主要與異地備份儲存複製的唯一差異、就是在 SnapCenter 中選擇 Snapshot 備份。對於異地備份儲存複製、必須先選取次要備份、然後再選取 Snapshot 備份。
-
-image::sc-copy-clone-image30.png[SC 複本複本影像]
+image:sc-copy-clone-image30.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 如果所選備份有多個次要儲存位置、您需要選擇所需的目的地 Volume 。
 
-image::sc-copy-clone-image31.png[SC 複本複本影像 31.]
+image:sc-copy-clone-image31.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 所有後續步驟都與從主要儲存設備進行複製的工作流程相同。
 
@@ -306,7 +305,7 @@ image::sc-copy-clone-image31.png[SC 複本複本影像 31.]
 
 本節說明 SAP HANA 系統更新工作流程、其中包含多個租戶。儲存複製是在主要儲存設備上執行、並使用指令碼進一步自動化 `sc-system-refresh.sh`。
 
-image::sc-copy-clone-image32.png[SC 複本複本影像 32.]
+image:sc-copy-clone-image32.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 SnapCenter 中的必要步驟與「從主儲存設備複製、租戶名稱等於 SID 」一節中所述相同。唯一的差異在於指令碼內的租戶恢復作業 `sc-system-refresh.sh`、所有租戶都會在該作業中恢復。
 
@@ -377,17 +376,17 @@ TENANT1) and starting recovery
 . 在來源系統的拓撲檢視中選取複本、然後按一下刪除。
 
 
-image::sc-copy-clone-image33.png[SC 複本複本影像 33.]
+image:sc-copy-clone-image33.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入預先複製的指令行選項、然後卸載指令碼。
 
 
-image::sc-copy-clone-image34.png[SC 複本複本影像 34.]
+image:sc-copy-clone-image34.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。
 
 
-image::sc-copy-clone-image35.png[SC 複本複本影像 35.]
+image:sc-copy-clone-image35.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 指令碼的記錄檔 `sc-system-refresh` 會顯示關機和卸載作業步驟。
 
@@ -430,21 +429,21 @@ NOTE: 使用 Azure NetApp Files 時、複製分割作業無法使用、因為 Az
 
 在來源系統的拓撲檢視中、選取實體複本並按一下實體複本分割、即可啟動位於實體複本的實體複本分割工作流程SnapCenter 。
 
-image::sc-copy-clone-image36.png[SC 複本複本影像 36.]
+image:sc-copy-clone-image36.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 下一個畫面會顯示預覽、提供分割Volume所需容量的相關資訊。
 
-image::sc-copy-clone-image37.png[SC 複本複本影像 37.]
+image:sc-copy-clone-image37.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 這個職務記錄會顯示複本分割作業的進度。SnapCenter
 
-image::sc-copy-clone-image38.png[SC 複本複本影像 38.]
+image:sc-copy-clone-image38.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 在 SnapCenter 的資源檢視中、目標系統 QS1 現在不再標記為複製的資源。回到來源系統的拓撲檢視時、無法再看到實體複本。分割磁碟區現在已獨立於來源系統的Snapshot備份。
 
-image::sc-copy-clone-image39.png[SC 複本複本影像 39.]
+image:sc-copy-clone-image39.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
-image::sc-copy-clone-image40.png[SC 複本複本影像 40]
+image:sc-copy-clone-image40.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 複製分割作業之後的重新整理工作流程、與沒有複製分割的作業略有不同。在複製分割作業之後、不需要複製刪除作業、因為目標資料 Volume 不再是 FlexClone Volume 。
 

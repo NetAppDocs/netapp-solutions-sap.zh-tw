@@ -10,9 +10,10 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 本文件涵蓋在內部部署 NetApp 系統上執行的 SAP HANA 系統、適用於 NetApp ONTAP 系統的 Amazon FSX 和 Azure NetApp Files 上的 SAP HANA 系統重新整理和複製案例。然而、並非每個儲存平台都提供所有功能和情境。下表摘要說明支援的組態。
 
 在文件中、我們使用的是在內部部署 NetApp 系統上執行的 SAP HANA 環境、其中 NFS 是儲存傳輸協定。大部分的工作流程步驟在不同平台上都是相同的、如果有差異、則會在本文件中強調顯示。

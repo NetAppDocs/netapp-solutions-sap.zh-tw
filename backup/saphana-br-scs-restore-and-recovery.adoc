@@ -10,7 +10,7 @@ summary: 下列各節將說明三種不同案例和範例組態的還原與還�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -109,10 +109,10 @@ NOTE: 如果選取「No Recovery（無恢復）SnapCenter 」、則必須手動�
 NOTE: 您可以選擇從主要或異地備份儲存設備還原。
 
 +
-image::saphana-br-scs-image96.png[saphana br SCS 版本 96]
+image:saphana-br-scs-image96.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
-image::saphana-br-scs-image97.png[saphana br SCS 影像 97]
+image:saphana-br-scs-image97.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取還原範圍和類型。
 +
@@ -126,19 +126,19 @@ image::saphana-br-scs-image97.png[saphana br SCS 影像 97]
 NOTE: Volume Revert（磁碟區恢復）選項僅可用於從主要NFS進行還原作業。
 
 +
-image::saphana-br-scs-image98.png[saphana br SCS 影像 98]
+image:saphana-br-scs-image98.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 從異地備份儲存設備還原的還原類型選項。
 
 +
-image::saphana-br-scs-image99.jpeg[saphana br SCS 影像 99]
+image:saphana-br-scs-image99.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 還原類型選項、可透過光纖通道SAN從主要儲存設備還原。
 
 +
-image::saphana-br-scs-image100.png[saphana br SCS image100]
+image:saphana-br-scs-image100.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取「恢復範圍」、並提供記錄備份和目錄備份的位置。
 +
@@ -146,27 +146,27 @@ image::saphana-br-scs-image100.png[saphana br SCS image100]
 NOTE: 使用HANA global.ini檔案中的預設路徑或變更路徑、預先填入記錄和目錄備份位置。SnapCenter
 
 +
-image::saphana-br-scs-image101.png[saphana br SCS 影像 101]
+image:saphana-br-scs-image101.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入選用的prerestore命令。
 +
-image::saphana-br-scs-image102.png[saphana br SCS 影像 102.]
+image:saphana-br-scs-image102.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入可選的還原後命令。
 +
-image::saphana-br-scs-image103.png[saphana br SCS 影像 103.]
+image:saphana-br-scs-image103.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入選用的電子郵件設定。
 +
-image::saphana-br-scs-image104.png[saphana br SCS 影像 104.]
+image:saphana-br-scs-image104.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 若要開始還原作業、請按一下「Finish（完成）」。
 +
-image::saphana-br-scs-image105.png[saphana br SCS 影像 105.]
+image:saphana-br-scs-image105.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 執行還原與還原作業。SnapCenter此範例顯示還原與還原工作的工作詳細資料。
 +
-image::saphana-br-scs-image106.png[saphana br SCS 影像 106.]
+image:saphana-br-scs-image106.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -214,7 +214,7 @@ hdbsql SYSTEMDB=>
 ....
 . 選擇SnapCenter 要用於還原作業的支援。
 +
-image::saphana-br-scs-image107.png[saphana br SCS 影像 107-]
+image:saphana-br-scs-image107.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取要還原的租戶。
 +
@@ -222,35 +222,35 @@ image::saphana-br-scs-image107.png[saphana br SCS 影像 107-]
 NOTE: 顯示所選備份中包含的所有租戶清單。SnapCenter
 
 +
-image::saphana-br-scs-image108.png[saphana br SCS 影像 108.]
+image:saphana-br-scs-image108.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 不支援SnapCenter 使用NetApp 4.3的單一租戶恢復。未預先選取任何恢復、且無法變更。
 
 +
-image::saphana-br-scs-image109.png[saphana br SCS 影像 109.]
+image:saphana-br-scs-image109.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入選用的prerestore命令。
 +
-image::saphana-br-scs-image110.png[saphana br SCS 影像 110]
+image:saphana-br-scs-image110.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入選擇性的還原後命令。
 +
-image::saphana-br-scs-image111.png[saphana br SCS 影像 111.]
+image:saphana-br-scs-image111.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入選用的電子郵件設定。
 +
-image::saphana-br-scs-image112.png[saphana br SCS 影像 112]
+image:saphana-br-scs-image112.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 若要開始還原作業、請按一下「Finish（完成）」。
 +
-image::saphana-br-scs-image113.png[saphana br SCS 版本 113]
+image:saphana-br-scs-image113.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 還原作業由SnapCenter 執行。此範例顯示還原工作的工作詳細資料。
 
 +
-image::saphana-br-scs-image114.png[saphana br SCS 影像 114.]
+image:saphana-br-scs-image114.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 
@@ -290,44 +290,44 @@ sm1adm@hana-2:/usr/sap/SM1/HDB00>
 ....
 . 使用HANA Studio開始恢復。
 +
-image::saphana-br-scs-image115.png[saphana br SCS 影像 115]
+image:saphana-br-scs-image115.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取租戶。
 +
-image::saphana-br-scs-image116.png[saphana br SCS 影像 116.]
+image:saphana-br-scs-image116.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取恢復類型。
 +
-image::saphana-br-scs-image117.png[saphana br SCS 影像 117.]
+image:saphana-br-scs-image117.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 提供備份目錄位置。
 +
-image::saphana-br-scs-image118.png[saphana br SCS 影像 118]
+image:saphana-br-scs-image118.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
-image::saphana-br-scs-image119.png[saphana br SCS 影像 119]
+image:saphana-br-scs-image119.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 在備份目錄中、還原的備份會以綠色圖示反白顯示。外部備份ID會顯示SnapCenter 先前在畫面中選取的備份名稱。
 
 . 選取含有綠色圖示的項目、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image120.png[saphana br SCS 影像 120]
+image:saphana-br-scs-image120.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 提供記錄備份位置。
 +
-image::saphana-br-scs-image121.png[saphana br SCS 影像 121.]
+image:saphana-br-scs-image121.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 視需要選取其他設定。
 +
-image::saphana-br-scs-image122.png[saphana br SCS 影像 122.]
+image:saphana-br-scs-image122.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 啟動租戶還原作業。
 +
-image::saphana-br-scs-image123.png[saphana br SCS 影像 123.]
+image:saphana-br-scs-image123.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
-image::saphana-br-scs-image124.png[saphana br SCS 版本 124.]
+image:saphana-br-scs-image124.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -381,26 +381,26 @@ NOTE: 在使用FC的SAP HANA多主機設定中、卸載和掛載作業是由SAP 
 
 . 在SAP HANA Studio中、選取「恢復系統資料庫」選項以開始還原系統資料庫。
 +
-image::saphana-br-scs-image125.png[saphana br SCS 影像 125.]
+image:saphana-br-scs-image125.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 按一下「確定」關閉SAP HANA資料庫。
 +
-image::saphana-br-scs-image126.png[saphana br SCS 版本 126.]
+image:saphana-br-scs-image126.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 SAP HANA系統隨即關機、並啟動還原精靈。
 
 . 選取恢復類型、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image127.png[saphana br SCS 影像 127.]
+image:saphana-br-scs-image127.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 提供備份目錄的位置、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image128.png[saphana br SCS 影像 128]
+image:saphana-br-scs-image128.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 可用備份清單會根據備份目錄的內容顯示。選擇所需的備份、並記下外部備份ID：在我們的範例中、是最新的備份。
 +
-image::saphana-br-scs-image129.png[saphana br SCS 版本 129.]
+image:saphana-br-scs-image129.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 卸載所有資料磁碟區。
 +
@@ -417,7 +417,7 @@ NOTE: 在使用FC的SAP HANA多主機設定中、卸載作業是由SAP HANA名�
 
 . 從「支援GUI」中選取資源拓撲檢視、然後選取應還原的備份；在我們的範例中、是最新的主要備份。SnapCenter按一下「還原」圖示以開始還原。
 +
-image::saphana-br-scs-image130.png[saphana br SCS 影像 130]
+image:saphana-br-scs-image130.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 隨即啟動還原精靈。SnapCenter
@@ -427,38 +427,38 @@ image::saphana-br-scs-image130.png[saphana br SCS 影像 130]
 選取「完整資源」以使用磁碟區型還原。
 
 +
-image::saphana-br-scs-image131.png[saphana br SCS 影像 131.]
+image:saphana-br-scs-image131.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取「檔案層級」和「全部」、即可SnapRestore 針對所有檔案使用單一檔案的還原作業。
 +
-image::saphana-br-scs-image132.png[saphana br SCS 版本 132.]
+image:saphana-br-scs-image132.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 
 NOTE: 若需SAP HANA多主機系統的檔案層級還原、請選取所有磁碟區。
 
 +
-image::saphana-br-scs-image133.png[saphana br SCS 影像 133.]
+image:saphana-br-scs-image133.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . （選用）指定應從中央HANA外掛主機上執行的SAP HANA外掛程式執行的命令。按一下「下一步」
 +
-image::saphana-br-scs-image134.png[saphana br SCS 版本 134.]
+image:saphana-br-scs-image134.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 指定選用命令、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image135.png[saphana br SCS 影像 135-135]
+image:saphana-br-scs-image135.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 指定通知設定、SnapCenter 以便讓支援部門傳送狀態電子郵件和工作記錄。按一下「下一步」
 +
-image::saphana-br-scs-image136.png[saphana br SCS 影像 136]
+image:saphana-br-scs-image136.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 檢閱摘要、然後按一下「Finish（完成）」開始還原。
 +
-image::saphana-br-scs-image137.png[saphana br SCS 影像 137.]
+image:saphana-br-scs-image137.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 還原工作隨即啟動、按兩下活動窗格中的記錄行即可顯示工作記錄。
 +
-image::saphana-br-scs-image138.png[saphana br SCS 影像 138]
+image:saphana-br-scs-image138.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 等待還原程序完成。在每個資料庫主機上、掛載所有資料磁碟區。在我們的範例中、只有一個磁碟區必須重新掛載到資料庫主機上。
 +
@@ -467,63 +467,63 @@ mount /hana/data/SP1/mnt00001
 ....
 . 前往SAP HANA Studio並按一下「Refresh」（重新整理）以更新可用備份清單。使用還原的備份SnapCenter 會在備份清單中顯示綠色圖示。選取備份、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image139.png[saphana br SCS 影像 139.]
+image:saphana-br-scs-image139.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 提供記錄備份的位置。按一下「下一步」
 +
-image::saphana-br-scs-image140.png[saphana br SCS 影像 140]
+image:saphana-br-scs-image140.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 視需要選取其他設定。請確定未選取「使用差異備份」。按一下「下一步」
 +
-image::saphana-br-scs-image141.png[saphana br SCS 影像 141.]
+image:saphana-br-scs-image141.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 檢閱恢復設定、然後按一下「Finish（完成）」。
 +
-image::saphana-br-scs-image142.png[saphana br SCS 影像 142.]
+image:saphana-br-scs-image142.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 恢復程序隨即開始。等待系統資料庫恢復完成。
 +
-image::saphana-br-scs-image143.png[saphana br SCS 影像 143.]
+image:saphana-br-scs-image143.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 在SAP HANA Studio中、選取系統資料庫的項目、然後開始備份恢復-恢復租戶資料庫。
 +
-image::saphana-br-scs-image144.png[saphana br SCS 版本 144.]
+image:saphana-br-scs-image144.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取要恢復的租戶、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image145.png[saphana br SCS 影像 145.]
+image:saphana-br-scs-image145.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 指定恢復類型、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image146.png[saphana br SCS 版本 146]
+image:saphana-br-scs-image146.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 確認備份目錄位置、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image147.png[saphana br SCS 版本 147]
+image:saphana-br-scs-image147.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 確認租戶資料庫已離線。按一下「確定」以繼續。
 +
-image::saphana-br-scs-image148.png[saphana br SCS 版本 148]
+image:saphana-br-scs-image148.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 由於資料磁碟區的還原是在系統資料庫還原之前進行、因此租戶備份可以立即使用。選取以綠色反白顯示的備份、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image149.png[saphana br SCS 版本 149.]
+image:saphana-br-scs-image149.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 確認記錄備份位置、然後按「Next（下一步）」。
 +
-image::saphana-br-scs-image150.png[saphana br SCS 影像 150]
+image:saphana-br-scs-image150.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 視需要選取其他設定。請確定未選取「使用差異備份」。按一下「下一步」
 +
-image::saphana-br-scs-image151.png[saphana br SCS 影像 151.]
+image:saphana-br-scs-image151.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 按一下「Finish（完成）」以檢閱恢復設定、並開始租戶資料庫的恢復程序。
 +
-image::saphana-br-scs-image152.png[saphana br SCS 影像 152.]
+image:saphana-br-scs-image152.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 等到還原完成、租戶資料庫開始。
 +
-image::saphana-br-scs-image153.png[saphana br SCS 影像 153.]
+image:saphana-br-scs-image153.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 +
 SAP HANA系統已啟動並開始運作。

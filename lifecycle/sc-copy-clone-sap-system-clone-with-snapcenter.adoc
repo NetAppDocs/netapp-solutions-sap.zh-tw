@@ -10,9 +10,10 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 本節提供SAP系統複製作業的逐步說明、可用來設定修復系統以解決邏輯毀損問題。
 
 下圖摘要說明使用 SnapCenter 執行 SAP 系統複製作業所需的步驟。
@@ -34,7 +35,7 @@ NOTE: 如果您必須將系統重設為不同的Snapshot備份、則步驟6和�
 . SAP HANA 共用 Volume 的 SnapCenter 複製刪除工作流程。
 
 
-image::sc-copy-clone-image9.png[SC 複本複本影像 9.]
+image:sc-copy-clone-image9.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -64,7 +65,7 @@ image::sc-copy-clone-image9.png[SC 複本複本影像 9.]
 
 所有 SAP HANA 系統都必須根據組態指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"]。SnapCenter 和 SAP HANA 資源是根據最佳實務指南進行設定 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA利用SnapCenter 功能進行備份與還原"]。
 
-image::sc-copy-clone-image41.png[SC 複本複本影像 41.]
+image:sc-copy-clone-image41.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -172,26 +173,26 @@ hana-7:/opt/NetApp/snapcenter/scc/etc #
 . 從來源系統 SS1 共用磁碟區選取 Snapshot 備份、然後按一下 Clone （複製）。
 
 
-image::sc-copy-clone-image42.png[SC 複本複本影像 42.]
+image:sc-copy-clone-image42.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標 SID 與來源系統保持相同的 SID 。在我們的例子 SS1 中。
 
 
-image::sc-copy-clone-image43.png[SC 複本複本影像 43.]
+image:sc-copy-clone-image43.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 輸入含有所需命令列選項的掛載指令碼。
 +
 
-NOTE: SAP HANA 系統使用單一 Volume for `/hana/shared` 和 `/usr/sap/SS1`、並依照組態指南中的建議、在子目錄中分隔 https://www.netapp.com/media/17238-tr4435.pdf["SAP HANA on NetApp AFF 的NFS系統"]。指令碼 `sc-mount-volume.sh` 使用裝載路徑的特殊命令列選項來支援此組態。如果掛載路徑命令列選項等於 usr-sap-and 共享、指令碼會將共用子目錄和 usr-sap 相應地掛載到磁碟區中。
+NOTE: SAP HANA 系統使用單一 Volume for `/hana/shared` 和 `/usr/sap/SS1`、並依照組態指南中的建議link:../bp/saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"]、在子目錄中分隔。指令碼 `sc-mount-volume.sh` 使用裝載路徑的特殊命令列選項來支援此組態。如果掛載路徑命令列選項等於 usr-sap-and 共享、指令碼會將共用子目錄和 usr-sap 相應地掛載到磁碟區中。
 
 
 
-image::sc-copy-clone-image44.png[SC 複本複本影像 44]
+image:sc-copy-clone-image44.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。
 
 
-image::sc-copy-clone-image45.png[SC 複本複本影像 45]
+image:sc-copy-clone-image45.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . sc-mount-volume.sh 指令碼的記錄檔會顯示掛載作業執行的不同步驟。
 
@@ -220,7 +221,7 @@ Filesystem 1K-blocks Used Available Use% Mounted on
 . 在這個功能中SnapCenter 、您可以看到複製磁碟區的新資源。
 
 
-image::sc-copy-clone-image46.png[SC 複本複本影像 46]
+image:sc-copy-clone-image46.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 現在 /Hana / 共享磁碟區已經可用、 SAP HANA 服務就可以啟動。
 
@@ -259,12 +260,12 @@ hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 . 從來源系統 SS1 選取 SAP HANA Snapshot 備份。
 
 
-image::sc-copy-clone-image47.png[SC 複本複本影像 47]
+image:sc-copy-clone-image47.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 選取已準備好目標修復系統的主機。NFS匯出IP位址必須是目標主機的儲存網路介面。由於目標 SID 與來源系統保持相同的 SID 。在我們的例子 SS1 中
 
 
-image::sc-copy-clone-image48.png[SC 複本複本影像 48]
+image:sc-copy-clone-image48.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 . 使用必要的命令列選項輸入複製後指令碼。
 +
@@ -273,11 +274,11 @@ NOTE: 恢復作業的指令碼會將 SAP HANA 資料庫還原至 Snapshot 作業
 
 
 
-image::sc-copy-clone-image23.png[SC 複本複本影像 23.]
+image:sc-copy-clone-image23.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 中的「工作詳細資料」畫面SnapCenter 會顯示作業進度。
 
-image::sc-copy-clone-image49.png[SC 複本複本影像 49]
+image:sc-copy-clone-image49.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 指令碼的記錄檔 `sc-system-refresh` 會顯示掛載和還原作業所執行的不同步驟。
 

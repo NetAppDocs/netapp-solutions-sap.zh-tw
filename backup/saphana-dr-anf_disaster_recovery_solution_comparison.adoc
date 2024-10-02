@@ -10,7 +10,7 @@ summary: 全方位的災難恢復解決方案必須能讓客戶從主要站台�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -22,7 +22,7 @@ summary: 全方位的災難恢復解決方案必須能讓客戶從主要站台�
 
 本文件討論兩區災難恢復解決方案的不同實作選項。
 
-image::saphana-dr-anf_image3.png[saphana Dr anf image3.]
+image:saphana-dr-anf_image3.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -52,7 +52,7 @@ SAP HANA系統複寫可在下列兩種模式之一中操作：
 
 下圖說明SAP HANA系統複寫。
 
-image::saphana-dr-anf_image4.png[saphana Dr anf Image4.]
+image:saphana-dr-anf_image4.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -80,13 +80,13 @@ ANF跨區域複寫是以非同步資料複寫的災難恢復解決方案、內�
 
 RTO主要取決於在災難恢復站台啟動HANA資料庫、以及將資料載入記憶體所需的時間。假設資料的讀取處理量為1000 MB/s、載入1TB的資料大約需要18分鐘。視複寫組態而定、也需要轉送還原、並會增加RTO總值。
 
-有關不同組態選項的詳細資訊、請參閱一章 link:ent-apps-db/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["使用SAP HANA進行跨區域複寫的組態選項"]。
+有關不同組態選項的詳細資訊link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["使用SAP HANA進行跨區域複寫的組態選項"]，請參閱第章。
 
 災難恢復站台的伺服器可在正常運作期間作為開發/測試系統使用。發生災難時、開發/測試系統必須關閉、並以DR正式作業伺服器的形式啟動。
 
 ANF跨區域複寫可讓您在不影響RPO和RTO的情況下測試DR工作流程。這是透過建立磁碟區複製並將其附加至DR測試伺服器來達成的。
 
-image::saphana-dr-anf_image5.png[saphana Dr anf 影像 5.]
+image:saphana-dr-anf_image5.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 

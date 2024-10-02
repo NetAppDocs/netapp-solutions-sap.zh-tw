@@ -10,7 +10,7 @@ summary: 從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -113,4 +113,4 @@ stlrx300s8-6:/ # chmod –R 777 /hana/data2/SS3
 ....
 ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 ....
-image::saphana_aff_fc_image20.jpg[saphana AFF 光纖通道影像 20]
+image:saphana_aff_fc_image20.jpg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

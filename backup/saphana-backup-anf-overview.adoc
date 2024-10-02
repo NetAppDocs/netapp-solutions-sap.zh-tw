@@ -10,12 +10,13 @@ summary: 本技術報告涵蓋SAP HANA資料保護的最佳實務做法（採用
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
-NetApp公司Nils Bauer
-
+[role="lead"]
 本技術報告涵蓋SAP HANA資料保護的最佳實務做法（採用NetApp SnapCenter 功能和Azure NetApp Files 功能）。其中涵SnapCenter 蓋「不支援服務」概念、組態建議及作業工作流程、包括備份、還原及還原作業。
+
+作者： Nils Bauer 、 NetApp
 
 現今的企業需要持續且不中斷的SAP應用程式可用度。他們期望面對不斷增加的資料量、以及系統備份等例行維護工作的需求、能達到一致的效能等級。執行SAP資料庫備份是一項重要工作、可能對正式作業SAP系統造成重大效能影響。
 

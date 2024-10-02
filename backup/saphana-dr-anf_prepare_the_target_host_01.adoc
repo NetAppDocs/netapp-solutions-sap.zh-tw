@@ -10,7 +10,7 @@ summary: 本節說明用於災難恢復容錯移轉的伺服器所需的準備�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

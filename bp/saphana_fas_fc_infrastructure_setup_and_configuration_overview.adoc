@@ -10,7 +10,7 @@ summary: 以下各節提供SAP HANA基礎架構的設定與組態準則。
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

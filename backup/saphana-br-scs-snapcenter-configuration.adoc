@@ -10,7 +10,7 @@ summary: 此功能可分為兩個主要領域：初始組態和資源專屬組�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -22,7 +22,7 @@ summary: 此功能可分為兩個主要領域：初始組態和資源專屬組�
 
 下圖概述組態元件及其相依性。綠色方塊會顯示SnapCenter 組態步驟、這些步驟必須在非執行功能的情況下完成；藍色方塊會顯示使用SnapCenter 該功能的圖形化圖形化介面所執行的步驟。
 
-image::saphana-br-scs-image22.png[saphana br SCS 影像 22.]
+image:saphana-br-scs-image22.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 在初始組態中、會安裝並設定下列元件：
 

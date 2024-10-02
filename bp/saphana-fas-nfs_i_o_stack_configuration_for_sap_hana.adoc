@@ -10,7 +10,7 @@ summary: 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整IO行為、並針
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

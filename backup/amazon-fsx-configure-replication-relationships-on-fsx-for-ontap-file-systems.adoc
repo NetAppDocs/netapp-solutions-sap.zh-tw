@@ -10,7 +10,7 @@ summary: 本節將說明如何針對ONTAP 下列項目建立對等FSX-以利執�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -13,11 +13,12 @@ summary: 本文件說明SAP HANA的NetApp備份與還原解決方案的安裝與
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
-NetApp公司Nils Bauer
-
+[role="lead"]
 TR-4313說明適用於SAP HANA的NetApp備份與還原解決方案的安裝與組態。此解決方案以NetApp Snap Creator架構和適用於SAP HANA的Snap Creator外掛程式為基礎。此解決方案可搭配通過認證的Cisco SAP HANA多節點設備與NetApp儲存設備搭配使用。這套解決方案也支援量身打造的資料中心整合（TDI）專案中的單節點和多節點SAP HANA系統。
+
+作者： Nils Bauer 、 NetApp
 
 link:https://www.netapp.com/pdf.html?item=/media/19779-tr-4313.pdf["https://www.netapp.com/pdf.html?item=/media/19779-tr-4313.pdf"]

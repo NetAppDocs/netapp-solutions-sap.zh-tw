@@ -10,7 +10,6 @@ keywords: netapp, solutions, SAP, backuop, restore, dr, disaster recovery, blogs
 :nofooter: 
 :icons: font
 :linkattrs: 
-:table-stripes: odd
 :imagesdir: ./media/
 
 

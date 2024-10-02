@@ -10,7 +10,7 @@ summary: 本文件也包含所使用Linux版本特有的多重路徑組態相關
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

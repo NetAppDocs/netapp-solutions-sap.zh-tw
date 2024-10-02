@@ -10,7 +10,7 @@ summary: 將Ansible等現代化自動化架構整合到SAP Lama資源配置工�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

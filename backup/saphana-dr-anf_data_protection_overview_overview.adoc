@@ -8,15 +8,18 @@ summary: 研究顯示、商業應用程式停機對企業的業務有重大負�
 :allow-uri-read: 
 
 
-Nils Baier、NetApp Ralf Klahr、Microsoft
+[role="lead"]
+研究顯示、商業應用程式停機對企業的業務有重大負面影響。
 
-研究顯示、商業應用程式停機對企業的業務有重大負面影響。除了財務影響之外、停機也可能損害公司的聲譽、員工的士氣和客戶忠誠度。令人驚訝的是、並非所有公司都有全方位的災難恢復原則。
+作者： Nils Bauer 、 NetApp Ralf Klahr 、 Microsoft
+
+除了財務影響之外、停機也可能損害公司的聲譽、員工的士氣和客戶忠誠度。令人驚訝的是、並非所有公司都有全方位的災難恢復原則。
 
 在Azure NetApp Files NetApp上執行SAP HANA（ANF）可讓客戶存取其他功能、以延伸及改善SAP HANA內建的資料保護與災難恢復功能。本總覽區段說明這些選項、可協助客戶選擇支援其業務需求的選項。
 
 若要開發全方位的災難恢復原則、客戶必須瞭解資料保護和災難恢復所需的商業應用程式需求和技術功能。下圖概述資料保護。
 
-image::saphana-dr-anf_image2.png[saphana Dr anf image2.]
+image:saphana-dr-anf_image2.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 

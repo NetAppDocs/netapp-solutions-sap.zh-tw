@@ -10,12 +10,13 @@ summary: 現今的企業需要持續且不中斷的SAP應用程式可用度。�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
-NetApp公司Nils Bauer
-
+[role="lead"]
 現今的企業需要持續且不中斷的SAP應用程式可用度。他們期望面對不斷增加的資料量、以及系統備份等例行維護工作的需求、能達到一致的效能等級。執行SAP資料庫備份是一項重要工作、可能對正式作業SAP系統造成重大效能影響。
+
+作者： Nils Bauer 、 NetApp
 
 備份時間越來越短、而要備份的資料量卻越來越多。因此、很難找到能夠在對業務程序影響最小的情況下執行備份的時間。還原及還原SAP系統所需的時間是一項重大考量、因為必須將SAP正式作業與非正式作業系統的停機時間降至最低、以減少資料遺失及企業成本。
 
@@ -44,7 +45,7 @@ Snapshot複本備份與作用中的線上資料儲存在相同的磁碟系統上
 
 此解決方案也可無縫延伸至混合雲營運模式。用於災難恢復或異地備份的資料複寫、可從內部部署的NetApp ONTAP 支援系統、到Cloud Volumes ONTAP 雲端執行的執行個體、都能完成。您可以使用SnapCenter 「不受限於SAP HANA系統在內部部署或雲端上執行、而將「不受限」功能當作管理資料保護和資料複寫的集中工具。下圖顯示備份解決方案的總覽。
 
-image::saphana-br-scs-image1.png[saphana br SCS 影像 1]
+image:saphana-br-scs-image1.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -55,7 +56,7 @@ image::saphana-br-scs-image1.png[saphana br SCS 影像 1]
 
 NOTE: 整體備份工作流程執行時間最大的一部分是執行HANA備份儲存點作業所需的時間、而此步驟取決於HANA資料庫的負載。儲存Snapshot備份本身一律會在幾秒鐘內完成。
 
-image::saphana-br-scs-image2.png[saphana br SCS 影像 2.]
+image:saphana-br-scs-image2.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -89,17 +90,17 @@ image::saphana-br-scs-image2.png[saphana br SCS 影像 2.]
 
 下圖顯示使用檔案型資料備份時、1TB資料庫的RTO範例。在此範例中、每天會進行一次備份。RTO會因執行還原與還原的時間而有所不同。如果在備份完成後立即執行還原與還原、RTO主要是以還原時間為基礎、範例中的還原時間為1小時10分鐘。恢復時間增加至2小時50分鐘、在進行下一次備份之前立即執行還原與還原、最大RTO為4小時30分鐘。
 
-image::saphana-br-scs-image3.png[saphana br SCS 影像 3.]
+image:saphana-br-scs-image3.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 下圖顯示使用Snapshot備份時1TB資料庫的RTO範例。使用儲存型Snapshot備份時、RTO僅取決於資料庫的開始時間和轉送恢復時間、因為還原只需幾秒鐘就完成、而且不受資料庫大小限制。轉送恢復時間也會隨還原與還原的完成時間而增加、但由於備份頻率較高（本例中每六小時一次）、轉送恢復時間最多為43分鐘。在此範例中、RTO上限為1小時13分鐘。
 
-image::saphana-br-scs-image4.png[saphana br SCS Image4]
+image:saphana-br-scs-image4.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 下圖顯示不同資料庫大小和Snapshot備份頻率的檔案型與儲存型Snapshot備份RTO比較。綠色列會顯示檔案型備份。其他長條圖則會顯示具有不同備份頻率的Snapshot複本備份。
 
 與檔案型資料備份相比、每天只需備份一次Snapshot複本資料、RTO已減少40%。每天進行四次Snapshot備份時、減少量會增加至70%。圖中也顯示、如果您將Snapshot備份頻率增加到每天四到六個以上的Snapshot備份、曲線就會變平。因此、我們的客戶通常每天設定四到六個Snapshot備份。
 
-image::saphana-br-scs-image5.png[saphana br SCS 影像 5.]
+image:saphana-br-scs-image5.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 NOTE: 圖表顯示HANA伺服器的RAM大小。記憶體中的資料庫大小是伺服器RAM大小的一半。

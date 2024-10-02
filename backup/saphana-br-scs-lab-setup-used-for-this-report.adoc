@@ -10,7 +10,7 @@ summary: 本技術報告所使用的實驗室設定包含五種不同的SAP HANA
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -59,4 +59,4 @@ summary: 本技術報告所使用的實驗室設定包含五種不同的SAP HANA
 
 下圖顯示實驗室設定。
 
-image::saphana-br-scs-image21.png[saphana br SCS 影像 21.]
+image:saphana-br-scs-image21.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

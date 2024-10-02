@@ -10,9 +10,10 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 本解決方案自原始發佈以來、已進行下列技術變更。
 
 [cols="25,50"]

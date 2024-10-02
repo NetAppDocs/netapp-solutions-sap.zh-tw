@@ -10,7 +10,7 @@ summary: 本節所述的所有主機設定步驟均適用於實體伺服器上�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

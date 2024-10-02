@@ -10,8 +10,13 @@ summary: NetApp的SAP生命週期管理最佳化解決方案已整合至SAP Anyw
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+NetApp的SAP生命週期管理最佳化解決方案已整合至SAP Anywhere和SAP HANA資料庫。此外、NetApp也整合至SAP生命週期管理工具中、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置。
+
+作者：
 
 Holger Zecha、Tobias Brandl、NetApp Franz Diegruber、Libelle
 

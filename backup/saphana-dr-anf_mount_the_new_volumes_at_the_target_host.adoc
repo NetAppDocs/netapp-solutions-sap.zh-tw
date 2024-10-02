@@ -10,7 +10,7 @@ summary: 現在可以根據先前建立的/etc/stab檔案、將新的磁碟區�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

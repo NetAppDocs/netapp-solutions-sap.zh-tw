@@ -10,7 +10,7 @@ summary: 您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -34,7 +34,7 @@ Snapshot複本備份與作用中的線上資料儲存在相同的磁碟系統上
 
 整體備份工作流程執行時間最大的一部分是執行HANA備份儲存點作業所需的時間、而此步驟取決於HANA資料庫的負載。儲存Snapshot備份本身一律會在幾秒鐘內完成。
 
-image::amazon-fsx-image1.png[Amazon FSX 影像 1]
+image:amazon-fsx-image1.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -72,7 +72,7 @@ Snapshot備份通常會以較高的頻率排程、因為它們不會影響SAP HA
 
 下圖也顯示每天四到六個Snapshot備份最合理、因為較高的頻率對整體執行時間不再有重大影響。
 
-image::amazon-fsx-image2.png[Amazon FSX 影像 2.]
+image:amazon-fsx-image2.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -84,7 +84,7 @@ SAP HANA系統升級是一個範例、說明升級前的隨需備份、以及升
 
 另一個使用案例是典型的測試週期、測試必須在多個迭代上使用不同的資料集或參數。使用快速備份與還原作業時、您可以在測試週期內輕鬆建立儲存點、並在測試失敗或需要重複時、將系統重設為先前的任何儲存點。如此可讓測試提早完成、或同時進行更多測試、並改善測試結果。
 
-image::amazon-fsx-image3.png[Amazon FSX 影像 3.]
+image:amazon-fsx-image3.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 實作Snapshot備份後、即可用於處理其他多種需要HANA資料庫複本的使用案例。有了FSXfor ONTAP Sf2、您就能根據任何可用Snapshot備份的內容來建立新的Volume。此作業的執行時間僅需數秒、與磁碟區大小無關。
 
@@ -94,4 +94,4 @@ image::amazon-fsx-image3.png[Amazon FSX 影像 3.]
 
 最後一個使用案例是能夠在不停止複寫的情況下執行災難恢復容錯移轉測試、因此不會影響災難恢復設定的RTO和恢復點目標（RPO）。當使用FSX for ONTAP the Sfor NetApp SnapMirror複寫將資料複寫到災難恢復站台時、正式作業Snapshot備份也可在災難恢復站台上使用、然後再用來建立新的磁碟區以進行災難恢復測試。
 
-image::amazon-fsx-image4.png[Amazon FSX Image4]
+image:amazon-fsx-image4.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

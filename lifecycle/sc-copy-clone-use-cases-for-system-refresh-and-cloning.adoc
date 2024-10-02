@@ -10,8 +10,11 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。
 
 
 
@@ -19,11 +22,9 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 
 在多種情況下、來源系統的資料必須提供給目標系統以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集進行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。
 
-image::sc-copy-clone-image3.png[SC 複本複本影像 3.]
+image:sc-copy-clone-image3.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"] SnapCenter 複製工作流程可用於加速和自動化基礎架構和資料庫層的必要工作。SnapCenter 不需要將備份從來源系統還原至目標系統、而是使用 NetApp Snapshot 複本和 NetApp FlexClone 技術、因此只需幾分鐘即可完成所需的工作、而無需花費數小時。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。啟動時間取決於資料庫大小、以及資料庫伺服器與儲存系統之間的連線能力。
 
-利用還原複製工作流程、可加速並自動化基礎架構和資料庫層的必要工作。SnapCenterSnapCenter 不需要將備份從來源系統還原至目標系統、而是使用 NetApp Snapshot 複本和 NetApp FlexClone 技術、因此只需幾分鐘即可完成所需的工作、而無需花費數小時。複製程序所需的時間與資料庫大小無關、因此即使是非常大型的系統、也能在幾分鐘內建立完成。啟動時間取決於資料庫大小、以及資料庫伺服器與儲存系統之間的連線能力。
-
-image::sc-copy-clone-image4.png[SC 複製複製 Image4]
+image:sc-copy-clone-image4.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 系統重新整理作業的工作流程將在一節中說明 link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["「SAP HANA系統更新SnapCenter 功能可讓您實現更多效益。」"]
 
@@ -39,7 +40,7 @@ image::sc-copy-clone-image4.png[SC 複製複製 Image4]
 
 在設定維修系統時、靈活度和敏捷度至關重要。使用 NetApp 儲存型 Snapshot 備份時、可使用多個一致的資料庫映像、使用 NetApp FlexClone 技術建立正式作業系統的複本。如果使用檔案型備份的重新導向還原來設定修復系統、則FlexClone磁碟區可在數秒內建立、而非數小時內建立。
 
-image::sc-copy-clone-image5.png[SC 複本複本影像 5.]
+image:sc-copy-clone-image5.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 修復系統建立的工作流程將在一節中說明 link:sc-copy-clone-sap-system-clone-with-snapcenter.html["「SAP系統利用SnapCenter 功能進行實體複製。」"]
 
@@ -53,9 +54,7 @@ image::sc-copy-clone-image5.png[SC 複本複本影像 5.]
 
 非同步和同步SnapMirror的災難恢復測試會在災難恢復目標上使用Snapshot備份和FlexClone磁碟區。
 
-image::sc-copy-clone-image6.png[SC 複本複本影像 6.]
-
-詳細的逐步說明可在技術報告中找到
+image:sc-copy-clone-image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"] 詳細的逐步說明可在技術報告中找到
 
 https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["TR-4646 ： SAP HANA 災難恢復與儲存複寫（ netapp.com ）"]
 

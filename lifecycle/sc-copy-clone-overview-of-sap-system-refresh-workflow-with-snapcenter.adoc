@@ -10,9 +10,10 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 SnapCenter 提供的工作流程可讓您從任何現有的 Snapshot 備份管理資料集的複本。這套複製資料集FlexClone Volume可用於從來源系統快速配置HANA資料Volume、並將其附加至目標系統。因此、它非常適合執行QA、測試、沙箱或訓練系統的系統更新作業。
 
 此類實體複製工作流程可處理儲存層上所有必要的作業、並可利用指令碼來執行主機專屬和HANA資料庫專屬的作業。SnapCenter在本文件中、我們會使用指令碼來執行 HANA 資料庫恢復和關機作業。利用指令碼進一步自動化的流程可處理所有必要的HANA資料庫作業、但不涵蓋任何必要的SAP後處理步驟。SnapCenterSAP 後置處理必須手動執行、或使用協力廠商工具執行。
@@ -45,7 +46,7 @@ SnapCenter 提供的工作流程可讓您從任何現有的 Snapshot 備份管�
 
 
 
-image::sc-copy-clone-image7.png[SC 複本複本影像 7.]
+image:sc-copy-clone-image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 在大多數情況下、目標測試 / QA 系統會使用至少幾週。由於 FlexClone Volume 正在封鎖來源系統磁碟區的 Snapshot 、因此根據來源系統磁碟區的區塊變更率、此 Snapshot 將需要額外的容量。對於正式作業來源系統而言、每天平均變更率為 20% 、封鎖的 Snapshot 將在 5 天後達到 100% 。因此、如果複本是以正式作業來源系統為基礎、 NetApp 建議您立即或幾天後分割 FlexClone Volume 。複製分割作業不會封鎖複製磁碟區的使用、因此可在HANA資料庫使用期間隨時執行。
 
@@ -87,6 +88,6 @@ NOTE: 先前分割的舊資料磁碟區、必須在儲存系統上手動刪除�
 
 
 
-image::sc-copy-clone-image8.png[SC 複本複本影像 8.]
+image:sc-copy-clone-image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 章節 link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["「SAP HANA系統更新SnapCenter 功能與更新功能」"] 提供兩個系統重新整理工作流程的詳細逐步說明。

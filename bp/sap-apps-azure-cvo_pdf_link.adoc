@@ -13,13 +13,14 @@ summary: TR-4757提供最佳實務做法、適用於Azure NetApp Files SAP應用
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
-Bernd Herth、鳥柏斯布蘭登、Nils Bauer、NetApp
-
-Microsoft Geert VAN Teylingen的will Bratton
-
+[role="lead"]
 TR-4757提供最佳實務做法、適用於Azure NetApp Files SAP應用程式和SAP HANA部署。本文也詳細說明SAP共享檔案系統的不同使用案例。本文提供最佳實務做法、可將NetApp Cloud Volumes ONTAP 支援應用於SAP應用程式和SAP HANA部署。其中包括SAP共享檔案系統的不同使用案例、Cloud Volumes ONTAP 以及SAP HANA on VMware的特定效能考量。
+
+作者：
+
+Bernd Harth 、 Tobias Brandl 、 Nils Bauer 、 NetApp will Bratton 、 Geert van Teylingen 、 Microsoft
 
 link:https://www.netapp.com/pdf.html?item=/media/17126-tr4757pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17126-tr4757pdf.pdf"]

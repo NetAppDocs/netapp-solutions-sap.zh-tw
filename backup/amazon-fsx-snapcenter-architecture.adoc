@@ -10,7 +10,7 @@ summary: 提供統一化、可擴充的平台、提供應用程式一致的資�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -24,7 +24,7 @@ summary: 提供統一化、可擴充的平台、提供應用程式一致的資�
 
 包含適用於Windows的不含更新程式、不含更新程式套件、以及適用於Linux的不含更新程式套件。SnapCenter SnapCenter SnapCenter SnapCenter每個套件都包含SnapCenter 適用於各種應用程式和基礎架構元件的外掛程式。
 
-image::amazon-fsx-image5.png[Amazon FSX 影像 5.]
+image:amazon-fsx-image5.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -66,7 +66,7 @@ SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊
 
 下圖顯示SnapCenter 了關於「不支援資料」備份與保留管理作業的總覽。
 
-image::amazon-fsx-image6.png[Amazon FSX 影像 6.]
+image:amazon-fsx-image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 執行SAP HANA資料庫的儲存型Snapshot備份時SnapCenter 、執行下列工作：
 
@@ -94,7 +94,7 @@ image::amazon-fsx-image6.png[Amazon FSX 影像 6.]
 
 下圖為SAP HANA on FSX for EfsX的典型備份架構ONTAP 。HANA系統位於AWS可用度區域1、並在ONTAP 相同可用度區域內使用FSXfor Sfor the Sfor Sfor the Sfor Sfor the file System。針對HANA資料庫的資料和共享磁碟區執行Snapshot備份作業。除了保留3-5天的本機Snapshot備份、備份也會複寫到異地儲存設備、以延長保留時間。異地備份儲存設備是ONTAP 位於不同AWS可用區域的第二個FSX for Sf2檔案系統。HANA資料和共享磁碟區的備份會以SnapVault 還原技術複寫到ONTAP 第二個FSXfor Ef2檔案系統、並保留2至3週。
 
-image::amazon-fsx-image7.png[Amazon FSX 影像 7.]
+image:amazon-fsx-image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 在設定SnapCenter 功能不全之前、必須根據各種SAP系統的RTO和RPO需求來定義資料保護策略。
 
@@ -201,4 +201,4 @@ FSXfor ONTAP Sfor Sfor Sfxffile系統：
 * Hana資料磁碟區已複寫至第二個FSX、以供ONTAP 使用
 
 
-image::amazon-fsx-image8.png[Amazon FSX 影像 8.]
+image:amazon-fsx-image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

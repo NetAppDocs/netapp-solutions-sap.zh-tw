@@ -10,9 +10,10 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
 
 * https://docs.netapp.com/us-en/netapp-solutions-sap/["SAP Business Application 與 SAP HANA 資料庫解決方案（ netapp.com ）"]

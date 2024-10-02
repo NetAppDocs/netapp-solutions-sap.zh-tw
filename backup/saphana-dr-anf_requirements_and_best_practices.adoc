@@ -10,7 +10,7 @@ summary: Microsoft Azure不保證在建立或啟動已取消分配的VM時、特
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -34,7 +34,7 @@ net.core.wmem_max = 16777216
 net.ipv4.tcp_rmem = 4096 131072 16777216
 net.ipv4.tcp_wmem = 4096 16384 16777216
 net.core.netdev_max_backlog = 300000
-net.ipv4.tcp_slow_start_after_idle=0
+net.ipv4.tcp_slow_start_after_idle = 0
 net.ipv4.tcp_no_metrics_save = 1
 net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_window_scaling = 1
@@ -59,7 +59,7 @@ net.core.wmem_max = 16777216
 net.ipv4.tcp_rmem = 4096 131072 16777216
 net.ipv4.tcp_wmem = 4096 16384  16777216
 net.core.netdev_max_backlog = 300000
-net.ipv4.tcp_slow_start_after_idle=0
+net.ipv4.tcp_slow_start_after_idle = 0
 net.ipv4.tcp_no_metrics_save = 1
 net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_window_scaling = 1
@@ -234,11 +234,8 @@ NOTE: 效能測試顯示 `nconnect=4` 提供良好的讀取結果、尤其是資
 NOTE: NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。
 
 
-NOTE: 如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽的數量應根據下列規則進行調整：
-工作階段插槽數量等於 <nconnect value> x 64 。
-在主持人、這將由您來形容
-`echo options nfs max_session_slots= <calculated value> > /etc/modprobe.d/nfsclient.conf`
-然後重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 link:saphana-fas-nfs_storage_controller_setup.html#nfs-configuration-for-nfsv4["NFSv4的NFS組態。"]
+NOTE: 如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽數量應根據下列規則進行調整：工作階段插槽數量等於 <nconnect value> x 64 。在主機上、這會先加上輔助
+`echo options nfs max_session_slots=<calculated value> > /etc/modprobe.d/nfsclient.conf`、然後再重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數link:saphana-fas-nfs_storage_controller_setup.html#nfs-configuration-for-nfsv4["NFSv4的NFS組態。"]
 
 若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：
 

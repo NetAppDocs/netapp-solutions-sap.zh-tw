@@ -791,16 +791,12 @@
   <block id="7b0c54ca1e88f6ef7461709ba20843e4" category="paragraph">對於所示的某些命令、您必須切換ONTAP 到位於畫面上的進階權限模式。</block>
   <block id="d696a6a2b32bd5b7e510d3c088fce207" category="cell">啟用NFSv3</block>
   <block id="d9a7640ac46e3f8cf9816a8ab8caaabb" category="cell">NFS modify -vserver &lt;vserver-name&gt; v3.0已啟用</block>
-  <block id="c59b6b6ccda30b7d9580c4a3fb9a1be4" category="cell">資料9：將NFS TCP最大傳輸大小設為1MB ONTAP</block>
   <block id="88a84b59bbf7c31014bc6e5332d54d69" category="paragraph">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 1048576 set admin</block>
-  <block id="387cbcbc68932c744bec8dc8c31a465c" category="cell">知識庫8：將NFS讀寫大小設為64KB ONTAP</block>
-  <block id="07532d41432e61e5d8242e7babd2070c" category="paragraph">設定進階NFS modify -vserver &lt;vserver-name&gt;-v3-tcp最大讀取大小65536 NFS modify -vserver &lt;vserver-name&gt;-v3-tcp最大寫入大小65536 set admin</block>
   <block id="4b3b3fba259d5ac2ca622fa9160b1fb5" category="section-title">NFSv4的NFS組態</block>
   <block id="c8542833574cfec9920af77661a766e0" category="paragraph">下表所列的NFS選項必須在所有SVM上進行驗證和設定。</block>
   <block id="214d7b06b7a82576ad3cc8dda3a23b58" category="paragraph">對於某些命令、您必須切換ONTAP 到位於景點內的進階權限模式。</block>
   <block id="70f982c83fe296db3a8fc01d6800eeb5" category="cell">啟用NFSv4</block>
   <block id="b4a26338e6b2855edb75ec84606be72f" category="cell">NFS modify -vserver &lt;vserver-name&gt;-v4.1已啟用</block>
-  <block id="d1e1ffed5786862bbb79671233692063" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 65536 set admin</block>
   <block id="ddf50f4def54fc42e1e3c48d60dc6360" category="cell">停用NFSv4存取控制清單（ACL）</block>
   <block id="77fd2d8c2c348207e3e8aa8833c161c4" category="cell">NFS modify -vserver &lt;vserver_name&gt;-v4.1-ACL已停用</block>
   <block id="75a14711dc56291ed980640b0097eeda" category="cell">設定NFSv4網域ID</block>
@@ -813,7 +809,6 @@
   <block id="96adb5308418a0e6a16e78f391a5725d" category="cell">NFS modify -vserver &lt;vserver_name&gt;-vv4數值ID已停用</block>
   <block id="4a762e476d9eda379d2de2de4266fb64" category="inline-link-macro">NFSv4的SAP HANA安裝準備。</block>
   <block id="ad357b093f7cd3e6d382bfe20cd1f2bd" category="admonition">所有Linux伺服器（/'etc/idmapd.conf）和SVM上的NFSv4網域ID必須設定為相同的值、如所述 <block ref="7cbf1992917906c8f8c329ad679d4886" category="inline-link-macro-rx"></block></block>
-  <block id="e678bbdfe53ad933277605d32601cebe" category="admonition">如果您使用的是NFSV4.1、則可以啟用和使用pNFS。</block>
   <block id="58c8eee50f8f52237271f796e3c1123f" category="cell">部分、請參閱nameserver.ini</block>
   <block id="3ad6e9988864aeae2ef386345946dc6d" category="cell">容錯移轉</block>
   <block id="af175fe1a76f8f5124de60f5d01ca78b" category="cell">normal_retries</block>
@@ -902,8 +897,6 @@
   <block id="8ec2236fd6ed4715167a8899b66d149b" category="paragraph">下表所列的NFS選項必須在所有儲存控制器上進行驗證和設定。對於本表所示的某些命令、您必須切換至進階權限模式。</block>
   <block id="5c87e78153c1f2e2e2b534049bdc60f9" category="paragraph">對於本表中的某些命令、您必須切換至進階權限模式。</block>
   <block id="b78ad1fd79e9fc7773f87edda4742199" category="cell">NFS modify -vserver &lt;vserver-name&gt;-v4.1已啟用</block>
-  <block id="4e11d437a84608405c1cba53cb335989" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 1048576 set admin</block>
-  <block id="9d4c39bb98c40111c9c2cda962a5051a" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 65536 set admin</block>
   <block id="c480c17814d28d6a9b00fd06a87dee2a" category="inline-link-macro">「NFSv4的SAP HANA安裝準備。」</block>
   <block id="9fa840f16cd7cf7f80145507faa2a523" category="admonition">NFSv4網域ID必須設定為所有Linux伺服器（如一節所述）和SVM上的相同值 <block ref="19618adae76246007b68ca646cc14e2b" category="inline-link-macro-rx"></block></block>
   <block id="fe772f1f05ae8cbd39b88886e4d0fcf5" category="summary">設定網路時、請遵循下列準則。</block>
@@ -3479,10 +3472,6 @@
   <block id="93f305eb7fa597fc876f2e0744abf06b" category="paragraph">這些系統重新整理作業包含基礎架構、資料庫和應用程式層上的多項工作、視自動化程度而定、可能需要多天的時間。</block>
   <block id="b7de930c0dd2d22c43e147a8da62d970" category="admonition">效能測試顯示<block ref="6ad27604f562c1a2600540bd7f1094d4" prefix=" " category="inline-code"></block> 提供良好的讀取結果、尤其是資料磁碟區的讀取結果。記錄寫入可能會因為工作階段數量較少而受益、例如<block ref="b3e16d81f1f84d087c55c1815a58a64c" prefix=" " category="inline-code"></block>。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
   <block id="d7d1e0b01aa98fdaaa388843234520d5" category="admonition">NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或RedHat RHEL 8.4或更新版本開始、也支援nconnect選項。</block>
-  <block id="953d9b4b8aec5e0f96c90ef8b3d12b68" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽的數量應根據下列規則進行調整：
-工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。
-在主持人、這將由您來形容<block ref="0e1f4d10d02df866bcbb3247ad4ee7bd" prefix=" " category="inline-code"></block>
-然後重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 <block ref="ab5c20669050c73ba24d89c4b271e9e7" category="inline-link-macro-rx"></block></block>
   <block id="075d23786d3ed7499b8d563bd41298ef" category="admonition">。<block ref="68727786e22b015e3091f141273c8e9a" prefix=" " category="inline-code"></block> 每個資料庫主機的檔案系統都不同。以下範例顯示<block ref="7b5a8b70c72ff791a6c938600aa48468" prefix=" " category="inline-code"></block>。</block>
   <block id="61dc8147d5af95ff65e5beeeceb8d669" category="cell">變更 NFSv4.x 工作階段插槽數量
   選用</block>
@@ -3490,10 +3479,6 @@
 NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
 設定 admin</block>
   <block id="7de8b31e6597c345c3a3966bd41f80a2" category="admonition">效能測試顯示<block ref="6ad27604f562c1a2600540bd7f1094d4" prefix=" " category="inline-code"></block> 為資料磁碟區提供良好的讀取結果。記錄寫入可能會因為工作階段數量較少而受益、例如<block ref="b3e16d81f1f84d087c55c1815a58a64c" prefix=" " category="inline-code"></block>。使用「nconnect」選項也能讓共享磁碟區受益。請注意、第一次從NFS伺服器掛載（IP位址）定義使用的工作階段數量。即使將不同的值用於nconnect、進一步掛載到相同的IP位址也不會變更此設定。</block>
-  <block id="3efa710e585bff45d9c6786442911c9d" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽的數量應根據下列規則進行調整：
-工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。
-在主持人、這將由您來形容<block ref="0e1f4d10d02df866bcbb3247ad4ee7bd" prefix=" " category="inline-code"></block>
-然後重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 <block ref="f5e012a6f36bf833f75aec36ff8eee0f" category="inline-link-macro-rx"></block></block>
   <block id="093a45d87b6b8692e6c9a73c1a04c137" category="doc">何處可以找到其他資訊和版本歷程記錄</block>
   <block id="e66b5a3c6799dcc5dd4039a58085fb38" category="cell">2017 年 9 月</block>
   <block id="3258056add985fc8ba4192b41052b298" category="list-text">新增「進階組態與調校」一節。</block>
@@ -4777,4 +4762,11 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="f3ba50f9922c89d4b36c50fe66685be2" category="list-text"><block ref="f3ba50f9922c89d4b36c50fe66685be2" category="inline-link-macro-rx"></block></block>
   <block id="7ac1c0d7efdd5bfa24d4e579673e3de4" category="list-text"><block ref="7ac1c0d7efdd5bfa24d4e579673e3de4" category="inline-link-macro-rx"></block></block>
   <block id="273ade22ee82ef60099b9d4c39bb9dc0" category="list-text"><block ref="273ade22ee82ef60099b9d4c39bb9dc0" category="inline-link-macro-rx"></block></block>
+  <block id="526eb260d8cd870801391fead2b6a810" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽數量應根據下列規則進行調整：工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。在主機上、這會先加上輔助<block ref="1f544d9bef8ddb99793e0436d6362920" prefix=" " category="inline-code"></block>、然後再重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數<block ref="ab5c20669050c73ba24d89c4b271e9e7" category="inline-link-macro-rx"></block></block>
+  <block id="d315ad62620c6c170565a626312e362d" category="cell">將 NFS TCP 最大傳輸大小設為 1MB</block>
+  <block id="8a92011f99cb9f446b19032c2d76f759" category="admonition">在具有不同工作負載的共用環境中、將 NFS TCP 傳輸大小上限設為 262144</block>
+  <block id="42a7703e0bc31f6ec72a6e40780ff36a" category="cell">變更 NFSv4.x 工作階段插槽數量為選用項目</block>
+  <block id="cae93577fd94d0fe06d63305e6bfbe50" category="admonition">可以啟用和使用 pNFS 。</block>
+  <block id="924eac7fb01f1080c8a2e57261e50702" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽數量應根據下列規則進行調整：工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。在主機上、這會先加上輔助<block ref="1f544d9bef8ddb99793e0436d6362920" prefix=" " category="inline-code"></block>、然後再重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 <block ref="f5e012a6f36bf833f75aec36ff8eee0f" category="inline-link-macro-rx"></block></block>
+  <block id="dface3e0fc3485feea995027b8e0fd8a" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 1048576 set admin</block>
 </blocks>

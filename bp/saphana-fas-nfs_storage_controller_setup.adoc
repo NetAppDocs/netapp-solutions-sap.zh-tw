@@ -289,9 +289,7 @@ image:saphana-fas-nfs_image18.jpg["此圖顯示輸入 / 輸出對話方塊或表
 | 停用自動Snapshot複本 | Vol modify–vserver <vserver-name>-volume <volname>-snapshot policy nONE 
 
 
-| 停用存取時間更新、但SID_Shared Volume除外  a| 
-設定進階vol modify -vserver <vserver-name>-volume <volname>-atime-update假設定admin
-
+| 停用存取時間更新、但SID_Shared Volume除外 | 設定進階vol modify -vserver <vserver-name>-volume <volname>-atime-update假設定admin 
 |===
 
 
@@ -308,15 +306,11 @@ image:saphana-fas-nfs_image18.jpg["此圖顯示輸入 / 輸出對話方塊或表
 | 啟用NFSv3 | NFS modify -vserver <vserver-name> v3.0已啟用 
 
 
-| 資料9：將NFS TCP最大傳輸大小設為1MB ONTAP  a| 
-設定進階NFS modify -vserver <vserver_name>-tcp-max-xfer-size 1048576 set admin
-
-
-
-| 知識庫8：將NFS讀寫大小設為64KB ONTAP  a| 
-設定進階NFS modify -vserver <vserver-name>-v3-tcp最大讀取大小65536 NFS modify -vserver <vserver-name>-v3-tcp最大寫入大小65536 set admin
-
+| 將 NFS TCP 最大傳輸大小設為 1MB | 設定進階NFS modify -vserver <vserver_name>-tcp-max-xfer-size 1048576 set admin 
 |===
+
+NOTE: 在具有不同工作負載的共用環境中、將 NFS TCP 傳輸大小上限設為 262144
+
 
 
 == NFSv4的NFS組態
@@ -332,10 +326,7 @@ image:saphana-fas-nfs_image18.jpg["此圖顯示輸入 / 輸出對話方塊或表
 | 啟用NFSv4 | NFS modify -vserver <vserver-name>-v4.1已啟用 
 
 
-| 資料9：將NFS TCP最大傳輸大小設為1MB ONTAP | 設定進階NFS modify -vserver <vserver_name>-tcp-max-xfer-size 1048576 set admin 
-
-
-| 知識庫8：將NFS讀寫大小設為64KB ONTAP | 設定進階NFS modify -vserver <vserver_name>-tcp-max-xfer-size 65536 set admin 
+| 將 NFS TCP 最大傳輸大小設為 1MB | 設定進階NFS modify -vserver <vserver_name>-tcp-max-xfer-size 1048576 set admin 
 
 
 | 停用NFSv4存取控制清單（ACL） | NFS modify -vserver <vserver_name>-v4.1-ACL已停用 
@@ -353,11 +344,13 @@ image:saphana-fas-nfs_image18.jpg["此圖顯示輸入 / 輸出對話方塊或表
 | 停用NFSv4數值ID | NFS modify -vserver <vserver_name>-vv4數值ID已停用 
 
 
-| 變更 NFSv4.x 工作階段插槽數量
-  選用 | 設定進階
+| 變更 NFSv4.x 工作階段插槽數量為選用項目 | 設定進階
 NFS 修改 -vserver hana -v4.x-Session-num-stholds <value>
 設定 admin 
 |===
+
+NOTE: 在具有不同工作負載的共用環境中、將 NFS TCP 傳輸大小上限設為 262144
+
 
 NOTE: 請注意、停用數字識別碼需要使用者管理、如所述 link:saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html["NFSv4的SAP HANA安裝準備。"]
 
@@ -365,7 +358,7 @@ NOTE: 請注意、停用數字識別碼需要使用者管理、如所述 link:sa
 NOTE: 所有Linux伺服器（/'etc/idmapd.conf）和SVM上的NFSv4網域ID必須設定為相同的值、如所述 link:saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html["NFSv4的SAP HANA安裝準備。"]
 
 
-NOTE: 如果您使用的是NFSV4.1、則可以啟用和使用pNFS。
+NOTE: 可以啟用和使用 pNFS 。
 
 如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數 `nameserver.ini` 如下表所示。請在這些區段內保留預設的重試時間間隔10秒。
 

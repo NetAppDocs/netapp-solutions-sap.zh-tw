@@ -190,7 +190,6 @@
   <block id="3daf48572816497403ca0d7b3ca79c5c" category="list-text">新增資料和記錄分割區的WWID。WWID必須符合在/etc/multipath.conf檔案中設定的別名。</block>
   <block id="c5e7e01683b04809035115f6c4c7e4aa" category="paragraph">下列輸出顯示2+1多主機設定範例、其中系統識別碼（SID）為SS3。</block>
   <block id="0e0c950ebceebc20ac07965f3d63f754" category="paragraph">如果使用LVM、則所需的組態會有所不同。以下範例顯示使用SID=FC5的2+1多主機設定。</block>
-  <block id="617127e0171267994816fcd2ebf41ca9" category="paragraph">使用SAP「hdbcm」安裝工具、在其中一部工作者主機上執行下列命令、即可開始安裝。使用「addhosts」（附加主機）選項來新增第二位工作者（sapcc-hana）和待命主機（sapcc-hana TST-05）。儲存「global.ini`」檔案的目錄、包含在「sectorage_cfg/」CLI選項（`-storage _cfg//hana / shared'）中。視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝pherton 2.7。</block>
   <block id="9659639598149d1609e9fcde405a759f" category="paragraph">確認安裝工具已在所有工作主機和待命主機上安裝所有選取的元件。</block>
   <block id="6f9f0e834814d7ad77b7ef8666f24988" category="summary">下節概述調整SAP HANA儲存系統規模所需的效能與容量考量。</block>
   <block id="894445e8ea6df545bfbc4247797a2162" category="doc">儲存規模調整</block>
@@ -284,7 +283,6 @@
   <block id="3823dde38e881edb5563cdd3b64099ba" category="summary">以下是SAP HANA軟體安裝需求。</block>
   <block id="d62e297e0f46d31deba4b84efdfafc32" category="paragraph">SAP HANA軟體安裝不需要為單一主機系統做任何額外準備。</block>
   <block id="2c5a7a5ceaf9ad774a81a7201b4dd250" category="paragraph">若要在多主機系統上安裝SAP HANA、請完成下列步驟：</block>
-  <block id="5a5457353a8426b7deea1f3ab1b9725a" category="list-text">使用SAP「hdbclm」安裝工具、在其中一部工作者主機上執行下列命令、即可開始安裝。使用「addhosts」選項來新增第二名員工（「sAPCA-Hana TST-07」）和待命主機（「sAPCA-Hana TST-08」）。</block>
   <block id="e34a4f0f85c6affc800c8d9647e17923" category="summary">本節說明如何設定系統、以便在單一主機和多主機系統上安裝SAP HANA軟體。</block>
   <block id="22b91f6553e0cbb7685f9eb877cf188d" category="section-title">安裝在單一主機系統上</block>
   <block id="8e74883ab7ca2d81b61cfaad2ddf19d2" category="section-title">安裝在多主機系統上</block>
@@ -561,7 +559,6 @@
   <block id="e4fd411b2330f50a5f169247fb9817ac" category="section-title">安裝在多主機系統上</block>
   <block id="877357acf24fb0c198118a9551671417" category="paragraph">在開始安裝之前、請先建立「global.ini`檔案」、以便在安裝過程中使用SAP儲存連接器。SAP儲存連接器會在安裝程序期間、將所需的檔案系統掛載到工作主機上。「global.ini`檔案必須可在所有主機（例如「/HANA /共享」檔案系統）存取的檔案系統中使用。</block>
   <block id="f206fb31ca322606be1acbaecf34f9fa" category="paragraph">如果使用Linux LVM、則所需的組態會有所不同。下列範例顯示使用SID=FC5的2+1多主機設定。</block>
-  <block id="0eb184ead31411795a6c716a0d38caf4" category="admonition">儲存已準備好的「global.ini`」檔案的目錄、包含在「sectorage_cfg/」CLI選項（「-- storage _cfg/HANA / shared」）中。</block>
   <block id="e698d9fadd050973bab2f9f855248cca" category="admonition">視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝Python 2.7。</block>
   <block id="3a8abeead42ccd286a7d0cbd4af82313" category="cell">2014年4月</block>
   <block id="4d07a3bdc1f6c260f91eff5a8c4732c0" category="cell">2014年8月</block>
@@ -4769,4 +4766,7 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="cae93577fd94d0fe06d63305e6bfbe50" category="admonition">可以啟用和使用 pNFS 。</block>
   <block id="924eac7fb01f1080c8a2e57261e50702" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽數量應根據下列規則進行調整：工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。在主機上、這會先加上輔助<block ref="1f544d9bef8ddb99793e0436d6362920" prefix=" " category="inline-code"></block>、然後再重新開機。也必須調整伺服器端值、如所述設定工作階段插槽數 <block ref="f5e012a6f36bf833f75aec36ff8eee0f" category="inline-link-macro-rx"></block></block>
   <block id="dface3e0fc3485feea995027b8e0fd8a" category="cell">設定進階NFS modify -vserver &lt;vserver_name&gt;-tcp-max-xfer-size 1048576 set admin</block>
+  <block id="9adaadfddff33c2daa546229f2809747" category="list-text">使用 SAP<block ref="b0aa3e7cad7b6222087aedbd4c799832" prefix=" " category="inline-code"></block> 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項添加第二個工作人員<block ref="7e4282317c0dcc7ce1f24f047b09f466" prefix="(" category="inline-code"></block>）<block ref="d6075976fde6718b25d21e4894d5d07d" prefix="(" category="inline-code"></block>和備用主機）。</block>
+  <block id="dc6dd758c7cbed933fdee36ba03835f9" category="admonition">CLI 選項中包含準備好的檔案所在<block ref="09c9689230344c41364f0fa22da928c6" prefix=" " category="inline-code"></block><block ref="1b723e0f23eac7863dadd5b0b02436e4" prefix="(" category="inline-code"></block>的目錄<block ref="1611b9881f1a590d33bbbcfdd9c55ca7" prefix=" " category="inline-code"></block>）。</block>
+  <block id="b5b2eafc66ebc94cfb50a26c15cf1f52" category="paragraph">使用 SAP<block ref="e57381f2a2aa941f8d88ba956c77d978" prefix=" " category="inline-code"></block> 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項新增第二名工作者（ sapcc-hana TST-06 ）和待命主機（ sapcc-hana TST-07 ）。CLI 選項<block ref="1b723e0f23eac7863dadd5b0b02436e4" prefix="(" category="inline-code"></block>中包含已準備好檔案的儲存<block ref="09c9689230344c41364f0fa22da928c6" prefix=" " category="inline-code"></block>目錄<block ref="1611b9881f1a590d33bbbcfdd9c55ca7" prefix=" " category="inline-code"></block>）。視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝pherton 2.7。</block>
 </blocks>

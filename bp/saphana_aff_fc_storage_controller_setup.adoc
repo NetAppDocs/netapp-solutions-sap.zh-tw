@@ -369,17 +369,6 @@ host1 ...... WWPN:2100000e1e163701
 
 NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。
 
-下列步驟顯示使用SID SS3的2+1多主機HANA系統組態：
-
-. 在System Manager中啟動SAP HANA的應用程式資源配置精靈、並提供必要資訊。必須新增所有主機的所有啟動器（WWPN）。
-+
-image:saphana_aff_fc_image18.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 確認已成功配置儲存設備。
-
-
-image:saphana_aff_fc_image19.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
 
 
 == 使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組
@@ -396,7 +385,8 @@ vol create -volume FC5_data_mnt00002  -aggregate aggr2_2 -size 1200g -snapshot-p
 vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
 vol create -volume FC5_log2_mnt00002  -aggregate aggr2_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
 vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee nonevol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
+vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
 ....
 . 建立所有LUN。
 +

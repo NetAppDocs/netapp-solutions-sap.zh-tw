@@ -466,9 +466,6 @@
   <block id="092e6a6bc4923c6cfc72d214ce390535" category="paragraph">NetApp提供一套自動化應用程式精靈、可在ONTAP 支援SAP HANA的過程中、於支援NetApp的更新版本9.7及更早版本、大幅簡化了Volume與LUN的資源配置程序。它會根據NetApp的SAP HANA最佳實務做法、自動建立及設定磁碟區和LUN。</block>
   <block id="0c71c668e5ae926e6d75aa8bbbc09dd2" category="paragraph">使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的全球連接埠名稱（WWPN）：</block>
   <block id="a86be254d15f1254d56b97c8755a5b77" category="admonition">「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。</block>
-  <block id="3b02abc3a7dd4095cd8ef946e6bd6dd0" category="paragraph">下列步驟顯示使用SID SS3的2+1多主機HANA系統組態：</block>
-  <block id="ce30bd2bdaee34467dfdf55ea753e7ba" category="list-text">在System Manager中啟動SAP HANA的應用程式資源配置精靈、並提供必要資訊。必須新增所有主機的所有啟動器（WWPN）。</block>
-  <block id="16307583508372b498160c0e90dba4d0" category="list-text">確認已成功配置儲存設備。</block>
   <block id="8c4751bd2d7d17062a8b536388ba69bc" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
   <block id="6204c72c80408db453e7fea0b62d2e36" category="paragraph">本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN：</block>
   <block id="c48caf1c739d7975abd91d926cd56982" category="list-text">建立所有必要的磁碟區。</block>
@@ -537,7 +534,6 @@
   <block id="72b1d38d81a57d1482ce5708d98653f1" category="inline-link-macro"><block ref="72b1d38d81a57d1482ce5708d98653f1" category="inline-link-rx"></block></block>
   <block id="d30f42b2a88310780291191529d76b18" category="paragraph"><block ref="d30f42b2a88310780291191529d76b18" category="inline-link-macro-rx"></block></block>
   <block id="0f41d05d80faf4e3a75a6b4e2292f1c0" category="summary">NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。獲認證的企業級儲存平台以NetApp ONTAP 的整套軟體為特色。</block>
-  <block id="3582e9217fbd3de24b2e5ecfb0fc97b4" category="paragraph">NetApp公司Nils Baer和Marco. Schoen</block>
   <block id="0b79795d3efc95b9976c7c5b933afce2" category="section-title">簡介</block>
   <block id="e4509a748ae3ce7cb528662f2f9f7e10" category="paragraph">此認證適用於下列機型：</block>
   <block id="97bfb54320c9268725cfbb374a5168fb" category="paragraph">如需SAP HANA的NetApp認證儲存解決方案完整清單、請參閱<block ref="a3976abaebe3520fd66c465c4d7747d7" category="inline-link-rx"></block>。</block>
@@ -3441,7 +3437,6 @@
   <block id="75bdc4f45cfc79b09fa1f15e1cd83b33" category="admonition">請注意、停用數字識別碼需要使用者管理、如所述 <block ref="7cbf1992917906c8f8c329ad679d4886" category="inline-link-macro-rx"></block></block>
   <block id="a548c9345f858c0926b5fa0db82b1d29" category="admonition">請注意、停用數字 ID 需要使用者管理、如一節所述 <block ref="19618adae76246007b68ca646cc14e2b" category="inline-link-macro-rx"></block></block>
   <block id="fcb7778cf38a196128c87d1b6e20281e" category="paragraph">NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。</block>
-  <block id="7c3d41bb91a832b194d140ed72b101e7" category="list-text">AFF C250 、 AFF C400 、 AFF C800</block>
   <block id="326f77b6d7cda2b57e0f8e89a8f89959" category="admonition">NetApp AFF C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
   <block id="f7d09d43174d21d3203d6472d2543dc2" category="section-title">NetApp Volume 和 Aggregate Encryption</block>
   <block id="381cfdf4e70ff7173296a764c78e97ae" category="paragraph">SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。</block>
@@ -3588,12 +3583,10 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="89579d729fbef030eb0080e68e88f112" category="paragraph">一個 NVMe SSD （資料）最多可支援 5 個 SAP HANA 主機。
 SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
 同樣適用於 AFF A800 、 AFF A70 和 AFF A90 系統的內部 NVMe 磁碟。</block>
-  <block id="aa73ef84825182521094d3998757610f" category="list-text">AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A90 、 AFF A900 、 AFF A1K</block>
   <block id="9c485d8d0a0f2d60633001b05d342eed" category="doc">NetApp FAS 系統上的 SAP HANA with NFS 組態指南</block>
   <block id="b7bda169ccba06e8cbcf02ba0fab5928" category="doc">採用光纖通道傳輸協定的 NetApp FAS 系統上的 SAP HANA 組態指南</block>
   <block id="a56f5f8ccd94f38be4e8a0f1faf81823" category="doc">NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南</block>
   <block id="ef6ac0da06e1bd8eabd965442ae5668d" category="paragraph">NetApp 的 Marco sch(n</block>
-  <block id="47e4a9a1322865b7fd49caaf0207408a" category="list-text">AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A900 、 AFF A90 、 AFF A1K</block>
   <block id="a004afbb2c9ff596c570f05cacd1d651" category="section-title">NetApp FlexGroup Volumes</block>
   <block id="cfb6b0dd52bfc75b4646448807e41154" category="paragraph">SAP HANA 不支援使用 NetApp FlexGroup Volumes 。由於 SAP HANA 架構的緣故、使用 FlexGroup Volumes 並未帶來任何效益、也可能導致效能問題。</block>
   <block id="0500aa4516d90775e7cd20e0b45fa4ad" category="sidebar">組態最佳實務做法</block>
@@ -4525,8 +4518,6 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="03595684b4248a265a5f7e534bd92c49" category="paragraph"><block ref="03595684b4248a265a5f7e534bd92c49" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ade510803f2b9aad765372451fd52da2" category="paragraph"><block ref="ade510803f2b9aad765372451fd52da2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b2bc3f5a45ad0103150eddb5c0947895" category="paragraph"><block ref="b2bc3f5a45ad0103150eddb5c0947895" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="faa4100dbfa2cef1a0c4e0c3db26e5fc" category="paragraph"><block ref="faa4100dbfa2cef1a0c4e0c3db26e5fc" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c464883cb94a3fba7db930a07cb34811" category="paragraph"><block ref="c464883cb94a3fba7db930a07cb34811" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4cd082d270e30712a5d973de884f7b9f" category="paragraph"><block ref="4cd082d270e30712a5d973de884f7b9f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="017e522349a0ff07067400d6b880e9df" category="paragraph">= ：硬中斷：：：頁尾：：圖示：字型： linkatt特點 ：：：： imagesdir: ../media/</block>
   <block id="2267b0943e951c31d5f31c288b6bfbe6" category="paragraph">NetApp AFF 上的 SAP HANA 搭配 NFS 傳輸協定。</block>
@@ -4769,4 +4760,7 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="9adaadfddff33c2daa546229f2809747" category="list-text">使用 SAP<block ref="b0aa3e7cad7b6222087aedbd4c799832" prefix=" " category="inline-code"></block> 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項添加第二個工作人員<block ref="7e4282317c0dcc7ce1f24f047b09f466" prefix="(" category="inline-code"></block>）<block ref="d6075976fde6718b25d21e4894d5d07d" prefix="(" category="inline-code"></block>和備用主機）。</block>
   <block id="dc6dd758c7cbed933fdee36ba03835f9" category="admonition">CLI 選項中包含準備好的檔案所在<block ref="09c9689230344c41364f0fa22da928c6" prefix=" " category="inline-code"></block><block ref="1b723e0f23eac7863dadd5b0b02436e4" prefix="(" category="inline-code"></block>的目錄<block ref="1611b9881f1a590d33bbbcfdd9c55ca7" prefix=" " category="inline-code"></block>）。</block>
   <block id="b5b2eafc66ebc94cfb50a26c15cf1f52" category="paragraph">使用 SAP<block ref="e57381f2a2aa941f8d88ba956c77d978" prefix=" " category="inline-code"></block> 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項新增第二名工作者（ sapcc-hana TST-06 ）和待命主機（ sapcc-hana TST-07 ）。CLI 選項<block ref="1b723e0f23eac7863dadd5b0b02436e4" prefix="(" category="inline-code"></block>中包含已準備好檔案的儲存<block ref="09c9689230344c41364f0fa22da928c6" prefix=" " category="inline-code"></block>目錄<block ref="1611b9881f1a590d33bbbcfdd9c55ca7" prefix=" " category="inline-code"></block>）。視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝pherton 2.7。</block>
+  <block id="1a808aae97e904d2d0d8b853c60fa475" category="list-text">AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A900 ， AFF A1K ， AFF A90 ， AFF A70 ， AFF A800</block>
+  <block id="19fe8eb256f35b3d5110d29e652ce432" category="list-text">AFF C250 ， AFF C30 ， AFF C400 ， AFF C60 ， AFF C800 ， AFF C80</block>
+  <block id="968cad2bf5c711dad5ccd0efa3e1ff9f" category="list-text">AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A90 ， AFF A1K ， AFF A900 ， AFF A70 ， AFF A800</block>
 </blocks>

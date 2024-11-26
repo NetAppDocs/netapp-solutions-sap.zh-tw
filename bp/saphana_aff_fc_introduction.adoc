@@ -16,7 +16,7 @@ summary: NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA�
 [role="lead"]
 NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。獲認證的企業級儲存平台以NetApp ONTAP 的整套軟體為特色。
 
-NetApp公司Nils Baer和Marco. Schoen
+NetApp的Marco. Schoen
 
 
 
@@ -26,8 +26,8 @@ NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭�
 
 本認證適用於下列機型：
 
-* AFF A150 、 AFF A250 、 AFF A400 、 AFF A70 、 AFF A800 、 AFF A90 、 AFF A900 、 AFF A1K
-* AFF C250 、 AFF C400 、 AFF C800
+* AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A900 ， AFF A1K ， AFF A90 ， AFF A70 ， AFF A800
+* AFF C250 ， AFF C30 ， AFF C400 ， AFF C60 ， AFF C800 ， AFF C80
 * ASA A250 、 ASA A400 、 ASA A70 、 ASA A800 、 ASA A900 、 ASA A90 、 ASA A1K
 * ASA C250 、 ASA C400 、 ASA C800
 +

@@ -28,8 +28,6 @@
   <block id="293e9d744a4c2a3dfc4088f7b8aa25d5" category="doc">SAP解決方案影片與示範</block>
   <block id="2259bdd472d4d2949e3eea23b5e4ef34" category="paragraph">重點介紹SAP解決方案的影片和示範總覽。</block>
   <block id="aa5b0840e871ca382a477398de4a7243" category="section-title">SAP組態最佳實務做法影片與示範</block>
-  <block id="c482c0b5b51f55ba9a7c2dcdee1f4339" category="inline-link-macro">SAP HANA在NetApp基礎架構上執行效能最佳</block>
-  <block id="442aae40221b985ca5667a9e47a977f6" category="inline-link-macro">SAP on Azure NetApp Files NetApp：概述與更新</block>
   <block id="ed2640c6c02db4ce182af25c797097d8" category="section-title">SAP備份、還原與災難恢復影片與示範</block>
   <block id="eabc448bcef35b3d5eb92882f22f6f0c" category="inline-link-macro">SAP HANA的災難恢復選項</block>
   <block id="08a3dd34b6649d68580f425952a735ac" category="summary">討論SAP備份、還原及災難恢復的一系列影片與示範</block>
@@ -69,7 +67,6 @@
   <block id="9ae2a6f9c25e674f13f60775bc219616" category="summary">討論SAP組態最佳實務做法的一系列影片和示範</block>
   <block id="e3f458e2f7c3ee2f08aa3f0f84d2057a" category="paragraph">重點介紹SAP組態最佳實務做法的影片與示範總覽。</block>
   <block id="5a19cb1f3722bd59393efe7cbc853747" category="summary">NetApp AFF 支援系統產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。通過認證的企業級儲存系統以NetApp ONTAP 的整套軟體為特色。</block>
-  <block id="ccc35786789b66e9752e6f8cde933754" category="paragraph">NetApp公司Nils Bauer和Marco. schö n</block>
   <block id="af01ac16ca42b9b924b834a3199131e9" category="paragraph">本認證適用於下列機型：</block>
   <block id="130c9ce9d2909449cb229a98c66f9d29" category="inline-link">獲得認證且支援的SAP HANA硬體目錄</block>
   <block id="152277675a8ef46c12f1dc91f2f53ede" category="paragraph">如需完整的SAP HANA NetApp認證儲存解決方案清單、請參閱<block ref="a3976abaebe3520fd66c465c4d7747d7" category="inline-link-rx"></block>。</block>
@@ -105,7 +102,6 @@
   <block id="244d98fed97800c3bc8073163dc1e3b2" category="inline-link">SAP HANA儲存需求</block>
   <block id="ff3f1e894014f4c26eac8cab49b8a0f4" category="section-title">使用VMware vSphere的SAP HANA</block>
   <block id="4769b140b92a70ffdab406be16d30122" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的選項是將儲存磁碟區與NFS直接從客體作業系統連線。使用此選項時、主機和儲存設備的組態在實體主機和VM之間不會有所不同。</block>
-  <block id="35eb3c62d099b5d5e6334b74d5b2bcff" category="paragraph">也支援NFS資料存放區和VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。此外SnapCenter 、NetApp的功能組合與解決方案（例如SAP系統複製）所協調的Snapshot型備份與還原、也無法實作。</block>
   <block id="f7fbf8be79b2dbbf7cca7d63ea2aaa3e" category="paragraph">本文件說明從客體作業系統直接掛載NFS的建議設定。</block>
   <block id="5363a1e8e1763bb11c4b91b2868d5584" category="paragraph">如需搭配SAP HANA使用vSphere的詳細資訊、請參閱下列連結：</block>
   <block id="f02780ddcfc1bddf0683bf8de02155d5" category="inline-link-macro">VMware vSphere上的SAP HANA -虛擬化-社群維客</block>
@@ -495,7 +491,6 @@
   <block id="fdb63fa26dfca812f4f453ca18a829c7" category="section-title">SAP HANA量身打造的資料中心整合</block>
   <block id="c2798d82f6c464fd30d247919005bc5b" category="paragraph">NetApp FAS 支援的儲存控制器已通過SAP HANA TDI方案認證、可同時使用NFS（NAS）和FC（SAN）傳輸協定。可部署於任何目前的SAP HANA案例、例如HANA上的SAP Business Suite、S/4HANA、BS/4HANA或HANA上的SAP Business倉儲、無論是單一主機或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。如需架構總覽、請參閱下圖。</block>
   <block id="cd67947f6f1984974a5e507afaa2222d" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。使用此選項時、主機和儲存設備的組態在實體主機和VM之間不會有所不同。</block>
-  <block id="3e0badc46d16811661a7977c8991b3ea" category="paragraph">也支援NFS資料存放區或VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。此外SnapCenter 、無法實作由下列項目協調的Snapshot複本型備份與還原、以及以SAP系統複製等為基礎的解決方案。</block>
   <block id="47c97f5b5374f82578ea21329859f8cb" category="summary">只有具備容錯移轉功能的多主機環境才需要儲存連接器。</block>
   <block id="cfb64066e9063f57ad27ccf9e4e06e87" category="doc">SAP HANA儲存連接器API</block>
   <block id="143f136fe7528a58d8f5256ccaa89109" category="paragraph">只有具備容錯移轉功能的多主機環境才需要儲存連接器。在多主機設定中、SAP HANA提供高可用度功能、讓SAP HANA資料庫主機容錯移轉至待命主機。在此情況下、待機主機會存取並使用故障主機的LUN。儲存連接器用於確保一次只有一個資料庫主機可以主動存取儲存分割區。</block>
@@ -1011,7 +1006,6 @@
   <block id="b33f6954e7bec0569d3be6ef5cea4d1d" category="paragraph">使用NFS和NetApp等功能的系統組態指南FAS 可透過下列連結找到：AFF</block>
   <block id="1800d8919a8de7dbf0bdd4d4ef0a94f4" category="paragraph">在SAP HANA多主機環境中、標準SAP HANA儲存連接器可在SAP HANA主機容錯移轉時提供屏障。請參閱相關的SAP附註、以瞭解作業系統組態準則和HANA專屬的Linux核心相依性。如需詳細資訊、請參閱<block ref="362348e4aadbc3b1dc4fa3ddcce8fb65" category="inline-link-rx"></block>。</block>
   <block id="324c1541e14a4687bde362da7f340662" category="paragraph">NetApp FAS 支援的儲存控制器已通過SAP HANA量身打造的資料中心整合（TDI）方案認證、使用NFS（NAS）和Fibre Channel（SAN）傳輸協定。可在任何SAP HANA情境中部署、例如HANA上的SAP Business Suite、S/4HANA上的SAP Business Suite、HANA上的BWS/4HANA或HANA上的SAP Business倉儲、無論是單一主機組態或多主機組態。任何經認證可搭配SAP HANA使用的伺服器、均可與認證的儲存解決方案搭配使用。如需架構總覽、請參閱下圖。</block>
-  <block id="2119e51f96366de40a69723f79096b89" category="paragraph">也支援原始裝置對應（RDM）、FCP資料存放區或具有FCP功能的VVOL資料存放區。對於這兩種資料存放區選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區內、才能有效使用。此外SnapCenter 、無法實作由下列項目協調的Snapshot型備份與還原、以及以SAP系統複製等為基礎的解決方案。</block>
   <block id="26287cafb4ea7add00d9de270496dd80" category="paragraph">SAP HANA主機使用備援FCP基礎架構和多重路徑軟體、連接至儲存控制器。在交換器或主機匯流排介面卡（HBA）故障時、需要備援的FCP交換器基礎架構來提供容錯SAP HANA主機對儲存設備的連線能力。交換器必須設定適當的分區、才能讓所有HANA主機到達儲存控制器上所需的LUN。</block>
   <block id="7ebb858993c6febaa60f7bc7602d20dc" category="paragraph">SAP HANA環境不受部署AFF 的整個系統的影響、也可藉由新增任何認證的儲存控制器來滿足所需的節點密度、如下圖所示。</block>
   <block id="67844e82ab322c50575db48293bd0359" category="summary">從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。</block>
@@ -3990,8 +3984,6 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="30dac510a408bf8be8dd4336d96b482f" category="cell">適用於 SnapCenter 4.6 P1 的變更工作流程</block>
   <block id="f66bc2df80ac37f354b591907be92e18" category="cell">2024 年 7 月</block>
   <block id="17fb9a63c15de98fb13578ff5b945b03" category="paragraph">文件涵蓋內部部署的 NetApp 系統、 適用於 ONTAP 和 Azure NetApp Files 的 FSX + 全新 SnapCenter 5.0 作業會在複製建立和刪除工作流程時掛載和卸載 + 為光纖通道 SAN 新增特定步驟 + 為 Azure NetApp Files 新增特定步驟 + 調整和簡化指令碼 +<block ref="d8eec050302627350eb082c264bec8f6" prefix=" " category="inline-code"></block> 已啟用 SAP HANA 的必要步驟 Volume 加密</block>
-  <block id="0a93e03f240cb8b42069573a99818021" category="list-text"><block ref="0a93e03f240cb8b42069573a99818021" category="inline-link-macro-rx"></block></block>
-  <block id="77b50001f65f6144e393afa83a9d4e21" category="list-text"><block ref="77b50001f65f6144e393afa83a9d4e21" category="inline-link-macro-rx"></block></block>
   <block id="a5cf81e748f3b3e6fad26b2e3470f879" category="list-text"><block ref="a5cf81e748f3b3e6fad26b2e3470f879" category="inline-link-macro-rx"></block></block>
   <block id="87c8349f2562b9df828a79206981328c" category="list-text"><block ref="87c8349f2562b9df828a79206981328c" category="inline-link-macro-rx"></block></block>
   <block id="20a0dcae2f540339bbf69dbaa7f0050a" category="list-text"><block ref="20a0dcae2f540339bbf69dbaa7f0050a" category="inline-link-macro-rx"></block></block>
@@ -4763,4 +4755,7 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="1a808aae97e904d2d0d8b853c60fa475" category="list-text">AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A900 ， AFF A1K ， AFF A90 ， AFF A70 ， AFF A800</block>
   <block id="19fe8eb256f35b3d5110d29e652ce432" category="list-text">AFF C250 ， AFF C30 ， AFF C400 ， AFF C60 ， AFF C800 ， AFF C80</block>
   <block id="968cad2bf5c711dad5ccd0efa3e1ff9f" category="list-text">AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A90 ， AFF A1K ， AFF A900 ， AFF A70 ， AFF A800</block>
+  <block id="54652d040ebb810c360684ca8e231a52" category="paragraph">也支援NFS資料存放區或VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。</block>
+  <block id="7d631f41ea82e4581ac749b6874d885a" category="paragraph">也支援原始裝置對應（RDM）、FCP資料存放區或具有FCP功能的VVOL資料存放區。對於這兩種資料存放區選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區內、才能有效使用。</block>
+  <block id="efd1d0d586a27578c98f10496d441cd4" category="paragraph">也支援NFS資料存放區和VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。</block>
 </blocks>

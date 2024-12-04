@@ -53,7 +53,7 @@ image:saphana_fas_fc_image1.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在link:saphana_aff_nfs_introduction.html["SAP HANA on NetApp AFF 的NFS系統"^]中有詳細說明。
 
-也支援原始裝置對應（RDM）、FCP資料存放區或具有FCP功能的VVOL資料存放區。對於這兩種資料存放區選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區內、才能有效使用。此外SnapCenter 、無法實作由下列項目協調的Snapshot型備份與還原、以及以SAP系統複製等為基礎的解決方案。
+也支援原始裝置對應（RDM）、FCP資料存放區或具有FCP功能的VVOL資料存放區。對於這兩種資料存放區選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區內、才能有效使用。
 
 如需搭配SAP HANA使用vSphere的詳細資訊、請參閱下列連結：
 

@@ -342,9 +342,6 @@
   <block id="d1a14b5b7465c90ccf63dce24060e194" category="section-title">邏輯介面組態</block>
   <block id="5d32d4572d40717acaf8b9ef008f4901" category="paragraph">在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的八部LIF（稱為「fc_*」）的快照。</block>
   <block id="ad0e46aa05fcef2f37453adf0ef136ec" category="paragraph">在使用ONTAP NetApp 9.8 System Manager建立SVM期間、您可以選取所有必要的實體FCP連接埠、而且每個實體連接埠會自動建立一個LIF。</block>
-  <block id="fd32c02d4b7251741240b397ff65496a" category="section-title">FCP連接埠集</block>
-  <block id="934baa69e76d9725b7833c87e6c67cba" category="paragraph">FCP連接埠集用於定義特定啟動器群組要使用的生命期。一般而言、針對HANA系統所建立的所有LIF都會放置在相同的連接埠集中。下圖顯示名稱為32g的連接埠集組態、其中包含已建立的四個LIF。</block>
-  <block id="ba21da193047a8b196b8513f3735ad5c" category="admonition">使用NetApp 9.8時、不需要連接埠集、但可透過命令列建立及使用。ONTAP</block>
   <block id="3dc0bb550ffeb410b2cbe908abda2020" category="section-title">SAP HANA單一主機系統的Volume與LUN組態</block>
   <block id="2cd30dd459c96f8423572cfd0315dd72" category="paragraph">下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定Volume「ID1_data_mnt00001」、而控制器B上已設定Volume「ID1_log_mnt00001」在每個磁碟區中、都會設定一個LUN。</block>
   <block id="a2ab47e506561509501f3015dfd353bb" category="admonition">如果SAP HANA系統只使用HA配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。</block>
@@ -1134,8 +1131,6 @@
   <block id="e9fc49c5c730458783a8ccd4b98a94c5" category="paragraph">在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的四個生命期（稱為「fc_*」）的快照。</block>
   <block id="34cf3cce20e89b361817cb8171e434a6" category="paragraph">在使用ONTAP NetApp 9.8 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。</block>
   <block id="d5b418c423bd08ad0961e2eb57962d5a" category="paragraph">下圖說明ONTAP 使用NetApp 9.8 System Manager建立SVM和LIF。</block>
-  <block id="1031bd6cfd51714668c70d35fdf12489" category="paragraph">FCP連接埠集用於定義特定igroup要使用哪些lip。一般而言、針對HANA系統所建立的所有LIF都會放置在相同的連接埠集中。下圖顯示名稱為32g的連接埠集組態、其中包含已建立的四個LIF。</block>
-  <block id="825d239e42d5cc598eb01f3b672bc521" category="admonition">使用NetApp 9.8時、不需要連接埠集、但可透過命令列建立及使用。ONTAP</block>
   <block id="6651fd2f7a600a31e0103b2ff23752ca" category="section-title">啟動器群組</block>
   <block id="517f95ae0c03c21432632bd009cdff0d" category="paragraph">您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。</block>
   <block id="3f87e8b9731d5a43155ef27ca0b567af" category="paragraph">使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的WWPN：</block>
@@ -3438,7 +3433,6 @@
   <block id="2976619a79e897d24427ec6796aa4a70" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。
 請將這些區段的預設重試時間間隔保持在 10 秒內。</block>
   <block id="73d4ace7e434b8709f5a930ad845d6d6" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。請在這些區段內保留預設的重試時間間隔10秒。</block>
-  <block id="7165d8e624155bf7a4889b98927f605c" category="list-text">ASA C250 、 ASA C400 、 ASA C800</block>
   <block id="ba7dc8a883957fda819c429f468dc4d0" category="admonition">NetApp AFF 和 ASA C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
   <block id="b5816060ccee493fc8a2946c9d33de20" category="paragraph">您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備份。</block>
   <block id="5cd519503ff0d358e76b5be6e9b7d14e" category="paragraph">建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。此外、使用Snapshot技術也不會影響即時SAP系統的效能。因此、您可以排程建立Snapshot複本、而不需考慮尖峰對話或批次活動期間。SAP與NetApp客戶通常會在一天內排程多個線上Snapshot備份、例如、每六小時一次就很常見。這些Snapshot備份通常會在一線儲存系統上保留三到五天、然後再移除或分層至較便宜的儲存設備、以供長期保留。</block>
@@ -4024,11 +4018,8 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="74aaeb9485407660c737f5870ea94649" category="paragraph"><block ref="74aaeb9485407660c737f5870ea94649" category="inline-link-rx"></block></block>
   <block id="e5e2a6bf28307550240d9ed91bbb0fa0" category="paragraph"><block ref="e5e2a6bf28307550240d9ed91bbb0fa0" category="inline-link-rx"></block></block>
   <block id="bc83c6be4c9eaece698b7eb18b8517a0" category="paragraph"><block ref="bc83c6be4c9eaece698b7eb18b8517a0" category="inline-link-rx"></block></block>
-  <block id="43f4de9c790b46b4e976d930374377ea" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90 您可以在上找到 NetApp 認證的 SAP HANA 儲存解決方案的完整清單<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
   <block id="a36cfc2690f8671748f584abb16bdd04" category="cell">全新儲存系統</block>
-  <block id="df23cd28bc74a571210f66246272e69f" category="list-text">ASA A250 、 ASA A400 、 ASA A70 、 ASA A800 、 ASA A900 、 ASA A90 、 ASA A1K</block>
   <block id="0fba9f2a3fbb4cfbaed44806cd9933a2" category="cell">全新儲存系統（ ASA A 系列）</block>
-  <block id="6b31c1796a51111b23246e86a060d273" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90</block>
   <block id="5e8f0f670e38fbdf628b0883f946934f" category="inline-image-macro">此圖顯示輸入 / 輸出對話方塊或表示寫入內容</block>
   <block id="085efbf60b3725eeb0ee8ff55a22a221" category="paragraph"><block ref="085efbf60b3725eeb0ee8ff55a22a221" category="inline-image-macro-rx" type="image"></block></block>
   <block id="07d652acdae0a73446e157f933c39530" category="paragraph"><block ref="07d652acdae0a73446e157f933c39530" category="inline-image-macro-rx" type="image"></block></block>
@@ -4507,7 +4498,6 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="5a053d099bd71f6622608db75861b1e5" category="paragraph"><block ref="5a053d099bd71f6622608db75861b1e5" category="inline-image-macro-rx" type="image"></block></block>
   <block id="98388228afa94a728226d844929284de" category="paragraph"><block ref="98388228afa94a728226d844929284de" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cfd97e0a15391e975214c5503e96d423" category="paragraph"><block ref="cfd97e0a15391e975214c5503e96d423" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="03595684b4248a265a5f7e534bd92c49" category="paragraph"><block ref="03595684b4248a265a5f7e534bd92c49" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ade510803f2b9aad765372451fd52da2" category="paragraph"><block ref="ade510803f2b9aad765372451fd52da2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b2bc3f5a45ad0103150eddb5c0947895" category="paragraph"><block ref="b2bc3f5a45ad0103150eddb5c0947895" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4cd082d270e30712a5d973de884f7b9f" category="paragraph"><block ref="4cd082d270e30712a5d973de884f7b9f" category="inline-image-macro-rx" type="image"></block></block>
@@ -4552,7 +4542,6 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="17170cd9736b0e2a3d8f78d16953b327" category="paragraph"><block ref="17170cd9736b0e2a3d8f78d16953b327" category="inline-image-macro-rx" type="image"></block></block>
   <block id="09f7121854e4295fd6f96bdc2d4acb8c" category="paragraph"><block ref="09f7121854e4295fd6f96bdc2d4acb8c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9a54eb14eb1b0ca1cf8ecb90dd6622cf" category="paragraph"><block ref="9a54eb14eb1b0ca1cf8ecb90dd6622cf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="6746b37c7a3b79f38aca9f144e491303" category="paragraph"><block ref="6746b37c7a3b79f38aca9f144e491303" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b1c9f17a28c7142387820fd5a82c9b6e" category="paragraph"><block ref="b1c9f17a28c7142387820fd5a82c9b6e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="333255d2c26de498b8eb10dcfa6381fb" category="paragraph"><block ref="333255d2c26de498b8eb10dcfa6381fb" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0f4ac82fd0de794eae50e4e7545b6b84" category="paragraph"><block ref="0f4ac82fd0de794eae50e4e7545b6b84" category="inline-image-macro-rx" type="image"></block></block>
@@ -4758,4 +4747,12 @@ SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
   <block id="54652d040ebb810c360684ca8e231a52" category="paragraph">也支援NFS資料存放區或VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。</block>
   <block id="7d631f41ea82e4581ac749b6874d885a" category="paragraph">也支援原始裝置對應（RDM）、FCP資料存放區或具有FCP功能的VVOL資料存放區。對於這兩種資料存放區選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區內、才能有效使用。</block>
   <block id="efd1d0d586a27578c98f10496d441cd4" category="paragraph">也支援NFS資料存放區和VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。</block>
+  <block id="cb1774d583cd49c1e7fc03a9172f09d9" category="list-text">FAS2750 ， FAS2820 ， FAS8300 ， FAS50 ， FAS8700 ， FAS70 ， FAS9500 ， FAS90 您可以在上找到 NetApp 認證的 SAP HANA 儲存解決方案完整清單<block ref="b94cf00a6e18ec3712e81f808581c042" category="inline-link-rx"></block>。</block>
+  <block id="68a4c90b9b4251c2e6c62854e0f0e383" category="cell">全新儲存系統與次要更新</block>
+  <block id="6cc5c9e930ea3d3b8bff4367c60ceea4" category="cell">2025 年 2 月</block>
+  <block id="15cd132980dad32e9c3c529955721df9" category="cell">全新儲存系統</block>
+  <block id="4433e4b3b7ec2b20f062036b1b011af7" category="list-text">ASA A250 ， ASA A20 ， ASA A30 ， ASA A400 ， ASA A50 ， ASA A70 ， ASA ， ASA A900 ， ASA A90 ， ASA A800 A1K</block>
+  <block id="2134d42f2b0f54791bb238214fdc5110" category="list-text">ASA C250 ， ASA C30 ， ASA C400 ， ASA C60 ， ASA C800 ， ASA C80</block>
+  <block id="a10922577a9bcbf85b1a7a9d8e7de5aa" category="cell">2024 年 11 月</block>
+  <block id="53bab281b7eb6692b17a4b65d99e2188" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS50 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90</block>
 </blocks>

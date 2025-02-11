@@ -134,17 +134,6 @@ image:saphana_fas_fc_image15.jpeg["此圖顯示輸入 / 輸出對話方塊或表
 
 
 
-== FCP連接埠集
-
-FCP連接埠集用於定義特定igroup要使用哪些lip。一般而言、針對HANA系統所建立的所有LIF都會放置在相同的連接埠集中。下圖顯示名稱為32g的連接埠集組態、其中包含已建立的四個LIF。
-
-image:saphana_fas_fc_image16.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-
-NOTE: 使用NetApp 9.8時、不需要連接埠集、但可透過命令列建立及使用。ONTAP
-
-
-
 == 啟動器群組
 
 您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。

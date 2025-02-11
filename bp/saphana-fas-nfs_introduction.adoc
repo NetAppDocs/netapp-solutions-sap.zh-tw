@@ -15,7 +15,7 @@ NetApp 的 Marco sch(n
 
 此認證目前僅適用於下列機型：
 
-* FAS2750 、 FAS2820 、 FAS8300 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90 您可以在上找到 NetApp 認證的 SAP HANA 儲存解決方案的完整清單 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["SAP HANA硬體目錄已通過認證且受到支援"^]。
+* FAS2750 ， FAS2820 ， FAS8300 ， FAS50 ， FAS8700 ， FAS70 ， FAS9500 ， FAS90 您可以在上找到 NetApp 認證的 SAP HANA 儲存解決方案完整清單 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["SAP HANA硬體目錄已通過認證且受到支援"^]。
 
 
 本文件說明ONTAP NFS版本3（NFSv3）傳輸協定或NFS版本4（NFSv4.1）傳輸協定的功能不完整組態需求。

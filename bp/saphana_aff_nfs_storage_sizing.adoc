@@ -64,11 +64,10 @@ NOTE: 此計算方式與所使用的儲存控制器無關。新增更多磁碟�
 
 === NS224 NVMe機櫃
 
-一個 NVMe SSD （資料）最多可支援 5 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
-同樣適用於 AFF A800 、 AFF A70 和 AFF A90 系統的內部 NVMe 磁碟。
+根據使用的 NVMe 磁碟，一個 NVMe SSD （資料）最多可支援 2/5 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。同樣適用於 AFF 系統的內部 NVMe 磁碟。
 
 
-NOTE: 新增更多磁碟機櫃並不會增加儲存控制器可支援的SAP HANA主機數量上限。
+NOTE: 新增更多磁碟櫃並不會增加儲存控制器所能支援的 SAP HANA 主機數量上限。
 
 
 
@@ -214,4 +213,4 @@ NetApp進行效能測試、以定義最佳價值。下表列出必須在SAP效�
 
 下圖摘要說明規模調整程序。
 
-image:saphana_aff_nfs_image9.jpg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_aff_nfs_image9a.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

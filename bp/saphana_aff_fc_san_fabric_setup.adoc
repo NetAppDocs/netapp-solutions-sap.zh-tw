@@ -18,6 +18,6 @@ summary: 每部SAP HANA伺服器都必須具有至少8Gbps頻寬的備援FCP SAN
 
 下圖顯示四台SAP HANA主機連接至兩個儲存控制器的範例。每個SAP HANA主機都有兩個連接到備援架構的FCP連接埠。在儲存層、會設定四個FCP連接埠、為每個SAP HANA主機提供所需的處理量。
 
-image:saphana_aff_fc_image9.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_aff_fc_image9a.png["連接至兩個儲存控制器的 SAP HANA 主機"]
 
 除了交換器層上的分區、您還必須將儲存系統上的每個LUN對應到連線至此LUN的主機。讓交換器上的分區保持簡單；也就是定義一個區域集、讓所有主機HBA都能看到所有控制器HBA。

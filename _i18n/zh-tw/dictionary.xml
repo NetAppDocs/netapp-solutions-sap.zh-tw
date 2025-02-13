@@ -321,10 +321,6 @@
   <block id="2ac3f8b0b798078f242ae9b0249081bc" category="paragraph">將記錄備份移至另一個儲存層的理想選擇。FabricPool移動備份會影響SAP HANA資料庫的恢復時間。因此、「分層-最低-冷卻天數」選項應設定為在本機快速儲存層上放置記錄備份的值、而這是恢復時的例行需求。</block>
   <block id="d25223f4065ca21361aff2e7cdc61203" category="section-title">設定儲存設備</block>
   <block id="c2cd71459709a9b877c06b5e5f772f9d" category="paragraph">以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存FCP連接埠與SAN架構之間的連線也必須已就緒。</block>
-  <block id="5130b49486508cbe5c2d0b023d415091" category="list-text">檢查正確的磁碟櫃組態、如「<block ref="039cb3f1d3f19b24b2d3e1a57595e88d" category="inline-xref-macro-rx"></block>。」</block>
-  <block id="5ed0e891e8b990c7168739eb02edd6a3" category="list-text">建立及設定所需的集合體、如「<block ref="19f0aba2b822910f53ba3966ee7c8d59" category="inline-xref-macro-rx"></block>。」</block>
-  <block id="f9a28c46fbd1f4dfd78367e2b160714f" category="list-text">創建儲存虛擬機（SVM）、如「<block ref="7c58f6887f41bcea1635c2c18a7a4529" category="inline-xref-macro-rx"></block>。」</block>
-  <block id="9629532b191c2dfd3156fe8e116bbe3b" category="list-text">創建邏輯介面（l生命）、如「<block ref="fc903155b67a1626f9032f79a26da71f" category="inline-xref-macro-rx"></block>。」</block>
   <block id="a2c22f5fc8f18d8d87dd5a34087a8c8e" category="section-title">磁碟櫃連線</block>
   <block id="2630ee9d2d6404a0be197b5cefef0514" category="section-title">SAS型磁碟櫃</block>
   <block id="03ec21b0d762028e928e8b7603d1b5a0" category="admonition">使用DS224C磁碟櫃時、也可以使用四路徑SAS纜線、但不需要。</block>
@@ -335,7 +331,6 @@
   <block id="f138253c8e7297962c645362420d9aa2" category="paragraph">SAP HANA資料庫的多個SAP環境可以使用單一SVM。如有必要、也可將SVM指派給每個SAP環境、以便由公司內的不同團隊進行管理。</block>
   <block id="9edbcb82e27829dd83ad8ddf87b121c5" category="paragraph">如果在建立新的SVM時自動建立並指派QoS設定檔、請從SVM移除此自動建立的設定檔、以確保SAP HANA達到所需的效能：</block>
   <block id="d1a14b5b7465c90ccf63dce24060e194" category="section-title">邏輯介面組態</block>
-  <block id="5d32d4572d40717acaf8b9ef008f4901" category="paragraph">在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的八部LIF（稱為「fc_*」）的快照。</block>
   <block id="3dc0bb550ffeb410b2cbe908abda2020" category="section-title">SAP HANA單一主機系統的Volume與LUN組態</block>
   <block id="2cd30dd459c96f8423572cfd0315dd72" category="paragraph">下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定Volume「ID1_data_mnt00001」、而控制器B上已設定Volume「ID1_log_mnt00001」在每個磁碟區中、都會設定一個LUN。</block>
   <block id="a2ab47e506561509501f3015dfd353bb" category="admonition">如果SAP HANA系統只使用HA配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。</block>
@@ -449,9 +444,6 @@
   <block id="59dafe6ffe356573f4a59e43b8c2a12d" category="cell">停用Snapshot目錄的可見度</block>
   <block id="bfcee32efb1a622a6e587e6e46aabb35" category="cell">Vol modify -vserver &lt;vserver-name&gt;-volume &lt;volname&gt;-snapdir-access假</block>
   <block id="b9c48200eb9eba714e3c88803e97b4ce" category="section-title">建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
-  <block id="c2e3c2f5e5887a87fcfac0e555a07a70" category="paragraph">您可以使用NetApp ONTAP 功能區系統管理程式來建立儲存磁碟區和LUN、並將它們對應至伺服器。</block>
-  <block id="092e6a6bc4923c6cfc72d214ce390535" category="paragraph">NetApp提供一套自動化應用程式精靈、可在ONTAP 支援SAP HANA的過程中、於支援NetApp的更新版本9.7及更早版本、大幅簡化了Volume與LUN的資源配置程序。它會根據NetApp的SAP HANA最佳實務做法、自動建立及設定磁碟區和LUN。</block>
-  <block id="0c71c668e5ae926e6d75aa8bbbc09dd2" category="paragraph">使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的全球連接埠名稱（WWPN）：</block>
   <block id="a86be254d15f1254d56b97c8755a5b77" category="admonition">「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。</block>
   <block id="8c4751bd2d7d17062a8b536388ba69bc" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
   <block id="6204c72c80408db453e7fea0b62d2e36" category="paragraph">本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN：</block>
@@ -532,10 +524,8 @@
   <block id="d39f50075dc9ec7266b5156c1d0ce319" category="summary">以下各節提供SAP HANA基礎架構的設定與組態準則。</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="doc">總覽</block>
   <block id="98453eecb7a0821c9f84e894eeb80b6f" category="paragraph">以下各節提供SAP HANA基礎架構的設定與組態準則。其中包含設定SAP HANA所需的所有步驟。系統會建立SVM來裝載資料。在這些章節中、使用下列組態範例：</block>
-  <block id="5f817989cf0f93d4a14f30644d1994e2" category="list-text">Hana系統的SID=SS3和ONTAP SES9.7或更早版本</block>
   <block id="e7f4f805e4b2edf4e5d40f8db1e51fd5" category="list-text">SAP HANA單一和多部主機</block>
   <block id="0bad0fb3efdfa0349f059e6510652363" category="list-text">使用SAP HANA多個分割區的SAP HANA單一主機</block>
-  <block id="273f733be4b4eee98578fce71ccc7a70" category="list-text">Hana系統使用ONTAP Linux邏輯Volume Manager（LVM）、其SID=FC5和Sfes9.8</block>
   <block id="2ad2e055e24d21da5d30dba91f44d731" category="summary">本節說明在單一主機和多主機系統上安裝SAP HANA所需的準備工作。</block>
   <block id="3e1a84486a34f2de53acbb9a76a7dacc" category="section-title">安裝在單一主機系統上</block>
   <block id="e4fd411b2330f50a5f169247fb9817ac" category="section-title">安裝在多主機系統上</block>
@@ -855,7 +845,6 @@
   <block id="625393be624ef9b6c1788fc2acdc4a1f" category="section-title">SAS磁碟櫃</block>
   <block id="9b62b24b8d9ba375e94ccacca94fc52d" category="paragraph">最多可將一個磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2可搭配ONTAP 使用EST9和DS224C磁碟櫃。</block>
   <block id="bdf2df4b25ef7731104da665fef6a0bc" category="section-title">NVMe（100GbE）磁碟櫃</block>
-  <block id="c95631e026846b434e73e4f8b624c435" category="paragraph">每個NS224 NVMe磁碟櫃都使用每個控制器兩個100GbE連接埠來連接。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2（如Aggregate組態一章所述）也用於NS224磁碟櫃。下圖說明NVMe磁碟機的磁碟櫃連線。</block>
   <block id="f1c8039bfd9034e917c3ee25c37b6e80" category="paragraph">下圖顯示12台SAP HANA主機的組態、這些主機執行於12Gb SAS機櫃上、並設定ADPv2。每個儲存控制器連接六台SAP HANA主機。配置四個獨立的集合體、每個儲存控制器各兩個。每個Aggregate都配置有11個磁碟、其中有9個資料和兩個同位元檢查磁碟分割區。每個控制器都有兩個備用磁碟分割可供使用。</block>
   <block id="99897c39b8224cf5a25fe9c6f599b3a7" category="section-title">SVM組態</block>
   <block id="b37f183111116179ae8b8190b10de385" category="paragraph">SAP HANA資料庫的多個SAP環境可以使用單一SVM。如有必要、也可將SVM指派給每個SAP環境、以便由公司內的不同團隊進行管理。</block>
@@ -1101,58 +1090,26 @@
   <block id="0df676e828d9cc9486e1b8e0aaf1b692" category="paragraph">使用「純快照」分層原則是可行的、FabricPool 而且通常可在SnapVault 諸如SnapMirror或SnapMirror目的地等備份目標上使用SnapMirror。</block>
   <block id="5a5237a6a98f8795e5ef541300be3602" category="admonition">使用支援在一線儲存設備上分層Snapshot複本、或使用支援還原的功能來變更資料庫還原與還原所需的時間、或是建立系統複本或修復系統等其他工作。FabricPool FabricPool在規劃整體生命週期管理策略時、請將此考量納入考量、並確認使用此功能時仍符合SLA要求。</block>
   <block id="562283819997e7573d7ef1bcd25f02e9" category="paragraph">以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在開始執行這些步驟之前、請先完成儲存硬體設定、ONTAP 安裝支援軟體、並將儲存FCP連接埠連線至SAN架構。</block>
-  <block id="2cb20ba4c0eb0eb9f98e21ec7aca47f3" category="list-text">檢查正確的SAS堆疊組態、如一節所述 <block ref="7f61bd8ed95dde5d117ac18e531c2392" category="inline-link-macro-rx"></block></block>
-  <block id="3e99cd10c9ef85534f3816fe698acf36" category="list-text">建立及設定所需的集合體、如一節所述 <block ref="1eb0235695db5698c097351f88f0747b" category="inline-link-macro-rx"></block></block>
-  <block id="e8bb33c4475cdd668aa10b272a23134c" category="list-text">如一節所述、建立儲存虛擬機器（SVM） <block ref="d13b32bfc05b789abfa54d62f28177c3" category="inline-link-macro-rx"></block></block>
-  <block id="e8edc3c35ca6d470bb586a19c4ba2a77" category="list-text">如一節所述建立邏輯介面（lifs） <block ref="304794730509f6f33e41081c9ea9ada6" category="inline-link-macro-rx"></block></block>
-  <block id="247671c13d2daa0ebab96556f7a23c0f" category="inline-link-macro">FCP連接埠集。</block>
-  <block id="0641e7ab6ca260dd1687ed64f731567d" category="list-text">如一節所述建立FCP連接埠集 <block ref="80e993b4c7204adfd3e99dcfc8b61878" category="inline-link-macro-rx"></block></block>
-  <block id="eb0ef7e6e2bb01610d7af0b64d45f273" category="inline-link-macro">啟動器群組：</block>
-  <block id="f737bc3e8b1df8cd01c46b1f8bad3991" category="list-text">如一節所述、使用HANA伺服器的全球名稱（WWN）建立啟動器群組（igroup） <block ref="3616ae8884995c0f6d38b378a7c408ce" category="inline-link-macro-rx"></block></block>
-  <block id="5480184205f8be2fc64d333da844de90" category="inline-link-macro">SAP HANA多主機系統的Volume與LUN組態。</block>
-  <block id="2c6aedb572dccc5a20423edb6df1e593" category="list-text">如一節所述、在集合體中建立磁碟區和LUN <block ref="19ba03664bebb02274f7bd74909fcde5" category="inline-link-macro-rx"></block> 和 <block ref="8ca29b6ed94f0b5f4fd7893d15f21ff7" category="inline-link-macro-rx"></block></block>
   <block id="b7483c1a479d4fef5cff97bd81ff277b" category="paragraph">使用SSD時、最多可將一個磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。使用DS224C磁碟櫃時、也可以使用四路徑SAS纜線、但不需要。</block>
   <block id="fbd0736dc070b8c1ab4ca37b6ff6a1c2" category="paragraph">一般而言、每個控制器都必須設定兩個Aggregate、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。您必須執行此步驟、才能使用所有可用的控制器資源。對於Solid2000系列系統、只需一個資料集合體就足夠了。FAS</block>
-  <block id="5739a58e7053e7fb6bd6f313b759b5fd" category="paragraph">一般而言、每個控制器都必須設定兩個集合體、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。對於FAS2000系列系統、一個資料集合體就足夠了。</block>
   <block id="15780b309192b18b065fdcb3276b82b6" category="paragraph">使用SAP HANA資料庫的多主機SAP環境可以使用單一SVM。如有必要、也可將SVM指派給每個SAP環境、以便由公司內的不同團隊進行管理。本文檔中的截圖和命令輸出使用名爲「Hana」的SVM。</block>
-  <block id="e9fc49c5c730458783a8ccd4b98a94c5" category="paragraph">在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的四個生命期（稱為「fc_*」）的快照。</block>
-  <block id="34cf3cce20e89b361817cb8171e434a6" category="paragraph">在使用ONTAP NetApp 9.8 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。</block>
-  <block id="d5b418c423bd08ad0961e2eb57962d5a" category="paragraph">下圖說明ONTAP 使用NetApp 9.8 System Manager建立SVM和LIF。</block>
   <block id="6651fd2f7a600a31e0103b2ff23752ca" category="section-title">啟動器群組</block>
   <block id="517f95ae0c03c21432632bd009cdff0d" category="paragraph">您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。</block>
   <block id="3f87e8b9731d5a43155ef27ca0b567af" category="paragraph">使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的WWPN：</block>
   <block id="bc7b122f8c7d1a7a700fe37744267ae2" category="inline-link-macro">主機設定：</block>
   <block id="64a7d37bc5bbadc99e0094b3d4046ae2" category="admonition">「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資料、請參閱一節 <block ref="0b358a640d1236c691cca4bd6fb10205" category="inline-link-macro-rx"></block></block>
-  <block id="0cac098cb7f23089be44b592277de000" category="paragraph">下圖顯示SS3_HANA的啟動器清單。igroup包含伺服器的所有WWPN、並指派給儲存控制器的連接埠集。</block>
-  <block id="4ca4e2a0d4e5c589a8ad70a95925a37a" category="paragraph">下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如，控制器A上配置了Volume 'ID1'_'data'_'m't00001，控制器B上配置了Volume 'ID1'_'log'_'m'n'mt001'在每個磁碟區中、都會設定一個LUN。</block>
   <block id="2c8d2683acd00fc6b7bdbecbc4077a74" category="admonition">如果SAP HANA系統只使用高可用度（HA）配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。</block>
   <block id="7a1a0bd259dd739b7d810124fe9f4440" category="paragraph">下表顯示單一主機系統的掛載點組態範例。</block>
-  <block id="05ba29e62de470cece1f33d7d960bebc" category="admonition">使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「ID1~_'共享「Volume for the’USr/SAP/SID1」目錄中建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。</block>
   <block id="414644d9944d8acf448d00964757d116" category="admonition">不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN設定即符合所需的KPI。</block>
   <block id="6ca08fbeb2f69e5ac6d7d31de1c0d50e" category="paragraph">在SAP HANA主機上、必須建立及掛載Volume群組和邏輯磁碟區。下表列出使用LVM之單一主機系統的掛載點。</block>
-  <block id="b63455a0893e3fe36b2f2d95447d0b75" category="paragraph">下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID'_'data'_'m't001'、控制器B上已設定磁碟區「ID'_'log'_'m'm't001'每個磁碟區內都會設定一個LUN。</block>
   <block id="ebcead3815b9e992a87a9c31a4be99fe" category="paragraph">每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下圖顯示4+1多主機SAP HANA系統的組態範例。</block>
   <block id="47efb02d47f9965ca8839f52ecc182bc" category="paragraph">下表顯示具有四台作用中SAP HANA主機的多主機系統組態和掛載點。</block>
   <block id="415dc524f4e8d720ce545c8d6263459c" category="cell">LUN或Volume</block>
-  <block id="db7586f46a08d4a865d9fcc187eccdc6" category="admonition">使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會儲存在每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_"shared"磁碟區中建立四個子目錄、讓每個資料庫主機在中央儲存設備上都有其所有的檔案系統。</block>
   <block id="ea15b968cdc22cb1b865eba6daa0eae0" category="paragraph">Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。</block>
   <block id="7e819a8bd73b862fc9b80deb044fa7da" category="admonition">不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定即符合所需的KPI。</block>
   <block id="70993f32e0c2ae5000f9a5a9cbf641e4" category="paragraph">在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區：</block>
-  <block id="df6802a99a754c5978954aef9c7f4784" category="admonition">使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_"shared"磁碟區中建立四個子目錄、讓每個資料庫主機在中央儲存設備上都有其所有的檔案系統。</block>
   <block id="203165a49e3a391bdbc44e3a05d54279" category="cell">功能9. ONTAP</block>
-  <block id="f0f3c94fb860d8ed677a7fd92098c982" category="paragraph">您可以使用NetApp OnCommand 功能區系統管理程式來建立儲存磁碟區和LUN、並將它們對應到伺服器的群組。</block>
-  <block id="628f62b19dac88e4e877b52b00325d1c" category="paragraph">下列步驟顯示使用SID SS3的2+1多主機HANA系統組態。</block>
-  <block id="99576f0b50cbef6a3dc3e755211ba4df" category="list-text">在NetApp ONTAP NetApp®System Manager中啟動Create LUN Wizard（建立LUN精靈）。</block>
-  <block id="cc3bbd3870b19b5988056892345656f8" category="list-text">輸入LUN名稱、選取LUN類型、然後輸入LUN的大小。</block>
-  <block id="19cca4c2caf04d464b286b57631c5cf3" category="list-text">輸入磁碟區名稱和託管Aggregate。</block>
-  <block id="3e7bbfdb3982e2648add19277beb4be0" category="list-text">選取LUN應對應的igroup。</block>
-  <block id="f78e3cdb43aaa763020ac7b127b79352" category="list-text">提供QoS設定。</block>
-  <block id="59cd39f269f7e809ddc94cf9eb25d4fc" category="list-text">按一下「摘要」頁面上的「下一步」。</block>
-  <block id="de93591f8d085ca64b0997731f1a32d8" category="list-text">按一下「完成」頁面上的「完成」。</block>
-  <block id="1f0d5a0003e2a9d29d9bdbdb42528453" category="list-text">針對每個LUN重複步驟2至7。</block>
-  <block id="a0e202053c694786bc442dd83a386ff7" category="paragraph">下圖顯示所有需要建立以進行2+1多主機設定的LUN摘要。</block>
   <block id="77656454768235b0e1954805bd92d9c9" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至igroup</block>
-  <block id="90242878213f2eef96eb3fcc1d8e3ad6" category="paragraph">本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN。</block>
   <block id="d21a66a2fd717a4acd6dd449ecac4839" category="list-text">為屬於系統FC5的所有伺服器建立igroup。</block>
   <block id="3a630997b07207edb38c5c79a4f7d867" category="list-text">將所有LUN對應至建立的igroup。</block>
   <block id="c1fd2d028e3fff9cae781db6954eb52b" category="summary">本文件提供客戶與合作夥伴部署NetApp ONTAP 支援在Windows環境中的Microsoft SQL Server上執行SAP Business Suite解決方案的最佳實務做法。</block>
@@ -4472,8 +4429,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="b7842d6a27abd5170ad4d41cb2353297" category="paragraph">本文件討論 NetApp AFF 系統和光纖通道的基礎架構設定與組態。</block>
   <block id="265ae4ad07ae6dd3140cd976e6e96a15" category="paragraph"><block ref="265ae4ad07ae6dd3140cd976e6e96a15" category="inline-image-macro-rx" type="image"></block></block>
   <block id="df25c29fe304d621328adc844c5cd0b3" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在<block ref="f5dc5aad2d2f4cc08999d09836f8c4b2" category="inline-link-macro-rx"></block>中有詳細說明。</block>
-  <block id="d15ad4b07c5673286f82b8c9b4fccc92" category="inline-xref">磁碟區、並將 LUN 對應至啟動器群組</block>
-  <block id="1b04aaa74da094dd7c2677d2996e8bc4" category="list-text">在集合體內建立啟動器群組、磁碟區和 LUN 、如建立中所述<block ref="c8187094a239e1291b967555c8a5ba6c" category="inline-xref-macro-rx"></block>。</block>
   <block id="017e522349a0ff07067400d6b880e9df" category="paragraph">= ：硬中斷：：：頁尾：：圖示：字型： linkatt特點 ：：：： imagesdir: ../media/</block>
   <block id="2267b0943e951c31d5f31c288b6bfbe6" category="paragraph">NetApp AFF 上的 SAP HANA 搭配 NFS 傳輸協定。</block>
   <block id="a0988dbd97f9cd1d119f39a16c3e8fe2" category="paragraph"><block ref="a0988dbd97f9cd1d119f39a16c3e8fe2" category="inline-image-macro-rx" type="image"></block></block>
@@ -4502,19 +4457,8 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="f354441147ead38889b9adc2d2ebc209" category="paragraph"><block ref="f354441147ead38889b9adc2d2ebc209" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3b3a2ed3db2363af1fc4a4d9670fd4f1" category="paragraph"><block ref="3b3a2ed3db2363af1fc4a4d9670fd4f1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="17170cd9736b0e2a3d8f78d16953b327" category="paragraph"><block ref="17170cd9736b0e2a3d8f78d16953b327" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="09f7121854e4295fd6f96bdc2d4acb8c" category="paragraph"><block ref="09f7121854e4295fd6f96bdc2d4acb8c" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9a54eb14eb1b0ca1cf8ecb90dd6622cf" category="paragraph"><block ref="9a54eb14eb1b0ca1cf8ecb90dd6622cf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b1c9f17a28c7142387820fd5a82c9b6e" category="paragraph"><block ref="b1c9f17a28c7142387820fd5a82c9b6e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="333255d2c26de498b8eb10dcfa6381fb" category="paragraph"><block ref="333255d2c26de498b8eb10dcfa6381fb" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0f4ac82fd0de794eae50e4e7545b6b84" category="paragraph"><block ref="0f4ac82fd0de794eae50e4e7545b6b84" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="90b7952d58371e6e80dd8de6a3fdfbe3" category="paragraph"><block ref="90b7952d58371e6e80dd8de6a3fdfbe3" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="2822f342ff1cb87976a56cf25e779720" category="paragraph"><block ref="2822f342ff1cb87976a56cf25e779720" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="3a407eeb3893336fec56bf117effa682" category="paragraph"><block ref="3a407eeb3893336fec56bf117effa682" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="19cc205454278321478fd56e121c7e64" category="paragraph"><block ref="19cc205454278321478fd56e121c7e64" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="134e0717b473bfec3645ee01fc4a8ac8" category="paragraph"><block ref="134e0717b473bfec3645ee01fc4a8ac8" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="acf62ff4ff0cbb8add92380207b42eab" category="paragraph"><block ref="acf62ff4ff0cbb8add92380207b42eab" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="a288ecd6c12c39c5e25b0ff9e03d9781" category="paragraph"><block ref="a288ecd6c12c39c5e25b0ff9e03d9781" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9aa9c82f479fb021778c193743374792" category="paragraph"><block ref="9aa9c82f479fb021778c193743374792" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4895fae809dc9415884ff295e6dc343c" category="paragraph"><block ref="4895fae809dc9415884ff295e6dc343c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="82020173d38ee27d458fbdf847bfc42e" category="paragraph"><block ref="82020173d38ee27d458fbdf847bfc42e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1b937a8a58ab58bc1c61e59ac1b52925" category="paragraph"><block ref="1b937a8a58ab58bc1c61e59ac1b52925" category="inline-image-macro-rx" type="image"></block></block>
@@ -4714,7 +4658,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="6cc5c9e930ea3d3b8bff4367c60ceea4" category="cell">2025 年 2 月</block>
   <block id="15cd132980dad32e9c3c529955721df9" category="cell">全新儲存系統</block>
   <block id="4433e4b3b7ec2b20f062036b1b011af7" category="list-text">ASA A250 ， ASA A20 ， ASA A30 ， ASA A400 ， ASA A50 ， ASA A70 ， ASA ， ASA A900 ， ASA A90 ， ASA A800 A1K</block>
-  <block id="2134d42f2b0f54791bb238214fdc5110" category="list-text">ASA C250 ， ASA C30 ， ASA C400 ， ASA C60 ， ASA C800 ， ASA C80</block>
   <block id="a10922577a9bcbf85b1a7a9d8e7de5aa" category="cell">2024 年 11 月</block>
   <block id="53bab281b7eb6692b17a4b65d99e2188" category="list-text">FAS2750 、 FAS2820 、 FAS8300 、 FAS50 、 FAS8700 、 FAS70 、 FAS9500 、 FAS90</block>
   <block id="eccbc87e4b5ce2fe28308fd9f2a7baf3" category="cell">3</block>
@@ -4739,8 +4682,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="0dee623c3a47708547aff95df6dc16df" category="paragraph">一般而言、每個控制器都必須設定兩個Aggregate、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。您必須執行此步驟、才能使用所有可用的控制器資源。</block>
   <block id="6f1ace73b19ea95862049cef5bc4fabb" category="admonition">2024 年 8 月之後推出的 ASA 系統不需要像自動執行的步驟那樣執行此步驟</block>
   <block id="f4c9620796b063803a52bf4cb0bdc63b" category="paragraph"><block ref="f4c9620796b063803a52bf4cb0bdc63b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c63c34bc75852acd26eac087d69564e1" category="inline-image-macro">邏輯介面概覽</block>
-  <block id="442b4694b4e23c4c8aab5817606d4a8f" category="paragraph"><block ref="442b4694b4e23c4c8aab5817606d4a8f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="775282e39d26408a21d5eaa1c485e361" category="paragraph">在使用 ONTAP 系統管理員建立 SVM 期間，您可以選取所有必要的實體 FCP 連接埠，並自動建立每個實體連接埠一個 LIF 。</block>
   <block id="ca4b4ab28b402042c5530cc0059c6af3" category="inline-image-macro">SVM 建立</block>
   <block id="bc0b4db5e6b23fdaed6f5246d05d6ef8" category="paragraph"><block ref="bc0b4db5e6b23fdaed6f5246d05d6ef8" category="inline-image-macro-rx" type="image"></block></block>
@@ -4776,4 +4717,32 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="de3a0b5c28d9158410e205fdf4dd72f2" category="paragraph">根據使用的 NVMe 磁碟，一個 NVMe SSD （資料）最多可支援 2/5 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。同樣適用於 AFF 系統的內部 NVMe 磁碟。</block>
   <block id="a1498fba486158dfd616e2bc1f205275" category="admonition">新增更多磁碟櫃並不會增加儲存控制器所能支援的 SAP HANA 主機數量上限。</block>
   <block id="57c187411855aa330625e6e0331a74b7" category="paragraph"><block ref="57c187411855aa330625e6e0331a74b7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a2ef5d14ae5c3accf7291e39163d1ebd" category="paragraph">每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。</block>
+  <block id="ef8d203413a4aabe57527556e0ef5fcb" category="paragraph"><block ref="ef8d203413a4aabe57527556e0ef5fcb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7165d8e624155bf7a4889b98927f605c" category="list-text">ASA C250 、 ASA C400 、 ASA C800</block>
+  <block id="5c93db5d513dfbb32e85b013261b5aa8" category="list-text">如中所述，檢查正確的磁碟櫃組態<block ref="039cb3f1d3f19b24b2d3e1a57595e88d" category="inline-xref-macro-rx"></block>。</block>
+  <block id="cf0ea9a7f661e4a10ff9e179d0893564" category="list-text">如中所述，建立及設定所需的集合體<block ref="19f0aba2b822910f53ba3966ee7c8d59" category="inline-xref-macro-rx"></block>。</block>
+  <block id="07701c9e659f97922638b5c031983241" category="list-text">建立儲存虛擬機器（ SVM ），如所述<block ref="7c58f6887f41bcea1635c2c18a7a4529" category="inline-xref-macro-rx"></block>。</block>
+  <block id="9a7dedbc9b05dfef2c16b4468bbc6d42" category="list-text">建立邏輯介面（生命期）<block ref="fc903155b67a1626f9032f79a26da71f" category="inline-xref-macro-rx"></block>，如所述。</block>
+  <block id="28ca26b2e529e14a76ea5110c86754a9" category="list-text">依照連結： saphana FAS _fc_storage_controller setup.html#initiator 群組一節所述，使用 HANA 伺服器的全球名稱（ WWN ）建立啟動器群組（ igroup ）<block ref="a30a5bc4156d5efb64f9f758389889ed" category="inline-xref-macro-rx"></block>。</block>
+  <block id="19ba1063c16e7c812dbc730c7b311fe3" category="list-text">在集合體內建立磁碟區和 LUN ，如和一節所述<block ref="bfb3c32baceb2da1ad938639f9cbbec7" category="inline-xref-macro-rx"></block><block ref="f548228b37a81cf44c9b87a39dde5526" category="inline-xref-macro-rx"></block></block>
+  <block id="60854433c32fa17fb43290a0ff0f9bbc" category="inline-xref">建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
+  <block id="6b956c5cf886997a7f843e2e2d8232c0" category="list-text">在集合體中建立啟動器群組，磁碟區和 LUN <block ref="68c2cc914170ccda4959086c516bc67e" category="inline-xref-macro-rx"></block>，如所述。</block>
+  <block id="629b1434b46fe9fd8b49baa3b0226daf" category="paragraph">在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示 SVM 上設定的八個生命的螢幕擷取畫面。</block>
+  <block id="f2a5a64a9782e57f69edcf500c263407" category="inline-image-macro">邏輯介面總覽</block>
+  <block id="23f2cbd88aede07dbc46cb6cec53ff8d" category="paragraph"><block ref="23f2cbd88aede07dbc46cb6cec53ff8d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cac5f586686db9133e81224aafcc705a" category="admonition">此<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節<block ref="e70bab6b19799c51a40061ff57517656" category="inline-link-macro-rx"></block></block>
+  <block id="65b9726e3ebe1a441202c9bf3f553bf8" category="paragraph">可以使用 ONTAP 叢集的 CLI 建立啟動器群組。</block>
+  <block id="919eb574abc6bef1fb42921ca23d3583" category="paragraph">您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。</block>
+  <block id="235dfb4bd58f5a92d4712e433e88456c" category="paragraph">每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2（如Aggregate組態一章所述）也用於NS224磁碟櫃。</block>
+  <block id="b9d115fd1443e1fee32e7a7fa3d39e70" category="paragraph">一般而言、每個控制器都必須設定兩個集合體、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。</block>
+  <block id="7ec35ad49c18b3a6ac9a59e0f61272ff" category="paragraph">在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示 SVM 上設定的八個生命的螢幕擷取畫面。</block>
+  <block id="0adbb60b92d050e36477305b1ca4b7e1" category="paragraph"><block ref="0adbb60b92d050e36477305b1ca4b7e1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ddef20c528ad3796675320c130ce0e9b" category="paragraph">在使用ONTAP NetApp 9 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。</block>
+  <block id="8df6e0f7aa1113d05b7847dae27cf647" category="paragraph">下圖說明使用 ONTAP 系統管理員建立 SVM 和生命的過程。</block>
+  <block id="fa1f57a7da43e8241d1a111b118395b1" category="paragraph"><block ref="fa1f57a7da43e8241d1a111b118395b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="09ca73f01b169a4b7a327768898bf71c" category="paragraph">下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如，磁碟區<block ref="aaef8ff6bbc08e9efaddebd078c4777c" prefix=" " category="inline-code"></block>是在控制器 A 上設定，而磁碟區<block ref="eedd0dd4abbe982364bb7aa4dc29237b" prefix=" " category="inline-code"></block>是在控制器 B 上設定。在每個磁碟區內，都會設定單一 LUN 。</block>
+  <block id="102c21391acced3e67ae185a05909bc8" category="admonition">使用所述組態，<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block>儲存使用者 SIDadm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在具有磁碟型複寫的災難恢復設定中， NetApp 建議在磁碟區中為<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block>檔案系統建立四個子目錄<block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block>，以便每個資料庫主機在中央儲存設備上擁有其所有檔案系統。</block>
+  <block id="dd3925da178560a888f5c0d4bd90dc73" category="paragraph">本節說明使用 ONTAP 9 命令列進行組態的範例，適用於使用 LVM 的 2+1 SAP HANA 多個主機系統，以及每個 LVM Volume 群組兩個 LUN 的 SID FC5 。</block>
+  <block id="952239c31e0fbf4511610dae4cbe22be" category="paragraph">一個 NVMe SSD （資料）最多可支援 2 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。</block>
 </blocks>

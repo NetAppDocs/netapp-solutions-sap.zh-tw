@@ -94,7 +94,7 @@ image:saphana_aff_nfs_image13.png["SAS 機架連線"]
 
 === NVMe（100GbE）磁碟櫃
 
-每個NS224 NVMe磁碟櫃都使用每個控制器兩個100GbE連接埠來連接。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2（如Aggregate組態一章所述）也用於NS224磁碟櫃。下圖說明NVMe磁碟機的磁碟櫃連線。
+每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2（如Aggregate組態一章所述）也用於NS224磁碟櫃。
 
 image:saphana_aff_nfs_image14a.png["MVMe 磁碟櫃連線"]
 

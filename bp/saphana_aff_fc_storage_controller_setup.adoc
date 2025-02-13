@@ -65,11 +65,13 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存FCP連接埠與SAN架構之間的連線也必須已就緒。
 
-. 檢查正確的磁碟櫃組態、如「<<磁碟櫃連線>>。」
-. 建立及設定所需的集合體、如「<<Aggregate組態>>。」
-. 創建儲存虛擬機（SVM）、如「<<儲存虛擬機器組態>>。」
-. 創建邏輯介面（l生命）、如「<<邏輯介面組態>>。」
-. 在集合體內建立啟動器群組、磁碟區和 LUN 、如建立中所述<<Creating LUNs,磁碟區、並將 LUN 對應至啟動器群組>>。
+. 如中所述，檢查正確的磁碟櫃組態<<磁碟櫃連線>>。
+. 如中所述，建立及設定所需的集合體<<Aggregate組態>>。
+. 建立儲存虛擬機器（ SVM ），如所述<<儲存虛擬機器組態>>。
+. 建立邏輯介面（生命期）<<邏輯介面組態>>，如所述。
+. 依照連結： saphana FAS _fc_storage_controller setup.html#initiator 群組一節所述，使用 HANA 伺服器的全球名稱（ WWN ）建立啟動器群組（ igroup ）<<啟動器群組>>。
+. 在集合體內建立磁碟區和 LUN ，如和一節所述<<SAP HANA單一主機系統的Volume與LUN組態>><<SAP HANA多主機系統的Volume與LUN組態>>
+. 在集合體中建立啟動器群組，磁碟區和 LUN <<#lun_create,建立LUN、磁碟區、並將LUN對應至啟動器群組>>，如所述。
 
 
 
@@ -123,9 +125,9 @@ vserver modify -vserver <svm-name> -qos-policy-group none
 
 == 邏輯介面組態
 
-在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的八部LIF（稱為「fc_*」）的快照。
+在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示 SVM 上設定的八個生命的螢幕擷取畫面。
 
-image:saphana_aff_fc_image13a.png["邏輯介面概覽"]
+image:saphana_aff_fc_image13a.png["邏輯介面總覽"]
 
 在使用 ONTAP 系統管理員建立 SVM 期間，您可以選取所有必要的實體 FCP 連接埠，並自動建立每個實體連接埠一個 LIF 。
 
@@ -134,6 +136,30 @@ image:saphana_aff_fc_image14a.png["SVM 建立"]
 
 NOTE: 2024 年 8 月之後推出的 ASA 系統不需要像自動執行的步驟那樣執行此步驟
 
+
+
+== 啟動器群組
+
+您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。
+
+使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的WWPN：
+
+....
+stlrx300s8-6:~ # sanlun fcp show adapter
+/sbin/udevadm
+/sbin/udevadm
+
+host0 ...... WWPN:2100000e1e163700
+host1 ...... WWPN:2100000e1e163701
+....
+
+NOTE: 此 `sanlun`工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節link:saphana_aff_fc_host_setup.html["主機設定："]
+
+可以使用 ONTAP 叢集的 CLI 建立啟動器群組。
+
+....
+lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
+....
 
 
 == SAP HANA單一主機系統的Volume與LUN組態
@@ -330,7 +356,7 @@ NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap
 
 
 
-== Volume選項
+=== Volume選項
 
 下表所列的Volume選項必須在所有SVM上進行驗證和設定。
 
@@ -345,27 +371,16 @@ NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap
 |===
 
 
-=== 建立LUN、磁碟區、並將LUN對應至啟動器群組
+== 建立LUN、磁碟區、並將LUN對應至啟動器群組
 
-您可以使用NetApp ONTAP 功能區系統管理程式來建立儲存磁碟區和LUN、並將它們對應至伺服器。
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
 
-NetApp提供一套自動化應用程式精靈、可在ONTAP 支援SAP HANA的過程中、於支援NetApp的更新版本9.7及更早版本、大幅簡化了Volume與LUN的資源配置程序。它會根據NetApp的SAP HANA最佳實務做法、自動建立及設定磁碟區和LUN。
-
-使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的全球連接埠名稱（WWPN）：
-
-....
-stlrx300s8-6:~ # sanlun fcp show adapter
-/sbin/udevadm
-/sbin/udevadm
-host0 ...... WWPN:2100000e1e163700
-host1 ...... WWPN:2100000e1e163701
-....
 
 NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。
 
 
 
-== 使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組
+=== 使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組
 
 本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN：
 

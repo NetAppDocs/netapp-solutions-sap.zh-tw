@@ -67,13 +67,13 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在開始執行這些步驟之前、請先完成儲存硬體設定、ONTAP 安裝支援軟體、並將儲存FCP連接埠連線至SAN架構。
 
-. 檢查正確的SAS堆疊組態、如一節所述 link:saphana_fas_fc_storage_controller_setup.html#disk-shelf-connection["磁碟櫃連線："]
-. 建立及設定所需的集合體、如一節所述 link:saphana_fas_fc_storage_controller_setup.html#aggregate-configuration["Aggregate組態："]
-. 如一節所述、建立儲存虛擬機器（SVM） link:saphana_fas_fc_storage_controller_setup.html#storage-virtual-machine-configuration["儲存虛擬機器組態："]
-. 如一節所述建立邏輯介面（lifs） link:saphana_fas_fc_storage_controller_setup.html#logical-interface-configuration["邏輯介面組態："]
-. 如一節所述建立FCP連接埠集 link:saphana_fas_fc_storage_controller_setup.html#fcp-port-sets["FCP連接埠集。"]
-. 如一節所述、使用HANA伺服器的全球名稱（WWN）建立啟動器群組（igroup） link:saphana_fas_fc_storage_controller_setup.html#initiator-groups["啟動器群組："]
-. 如一節所述、在集合體中建立磁碟區和LUN link:saphana_fas_fc_storage_controller_setup.html#volume-and-lun-configuration-for-sap-hana-single-host-systems["SAP HANA單一主機系統的Volume與LUN組態"] 和 link:saphana_fas_fc_storage_controller_setup.html#volume-and-lun-configuration-for-sap-hana-multiple-host-systems["SAP HANA多主機系統的Volume與LUN組態。"]
+. 如中所述，檢查正確的磁碟櫃組態<<磁碟櫃連線>>。
+. 如中所述，建立及設定所需的集合體<<Aggregate組態>>。
+. 建立儲存虛擬機器（ SVM ），如所述<<儲存虛擬機器組態>>。
+. 建立邏輯介面（生命期）<<邏輯介面組態>>，如所述。
+. 依照連結： saphana FAS _fc_storage_controller setup.html#initiator 群組一節所述，使用 HANA 伺服器的全球名稱（ WWN ）建立啟動器群組（ igroup ）<<啟動器群組>>。
+. 在集合體內建立磁碟區和 LUN ，如和一節所述<<SAP HANA單一主機系統的Volume與LUN組態>><<SAP HANA多主機系統的Volume與LUN組態>>
+. 在集合體中建立啟動器群組，磁碟區和 LUN <<#lun_create,建立LUN、磁碟區、並將LUN對應至啟動器群組>>，如所述。
 
 
 
@@ -87,6 +87,14 @@ image:saphana_fas_fc_image10.png["此圖顯示輸入 / 輸出對話方塊或表�
 使用SSD時、最多可將一個磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。使用DS224C磁碟櫃時、也可以使用四路徑SAS纜線、但不需要。
 
 image:saphana_fas_fc_image11.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== NVMe（100GbE）磁碟櫃
+
+每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
+
+image:saphana_fas_ns224.png["MVMe 磁碟櫃連線"]
 
 
 
@@ -106,7 +114,7 @@ image:saphana_fas_fc_image12.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 === 使用純SDD系統進行Aggregate組態
 
-一般而言、每個控制器都必須設定兩個集合體、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。對於FAS2000系列系統、一個資料集合體就足夠了。
+一般而言、每個控制器都必須設定兩個集合體、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。
 
 下圖顯示12台SAP HANA主機的組態、這些主機執行於12Gb SAS機櫃上、並設定ADPv2。每個儲存控制器連接六台SAP HANA主機。配置四個獨立的集合體、每個儲存控制器各兩個。每個Aggregate都配置有11個磁碟、其中有9個資料和兩個同位元檢查磁碟分割區。每個控制器都有兩個備用磁碟分割可供使用。
 
@@ -122,15 +130,15 @@ image:saphana_fas_fc_image13.jpg["此圖顯示輸入 / 輸出對話方塊或表�
 
 == 邏輯介面組態
 
-在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示了在「Hana」SVM上設定的四個生命期（稱為「fc_*」）的快照。
+在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示 SVM 上設定的八個生命的螢幕擷取畫面。
 
-image:saphana_fas_fc_image14.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_fas_fc_image14a.png["邏輯介面總覽"]
 
-在使用ONTAP NetApp 9.8 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。
+在使用ONTAP NetApp 9 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。
 
-下圖說明ONTAP 使用NetApp 9.8 System Manager建立SVM和LIF。
+下圖說明使用 ONTAP 系統管理員建立 SVM 和生命的過程。
 
-image:saphana_fas_fc_image15.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_fas_fc_image15a.png["SVM 建立"]
 
 
 
@@ -151,15 +159,16 @@ host1 ...... WWPN:2100000e1e163701
 
 NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資料、請參閱一節 link:saphana_fas_fc_host_setup.html["主機設定："]
 
-下圖顯示SS3_HANA的啟動器清單。igroup包含伺服器的所有WWPN、並指派給儲存控制器的連接埠集。
+可以使用 ONTAP 叢集的 CLI 建立啟動器群組。
 
-image:saphana_fas_fc_image17.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
+....
+lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
+....
 
 
 == SAP HANA單一主機系統的Volume與LUN組態
 
-下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如，控制器A上配置了Volume 'ID1'_'data'_'m't00001，控制器B上配置了Volume 'ID1'_'log'_'m'n'mt001'在每個磁碟區中、都會設定一個LUN。
+下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如，磁碟區 `SID1_data_mnt00001`是在控制器 A 上設定，而磁碟區 `SID1_log_mnt00001`是在控制器 B 上設定。在每個磁碟區內，都會設定單一 LUN 。
 
 
 NOTE: 如果SAP HANA系統只使用高可用度（HA）配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。
@@ -198,7 +207,7 @@ image:saphana_fas_fc_image18.jpg["此圖顯示輸入 / 輸出對話方塊或表�
 | SID1_shared | /HANA /共享/ SID1 | 使用/etc/Fstab項目掛載 
 |===
 
-NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「ID1~_'共享「Volume for the’USr/SAP/SID1」目錄中建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
+NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
 
 
 
@@ -230,13 +239,13 @@ NOTE: 不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN�
 | LUN：SID1_shared | /HANA /共享/ SID1 | 使用/etc/Fstab項目掛載 
 |===
 
-NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「ID1~_'共享「Volume for the’USr/SAP/SID1」目錄中建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
+NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
 
 
 
 == SAP HANA多主機系統的Volume與LUN組態
 
-下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID'_'data'_'m't001'、控制器B上已設定磁碟區「ID'_'log'_'m'm't001'每個磁碟區內都會設定一個LUN。
+下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID_data_mnt00001」、控制器B上已設定磁碟區「ID_log_mnt00001」每個磁碟區內都會設定一個LUN。
 
 「/HANA /共享」磁碟區必須可供所有HANA主機存取、因此必須使用NFS匯出。雖然「/Hana /共享」檔案系統沒有特定的效能KPI、但NetApp建議使用10Gb乙太網路連線。
 
@@ -298,7 +307,7 @@ image:saphana_fas_fc_image19.jpg["此圖顯示輸入 / 輸出對話方塊或表�
 | Volume：SID_Shared | /Hana /共享/SID | 使用NFS和/etc/Fstab項目安裝在所有主機上 
 |===
 
-NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會儲存在每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_"shared"磁碟區中建立四個子目錄、讓每個資料庫主機在中央儲存設備上都有其所有的檔案系統。
+NOTE: 使用所述組態， `/usr/sap/SID`儲存使用者 SIDadm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在具有磁碟型複寫的災難恢復設定中， NetApp 建議在磁碟區中為 `/usr/sap/SID`檔案系統建立四個子目錄 `SID_shared`，以便每個資料庫主機在中央儲存設備上擁有其所有檔案系統。
 
 
 
@@ -342,7 +351,7 @@ NOTE: 不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定�
 | Volume：SID_Shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
 |===
 
-NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_"shared"磁碟區中建立四個子目錄、讓每個資料庫主機在中央儲存設備上都有其所有的檔案系統。
+NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。
 
 
 
@@ -363,52 +372,13 @@ NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap
 
 == 建立LUN、磁碟區、並將LUN對應至啟動器群組
 
-您可以使用NetApp OnCommand 功能區系統管理程式來建立儲存磁碟區和LUN、並將它們對應到伺服器的群組。
-
-下列步驟顯示使用SID SS3的2+1多主機HANA系統組態。
-
-. 在NetApp ONTAP NetApp®System Manager中啟動Create LUN Wizard（建立LUN精靈）。
-+
-image:saphana_fas_fc_image20.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 輸入LUN名稱、選取LUN類型、然後輸入LUN的大小。
-+
-image:saphana_fas_fc_image21.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 輸入磁碟區名稱和託管Aggregate。
-+
-image:saphana_fas_fc_image22.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 選取LUN應對應的igroup。
-+
-image:saphana_fas_fc_image23.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 提供QoS設定。
-+
-image:saphana_fas_fc_image24.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 按一下「摘要」頁面上的「下一步」。
-+
-image:saphana_fas_fc_image25.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 按一下「完成」頁面上的「完成」。
-+
-image:saphana_fas_fc_image26.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
-. 針對每個LUN重複步驟2至7。
-+
-下圖顯示所有需要建立以進行2+1多主機設定的LUN摘要。
-
-+
-image:saphana_fas_fc_image27.jpeg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
 
 
 
+=== 使用CLI建立LUN、磁碟區、並將LUN對應至igroup
 
-
-== 使用CLI建立LUN、磁碟區、並將LUN對應至igroup
-
-本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN。
+本節說明使用 ONTAP 9 命令列進行組態的範例，適用於使用 LVM 的 2+1 SAP HANA 多個主機系統，以及每個 LVM Volume 群組兩個 LUN 的 SID FC5 。
 
 . 建立所有必要的磁碟區。
 +

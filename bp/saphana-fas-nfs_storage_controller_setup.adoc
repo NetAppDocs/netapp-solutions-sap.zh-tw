@@ -91,6 +91,14 @@ image:saphana-fas-nfs_image14.png["此圖顯示輸入 / 輸出對話方塊或表
 
 
 
+=== NVMe（100GbE）磁碟櫃
+
+每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
+
+image:saphana_fas_ns224.png["MVMe 磁碟櫃連線"]
+
+
+
 == Aggregate組態
 
 一般而言、您必須針對每個控制器設定兩個Aggregate、獨立於所使用的磁碟櫃或磁碟機技術（SSD或HDD）。對於FAS2000系列系統、只需一個資料Aggregate就足夠了。

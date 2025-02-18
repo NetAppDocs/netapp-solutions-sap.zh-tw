@@ -3939,12 +3939,9 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="d63a01df24ee4ea8980a2cdd59f7e8da" category="paragraph"><block ref="d63a01df24ee4ea8980a2cdd59f7e8da" category="inline-link-rx"></block></block>
   <block id="362c26abf7af5442c5d449bb2075123f" category="inline-link"><block ref="362c26abf7af5442c5d449bb2075123f" category="inline-link-rx"></block></block>
   <block id="428b7c3b557c016c4e280ca7305fafbe" category="paragraph"><block ref="428b7c3b557c016c4e280ca7305fafbe" category="inline-link-rx"></block></block>
-  <block id="617096ec70226b1decdd03cd7aa674d4" category="list-text">TR-4667：使用SnapCenter NetApp HANA外掛程式將SAP系統複本自動化</block>
   <block id="e40283d3953ee3d843b92518a02ffe78" category="paragraph"><block ref="e40283d3953ee3d843b92518a02ffe78" category="inline-link-rx"></block></block>
   <block id="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link"><block ref="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link-rx"></block></block>
   <block id="55162df4eaa40993b4b04219f5dd5e87" category="paragraph"><block ref="55162df4eaa40993b4b04219f5dd5e87" category="inline-link-rx"></block></block>
-  <block id="59298016353cfaad8318719db5cd21c0" category="inline-link"><block ref="59298016353cfaad8318719db5cd21c0" category="inline-link-rx"></block></block>
-  <block id="60eff1c8782a5c7cf39a41c25435a428" category="paragraph"><block ref="60eff1c8782a5c7cf39a41c25435a428" category="inline-link-rx"></block></block>
   <block id="b4e4244754290debb9944132a8a13b5a" category="paragraph">如需 SAP HANA 備份與還原解決方案的詳細資訊<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>、請參閱。</block>
   <block id="3e506f546ee07a96caecb3240e314bd8" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在<block ref="ca5e92233d54e7d83162f25f0a78384f" category="inline-link-macro-rx"></block>中有詳細說明。</block>
   <block id="87d809e67c582d30f01f52b1815397b1" category="admonition">如需 SAP HANA 備份與還原解決方案的詳細資訊<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>、請參閱。</block>
@@ -4744,4 +4741,11 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="11f314ab4a94edb93dad0cd1712e5ea2" category="paragraph"><block ref="11f314ab4a94edb93dad0cd1712e5ea2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="01a8d3d035a390b9e2f8a164a50b3d9c" category="inline-image-macro">VMware 特定的網路設定</block>
   <block id="0d76c6604b8441a790e29500bb1f3dbe" category="paragraph"><block ref="0d76c6604b8441a790e29500bb1f3dbe" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d4087e3f08b7a7f8751675ca82462e2a" category="list-text">TR-4667 ：使用 SnapCenter SAP HANA 外掛程式將 SAP 系統複本自動化</block>
+  <block id="6c112b2b6e22e11b65018895aa298940" category="list-text">VMware vSphere Wiki 上的 SAP HANA</block>
+  <block id="7fd039f168758cb7fad07015245b1afa" category="inline-link"><block ref="7fd039f168758cb7fad07015245b1afa" category="inline-link-rx"></block></block>
+  <block id="c0e729cc3b2e2214e3e2d35e123b1732" category="paragraph"><block ref="c0e729cc3b2e2214e3e2d35e123b1732" category="inline-link-rx"></block></block>
+  <block id="c9f801c3b76e183b280276e75a8ebaea" category="list-text">《 SAP HANA on VMware vSphere 最佳實務指南》</block>
+  <block id="838491807b9e9689bc796a7e547fe188" category="inline-link"><block ref="838491807b9e9689bc796a7e547fe188" category="inline-link-rx"></block></block>
+  <block id="b61d59281011f2681050ce1756929d77" category="paragraph"><block ref="b61d59281011f2681050ce1756929d77" category="inline-link-rx"></block></block>
 </blocks>

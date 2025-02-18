@@ -22,10 +22,6 @@ SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存�
 
 image:saphana-fas-nfs_image2.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
-下圖顯示使用VMware vSphere做為虛擬化層的範例。
-
-image:saphana-fas-nfs_image3.jpg["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
-
 此架構可從兩個層面擴充：
 
 * 如果儲存控制器提供足夠的效能來滿足目前的SAP關鍵效能指標（KPI）、則可將額外的SAP HANA主機和（或）儲存容量附加至現有儲存設備

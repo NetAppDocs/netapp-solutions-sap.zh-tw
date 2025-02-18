@@ -1034,7 +1034,6 @@
   <block id="9b76b6c583544a2f5372da2ae89b54d5" category="list-text">針對租戶資料庫執行下列SQL陳述式。每個額外的LUN可以有不同的路徑。</block>
   <block id="b89b4b47543b3482418589214b77fa25" category="summary">SAP HANA主機使用備援10GbE或更快的網路基礎架構、連接至儲存控制器。</block>
   <block id="afcaa068bd76451ec818e7c845c867f4" category="paragraph">不同機型FAS 的VMware系統產品系列可在儲存層混合搭配、以滿足成長和不同效能與容量需求。可附加至儲存系統的SAP HANA主機數量上限、是由SAP HANA效能要求和所使用的NetApp控制器模式所定義。所需的磁碟櫃數量僅取決於SAP HANA系統的容量和效能需求。下圖顯示八部SAP HANA主機連接至儲存高可用度（HA）配對的組態範例。</block>
-  <block id="015a4116e31d7ff2bdb70f8a95b52a25" category="paragraph">下圖顯示使用VMware vSphere做為虛擬化層的範例。</block>
   <block id="1e90382cf8f5501614307f142be99675" category="paragraph">此架構可從兩個層面擴充：</block>
   <block id="ab0b299aa5582f36321ac715a26741f5" category="list-text">如果儲存控制器提供足夠的效能來滿足目前的SAP關鍵效能指標（KPI）、則可將額外的SAP HANA主機和（或）儲存容量附加至現有儲存設備</block>
   <block id="0c8c8eb56a169d6a4275a52f8c66c079" category="paragraph">下圖所示為將更多SAP HANA主機連接至儲存控制器的組態範例。在此範例中、需要更多磁碟櫃來滿足16台SAP HANA主機的容量和效能需求。視總處理量需求而定、必須新增額外的10GbE（或更快）連線至儲存控制器。</block>
@@ -4399,7 +4398,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="b6dd7e76887eb00cfd6d1dfadf3e9af4" category="paragraph">Bernd Harth 、 Tobias Brandl 、 Nils Bauer 、 NetApp will Bratton 、 Geert van Teylingen 、 Microsoft</block>
   <block id="a18f633370bb64e078d12a48f11cbae1" category="paragraph"><block ref="a18f633370bb64e078d12a48f11cbae1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="28682dfe19b53338674ca2d24021bf06" category="paragraph"><block ref="28682dfe19b53338674ca2d24021bf06" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="8240368381d84a1673985aea9400d105" category="paragraph"><block ref="8240368381d84a1673985aea9400d105" category="inline-image-macro-rx" type="image"></block></block>
   <block id="61ad85d9e6c0ed3d8e1d56df415ecb87" category="paragraph"><block ref="61ad85d9e6c0ed3d8e1d56df415ecb87" category="inline-image-macro-rx" type="image"></block></block>
   <block id="88ddebca33313b9dadb1612d8450743c" category="paragraph"><block ref="88ddebca33313b9dadb1612d8450743c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="19ab93657e4a9bc1330618ad5896efa9" category="paragraph"><block ref="19ab93657e4a9bc1330618ad5896efa9" category="inline-image-macro-rx" type="image"></block></block>
@@ -4408,7 +4406,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="e6aabe615d4f04cff649751db99a960f" category="paragraph">本文件討論 NetApp FAS 系統和 NFS 的基礎架構設定與組態。</block>
   <block id="43eddd188c3e76947dbca863365a0183" category="paragraph"><block ref="43eddd188c3e76947dbca863365a0183" category="inline-image-macro-rx" type="image"></block></block>
   <block id="47fe5a641384ba3150a9df792aafd860" category="paragraph"><block ref="47fe5a641384ba3150a9df792aafd860" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="399433f50673d4d62275116d60f7bb80" category="paragraph"><block ref="399433f50673d4d62275116d60f7bb80" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b7be9b3ca8485885afa5f9250455d21d" category="paragraph"><block ref="b7be9b3ca8485885afa5f9250455d21d" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0937ed7cc435379f8de3fc08658990ba" category="paragraph"><block ref="0937ed7cc435379f8de3fc08658990ba" category="inline-image-macro-rx" type="image"></block></block>
   <block id="60b486631d0e94399c0d3352ca21fa00" category="paragraph"><block ref="60b486631d0e94399c0d3352ca21fa00" category="inline-image-macro-rx" type="image"></block></block>
@@ -4437,7 +4434,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="b9dfea2f38da456216fb821bdace0099" category="paragraph"><block ref="b9dfea2f38da456216fb821bdace0099" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1061c8a586da3d6a249f18df930dc33a" category="paragraph">本文件討論 NetApp AFF 系統和 NFS 的基礎架構設定與組態。</block>
   <block id="c0c285f4d23d22653eba8dc9a75078b0" category="paragraph"><block ref="c0c285f4d23d22653eba8dc9a75078b0" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="5238942ad77c3b1f94a61d3640c23e97" category="paragraph"><block ref="5238942ad77c3b1f94a61d3640c23e97" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bc6f4f64c41295649568c9b08222f2c3" category="paragraph"><block ref="bc6f4f64c41295649568c9b08222f2c3" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c55f68c7fa3064bc905d3ae3a6a0a59d" category="list-text">在集合體內建立 Volume 、如「」和「」<block ref="886d8674ea6944dd32bd390cb48bc80e" category="inline-xref-macro-rx"></block>所述<block ref="7f2f76d537cb5c15ae301f069af9489f" category="inline-xref-macro-rx"></block>。</block>
   <block id="0f067126ab39c0af9790685c5bc83bf3" category="paragraph"><block ref="0f067126ab39c0af9790685c5bc83bf3" category="inline-image-macro-rx" type="image"></block></block>
@@ -4745,4 +4741,7 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="102c21391acced3e67ae185a05909bc8" category="admonition">使用所述組態，<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block>儲存使用者 SIDadm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在具有磁碟型複寫的災難恢復設定中， NetApp 建議在磁碟區中為<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block>檔案系統建立四個子目錄<block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block>，以便每個資料庫主機在中央儲存設備上擁有其所有檔案系統。</block>
   <block id="dd3925da178560a888f5c0d4bd90dc73" category="paragraph">本節說明使用 ONTAP 9 命令列進行組態的範例，適用於使用 LVM 的 2+1 SAP HANA 多個主機系統，以及每個 LVM Volume 群組兩個 LUN 的 SID FC5 。</block>
   <block id="952239c31e0fbf4511610dae4cbe22be" category="paragraph">一個 NVMe SSD （資料）最多可支援 2 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。</block>
+  <block id="11f314ab4a94edb93dad0cd1712e5ea2" category="paragraph"><block ref="11f314ab4a94edb93dad0cd1712e5ea2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="01a8d3d035a390b9e2f8a164a50b3d9c" category="inline-image-macro">VMware 特定的網路設定</block>
+  <block id="0d76c6604b8441a790e29500bb1f3dbe" category="paragraph"><block ref="0d76c6604b8441a790e29500bb1f3dbe" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

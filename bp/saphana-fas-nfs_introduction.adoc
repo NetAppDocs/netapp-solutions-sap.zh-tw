@@ -87,7 +87,7 @@ image:saphana-fas-nfs_image1.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 如需搭配SAP HANA使用vSphere的詳細資訊、請參閱下列連結：
 
-* https://wiki.scn.sap.com/wiki/display/VIRTUALIZATION/SAP+HANA+on+VMware+vSphere["VMware vSphere上的SAP HANA -虛擬化-社群維客"^]
-* https://core.vmware.com/resource/sap-hana-vmware-vsphere-best-practices-and-reference-architecture-guide#introduction["《 SAP HANA on VMware vSphere 最佳實務做法與參考架構指南》"^]
+* https://help.sap.com/docs/SUPPORT_CONTENT/virtualization/3362185751.html["VMware vSphere上的SAP HANA -虛擬化-社群維客"^]
+* https://www.vmware.com/docs/sap_hana_on_vmware_vsphere_best_practices_guide-white-paper["《 SAP HANA on VMware vSphere 最佳實務指南》"^]
 * https://launchpad.support.sap.com/["2161991- VMware vSphere組態準則- SAP One Support啟動板（需要登入）"^]
 

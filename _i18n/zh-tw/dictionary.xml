@@ -105,11 +105,9 @@
   <block id="f7fbf8be79b2dbbf7cca7d63ea2aaa3e" category="paragraph">本文件說明從客體作業系統直接掛載NFS的建議設定。</block>
   <block id="5363a1e8e1763bb11c4b91b2868d5584" category="paragraph">如需搭配SAP HANA使用vSphere的詳細資訊、請參閱下列連結：</block>
   <block id="f02780ddcfc1bddf0683bf8de02155d5" category="inline-link-macro">VMware vSphere上的SAP HANA -虛擬化-社群維客</block>
-  <block id="181fc43b08ba57214c4bbd2448ec470d" category="list-text"><block ref="181fc43b08ba57214c4bbd2448ec470d" category="inline-link-macro-rx"></block></block>
   <block id="685faeffbf3c0039314a5071b5798f2c" category="inline-link-macro">在VMware vSphere上大規模部署SAP HANA的最佳實務做法與建議</block>
   <block id="6a3ba410820602029c0289b87ca24a63" category="inline-link-macro">在VMware vSphere上進行SAP HANA橫向擴充部署的最佳實務做法與建議</block>
   <block id="ab1b1647c4e88f4d70b589d5781012ca" category="inline-link-macro">2161991- VMware vSphere組態準則- SAP One Support啟動板（需要登入）</block>
-  <block id="302092b20c647fa4f675ff96913675f9" category="list-text"><block ref="302092b20c647fa4f675ff96913675f9" category="inline-link-macro-rx"></block></block>
   <block id="caedd77305f36805e5e9f71196bad9dc" category="summary">每部SAP HANA伺服器都必須具有至少8Gbps頻寬的備援FCP SAN連線。對於連接至儲存控制器的每個SAP HANA主機、儲存控制器必須至少設定8Gbps的頻寬。</block>
   <block id="ac20a17ff8274dc0492aecef51b17cc3" category="doc">SAN架構設定</block>
   <block id="b180b819c4be4e05edc4c7fb2025b37a" category="paragraph">下圖顯示四台SAP HANA主機連接至兩個儲存控制器的範例。每個SAP HANA主機都有兩個連接到備援架構的FCP連接埠。在儲存層、會設定四個FCP連接埠、為每個SAP HANA主機提供所需的處理量。</block>
@@ -446,7 +444,6 @@
   <block id="b9c48200eb9eba714e3c88803e97b4ce" category="section-title">建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
   <block id="a86be254d15f1254d56b97c8755a5b77" category="admonition">「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。</block>
   <block id="8c4751bd2d7d17062a8b536388ba69bc" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
-  <block id="6204c72c80408db453e7fea0b62d2e36" category="paragraph">本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN：</block>
   <block id="c48caf1c739d7975abd91d926cd56982" category="list-text">建立所有必要的磁碟區。</block>
   <block id="8e5c1549db5f0e31853b6809f7049388" category="list-text">建立所有LUN。</block>
   <block id="d595b9142c1fd0d3ea19c8cd10165661" category="list-text">為屬於系統FC5的所有伺服器建立啟動器群組。</block>
@@ -3921,8 +3918,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="20a0dcae2f540339bbf69dbaa7f0050a" category="list-text"><block ref="20a0dcae2f540339bbf69dbaa7f0050a" category="inline-link-macro-rx"></block></block>
   <block id="b0be0a2f6c57f7c66aa9ab049763af3a" category="paragraph">如需使用 SnapCenter 的 SAP HANA 備份與還原解決方案的詳細資訊<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>、請參閱。</block>
   <block id="c2107d876323ca6269d87dd4ef892a8a" category="paragraph">如需 SAP HANA 災難恢復解決方案的詳細資訊<block ref="22d31f63af3553980c791e5bf538fbdd" category="inline-link-rx"></block>、請參閱。</block>
-  <block id="78439f11ea8c9762eac371e8475447aa" category="inline-link">《 SAP HANA on VMware vSphere 最佳實務做法與參考架構指南》</block>
-  <block id="52d5e1f1eef3e549b479feffef1c376c" category="list-text"><block ref="52d5e1f1eef3e549b479feffef1c376c" category="inline-link-rx"></block></block>
   <block id="1b70ac0a972fddf1e1a33e6ed9df49c7" category="cell">2022 年 9 月</block>
   <block id="3c3691e44e6ff923dc83662b2f7e1001" category="cell">全新 OS 版本</block>
   <block id="6d6bbe0ff14c220c87649b72d24ad927" category="cell">2023 年 8 月</block>
@@ -4748,4 +4743,7 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="c9f801c3b76e183b280276e75a8ebaea" category="list-text">《 SAP HANA on VMware vSphere 最佳實務指南》</block>
   <block id="838491807b9e9689bc796a7e547fe188" category="inline-link"><block ref="838491807b9e9689bc796a7e547fe188" category="inline-link-rx"></block></block>
   <block id="b61d59281011f2681050ce1756929d77" category="paragraph"><block ref="b61d59281011f2681050ce1756929d77" category="inline-link-rx"></block></block>
+  <block id="22c7eb5619fc26c433125aab7cfd57af" category="list-text"><block ref="22c7eb5619fc26c433125aab7cfd57af" category="inline-link-rx"></block></block>
+  <block id="d8cb082280c9ef193a28bdb60d8e9779" category="list-text"><block ref="d8cb082280c9ef193a28bdb60d8e9779" category="inline-link-rx"></block></block>
+  <block id="147a64bd742e2d54a7d7a7f133c3561c" category="paragraph">本節說明使用 ONTAP 9 命令列搭配 2+1 SAP HANA 多個主機系統的範例組態，其中包含使用 LVM 的 SID FC5 ，以及每個 LVM Volume 群組兩個 LUN ：</block>
 </blocks>

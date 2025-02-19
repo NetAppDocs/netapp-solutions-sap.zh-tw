@@ -382,7 +382,7 @@ NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝�
 
 === 使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組
 
-本節說明使用ONTAP 指令行的組態範例、其中使用支援支援支援2 + 1的SAP HANA多主機系統、使用使用LVM的SID FC5、以及每個LVM Volume群組的兩個LUN：
+本節說明使用 ONTAP 9 命令列搭配 2+1 SAP HANA 多個主機系統的範例組態，其中包含使用 LVM 的 SID FC5 ，以及每個 LVM Volume 群組兩個 LUN ：
 
 . 建立所有必要的磁碟區。
 +

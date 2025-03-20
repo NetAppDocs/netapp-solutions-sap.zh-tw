@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-sc-config.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= 組態SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+如文件開頭所述，文件的目的是提供使用 VMware 搭配 VMFS 和 SnapMirror Active Sync 的 HANA 環境最佳實務做法。我們只會說明與此特定解決方案相關的詳細資料和重要步驟，不會說明一般 SnapCenter 概念。這些概念和其他 SnapCenter 相關資訊可在以下網址找到：
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用"]
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-sr-scs-sap-hana-system-replication-overview.html["TR-4719：SAP HANA系統複寫- SnapCenter 利用功能進行備份與恢復"]
+
+https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"]
+
+
+
+== 先決條件
+
+一般而言，在將受保護的資源新增至 SnapCenter 之前，應先設定 SnapMirror 作用中同步。如果備份是在設定 SnapMirror 主動式同步之前建立的，則只會存在於原始主要儲存設備，之後就不會複寫。
+
+
+
+=== 必須自動探索 SnapCenter HANA 資源
+
+SnapCenter 必須自動探索使用 VMware VMFS 設定的資源，或使用 SnapMirror 主動式同步保護的資源，以允許這些組態所需的特定作業。
+
+由於 HANA 非資料磁碟區一律是在 SnapCenter 中手動設定的資源，因此 SnapCenter 不支援這些資源。我們將在本文件稍後討論非資料磁碟區的選項和因應措施。
+
+SAP HANA 多個主機系統必須使用中央 HANA 外掛程式進行設定，因此預設為手動設定的資源。使用 VMware VMFS 或 SnapMirror 主動式同步時， SnapCenter 不支援這類 HANA 系統。
+
+
+
+=== SnapCenter for VMware vSphere 外掛程式
+
+SnapCenter for VMware vSphere 外掛程式必須部署在 VMware 環境中。
+
+
+
+=== 託管磁碟區的 SVM 上的管理 IP 位址
+
+即使叢集將新增至 SnapCenter ，主控來源和目的地磁碟區的 SVM 也必須設定管理 IP 位址。
+
+
+
+=== 用於儲存通訊的 REST API
+
+SnapMirror 主動式同步的管理與監控需要 REST API 存取。因此， SnapCenter 必須設定為使用 REST API 進行儲存通訊。組態檔 + C ： ++++++++ 程式檔案 +++++SMCore+++++++++++SMCoreServiceHost.dll.config 中的參數 "IsRestEnabledForStorageConnection" NetApp 必須設為 TRUE 。
+
+....
+<add key="IsRestEnabledForStorageConnection" value="true">
+....
+image:sc-saphana-vmware-smas-image21.png[""]
+
+變更參數之後，必須重新啟動 SnapCenter SMCore 服務。
+
+image:sc-saphana-vmware-smas-image22.png[""]
+
+
+
+== 新增儲存系統
+
+SnapCenter 的 REST API 啟用後，即可新增儲存系統。需要同時新增兩個儲存叢集，而非個別 SVM 。
+
+image:sc-saphana-vmware-smas-image23.png[""]
+
+image:sc-saphana-vmware-smas-image24.png[""]
+
+
+
+== 新增主機： SnapCenter for VMware vSphere 外掛程式
+
+如果 SnapCenter 中的資源是在虛擬化的 VMware 環境中執行， SnapCenter 會利用適用於 VMware vSphere 的 SnapCenter 外掛程式，以 VMware 層上所需的步驟來擴充 SnapCenter 備份，還原和複製工作流程。
+
+在將主機新增至 SnapCenter 之前， VMware vSphere 的 SnapCenter 外掛程式必須部署在 VMware 環境中。
+
+
+NOTE: 必須在主機新增工作流程期間設定認證，以便將 vSphere 選取為主機類型。
+
+image:sc-saphana-vmware-smas-image25.png[""]
+
+image:sc-saphana-vmware-smas-image26.png[""]
+
+image:sc-saphana-vmware-smas-image27.png[""]
+
+
+NOTE: SnapCenter 不需要額外的 vSphere 外掛程式組態。
+
+
+
+== 新增主機– HANA 系統
+
+
+NOTE: 無特定要求。外掛程式部署和自動探索會照常進行。
+
+透過自動探索程序， SnapCenter 偵測到 HANA 資源正在使用 VMS/VMDK 進行虛擬化。SnapCenter 也會偵測 SnapMirror 作用中同步設定，並識別目前的主要站台。
+
+資源自動探索之後，目前的主要站台會顯示在資源檢視的儲存佔用空間區段中。偵測哪個儲存系統為主要儲存系統，是根據 SnapCenter 使用的 ONTAP 命令輸出。
+
+....
+volume show -vserver <vs> -volume <vol> -fields smbc-consensus,is-smbc-master
+....
+image:sc-saphana-vmware-smas-image28.png[""]
+
+
+
+== 原則組態
+
+即使 SnapCenter 未觸發任何 SnapMirror 更新作業，也必須使用 SnapMirror 複寫來設定受 SnapMirror 作用中同步保護的資源原則。
+
+image:sc-saphana-vmware-smas-image29.png[""]
+
+image:sc-saphana-vmware-smas-image30.png[""]
+
+
+
+== HANA 資源保護組態
+
+無特定要求。資源保護組態會照常進行。

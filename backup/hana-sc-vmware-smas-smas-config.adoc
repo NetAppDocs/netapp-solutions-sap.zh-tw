@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-smas-config.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= SnapMirror 主動式同步組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+
+
+== 先決條件
+
+必須對儲存叢集和相關的 SVM 進行對等處理。
+
+ONTAP 中介器必須在兩個儲存叢集上都可用並設定。
+
+image:sc-saphana-vmware-smas-image10.png[""]
+
+image:sc-saphana-vmware-smas-image11.png[""]
+
+
+
+== 儲存配置和一致性群組組組態
+
+在 ONTAP 文件中， https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html#key-concepts["ONTAP 中的 SnapMirror 作用中同步總覽"] SnapMirror 主動式同步的一致性群組概念如下所述：
+
+一致性群組是 FlexVol 磁碟區的集合，可為應用程式工作負載提供一致性保證，而這些工作負載必須受到保護，才能確保業務持續運作。
+
+一致性群組的目的是同時拍攝多個磁碟區的快照影像、以確保磁碟區集合在某個時間點的損毀一致複本。一致性群組可確保資料集的所有磁碟區都會處於靜默狀態、然後精確地在同一時間點對齊。如此可在支援資料集的磁碟區之間提供資料一致的還原點。因此一致性群組可維持相關的寫入順序一致性。如果您決定保護應用程式以確保營運不中斷、則必須將與此應用程式對應的磁碟區群組新增至一致性群組、以便在來源與目的地一致性群組之間建立資料保護關係。來源和目的地一致性必須包含相同的磁碟區數量和類型。
+
+複寫 HANA 系統時，一致性群組必須包含個別 HANA 系統所使用的所有磁碟區（資料，記錄和共享）。應該是一致性群組一部分的磁碟區必須儲存在同一個 SVM 中。作業系統映像可以儲存在獨立的磁碟區中，並有自己的一致性群組。下圖說明兩個 HANA 系統的組態範例。
+
+image:sc-saphana-vmware-smas-image12.png[""]
+
+
+
+== 啟動器群組組態
+
+在我們的實驗室設定中，我們建立了一個啟動器群組，其中包括用於 SnapMirror 主動同步複寫的兩個儲存 SVM 。在稍後所述的 SnapMirror 主動式同步組態中，我們將定義啟動器群組將是複寫的一部分。
+
+使用鄰近設定，我們定義了哪個 ESX 主機靠近哪個儲存叢集。在我們的案例中， A700 靠近 ESX-1 ， A800 接近 ESX-2 。
+
+image:sc-saphana-vmware-smas-image13.png[""]
+
+image:sc-saphana-vmware-smas-image14.png[""]
+
+
+NOTE: 在非統一存取設定中，主要儲存叢集（ A700 ）的啟動器群組必須僅包含 ESX-1 主機的啟動器，因為沒有 SAN 連線至 ESX-2 。此外，您還需要在第二個儲存叢集（ A800 ）上設定另一個啟動器群組，該群組僅包含 ESX-2 主機的啟動器。不需要週邊配置和啟動器群組複寫。
+
+
+
+== 使用 ONTAP 系統管理員設定保護
+
+image:sc-saphana-vmware-smas-image15.png[""]
+
+
+
+=== 一致性群組和啟動器群組複寫
+
+必須建立新的一致性群組，而且 HANA 系統的所有三個 LUN 都必須新增至一致性群組。
+
+「 Replicate initiator group 」已啟用。然後， imitator 群組將在進行變更的地方保持不同步。
+
+
+NOTE: 在非統一存取設定中，啟動器群組不得複寫，因為必須在第二個儲存叢集上設定個別的啟動器群組。
+
+image:sc-saphana-vmware-smas-image16.png[""]
+
+按一下特殊警示點選設定，即可檢閱啟動器群組設定之前完成的組態。
+
+image:sc-saphana-vmware-smas-image17.png[""]
+
+必須設定目的地儲存叢集，且必須啟用「初始化關係」。
+
+
+
+=== 同步處理
+
+在 A700 儲存叢集（來源），新的關係現已列出。
+
+image:sc-saphana-vmware-smas-image18.png[""]
+
+在 A800 儲存叢集（目的地），會列出新的關係和複寫狀態。
+
+image:sc-saphana-vmware-smas-image19.png[""]
+
+
+
+== 基礎架構資料存放區
+
+儲存 HANA 系統， SnapCenter 和 vSphere 外掛程式之作業系統映像的資料存放區，會依照 HANA 資料庫資料存放區的相同方式進行複寫。
+
+
+
+== 主要站台
+
+SnapMirror 主動式同步處理行為是對稱的，但有一個重要例外：主要站台組態。
+
+SnapMirror 作用中同步將一個站台視為「來源」、另一個則視為「目的地」。這表示單向複寫關係，但這不適用於 IO 行為。複寫是雙向的、對稱的、而且在鏡像的兩側、 IO 回應時間相同。
+
+如果複寫連結遺失，來源複本上的 LUN 路徑將繼續提供資料，而目的地複本上的 LUN 路徑將無法使用，直到重新建立複寫並 SnapMirror 重新進入同步狀態為止。然後路徑將恢復服務資料。
+
+將一個叢集指定為來源的效果、只是控制在複寫連結遺失時、哪個叢集仍保留為讀寫儲存系統。
+
+SnapCenter 會偵測到主要站台，並用於執行備份，還原和複製作業。
+
+
+NOTE: 請記住，來源和目的地並不與 SVM 或儲存叢集相關，但每個複寫關係可能會有所不同。
+
+image:sc-saphana-vmware-smas-image20.png[""]

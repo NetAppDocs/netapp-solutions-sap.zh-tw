@@ -4746,4 +4746,275 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="22c7eb5619fc26c433125aab7cfd57af" category="list-text"><block ref="22c7eb5619fc26c433125aab7cfd57af" category="inline-link-rx"></block></block>
   <block id="d8cb082280c9ef193a28bdb60d8e9779" category="list-text"><block ref="d8cb082280c9ef193a28bdb60d8e9779" category="inline-link-rx"></block></block>
   <block id="147a64bd742e2d54a7d7a7f133c3561c" category="paragraph">本節說明使用 ONTAP 9 命令列搭配 2+1 SAP HANA 多個主機系統的範例組態，其中包含使用 LVM 的 SID FC5 ，以及每個 LVM Volume 群組兩個 LUN ：</block>
+  <block id="f98d4399781d823eb7dd788ef59bcb51" category="doc">其他資訊和版本歷程記錄</block>
+  <block id="5d8eb824543a169aa4059561be8e65e4" category="paragraph"><block ref="5d8eb824543a169aa4059561be8e65e4" category="inline-link-rx"></block></block>
+  <block id="47bbb1593ebf37dae91b08bde7e949f0" category="paragraph"><block ref="47bbb1593ebf37dae91b08bde7e949f0" category="inline-link-rx"></block></block>
+  <block id="766ba9dc44e7046f7c6af47344e24026" category="paragraph"><block ref="766ba9dc44e7046f7c6af47344e24026" category="inline-link-rx"></block></block>
+  <block id="591670018ee25ae8b5625ed98cb5ff81" category="paragraph"><block ref="591670018ee25ae8b5625ed98cb5ff81" category="inline-link-rx"></block></block>
+  <block id="ef1fb8d9c97217ef2fbf941299c08adf" category="paragraph">SnapMirror 作用中同步：</block>
+  <block id="32e3115035ed1831322c88ce03af5c52" category="inline-link">ONTAP 中的 SnapMirror 作用中同步總覽</block>
+  <block id="9f090056bc76628ad2a8b94b102aa48c" category="paragraph"><block ref="9f090056bc76628ad2a8b94b102aa48c" category="inline-link-rx"></block></block>
+  <block id="e4004172088b034dfe07abe579273b06" category="inline-link">NetApp ONTAP 搭配 NetApp SnapMirror Active Sync 與 VMware vSphere Metro Storage Cluster （ VMSC ）。</block>
+  <block id="44d0d1ca42daaecc86f8bb55519f9ec5" category="paragraph"><block ref="44d0d1ca42daaecc86f8bb55519f9ec5" category="inline-link-rx"></block></block>
+  <block id="34fd97d0487efaacb8dc98024d287c11" category="inline-link">VMware vSphere Metro Storage Cluster 搭配 SnapMirror 主動式同步</block>
+  <block id="d5ad3267276646604ba509767a3d16f2" category="paragraph"><block ref="d5ad3267276646604ba509767a3d16f2" category="inline-link-rx"></block></block>
+  <block id="58486898b4fe52f80d7a134d74186a4c" category="inline-link">VMware vSphere Metro儲存叢集（VMSC）</block>
+  <block id="f6bdc6a297299619f269bf3a556799d4" category="paragraph"><block ref="f6bdc6a297299619f269bf3a556799d4" category="inline-link-rx"></block></block>
+  <block id="8866e8de2efa7275a5dc8e942c1613c2" category="paragraph">版本歷程記錄：</block>
+  <block id="0be8406951cdfda82f00f79328cf4efc" category="cell">留言</block>
+  <block id="88c55c9f00e518db40a6c680728b787f" category="cell">2025 年 3 月</block>
+  <block id="578debbebf489f0ea51e1904091b28c6" category="doc">組態概觀範例</block>
+  <block id="b1d89f1cd61a86148770f4782f718ee1" category="paragraph">在實驗室設定中，我們使用的是統一存取組態，其中兩台 ESX 主機都能存取兩個儲存叢集。在接下來的章節中，我們會說明統一存取組態，但也會強調非統一設定的差異。</block>
+  <block id="bda60fd55001f0b523d1bf959086d104" category="paragraph"><block ref="bda60fd55001f0b523d1bf959086d104" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6d29d2542a6a2e3e81746082b1d99b07" category="section-title">軟體版本</block>
+  <block id="719d067b229178f03bcfa1da4ac4dede" category="cell">軟體</block>
+  <block id="253b40ae359ba25b56231803430c4873" category="cell">ONTAP</block>
+  <block id="23db331427e32cc94e52e42ba8759f19" category="cell">a700 ： 9.15.1P7 ， A800 ： 9.16.1RC1</block>
+  <block id="612b02d3b61adaee87995431641689c5" category="cell">vSphere 用戶端</block>
+  <block id="75809dde56e3fe2c2fb740f1b55807ac" category="cell">8.0.3</block>
+  <block id="1aa66ef3a8e34a7a538960a80d2e1e31" category="cell">ESXi</block>
+  <block id="d5c7c08072d4efb56a83ee0c785a4627" category="cell">適用於 vSphere 的 SnapCenter 外掛程式</block>
+  <block id="a24cb0112e51902b6b3ed4606a7cd727" category="cell">6.0.1</block>
+  <block id="793d284bad68b41cca09ce8e8b200352" category="cell">Linux 作業系統</block>
+  <block id="6ac3d422e6f335ad57542e8a44dd55b3" category="cell">適用於 SAP 15 SP5 的 SLES</block>
+  <block id="cdfd3aaedd2f1ca4bb0a69bf5258b295" category="cell">2.0 SPS8.</block>
+  <block id="5c014f8939a89da0166a347a0237cf4f" category="cell">SnapCenter</block>
+  <block id="e5aba9e63a96cac40d6e5f986a9079f3" category="doc">容錯移轉案例</block>
+  <block id="de57ed1e494e5095dc962512b691ba8f" category="section-title">統一存取設定</block>
+  <block id="f0debbf74e1e275c8a3ccb2444ac73f6" category="paragraph">在統一的存取組態中，光纖通道 SAN 會延伸至兩個站台。兩個站台的 ESX 主機都可以存取資料集的兩個複本。在正常作業期間，執行 HANA 系統的 ESX 主機會根據啟動器群組組組態中的鄰近設定，存取資料的本機複本。每個 ESX 主機都有一個主動最佳化的本機複本路徑，以及一個主動非最佳化的鏡射複本路徑。</block>
+  <block id="86bcf99dbc3944da56f06b48074d09f6" category="section-title">正常運作</block>
+  <block id="92b59c2bf70b9fdba2c059aee44eb044" category="paragraph">正常作業期間， HANA 系統會根據 ESX 主機 ESX-1 的主動最佳化路徑，從本機複本讀取及寫入本機複本。在每次備份作業中， SnapCenter 會偵測目前的主要站台進行複寫關係，並對主要站台執行備份作業。Snapshot 會複寫到鏡射複本，並可在兩個站台上使用。SnapCenter 還原作業將在主要站台執行。</block>
+  <block id="ae6ff75fb17252ab700fd3829a86fd1c" category="paragraph"><block ref="ae6ff75fb17252ab700fd3829a86fd1c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="48ff58405bb19fe5bfc8e9d56eed6a27" category="section-title">儲存設備故障</block>
+  <block id="0b863d48b2762e9a065bb6609efb0e39" category="paragraph">如果站台 1 的儲存系統故障， HANA 系統會存取站台 2 的鏡射複本，並繼續運作。主要站台切換至次要站台，而 SnapCenter 現在則在新的主要站台執行備份與還原作業。</block>
+  <block id="077c1d5ab6f962f891099b9210a13b12" category="paragraph"><block ref="077c1d5ab6f962f891099b9210a13b12" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1163a74136e40a05bc320e61f567a4df" category="section-title">站台故障</block>
+  <block id="09e49506e92274d793e041a080d932ac" category="paragraph">如果站台發生故障， HANA VM 以及 SnapCenter 和 SnapCenter for VMware 外掛程式 VM 將會使用 vSphere HA 容錯移轉至次要站台的 ESX 主機。HANA 資料庫需要開始使用，然後在第二個站台存取鏡射複本。主要站台切換至次要站台，而 SnapCenter 現在則在新的主要站台執行備份與還原作業。</block>
+  <block id="53078ab54ba7ebd9dcf9b549903d0067" category="paragraph"><block ref="53078ab54ba7ebd9dcf9b549903d0067" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0a6e902e89c3df722cf20de93024e4c2" category="section-title">不一致的存取設定</block>
+  <block id="0912a0ba8a9214fedc7c2bedb6ed636d" category="paragraph">在不統一的存取組態中，光纖通道 SAN 不會延伸到兩個站台。每個站台的每個 ESX 主機只能存取資料集的本機複本。</block>
+  <block id="36830e760ac989938c2390fabd803283" category="paragraph">正常作業期間， HANA 系統會從本機複本讀取及寫入內容。在每次備份作業中， SnapCenter 會偵測目前的主要站台進行複寫關係，並對主要站台執行備份作業。Snapshot 會複寫到鏡射複本，並可在兩個站台上使用。SnapCenter 還原作業將在主要站台執行。</block>
+  <block id="d82e6994523253847e1b50175e2dc7a6" category="paragraph"><block ref="d82e6994523253847e1b50175e2dc7a6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9b73a2b8924460a1304567cee49f45b6" category="paragraph">如果儲存設備發生故障， HANA VM 以及 SnapCenter 和 SnapCenter for VMware 外掛程式 VM 將會使用 vSphere HA 容錯移轉至次要站台的 ESX 主機。HANA 資料庫需要開始使用，然後在第二個站台存取鏡射複本。主要站台切換至次要站台，而 SnapCenter 現在則在新的主要站台執行備份與還原作業。</block>
+  <block id="8cc83bb8eec7bc571bd9ca6b3ee14ab7" category="paragraph"><block ref="8cc83bb8eec7bc571bd9ca6b3ee14ab7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9ec38366f0f4b942de78f96e3cba6091" category="paragraph">與儲存設備故障相同。</block>
+  <block id="a19167957b85d342503cb693d3fc10d5" category="paragraph"><block ref="a19167957b85d342503cb693d3fc10d5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bf619fead7f757b3eab618cd1c3a0135" category="section-title">重新部署 HANA VM 或主站台</block>
+  <block id="7f1a3b4bfc6d6488712d1783304ab09b" category="paragraph">如果 HANA VM 重新部署至其他 ESX 主機，而儲存設備的主要站台維持不變，則使用 SnapCenter 的還原作業將會失敗。由於 SnapCenter 使用主要站台來執行還原作業，因此會在左側建立複本，而 HANA VM 則在右側執行。由於站台之間沒有資料路徑，因此 SnapCenter 不會複製資料。</block>
+  <block id="489a7f9a78df7b4cf3e62a41e3245bc0" category="paragraph">因應措施是，您必須確保 VM 和主要端的重新配置是一起進行，或是在使用 SnapCenter 進行還原作業之前，必須先容錯移轉主要站台。</block>
+  <block id="4bdbcf3ab81e5334c21c5e847d722cb4" category="paragraph"><block ref="4bdbcf3ab81e5334c21c5e847d722cb4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b1e25e0a3cd6e9de63eb75f1fd3dd032" category="doc">SAP HANA 高可用度概覽</block>
+  <block id="987809e37ad70a5df332e23a704d0bd7" category="paragraph">本章概述 SAP HANA 的高可用度選項，將應用程式層的複寫與儲存複寫進行比較。</block>
+  <block id="08eceef12e3967caaaf54cccf0ce111c" category="section-title">SAP HANA 系統複寫（ HSR ）</block>
+  <block id="74c978e5230861321ac16b0a627d3342" category="paragraph">SAP HANA 系統複寫提供一種作業模式，可同步複寫資料，預先載入記憶體，並在次要主機上持續更新。此模式可實現極低的 RTO 值（約 1 分鐘或更短時間），但也需要專用伺服器，僅用於從來源系統接收複寫資料。由於容錯移轉時間較短，因此 SAP HANA 系統複寫也常用於近乎零停機的維護作業，例如 HANA 軟體升級。Linux Pacemaker 叢集解決方案通常用於自動化容錯移轉作業。</block>
+  <block id="20ced194a2fd3c612748e5e51b3387c4" category="paragraph">如果主要站台，儲存設備，主機或完整站台發生故障， HANA 系統會自動容錯移轉至由 Linux Pacemaker 叢集控制的次要站台。</block>
+  <block id="9e7336ba5e4ed2d09c7228c55e0ba47b" category="inline-link">SAP HANA 系統複製 ++|++ SAP 說明入口網站</block>
+  <block id="7b34b1ed03b63bf2bd159a5a676652e8" category="paragraph">如需所有組態選項和複寫案例的完整說明，請參閱<block ref="17cc660648cb4616470c61fbc9c06824" category="inline-link-rx"></block>。</block>
+  <block id="4e170df3e248822a256cb7a56e2ee615" category="paragraph"><block ref="4e170df3e248822a256cb7a56e2ee615" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b5466376aeff587b72e99e54a02714fd" category="section-title">NetApp SnapMirror 作用中同步</block>
+  <block id="b368e1e8268c5ee114e5ada04591b1a2" category="paragraph">SnapMirror 主動式同步可讓業務服務持續運作、即使整個站台故障也沒問題、支援應用程式使用次要複本以透明方式容錯移轉。不需要手動介入或自訂指令碼，即可觸發 SnapMirror 主動式同步的容錯移轉。AFF 叢集， All Flash SAN Array （ ASA ）叢集和 C 系列（ AFF 或 ASA ）支援 SnapMirror 主動式同步。SnapMirror 主動式同步功能可保護應用程式與 iSCSI 或 FCP LUN 。</block>
+  <block id="120ac4512006f78bceb0b59765a5b470" category="paragraph">從 ONTAP 9.15.1 開始， SnapMirror 主動式同步支援對稱式主動 / 主動式功能。對稱式主動 / 主動式可從受保護 LUN 的兩個複本啟用讀取和寫入 I/O 作業，並提供雙向同步複寫，讓兩個 LUN 複本都能在本機上執行 I/O 作業。</block>
+  <block id="ca3627c50535cf86d223e94a7157a787" category="paragraph">如需更多詳細資料，請參閱<block ref="90f942fd5a37ab4e29fced42177889a8" category="inline-link-rx"></block>。</block>
+  <block id="e363c476652ac6172b97433ad80c2842" category="section-title">Hana 裸機</block>
+  <block id="77e01c1ae4414449514e53b334b3a5ee" category="paragraph">在裸機伺服器上執行 SAP HANA 時，您可以使用 SnapMirror Active Sync 來提供高可用度的儲存解決方案。資料會同步複寫，因此會提供 RPO=0 。</block>
+  <block id="371cc3ec4651f24f9520e71b61d120c3" category="paragraph">如果儲存設備發生故障， HANA 系統將使用第二條 FCP 路徑（提供 RTD=0 ），透明地存取次要站台的鏡射複本。</block>
+  <block id="902f4e9206ee07d7ed42ee4916c973a1" category="paragraph">如果主機或完整站台發生故障，則需要在次要站台提供新的伺服器來存取故障主機的資料。這通常是與正式作業規模相同的測試或 QA 系統，現在將會關閉並用於執行正式作業系統。次要站台的 LUN 連線至新主機後，就必須啟動 HANA 資料庫。因此，總 RTO 取決於配置主機所需的時間，以及 HANA 資料庫的啟動時間。</block>
+  <block id="5117fd6090a066bc48afdff23d072244" category="paragraph"><block ref="5117fd6090a066bc48afdff23d072244" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3ba147cc4fab7ba888332037f78a8985" category="section-title">vSphere Metro 儲存叢集（ VMSC ）</block>
+  <block id="394ce32240e819d6d95dd2af28c53973" category="paragraph">在 VMware 環境中使用 FCP 附加資料存放區執行 SAP HANA 時，您可以使用 SnapMirror Active Sync 來建置 VMware Metro Storage 叢集。在這樣的設定中， HANA 系統所使用的資料存放區會同步複寫到次要站台。</block>
+  <block id="9a140f89434439219a1b6faf5ba97e2b" category="paragraph">如果儲存設備發生故障， ESX 主機會自動存取次要站台的鏡射複本，提供 RTM=0 。</block>
+  <block id="f91492c7d389cf5d440994259ad203e2" category="paragraph">如果主機或完整站台發生故障， vSphere HA 可用於在次要 ESX 主機上啟動 HANA VM 。HANA VM 執行時，需要啟動 HANA 資料庫。因此總 RTO 主要取決於 HANA 資料庫的啟動時間。</block>
+  <block id="ba6dc9fe67f1354333b3009840c86114" category="paragraph"><block ref="ba6dc9fe67f1354333b3009840c86114" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="86a805d84ce5e32e6ca13c56154a4a15" category="section-title">解決方案比較</block>
+  <block id="9b5696f15b1d5f7a47f618da3b7853e9" category="paragraph">下表摘要說明上述解決方案的主要特性。</block>
+  <block id="dc6074de0b3772ead0e64c076f8d2259" category="cell">SnapMirror 主動式同步–裸機</block>
+  <block id="0a5b3c6f53c4a5accd866a909b4d52fd" category="cell">SnapMirror 主動式同步： VMware VMSC</block>
+  <block id="27897ffb9e4044ade7a4bc86ad509a6c" category="cell">有任何故障的 RPO</block>
+  <block id="d67cedb462ee91d060fd85274a5e7494" category="cell">RPO = 0 + 同步複寫</block>
+  <block id="009368507a7a4c26b10de28891aa0dd4" category="cell">儲存設備故障的 RTO</block>
+  <block id="7763ad19cdccf617d43e749a80bfc602" category="cell">RTO ++&lt;++ 1 分鐘</block>
+  <block id="dc181842fcb13b2256a35d267096561d" category="cell">RTL=0 + 透明儲存容錯移轉</block>
+  <block id="6ea829e5a5696c9681eeef3604b2bd76" category="cell">RTO + 站台或主機故障</block>
+  <block id="902a9f83cb07726e2582e114a6b7abbe" category="cell">RTO ：視伺服器準備和 HANA 資料庫啟動所需的時間而定。</block>
+  <block id="0dbc0fdf45131a87daee08d81ebf33e1" category="cell">RTO ：視 HANA 資料庫啟動所需的時間而定。</block>
+  <block id="284fc674eaa83c3b11ce1e98d5a052d3" category="cell">容錯移轉自動化</block>
+  <block id="6fb294e3702956a16cc26ebc2f652861" category="paragraph">是，</block>
+  <block id="dd2116922c73d7f2168d2fc912702614" category="paragraph">自動容錯移轉至次要 HSR 主機</block>
+  <block id="7f575b7087101c4d9cc428f57e5dd059" category="paragraph">由節律器叢集控制。</block>
+  <block id="06c3156d8fb5cf2d45d241378819a628" category="paragraph">是，儲存設備故障</block>
+  <block id="990f3e8714b8c5011ab8a20df2d7ea91" category="paragraph">否，主機或站台故障</block>
+  <block id="6a1e3724a3082939243ab3f91a946da8" category="paragraph">（主機配置，連接儲存資源， HANA 資料庫啟動）</block>
+  <block id="91704d15c2f156721d2e44204c22af5f" category="paragraph">是，適用於主機或站台故障</block>
+  <block id="d359c0689ae33e3e1dfb405310903f04" category="paragraph">（利用 vSphere HA 將 VM 容錯移轉至其他站台，以 HANA 資料庫啟動）</block>
+  <block id="c6b937a7b4e92d57fb3a35462485bdaa" category="cell">次要站台需要專用伺服器</block>
+  <block id="c47e796859dbedadcae3ab34dfa80d5a" category="paragraph">需要將資料預先載入記憶體，並在不啟動資料庫的情況下啟用快速容錯移轉。</block>
+  <block id="dadf8968c911f87cc532e4805e90f855" category="paragraph">否，</block>
+  <block id="ad10577dd6419029ccf490373173660d" category="paragraph">只有在容錯移轉時才需要伺服器。一般而言，用於 QA 的伺服器會用於正式作業。</block>
+  <block id="fcfd78cf2bc94c041ed6fe1e45b63b84" category="paragraph">只有在發生容錯移轉時，才需要 ESX 主機上的資源。一般而言， QA 資源將用於正式作業。</block>
+  <block id="22cb9440d63d06a4ae448103a8862dd9" category="doc">HANA 系統資源配置與安裝</block>
+  <block id="4cc1e6d21efe7635f94370fbfe981517" category="paragraph">本章說明使用 VMFS 的 VMware 設定所特有的 SAP HANA 系統安裝與組態。其他一般最佳實務做法請參閱<block ref="c4aea835339de8cfde34f3337daee2de" category="inline-link-rx"></block>。</block>
+  <block id="82fb8604ddd023efcdc1007567ae6eef" category="paragraph">下圖顯示 HANA 系統的儲存與資料存放區組態。您必須為 HANA 系統的每個檔案系統設定專用磁碟區， LUN ，資料存放區。資料存放區不得在多個 HANA 系統或其他工作負載之間共用。</block>
+  <block id="82f7e2441c1fe3cddcf55e57b026a729" category="paragraph"><block ref="82f7e2441c1fe3cddcf55e57b026a729" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c3f1f40cd03b3f9d165d7c485614a8dd" category="paragraph">HANA 系統的所有三個 LUN （ Hana + + + + + Data + + + + + SMA ， Hana + + + + + + log + + + + + SAM 和 Hana + + shared + + + + + + + + SMA ），以及 OS 映像和 SnapCenter 元件的 LUN 均已配置在 A700 儲存叢集上。</block>
+  <block id="6abb836197119043e7e3a204cb912a67" category="admonition">HANA 系統的所有磁碟區都必須在同一個 SVM 中進行佈建。在稍後所述的 SnapMirror 主動式同步組態中，我們將在所有三個 HANA 磁碟區之間建立一致性群組，這需要磁碟區位於同一個 SVM 中。基礎架構磁碟區將位於不同的一致性群組中，因此可能位於不同的 SVM 中。</block>
+  <block id="7c0e8cc99c344ccf72c2ee5f6b2deff0" category="paragraph"><block ref="7c0e8cc99c344ccf72c2ee5f6b2deff0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6f858092d3c8c8c59ec9e6092fe629b6" category="paragraph">必須設定啟動器群組，且上述 LUN 必須對應至 ESX 1 主機，該主機在實驗室設定中與 A700 儲存系統非常接近。</block>
+  <block id="d4764807004a9c2e57acdb1113dadddb" category="section-title">資料存放區資源配置</block>
+  <block id="fe52842ccaad661581071086ded46232" category="paragraph">我們使用先前配置的三個 LUN ，為 HANA 系統建立了三個資料存放區。此外，我們也使用基礎架構 LUN 建立基礎架構資料存放區。</block>
+  <block id="a7117a80d56406d5a698b8a18c1e5495" category="paragraph"><block ref="a7117a80d56406d5a698b8a18c1e5495" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="edbd77647e9fe471212a09f06fcef5be" category="section-title">VM 資源配置與作業系統安裝</block>
+  <block id="5a6fb9ce0c23d1ac64afe3983e1668f0" category="paragraph">在我們的實驗室設定中，我們部署了新的 VM ，並將適用於 Linux 作業系統的 VMDK 放在基礎架構資料存放區中。</block>
+  <block id="a42168c386dcef152a0e7c885d464760" category="section-title">VM 磁碟組態</block>
+  <block id="67e533b552471df92b12c97ce87b3cd5" category="paragraph">HANA VM 新增了三個磁碟，每個磁碟位於其中一個為 HANA 系統建立的資料存放區內。</block>
+  <block id="edcb775c8403d042b80f0e30b26f76f6" category="paragraph"><block ref="edcb775c8403d042b80f0e30b26f76f6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e3ab7c7e24f43d25f78e863f781e03de" category="section-title">VM 參數設定</block>
+  <block id="0bd6ffb9e904b280022c803fc521ca0a" category="paragraph">必須添加參數 disk.EnableUUID 並將其設置爲 true 。SnapCenter 需要此參數。如果未設定， SnapCenter 「探索虛擬資源」作業將會失敗。</block>
+  <block id="890d55a7561d8f4fdc612a5495be0cda" category="paragraph">必須先停止虛擬機器，才能新增參數。</block>
+  <block id="5d1df9bba7ffc4e5ebd9f46da5bbd544" category="paragraph"><block ref="5d1df9bba7ffc4e5ebd9f46da5bbd544" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e9033ec94d923384ee4a9d664fa0d7ef" category="paragraph">您可以使用下列命令來檢查功能。</block>
+  <block id="fbd86477dc5ddc7e08bef7e21d85dd74" category="section-title">Linux 主機上的檔案系統準備工作</block>
+  <block id="f9a1aed2a171ffa40e1f0bfdfceab787" category="section-title">在新磁碟上建立 xfs 檔案系統</block>
+  <block id="01f87746bc9a85efb16048c2bfed76b9" category="paragraph">新磁碟的裝置名稱可以使用下列命令來檢查。</block>
+  <block id="cd6174e52b01f5084087e5097afa84b5" category="paragraph">已在三個新磁碟的每個磁碟上建立 xfs 檔案系統。</block>
+  <block id="5e21ca9a47d763f1547a6e8da87b48aa" category="section-title">建立掛載點</block>
+  <block id="364d059aeff423f2a53df3b500a50ee4" category="section-title">設定 /etc/fstab</block>
+  <block id="a07e777a6c16b677430f0a4f8d2eb265" category="section-title">HANA 安裝</block>
+  <block id="ed64580d8bc363a7c8503100764a1e22" category="paragraph">HANA 安裝現在可以執行。</block>
+  <block id="bdcdc8dec084298d3d7b407e5e24db1b" category="admonition">使用所述組態時， /usr/sap/sma 目錄將位於 OS VMDK 上。如果應該將 /usr/sap/sma 儲存在共享的 VMDK 中， Hana 共享磁碟可以分割，為 /usr/sap/sma 提供另一個檔案系統。</block>
+  <block id="0f3fb56539f10acb82eb70a4ab370556" category="section-title">SnapCenter 的使用者存放區金鑰</block>
+  <block id="7de31858198e16e10678a5b4f1d04243" category="paragraph">必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。通訊連接埠必須適當設定 HANA 執行個體編號。在我們的設定執行個體編號「 00 」中使用。</block>
+  <block id="1d64057640fe99faeff8fad48888f242" category="paragraph">如需更詳細的說明，請參閱<block ref="a61aa91eab8ccb67ae058f889851f71d" category="inline-link-rx"></block></block>
+  <block id="b13ad7abcf30db767678239fb1e3a606" category="paragraph">您可以使用下列命令來檢查連線能力。</block>
+  <block id="ef6002cb57423b3807e1a4481d6b4b90" category="paragraph">在每次備份作業中， SnapCenter 都會在 VMware 端執行探索，以及偵測主要站台。如果發生儲存容錯移轉， SnapCenter 會在執行資源備份後立即偵測新的主要站台。</block>
+  <block id="bf8c40e460a4a06b36836429a25c2d09" category="paragraph"><block ref="bf8c40e460a4a06b36836429a25c2d09" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="04a44e5a8097fa18ecddaa90763d6135" category="section-title">拓撲視圖</block>
+  <block id="05db403414edc672fd35cc5a3f1975ec" category="paragraph">在拓撲視圖中， SnapCenter 會顯示來源和目的地儲存叢集的備份。</block>
+  <block id="031c531b119950c87336ac22c43a2e3f" category="paragraph"><block ref="031c531b119950c87336ac22c43a2e3f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7027dc8972f1b99113bc768aac0c2670" category="paragraph"><block ref="7027dc8972f1b99113bc768aac0c2670" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c4e92cfd61ef8f4f63779913c6e9f675" category="paragraph">按一下次要儲存設備的計數，即可顯示目前的關係和複寫方向。來源永遠是目前的主要站台。儲存設備容錯移轉之後，主站台將會變更，並相應調整顯示。所有備份的關係都一律相同，因為目前哪個儲存系統是主要站台。</block>
+  <block id="1ccc39ba0459fe5183c80dac48af4af3" category="paragraph"><block ref="1ccc39ba0459fe5183c80dac48af4af3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="49e456be1e3c0ed447947f11c58565ce" category="section-title">儲存系統的快照</block>
+  <block id="5819d1ff9bd305eabaf945b6544c23ef" category="paragraph">SnapCenter 所建立的 Snapshot 備份可在兩個儲存系統的兩個 HANA 資料磁碟區中使用。ONTAP 會在一致性群組層級建立額外的快照，其他所有 HANA 磁碟區也可以使用。</block>
+  <block id="f7838da54113152cd818d6baa44190f5" category="paragraph">下圖顯示 A700 叢集的 HANA 資料 Volume 快照。</block>
+  <block id="cab33f27313d345c6cb0b8c11273ccde" category="paragraph"><block ref="cab33f27313d345c6cb0b8c11273ccde" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b0e04e841e6578b57fe061057d48d4e4" category="paragraph">下圖顯示 A800 叢集的 HANA 資料 Volume 快照。</block>
+  <block id="88dfb516540a0b79c065a6e74facf5f9" category="paragraph"><block ref="88dfb516540a0b79c065a6e74facf5f9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="150e7e66bd7d0560b632e6db10807aa0" category="paragraph">如文件開頭所述，文件的目的是提供使用 VMware 搭配 VMFS 和 SnapMirror Active Sync 的 HANA 環境最佳實務做法。我們只會說明與此特定解決方案相關的詳細資料和重要步驟，不會說明一般 SnapCenter 概念。這些概念和其他 SnapCenter 相關資訊可在以下網址找到：</block>
+  <block id="e11da9afe91d381489a365c86cc614ab" category="section-title">先決條件</block>
+  <block id="1a1399efb6ec09d6f1bcbf7e237aca09" category="paragraph">一般而言，在將受保護的資源新增至 SnapCenter 之前，應先設定 SnapMirror 作用中同步。如果備份是在設定 SnapMirror 主動式同步之前建立的，則只會存在於原始主要儲存設備，之後就不會複寫。</block>
+  <block id="4f16119d47772a6a75fba710b3edec5b" category="section-title">必須自動探索 SnapCenter HANA 資源</block>
+  <block id="8adbe6d9d7496fa5a303471e887c8889" category="paragraph">SnapCenter 必須自動探索使用 VMware VMFS 設定的資源，或使用 SnapMirror 主動式同步保護的資源，以允許這些組態所需的特定作業。</block>
+  <block id="b16aa39a4f385ea2fba7969bf806fa8d" category="paragraph">由於 HANA 非資料磁碟區一律是在 SnapCenter 中手動設定的資源，因此 SnapCenter 不支援這些資源。我們將在本文件稍後討論非資料磁碟區的選項和因應措施。</block>
+  <block id="6ad909fad35f1c46ac8d0a52be8a3d72" category="paragraph">SAP HANA 多個主機系統必須使用中央 HANA 外掛程式進行設定，因此預設為手動設定的資源。使用 VMware VMFS 或 SnapMirror 主動式同步時， SnapCenter 不支援這類 HANA 系統。</block>
+  <block id="f3b371d385ca5da7a8a691a87cd0550e" category="section-title">SnapCenter for VMware vSphere 外掛程式</block>
+  <block id="369f86eddeb3128a82721885894de95d" category="paragraph">SnapCenter for VMware vSphere 外掛程式必須部署在 VMware 環境中。</block>
+  <block id="f8840e34a497d5c17cb94149c2d5a54d" category="section-title">託管磁碟區的 SVM 上的管理 IP 位址</block>
+  <block id="163c4a344b405e61b7739029378e12d0" category="paragraph">即使叢集將新增至 SnapCenter ，主控來源和目的地磁碟區的 SVM 也必須設定管理 IP 位址。</block>
+  <block id="c41142e8389e6d50aa7ca70768ab6dad" category="section-title">用於儲存通訊的 REST API</block>
+  <block id="feb49cee6d9d3ee76b226fb03b3d79d6" category="paragraph">SnapMirror 主動式同步的管理與監控需要 REST API 存取。因此， SnapCenter 必須設定為使用 REST API 進行儲存通訊。組態檔 + C ： ++++++++ 程式檔案 +++++SMCore+++++++++++SMCoreServiceHost.dll.config 中的參數 "IsRestEnabledForStorageConnection" NetApp 必須設為 TRUE 。</block>
+  <block id="0181b55ff54ec406a7a0cc37316b2419" category="paragraph"><block ref="0181b55ff54ec406a7a0cc37316b2419" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1ebc543a4f05ada62a5956f69c8cc3d6" category="paragraph">變更參數之後，必須重新啟動 SnapCenter SMCore 服務。</block>
+  <block id="c4833502ae178bb2566e2f4c312313f0" category="paragraph"><block ref="c4833502ae178bb2566e2f4c312313f0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="787d250b4622b9b1f34f52b01f5768aa" category="section-title">新增儲存系統</block>
+  <block id="3112d21712c36ecc48176c64678e718e" category="paragraph">SnapCenter 的 REST API 啟用後，即可新增儲存系統。需要同時新增兩個儲存叢集，而非個別 SVM 。</block>
+  <block id="c3f1649cad0dd2dcceadde937be6c21b" category="paragraph"><block ref="c3f1649cad0dd2dcceadde937be6c21b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="923d4459c371511d945b82eaf0a1b2d8" category="paragraph"><block ref="923d4459c371511d945b82eaf0a1b2d8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b46b76cab7f6f6afb52ebc4c10768224" category="section-title">新增主機： SnapCenter for VMware vSphere 外掛程式</block>
+  <block id="c35f3eb2b8da88a46acb4aa82928ce31" category="paragraph">如果 SnapCenter 中的資源是在虛擬化的 VMware 環境中執行， SnapCenter 會利用適用於 VMware vSphere 的 SnapCenter 外掛程式，以 VMware 層上所需的步驟來擴充 SnapCenter 備份，還原和複製工作流程。</block>
+  <block id="cbb0594c4acc29f0e3fcb2963999fe73" category="paragraph">在將主機新增至 SnapCenter 之前， VMware vSphere 的 SnapCenter 外掛程式必須部署在 VMware 環境中。</block>
+  <block id="8cc3230c5a466c86bb7d8f7af94952a5" category="admonition">必須在主機新增工作流程期間設定認證，以便將 vSphere 選取為主機類型。</block>
+  <block id="8a233717862ad8f931eec704237189b0" category="paragraph"><block ref="8a233717862ad8f931eec704237189b0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="096db71fd0e7f6e67ff883276e3c2b3d" category="paragraph"><block ref="096db71fd0e7f6e67ff883276e3c2b3d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fa2faddb92f7f2a081a5e8d3b4c634e0" category="paragraph"><block ref="fa2faddb92f7f2a081a5e8d3b4c634e0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5ff52055959ad44e98f86e109ac72ca5" category="admonition">SnapCenter 不需要額外的 vSphere 外掛程式組態。</block>
+  <block id="c426bd2997293154277f7c4e50310c96" category="section-title">新增主機– HANA 系統</block>
+  <block id="b21232e9394cd4fb5e214660bb77db10" category="admonition">無特定要求。外掛程式部署和自動探索會照常進行。</block>
+  <block id="d1cdcf983bdd554e375ccec8432ef82e" category="paragraph">透過自動探索程序， SnapCenter 偵測到 HANA 資源正在使用 VMS/VMDK 進行虛擬化。SnapCenter 也會偵測 SnapMirror 作用中同步設定，並識別目前的主要站台。</block>
+  <block id="95da28886abec665f2782fd7547431eb" category="paragraph">資源自動探索之後，目前的主要站台會顯示在資源檢視的儲存佔用空間區段中。偵測哪個儲存系統為主要儲存系統，是根據 SnapCenter 使用的 ONTAP 命令輸出。</block>
+  <block id="f082ae0a3101216bbe5a2cb95c9356e6" category="paragraph"><block ref="f082ae0a3101216bbe5a2cb95c9356e6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="05bc6c382ea061de5b4f6fea203aa45a" category="paragraph">即使 SnapCenter 未觸發任何 SnapMirror 更新作業，也必須使用 SnapMirror 複寫來設定受 SnapMirror 作用中同步保護的資源原則。</block>
+  <block id="4e41710c592daaa8d956dd05b9a7c011" category="paragraph"><block ref="4e41710c592daaa8d956dd05b9a7c011" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9e673b65c6e6499189fc0aa877745378" category="paragraph"><block ref="9e673b65c6e6499189fc0aa877745378" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="daf49724608610d815cd0eb3781425af" category="section-title">HANA 資源保護組態</block>
+  <block id="43b663b9d6082168b84bee7d40564e67" category="paragraph">無特定要求。資源保護組態會照常進行。</block>
+  <block id="7a0344025c16d96cd8df0619b2218fce" category="doc">SnapCenter 非資料磁碟區</block>
+  <block id="9132feb6160cedf47a36155f2f3ad5ff" category="paragraph">當資源是在 SnapCenter 中手動設定且未自動探索時， SnapCenter 並不知道 VMware 和 SnapMirror 的作用中同步。因此， SnapCenter 原生不支援這些功能。</block>
+  <block id="5de17fd2a6b98e5056ac1e5633611b30" category="paragraph">對於共享 HANA 等非資料磁碟區，在考慮其他手動步驟時，仍可使用 SnapCenter 進行備份與還原作業。</block>
+  <block id="61ebc8147fe58d3b86dae6344e91b60e" category="section-title">SnapCenter 中設定的儲存系統故障</block>
+  <block id="c346d6fc87098f9a21d3525ee76139b3" category="paragraph">如果 SnapCenter 中設定的儲存系統發生故障， SnapCenter 將不會自動切換至其他儲存系統。非資料 Volume 資源必須手動調整，以便將磁碟區的鏡射複本用於備份與還原作業。</block>
+  <block id="500fc97f0288596ec90d509cb258340f" category="paragraph"><block ref="500fc97f0288596ec90d509cb258340f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4395ad4a2825b1a9b23561463c8deff8" category="paragraph">雖然 SnapCenter 並未察覺 HANA 共用磁碟區的 SnapMirror 主動式同步組態，但 Snapshot 仍會複寫至兩個站台。</block>
+  <block id="175066e70e2d47fc384d34a47e028ea9" category="paragraph"><block ref="175066e70e2d47fc384d34a47e028ea9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="26ce94e574712db28e7fbd25d64e3058" category="paragraph"><block ref="26ce94e574712db28e7fbd25d64e3058" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="184c7acf475738503d79cb9ce937a858" category="paragraph">如果是還原， SnapCenter 只會執行任何 VMware 特定步驟的 Volume 還原。通常您需要在 Linux 主機上卸載 HANA 共用磁碟區，中斷資料存放區的連線，然後進行磁碟區還原，再次連接資料存放區，然後在 Linux 主機上掛載檔案系統。手動操作時，您可以停止 HANA VM ，使用 SnapCenter 還原 HANA 共享 Volume ，然後重新啟動 VM 。</block>
+  <block id="093062b6c8b9821496cd9be5e55a9acc" category="doc">SnapCenter 還原與還原</block>
+  <block id="a2966cfcc80f04bdf1206e8297c175cd" category="paragraph">當虛擬資源儲存在 VMPS/VMDK 上時， SnapCenter 還原作業一律會透過複製，掛載，複製作業來完成。</block>
+  <block id="98eff08afbe785093d01ce969a164a0d" category="list-text">SnapCenter 會根據所選的 Snapshot 建立 Volume Clone</block>
+  <block id="87dd4fb19c3e2e97b8cc1aa03edb4e4e" category="list-text">SnapCenter 將 LUN 作爲新的資料存放區裝載到 ESX 主機中</block>
+  <block id="55bbc9eff8d3848a5cbab7456469a3b2" category="list-text">SnapCenter 將資料存放區內的 VMDK 新增為 HANA VM 的新磁碟</block>
+  <block id="caeb5b140d6bab5426d94c1606851042" category="list-text">SnapCenter 會將新磁碟裝載到 Linux 作業系統</block>
+  <block id="da49051afcb3436b0342559c9148ab9c" category="list-text">SnapCenter 會將資料從新磁碟複製回原始位置</block>
+  <block id="eb8196a21b8b5e09eed40015d4a94457" category="list-text">複製作業完成後，上述所有資源都會再次移除</block>
+  <block id="4aeeccb722fe371e69d0a28c56314dda" category="list-text">HANA 恢復工作如常進行</block>
+  <block id="778611a24fc532e45b1c02dd89308306" category="paragraph">因此，還原作業的整體執行時間會因儲存叢集與 ESX 主機之間的資料庫大小和 FC 連線處理量而定。</block>
+  <block id="e94b0328ba32f80357a5f27967929904" category="paragraph">此外，當資源設定為 SnapMirror 作用中同步時， SnapCenter 還原作業只能在目前的主要站台上選取。</block>
+  <block id="5f35033b3e56e00e68892ec016ea328f" category="paragraph"><block ref="5f35033b3e56e00e68892ec016ea328f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d598a9665b7df364f57687a1e235a0b1" category="paragraph">還原與還原作業正在執行時，您可以看到新的複製磁碟區，該磁碟區是在目前的主要站台建立的。</block>
+  <block id="6f06150d9d62fe339c9d504278327de4" category="paragraph"><block ref="6f06150d9d62fe339c9d504278327de4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="abd74d957000391d94ad15a09a0818bd" category="paragraph">在 HANA Linux 主機上，您可以看到裝載到主機上的新磁碟。還原作業完成後， SnapCenter 會再次移除資料存放區和磁碟區。</block>
+  <block id="c2cb902b1e10d6b860fdcf4e986baf3b" category="doc">SAP 系統重新整理作業</block>
+  <block id="9b1c81d3df7f6bed2a839959b4477971" category="paragraph">複製作業可在主要站台或次要儲存設備上執行。</block>
+  <block id="a020ae3097508c9c92639348111abaae" category="paragraph">複製的磁碟區將不會是 HANA 一致性群組的一部分，也不會以 SnapMirror 主動式同步複寫。</block>
+  <block id="63635d57ffdde74dea50ef94c88f196f" category="paragraph">如需系統重新整理工作流程的詳細資訊，請參閱：<block ref="6c08dc4f79105734ee7967f4cc273b9b" category="inline-link-rx"></block></block>
+  <block id="956128d9b9faae13b3100c9e174d475d" category="doc">SnapCenter ， SnapMirror Active Sync 和 VMware Metro Storage 叢集提供 SAP HANA 資料保護和高可用度</block>
+  <block id="4a83948efff6fc2ff209b47d361b2ba8" category="paragraph">本文件提供 VMware 環境中的 SnapCenter 資料保護最佳實務做法，並將 SnapMirror Active Sync 與 HANA 儲存資源的高可用度解決方案結合在一起。</block>
+  <block id="63d06e5f1c9dbc6680e4643fd422c092" category="paragraph">本文件並非針對如何設定完整環境的逐步說明，而是涵蓋與下列項目相關的概念和相關詳細資料：</block>
+  <block id="8949e3ca351483f6af273cac76bb01df" category="list-text">使用 VMware VMFS 設定 SAP HANA 系統</block>
+  <block id="972b18efcd39876d95d7b83050a71880" category="list-text">適用於 SAP HANA 的 SnapMirror 主動式同步組態</block>
+  <block id="01a0a94ba05bcf19aa61e14480717d02" category="list-text">在 VMware 上使用 VMFS 進行 HANA 的 SnapCenter 組態</block>
+  <block id="cb79b071d2a08f1ee0cb1f1849ef0748" category="list-text">SnapMirror 主動式同步的 SnapCenter 組態</block>
+  <block id="7b018d7eff3dddf3b625b56e1ae5723e" category="list-text">SnapCenter 在 VMware 和 SnapMirror 主動式同步上與 HANA 進行作業</block>
+  <block id="2c0b72f10b5b508ac2650ddce956a926" category="paragraph">我們將著重於 VMware Metro 儲存叢集（ VMSC ）組態，使用統一的 SnapMirror 主動式同步存取設定，如下圖所示，但我們也會簡短地接觸裸機和非統一存取組態。</block>
+  <block id="d7583eff84af6f74a44a9ca5b5afc2fd" category="doc">SnapMirror 主動式同步組態</block>
+  <block id="f593c2db6d8f1128bf7bffe9f0f5580e" category="paragraph">必須對儲存叢集和相關的 SVM 進行對等處理。</block>
+  <block id="7b429c86f8caabbaec0c4187faeadf63" category="paragraph">ONTAP 中介器必須在兩個儲存叢集上都可用並設定。</block>
+  <block id="c8fb8235e330b668c2655f610ef83ed2" category="paragraph"><block ref="c8fb8235e330b668c2655f610ef83ed2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="598ab88ed28fb47cc6fed84769cfe7b7" category="paragraph"><block ref="598ab88ed28fb47cc6fed84769cfe7b7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e7928a4a03ebe9a5e393d034b995de4b" category="section-title">儲存配置和一致性群組組組態</block>
+  <block id="6b27256a76151ab9083e0dc68667e62c" category="paragraph">在 ONTAP 文件中，<block ref="aea06cb1202b4252a4dc47ff101356e1" category="inline-link-rx"></block> SnapMirror 主動式同步的一致性群組概念如下所述：</block>
+  <block id="8baeb3ed17a72a05bb00b270d3defc83" category="paragraph">一致性群組是 FlexVol 磁碟區的集合，可為應用程式工作負載提供一致性保證，而這些工作負載必須受到保護，才能確保業務持續運作。</block>
+  <block id="dab303185fbc9318833ee627f5c8c590" category="paragraph">一致性群組的目的是同時拍攝多個磁碟區的快照影像、以確保磁碟區集合在某個時間點的損毀一致複本。一致性群組可確保資料集的所有磁碟區都會處於靜默狀態、然後精確地在同一時間點對齊。如此可在支援資料集的磁碟區之間提供資料一致的還原點。因此一致性群組可維持相關的寫入順序一致性。如果您決定保護應用程式以確保營運不中斷、則必須將與此應用程式對應的磁碟區群組新增至一致性群組、以便在來源與目的地一致性群組之間建立資料保護關係。來源和目的地一致性必須包含相同的磁碟區數量和類型。</block>
+  <block id="d6680c06d2f114bd8fd0e1a1098c0529" category="paragraph">複寫 HANA 系統時，一致性群組必須包含個別 HANA 系統所使用的所有磁碟區（資料，記錄和共享）。應該是一致性群組一部分的磁碟區必須儲存在同一個 SVM 中。作業系統映像可以儲存在獨立的磁碟區中，並有自己的一致性群組。下圖說明兩個 HANA 系統的組態範例。</block>
+  <block id="c9dd8223c3031c560e7fcb534fe72d4c" category="paragraph"><block ref="c9dd8223c3031c560e7fcb534fe72d4c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dce719a9aac895b223304c1967dcde5c" category="section-title">啟動器群組組態</block>
+  <block id="b55a0f5977724be33def42dfcc7d795f" category="paragraph">在我們的實驗室設定中，我們建立了一個啟動器群組，其中包括用於 SnapMirror 主動同步複寫的兩個儲存 SVM 。在稍後所述的 SnapMirror 主動式同步組態中，我們將定義啟動器群組將是複寫的一部分。</block>
+  <block id="d153ab00a9fc79e0afc040330080db50" category="paragraph">使用鄰近設定，我們定義了哪個 ESX 主機靠近哪個儲存叢集。在我們的案例中， A700 靠近 ESX-1 ， A800 接近 ESX-2 。</block>
+  <block id="dd184cbed7494681add4cd0923c35ad1" category="paragraph"><block ref="dd184cbed7494681add4cd0923c35ad1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b4a120e73887d5a1feaea990b4106840" category="paragraph"><block ref="b4a120e73887d5a1feaea990b4106840" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="42b0c96fbf8b9fed561a31ee0cb9388f" category="admonition">在非統一存取設定中，主要儲存叢集（ A700 ）的啟動器群組必須僅包含 ESX-1 主機的啟動器，因為沒有 SAN 連線至 ESX-2 。此外，您還需要在第二個儲存叢集（ A800 ）上設定另一個啟動器群組，該群組僅包含 ESX-2 主機的啟動器。不需要週邊配置和啟動器群組複寫。</block>
+  <block id="fd262c56f1ba70fe1aa70d1a3c3d8afd" category="section-title">使用 ONTAP 系統管理員設定保護</block>
+  <block id="758fcf827d91f970ad0a1968238ccc5a" category="paragraph"><block ref="758fcf827d91f970ad0a1968238ccc5a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="409d8f4e43dfcf06670ff533559e8ca6" category="section-title">一致性群組和啟動器群組複寫</block>
+  <block id="642a6ec5ac1c3d086a24286f621914c3" category="paragraph">必須建立新的一致性群組，而且 HANA 系統的所有三個 LUN 都必須新增至一致性群組。</block>
+  <block id="1928ce6903f987c46c44a15bac630260" category="paragraph">「 Replicate initiator group 」已啟用。然後， imitator 群組將在進行變更的地方保持不同步。</block>
+  <block id="2bfcebfaa972add5e7bffefdb11ffd67" category="admonition">在非統一存取設定中，啟動器群組不得複寫，因為必須在第二個儲存叢集上設定個別的啟動器群組。</block>
+  <block id="b8f1a75a3e7bc6e3bf261fe7ffa1e0e2" category="paragraph"><block ref="b8f1a75a3e7bc6e3bf261fe7ffa1e0e2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e5d385b6e94519336cb178d80995ad5a" category="paragraph">按一下特殊警示點選設定，即可檢閱啟動器群組設定之前完成的組態。</block>
+  <block id="e8be19aa85b20704bd5c66e8456b6d5f" category="paragraph"><block ref="e8be19aa85b20704bd5c66e8456b6d5f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6a89dc487882b1a714475c4cd768dffe" category="paragraph">必須設定目的地儲存叢集，且必須啟用「初始化關係」。</block>
+  <block id="7338ec41a2eba15da2de14082c9d6c96" category="section-title">同步處理</block>
+  <block id="57703da2b711e4517a8228d88144ec56" category="paragraph">在 A700 儲存叢集（來源），新的關係現已列出。</block>
+  <block id="3bb42e3344ae4570152ebb388eb1227f" category="paragraph"><block ref="3bb42e3344ae4570152ebb388eb1227f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="417cc32b404ca22e52687ab1ca77d265" category="paragraph">在 A800 儲存叢集（目的地），會列出新的關係和複寫狀態。</block>
+  <block id="c331b637cb55698b7f98fcf2419d792e" category="paragraph"><block ref="c331b637cb55698b7f98fcf2419d792e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cdfec31f4e0bb93abda71e2ebb065125" category="section-title">基礎架構資料存放區</block>
+  <block id="a3501ac57e175c684d21dc319eb358b9" category="paragraph">儲存 HANA 系統， SnapCenter 和 vSphere 外掛程式之作業系統映像的資料存放區，會依照 HANA 資料庫資料存放區的相同方式進行複寫。</block>
+  <block id="c7412e6f20979f19bfc91ee363a8559f" category="section-title">主要站台</block>
+  <block id="2fb52e630dac927698fdcc612a54fca1" category="paragraph">SnapMirror 主動式同步處理行為是對稱的，但有一個重要例外：主要站台組態。</block>
+  <block id="09dc3c4ee13414b279f947b7358d2155" category="paragraph">SnapMirror 作用中同步將一個站台視為「來源」、另一個則視為「目的地」。這表示單向複寫關係，但這不適用於 IO 行為。複寫是雙向的、對稱的、而且在鏡像的兩側、 IO 回應時間相同。</block>
+  <block id="2c39175ecb307b16c8de8a41647fb350" category="paragraph">如果複寫連結遺失，來源複本上的 LUN 路徑將繼續提供資料，而目的地複本上的 LUN 路徑將無法使用，直到重新建立複寫並 SnapMirror 重新進入同步狀態為止。然後路徑將恢復服務資料。</block>
+  <block id="88ccc2de61e6ab40dc9696595403d671" category="paragraph">將一個叢集指定為來源的效果、只是控制在複寫連結遺失時、哪個叢集仍保留為讀寫儲存系統。</block>
+  <block id="d0a5fb67845de44dc08ab4ba0fd5ddfe" category="paragraph">SnapCenter 會偵測到主要站台，並用於執行備份，還原和複製作業。</block>
+  <block id="58bdb7c81650e9b1e6991cf0a8697ad0" category="admonition">請記住，來源和目的地並不與 SVM 或儲存叢集相關，但每個複寫關係可能會有所不同。</block>
+  <block id="fb53c1d7bdf219623e37eb225d8e1cb5" category="paragraph"><block ref="fb53c1d7bdf219623e37eb225d8e1cb5" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

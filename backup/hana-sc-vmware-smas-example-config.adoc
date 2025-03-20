@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-example-config.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= 組態概觀範例
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+[role="lead"]
+在實驗室設定中，我們使用的是統一存取組態，其中兩台 ESX 主機都能存取兩個儲存叢集。在接下來的章節中，我們會說明統一存取組態，但也會強調非統一設定的差異。
+
+image:sc-saphana-vmware-smas-image1.png[""]
+
+
+
+== 軟體版本
+
+[cols="50%,50%"]
+|===
+| 軟體 | 版本 
+
+
+| ONTAP | a700 ： 9.15.1P7 ， A800 ： 9.16.1RC1 
+
+
+| vSphere 用戶端 | 8.0.3 
+
+
+| ESXi | 8.0.3 
+
+
+| 適用於 vSphere 的 SnapCenter 外掛程式 | 6.0.1 
+
+
+| Linux 作業系統 | 適用於 SAP 15 SP5 的 SLES 
+
+
+| SAP HANA | 2.0 SPS8. 
+
+
+| SnapCenter | 6.0.1 
+|===

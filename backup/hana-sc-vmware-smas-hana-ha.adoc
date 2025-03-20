@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-hana-ha.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= SAP HANA 高可用度概覽
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+[role="lead"]
+本章概述 SAP HANA 的高可用度選項，將應用程式層的複寫與儲存複寫進行比較。
+
+
+
+== SAP HANA 系統複寫（ HSR ）
+
+SAP HANA 系統複寫提供一種作業模式，可同步複寫資料，預先載入記憶體，並在次要主機上持續更新。此模式可實現極低的 RTO 值（約 1 分鐘或更短時間），但也需要專用伺服器，僅用於從來源系統接收複寫資料。由於容錯移轉時間較短，因此 SAP HANA 系統複寫也常用於近乎零停機的維護作業，例如 HANA 軟體升級。Linux Pacemaker 叢集解決方案通常用於自動化容錯移轉作業。
+
+如果主要站台，儲存設備，主機或完整站台發生故障， HANA 系統會自動容錯移轉至由 Linux Pacemaker 叢集控制的次要站台。
+
+如需所有組態選項和複寫案例的完整說明，請參閱 https://help.sap.com/docs/SAP_HANA_PLATFORM/4e9b18c116aa42fc84c7dbfd02111aba/afac7100bc6d47729ae8eae32da5fdec.html["SAP HANA 系統複製 ++|++ SAP 說明入口網站"]。
+
+image:sc-saphana-vmware-smas-image2.png[""]
+
+
+
+== NetApp SnapMirror 作用中同步
+
+SnapMirror 主動式同步可讓業務服務持續運作、即使整個站台故障也沒問題、支援應用程式使用次要複本以透明方式容錯移轉。不需要手動介入或自訂指令碼，即可觸發 SnapMirror 主動式同步的容錯移轉。AFF 叢集， All Flash SAN Array （ ASA ）叢集和 C 系列（ AFF 或 ASA ）支援 SnapMirror 主動式同步。SnapMirror 主動式同步功能可保護應用程式與 iSCSI 或 FCP LUN 。
+
+從 ONTAP 9.15.1 開始， SnapMirror 主動式同步支援對稱式主動 / 主動式功能。對稱式主動 / 主動式可從受保護 LUN 的兩個複本啟用讀取和寫入 I/O 作業，並提供雙向同步複寫，讓兩個 LUN 複本都能在本機上執行 I/O 作業。
+
+如需更多詳細資料，請參閱 https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["ONTAP 中的 SnapMirror 作用中同步總覽"]。
+
+
+
+=== Hana 裸機
+
+在裸機伺服器上執行 SAP HANA 時，您可以使用 SnapMirror Active Sync 來提供高可用度的儲存解決方案。資料會同步複寫，因此會提供 RPO=0 。
+
+如果儲存設備發生故障， HANA 系統將使用第二條 FCP 路徑（提供 RTD=0 ），透明地存取次要站台的鏡射複本。
+
+如果主機或完整站台發生故障，則需要在次要站台提供新的伺服器來存取故障主機的資料。這通常是與正式作業規模相同的測試或 QA 系統，現在將會關閉並用於執行正式作業系統。次要站台的 LUN 連線至新主機後，就必須啟動 HANA 資料庫。因此，總 RTO 取決於配置主機所需的時間，以及 HANA 資料庫的啟動時間。
+
+image:sc-saphana-vmware-smas-image3.png[""]
+
+
+
+=== vSphere Metro 儲存叢集（ VMSC ）
+
+在 VMware 環境中使用 FCP 附加資料存放區執行 SAP HANA 時，您可以使用 SnapMirror Active Sync 來建置 VMware Metro Storage 叢集。在這樣的設定中， HANA 系統所使用的資料存放區會同步複寫到次要站台。
+
+如果儲存設備發生故障， ESX 主機會自動存取次要站台的鏡射複本，提供 RTM=0 。
+
+如果主機或完整站台發生故障， vSphere HA 可用於在次要 ESX 主機上啟動 HANA VM 。HANA VM 執行時，需要啟動 HANA 資料庫。因此總 RTO 主要取決於 HANA 資料庫的啟動時間。
+
+image:sc-saphana-vmware-smas-image4.png[""]
+
+
+
+== 解決方案比較
+
+下表摘要說明上述解決方案的主要特性。
+
+[cols="25%,^25%,^25%,^25%"]
+|===
+|  | Hana系統複製 | SnapMirror 主動式同步–裸機 | SnapMirror 主動式同步： VMware VMSC 
+
+
+| 有任何故障的 RPO | RPO = 0 + 同步複寫 |  |  
+
+
+| 儲存設備故障的 RTO | RTO ++<++ 1 分鐘 | RTL=0 + 透明儲存容錯移轉 |  
+
+
+| RTO + 站台或主機故障 | RTO ++<++ 1 分鐘 | RTO ：視伺服器準備和 HANA 資料庫啟動所需的時間而定。 | RTO ：視 HANA 資料庫啟動所需的時間而定。 
+
+
+| 容錯移轉自動化  a| 
+是，
+
+自動容錯移轉至次要 HSR 主機
+
+由節律器叢集控制。
+ a| 
+是，儲存設備故障
+
+否，主機或站台故障
+
+（主機配置，連接儲存資源， HANA 資料庫啟動）
+ a| 
+是，儲存設備故障
+
+是，適用於主機或站台故障
+
+（利用 vSphere HA 將 VM 容錯移轉至其他站台，以 HANA 資料庫啟動）
+
+
+
+| 次要站台需要專用伺服器  a| 
+是，
+
+需要將資料預先載入記憶體，並在不啟動資料庫的情況下啟用快速容錯移轉。
+ a| 
+否，
+
+只有在容錯移轉時才需要伺服器。一般而言，用於 QA 的伺服器會用於正式作業。
+ a| 
+否，
+
+只有在發生容錯移轉時，才需要 ESX 主機上的資源。一般而言， QA 資源將用於正式作業。
+
+|===

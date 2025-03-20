@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-sc-non-data-vols.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery, non-data volumes 
+summary:  
+---
+= SnapCenter 非資料磁碟區
+:allow-uri-read: 
+
+
+'''
+當資源是在 SnapCenter 中手動設定且未自動探索時， SnapCenter 並不知道 VMware 和 SnapMirror 的作用中同步。因此， SnapCenter 原生不支援這些功能。
+
+對於共享 HANA 等非資料磁碟區，在考慮其他手動步驟時，仍可使用 SnapCenter 進行備份與還原作業。
+
+
+
+== SnapCenter 中設定的儲存系統故障
+
+如果 SnapCenter 中設定的儲存系統發生故障， SnapCenter 將不會自動切換至其他儲存系統。非資料 Volume 資源必須手動調整，以便將磁碟區的鏡射複本用於備份與還原作業。
+
+image:sc-saphana-vmware-smas-image39.png[""]
+
+
+
+== 備份作業
+
+雖然 SnapCenter 並未察覺 HANA 共用磁碟區的 SnapMirror 主動式同步組態，但 Snapshot 仍會複寫至兩個站台。
+
+image:sc-saphana-vmware-smas-image40.png[""]
+
+image:sc-saphana-vmware-smas-image41.png[""]
+
+
+
+== 還原作業
+
+如果是還原， SnapCenter 只會執行任何 VMware 特定步驟的 Volume 還原。通常您需要在 Linux 主機上卸載 HANA 共用磁碟區，中斷資料存放區的連線，然後進行磁碟區還原，再次連接資料存放區，然後在 Linux 主機上掛載檔案系統。手動操作時，您可以停止 HANA VM ，使用 SnapCenter 還原 HANA 共享 Volume ，然後重新啟動 VM 。

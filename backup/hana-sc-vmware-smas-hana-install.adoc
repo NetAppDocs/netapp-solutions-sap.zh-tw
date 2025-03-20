@@ -1,0 +1,252 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-hana-install.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= HANA 系統資源配置與安裝
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+[role="lead"]
+本章說明使用 VMFS 的 VMware 設定所特有的 SAP HANA 系統安裝與組態。其他一般最佳實務做法請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html#sap-hana-tailored-data-center-integration["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]。
+
+
+
+== 儲存組態
+
+下圖顯示 HANA 系統的儲存與資料存放區組態。您必須為 HANA 系統的每個檔案系統設定專用磁碟區， LUN ，資料存放區。資料存放區不得在多個 HANA 系統或其他工作負載之間共用。
+
+image:sc-saphana-vmware-smas-image5.png[""]
+
+HANA 系統的所有三個 LUN （ Hana + + + + + Data + + + + + SMA ， Hana + + + + + + log + + + + + SAM 和 Hana + + shared + + + + + + + + SMA ），以及 OS 映像和 SnapCenter 元件的 LUN 均已配置在 A700 儲存叢集上。
+
+
+NOTE: HANA 系統的所有磁碟區都必須在同一個 SVM 中進行佈建。在稍後所述的 SnapMirror 主動式同步組態中，我們將在所有三個 HANA 磁碟區之間建立一致性群組，這需要磁碟區位於同一個 SVM 中。基礎架構磁碟區將位於不同的一致性群組中，因此可能位於不同的 SVM 中。
+
+image:sc-saphana-vmware-smas-image6.png[""]
+
+必須設定啟動器群組，且上述 LUN 必須對應至 ESX 1 主機，該主機在實驗室設定中與 A700 儲存系統非常接近。
+
+
+
+== 資料存放區資源配置
+
+我們使用先前配置的三個 LUN ，為 HANA 系統建立了三個資料存放區。此外，我們也使用基礎架構 LUN 建立基礎架構資料存放區。
+
+image:sc-saphana-vmware-smas-image7.png[""]
+
+
+
+== VM 資源配置與作業系統安裝
+
+在我們的實驗室設定中，我們部署了新的 VM ，並將適用於 Linux 作業系統的 VMDK 放在基礎架構資料存放區中。
+
+
+
+== VM 磁碟組態
+
+HANA VM 新增了三個磁碟，每個磁碟位於其中一個為 HANA 系統建立的資料存放區內。
+
+image:sc-saphana-vmware-smas-image8.png[""]
+
+
+
+== VM 參數設定
+
+必須添加參數 disk.EnableUUID 並將其設置爲 true 。SnapCenter 需要此參數。如果未設定， SnapCenter 「探索虛擬資源」作業將會失敗。
+
+必須先停止虛擬機器，才能新增參數。
+
+image:sc-saphana-vmware-smas-image9.png[""]
+
+您可以使用下列命令來檢查功能。
+
+....
+hana-1:~ # sg_inq /dev/sdd
+standard INQUIRY:
+PQual=0 PDT=0 RMB=0 LU_CONG=0 hot_pluggable=0 version=0x06 [SPC-4]
+[AERC=0] [TrmTsk=] NormACA=0 HiSUP=0 Resp_data_format=2
+SCCS=0 ACC=0 TPGS=0 3PC=0 Protect=0 [BQue=0]
+EncServ=0 MultiP=0 [MChngr=0] [ACKREQQ=0] Addr16=0
+[RelAdr=0] WBus16=1 Sync=1 [Linked=0] [TranDis=0] CmdQue=1
+length=36 (0x24) Peripheral device type: disk
+Vendor identification: VMware
+Product identification: Virtual disk
+Product revision level: 2.0
+Unit serial number: 6000c293fecf25ac6bc457af67fe1f54
+....
+
+
+== Linux 主機上的檔案系統準備工作
+
+
+
+=== 在新磁碟上建立 xfs 檔案系統
+
+新磁碟的裝置名稱可以使用下列命令來檢查。
+
+....
+hana-1:/install # lsblk
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+sda 8:0 0 250G 0 disk
+├─sda1 8:1 0 256M 0 part /boot/efi
+└─sda2 8:2 0 82G 0 part
+├─system-root 254:0 0 60G 0 lvm /root
+│ /var
+│ /usr/local
+│ /tmp
+│ /srv
+│ /opt
+│ /home
+│ /boot/grub2/x86++_++64-efi
+│ /boot/grub2/i386-pc
+│ /.snapshots
+│ /
+└─system-swap 254:1 0 2G 0 lvm SWAP
+sdb 8:16 0 200G 0 disk
+sdc 8:32 0 120G 0 disk
+sdd 8:48 0 150G 0 disk
+sr0 11:0 1 1024M 0 rom
+hana-1:/install #
+....
+已在三個新磁碟的每個磁碟上建立 xfs 檔案系統。
+
+....
+hana-1:/install # mkfs.xfs /dev/sdb
+meta-data=/dev/sdb isize=512 agcount=4, agsize=7864320 blks
+sectsz=512 attr=2, projid32bit=1
+crc=1 finobt=1, sparse=1, rmapbt=0
+reflink=0 bigtime=0 inobtcount=0
+data = bsize=4096 blocks=31457280, imaxpct=25
+sunit=0 swidth=0 blks
+naming =version 2 bsize=4096 ascii-ci=0, ftype=1
+log =internal log bsize=4096 blocks=15360, version=2
+sectsz=512 sunit=0 blks, lazy-count=1
+realtime =none extsz=4096 blocks=0, rtextents=0
+
+hana-1:/install # mkfs.xfs /dev/sdc
+meta-data=/dev/sdc isize=512 agcount=4, agsize=7864320 blks
+sectsz=512 attr=2, projid32bit=1
+crc=1 finobt=1, sparse=1, rmapbt=0
+reflink=0 bigtime=0 inobtcount=0
+data = bsize=4096 blocks=31457280, imaxpct=25
+sunit=0 swidth=0 blks
+naming =version 2 bsize=4096 ascii-ci=0, ftype=1
+log =internal log bsize=4096 blocks=15360, version=2
+sectsz=512 sunit=0 blks, lazy-count=1
+realtime =none extsz=4096 blocks=0, rtextents=0
+
+hana-1:/install # mkfs.xfs /dev/sdd
+meta-data=/dev/sdd isize=512 agcount=4, agsize=9830400 blks
+sectsz=512 attr=2, projid32bit=1
+crc=1 finobt=1, sparse=1, rmapbt=0
+reflink=0 bigtime=0 inobtcount=0
+data = bsize=4096 blocks=39321600, imaxpct=25
+sunit=0 swidth=0 blks
+naming =version 2 bsize=4096 ascii-ci=0, ftype=1
+log =internal log bsize=4096 blocks=19200, version=2
+sectsz=512 sunit=0 blks, lazy-count=1
+realtime =none extsz=4096 blocks=0, rtextents=0
+hana-1:/install #
+....
+
+
+=== 建立掛載點
+
+....
+hana-1:/ # mkdir -p /hana/data/SMA/mnt00001
+hana-1:/ # mkdir -p /hana/log/SMA/mnt00001
+hana-1:/ # mkdir -p /hana/shared
+hana-1:/ # chmod –R 777 /hana/log/SMA
+hana-1:/ # chmod –R 777 /hana/data/SMA
+hana-1:/ # chmod -R 777 /hana/shared
+....
+
+
+=== 設定 /etc/fstab
+
+....
+hana-1:/install # cat /etc/fstab
+/dev/system/root / btrfs defaults 0 0
+/dev/system/root /var btrfs subvol=/@/var 0 0
+/dev/system/root /usr/local btrfs subvol=/@/usr/local 0 0
+/dev/system/root /tmp btrfs subvol=/@/tmp 0 0
+/dev/system/root /srv btrfs subvol=/@/srv 0 0
+/dev/system/root /root btrfs subvol=/@/root 0 0
+/dev/system/root /opt btrfs subvol=/@/opt 0 0
+/dev/system/root /home btrfs subvol=/@/home 0 0
+/dev/system/root /boot/grub2/x86_64-efi btrfs subvol=/@/boot/grub2/x86_64-efi 0 0
+/dev/system/root /boot/grub2/i386-pc btrfs subvol=/@/boot/grub2/i386-pc 0 0
+/dev/system/swap swap swap defaults 0 0
+/dev/system/root /.snapshots btrfs subvol=/@/.snapshots 0 0
+UUID=2E8C-48E1 /boot/efi vfat utf8 0 2
+/dev/sdb /hana/data/SMA/mnt00001 xfs relatime,inode64 0 0
+/dev/sdc /hana/log/SMA/mnt00001 xfs relatime,inode64 0 0
+/dev/sdd /hana/shared xfs defaults 0 0
+hana-1:/install #
+
+hana-1:/install # df -h
+Filesystem Size Used Avail Use% Mounted on
+devtmpfs 4.0M 8.0K 4.0M 1% /dev
+tmpfs 49G 4.0K 49G 1% /dev/shm
+tmpfs 13G 26M 13G 1% /run
+tmpfs 4.0M 0 4.0M 0% /sys/fs/cgroup
+/dev/mapper/system-root 60G 35G 25G 58% /
+/dev/mapper/system-root 60G 35G 25G 58% /.snapshots
+/dev/mapper/system-root 60G 35G 25G 58% /boot/grub2/i386-pc
+/dev/mapper/system-root 60G 35G 25G 58% /boot/grub2/x86_64-efi
+/dev/mapper/system-root 60G 35G 25G 58% /home
+/dev/mapper/system-root 60G 35G 25G 58% /opt
+/dev/mapper/system-root 60G 35G 25G 58% /srv
+/dev/mapper/system-root 60G 35G 25G 58% /tmp
+/dev/mapper/system-root 60G 35G 25G 58% /usr/local
+/dev/mapper/system-root 60G 35G 25G 58% /var
+/dev/mapper/system-root 60G 35G 25G 58% /root
+/dev/sda1 253M 5.1M 247M 3% /boot/efi
+tmpfs 6.3G 56K 6.3G 1% /run/user/0
+/dev/sdb 200G 237M 200G 1% /hana/data/SMA/mnt00001
+/dev/sdc 120G 155M 120G 1% /hana/log/SMA/mnt00001
+/dev/sdd 150G 186M 150G 1% /hana/shared
+hana-1:/install #
+....
+
+
+== HANA 安裝
+
+HANA 安裝現在可以執行。
+
+
+NOTE: 使用所述組態時， /usr/sap/sma 目錄將位於 OS VMDK 上。如果應該將 /usr/sap/sma 儲存在共享的 VMDK 中， Hana 共享磁碟可以分割，為 /usr/sap/sma 提供另一個檔案系統。
+
+
+
+== SnapCenter 的使用者存放區金鑰
+
+必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。通訊連接埠必須適當設定 HANA 執行個體編號。在我們的設定執行個體編號「 00 」中使用。
+
+如需更詳細的說明，請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#sap-hana-backup-user-and-hdbuserstore-configuration["SAP HANA資料庫備份的資源專屬組態SnapCenter"]
+
+....
+smaadm@hana-1:/usr/sap/SMA/HDB00> hdbuserstore set SMAKEY hana-1:30013 SNAPCENTER <password>
+Operation succeed.
+....
+您可以使用下列命令來檢查連線能力。
+
+....
+smaadm@hana-1:/usr/sap/SMA/HDB00> hdbsql -U SMAKEY
+Welcome to the SAP HANA Database interactive terminal.
+Type: \h for help with commands
+\q to quit
+hdbsql SYSTEMDB=> exit
+smaadm@hana-1:/usr/sap/SMA/HDB00
+....

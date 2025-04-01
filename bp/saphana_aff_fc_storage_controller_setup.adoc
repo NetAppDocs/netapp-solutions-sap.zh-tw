@@ -38,13 +38,36 @@ SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate E
 
 == 服務品質
 
-QoS可用於限制共享控制器上特定SAP HANA系統或無SAP應用程式的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。
+QoS 可用於限制共用控制器上特定 SAP HANA 系統或非 SAP 應用程式的儲存處理量。
 
-在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。
 
-從ONTAP 供應功能表9開始、QoS會在儲存磁碟區層級上設定、並使用處理量（Mbps）和I/O（IOPS）的最大值。
 
-大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。
+=== 正式作業與開發 / 測試
+
+其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。
+
+
+
+=== 共享環境
+
+另一個使用案例是限制繁重寫入工作負載的處理量，特別是避免這些工作負載對其他對延遲敏感的寫入工作負載造成影響。在這類環境中，最佳做法是將非共用處理量上限 QoS 群組原則套用至每個儲存虛擬機器（ SVM ）內的每個 LUN ，以限制每個個別儲存物件的最大處理量達到指定值。如此可降低單一工作負載對其他工作負載造成負面影響的可能性。
+
+若要這麼做，必須使用 ONTAP 叢集的 CLI 為每個 SVM 建立群組原則：
+
+....
+qos policy-group create -policy-group <policy-name> -vserver <vserver name> -max-throughput 1000MB/s -is-shared false
+....
+並套用至 SVM 中的每個 LUN 。以下是將原則群組套用至 SVM 中所有現有 LUN 的範例：
+
+....
+lun modify -vserver <vserver name>  -path * -qos-policy-group  <policy-name>
+....
+每個 SVM 都必須完成這項工作。每個 SVM 的 QoS 警群組名稱必須不同。對於新的 LUN ，可直接套用原則：
+
+....
+lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
+....
+建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_host_setup.html#create-lvm-volume-groups-and-logical-volumes["主機設定"]。
 
 
 

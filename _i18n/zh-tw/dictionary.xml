@@ -308,7 +308,6 @@
   <block id="fd18465573ec21a6218982055981f6b1" category="section-title">儲存效率</block>
   <block id="fef2c24f71a084e813005b395f827515" category="paragraph">SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時壓縮及即時資料壓縮。</block>
   <block id="a662d487b875a4e232a16649f36fb399" category="section-title">服務品質</block>
-  <block id="429f30a2f19f5542c01260900f1268d8" category="paragraph">QoS可用於限制共享控制器上特定SAP HANA系統或無SAP應用程式的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。</block>
   <block id="6c86cfdf44739a850a7a1248b66cb537" category="paragraph">在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。</block>
   <block id="6ab5df7290e481b70e28b2b6f494b241" category="paragraph">從ONTAP 供應功能表9開始、QoS會在儲存磁碟區層級上設定、並使用處理量（Mbps）和I/O（IOPS）的最大值。</block>
   <block id="652c99b312d2d799385f153fd324ef46" category="paragraph">大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。</block>
@@ -1080,9 +1079,6 @@
   <block id="834a8b3050b2226b4812fb49026571b3" category="paragraph">從SAP HANA 2.0開始、「hdbparam」已被淘汰、參數已移至「global.ini`」。這些參數可以使用SQL命令或SAP HANA Studio來設定。如需詳細資料、請參閱SAP附註<block ref="6af86c07e5a30516e9705c5fc7252793" category="inline-link-rx"></block>。您也可以在global.ini中設定參數、如下列文字所示：</block>
   <block id="31835039a339b5b0f4d95c207e26b5e3" category="paragraph">自SAP HANA 2.0 SPS5以來、可使用「SetPar出aretector.py」指令碼來設定正確的參數：</block>
   <block id="0d3eab0b9e96ff06837e191b39218d16" category="paragraph">不支援在HDD組態中啟用儲存效率功能。</block>
-  <block id="e2a82c831a3a4651879482e858053e83" category="paragraph">QoS可用於限制特定SAP HANA系統的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。</block>
-  <block id="6897ebb03b24bb6d57001cdf55ad2d30" category="paragraph">在規模調整過程中、必須判斷非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在正式作業系統的20%至50%之間。</block>
-  <block id="8469b8e3a88a77acf02664f233b3cb72" category="paragraph">從ONTAP 供應功能表9開始、QoS會在儲存磁碟區層級上設定、並使用處理量（Mbps）和I/O（IOPS）的最大值。</block>
   <block id="0df676e828d9cc9486e1b8e0aaf1b692" category="paragraph">使用「純快照」分層原則是可行的、FabricPool 而且通常可在SnapVault 諸如SnapMirror或SnapMirror目的地等備份目標上使用SnapMirror。</block>
   <block id="5a5237a6a98f8795e5ef541300be3602" category="admonition">使用支援在一線儲存設備上分層Snapshot複本、或使用支援還原的功能來變更資料庫還原與還原所需的時間、或是建立系統複本或修復系統等其他工作。FabricPool FabricPool在規劃整體生命週期管理策略時、請將此考量納入考量、並確認使用此功能時仍符合SLA要求。</block>
   <block id="562283819997e7573d7ef1bcd25f02e9" category="paragraph">以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在開始執行這些步驟之前、請先完成儲存硬體設定、ONTAP 安裝支援軟體、並將儲存FCP連接埠連線至SAN架構。</block>
@@ -5017,4 +5013,15 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="d0a5fb67845de44dc08ab4ba0fd5ddfe" category="paragraph">SnapCenter 會偵測到主要站台，並用於執行備份，還原和複製作業。</block>
   <block id="58bdb7c81650e9b1e6991cf0a8697ad0" category="admonition">請記住，來源和目的地並不與 SVM 或儲存叢集相關，但每個複寫關係可能會有所不同。</block>
   <block id="fb53c1d7bdf219623e37eb225d8e1cb5" category="paragraph"><block ref="fb53c1d7bdf219623e37eb225d8e1cb5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f1ba28b4c958ea815882c3f5ff27adbe" category="paragraph">QoS 可用於限制共用控制器上特定 SAP HANA 系統或非 SAP 應用程式的儲存處理量。</block>
+  <block id="e79e5867f76c82c725b17c2a238d1a04" category="section-title">正式作業與開發 / 測試</block>
+  <block id="14d1ab0e9152cc07d91da931d21d1efc" category="paragraph">其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。</block>
+  <block id="fa82b7d1d3929ac3284e96228b5b5293" category="section-title">共享環境</block>
+  <block id="3f8bdc2c229f5f61cf4dbe32d9824fdf" category="paragraph">另一個使用案例是限制繁重寫入工作負載的處理量，特別是避免這些工作負載對其他對延遲敏感的寫入工作負載造成影響。在這類環境中，最佳做法是將非共用處理量上限 QoS 群組原則套用至每個儲存虛擬機器（ SVM ）內的每個 LUN ，以限制每個個別儲存物件的最大處理量達到指定值。如此可降低單一工作負載對其他工作負載造成負面影響的可能性。</block>
+  <block id="2d8c78443540c2f552c7dc84ed09567d" category="paragraph">若要這麼做，必須使用 ONTAP 叢集的 CLI 為每個 SVM 建立群組原則：</block>
+  <block id="55a97a03f64e996d2644eceb8eb6280b" category="paragraph">並套用至 SVM 中的每個 LUN 。以下是將原則群組套用至 SVM 中所有現有 LUN 的範例：</block>
+  <block id="9dd8c51508454aadf24832dfd8927250" category="paragraph">每個 SVM 都必須完成這項工作。每個 SVM 的 QoS 警群組名稱必須不同。對於新的 LUN ，可直接套用原則：</block>
+  <block id="1b1a359afcdc7d3b5156dabdbc04c722" category="inline-link">主機設定</block>
+  <block id="322630da5c020002ea6c6dfc2396c673" category="paragraph">建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例<block ref="7f291c93e7fce14b4b50c2889ae65744" category="inline-link-rx"></block>。</block>
+  <block id="c0aedfa1d11f1ac6604f6074cceedad5" category="paragraph">建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例<block ref="0de73849e815beed4975575411863ee0" category="inline-link-rx"></block>。</block>
 </blocks>

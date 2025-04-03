@@ -20,7 +20,7 @@ summary:
 [role="lead"]
 在實驗室設定中，我們使用的是統一存取組態，其中兩台 ESX 主機都能存取兩個儲存叢集。在接下來的章節中，我們會說明統一存取組態，但也會強調非統一設定的差異。
 
-image:sc-saphana-vmware-smas-image1.png[""]
+image:sc-saphana-vmware-smas-image1.png["圖示範所討論的內容"]
 
 
 

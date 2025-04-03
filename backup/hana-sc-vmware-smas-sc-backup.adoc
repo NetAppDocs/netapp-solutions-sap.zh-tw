@@ -11,15 +11,12 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
 
+[role="lead"]
 在每次備份作業中， SnapCenter 都會在 VMware 端執行探索，以及偵測主要站台。如果發生儲存容錯移轉， SnapCenter 會在執行資源備份後立即偵測新的主要站台。
 
-image:sc-saphana-vmware-smas-image31.png[""]
+image:sc-saphana-vmware-smas-image31.png["圖示範所討論的內容"]
 
 
 
@@ -27,13 +24,13 @@ image:sc-saphana-vmware-smas-image31.png[""]
 
 在拓撲視圖中， SnapCenter 會顯示來源和目的地儲存叢集的備份。
 
-image:sc-saphana-vmware-smas-image32.png[""]
+image:sc-saphana-vmware-smas-image32.png["圖示範所討論的內容"]
 
-image:sc-saphana-vmware-smas-image33.png[""]
+image:sc-saphana-vmware-smas-image33.png["圖示範所討論的內容"]
 
 按一下次要儲存設備的計數，即可顯示目前的關係和複寫方向。來源永遠是目前的主要站台。儲存設備容錯移轉之後，主站台將會變更，並相應調整顯示。所有備份的關係都一律相同，因為目前哪個儲存系統是主要站台。
 
-image:sc-saphana-vmware-smas-image34.png[""]
+image:sc-saphana-vmware-smas-image34.png["圖示範所討論的內容"]
 
 
 
@@ -43,8 +40,8 @@ SnapCenter 所建立的 Snapshot 備份可在兩個儲存系統的兩個 HANA �
 
 下圖顯示 A700 叢集的 HANA 資料 Volume 快照。
 
-image:sc-saphana-vmware-smas-image35.png[""]
+image:sc-saphana-vmware-smas-image35.png["圖示範所討論的內容"]
 
 下圖顯示 A800 叢集的 HANA 資料 Volume 快照。
 
-image:sc-saphana-vmware-smas-image36.png[""]
+image:sc-saphana-vmware-smas-image36.png["圖示範所討論的內容"]

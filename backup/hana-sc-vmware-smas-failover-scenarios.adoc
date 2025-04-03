@@ -10,11 +10,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
+
+[role="lead"]
+本文將重點介紹此解決方案的容錯移轉案例。
 
 
 
@@ -28,7 +27,7 @@ summary:
 
 正常作業期間， HANA 系統會根據 ESX 主機 ESX-1 的主動最佳化路徑，從本機複本讀取及寫入本機複本。在每次備份作業中， SnapCenter 會偵測目前的主要站台進行複寫關係，並對主要站台執行備份作業。Snapshot 會複寫到鏡射複本，並可在兩個站台上使用。SnapCenter 還原作業將在主要站台執行。
 
-image:sc-saphana-vmware-smas-image42.png[""]
+image:sc-saphana-vmware-smas-image42.png["圖示範所討論的內容"]
 
 
 
@@ -36,7 +35,7 @@ image:sc-saphana-vmware-smas-image42.png[""]
 
 如果站台 1 的儲存系統故障， HANA 系統會存取站台 2 的鏡射複本，並繼續運作。主要站台切換至次要站台，而 SnapCenter 現在則在新的主要站台執行備份與還原作業。
 
-image:sc-saphana-vmware-smas-image43.png[""]
+image:sc-saphana-vmware-smas-image43.png["圖示範所討論的內容"]
 
 
 
@@ -44,7 +43,7 @@ image:sc-saphana-vmware-smas-image43.png[""]
 
 如果站台發生故障， HANA VM 以及 SnapCenter 和 SnapCenter for VMware 外掛程式 VM 將會使用 vSphere HA 容錯移轉至次要站台的 ESX 主機。HANA 資料庫需要開始使用，然後在第二個站台存取鏡射複本。主要站台切換至次要站台，而 SnapCenter 現在則在新的主要站台執行備份與還原作業。
 
-image:sc-saphana-vmware-smas-image44.png[""]
+image:sc-saphana-vmware-smas-image44.png["圖示範所討論的內容"]
 
 
 
@@ -58,7 +57,7 @@ image:sc-saphana-vmware-smas-image44.png[""]
 
 正常作業期間， HANA 系統會從本機複本讀取及寫入內容。在每次備份作業中， SnapCenter 會偵測目前的主要站台進行複寫關係，並對主要站台執行備份作業。Snapshot 會複寫到鏡射複本，並可在兩個站台上使用。SnapCenter 還原作業將在主要站台執行。
 
-image:sc-saphana-vmware-smas-image45.png[""]
+image:sc-saphana-vmware-smas-image45.png["圖示範所討論的內容"]
 
 
 
@@ -66,7 +65,7 @@ image:sc-saphana-vmware-smas-image45.png[""]
 
 如果儲存設備發生故障， HANA VM 以及 SnapCenter 和 SnapCenter for VMware 外掛程式 VM 將會使用 vSphere HA 容錯移轉至次要站台的 ESX 主機。HANA 資料庫需要開始使用，然後在第二個站台存取鏡射複本。主要站台切換至次要站台，而 SnapCenter 現在則在新的主要站台執行備份與還原作業。
 
-image:sc-saphana-vmware-smas-image46.png[""]
+image:sc-saphana-vmware-smas-image46.png["圖示範所討論的內容"]
 
 
 
@@ -74,7 +73,7 @@ image:sc-saphana-vmware-smas-image46.png[""]
 
 與儲存設備故障相同。
 
-image:sc-saphana-vmware-smas-image47.png[""]
+image:sc-saphana-vmware-smas-image47.png["圖示範所討論的內容"]
 
 
 
@@ -84,4 +83,4 @@ image:sc-saphana-vmware-smas-image47.png[""]
 
 因應措施是，您必須確保 VM 和主要端的重新配置是一起進行，或是在使用 SnapCenter 進行還原作業之前，必須先容錯移轉主要站台。
 
-image:sc-saphana-vmware-smas-image48.png[""]
+image:sc-saphana-vmware-smas-image48.png["圖示範所討論的內容"]

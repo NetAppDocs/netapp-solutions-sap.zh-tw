@@ -37,4 +37,4 @@ summary:
 
 我們將著重於 VMware Metro 儲存叢集（ VMSC ）組態，使用統一的 SnapMirror 主動式同步存取設定，如下圖所示，但我們也會簡短地接觸裸機和非統一存取組態。
 
-image:sc-saphana-vmware-smas-image1.png["圖示範所討論的內容"]
+bda60fd55001f0b523d1bf959086d104

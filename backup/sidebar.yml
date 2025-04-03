@@ -173,7 +173,3 @@ entries:
   url: "/backup/saphana-commvault_pdf_link.html"
 - title: NetApp All SAN Array上的SAP HANA：現代化的SAN、資料保護與災難恢復
   url: "/backup/saphana-san_pdf_link.html"
-- title: SnapCenter Integration for SAP ASE 資料庫
-  url: "/backup/snapcenter-sap-ase.html"
-- title: SnapCenter Integration for IBM DB2 資料庫
-  url: "/backup/snapcenter-ibm-db2.html"

@@ -11,9 +11,12 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
 
 
-[role="lead"]
 如文件開頭所述，文件的目的是提供使用 VMware 搭配 VMFS 和 SnapMirror Active Sync 的 HANA 環境最佳實務做法。我們只會說明與此特定解決方案相關的詳細資料和重要步驟，不會說明一般 SnapCenter 概念。這些概念和其他 SnapCenter 相關資訊可在以下網址找到：
 
 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用"]
@@ -59,11 +62,11 @@ SnapMirror 主動式同步的管理與監控需要 REST API 存取。因此， S
 ....
 <add key="IsRestEnabledForStorageConnection" value="true">
 ....
-image:sc-saphana-vmware-smas-image21.png["圖示範所討論的內容"]
+0181b55ff54ec406a7a0cc37316b2419
 
 變更參數之後，必須重新啟動 SnapCenter SMCore 服務。
 
-image:sc-saphana-vmware-smas-image22.png["圖示範所討論的內容"]
+c4833502ae178bb2566e2f4c312313f0
 
 
 
@@ -71,9 +74,9 @@ image:sc-saphana-vmware-smas-image22.png["圖示範所討論的內容"]
 
 SnapCenter 的 REST API 啟用後，即可新增儲存系統。需要同時新增兩個儲存叢集，而非個別 SVM 。
 
-image:sc-saphana-vmware-smas-image23.png["圖示範所討論的內容"]
+c3f1649cad0dd2dcceadde937be6c21b
 
-image:sc-saphana-vmware-smas-image24.png["圖示範所討論的內容"]
+923d4459c371511d945b82eaf0a1b2d8
 
 
 
@@ -86,11 +89,11 @@ image:sc-saphana-vmware-smas-image24.png["圖示範所討論的內容"]
 
 NOTE: 必須在主機新增工作流程期間設定認證，以便將 vSphere 選取為主機類型。
 
-image:sc-saphana-vmware-smas-image25.png["圖示範所討論的內容"]
+8a233717862ad8f931eec704237189b0
 
-image:sc-saphana-vmware-smas-image26.png["圖示範所討論的內容"]
+096db71fd0e7f6e67ff883276e3c2b3d
 
-image:sc-saphana-vmware-smas-image27.png["圖示範所討論的內容"]
+fa2faddb92f7f2a081a5e8d3b4c634e0
 
 
 NOTE: SnapCenter 不需要額外的 vSphere 外掛程式組態。
@@ -109,7 +112,7 @@ NOTE: 無特定要求。外掛程式部署和自動探索會照常進行。
 ....
 volume show -vserver <vs> -volume <vol> -fields smbc-consensus,is-smbc-master
 ....
-image:sc-saphana-vmware-smas-image28.png["圖示範所討論的內容"]
+f082ae0a3101216bbe5a2cb95c9356e6
 
 
 
@@ -117,9 +120,9 @@ image:sc-saphana-vmware-smas-image28.png["圖示範所討論的內容"]
 
 即使 SnapCenter 未觸發任何 SnapMirror 更新作業，也必須使用 SnapMirror 複寫來設定受 SnapMirror 作用中同步保護的資源原則。
 
-image:sc-saphana-vmware-smas-image29.png["圖示範所討論的內容"]
+4e41710c592daaa8d956dd05b9a7c011
 
-image:sc-saphana-vmware-smas-image30.png["圖示範所討論的內容"]
+9e673b65c6e6499189fc0aa877745378
 
 
 

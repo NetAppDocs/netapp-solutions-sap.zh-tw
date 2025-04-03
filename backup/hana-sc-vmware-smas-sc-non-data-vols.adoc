@@ -8,7 +8,7 @@ summary:
 :allow-uri-read: 
 
 
-[role="lead"]
+'''
 當資源是在 SnapCenter 中手動設定且未自動探索時， SnapCenter 並不知道 VMware 和 SnapMirror 的作用中同步。因此， SnapCenter 原生不支援這些功能。
 
 對於共享 HANA 等非資料磁碟區，在考慮其他手動步驟時，仍可使用 SnapCenter 進行備份與還原作業。
@@ -19,7 +19,7 @@ summary:
 
 如果 SnapCenter 中設定的儲存系統發生故障， SnapCenter 將不會自動切換至其他儲存系統。非資料 Volume 資源必須手動調整，以便將磁碟區的鏡射複本用於備份與還原作業。
 
-image:sc-saphana-vmware-smas-image39.png["圖示範所討論的內容"]
+500fc97f0288596ec90d509cb258340f
 
 
 
@@ -27,9 +27,9 @@ image:sc-saphana-vmware-smas-image39.png["圖示範所討論的內容"]
 
 雖然 SnapCenter 並未察覺 HANA 共用磁碟區的 SnapMirror 主動式同步組態，但 Snapshot 仍會複寫至兩個站台。
 
-image:sc-saphana-vmware-smas-image40.png["圖示範所討論的內容"]
+175066e70e2d47fc384d34a47e028ea9
 
-image:sc-saphana-vmware-smas-image41.png["圖示範所討論的內容"]
+26ce94e574712db28e7fbd25d64e3058
 
 
 

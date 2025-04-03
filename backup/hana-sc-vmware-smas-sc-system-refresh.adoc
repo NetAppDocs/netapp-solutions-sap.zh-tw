@@ -10,9 +10,12 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
 
 
-[role="lead"]
 複製作業可在主要站台或次要儲存設備上執行。
 
 複製的磁碟區將不會是 HANA 一致性群組的一部分，也不會以 SnapMirror 主動式同步複寫。

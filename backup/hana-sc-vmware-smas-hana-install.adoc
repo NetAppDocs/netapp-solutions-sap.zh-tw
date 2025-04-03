@@ -26,14 +26,14 @@ summary:
 
 下圖顯示 HANA 系統的儲存與資料存放區組態。您必須為 HANA 系統的每個檔案系統設定專用磁碟區， LUN ，資料存放區。資料存放區不得在多個 HANA 系統或其他工作負載之間共用。
 
-image:sc-saphana-vmware-smas-image5.png["圖示範所討論的內容"]
+82f7e2441c1fe3cddcf55e57b026a729
 
 HANA 系統的所有三個 LUN （ Hana + + + + + Data + + + + + SMA ， Hana + + + + + + log + + + + + SAM 和 Hana + + shared + + + + + + + + SMA ），以及 OS 映像和 SnapCenter 元件的 LUN 均已配置在 A700 儲存叢集上。
 
 
 NOTE: HANA 系統的所有磁碟區都必須在同一個 SVM 中進行佈建。在稍後所述的 SnapMirror 主動式同步組態中，我們將在所有三個 HANA 磁碟區之間建立一致性群組，這需要磁碟區位於同一個 SVM 中。基礎架構磁碟區將位於不同的一致性群組中，因此可能位於不同的 SVM 中。
 
-image:sc-saphana-vmware-smas-image6.png["圖示範所討論的內容"]
+7c0e8cc99c344ccf72c2ee5f6b2deff0
 
 必須設定啟動器群組，且上述 LUN 必須對應至 ESX 1 主機，該主機在實驗室設定中與 A700 儲存系統非常接近。
 
@@ -43,7 +43,7 @@ image:sc-saphana-vmware-smas-image6.png["圖示範所討論的內容"]
 
 我們使用先前配置的三個 LUN ，為 HANA 系統建立了三個資料存放區。此外，我們也使用基礎架構 LUN 建立基礎架構資料存放區。
 
-image:sc-saphana-vmware-smas-image7.png["圖示範所討論的內容"]
+a7117a80d56406d5a698b8a18c1e5495
 
 
 
@@ -57,7 +57,7 @@ image:sc-saphana-vmware-smas-image7.png["圖示範所討論的內容"]
 
 HANA VM 新增了三個磁碟，每個磁碟位於其中一個為 HANA 系統建立的資料存放區內。
 
-image:sc-saphana-vmware-smas-image8.png["圖示範所討論的內容"]
+edcb775c8403d042b80f0e30b26f76f6
 
 
 
@@ -67,7 +67,7 @@ image:sc-saphana-vmware-smas-image8.png["圖示範所討論的內容"]
 
 必須先停止虛擬機器，才能新增參數。
 
-image:sc-saphana-vmware-smas-image9.png["圖示範所討論的內容"]
+5d1df9bba7ffc4e5ebd9f46da5bbd544
 
 您可以使用下列命令來檢查功能。
 

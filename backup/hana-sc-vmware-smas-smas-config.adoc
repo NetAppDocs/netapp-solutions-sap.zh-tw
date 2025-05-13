@@ -11,11 +11,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
+
+[role="lead"]
+本文涵蓋本解決方案所需的組態步驟。
 
 
 
@@ -25,9 +24,9 @@ summary:
 
 ONTAP 中介器必須在兩個儲存叢集上都可用並設定。
 
-c8fb8235e330b668c2655f610ef83ed2
+image:sc-saphana-vmware-smas-image10.png["圖示範所討論的內容"]
 
-598ab88ed28fb47cc6fed84769cfe7b7
+image:sc-saphana-vmware-smas-image11.png["圖示範所討論的內容"]
 
 
 
@@ -41,7 +40,7 @@ c8fb8235e330b668c2655f610ef83ed2
 
 複寫 HANA 系統時，一致性群組必須包含個別 HANA 系統所使用的所有磁碟區（資料，記錄和共享）。應該是一致性群組一部分的磁碟區必須儲存在同一個 SVM 中。作業系統映像可以儲存在獨立的磁碟區中，並有自己的一致性群組。下圖說明兩個 HANA 系統的組態範例。
 
-c9dd8223c3031c560e7fcb534fe72d4c
+image:sc-saphana-vmware-smas-image12.png["圖示範所討論的內容"]
 
 
 
@@ -51,9 +50,9 @@ c9dd8223c3031c560e7fcb534fe72d4c
 
 使用鄰近設定，我們定義了哪個 ESX 主機靠近哪個儲存叢集。在我們的案例中， A700 靠近 ESX-1 ， A800 接近 ESX-2 。
 
-dd184cbed7494681add4cd0923c35ad1
+image:sc-saphana-vmware-smas-image13.png["圖示範所討論的內容"]
 
-b4a120e73887d5a1feaea990b4106840
+image:sc-saphana-vmware-smas-image14.png["圖示範所討論的內容"]
 
 
 NOTE: 在非統一存取設定中，主要儲存叢集（ A700 ）的啟動器群組必須僅包含 ESX-1 主機的啟動器，因為沒有 SAN 連線至 ESX-2 。此外，您還需要在第二個儲存叢集（ A800 ）上設定另一個啟動器群組，該群組僅包含 ESX-2 主機的啟動器。不需要週邊配置和啟動器群組複寫。
@@ -62,7 +61,7 @@ NOTE: 在非統一存取設定中，主要儲存叢集（ A700 ）的啟動器�
 
 == 使用 ONTAP 系統管理員設定保護
 
-758fcf827d91f970ad0a1968238ccc5a
+image:sc-saphana-vmware-smas-image15.png["圖示範所討論的內容"]
 
 
 
@@ -75,11 +74,11 @@ NOTE: 在非統一存取設定中，主要儲存叢集（ A700 ）的啟動器�
 
 NOTE: 在非統一存取設定中，啟動器群組不得複寫，因為必須在第二個儲存叢集上設定個別的啟動器群組。
 
-b8f1a75a3e7bc6e3bf261fe7ffa1e0e2
+image:sc-saphana-vmware-smas-image16.png["圖示範所討論的內容"]
 
 按一下特殊警示點選設定，即可檢閱啟動器群組設定之前完成的組態。
 
-e8be19aa85b20704bd5c66e8456b6d5f
+image:sc-saphana-vmware-smas-image17.png["圖示範所討論的內容"]
 
 必須設定目的地儲存叢集，且必須啟用「初始化關係」。
 
@@ -89,11 +88,11 @@ e8be19aa85b20704bd5c66e8456b6d5f
 
 在 A700 儲存叢集（來源），新的關係現已列出。
 
-3bb42e3344ae4570152ebb388eb1227f
+image:sc-saphana-vmware-smas-image18.png["圖示範所討論的內容"]
 
 在 A800 儲存叢集（目的地），會列出新的關係和複寫狀態。
 
-c331b637cb55698b7f98fcf2419d792e
+image:sc-saphana-vmware-smas-image19.png["圖示範所討論的內容"]
 
 
 
@@ -118,4 +117,4 @@ SnapCenter 會偵測到主要站台，並用於執行備份，還原和複製作
 
 NOTE: 請記住，來源和目的地並不與 SVM 或儲存叢集相關，但每個複寫關係可能會有所不同。
 
-fb53c1d7bdf219623e37eb225d8e1cb5
+image:sc-saphana-vmware-smas-image20.png["圖示範所討論的內容"]

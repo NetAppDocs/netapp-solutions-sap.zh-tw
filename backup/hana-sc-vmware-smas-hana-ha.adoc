@@ -30,7 +30,7 @@ SAP HANA 系統複寫提供一種作業模式，可同步複寫資料，預先�
 
 如需所有組態選項和複寫案例的完整說明，請參閱 https://help.sap.com/docs/SAP_HANA_PLATFORM/4e9b18c116aa42fc84c7dbfd02111aba/afac7100bc6d47729ae8eae32da5fdec.html["SAP HANA 系統複製 ++|++ SAP 說明入口網站"]。
 
-4e170df3e248822a256cb7a56e2ee615
+image:sc-saphana-vmware-smas-image2.png["圖示範所討論的內容"]
 
 
 
@@ -52,7 +52,7 @@ SnapMirror 主動式同步可讓業務服務持續運作、即使整個站台故
 
 如果主機或完整站台發生故障，則需要在次要站台提供新的伺服器來存取故障主機的資料。這通常是與正式作業規模相同的測試或 QA 系統，現在將會關閉並用於執行正式作業系統。次要站台的 LUN 連線至新主機後，就必須啟動 HANA 資料庫。因此，總 RTO 取決於配置主機所需的時間，以及 HANA 資料庫的啟動時間。
 
-5117fd6090a066bc48afdff23d072244
+image:sc-saphana-vmware-smas-image3.png["圖示範所討論的內容"]
 
 
 
@@ -64,7 +64,7 @@ SnapMirror 主動式同步可讓業務服務持續運作、即使整個站台故
 
 如果主機或完整站台發生故障， vSphere HA 可用於在次要 ESX 主機上啟動 HANA VM 。HANA VM 執行時，需要啟動 HANA 資料庫。因此總 RTO 主要取決於 HANA 資料庫的啟動時間。
 
-ba6dc9fe67f1354333b3009840c86114
+image:sc-saphana-vmware-smas-image4.png["圖示範所討論的內容"]
 
 
 

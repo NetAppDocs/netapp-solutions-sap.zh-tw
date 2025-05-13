@@ -16,7 +16,7 @@ summary: NFS版本4及更新版本需要使用者驗證。此驗證可透過使�
 [role="lead"]
 NFS版本4及更新版本需要使用者驗證。此驗證可透過使用集中式使用者管理工具（例如輕量型目錄存取傳輸協定（LDAP）伺服器或本機使用者帳戶）來完成。下列各節將說明如何設定本機使用者帳戶。
 
-在SAP HANA軟體開始安裝之前、必須在SAP HANA主機和儲存控制器上手動建立管理使用者「<idadm>'」和「sapsys」群組。
+ `sapsys`在開始安裝 SAP HANA 軟體之前，必須在 SAP HANA 主機和儲存控制器上手動建立管理使用者 `<sid>adm`,`<sid>crypt`和群組。
 
 
 
@@ -24,9 +24,9 @@ NFS版本4及更新版本需要使用者驗證。此驗證可透過使用集中�
 
 如果不存在、則必須在SAP HANA主機上建立「最大化」群組。您必須選擇不與儲存控制器上現有群組ID衝突的唯一群組ID。
 
-使用者「<idadm>'」是在SAP HANA主機上建立。必須選擇不與儲存控制器上現有使用者ID衝突的唯一ID。
+使用者 `<sid>adm`和 `<sid>crypt`在 SAP HANA 主機上建立。必須選擇與儲存控制器上現有使用者 ID 不衝突的唯一 ID 。
 
-對於多主機SAP HANA系統、所有SAP HANA主機上的使用者和群組ID必須相同。群組和使用者是在其他SAP HANA主機上建立、方法是將來源系統中的「/etc/group」和「/etc/passwd」中受影響的線路複製到所有其他SAP HANA主機。
+對於多主機 SAP HANA 系統，所有 SAP HANA 主機上的使用者和群組 ID 都必須相同。群組和使用者是在其他 SAP HANA 主機上建立，方法是將來源系統中 `/etc/passwd`受影響的線路複製 `/etc/group`到所有其他 SAP HANA 主機。
 
 
 NOTE: NFSv4網域必須在所有的Linux伺服器（`/etc/idmapd.conf）和SVM上設為相同的值。在Linux主機的檔案「/etc/idmapd.conf」中設定網域參數「Domain =<domain-name>」。
@@ -44,7 +44,7 @@ NOTE: 最新的Linux核心不需要執行此步驟。警告訊息可以安全地
 
 == 儲存控制器
 
-SAP HANA主機和儲存控制器上的使用者ID和群組ID必須相同。在儲存叢集上輸入下列命令即可建立群組和使用者：
+SAP HANA 主機和儲存控制器上的使用者 ID 和群組 ID 必須相同。在儲存叢集上輸入下列命令即可建立群組和使用者：
 
 ....
 vserver services unix-group create -vserver <vserver> -name <group name> -id <group id>

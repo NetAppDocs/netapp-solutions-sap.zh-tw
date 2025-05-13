@@ -6,9 +6,13 @@ summary:
 ---
 = SnapCenter 還原與還原
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
 
 
-'''
+[role="lead"]
 當虛擬資源儲存在 VMPS/VMDK 上時， SnapCenter 還原作業一律會透過複製，掛載，複製作業來完成。
 
 . SnapCenter 會根據所選的 Snapshot 建立 Volume Clone
@@ -24,11 +28,11 @@ summary:
 
 此外，當資源設定為 SnapMirror 作用中同步時， SnapCenter 還原作業只能在目前的主要站台上選取。
 
-5f35033b3e56e00e68892ec016ea328f
+image:sc-saphana-vmware-smas-image37.png["圖示範所討論的內容"]
 
 還原與還原作業正在執行時，您可以看到新的複製磁碟區，該磁碟區是在目前的主要站台建立的。
 
-6f06150d9d62fe339c9d504278327de4
+image:sc-saphana-vmware-smas-image38.png["圖示範所討論的內容"]
 
 在 HANA Linux 主機上，您可以看到裝載到主機上的新磁碟。還原作業完成後， SnapCenter 會再次移除資料存放區和磁碟區。
 

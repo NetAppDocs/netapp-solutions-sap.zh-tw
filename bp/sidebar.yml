@@ -130,9 +130,3 @@ entries:
     url: "/bp/saphana_fas_fc_where_to_find_additional_information.html"
   - title: 更新歷史記錄
     url: "/bp/saphana_fas_fc_update_history.html"
-- title: IBM Power Systems上的SAP HANA與AFF 採用NFS的NetApp Sibs系統
-  url: "/bp/saphana-ibm-aff-nfs_pdf_link.html"
-- title: SAP搭配Oracle on UNIX和NFS搭配NetApp ONTAP 功能
-  url: "/bp/sap-oracle-snapman_pdf_link.html"
-- title: SAP搭配Microsoft SQL Server在Windows上使用ONTAP
-  url: "/bp/sap-sqls-sc_pdf_link.html"

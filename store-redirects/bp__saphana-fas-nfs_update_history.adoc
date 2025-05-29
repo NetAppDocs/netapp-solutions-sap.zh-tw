@@ -1,0 +1,8 @@
+---
+permalink: bp/ssaphana-fas-nfs_update_history.html 
+redirect: bp/hana-fas-nfs-update-history.html 
+---
+= 
+:allow-uri-read: 
+
+

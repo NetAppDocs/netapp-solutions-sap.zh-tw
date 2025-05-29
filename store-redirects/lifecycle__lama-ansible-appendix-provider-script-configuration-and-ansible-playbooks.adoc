@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html 
+redirect: lifecycle/lama-ansible-appendix.html 
+---
+= 
+:allow-uri-read: 
+
+

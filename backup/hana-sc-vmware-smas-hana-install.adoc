@@ -18,7 +18,7 @@ summary:
 
 
 [role="lead"]
-本章說明使用 VMFS 的 VMware 設定所特有的 SAP HANA 系統安裝與組態。其他一般最佳實務做法請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html#sap-hana-tailored-data-center-integration["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]。
+本章說明使用 VMFS 的 VMware 設定所特有的 SAP HANA 系統安裝與組態。其他一般最佳實務做法link:../bp/hana-aff-fc-introduction.html#sap-hana-tailored-data-center-integration["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]請參閱。
 
 
 
@@ -234,7 +234,7 @@ NOTE: 使用所述組態時， /usr/sap/sma 目錄將位於 OS VMDK 上。如果
 
 必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。通訊連接埠必須適當設定 HANA 執行個體編號。在我們的設定執行個體編號「 00 」中使用。
 
-如需更詳細的說明，請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#sap-hana-backup-user-and-hdbuserstore-configuration["SAP HANA資料庫備份的資源專屬組態SnapCenter"]
+如需更詳細的說明，請參閱link:hana-br-scs-resource-config-hana-database-backups.html#sap-hana-backup-user-and-hdbuserstore-configuration["SAP HANA資料庫備份的資源專屬組態SnapCenter"]
 
 ....
 smaadm@hana-1:/usr/sap/SMA/HDB00> hdbuserstore set SMAKEY hana-1:30013 SNAPCENTER <password>

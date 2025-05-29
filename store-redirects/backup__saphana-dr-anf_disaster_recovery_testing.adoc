@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_disaster_recovery_testing.html 
+redirect: backup/hana-dr-anf-testing.html 
+---
+= 
+:allow-uri-read: 
+
+

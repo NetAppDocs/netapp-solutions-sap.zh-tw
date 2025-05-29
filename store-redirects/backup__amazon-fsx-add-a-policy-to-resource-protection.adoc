@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-add-a-policy-to-resource-protection.html 
+redirect: backup/fsxn-add-policy-to-resource-protection.html 
+---
+= 
+:allow-uri-read: 
+
+

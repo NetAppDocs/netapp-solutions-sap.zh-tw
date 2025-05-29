@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/sc-copy-clone-automation-example-scripts.html 
+redirect: lifecycle/sc-copy-clone-automation-scripts.html 
+---
+= 
+:allow-uri-read: 
+
+

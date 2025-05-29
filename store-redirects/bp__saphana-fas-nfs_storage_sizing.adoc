@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana-fas-nfs_storage_sizing.html 
+redirect: bp/hana-fas-nfs-storage-sizing.html 
+---
+= 
+:allow-uri-read: 
+
+

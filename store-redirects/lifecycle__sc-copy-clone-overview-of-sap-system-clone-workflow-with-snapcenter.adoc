@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html 
+redirect: lifecycle/sc-copy-clone-overview-of-sys-clone-wf-sc.html 
+---
+= 
+:allow-uri-read: 
+
+

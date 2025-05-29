@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_architecture.html 
+redirect: bp/hana-fas-fc-architecture.html 
+---
+= 
+:allow-uri-read: 
+
+

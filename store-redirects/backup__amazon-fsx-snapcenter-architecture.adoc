@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-snapcenter-architecture.html 
+redirect: backup/fsxn-snapcenter-architecture.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -17,4 +17,4 @@ summary:
 
 複製的磁碟區將不會是 HANA 一致性群組的一部分，也不會以 SnapMirror 主動式同步複寫。
 
-如需系統重新整理工作流程的詳細資訊，請參閱： https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"]
+如需系統重新整理工作流程的詳細資訊，請參閱：link:../lifecycle/sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"]

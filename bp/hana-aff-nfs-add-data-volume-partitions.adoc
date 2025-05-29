@@ -1,0 +1,220 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-nfs-add-data-volume-partitions.html 
+keywords: data volume, tenant database, sps4 
+summary: 從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區。這可讓您為SAP HANA租戶資料庫的資料磁碟區設定兩個以上的磁碟區、並擴充至超過單一磁碟區的大小和效能限制。 
+---
+= 新增其他資料Volume分割區
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+從SAP HANA 2.0 SPS4開始、即可設定額外的資料Volume分割區。這可讓您為SAP HANA租戶資料庫的資料磁碟區設定兩個以上的磁碟區、並擴充至超過單一磁碟區的大小和效能限制。
+
+
+NOTE: SAP HANA單一主機和SAP HANA多主機系統可使用兩個以上的個別磁碟區來處理資料磁碟區。您可以隨時新增其他資料Volume分割區。
+
+
+
+== 啟用其他資料Volume分割區
+
+若要啟用其他資料Volume分割區、請在SysSTEMDB組態中使用SAP HANA Studio或Cockpit、在global.ini`中新增下列項目。
+
+....
+[customizable_functionalities]
+persistence_datavolume_partition_multipath = true
+....
+
+NOTE: 手動將參數新增至「global.ini`」檔案、需要重新啟動資料庫。
+
+
+
+== 單一主機SAP HANA系統的Volume組態
+
+具有多個分割區的單一主機SAP HANA系統的磁碟區配置、就像具有一個資料磁碟區分割的系統配置、但另一個資料磁碟區儲存在不同的集合體上、如同記錄磁碟區和其他資料磁碟區。下表顯示SAP HANA單一主機系統的組態範例、其中包含兩個資料Volume分割區。
+
+|===
+| 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器b的Aggregate 2 
+
+
+| 資料磁碟區：SID_data_mnt00001 | 共享Volume：SID_Shared | 資料Volume：SID_data2_mnt00001 | 記錄磁碟區：SID_log_mnt00001 
+|===
+下表顯示具有兩個資料Volume分割之單一主機系統的掛載點組態範例。
+
+|===
+| 交會路徑 | 目錄 | HANA主機的裝載點 
+
+
+| SID_data_mnt00001 | – | /HANA /資料/SID/mnt00001 
+
+
+| SID_data2_mnt00001 | – | /HANA /資料2/SID/mnt00001 
+
+
+| SID_log_mnt00001 | – | /HANA /記錄/SID/mnt00001 
+
+
+| SID_Shared | user-SAP共享 | /USP/SAP/SID /Hana /共享 
+|===
+您可以建立新的資料磁碟區、並使用NetApp ONTAP 功能更新程式或ONTAP 支援功能CLI將其掛載到命名空間。
+
+
+
+== 多主機SAP HANA系統的Volume組態
+
+磁碟區的配置就像多主機SAP HANA系統的配置一樣、只要有一個資料Volume分割區、但有一個額外的資料磁碟區儲存在不同的Aggregate上、就像記錄磁碟區和其他資料磁碟區一樣。下表顯示SAP HANA多主機系統的組態範例、其中包含兩個資料Volume分割區。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 節點1的資料與記錄磁碟區 | 資料磁碟區：SID_data_mnt00001 | – | 記錄磁碟區：SID_log_mnt00001 | Data2 Volume：SID_data2_mnt00001 
+
+
+| 節點2的資料與記錄磁碟區 | 記錄磁碟區：SID_log_mnt00002 | Data2 Volume：SID_data2_mnt00002 | 資料Volume：SID_data_mnt00002 | – 
+
+
+| 節點3的資料與記錄磁碟區 | – | 資料Volume：SID_data_mnt00003 | Data2 Volume：SID_data2_mnt00003 | 記錄磁碟區：SID_log_mnt00003 
+
+
+| 節點4的資料與記錄磁碟區 | Data2 Volume：SID_data2_mnt00004 | 記錄磁碟區：SID_log_mnt00004 | – | 資料Volume：SID_data_mnt00004 
+
+
+| 所有主機的共享Volume | 共享Volume：SID_Shared | – | – | – 
+|===
+下表顯示具有兩個資料Volume分割之單一主機系統的掛載點組態範例。
+
+|===
+| 交會路徑 | 目錄 | SAP HANA主機的掛載點 | 附註 
+
+
+| SID_data_mnt00001 | – | /HANA /資料/SID/mnt00001 | 安裝於所有主機 
+
+
+| SID_data2_mnt00001 | – | /HANA /資料2/SID/mnt00001 | 安裝於所有主機 
+
+
+| SID_log_mnt00001 | – | /HANA /記錄/SID/mnt00001 | 安裝於所有主機 
+
+
+| SID_data_mnt00002 | – | /HANA /資料/SID/mnt00002 | 安裝於所有主機 
+
+
+| SID_data2_mnt00002 | – | /HANA /資料2/SID/mnt00002 | 安裝於所有主機 
+
+
+| SID_log_mnt00002 | – | /HANA /記錄/SID/mnt00002 | 安裝於所有主機 
+
+
+| SID_data_mnt00003 | – | /HANA /資料/SID/mnt00003 | 安裝於所有主機 
+
+
+| SID_data2_mnt00003 |  | /HANA /資料2/SID/mnt00003 | 安裝於所有主機 
+
+
+| SID_log_mnt00003 |  | /HANA /記錄/SID/mnt00003 | 安裝於所有主機 
+
+
+| SID_data_mnt00004 |  | /HANA /資料/SID/mnt00004 | 安裝於所有主機 
+
+
+| SID_data2_mnt00004 | – | /HANA /資料2/SID/mnt00004 | 安裝於所有主機 
+
+
+| SID_log_mnt00004 | – | /HANA /記錄/SID/mnt00004 | 安裝於所有主機 
+
+
+| SID_Shared | 共享 | /Hana /共享/SID | 安裝於所有主機 
+
+
+| SID_Shared | USR-SAP-host1 | /usr/sap/sID | 安裝於主機1 
+
+
+| SID_Shared | USR-SAP-host2 | /usr/sap/sID | 安裝於主機2 
+
+
+| SID_Shared | US-SAP-host3 | /usr/sap/sID | 安裝於主機3 
+
+
+| SID_Shared | US-SAP-host4 | /usr/sap/sID | 安裝於主機4 
+
+
+| SID_Shared | USR-SAP-host5 | /usr/sap/sID | 安裝於主機5 
+|===
+您可以建立新的資料磁碟區、並使用ONTAP 支援功能的功能、將其掛載至命名空間。ONTAP
+
+
+
+== 主機組態
+
+除了一節中所述的工作之外，還link:hana-aff-nfs-host-setup.html["主機設定、"]必須建立新額外資料 Volume 的額外掛載點和 `fstab`項目，並且必須掛載新的 Volume 。
+
+. 建立其他掛載點。
++
+** 對於單一主機系統、請建立掛載點並設定資料庫主機的權限：
++
+....
+sapcc-hana-tst-06:/ # mkdir -p /hana/data2/SID/mnt00001
+sapcc-hana-tst-06:/ # chmod –R 777 /hana/data2/SID
+....
+** 對於多主機系統、請建立掛載點、並在所有工作者和待命主機上設定權限。
++
+下列命令範例適用於2-plus 1多主機HANA系統。
+
++
+*** 第一工作者主機：
++
+....
+sapcc-hana-tst-06:~ # mkdir -p /hana/data2/SID/mnt00001
+sapcc-hana-tst-06:~ # mkdir -p /hana/data2/SID/mnt00002
+sapcc-hana-tst-06:~ # chmod -R 777 /hana/data2/SID
+....
+*** 第二工作者主機：
++
+....
+sapcc-hana-tst-07:~ # mkdir -p /hana/data2/SID/mnt00001
+sapcc-hana-tst-07:~ # mkdir -p /hana/data2/SID/mnt00002
+sapcc-hana-tst-07:~ # chmod -R 777 /hana/data2/SID
+....
+*** 待命主機：
++
+....
+sapcc-hana-tst-07:~ # mkdir -p /hana/data2/SID/mnt00001
+sapcc-hana-tst-07:~ # mkdir -p /hana/data2/SID/mnt00002
+sapcc-hana-tst-07:~ # chmod -R 777 /hana/data2/SID
+....
+
+
+
+
+. 將其他檔案系統新增至所有主機上的「etc/stb'組態檔」。
++
+請參閱下列使用NFSv4.1的單一主機系統範例：
+
++
+....
+<storage-vif-data02>:/SID_data2_mnt00001 /hana/data2/SID/mnt00001 nfs rw, vers=4
+minorversion=1,hard,timeo=600,rsize=1048576,wsize=262144,bg,noatime,lock 0 0
+....
++
+
+NOTE: 使用不同的儲存虛擬介面來連接每個資料磁碟區、以確保每個磁碟區使用不同的TCP工作階段、或使用nconnect掛載選項（若適用於您的作業系統）。
+
+. 執行「mount–a」命令來掛載檔案系統。
+
+
+
+
+== 新增額外的資料Volume分割區
+
+針對租戶資料庫執行下列SQL陳述式、將額外的資料磁碟區分割新增至租戶資料庫。使用其他磁碟區的路徑：
+
+....
+ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
+....
+image:saphana_aff_nfs_image18.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

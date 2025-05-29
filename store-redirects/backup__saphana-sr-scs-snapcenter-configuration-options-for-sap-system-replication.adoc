@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html 
+redirect: backup/hana-sr-scs-config-options-sap-system-replication.html 
+---
+= 
+:allow-uri-read: 
+
+

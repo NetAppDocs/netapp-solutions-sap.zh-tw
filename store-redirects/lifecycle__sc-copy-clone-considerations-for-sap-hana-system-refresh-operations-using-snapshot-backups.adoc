@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/sc-copy-clone-considerations-for-sap-hana-system-refresh-operations-using-snapshot-backups.html 
+redirect: lifecycle/sc-copy-clone-sys-refresh-using-snapshot-backups.html 
+---
+= 
+:allow-uri-read: 
+
+

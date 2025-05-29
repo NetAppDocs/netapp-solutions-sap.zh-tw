@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-version-history.html 
+redirect: backup/hana-sr-scs-version-history.html 
+---
+= 
+:allow-uri-read: 
+
+

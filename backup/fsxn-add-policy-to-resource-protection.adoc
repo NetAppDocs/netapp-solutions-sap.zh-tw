@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-add-policy-to-resource-protection.html 
+keywords: policy, resource, protection, hana, daily schedule 
+summary: 本節說明如何將原則新增至資源保護。 
+---
+= 新增原則至資源保護
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須將新原則新增至HANA資源保護組態、如下圖所示。
+
+image:amazon-fsx-image86.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+我們的設定定義了每日排程。
+
+image:amazon-fsx-image87.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

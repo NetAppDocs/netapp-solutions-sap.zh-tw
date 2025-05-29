@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html 
+redirect: bp/hana-fas-fc-add-data-volume-partitions-single-host-systems.html 
+---
+= 
+:allow-uri-read: 
+
+

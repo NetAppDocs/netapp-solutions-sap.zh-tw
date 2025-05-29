@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html 
+redirect: bp/hana-fas-fc-io-stack-configuration.html 
+---
+= 
+:allow-uri-read: 
+
+

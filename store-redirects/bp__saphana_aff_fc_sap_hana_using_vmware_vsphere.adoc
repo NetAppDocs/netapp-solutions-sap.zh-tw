@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_fc_sap_hana_using_vmware_vsphere.html 
+redirect: bp/hana-aff-fc-using-vsphere.html 
+---
+= 
+:allow-uri-read: 
+
+

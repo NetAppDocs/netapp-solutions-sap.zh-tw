@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/lama-ansible-netapp-sap-lama-integration-using-ansible.html 
+redirect: lifecycle//lama-ansible-netapp-integration.html 
+---
+= 
+:allow-uri-read: 
+
+

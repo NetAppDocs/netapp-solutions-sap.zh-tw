@@ -22,7 +22,7 @@ summary: 本技術報告提供使用 NetApp BlueXP 應用程式備份 nad 恢復
 
 本文件說明如何使用 NetApp BlueXP 設定及設定 SAP HANA 、從內部部署到雲端型物件存放區的資料保護。其中涵蓋解決方案的 BlueXP 備份與還原部分。此解決方案使用 NetApp Snap Center 強化內部部署的 SAP HANA 備份解決方案、並提供具成本效益的方式、可將 SAP HANA 備份長期歸檔至雲端型物件儲存設備、並可選擇將物件儲存設備分層至 AWS Glacier / Deep Glacier 等歸檔儲存設備、 Microsoft Azure Blob Archive 和 GCP 歸檔儲存設備。
 
-如需內部部署 SAP HANA 備份與還原解決方案的設定與組態、請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html#the-netapp-solution["TR-4614 ：使用 SnapCenter 進行 SAP HANA 備份與還原（ netapp.com ）"]。
+內部部署 SAP HANA 備份與還原解決方案的設定與組態link:hana-br-scs-overview.html#the-netapp-solution["TR-4614 ：使用 SnapCenter 進行 SAP HANA 備份與還原（ netapp.com ）"]如中所述。
 
 此 TR 僅說明如何利用以 AWS S3 物件儲存為例的 SAP HANA BlueXP 備份與還原功能來強化內部部署 SnapCenter 型 SAP HANA 備份與還原解決方案。使用 Microsoft Azure 和 GCP 物件儲存設備而非 AWS S3 進行的設定和組態類似、但本文件並未說明。
 
@@ -45,8 +45,7 @@ image:hana-hycl-back-image1.png["Ein Bild 、 das Text 、 Screenshot 、 Diagra
 
 == 安裝與組態步驟總覽
 
-所需的安裝和組態步驟可分為三個部分。+
-先決條件是已在 NetApp Snap Center 設定 SAP HANA 備份組態。如需設定 Snap Center for SAP HANA 的第一站、請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-configuration.html["SnapCenter 組態（ netapp.com ）"]。
+所需的安裝和組態步驟可分為三個部分。+ 先決條件是已在 NetApp Snap Center 設定 SAP HANA 備份組態。如需設定 Snap Center for SAP HANA 的第一站link:hana-br-scs-snapcenter-config.html["SnapCenter 組態（ netapp.com ）"]，請參閱。
 
 . NetApp BlueXP元件的安裝與組態。
 +

@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana-fas-nfs_storage_controller_setup.html 
+redirect: bp/hana-fas-nfs-storage-controller-setup.html 
+---
+= 
+:allow-uri-read: 
+
+

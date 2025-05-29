@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-failover.html 
+keywords:  
+summary:  
+---
+= 災難恢復容錯移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本節概述 Azure NetApp Files （ anf ）中的 SAP HANA 災難恢復。

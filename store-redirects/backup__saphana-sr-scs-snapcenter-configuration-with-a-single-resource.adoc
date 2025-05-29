@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html 
+redirect: backup/hana-sr-scs-config-single-resource.html 
+---
+= 
+:allow-uri-read: 
+
+

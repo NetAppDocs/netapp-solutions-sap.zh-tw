@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_storage_controller_setup.html 
+redirect: bp/hana-fas-fc-storage-controller-setup.html 
+---
+= 
+:allow-uri-read: 
+
+

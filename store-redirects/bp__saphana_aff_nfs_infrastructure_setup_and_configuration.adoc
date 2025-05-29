@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_nfs_infrastructure_setup_and_configuration.html 
+redirect: bp/hana-aff-nfs-infra-setup-config.html 
+---
+= 
+:allow-uri-read: 
+
+

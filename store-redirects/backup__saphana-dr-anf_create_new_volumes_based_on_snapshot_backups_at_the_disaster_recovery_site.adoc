@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_create_new_volumes_based_on_snapshot_backups_at_the_disaster_recovery_site.html 
+redirect: backup/hana-dr-anf-create-vols-at-dr-site.html 
+---
+= 
+:allow-uri-read: 
+
+

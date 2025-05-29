@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-scs-system-replication-overview.html 
+keywords: tr4719, 4719, introduction, system replication, dr, snapcenter, high availability, RPO, RTO 
+summary: SAP HANA系統複寫通常是SAP HANA資料庫的高可用度或災難恢復解決方案。SAP HANA系統複寫提供不同的作業模式、您可以根據使用案例或可用度需求來使用。 
+---
+= TR-4719：SAP HANA系統複寫- SnapCenter 利用功能進行備份與恢復
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAP HANA系統複寫通常是SAP HANA資料庫的高可用度或災難恢復解決方案。SAP HANA系統複寫提供不同的作業模式、您可以根據使用案例或可用度需求來使用。
+
+作者： Nils Bauer 、 NetApp
+
+有兩種主要使用案例可以結合使用：
+
+* 高可用度：使用專屬的SAP HANA次要主機、還原點目標（RPO）為零、還原時間目標（RTO）則為最低。
+* 遠距離進行災難恢復。次要SAP HANA主機也可在正常運作期間用於開發或測試。
+
+
+
+
+== 高可用度、RPO為零、RTO最低
+
+系統複寫的設定是使用預先載入至次要SAP HANA主機記憶體的表格進行同步複寫。此高可用度解決方案可用於解決硬體或軟體故障、並可在SAP HANA軟體升級期間（幾乎無停機作業）減少計畫性停機時間。
+
+容錯移轉作業通常是透過使用協力廠商叢集軟體、或是使用SAP Landscape Management軟體進行一鍵式工作流程來自動化。
+
+從備份需求的觀點來看、您必須能夠建立獨立於哪個SAP HANA主機為主要或次要的備份。共享備份基礎架構可用來還原任何備份、無論備份是在哪個主機上建立。
+
+本文件其餘部分則著重於將SAP系統複寫設定為高可用度解決方案的備份作業。
+
+image:saphana-sr-scs-image1.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+== 遠距離進行災難恢復
+
+系統複寫可設定為非同步複寫、而非預先載入至次要主機記憶體的表格。此解決方案用於解決資料中心故障、而且容錯移轉作業通常是手動執行。
+
+關於備份需求、您必須能夠在資料中心1正常運作期間、以及在資料中心2的災難恢復期間、建立備份。資料中心1和2提供獨立的備份基礎架構、備份作業會在災難容錯移轉過程中啟動。備份基礎架構通常不會共用、而且無法還原在其他資料中心建立的備份作業。
+
+image:saphana-sr-scs-image2.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

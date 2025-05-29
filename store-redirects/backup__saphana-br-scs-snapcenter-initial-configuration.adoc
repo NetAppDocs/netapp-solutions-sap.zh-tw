@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-br-scs-snapcenter-initial-configuration.html 
+redirect: backup/hana-br-scs-snapcenter-initial-config.html 
+---
+= 
+:allow-uri-read: 
+
+

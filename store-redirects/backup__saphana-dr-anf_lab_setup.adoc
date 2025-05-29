@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_lab_setup.html 
+redirect: backup/hana-dr-anf-lab-setup.html 
+---
+= 
+:allow-uri-read: 
+
+

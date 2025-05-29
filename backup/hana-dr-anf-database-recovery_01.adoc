@@ -1,0 +1,199 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-database-recovery_01.html 
+keywords: recovery, forward, log, backups, system, tenant, database, log, backups, check, consistency, hana, azure 
+summary: 以下說明HANA資料庫還原的步驟 
+---
+= HANA資料庫恢復
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下說明HANA資料庫還原的步驟
+
+啟動所需的SAP服務。
+
+....
+vm-pr1:~ # systemctl start sapinit
+....
+下列輸出顯示所需的程序。
+
+....
+vm-pr1:/ # ps -ef | grep sap
+root     23101     1  0 11:29 ?        00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
+pr1adm   23191     1  3 11:29 ?        00:00:00 /usr/sap/PR1/HDB01/exe/sapstartsrv pf=/usr/sap/PR1/SYS/profile/PR1_HDB01_vm-pr1 -D -u pr1adm
+sapadm   23202     1  5 11:29 ?        00:00:00 /usr/sap/hostctrl/exe/sapstartsrv pf=/usr/sap/hostctrl/exe/host_profile -D
+root     23292     1  0 11:29 ?        00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
+root     23359  2597  0 11:29 pts/1    00:00:00 grep --color=auto sap
+....
+以下小節將說明使用複寫的記錄備份進行還原的程序、以及不使用轉送還原的程序。使用系統資料庫的HANA恢復指令碼和租戶資料庫的hdbsql命令來執行恢復。
+
+
+
+== 恢復至最新的HANA資料Volume備份儲存點
+
+使用下列命令作為使用者pr1adm執行還原至最新的備份儲存點：
+
+* 系統資料庫
+
+
+....
+recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG”
+....
+* 租戶資料庫
+
+
+....
+Within hdbsql: RECOVER DATA FOR PR1 USING SNAPSHOT CLEAR LOG
+....
+您也可以使用HANA Studio或Cockpit來執行系統和租戶資料庫的還原。
+
+下列命令輸出顯示恢復執行。
+
+
+
+=== 系統資料庫恢復
+
+....
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> HDBSettings.sh recoverSys.py --command="RECOVER DATA USING SNAPSHOT CLEAR LOG"
+[139702869464896, 0.008] >> starting recoverSys (at Fri Feb 19 14:32:16 2021)
+[139702869464896, 0.008] args: ()
+[139702869464896, 0.009] keys: {'command': 'RECOVER DATA USING SNAPSHOT CLEAR LOG'}
+using logfile /usr/sap/PR1/HDB01/vm-pr1/trace/backup.log
+recoverSys started: ============2021-02-19 14:32:16 ============
+testing master: vm-pr1
+vm-pr1 is master
+shutdown database, timeout is 120
+stop system
+stop system on: vm-pr1
+stopping system: 2021-02-19 14:32:16
+stopped system: 2021-02-19 14:32:16
+creating file recoverInstance.sql
+restart database
+restart master nameserver: 2021-02-19 14:32:21
+start system: vm-pr1
+sapcontrol parameter: ['-function', 'Start']
+sapcontrol returned successfully:
+2021-02-19T14:32:56+00:00  P0027646      177bab4d610 INFO    RECOVERY RECOVER DATA finished successfully
+recoverSys finished successfully: 2021-02-19 14:32:58
+[139702869464896, 42.017] 0
+[139702869464896, 42.017] << ending recoverSys, rc = 0 (RC_TEST_OK), after 42.009 secs
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01>
+....
+
+
+=== 租戶資料庫恢復
+
+如果尚未在來源系統上為pr1adm使用者建立使用者存放區金鑰、則必須在目標系統上建立金鑰。金鑰中設定的資料庫使用者必須擁有執行租戶還原作業的權限。
+
+....
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> hdbuserstore set PR1KEY vm-pr1:30113 <backup-user> <password>
+....
+租戶還原現在會使用hdbsql執行。
+
+....
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> hdbsql -U PR1KEY
+Welcome to the SAP HANA Database interactive terminal.
+Type:  \h for help with commands
+       \q to quit
+hdbsql SYSTEMDB=> RECOVER DATA FOR PR1 USING SNAPSHOT CLEAR LOG
+0 rows affected (overall time 66.973089 sec; server time 66.970736 sec)
+hdbsql SYSTEMDB=>
+....
+HANA資料庫現已開始運作、HANA資料庫的災難恢復工作流程已通過測試。
+
+
+
+== 使用記錄/目錄備份進行轉送恢復
+
+正在從來源系統複寫記錄備份和HANA備份目錄。
+
+使用所有可用的記錄備份進行還原時、會以使用者pr1adm的身分執行下列命令：
+
+* 系統資料庫
+
+
+....
+recoverSys.py --command "RECOVER DATABASE UNTIL TIMESTAMP '2021-02-20 00:00:00' CLEAR LOG USING SNAPSHOT"
+....
+* 租戶資料庫
+
+
+....
+Within hdbsql: RECOVER DATABASE FOR PR1 UNTIL TIMESTAMP '2021-02-20 00:00:00' CLEAR LOG USING SNAPSHOT
+....
+
+NOTE: 若要使用所有可用的記錄進行還原、您可以隨時將恢復聲明中的時間戳記作為未來的時間戳記。
+
+您也可以使用HANA Studio或Cockpit來執行系統和租戶資料庫的還原。
+
+下列命令輸出顯示恢復執行。
+
+
+
+=== 系統資料庫恢復
+
+....
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> HDBSettings.sh recoverSys.py --command "RECOVER DATABASE UNTIL TIMESTAMP '2021-02-20 00:00:00' CLEAR LOG USING SNAPSHOT"
+[140404915394368, 0.008] >> starting recoverSys (at Fri Feb 19 16:06:40 2021)
+[140404915394368, 0.008] args: ()
+[140404915394368, 0.008] keys: {'command': "RECOVER DATABASE UNTIL TIMESTAMP '2021-02-20 00:00:00' CLEAR LOG USING SNAPSHOT"}
+using logfile /usr/sap/PR1/HDB01/vm-pr1/trace/backup.log
+recoverSys started: ============2021-02-19 16:06:40 ============
+testing master: vm-pr1
+vm-pr1 is master
+shutdown database, timeout is 120
+stop system
+stop system on: vm-pr1
+stopping system: 2021-02-19 16:06:40
+stopped system: 2021-02-19 16:06:41
+creating file recoverInstance.sql
+restart database
+restart master nameserver: 2021-02-19 16:06:46
+start system: vm-pr1
+sapcontrol parameter: ['-function', 'Start']
+sapcontrol returned successfully:
+2021-02-19T16:07:19+00:00  P0009897      177bb0b4416 INFO    RECOVERY RECOVER DATA finished successfully, reached timestamp 2021-02-19T15:17:33+00:00, reached log position 38272960
+recoverSys finished successfully: 2021-02-19 16:07:20
+[140404915394368, 39.757] 0
+[140404915394368, 39.758] << ending recoverSys, rc = 0 (RC_TEST_OK), after 39.749 secs
+....
+
+
+=== 租戶資料庫恢復
+
+....
+pr1adm@vm-pr1:/usr/sap/PR1/HDB01> hdbsql -U PR1KEY
+Welcome to the SAP HANA Database interactive terminal.
+Type:  \h for help with commands
+       \q to quit
+
+hdbsql SYSTEMDB=> RECOVER DATABASE FOR PR1 UNTIL TIMESTAMP '2021-02-20 00:00:00' CLEAR LOG USING SNAPSHOT
+0 rows affected (overall time 63.791121 sec; server time 63.788754 sec)
+
+hdbsql SYSTEMDB=>
+....
+HANA資料庫現已開始運作、HANA資料庫的災難恢復工作流程已通過測試。
+
+
+
+== 檢查最新記錄備份的一致性
+
+由於記錄備份磁碟區複寫是獨立於SAP HANA資料庫執行的記錄備份程序、因此災難恢復站台可能會有開放且不一致的記錄備份檔案。只有最新的記錄備份檔案可能不一致、在災難恢復站台使用「hdbbackupcheck」工具執行轉送恢復之前、應先檢查這些檔案。
+
+如果「hdbbackupcheck」工具回報最新記錄備份錯誤、則必須移除或刪除最新的記錄備份集。
+
+....
+pr1adm@hana-10: > hdbbackupcheck /hanabackup/PR1/log/SYSTEMDB/log_backup_0_0_0_0.1589289811148
+Loaded library 'libhdbcsaccessor'
+Loaded library 'libhdblivecache'
+Backup '/mnt/log-backup/SYSTEMDB/log_backup_0_0_0_0.1589289811148' successfully checked.
+....
+必須針對系統和租戶資料庫的最新記錄備份檔案執行檢查。
+
+如果「hdbbackupcheck」工具回報最新記錄備份錯誤、則必須移除或刪除最新的記錄備份集。

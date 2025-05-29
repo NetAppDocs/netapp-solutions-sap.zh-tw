@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/sc-copy-clone-sap-system-copy-refresh-and-clone-scenarios.html 
+redirect: lifecycle/sc-copy-clone-sys-copy-refresh-clone.html 
+---
+= 
+:allow-uri-read: 
+
+

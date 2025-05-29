@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_time_synchronization.html 
+redirect: bp/hana-fas-fc-time-synchronization.html 
+---
+= 
+:allow-uri-read: 
+
+

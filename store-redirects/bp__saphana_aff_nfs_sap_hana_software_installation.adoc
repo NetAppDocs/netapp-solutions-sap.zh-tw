@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_nfs_sap_hana_software_installation.html 
+redirect: bp/hana-aff-nfs-software_installation.html 
+---
+= 
+:allow-uri-read: 
+
+

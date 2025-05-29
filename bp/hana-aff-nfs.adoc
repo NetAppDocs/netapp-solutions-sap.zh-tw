@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-nfs.html 
+keywords:  
+summary:  
+---
+= 
+:allow-uri-read: 
+
+
+= ：硬中斷：：：頁尾：：圖示：字型： linkatt特點 ：：：： imagesdir: ../media/
+
+[role="lead"]
+NetApp AFF 上的 SAP HANA 搭配 NFS 傳輸協定。
+
+|===
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+
+
+|  |  |  
+|===

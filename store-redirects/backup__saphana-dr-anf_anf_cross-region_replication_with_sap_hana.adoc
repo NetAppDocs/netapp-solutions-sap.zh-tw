@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_anf_cross-region_replication_with_sap_hana.html 
+redirect: backup/hana-dr-anf-cross-region-replication.html 
+---
+= 
+:allow-uri-read: 
+
+

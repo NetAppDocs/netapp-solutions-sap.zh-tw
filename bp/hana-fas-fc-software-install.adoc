@@ -1,0 +1,144 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-fas-fc-software-install.html 
+keywords: install, san, hana, software, multiple, host, system, single, 
+summary: 以下是SAP HANA軟體安裝需求。 
+---
+= SAP HANA軟體安裝
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下是SAP HANA軟體安裝需求。
+
+
+
+== 安裝在單一主機系統上
+
+SAP HANA軟體安裝不需要為單一主機系統做任何額外準備。
+
+
+
+== 安裝在多主機系統上
+
+
+NOTE: 下列安裝程序以SAP HANA 1.0 SPS12或更新版本為基礎。
+
+在開始安裝之前、請先建立「global.ini`檔案」、以便在安裝過程中使用SAP儲存連接器。SAP儲存連接器會在安裝程序期間、將所需的檔案系統掛載到工作主機上。「global.ini`檔案必須可在所有主機（例如：「/HANA /共享/SID」檔案系統）存取的檔案系統中使用。
+
+在多主機系統上安裝SAP HANA軟體之前、必須完成下列步驟：
+
+. 將下列資料LUN和記錄LUN的掛載選項新增至「global.ini`檔案：
++
+** 資料和記錄檔系統的「資料」和「inode 64」
+
+
+. 新增資料和記錄分割區的WWID。WWID必須符合在/etc/multipath.conf檔案中設定的別名。
++
+下列輸出顯示2+1多主機設定範例、其中系統識別碼（SID）為SS3。
+
++
+....
+stlrx300s8-6:~ # cat /hana/shared/global.ini
+[communication]
+listeninterface = .global
+[persistence]
+basepath_datavolumes = /hana/data/SS3
+basepath_logvolumes = /hana/log/SS3
+[storage]
+ha_provider = hdb_ha.fcClient
+partition_*_*__prtype = 5
+partition_*_data__mountoptions = -o relatime,inode64
+partition_*_log__mountoptions = -o relatime,inode64,nobarrier
+partition_1_data__wwid = hana-SS3_data_mnt00001
+partition_1_log__wwid = hana-SS3_log_mnt00001
+partition_2_data__wwid = hana-SS3_data_mnt00002
+partition_2_log__wwid = hana-SS3_log_mnt00002
+[system_information]
+usage = custom
+[trace]
+ha_fcclient = info
+stlrx300s8-6:~ #
+....
++
+如果使用LVM、則所需的組態會有所不同。以下範例顯示使用SID=FC5的2+1多主機設定。
+
++
+....
+sapcc-hana-tst-03:/hana/shared # cat global.ini
+[communication]
+listeninterface = .global
+[persistence]
+basepath_datavolumes = /hana/data/FC5
+basepath_logvolumes = /hana/log/FC5
+[storage]
+ha_provider = hdb_ha.fcClientLVM
+partition_*_*__prtype = 5
+partition_*_data__mountOptions = -o relatime,inode64
+partition_*_log__mountOptions = -o relatime,inode64
+partition_1_data__lvmname = FC5_data_mnt00001-vol
+partition_1_log__lvmname = FC5_log_mnt00001-vol
+partition_2_data__lvmname = FC5_data_mnt00002-vol
+partition_2_log__lvmname = FC5_log_mnt00002-vol
+sapcc-hana-tst-03:/hana/shared #
+....
++
+使用 SAP `hdblcm` 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用 `addhosts`選項新增第二名工作者（ sapcc-hana TST-06 ）和待命主機（ sapcc-hana TST-07 ）。CLI 選項(`--storage_cfg=/hana/shared`中包含已準備好檔案的儲存 `storage_cfg`目錄 `global.ini`）。視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝pherton 2.7。
+
+
+
+....
+/hdblcm --action=install --addhosts=sapcc-hana-tst-06:role=worker:storage_partition=2,sapcc-hana-tst-07:role=standby --storage_cfg=/hana/shared/
+
+AP HANA Lifecycle Management - SAP HANA Database 2.00.073.00.1695288802
+************************************************************************
+
+
+Scanning software locations...
+Detected components:
+    SAP HANA AFL (incl.PAL,BFL,OFL) (2.00.073.0000.1695321500) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/HDB_AFL_LINUX_X86_64/packages
+    SAP HANA Database (2.00.073.00.1695288802) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/HDB_SERVER_LINUX_X86_64/server
+    SAP HANA Database Client (2.18.24.1695756995) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/HDB_CLIENT_LINUX_X86_64/SAP_HANA_CLIENT/client
+    SAP HANA Studio (2.3.75.000000) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/HDB_STUDIO_LINUX_X86_64/studio
+    SAP HANA Local Secure Store (2.11.0) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/HANA_LSS_24_LINUX_X86_64/packages
+    SAP HANA XS Advanced Runtime (1.1.3.230717145654) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_RT_10_LINUX_X86_64/packages
+    SAP HANA EML AFL (2.00.073.0000.1695321500) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/HDB_EML_AFL_10_LINUX_X86_64/packages
+    SAP HANA EPM-MDS (2.00.073.0000.1695321500) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/SAP_HANA_EPM-MDS_10/packages
+    Automated Predictive Library (4.203.2321.0.0) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/PAAPL4_H20_LINUX_X86_64/apl-4.203.2321.0-hana2sp03-linux_x64/installer/packages
+    GUI for HALM for XSA (including product installer) Version 1 (1.015.0) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACALMPIUI15_0.zip
+    XSAC FILEPROCESSOR 1.0 (1.000.102) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACFILEPROC00_102.zip
+    SAP HANA tools for accessing catalog content, data preview, SQL console, etc. (2.015.230503) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSAC_HRTT_20/XSACHRTT15_230503.zip
+    Develop and run portal services for customer applications on XSA (2.007.0) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACPORTALSERV07_0.zip
+    The SAP Web IDE for HANA 2.0 (4.007.0) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSAC_SAP_WEB_IDE_20/XSACSAPWEBIDE07_0.zip
+    XS JOB SCHEDULER 1.0 (1.007.22) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACSERVICES07_22.zip
+    SAPUI5 FESV6 XSA 1 - SAPUI5 1.71 (1.071.52) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACUI5FESV671_52.zip
+    SAPUI5 FESV9 XSA 1 - SAPUI5 1.108 (1.108.5) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACUI5FESV9108_5.zip
+    SAPUI5 SERVICE BROKER XSA 1 - SAPUI5 Service Broker 1.0 (1.000.4) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACUI5SB00_4.zip
+    XSA Cockpit 1 (1.001.37) in /mnt/sapcc-share/software/SAP/HANA2SPS7-73/DATA_UNITS/XSA_CONTENT_10/XSACXSACOCKPIT01_37.zip
+
+
+SAP HANA Database version '2.00.073.00.1695288802' will be installed.
+
+Select additional components for installation:
+
+  Index | Components      | Description
+  --------------------------------------------------------------------------------------------------
+  1     | all             | All components
+  2     | server          | No additional components
+  3     | client          | Install SAP HANA Database Client version 2.18.24.1695756995
+  4     | lss             | Install SAP HANA Local Secure Store version 2.11.0
+  5     | studio          | Install SAP HANA Studio version 2.3.75.000000
+  6     | xs              | Install SAP HANA XS Advanced Runtime version 1.1.3.230717145654
+  7     | afl             | Install SAP HANA AFL (incl.PAL,BFL,OFL) version 2.00.073.0000.1695321500
+  8     | eml             | Install SAP HANA EML AFL version 2.00.073.0000.1695321500
+  9     | epmmds          | Install SAP HANA EPM-MDS version 2.00.073.0000.1695321500
+  10    | sap_afl_sdk_apl | Install Automated Predictive Library version 4.203.2321.0.0
+
+Enter comma-separated list of the selected indices [3,4]: 2,3
+....
+ Verify that the installation tool installed all selected components at all worker and standby hosts.

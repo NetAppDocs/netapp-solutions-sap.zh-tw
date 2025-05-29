@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-snapcenter-4.6-configuration-using-a-resource-group.html 
+redirect: backup/hana-sr-scs-4.6-config-using-resource-group.html 
+---
+= 
+:allow-uri-read: 
+
+

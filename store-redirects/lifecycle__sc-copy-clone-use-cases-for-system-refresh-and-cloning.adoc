@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html 
+redirect: lifecycle/sc-copy-clone-usecases-sys-refresh-cloning.html 
+---
+= 
+:allow-uri-read: 
+
+

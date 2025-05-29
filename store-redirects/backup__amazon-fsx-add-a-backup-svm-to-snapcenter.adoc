@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-add-a-backup-svm-to-snapcenter.html 
+redirect: backup/fsxn-add-backup-svm-snapcenter.html 
+---
+= 
+:allow-uri-read: 
+
+

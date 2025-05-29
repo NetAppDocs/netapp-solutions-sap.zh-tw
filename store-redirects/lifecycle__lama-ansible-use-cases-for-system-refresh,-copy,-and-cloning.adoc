@@ -1,0 +1,8 @@
+---
+permalink: lifecycle/lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html 
+redirect: lifecycle/lama-ansible-usecases-sys-refresh-copy-clone.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-config-steps-cross-region-replication.html 
+keywords: configuration, steps, anf, cross, region, replication, preparation, 
+summary: 在設定磁碟區複寫之前、必須在災難恢復站台執行幾個準備步驟。 
+---
+= ANF跨區域複寫的組態步驟
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+在設定磁碟區複寫之前、必須在災難恢復站台執行幾個準備步驟。
+
+* NetApp帳戶必須可供使用、並設定與來源相同的Azure訂閱。
+* 容量資源池必須可用、並使用上述NetApp帳戶進行設定。
+* 虛擬網路必須可供使用及設定。
+* 在虛擬網路中、委派的子網路必須可供使用並設定為搭配ANF使用。
+
+
+現在可以為HANA資料、HANA共享及HANA記錄備份磁碟區建立保護磁碟區。下表顯示實驗室設定中已設定的目的地磁碟區。
+
+
+NOTE: 為了達到最佳延遲、在發生災難容錯移轉時、磁碟區必須靠近執行SAP HANA的VM。因此、災難恢復磁碟區所需的固定程序與任何其他SAP HANA正式作業系統相同。
+
+|===
+| Hana Volume | 來源 | 目的地 | 複寫排程 
+
+
+| Hana資料量 | PR1-data-mnt00001 | PR1-data-mnt001-sm-dest | 每日 
+
+
+| Hana共享磁碟區 | PR1共享 | PR1-share-sm-dest | 每小時 
+
+
+| Hana記錄/目錄備份磁碟區 | hanabackup | hanabackup sm目的地 | 每小時 
+|===
+對於每個Volume、必須執行下列步驟：
+
+. 在DR站台建立新的保護磁碟區：
++
+.. 提供磁碟區名稱、容量資源池、配額和網路資訊。
+.. 提供傳輸協定和Volume存取資訊。
+.. 提供來源Volume ID和複寫排程。
+.. 建立目標Volume。
+
+
+. 授權來源磁碟區的複寫。
++
+** 提供目標Volume ID。
+
+
+
+
+下列螢幕擷取畫面會詳細顯示組態步驟。
+
+在災難恢復站台上、選取磁碟區並按一下「Add Data Replication（新增資料複寫）」、即可建立新的保護磁碟區。在「基礎」索引標籤中、您必須提供磁碟區名稱、容量集區和網路資訊。
+
+
+NOTE: 磁碟區的配額可以根據容量需求來設定、因為磁碟區效能不會影響複寫程序。發生災難恢復容錯移轉時、必須調整配額以符合實際的效能需求。
+
+
+NOTE: 如果容量集區已設定手動QoS、除了容量需求之外、您也可以設定處理量。與上述相同、您可以在正常作業期間以低值設定處理量、並在發生災難恢復容錯移轉時增加處理量。
+
+image:saphana-dr-anf_image10.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+在「傳輸協定」索引標籤中、您必須提供網路傳輸協定、網路路徑和匯出原則。
+
+
+NOTE: 傳輸協定必須與來源Volume所使用的傳輸協定相同。
+
+image:saphana-dr-anf_image11.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+在複寫索引標籤中、您必須設定來源Volume ID和複寫排程。對於資料Volume複寫、我們設定了實驗室設定的每日複寫排程。
+
+
+NOTE: 來源Volume ID可從來源Volume的Properties（屬性）畫面複製。
+
+image:saphana-dr-anf_image12.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+最後、您必須提供目標Volume的ID、以授權來源Volume進行複寫。
+
+
+NOTE: 您可以從目的地Volume的Properties（屬性）畫面複製目的地Volume ID。
+
+image:saphana-dr-anf_image13.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+HANA共享磁碟區和記錄備份磁碟區必須執行相同的步驟。

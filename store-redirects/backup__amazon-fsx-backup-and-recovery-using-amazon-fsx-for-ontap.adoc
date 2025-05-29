@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html 
+redirect: backup/fsxn-backup-recovery-using-fsxn.html 
+---
+= 
+:allow-uri-read: 
+
+

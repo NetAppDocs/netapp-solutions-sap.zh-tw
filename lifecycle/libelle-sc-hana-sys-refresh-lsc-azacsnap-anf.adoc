@@ -1,0 +1,242 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/libelle-sc-hana-sys-refresh-lsc-azacsnap-anf.html 
+keywords: prerequisites, limitations, AzAcSnap, systemcopy, sc-system-refresh.sh, configuration, ZSCCOPYSHUTDOWN, ZSCCOPYUMOUNT, ZAZACSNAPRESTORE, ZSCCOPYRECOVER 
+summary: 在Azure上使用Azure NetApp Files 適用於SAP HANA、Oracle和DB2的功能、可為客戶提供NetApp ONTAP 支援原生Microsoft Azure NetApp Files 支援服務的進階資料管理和資料保護功能。 
+---
+= SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-solution-architectures["SAP HANA適用的Azure NetApp Files"^]Azure上的Oracle和DB2、可ONTAP 透過原生的Microsoft Azure NetApp Files 支援服務、為客戶提供NetApp的進階資料管理和資料保護功能。 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction["AzAcSnap"^] 是SAP系統快速重新整理作業的基礎、可為SAP HANA和Oracle系統建立應用程式一致的NetApp Snapshot複本（AzAcSnap目前不支援DB2）。
+
+Snapshot複製備份是隨需建立或定期建立的、作為備份策略的一部分、之後即可有效率地複製到新的磁碟區、並用於快速重新整理目標系統。AzAcSnap提供必要的工作流程、可建立備份並將其複製到新磁碟區、而Libelle SystemCopy則會執行完整端點對端點系統更新所需的處理前及後置處理步驟。
+
+在本章中、我們將說明使用AzAcSnap和Libelle SystemCopy、使用SAP HANA做為基礎資料庫的自動化SAP系統更新。由於AzAcSnap也適用於Oracle、因此也可使用AzAcSnap for Oracle來實作相同程序。AzAcSnap未來可能會支援其他資料庫、然後使用LSC和AzAcSnap為這些資料庫啟用系統複製作業。
+
+下圖顯示AzAcSnap與LSC在SAP系統更新生命週期的典型高層工作流程：
+
+* 目標系統的一次性初始安裝與準備。
+* 由LSC執行的SAP預先處理作業。
+* 將來源系統的現有Snapshot複本還原（或複製）至AzAcSnap執行的目標系統。
+* 由LSC執行的SAP後處理作業。
+
+
+系統可作為測試或QA系統使用。當要求新的系統重新整理時、工作流程會以步驟2重新啟動。所有剩餘的複製磁碟區都必須手動刪除。
+
+image:libelle-sc-image23.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+== 先決條件與限制
+
+必須滿足下列先決條件。
+
+
+
+=== 已為來源資料庫安裝及設定AzAcSnap
+
+一般而言、AzAcSnap有兩種部署選項、如下圖所示。
+
+image:libelle-sc-image24.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+AzAcSnap可安裝並在集中儲存所有資料庫組態檔案的中央Linux VM上執行、AzAcSnap則可存取所有資料庫（透過hdbsqll用戶端）及所有資料庫的設定HANA使用者儲存金鑰。透過分散式部署、AzAcSnap會個別安裝在每個資料庫主機上、通常只會儲存本機資料庫的DB組態。LSC整合支援這兩種部署選項。不過、我們在本文件的實驗室設定中採用混合式方法。AzAcSnap與所有DB組態檔案一起安裝在中央NFS共用區上。此集中式安裝共用是以「/mnt/software/AZACSNAP/snapshot工具」安裝在所有VM上。然後在資料庫VM本機上執行此工具。
+
+
+
+=== 安裝及設定適用於來源和目標SAP系統的Libelle SystemCopy
+
+Libelle SystemCopy部署包含下列元件：
+
+image:libelle-sc-image25.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+* * LSC Master。*顧名思義、這是主元件、可控制以Libelle為基礎之系統複本的自動工作流程。
+* * LSC Worker。* LSC員工通常在目標SAP系統上執行、並執行自動化系統複本所需的指令碼。
+* * LSC衛星* LSC衛星會在必須執行其他指令碼的協力廠商系統上執行。LSC主機也能發揮LSC衛星系統的作用。
+
+
+Libelle SystemCopy（LSC）GUI必須安裝在適當的VM上。在本次實驗室設定中、LSC GUI安裝在獨立的Windows VM上、但也可與LSC工作人員一起在DB主機上執行。LSC工作者必須至少安裝在目標DB的VM上。視您選擇的AzAcSnap部署選項而定、可能需要額外的LSC工作者安裝。您必須在執行AzAcSnap的VM上安裝LSC工作者。
+
+安裝LSC之後、必須根據LSC準則執行來源和目標資料庫的基本組態。下列影像顯示本文件的實驗室環境組態。如需來源及目標SAP系統與資料庫的詳細資訊、請參閱下一節。
+
+image:libelle-sc-image26.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+您也應該為SAP系統設定適當的標準工作清單。如需LSC安裝與組態的詳細資訊、請參閱LSC安裝套件的LSC使用手冊。
+
+
+
+=== 已知限制
+
+此處說明的AzAcSnap與LSC整合僅適用於SAP HANA單一主機資料庫。也可支援SAP HANA多主機（或橫向擴充）部署、但這類部署需要對複製階段和底層指令碼的LSC自訂工作進行一些調整或增強。本文件並未涵蓋此類增強功能。
+
+SAP系統重新整理整合一律會使用來源系統最新成功的Snapshot複本來執行目標系統的重新整理。如果您想要使用其他較舊的Snapshot複本、請使用中的對應邏輯 <<ZAZACSNAPRESORE>> 必須調整自訂工作。此程序超出本文件的範圍。
+
+
+
+== 實驗室設定
+
+實驗室設定包含來源SAP系統和目標SAP系統、兩者均在SAP HANA單一主機資料庫上執行。
+
+下圖顯示實驗室設定。
+
+image:libelle-sc-image27.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+其中包含下列系統、軟體版本和Azure NetApp Files 《不含資料的更新：
+
+* * P01.* SAP HANA 2.0 SP5資料庫。來源資料庫、單一主機、單一使用者租戶。
+* *《PN1.* SAP NetWeaver ABAP 7.51》。來源SAP系統：
+* * VM-P01.*安裝AzAcSnap的SLES 15 SP2。主控P01和PN1的來源VM。
+* * QL1.* SAP HANA 2.0 SP5資料庫。系統重新整理目標資料庫、單一主機、單一使用者租戶。
+* * QN1.* SAP NetWeaver ABAP 7.51。系統重新整理目標SAP系統。
+* * VM-ql1.* SLES 15 SP2、已安裝LSC工作者。託管QL1和QN1的目標VM。
+* LSC主要版本9.00.0.052.
+* * VM - LSC-master.* Windows Server 2016。主機LSC主要和LSC GUI。
+* 安裝在專屬資料庫主機上的P01和QL1資料、記錄和共享的支援資料、記錄和共享的支援。Azure NetApp Files
+* 適用於Azure NetApp Files 指令碼、AzAcSnap安裝及所有VM上掛載組態檔案的集中式支援Volume。
+
+
+
+
+== 初始一次性準備步驟
+
+在執行第一次SAP系統重新整理之前、您必須先整合Azure NetApp Files AzAcSnap執行的以Snapshot複製與複製為基礎的儲存作業。您也必須執行輔助指令碼、以啟動和停止資料庫、以及掛載或卸載Azure NetApp Files 等功能。所有必要的工作都會在LSC中以自訂工作的形式執行、作為複製階段的一部分。下圖顯示LSC工作清單中的自訂工作。
+
+image:libelle-sc-image28.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+此處將詳細說明所有五項複製工作。在其中一些工作中、會使用範例指令碼「shc-system-refresh.sh」來進一步自動化所需的SAP HANA資料庫還原作業、以及掛載和卸載資料磁碟區。指令碼在系統輸出中使用「LSC：Successful」訊息、表示LSC執行成功。如需自訂工作和可用參數的詳細資料、請參閱LSC使用手冊和LSC開發人員指南。此實驗室環境中的所有工作都會在目標DB VM上執行。
+
+
+NOTE: 範例指令碼係依現狀提供、且不受NetApp支援。您可以透過電子郵件向mailto：ng-sapcc@netapp.com [ng-sapcc@netapp.com ^]索取指令碼。
+
+
+
+=== Sc-system-refresh.sh組態檔
+
+如前所述、輔助指令碼可用來啟動和停止資料庫、掛載Azure NetApp Files 和卸載整個過程、以及從Snapshot複本恢復SAP HANA資料庫。指令碼「shc-system-refresh.sh」儲存在中央NFS共用區。指令碼需要每個目標資料庫的組態檔、而且必須儲存在與指令碼本身相同的資料夾中。組態檔必須具有下列名稱：「c-system-refresh-<target DB SID>.cfg/」（例如本實驗室環境中的「c-system-refresh-Ql1.cfg/」）。此處使用的組態檔使用固定/硬編碼的來源DB SID。只要做一些變更、就能增強指令碼和組態檔、將來源DB SID當作輸入參數。
+
+下列參數必須根據特定環境進行調整：
+
+....
+# hdbuserstore key, which should be used to connect to the target database
+KEY=”QL1SYSTEM”
+# single container or MDC
+export P01_HANA_DATABASE_TYPE=MULTIPLE_CONTAINERS
+# source tenant names { TENANT_SID [, TENANT_SID]* }
+export P01_TENANT_DATABASE_NAMES=P01
+# cloned vol mount path
+export CLONED_VOLUMES_MOUNT_PATH=`tail -2 /mnt/software/AZACSNAP/snapshot_tool/logs/azacsnap-restore-azacsnap-P01.log | grep -oe “[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:/.* “`
+....
+
+
+=== ZSCCOPYSHUTDOWN
+
+此工作會停止目標SAP HANA資料庫。本工作的「程式碼」區段包含下列文字：
+
+....
+$_include_tool(unix_header.sh)_$
+sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh shutdown $_system(target_db, id)_$ > $_logfile_$
+....
+指令碼「shc-system-refresh.sh」使用兩個參數：「shutdown」命令和DB SID、以使用sapControl來停止SAP HANA資料庫。系統輸出會重新導向至標準LSC記錄檔。如前所述、我們會使用「LSC：成功」訊息來表示成功執行。
+
+image:libelle-sc-image29.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== ZSCCOPYMOUUNT
+
+這項工作會從Azure NetApp Files 目標DB作業系統（OS）卸載舊版的支援資料磁碟區。此工作的程式碼區段包含下列文字：
+
+....
+$_include_tool(unix_header.sh)_$
+sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh umount $_system(target_db, id)_$ > $_logfile_$
+....
+使用的指令碼與上一個工作相同。傳遞的兩個參數是「umount」命令和DB SID。
+
+
+
+=== ZAZACSNAPRESORE
+
+此工作會執行AzAcSnap、將來源資料庫的最新成功Snapshot複本複製到目標資料庫的新Volume。此作業相當於在傳統備份環境中重新導向備份還原。不過、Snapshot複本與複製功能可讓您在數秒內執行此工作、即使是最大的資料庫、但傳統備份也可能需要數小時的時間。此工作的程式碼區段包含下列文字：
+
+....
+$_include_tool(unix_header.sh)_$
+sudo /mnt/software/AZACSNAP/snapshot_tool/azacsnap -c restore --restore snaptovol --hanasid $_system(source_db, id)_$ --configfile=/mnt/software/AZACSNAP/snapshot_tool/azacsnap-$_system(source_db, id)_$.json > $_logfile_$
+....
+如需AzAcSnap命令列選項的完整文件、請參閱Azure文件： https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-cmd-ref-restore["使用Azure應用程式一致的Snapshot工具進行還原"^]。此通話假設來源DB的json DB組態檔可在中央NFS共用區找到、其命名慣例如下：「azacsnap -」。JSON'（例如、本實驗室環境中的「azacsnap、P01、json」）。
+
+
+NOTE: 由於AzacSnap命令的輸出無法變更、因此無法使用預設的「LSC：soc成功」訊息來執行此工作。因此、AzAcSnap輸出中的字串「範例掛載指令」會作為成功的傳回程式碼使用。在5.0 GA版的AzAcSnap中、此輸出只會在複製程序成功時產生。
+
+下圖顯示AzAcSnap還原至新的Volume成功訊息。
+
+image:libelle-sc-image30.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== ZSCCOPYMOUUNT
+
+此工作會在Azure NetApp Files 目標資料庫的作業系統上掛載新的「更新資料」磁碟區。此工作的程式碼區段包含下列文字：
+
+....
+$_include_tool(unix_header.sh)_$
+sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh mount $_system(target_db, id)_$ > $_logfile_$
+....
+再次使用sc-system-refresh.sh指令碼、傳遞「mount」命令和目標DB SID。
+
+
+
+=== ZSCCOPYRECOVER
+
+此工作會根據還原（複製）的Snapshot複本、執行系統資料庫和租戶資料庫的SAP HANA資料庫還原。此處使用的還原選項適用於特定資料庫備份、例如不套用其他記錄以進行轉送恢復。因此、恢復時間非常短（最多只需幾分鐘）。此作業的執行時間取決於SAP HANA資料庫在還原程序之後自動啟動。若要加速啟動時間、Azure NetApp Files 可根據本Azure文件中的說明、視需要暫時增加功能： https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-performance-considerations["動態增加或減少磁碟區配額"^]。此工作的程式碼區段包含下列文字：
+
+....
+$_include_tool(unix_header.sh)_$
+sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh recover $_system(target_db, id)_$ > $_logfile_$
+....
+此指令碼會與「主機蓋」命令和目標DB SID一起再次使用。
+
+
+
+== SAP HANA系統更新作業
+
+在本節中、實驗室系統的更新作業範例顯示此工作流程的主要步驟。
+
+已為備份目錄中所列的P01來源資料庫建立定期和隨需的Snapshot複本。
+
+image:libelle-sc-image31.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+在重新整理作業中、使用了3月12日的最新備份。在備份詳細資料區段中、會列出此備份的外部備份ID（EBID）。這是Azure NetApp Files 針對下列圖片所示的相關Snapshot複本備份、在支援資料的資料捲上。
+
+image:libelle-sc-image32.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+若要開始重新整理作業、請在LSC GUI中選取正確的組態、然後按一下「Start Execution（開始執行）」。
+
+image:libelle-sc-image33.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+LSC會開始執行檢查階段的工作、接著執行預先階段的設定工作。
+
+image:libelle-sc-image34.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+作為「預先」階段的最後一步、目標SAP系統會停止。在下列「複製」階段中、會執行上一節所述的步驟。首先、目標SAP HANA資料庫會停止、舊Azure NetApp Files 版的還原Volume會從作業系統中卸載。
+
+image:libelle-sc-image35.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+然後、ZAZACSNAPRESORE工作會從P01系統的現有Snapshot複本建立新的Volume做為複本。下列兩張圖片顯示LSC GUI中的工作記錄、Azure NetApp Files 以及Azure入口網站中的複製版的SURE。
+
+image:libelle-sc-image36.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+image:libelle-sc-image37.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+然後、此新磁碟區會掛載到目標DB主機上、系統資料庫和租戶資料庫會使用內含的Snapshot複本來還原。成功還原之後、SAP HANA資料庫會自動啟動。SAP HANA資料庫的這項啟動、大部分時間都是在複製階段。無論資料庫大小為何、其餘步驟通常會在數秒到數分鐘內完成。下圖顯示如何使用SAP提供的python還原指令碼來還原系統資料庫。
+
+image:libelle-sc-image38.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+複製階段結束後、LSC會繼續執行後續階段的所有已定義步驟。當系統重新整理程序完全完成時、目標系統會重新啟動並執行、而且完全可用。使用本實驗室系統、SAP系統重新整理的總執行時間約為25分鐘、其中複製階段僅需5分鐘。
+
+image:libelle-sc-image39.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

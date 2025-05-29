@@ -114,7 +114,7 @@ Avantra 與 NetApp 資料管理技術的結合、提供強大的解決方案、�
 若要深入瞭解本文所述資訊、請檢閱下列文件與網站：
 
 * link:https://www.avantra.com/["Avantra"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]
+* link:../lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]
 * link:https://docs.netapp.com/us-en/snapcenter/sc-automation/reference_supported_rest_apis.html["支援REST API以供SnapCenter 支援Sfor Sfor Sfor Sfor Server和外掛程式"]
 
 

@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_fc_san_fabric_setup.html 
+redirect: bp/hana-aff-fc-san-fabric-setup.html 
+---
+= 
+:allow-uri-read: 
+
+

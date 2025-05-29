@@ -41,7 +41,7 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。您可以透過電�
 
 下圖顯示我們使用的實驗室設定。用於系統實體複製作業的來源SAP系統HN9、包括資料庫H09、SAP CS和SAP、以及安裝在同一部主機（SAP-lnx32）上執行的服務 https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/737a99e86f8743bdb8d1f6cf4b862c79.html["可調整的設計"^] 已啟用。根據準備了可Ansible控制節點 https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["NetApp ONTAP 的Ansible教戰手冊"^] 文件。
 
-SAP主機代理程式也安裝在此主機上。NetApp 提供者指令碼和 Ansible 教戰手冊是在 Ansible 控制節點上設定的、如所述link:lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html["「附錄：供應商指令碼組態。」"]
+SAP主機代理程式也安裝在此主機上。NetApp 提供者指令碼和 Ansible 教戰手冊是在 Ansible 控制節點上設定的、如所述link:lama-ansible-appendix.html["「附錄：供應商指令碼組態。」"]
 
 主機 `sap-lnx49` 是做為SAP Lama複製作業的目標、而隔離就緒功能則是在該處設定。
 

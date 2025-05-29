@@ -23,11 +23,11 @@ summary: 本節說明如何設定工作環境、如何設定 SnapCenter 、以�
 將內部部署儲存系統新增至您的工作環境。
 
 . 在左功能表中選擇 * 儲存 * -> * 畫布 * -> * 我的工作 * 環境。
-. 按 *+ 新增工作環境 * 。+image:hana-hycl-back-image2.jpeg["hana hycl-back － image2 、 width=624 、 height =316"]
-. 選擇 * 內部部署 * 。+image:hana-hycl-back-image3.jpeg["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
-. 選擇 * 探索內部部署的 ONTAP * 。+image:hana-hycl-back-image4.jpeg["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
-. 新增 ONTAP 叢集的 IP 位址和密碼、然後按 * 探索 * 。+image:hana-hycl-back-image5.jpeg["Hana hycl-back 影像 5 、寬度 = 624 、高度 = 316"]
-. ONTAP 叢集現在可供使用。+image:hana-hycl-back-image6.jpeg["Ein Bild 、 das Diagramm en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
+. 按 *+ 新增工作環境 * 。+image:hana-hycl-back-image2.png["hana hycl-back － image2 、 width=624 、 height =316"]
+. 選擇 * 內部部署 * 。+image:hana-hycl-back-image3.png["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
+. 選擇 * 探索內部部署的 ONTAP * 。+image:hana-hycl-back-image4.png["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
+. 新增 ONTAP 叢集的 IP 位址和密碼、然後按 * 探索 * 。+image:hana-hycl-back-image5.png["Hana hycl-back 影像 5 、寬度 = 624 、高度 = 316"]
+. ONTAP 叢集現在可供使用。+image:hana-hycl-back-image6.png["Ein Bild 、 das Diagramm en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
 
 
 
@@ -40,17 +40,17 @@ summary: 本節說明如何設定工作環境、如何設定 SnapCenter 、以�
 
 若要建立第一個磁碟區備份、請執行下列步驟：
 
-. 瀏覽 * 保護 * 至 * 備份與恢復 * 、然後選擇 * 磁碟區 * 。+image:hana-hycl-back-image7.jpeg["hana hycl-back － image7 、 width=624 、 height =308"]
-. 按 * 啟動備份 * 按鈕。+image:hana-hycl-back-image8.jpeg["Hana hycl-back 影像 8 、寬度 = 624 、高度 = 309"]
-. 選擇所需的內部部署儲存系統、然後按一下 * 啟動備份 * 。+image:hana-hycl-back-image9.jpeg["hana hycl-back 影像 9 、 width=624 、 height =304"]
-. 選擇 * 備份 * 。+image:hana-hycl-back-image10.jpeg["Hana hycl-back 影像 10 、寬度 = 624 、高度 = 307"]
-. 選擇與 SAP HANA 資料檔案儲存在同一個 SVM 的 Volume 、然後按下 * 下一步 * 。在此範例中、已選擇 /Hana / Shared 的磁碟區。+image:hana-hycl-back-image12.jpeg["hana hycl-back 影像 12 、寬度 = 624 、高度 = 305"]
-. * 繼續 * （如果存在現有策略）。+image:hana-hycl-back-image11.jpeg["Hana hycl-back 影像 11 、寬度 = 624 、高度 = 304"]
-. 請勾選 * 備份選項 * 、然後選擇您想要的備份供應商。在此 AWS 範例中。+ 核取已有原則的選項。+ 取消核取您不想使用的選項。+image:hana-hycl-back-image13.jpeg["Ein Bild 、 das Text 、 Software 、 Computersymbol 、 Webseite enthä lt 。Automatisch generierte Beschreibung,width=624,height =306"]
-. 建立新的貯體或選擇現有的貯體。提供 AWS 帳戶設定、區域、存取金鑰和秘密金鑰。按 * 下一步 * 。+image:hana-hycl-back-image14.jpeg["Hana hycl-back 影像 14 、寬度 = 624 、高度 = 306"]
-. 選擇內部部署儲存系統的正確 IPspace 、選取 * 私有端點組態 * 、然後選擇 S3 的 VPC 端點。按 * 下一步 * 。+image:hana-hycl-back-image15.jpeg["hana hycl-back 影像 15 、 width=624 、 height =304"]
-. 檢閱您的組態並按下 * 啟動備份 * 。+image:hana-hycl-back-image16.jpeg["hana hycl-back － image16 、 width=624 、 height =304"]
-. 備份已成功初始化。+image:hana-hycl-back-image17.jpeg["hana hycl-back 影像 17 、 width=624 、 height =304"]
+. 瀏覽 * 保護 * 至 * 備份與恢復 * 、然後選擇 * 磁碟區 * 。+image:hana-hycl-back-image7.png["hana hycl-back － image7 、 width=624 、 height =308"]
+. 按 * 啟動備份 * 按鈕。+image:hana-hycl-back-image8.png["Hana hycl-back 影像 8 、寬度 = 624 、高度 = 309"]
+. 選擇所需的內部部署儲存系統、然後按一下 * 啟動備份 * 。+image:hana-hycl-back-image9.png["hana hycl-back 影像 9 、 width=624 、 height =304"]
+. 選擇 * 備份 * 。+image:hana-hycl-back-image10.png["Hana hycl-back 影像 10 、寬度 = 624 、高度 = 307"]
+. 選擇與 SAP HANA 資料檔案儲存在同一個 SVM 的 Volume 、然後按下 * 下一步 * 。在此範例中、已選擇 /Hana / Shared 的磁碟區。+image:hana-hycl-back-image12.png["hana hycl-back 影像 12 、寬度 = 624 、高度 = 305"]
+. * 繼續 * （如果存在現有策略）。+image:hana-hycl-back-image11.png["Hana hycl-back 影像 11 、寬度 = 624 、高度 = 304"]
+. 請勾選 * 備份選項 * 、然後選擇您想要的備份供應商。在此 AWS 範例中。+ 核取已有原則的選項。+ 取消核取您不想使用的選項。+image:hana-hycl-back-image13.png["Ein Bild 、 das Text 、 Software 、 Computersymbol 、 Webseite enthä lt 。Automatisch generierte Beschreibung,width=624,height =306"]
+. 建立新的貯體或選擇現有的貯體。提供 AWS 帳戶設定、區域、存取金鑰和秘密金鑰。按 * 下一步 * 。+image:hana-hycl-back-image14.png["Hana hycl-back 影像 14 、寬度 = 624 、高度 = 306"]
+. 選擇內部部署儲存系統的正確 IPspace 、選取 * 私有端點組態 * 、然後選擇 S3 的 VPC 端點。按 * 下一步 * 。+image:hana-hycl-back-image15.png["hana hycl-back 影像 15 、 width=624 、 height =304"]
+. 檢閱您的組態並按下 * 啟動備份 * 。+image:hana-hycl-back-image16.png["hana hycl-back － image16 、 width=624 、 height =304"]
+. 備份已成功初始化。+image:hana-hycl-back-image17.png["hana hycl-back 影像 17 、 width=624 、 height =304"]
 
 
 
@@ -58,7 +58,7 @@ summary: 本節說明如何設定工作環境、如何設定 SnapCenter 、以�
 == 在 SnapCenter 設定 SAP HANA 系統資源
 
 . 請檢查是否已透過叢集新增儲存 SAP HANA 系統的 SVM （本範例中為 Hana ）。如果只新增 SVM 、請新增叢集。+image:hana-hycl-back-image18.png["圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =156"]
-. 使用每日、每週或每月排程類型來定義排程原則。+image:hana-hycl-back-image19.png["圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =140"] image:hana-hycl-back-image20.jpeg["hana hycl-back － image20 、 width=167 、 height =167"]
+. 使用每日、每週或每月排程類型來定義排程原則。+image:hana-hycl-back-image19.png["圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =140"] image:hana-hycl-back-image20.png["hana hycl-back － image20 、 width=167 、 height =167"]
 . 將新原則新增至 SAP HANA 系統、並指派每日排程。+image:hana-hycl-back-image21.png["圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =215"]
 . 根據定義的排程執行原則之後、即可使用此原則設定的新備份。image:hana-hycl-back-image22.png["圖形化使用者介面、應用程式、自動產生的團隊說明、寬度 = 604 、高度 = 193"]
 
@@ -68,33 +68,33 @@ summary: 本節說明如何設定工作環境、如何設定 SnapCenter 、以�
 == 將 SnapCenter 新增至 BlueXP 工作環境
 
 . 在左功能表中選擇 * 保護 * -> * 備份與恢復 * -> * 應用程式 * 。
-. 從下拉式功能表中選擇 * 混合 * 。+image:hana-hycl-back-image23.jpeg["hana hycl-back 影像 23 、 width=624 、 height =316"]
-. 在「設定」功能表中選擇 * SnapCenter Servers* 。+image:hana-hycl-back-image24.jpeg["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
-. 註冊 SnapCenter 伺服器。+image:hana-hycl-back-image25.jpeg["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
-. 新增 SnapCenter 伺服器認證。+image:hana-hycl-back-image26.jpeg["hana hycl-back － image26 、 width=624 、 height =315"]
-. 已新增 SnapCenter 伺服器、並將探索到資料。+image:hana-hycl-back-image27.jpeg["hana hycl-back － image27 、 width=624 、 height =316"]
-. 一旦完成探索工作、 SAP HANA 系統就能使用。+image:hana-hycl-back-image28.jpeg["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
+. 從下拉式功能表中選擇 * 混合 * 。+image:hana-hycl-back-image23.png["hana hycl-back 影像 23 、 width=624 、 height =316"]
+. 在「設定」功能表中選擇 * SnapCenter Servers* 。+image:hana-hycl-back-image24.png["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
+. 註冊 SnapCenter 伺服器。+image:hana-hycl-back-image25.png["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
+. 新增 SnapCenter 伺服器認證。+image:hana-hycl-back-image26.png["hana hycl-back － image26 、 width=624 、 height =315"]
+. 已新增 SnapCenter 伺服器、並將探索到資料。+image:hana-hycl-back-image27.png["hana hycl-back － image27 、 width=624 、 height =316"]
+. 一旦完成探索工作、 SAP HANA 系統就能使用。+image:hana-hycl-back-image28.png["Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316"]
 
 
 
 
 == 建立應用程式備份的備份原則
 
-. 在設定功能表中選擇 * 原則 * 。+image:hana-hycl-back-image29.jpeg["hana hycl-back － image29 、 width=624 、 height =316"]
-. 如有需要、請按一下 * 建立原則 * 來建立新原則。+image:hana-hycl-back-image30.jpeg["hana hycl-back 影像 30 、寬度 = 624 、高度 = 316"]
-. 提供原則名稱、所需的 SnapMirror 標籤、選擇所需的選項、然後按 * Create * 。+image:hana-hycl-back-image31.jpeg["hana hycl-back － image31 、 width=624 、 height =315"]
-. 新原則可供使用。+image:hana-hycl-back-image32.jpeg["hana hycl-back － image32 、 width=624 、 height =315"]
+. 在設定功能表中選擇 * 原則 * 。+image:hana-hycl-back-image29.png["hana hycl-back － image29 、 width=624 、 height =316"]
+. 如有需要、請按一下 * 建立原則 * 來建立新原則。+image:hana-hycl-back-image30.png["hana hycl-back 影像 30 、寬度 = 624 、高度 = 316"]
+. 提供原則名稱、所需的 SnapMirror 標籤、選擇所需的選項、然後按 * Create * 。+image:hana-hycl-back-image31.png["hana hycl-back － image31 、 width=624 、 height =315"]
+. 新原則可供使用。+image:hana-hycl-back-image32.png["hana hycl-back － image32 、 width=624 、 height =315"]
 
 
 
 
 == 利用 Cloud Backup for Applications 保護 SAP HANA 資料庫
 
-. 選擇 * 啟動 SAP HANA 系統的備份 * 。+image:hana-hycl-back-image33.jpeg["寬度 =624 、高度 =316"]
-. 選擇先前建立的原則、然後按一下 * 下一步 * 。+image:hana-hycl-back-image34.jpeg["寬度 =624 、高度 =316"]
-. 由於儲存系統和連接器已預先設定、備份將會啟動。+image:hana-hycl-back-image35.jpeg["寬度 =624 、高度 =316"]
-. 工作完成後、系統將會列出。+image:hana-hycl-back-image36.jpeg["寬度 =624 、高度 =337"]
-. 一段時間後、備份會列在 SAP HANA 系統的詳細檢視畫面中。+ 第二天將列出每日備份。+image:hana-hycl-back-image37.jpeg["hana hycl-back － image37 、 width=624 、 height =316"]
+. 選擇 * 啟動 SAP HANA 系統的備份 * 。+image:hana-hycl-back-image33.png["寬度 =624 、高度 =316"]
+. 選擇先前建立的原則、然後按一下 * 下一步 * 。+image:hana-hycl-back-image34.png["寬度 =624 、高度 =316"]
+. 由於儲存系統和連接器已預先設定、備份將會啟動。+image:hana-hycl-back-image35.png["寬度 =624 、高度 =316"]
+. 工作完成後、系統將會列出。+image:hana-hycl-back-image36.png["寬度 =624 、高度 =337"]
+. 一段時間後、備份會列在 SAP HANA 系統的詳細檢視畫面中。+ 第二天將列出每日備份。+image:hana-hycl-back-image37.png["hana hycl-back － image37 、 width=624 、 height =316"]
 
 
 在某些環境中、可能需要移除 SnapMirror 來源的任何現有排程設定。爲此，請在源 ONTAP 系統上執行以下命令： _SnapMirror modify -destination-path <hana-cloud-svm> ： <SID_data_mnt00001> 複製 -schedule "_ 。

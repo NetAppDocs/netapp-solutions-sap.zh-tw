@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-br-scs-snapcenter-concepts-and-best-practices.html 
+redirect: backup/hana-br-scs-concepts-best-practices.html 
+---
+= 
+:allow-uri-read: 
+
+

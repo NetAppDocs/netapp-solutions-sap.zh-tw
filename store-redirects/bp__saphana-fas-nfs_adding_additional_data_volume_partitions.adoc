@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html 
+redirect: bp/hana-fas-nfs-add-data-volume-partitions.html 
+---
+= 
+:allow-uri-read: 
+
+

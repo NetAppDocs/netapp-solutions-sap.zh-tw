@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-scs-storage-snapshot-backups-sap-system-replication.html 
+keywords: Snapshot, storage, backup, primary host, sql 
+summary: 備份作業一律會在主要SAP HANA主機上執行。備份作業所需的SQL命令無法在次要SAP HANA主機上執行。 
+---
+= 儲存Snapshot備份與SAP系統複寫
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+備份作業一律會在主要SAP HANA主機上執行。備份作業所需的SQL命令無法在次要SAP HANA主機上執行。
+
+對於SAP HANA備份作業、主要和次要SAP HANA主機是單一實體。他們共享相同的SAP HANA備份目錄、無論備份是在主要或次要SAP HANA主機上建立、都會使用備份來進行還原和還原。
+
+若要使用任何備份進行還原、以及使用兩個主機的記錄備份來進行轉送恢復、則需要可從兩個主機存取的共用記錄備份位置。NetApp建議您使用共享的儲存磁碟區。不過、您也應該將記錄備份目的地分隔成共享磁碟區內的子目錄。
+
+每個SAP HANA主機都有自己的儲存磁碟區。當您使用儲存型Snapshot來執行備份時、會在主要SAP HANA主機的儲存Volume上建立資料庫一致的Snapshot。
+
+image:saphana-sr-scs-image3.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+執行容錯移轉至主機2時、主機2會成為主要主機、備份會在主機2執行、而Snapshot備份則會在主機2的儲存磁碟區建立。
+
+在主機2上建立的備份可直接在儲存層還原。如果您必須使用在主機1上建立的備份、則必須將備份從主機1儲存磁碟區複製到主機2儲存磁碟區。轉送恢復會使用來自兩個主機的記錄備份。
+
+image:saphana-sr-scs-image4.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

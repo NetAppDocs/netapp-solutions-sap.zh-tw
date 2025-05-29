@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_requirements_and_best_practices.html 
+redirect: backup/hana-dr-anf-requirements-best-practices.html 
+---
+= 
+:allow-uri-read: 
+
+

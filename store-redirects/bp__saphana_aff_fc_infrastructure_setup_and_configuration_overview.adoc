@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_fc_infrastructure_setup_and_configuration-overview.html 
+redirect: bp/hana-aff-fc-infra-setup-config-overview.html 
+---
+= 
+:allow-uri-read: 
+
+

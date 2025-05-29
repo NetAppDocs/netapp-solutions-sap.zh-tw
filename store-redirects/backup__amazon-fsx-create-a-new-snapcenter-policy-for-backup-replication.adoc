@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html 
+redirect: backup/fsxn-create-snapcenter-policy-backup-replication.html 
+---
+= 
+:allow-uri-read: 
+
+

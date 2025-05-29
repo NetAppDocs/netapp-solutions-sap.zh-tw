@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html 
+redirect: bp/hana-fas-nfs-install-prep-nfsv4.html 
+---
+= 
+:allow-uri-read: 
+
+

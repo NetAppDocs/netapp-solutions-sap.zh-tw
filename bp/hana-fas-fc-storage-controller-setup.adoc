@@ -1,0 +1,451 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-fas-fc-storage-controller-setup.html 
+keywords: storage, controller, setup, storage, efficiency volume, encryption, quality, configure, disk, connection, aggregate 
+summary: 本節說明NetApp儲存系統的組態。您必須根據對應ONTAP 的《安裝與組態指南》完成主要安裝與設定。 
+---
+= 儲存控制器設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本節說明NetApp儲存系統的組態。您必須根據對應ONTAP 的《安裝與組態指南》完成主要安裝與設定。
+
+
+
+== 儲存效率
+
+SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時資料壓縮及即時資料壓縮等功能。
+
+不支援在HDD組態中啟用儲存效率功能。
+
+
+
+== NetApp FlexGroup Volumes
+
+SAP HANA 不支援使用 NetApp FlexGroup Volumes 。由於 SAP HANA 架構的緣故、使用 FlexGroup Volumes 並未帶來任何效益、也可能導致效能問題。
+
+
+
+== NetApp Volume 和 Aggregate Encryption
+
+SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。
+
+
+
+== 服務品質
+
+QoS 可用於限制共用控制器上特定 SAP HANA 系統或非 SAP 應用程式的儲存處理量。
+
+
+
+=== 正式作業與開發 / 測試
+
+其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。
+
+
+
+=== 共享環境
+
+另一個使用案例是限制繁重寫入工作負載的處理量，特別是避免這些工作負載對其他對延遲敏感的寫入工作負載造成影響。在這類環境中，最佳做法是將非共用處理量上限 QoS 群組原則套用至每個儲存虛擬機器（ SVM ）內的每個 LUN ，以限制每個個別儲存物件的最大處理量達到指定值。如此可降低單一工作負載對其他工作負載造成負面影響的可能性。
+
+若要這麼做，必須使用 ONTAP 叢集的 CLI 為每個 SVM 建立群組原則：
+
+....
+qos policy-group create -policy-group <policy-name> -vserver <vserver name> -max-throughput 1000MB/s -is-shared false
+....
+並套用至 SVM 中的每個 LUN 。以下是將原則群組套用至 SVM 中所有現有 LUN 的範例：
+
+....
+lun modify -vserver <vserver name>  -path * -qos-policy-group  <policy-name>
+....
+每個 SVM 都必須完成這項工作。每個 SVM 的 QoS 警群組名稱必須不同。對於新的 LUN ，可直接套用原則：
+
+....
+lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
+....
+建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例link:hana-fas-fc-host-setup.html#create-lvm-volume-groups-and-logical-volumes["主機設定"]。
+
+
+NOTE: 此限制也適用於讀取。因此，請使用足夠的 LUN 來滿足 SAP HANA 資料庫啟動時間和備份所需的 SLA 。
+
+
+
+== NetApp FabricPool
+
+NetApp FabricPool 的支援技術不得用於SAP HANA系統中的主動式主要檔案系統。這包括資料和記錄區域的檔案系統、以及「/HANA /共享」檔案系統。如此會導致無法預測的效能、尤其是在SAP HANA系統啟動期間。
+
+使用「純快照」分層原則是可行的、FabricPool 而且通常可在SnapVault 諸如SnapMirror或SnapMirror目的地等備份目標上使用SnapMirror。
+
+
+NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援還原的功能來變更資料庫還原與還原所需的時間、或是建立系統複本或修復系統等其他工作。FabricPool FabricPool在規劃整體生命週期管理策略時、請將此考量納入考量、並確認使用此功能時仍符合SLA要求。
+
+將記錄備份移至另一個儲存層的理想選擇。FabricPool移動備份會影響SAP HANA資料庫的恢復時間。因此、「分層-最低-冷卻天數」選項應設定為一個值、以便在本機快速儲存層上放置例行需要的記錄備份。
+
+
+
+== 設定儲存設備
+
+以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在開始執行這些步驟之前、請先完成儲存硬體設定、ONTAP 安裝支援軟體、並將儲存FCP連接埠連線至SAN架構。
+
+. 如中所述，檢查正確的磁碟櫃組態<<磁碟櫃連線>>。
+. 如中所述，建立及設定所需的集合體<<Aggregate組態>>。
+. 建立儲存虛擬機器（ SVM ），如所述<<儲存虛擬機器組態>>。
+. 建立邏輯介面（生命期）<<邏輯介面組態>>，如所述。
+. 建立具全球名稱（ WWN ）的 HANA 伺服器啟動器群組（ igroup ），如連結： Hana <<啟動器群組>>， FAS ， fc-storage-controller ， setup.html#initiator 群組一節所述。
+. 在集合體內建立磁碟區和 LUN ，如和一節所述<<SAP HANA單一主機系統的Volume與LUN組態>><<SAP HANA多主機系統的Volume與LUN組態>>
+. 在集合體中建立啟動器群組，磁碟區和 LUN <<#lun_create,建立LUN、磁碟區、並將LUN對應至啟動器群組>>，如所述。
+
+
+
+
+== 磁碟櫃連線
+
+使用HDD時、最多可將兩個DS2246磁碟櫃或四個DS224C磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
+
+image:saphana_fas_fc_image10.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+使用SSD時、最多可將一個磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。使用DS224C磁碟櫃時、也可以使用四路徑SAS纜線、但不需要。
+
+image:saphana_fas_fc_image11.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== NVMe（100GbE）磁碟櫃
+
+每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
+
+image:saphana_fas_ns224.png["MVMe 磁碟櫃連線"]
+
+
+
+== Aggregate組態
+
+一般而言、每個控制器都必須設定兩個Aggregate、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。您必須執行此步驟、才能使用所有可用的控制器資源。對於Solid2000系列系統、只需一個資料集合體就足夠了。FAS
+
+
+
+=== 使用HDD進行Aggregate組態
+
+下圖顯示八部SAP HANA主機的組態。每個儲存控制器均連接四台SAP HANA主機。配置兩個獨立的集合體、每個儲存控制器各一個。每個Aggregate均設定4 x 10 = 40個資料磁碟（HDD）。
+
+image:saphana_fas_fc_image12.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== 使用純SDD系統進行Aggregate組態
+
+一般而言、每個控制器都必須設定兩個集合體、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。
+
+下圖顯示12台SAP HANA主機的組態、這些主機執行於12Gb SAS機櫃上、並設定ADPv2。每個儲存控制器連接六台SAP HANA主機。配置四個獨立的集合體、每個儲存控制器各兩個。每個Aggregate都配置有11個磁碟、其中有9個資料和兩個同位元檢查磁碟分割區。每個控制器都有兩個備用磁碟分割可供使用。
+
+image:saphana_fas_fc_image13.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+== 儲存虛擬機器組態
+
+使用SAP HANA資料庫的多主機SAP環境可以使用單一SVM。如有必要、也可將SVM指派給每個SAP環境、以便由公司內的不同團隊進行管理。本文檔中的截圖和命令輸出使用名爲「Hana」的SVM。
+
+
+
+== 邏輯介面組態
+
+在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示 SVM 上設定的八個生命的螢幕擷取畫面。
+
+image:saphana_fas_fc_image14a.png["邏輯介面總覽"]
+
+在使用ONTAP NetApp 9 System Manager建立SVM期間、可以選取所有必要的實體FCP連接埠、並自動建立每個實體連接埠一個LIF。
+
+下圖說明使用 ONTAP 系統管理員建立 SVM 和生命的過程。
+
+image:saphana_fas_fc_image15a.png["SVM 建立"]
+
+
+
+== 啟動器群組
+
+您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。
+
+使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的WWPN：
+
+....
+stlrx300s8-6:~ # sanlun fcp show adapter
+/sbin/udevadm
+/sbin/udevadm
+
+host0 ...... WWPN:2100000e1e163700
+host1 ...... WWPN:2100000e1e163701
+....
+
+NOTE: 此 `sanlun`工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節link:hana-fas-fc-host-setup.html["主機設定："]
+
+可以使用 ONTAP 叢集的 CLI 建立啟動器群組。
+
+....
+lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
+....
+
+
+== SAP HANA單一主機系統的Volume與LUN組態
+
+下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如，磁碟區 `SID1_data_mnt00001`是在控制器 A 上設定，而磁碟區 `SID1_log_mnt00001`是在控制器 B 上設定。在每個磁碟區內，都會設定單一 LUN 。
+
+
+NOTE: 如果SAP HANA系統只使用高可用度（HA）配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。
+
+image:saphana_fas_fc_image18.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+每部SAP HANA主機都會設定資料Volume、記錄Volume和「/HANA /共享」的Volume。下表顯示四個SAP HANA單一主機系統的組態範例。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 系統SID1的資料、記錄和共享磁碟區 | 資料Volume：SID1_data_mnt00001 | 共享Volume：SID1_shared | – | 記錄磁碟區：SID1_log_mnt00001 
+
+
+| 系統SID2的資料、記錄和共享磁碟區 | – | 記錄磁碟區：SID2_log_mnt00001 | 資料Volume：SID2_data_mnt00001 | 共享Volume：SID2_shared 
+
+
+| 系統SID3的資料、記錄和共享磁碟區 | 共享Volume：SID3_shared | 資料Volume：SID3_data_mnt00001 | 記錄磁碟區：SID3_log_mnt00001 | – 
+
+
+| 系統SID4的資料、記錄和共享磁碟區 | 記錄磁碟區：SID4_log_mnt00001 | – | 共享Volume：SID4_shared | 資料Volume：SID4_data_mnt00001 
+|===
+下表顯示單一主機系統的掛載點組態範例。
+
+|===
+| LUN | HANA主機的裝載點 | 附註 
+
+
+| SID1_data_mnt00001 | /HANA /資料/ SID1/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| SID1_log_mnt00001 | /HANA / log / SID1/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| SID1_shared | /HANA /共享/ SID1 | 使用/etc/Fstab項目掛載 
+|===
+
+NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
+
+
+
+== 使用Linux LVM的SAP HANA單一主機系統的Volume與LUN組態
+
+Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示每個磁碟區群組兩個LUN的範例。
+
+
+NOTE: 不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN設定即符合所需的KPI。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 資料、記錄及共用磁碟區、適用於以LVM為基礎的系統 | 資料Volume：SID1_data_mnt00001 | 共享Volume：SID1_Shared Log2 Volume：SID1_log2_mnt00001 | Data2 Volume：SID1_data2_mnt00001 | 記錄磁碟區：SID1_log_mnt00001 
+|===
+在SAP HANA主機上、必須建立及掛載Volume群組和邏輯磁碟區。下表列出使用LVM之單一主機系統的掛載點。
+
+|===
+| 邏輯磁碟區/LUN | SAP HANA主機的掛載點 | 附註 
+
+
+| lv：SID1_data_mnt0000-vol | /HANA /資料/ SID1/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| lv：SID1_log_mnt001-vol | /HANA / log / SID1/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LUN：SID1_shared | /HANA /共享/ SID1 | 使用/etc/Fstab項目掛載 
+|===
+
+NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
+
+
+
+== SAP HANA多主機系統的Volume與LUN組態
+
+下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID_data_mnt00001」、控制器B上已設定磁碟區「ID_log_mnt00001」每個磁碟區內都會設定一個LUN。
+
+「/HANA /共享」磁碟區必須可供所有HANA主機存取、因此必須使用NFS匯出。雖然「/Hana /共享」檔案系統沒有特定的效能KPI、但NetApp建議使用10Gb乙太網路連線。
+
+
+NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和記錄磁碟區也可以儲存在同一個儲存控制器上。
+
+image:saphana_fas_fc_image19.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下圖顯示4+1多主機SAP HANA系統的組態範例。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 節點1的資料與記錄磁碟區 | 資料磁碟區：SID_data_mnt00001 | – | 記錄磁碟區：SID_log_mnt00001 | – 
+
+
+| 節點2的資料與記錄磁碟區 | 記錄磁碟區：SID_log_mnt00002 | – | 資料Volume：SID_data_mnt00002 | – 
+
+
+| 節點3的資料與記錄磁碟區 | – | 資料Volume：SID_data_mnt00003 | – | 記錄磁碟區：SID_log_mnt00003 
+
+
+| 節點4的資料與記錄磁碟區 | – | 記錄磁碟區：SID_log_mnt00004 | – | 資料Volume：SID_data_mnt00004 
+
+
+| 所有主機的共享Volume | 共享Volume：SID_Shared | – | – | – 
+|===
+下表顯示具有四台作用中SAP HANA主機的多主機系統組態和掛載點。
+
+|===
+| LUN或Volume | SAP HANA主機的掛載點 | 附註 
+
+
+| LUN：SID_data_mnt00001 | /HANA /資料/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00001 | /HANA /記錄/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| LUN：SID_data_mnt00002 | /HANA /資料/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00002 | /HANA /記錄/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| LUN：SID_data_mnt00003 | /HANA /資料/SID/mnt00003 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00003 | /HANA /記錄/SID/mnt00003 | 使用儲存連接器安裝 
+
+
+| LUN：SID_data_mnt00004 | /HANA /資料/SID/mnt00004 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00004 | /HANA /記錄/SID/mnt00004 | 使用儲存連接器安裝 
+
+
+| Volume：SID_Shared | /Hana /共享/SID | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+|===
+
+NOTE: 使用所述組態， `/usr/sap/SID`儲存使用者 SIDadm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在具有磁碟型複寫的災難恢復設定中， NetApp 建議在磁碟區中為 `/usr/sap/SID`檔案系統建立四個子目錄 `SID_shared`，以便每個資料庫主機在中央儲存設備上擁有其所有檔案系統。
+
+
+
+== 使用Linux LVM的SAP HANA多主機系統的Volume與LUN組態
+
+Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。
+
+
+NOTE: 不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定即符合所需的KPI。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 節點1的資料與記錄磁碟區 | 資料磁碟區：SID_data_mnt00001 | Log2 Volume：SID_log2_mnt00001 | 記錄磁碟區：SID_log_mnt00001 | Data2 Volume：SID_data2_mnt00001 
+
+
+| 節點2的資料與記錄磁碟區 | Log2 Volume：SID_log2_mnt00002 | 資料Volume：SID_data_mnt00002 | Data2 Volume：SID_data2_mnt00002 | 記錄磁碟區：SID_log_mnt00002 
+
+
+| 所有主機的共享Volume | 共享Volume：SID_Shared | – | – | – 
+|===
+在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區：
+
+|===
+| 邏輯Volume（lv）或Volume | SAP HANA主機的掛載點 | 附註 
+
+
+| lv：SID_data_mnt001-vol | /HANA /資料/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| lv：SID_log_mnt001-vol | /HANA /記錄/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| lv：SID_data_mnt00002-vol | /HANA /資料/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| lv：SID_log_mnt00002-vol | /HANA /記錄/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| Volume：SID_Shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+|===
+
+NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。
+
+
+
+== Volume選項
+
+下表所列的Volume選項必須在所有SVM上進行驗證和設定。
+
+|===
+| 行動 | 功能9. ONTAP 
+
+
+| 停用自動Snapshot複本 | Vol modify–vserver <vserver-name>-volume <volname>-snapshot policy nONE 
+
+
+| 停用Snapshot目錄的可見度 | Vol modify -vserver <vserver-name>-volume <volname>-snapdir-access假 
+|===
+
+
+== 建立LUN、磁碟區、並將LUN對應至啟動器群組
+
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
+
+
+
+=== 使用CLI建立LUN、磁碟區、並將LUN對應至igroup
+
+本節說明使用 ONTAP 9 命令列進行組態的範例，適用於使用 LVM 的 2+1 SAP HANA 多個主機系統，以及每個 LVM Volume 群組兩個 LUN 的 SID FC5 。
+
+. 建立所有必要的磁碟區。
++
+....
+vol create -volume FC5_data_mnt00001 -aggregate aggr1_1 -size 1200g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
+vol create -volume FC5_log_mnt00002  -aggregate aggr2_1 -size 280g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
+vol create -volume FC5_log_mnt00001  -aggregate aggr1_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_data_mnt00002  -aggregate aggr2_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_log2_mnt00002  -aggregate aggr2_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
+vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
+....
+. 建立所有LUN。
++
+....
+lun create -path  /vol/FC5_data_mnt00001/FC5_data_mnt00001   -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_data_mnt00002/FC5_data_mnt00002 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_data2_mnt00002/FC5_data2_mnt00002 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log_mnt00001/FC5_log_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log_mnt00002/FC5_log_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+....
+. 為屬於系統FC5的所有伺服器建立igroup。
++
+....
+lun igroup create -igroup HANA-FC5 -protocol fcp -ostype linux -initiator 10000090fadcc5fa,10000090fadcc5fb, 10000090fadcc5c1,10000090fadcc5c2,  10000090fadcc5c3,10000090fadcc5c4 -vserver hana
+....
+. 將所有LUN對應至建立的igroup。
++
+....
+lun map -path  /vol/FC5_data_mnt00001/FC5_data_mnt00001    -igroup HANA-FC5
+lun map -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_data_mnt00002/FC5_data_mnt00002  -igroup HANA-FC5
+lun map -path /vol/FC5_data2_mnt00002/FC5_data2_mnt00002  -igroup HANA-FC5
+lun map -path /vol/FC5_log_mnt00001/FC5_log_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_log_mnt00002/FC5_log_mnt00002  -igroup HANA-FC5
+lun map -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002  -igroup HANA-FC5
+....
+

@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-io-stack-configuration.html 
+keywords: io, i/o, stack, configuration, database 
+summary: 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。 
+---
+= SAP HANA的I/O堆疊組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。
+
+NetApp進行效能測試、以定義理想的價值。下表列出從效能測試中推斷的最佳值。
+
+|===
+| 參數 | 價值 
+
+
+| MAX_paralle_io_requests | 128/128 
+
+
+| Asyn_read_submit | 開啟 
+
+
+| 非同步寫入送出作用中 | 開啟 
+
+
+| Asyn_WRITE提交區塊 | 全部 
+|===
+對於SAP HANA 1.0至SPS12、這些參數可在SAP HANA資料庫安裝期間設定、如SAP附註所述 https://launchpad.support.sap.com/["2267798：使用hdbparam安裝期間設定SAP HANA資料庫"^]。
+
+此外、也可以使用「hdbparam」架構、在SAP HANA資料庫安裝之後設定這些參數。
+
+....
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.max_parallel_io_requests=128
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.async_write_submit_active=on
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.async_read_submit=on
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.async_write_submit_blocks=all
+....
+從SAP HANA 2.0開始、「hdbparam」已過時、參數會移至「global.ini`」檔案。這些參數可以使用SQL命令或SAP HANA Studio來設定。如需詳細資料、請參閱SAP附註 https://launchpad.support.sap.com/["2399079：在HANA 2中消除hdbparam"^]。也可以在global.ini`檔案中設定這些參數。
+
+....
+SS3adm@stlrx300s8-6: /usr/sap/SS3/SYS/global/hdb/custom/config> cat global.ini
+…
+[fileio]
+async_read_submit = on
+async_write_submit_active = on
+max_parallel_io_requests = 128
+async_write_submit_blocks = all
+…
+....
+對於SAP HANA 2.0 SPS5及更新版本、請使用「setParanaret.py」指令碼來設定正確的參數。
+
+....
+fc5adm@sapcc-hana-tst-03:/usr/sap/FC5/HDB00/exe/python_support>
+python setParameter.py -set=SYSTEM/global.ini/fileio/max_parallel_io_requests=128
+python setParameter.py -set=SYSTEM/global.ini/fileio/async_read_submit=on
+python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_active=on
+python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_blocks=all
+....

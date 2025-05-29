@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_sap_hana_storage_connector_api.html 
+redirect: bp/hana-fas-fc-storage-connector-api.html 
+---
+= 
+:allow-uri-read: 
+
+

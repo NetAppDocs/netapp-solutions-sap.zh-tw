@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-overview.html 
+keywords: tr4926, 4926, introduction, overview 
+summary: 本技術報告針對Amazon FSX for NetApp ONTAP 餐廳和NetApp SnapCenter 餐廳提供SAP HANA資料保護的最佳實務做法。本文件涵蓋SnapCenter 各種概念、組態建議及作業工作流程、包括組態、備份作業、 以及還原與還原作業。 
+---
+= TR-4926：適用於NetApp ONTAP 的Amazon FSX上的SAP HANA - SnapCenter 利用NetApp進行備份與還原
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本技術報告針對Amazon FSX for NetApp ONTAP 餐廳和NetApp SnapCenter 餐廳提供SAP HANA資料保護的最佳實務做法。本文件涵蓋SnapCenter 各種概念、組態建議及作業工作流程、包括組態、備份作業、 以及還原與還原作業。
+
+作者： Nils Bauer 、 NetApp
+
+現今的企業需要持續且不中斷的SAP應用程式可用度。他們期望面對不斷增加的資料量、以及例行維護工作（例如系統備份）的需求、能達到一致的效能等級。執行SAP資料庫備份是一項重要工作、可能會對正式作業SAP系統造成重大效能影響。
+
+備份時間縮短、而要備份的資料量卻不斷增加。因此、您很難找到一段時間來執行備份、但對業務程序的影響最小。還原及還原SAP系統所需的時間是一項重大考量、因為必須將SAP正式作業與非正式作業系統的停機時間降至最低、以降低企業成本。

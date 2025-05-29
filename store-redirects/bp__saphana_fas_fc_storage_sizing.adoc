@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_storage_sizing.html 
+redirect: bp/hana-fas-fc-storage-sizing.html 
+---
+= 
+:allow-uri-read: 
+
+

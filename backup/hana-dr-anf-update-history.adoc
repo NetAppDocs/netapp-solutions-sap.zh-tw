@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-update-history.html 
+keywords:  
+summary:  
+---
+= 更新歷史記錄
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本解決方案自原始發佈以來、已進行下列技術變更。
+
+[cols="25,25,50"]
+|===
+| 版本 | 日期 | 更新摘要 
+
+
+| 1.0版 | 2021年4月 | 初始版本 
+|===

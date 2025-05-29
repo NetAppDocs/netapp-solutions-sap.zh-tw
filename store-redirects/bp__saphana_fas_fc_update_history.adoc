@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_update_history.html 
+redirect: bp/hana-fas-fc-update-history.html 
+---
+= 
+:allow-uri-read: 
+
+

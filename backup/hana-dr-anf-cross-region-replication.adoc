@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-cross-region-replication.html 
+keywords:  
+summary:  
+---
+= Anf SAP HANA跨區域複寫
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本文件涵蓋 SAP HANA 的跨區域複寫。

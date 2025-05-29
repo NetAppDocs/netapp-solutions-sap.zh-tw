@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-infra-setup-config-overview.html 
+keywords:  
+summary:  
+---
+= 基礎架構設定與組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下各節提供SAP HANA基礎架構設定與組態準則、並說明設定SAP HANA系統所需的所有步驟。在這些章節中、使用下列組態範例：
+
+* 採用 SID=SS3 的 Hana 系統
++
+** SAP HANA單一和多部主機
+** 使用SAP HANA多個分割區的SAP HANA單一主機
+
+
+* 使用 Linux 邏輯 Volume Manager （ LVM ）的 Hana 系統 SID=FC5
++
+** SAP HANA單一和多部主機
+
+
+

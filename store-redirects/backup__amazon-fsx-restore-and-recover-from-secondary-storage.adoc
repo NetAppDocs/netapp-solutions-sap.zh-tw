@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-restore-and-recover-from-secondary-storage.html 
+redirect: backup/fsxn-restore-recover-from-secondary-storage.html 
+---
+= 
+:allow-uri-read: 
+
+

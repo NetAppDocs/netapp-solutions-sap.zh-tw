@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-where-to-find-additional-information_overview.html 
+redirect: backup/hana-sr-scs-additional-info.html 
+---
+= 
+:allow-uri-read: 
+
+

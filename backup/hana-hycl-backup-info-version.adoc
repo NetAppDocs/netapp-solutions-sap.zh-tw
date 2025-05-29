@@ -24,8 +24,7 @@ summary: 本節列出可在何處找到其他資訊、並顯示版本歷程記�
 
 * NetApp BlueXP 備份與還原產品文件 +
 https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-protect-app-data-to-cloud.html["保護內部部署應用程式資料 | NetApp 文件"]
-* 使用 SnapCenter + 進行 SAP HANA 備份與還原
-https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html#the-netapp-solution[]
+* link:hana-br-scs-overview.html#the-netapp-solution["SAP HANA利用SnapCenter NetApp備份與還原"]
 
 
 

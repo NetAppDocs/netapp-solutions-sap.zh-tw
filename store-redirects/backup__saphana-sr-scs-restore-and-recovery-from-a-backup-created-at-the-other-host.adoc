@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html 
+redirect: backup/hana-sr-scs-restore-recovery-other-host-backup.html 
+---
+= 
+:allow-uri-read: 
+
+

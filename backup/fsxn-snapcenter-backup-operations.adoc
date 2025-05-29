@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-snapcenter-backup-operations.html 
+keywords: snapshot backup, block integrity check, 
+summary: 本節說明如何建立隨需Snapshot備份和隨需區塊完整性檢查作業。 
+---
+= 支援備份作業SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以建立隨需 Snapshot 備份和隨需區塊完整性檢查作業。
+
+
+
+== 建立隨需Snapshot備份
+
+請依照下列步驟建立隨需Snapshot備份。
+
+. 在「資源」檢視中、選取資源、然後按兩下該行以切換至「拓撲」檢視。
++
+「資源拓撲」檢視提供SnapCenter 所有可用備份的總覽、這些備份都是使用效益技術建立的。此檢視的頂端區域會顯示備份拓撲、顯示主要儲存設備（本機複本）上的備份、以及異地備份儲存設備（資料保存複本）上的備份（若有）。
+
+. 在頂端列中、選取「立即備份」圖示以開始隨需備份。
++
+image:amazon-fsx-image48.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+. 從下拉式清單中、選取備份原則「LocalSnap」、然後按一下「備份」開始隨需備份。
++
+image:amazon-fsx-image49.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
++
+image:amazon-fsx-image50.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
++
+前五個工作的記錄會顯示在拓撲檢視底部的「活動」區域中。
+
+. 按一下「活動」區域中的工作活動列時、會顯示工作詳細資料。您可以按一下「檢視記錄」來開啟詳細的工作記錄
++
+image:amazon-fsx-image51.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
++
+備份完成後、拓撲檢視中會顯示新項目。備份名稱遵循與本節中定義的 Snapshot 名稱相同的命名慣例link:fsxn-snapcenter-config.html#configure-and-protect-a-hana-resource["「設定及保護HANA資源」。"]
+
++
+您必須關閉並重新開啟拓撲檢視、才能查看更新的備份清單。
+
++
+image:amazon-fsx-image52.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
++
+在SAP HANA備份目錄中SnapCenter 、還原備份名稱會儲存為「Comment（註解）」欄位、以及「外部備份ID（EBID）」。下圖顯示系統資料庫和租戶資料庫PFX的下圖。
+
++
+image:amazon-fsx-image53.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
++
+image:amazon-fsx-image54.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+在FSXfor ONTAP Sfingfile系統上、您可以連線至SVM的主控台、列出Snapshot備份。
+
+....
+sapcc-hana-svm::> snapshot show -volume PFX_data_mnt00001                                        ---Blocks---
+Vserver  Volume   Snapshot                                  Size Total% Used%
+-------- -------- ------------------------------------- -------- ------ -----
+sapcc-hana-svm
+         PFX_data_mnt00001
+                  SnapCenter_hana-1_LocalSnap_Hourly_02-22-2022_12.08.54.4516
+                                                         126.6MB     0%    2%
+sapcc-hana-svm::>
+....
+
+
+== 建立隨需區塊完整性檢查作業
+
+透過選取原則BlockIntegrityCheck、隨需區塊完整性檢查作業的執行方式與Snapshot備份工作相同。使用此原則排程備份時SnapCenter 、將為系統和租戶資料庫建立標準的SAP HANA檔案備份。
+
+image:amazon-fsx-image55.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+image:amazon-fsx-image56.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+不像Snapshot複製型備份那樣顯示區塊完整性檢查。SnapCenter而摘要卡則會顯示檔案型備份的數量和先前備份的狀態。
+
+image:amazon-fsx-image57.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+SAP HANA備份目錄會顯示系統和租戶資料庫的項目。下圖顯示SnapCenter 系統和租戶資料庫備份目錄中的「區塊完整性檢查」。
+
+image:amazon-fsx-image58.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+image:amazon-fsx-image59.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+成功的區塊完整性檢查可建立標準的SAP HANA資料備份檔案。使用已設定HANA資料庫的備份路徑進行檔案型資料備份作業。SnapCenter
+
+....
+hana-1:~ # ls -al /backup/data/*
+/backup/data/DB_PFX:
+total 7665384
+drwxr-xr-- 2 pfxadm sapsys       4096 Feb 22 12:56 .
+drwxr-xr-x 4 pfxadm sapsys       4096 Feb 21 15:02 ..
+-rw-r----- 1 pfxadm sapsys     155648 Feb 21 15:02 COMPLETE_DATA_BACKUP_databackup_0_1
+-rw-r----- 1 pfxadm sapsys   83894272 Feb 21 15:02 COMPLETE_DATA_BACKUP_databackup_2_1
+-rw-r----- 1 pfxadm sapsys 3825213440 Feb 21 15:02 COMPLETE_DATA_BACKUP_databackup_3_1
+-rw-r----- 1 pfxadm sapsys     155648 Feb 22 12:55 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_0_1
+-rw-r----- 1 pfxadm sapsys   83894272 Feb 22 12:55 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_2_1
+-rw-r----- 1 pfxadm sapsys 3825213440 Feb 22 12:56 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_3_1
+/backup/data/SYSTEMDB:
+total 7500880
+drwxr-xr-- 2 pfxadm sapsys       4096 Feb 22 12:55 .
+drwxr-xr-x 4 pfxadm sapsys       4096 Feb 21 15:02 ..
+-rw-r----- 1 pfxadm sapsys     159744 Feb 21 15:01 COMPLETE_DATA_BACKUP_databackup_0_1
+-rw-r----- 1 pfxadm sapsys 3825213440 Feb 21 15:02 COMPLETE_DATA_BACKUP_databackup_1_1
+-rw-r----- 1 pfxadm sapsys     159744 Feb 22 12:55 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_0_1
+-rw-r----- 1 pfxadm sapsys 3825213440 Feb 22 12:55 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_1_1
+hana-1:~ #
+....

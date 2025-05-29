@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_prepare_the_target_host.html 
+redirect: backup/hana-dr-anf-prepare-target-host.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-fas-nfs-infra-setup-config.html 
+keywords:  
+summary:  
+---
+= 基礎架構設定與組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本文件討論 NetApp FAS 系統和 NFS 的基礎架構設定與組態。

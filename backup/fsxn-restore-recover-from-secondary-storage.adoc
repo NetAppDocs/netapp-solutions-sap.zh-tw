@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-restore-recover-from-secondary-storage.html 
+keywords: restore, recover, secondary, storage, 
+summary: 本節說明如何從次要儲存設備還原及還原。 
+---
+= 從二線儲存設備還原及還原
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+若要從次要儲存設備還原及還原、請依照下列步驟進行：
+
+若要擷取次要儲存設備上所有備份的清單、請SnapCenter 在「還原拓撲」檢視中、按一下「Vault複本」、然後選取備份、再按一下「還原」。
+
+image:amazon-fsx-image92.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+還原對話方塊會顯示次要位置。
+
+image:amazon-fsx-image93.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+進一步的還原和還原步驟與先前在主要儲存設備上進行Snapshot備份所涵蓋的步驟相同。

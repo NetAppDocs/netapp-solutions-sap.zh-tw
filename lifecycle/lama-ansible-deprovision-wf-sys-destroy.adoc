@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-deprovision-wf-sys-destroy.html 
+keywords: destroy, workflow 
+summary: 若要取消委任複製的系統、必須事先停止並準備好。之後即可啟動系統銷毀工作流程。 
+---
+= SAP Lama取消資源配置工作流程-系統破壞
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+下圖強調系統銷毀工作流程執行的主要步驟。
+
+image:lama-ansible-image32.png["此影像說明系統銷毀工作流程的總覽。其中包含「停止系統」、「取消準備系統」、「刪除儲存複製」及「刪除系統組態」等步驟。"]
+
+. 若要取消委任複製的系統、必須事先停止並準備好。之後即可啟動系統銷毀工作流程。
++
+image:lama-ansible-image33.png["此圖包含架構圖、以及先前提及的工作流程步驟在系統中執行的位置。"]
+
+. 在此範例中、我們會針對先前建立的系統執行系統銷毀工作流程。我們在*系統檢視*畫面中選取系統、然後在*銷毀程序*下啟動系統銷毀工作流程。
++
+image:lama-ansible-image34.png["此螢幕擷取畫面顯示 SAP Lama GUI 開啟至 System > Provisioning Systems 檢視、可讓您開啟銷毀系統下拉式清單。"]
+
+. 在資源配置階段所維護的所有掛載點都會顯示在這裡、並在系統銷毀工作流程期間刪除。
++
+image:lama-ansible-image35.png["此螢幕快照顯示「銷毀儲存磁碟區」索引標籤下的「銷毀系統」畫面、其中列出所有掛載點。"]
+
++
+不會刪除任何虛擬主機名稱、因為這些主機名稱是透過DNS進行維護、並已自動指派。
+
++
+image:lama-ansible-image36.png["此螢幕快照顯示「刪除主機名稱」索引標籤下的「銷毀系統」畫面。未列出任何主機名稱。"]
+
+. 按一下「執行」按鈕即可啟動作業。
++
+image:lama-ansible-image37.png["此快照顯示「銷毀儲存磁碟區摘要」頁面。"]
+
++
+SAP Lama現在會刪除磁碟區複本、並刪除複製系統的組態。
+
+. 您可以在*監控*功能表下監控複製工作流程的進度。
++
+image:lama-ansible-image38.png["此螢幕快照會即時顯示系統銷毀工作流程的進度。"]
+
+. 選取*刪除NetAppClon*工作、即會顯示該步驟的詳細記錄。執行Ansible教戰手冊的內容如下所示。如您所見、Ansible教戰手冊 `netapp_lama_ServiceConfigRemoval.yml` 針對每個HANA資料庫Volume、資料、記錄及共享執行。
++
+image:lama-ansible-image39.png["此螢幕快照顯示系統銷毀工作流程的記錄頁面。"]
+
+

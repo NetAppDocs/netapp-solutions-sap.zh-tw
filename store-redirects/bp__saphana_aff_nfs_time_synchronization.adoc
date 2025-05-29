@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_nfs_time_synchronization.html 
+redirect: bp/hana-aff-nfs-time-synchronization.html 
+---
+= 
+:allow-uri-read: 
+
+

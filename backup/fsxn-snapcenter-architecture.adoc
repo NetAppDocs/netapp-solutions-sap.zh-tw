@@ -1,0 +1,204 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-snapcenter-architecture.html 
+keywords: snapcenter, scope, data protection strategy, example lab setup 
+summary: 提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。支援NetApp的資料架構、可在端點之間管理資料。SnapCenter 
+---
+= 架構SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+提供統一化、可擴充的平台、提供應用程式一致的資料保護。SnapCenter支援集中控制和監督、同時委派使用者管理應用程式專屬的備份、還原和複製工作的能力。SnapCenter藉助SnapCenter 於功能強大的功能、資料庫和儲存管理員只需學習單一工具、即可管理各種應用程式和資料庫的備份、還原和複製作業。
+
+支援NetApp的資料架構、可在端點之間管理資料。SnapCenter您可以使用 SnapCenter 在內部環境之間、內部環境與雲端之間、以及私有雲、混合雲或公有雲之間複寫資料。
+
+
+
+== 元件SnapCenter
+
+包含適用於Windows的不含更新程式、不含更新程式套件、以及適用於Linux的不含更新程式套件。SnapCenter SnapCenter SnapCenter SnapCenter每個套件都包含SnapCenter 適用於各種應用程式和基礎架構元件的外掛程式。
+
+image:amazon-fsx-image5.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+== SAP HANA備份解決方案SnapCenter
+
+適用於SAP HANA的解決方案包含下列領域：SnapCenter
+
+* 備份作業、排程及保留管理
++
+** SAP HANA資料備份搭配儲存型Snapshot複本
+** 非資料磁碟區備份搭配儲存型Snapshot複本（例如：「/Hana /共享」）
+** 使用檔案型備份來檢查資料庫區塊完整性
+** 複寫到異地備份或災難恢復位置
+
+
+* SAP HANA備份目錄的管理
++
+** 適用於HANA資料備份（Snapshot和檔案型）
+** 適用於HANA記錄備份
+
+
+* 還原與還原作業
++
+** 自動化還原與還原
+** SAP HANA（MDC）系統的單一租戶還原作業
+
+
+
+
+資料庫資料檔案備份是SnapCenter 以搭配SAP HANA外掛程式的方式執行。外掛程式會觸發SAP HANA資料庫備份儲存點、使在主要儲存系統上建立的Snapshot複本、以SAP HANA資料庫的一致映像為基礎。
+
+使用支援還原或SnapMirror功能、可將一致的資料庫映像複寫到異地備份或災難恢復位置。SnapCenter SnapVault一般而言、主要備份和異地備份儲存設備的備份保留原則各有不同。解決主儲存設備的保留問題、而支援將資料保留在異地備份儲存設備。SnapCenter ONTAP
+
+為了完整備份所有SAP HANA相關資源、SnapCenter 利用SAP HANA外掛程式搭配儲存型Snapshot複本、即可備份所有非資料磁碟區。您可以從資料庫資料備份獨立排程非資料磁碟區、以啟用個別的保留與保護原則。
+
+SAP建議結合儲存型Snapshot備份與每週檔案型備份、以執行區塊完整性檢查。您可以從SnapCenter 整個過程中執行區塊完整性檢查。根據您設定的保留政策SnapCenter 、此功能可管理主儲存設備的資料檔案備份、記錄檔備份及SAP HANA備份目錄。
+
+支援主儲存設備的保留功能、而FSXfor Sfor支援管理二線備份保留功能。SnapCenter ONTAP
+
+下圖顯示SnapCenter 了關於「不支援資料」備份與保留管理作業的總覽。
+
+image:amazon-fsx-image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+執行SAP HANA資料庫的儲存型Snapshot備份時SnapCenter 、執行下列工作：
+
+. 建立SAP HANA備份儲存點、以便在持續層上建立一致的映像。
+. 建立資料磁碟區的儲存型Snapshot複本。
+. 在SAP HANA備份目錄中登錄儲存型Snapshot備份。
+. 發佈SAP HANA備份儲存點。
+. 針對SnapVault 資料磁碟區執行功能不全或SnapMirror更新（若已設定）。
+. 根據定義的保留原則、刪除主儲存設備上的儲存Snapshot複本。
+. 如果主要或異地備份儲存設備不再存在備份、則刪除SAP HANA備份目錄項目。
+. 每當根據保留原則刪除備份或手動刪除備份時SnapCenter 、也會刪除所有早於最舊資料備份的記錄備份。記錄備份會在檔案系統和SAP HANA備份目錄中刪除。
+
+
+
+
+== 本文件的範圍
+
+本文件說明SnapCenter SAP HANA MDC單一主機系統最常見的功能、其中只有一個租戶位於FSXfor ONTAP Sf.上。其他組態選項也有可能、在某些情況下、特定SAP HANA系統（例如多主機系統）需要使用這些選項。如需其他組態選項的詳細說明，請參閱link:hana-br-scs-concepts-best-practices.html["概念與最佳實務做法（netapp.com）SnapCenter"^]。
+
+在本文件中、我們使用Amazon Web Services（AWS）主控台和FSXfor ONTAP Suse CLI、在儲存層上執行所需的組態步驟。您也可以使用NetApp Cloud Manager來管理FSX for ONTAP Suse、但本文檔已超出此範圍。如需有關使用NetApp Cloud Manager for FSX for ONTAP Sf,請參閱 https://docs.netapp.com/us-en/occm/concept_fsx_aws.html["深入瞭解Amazon FSX for ONTAP NetApp（netapp.com）"^]。
+
+
+
+== 資料保護策略
+
+下圖為SAP HANA on FSX for EfsX的典型備份架構ONTAP 。HANA系統位於AWS可用度區域1、並在ONTAP 相同可用度區域內使用FSXfor Sfor the Sfor Sfor the Sfor Sfor the file System。針對HANA資料庫的資料和共享磁碟區執行Snapshot備份作業。除了保留3-5天的本機Snapshot備份、備份也會複寫到異地儲存設備、以延長保留時間。異地備份儲存設備是ONTAP 位於不同AWS可用區域的第二個FSX for Sf2檔案系統。HANA資料和共享磁碟區的備份會以SnapVault 還原技術複寫到ONTAP 第二個FSXfor Ef2檔案系統、並保留2至3週。
+
+image:amazon-fsx-image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+在設定SnapCenter 功能不全之前、必須根據各種SAP系統的RTO和RPO需求來定義資料保護策略。
+
+常見的方法是定義系統類型、例如正式作業、開發、測試或沙箱系統。同一系統類型的所有SAP系統通常具有相同的資料保護參數。
+
+必須定義下列參數：
+
+* Snapshot備份應多久執行一次？
+* Snapshot複本備份應保留在主要儲存系統上多久？
+* 應多久執行一次區塊完整性檢查？
+* 主要備份是否應該複寫到異地備份站台？
+* 備份應保留在異地備份儲存設備上多久？
+
+
+下表顯示系統類型的資料保護參數範例：正式作業、開發及測試。對於正式作業系統、已定義高備份頻率、而且備份每天會複寫到異地備份站台一次。測試系統的需求較低、而且沒有複寫備份。
+
+|===
+| 參數 | 正式作業系統 | 開發系統 | 測試系統 
+
+
+| 備份頻率 | 每6小時 | 每6小時 | 每6小時 
+
+
+| 主要保留 | 3天 | 3天 | 3天 
+
+
+| 區塊完整性檢查 | 每週一次 | 每週一次 | 否 
+
+
+| 複寫到異地備份站台 | 每天一次 | 每天一次 | 否 
+
+
+| 異地備份保留 | 2週 | 2週 | 不適用 
+|===
+下表顯示必須針對資料保護參數設定的原則。
+
+|===
+| 參數 | 原則本地Snap | 原則：LocalSnapAndSnapVault | 原則區塊整合檢查 
+
+
+| 備份類型 | 快照型 | 快照型 | 檔案型 
+
+
+| 排程頻率 | 每小時 | 每日 | 每週 
+
+
+| 主要保留 | 計數= 12 | 計數= 3 | 計數= 1 
+
+
+| 內部複寫SnapVault | 否 | 是的 | 不適用 
+|===
+「本地Snapshot」原則用於正式作業、開發及測試系統、以保留兩天的時間來涵蓋本機Snapshot備份。
+
+在資源保護組態中、系統類型的排程定義不同：
+
+* 正式作業：每4小時排程一次。
+* 開發：每4小時排程一次。
+* 測試：每4小時排程一次。
+
+
+「LocalSnapAndSnapVault」原則用於正式作業與開發系統、以涵蓋每日複寫至異地備份儲存設備的作業。
+
+在資源保護組態中、排程是針對正式作業和開發所定義：
+
+* 正式作業：每日排程。
+* 開發：每天排程。「BlockIntegrityCheck」原則可用於正式作業和開發系統、使用檔案型備份來涵蓋每週區塊完整性檢查。
+
+
+在資源保護組態中、排程是針對正式作業和開發所定義：
+
+* 正式作業：每週排程。
+* 開發：每週排程。
+
+
+對於使用異地備份原則的每個SAP HANA資料庫、您都必須在儲存層上設定保護關係。保護關係可定義要複寫哪些磁碟區、以及將備份保留在異地備份儲存設備上。
+
+下列範例為每個正式作業與開發系統的保留時間、在異地備份儲存設備中定義為保留兩週。
+
+在此範例中、SAP HANA資料庫資源和非資料Volume資源的保護原則和保留不一樣。
+
+
+
+== 實驗室設定範例
+
+下列實驗室設定是本文件其餘部分的範例組態設定。
+
+Hana系統PFX：
+
+* 單一租戶的單一主機MDC系統
+* HANA 2.0 SPS 6修訂版60
+* 適用於SAP 15SP3的SLES
+
+
+產品特色：SnapCenter
+
+* 版本4.6%
+* HANA與Linux外掛程式部署在HANA資料庫主機上
+
+
+FSXfor ONTAP Sfor Sfor Sfxffile系統：
+
+* 兩個FSX可搭配ONTAP 單一儲存虛擬機器（SVM）、用於支援不完整的檔案系統
+* 每ONTAP 個FSXfor Sfor Sf供 系統在不同的AWS可用區域中使用
+* Hana資料磁碟區已複寫至第二個FSX、以供ONTAP 使用
+
+
+image:amazon-fsx-image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

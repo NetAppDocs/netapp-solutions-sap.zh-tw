@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana-fas-nfs_where_to_find_additional_information.html 
+redirect: bp/hana-fas-nfs-additional-info.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -1,0 +1,224 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-fas-fc-storage-sizing.html 
+keywords: performance, considerations, hard, disk, solid, state, drives, mixed, workloads, capacity, configuration, storage, sizing 
+summary: 下節概述調整SAP HANA儲存系統規模的效能與容量考量。 
+---
+= 儲存規模調整
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+下節概述調整SAP HANA儲存系統規模的效能與容量考量。
+
+
+NOTE: 請聯絡您的NetApp或NetApp合作夥伴銷售代表、以支援儲存規模調整程序、並建立適當規模的儲存環境。
+
+
+
+== 效能考量
+
+SAP已定義一組靜態的儲存KPI。這些KPI適用於所有正式作業SAP HANA環境、不受資料庫主機記憶體大小和使用SAP HANA資料庫的應用程式所影響。這些KPI適用於HANA上的單一主機、多主機、Business Suite、HANA上的Business倉儲、S/4HANA及BS/4HANA環境。因此、目前的效能規模調整方法只取決於連接至儲存系統的作用中SAP HANA主機數量。
+
+
+NOTE: 只有正式作業SAP HANA系統才需要儲存效能KPI。
+
+SAP提供效能測試工具、必須用來驗證連接至儲存設備之作用中SAP HANA主機的儲存效能。
+
+NetApp測試並預先定義了可附加至特定儲存模式的SAP HANA主機數量上限、同時仍能滿足SAP針對正式作業SAP HANA系統所需的儲存KPI。
+
+
+NOTE: 通過認證FAS 的VMware產品系列儲存控制器也可搭配其他磁碟類型或磁碟後端解決方案使用、只要NetApp支援並符合SAP HANA TDI效能KPI。範例包括NetApp儲存加密（NSE）和NetApp FlexArray 的支援技術。
+
+本文件說明SAS硬碟和固態硬碟的磁碟大小調整。
+
+
+
+=== 硬碟機
+
+每個SAP HANA節點至少需要10個資料磁碟（10k RPM SAS）、才能實現SAP的儲存效能KPI。
+
+
+NOTE: 這項計算與所使用的儲存控制器和磁碟櫃無關。
+
+
+
+=== 固態硬碟
+
+使用固態磁碟機（SSD）時、資料磁碟的數量取決於儲存控制器到SSD機櫃的SAS連線處理量。
+
+在磁碟櫃上執行的SAP HANA主機數量上限、以及每個SAP HANA主機所需的SSD數量下限、都是由執行SAP效能測試工具所決定。
+
+* 配備24個SSD的12Gb SAS磁碟櫃（DS224C）可在磁碟櫃連接12Gb時、支援最多14台SAP HANA主機。
+* 6Gb SAS磁碟櫃（DS2246）搭配24個SSD、最多可支援4台SAP HANA主機。
+
+
+SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
+
+下表摘要說明每個磁碟櫃所支援的SAP HANA主機數量。
+
+|===
+|  | 6Gb SAS磁碟櫃（DS2246）、完全裝載24個SSD | 12GB SAS磁碟櫃（DS224C）、完全裝載24個SSD 
+
+
+| 每個磁碟櫃的SAP HANA主機數量上限 | 4. | 14 
+|===
+
+NOTE: 此計算方式與所使用的儲存控制器無關。新增更多磁碟櫃並不會增加儲存控制器可支援的SAP HANA主機數量上限。
+
+
+
+=== NS224 NVMe機櫃
+
+一個 NVMe SSD （資料）最多可支援 2 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
+
+
+
+== 混合式工作負載
+
+支援在相同儲存控制器或相同儲存Aggregate上執行的SAP HANA及其他應用程式工作負載。不過、將SAP HANA工作負載與所有其他應用程式工作負載分開是NetApp的最佳實務做法。
+
+您可能決定在同一個儲存控制器或同一個Aggregate上部署SAP HANA工作負載和其他應用程式工作負載。如果是、您必須確保在混合式工作負載環境中、SAP HANA始終能提供足夠的效能。NetApp也建議您使用服務品質（QoS）參數來規範其他應用程式對SAP HANA應用程式的影響。
+
+SAP Hcmt測試工具必須用於檢查是否可在已用於其他工作負載的儲存控制器上執行額外的SAP HANA主機。不過、SAP應用程式伺服器可以安全地放置在與SAP HANA資料庫相同的儲存控制器上、並可進行集合。
+
+
+
+== 容量考量
+
+SAP HANA容量需求的詳細說明請參閱 https://launchpad.support.sap.com/#/notes/1900823["SAP附註1900823"^] 白皮書。
+
+
+NOTE: 使用NetApp提供的SAP HANA儲存規模調整工具、必須決定使用多個SAP HANA系統來調整整體SAP環境的容量規模。請聯絡NetApp或您的NetApp合作夥伴銷售代表、以驗證適當規模儲存環境的儲存規模調整程序。
+
+
+
+== 效能測試工具的組態
+
+從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。當使用SAP測試工具測試儲存效能時、也必須為SAP的效能測試工具（fsperf）設定這些參數。
+
+NetApp進行效能測試、以定義最佳價值。下表列出必須在SAP測試工具的組態檔中設定的參數。
+
+|===
+| 參數 | 價值 
+
+
+| MAX_paralle_io_requests | 128/128 
+
+
+| Asyn_read_submit | 開啟 
+
+
+| 非同步寫入送出作用中 | 開啟 
+
+
+| Asyn_WRITE提交區塊 | 全部 
+|===
+如需SAP測試工具組態的詳細資訊、請參閱 https://service.sap.com/sap/support/notes/1943937["SAP附註1943937"^] 適用於HWCCT（SAP HANA 1.0）和 https://launchpad.support.sap.com/["SAP附註2493172"^] 適用於HCMT/HCOT（SAP HANA 2.0）。
+
+下列範例顯示如何為HCMT/HCOT執行計畫設定變數。
+
+....
+…{
+         "Comment": "Log Volume: Controls whether read requests are submitted asynchronously, default is 'on'",
+         "Name": "LogAsyncReadSubmit",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Controls whether read requests are submitted asynchronously, default is 'on'",
+         "Name": "DataAsyncReadSubmit",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Log Volume: Controls whether write requests can be submitted asynchronously",
+         "Name": "LogAsyncWriteSubmitActive",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Controls whether write requests can be submitted asynchronously",
+         "Name": "DataAsyncWriteSubmitActive",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Log Volume: Controls which blocks are written asynchronously. Only relevant if AsyncWriteSubmitActive is 'on' or 'auto' and file system is flagged as requiring asynchronous write submits",
+         "Name": "LogAsyncWriteSubmitBlocks",
+         "Value": "all",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Controls which blocks are written asynchronously. Only relevant if AsyncWriteSubmitActive is 'on' or 'auto' and file system is flagged as requiring asynchronous write submits",
+         "Name": "DataAsyncWriteSubmitBlocks",
+         "Value": "all",
+         "Request": "false"
+      },
+      {
+         "Comment": "Log Volume: Maximum number of parallel I/O requests per completion queue",
+         "Name": "LogExtMaxParallelIoRequests",
+         "Value": "128",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Maximum number of parallel I/O requests per completion queue",
+         "Name": "DataExtMaxParallelIoRequests",
+         "Value": "128",
+         "Request": "false"
+      }, …
+....
+這些變數必須用於測試組態。這種情況通常發生在SAP隨HCMT/HCOT工具提供的預先定義執行計畫中。以下4K記錄寫入測試的範例來自執行計畫。
+
+....
+…
+      {
+         "ID": "D664D001-933D-41DE-A904F304AEB67906",
+         "Note": "File System Write Test",
+         "ExecutionVariants": [
+            {
+               "ScaleOut": {
+                  "Port": "${RemotePort}",
+                  "Hosts": "${Hosts}",
+                  "ConcurrentExecution": "${FSConcurrentExecution}"
+               },
+               "RepeatCount": "${TestRepeatCount}",
+               "Description": "4K Block, Log Volume 5GB, Overwrite",
+               "Hint": "Log",
+               "InputVector": {
+                  "BlockSize": 4096,
+                  "DirectoryName": "${LogVolume}",
+                  "FileOverwrite": true,
+                  "FileSize": 5368709120,
+                  "RandomAccess": false,
+                  "RandomData": true,
+                  "AsyncReadSubmit": "${LogAsyncReadSubmit}",
+                  "AsyncWriteSubmitActive": "${LogAsyncWriteSubmitActive}",
+                  "AsyncWriteSubmitBlocks": "${LogAsyncWriteSubmitBlocks}",
+                  "ExtMaxParallelIoRequests": "${LogExtMaxParallelIoRequests}",
+                  "ExtMaxSubmitBatchSize": "${LogExtMaxSubmitBatchSize}",
+                  "ExtMinSubmitBatchSize": "${LogExtMinSubmitBatchSize}",
+                  "ExtNumCompletionQueues": "${LogExtNumCompletionQueues}",
+                  "ExtNumSubmitQueues": "${LogExtNumSubmitQueues}",
+                  "ExtSizeKernelIoQueue": "${ExtSizeKernelIoQueue}"
+               }
+            }, …
+....
+
+
+== 儲存規模調整程序總覽
+
+每個HANA主機的磁碟數量、以及每個儲存模式的SAP HANA主機密度、均由SAP HANA測試工具決定。
+
+規模調整程序需要詳細資料、例如正式作業和非正式作業SAP HANA主機數量、每個主機的RAM大小、以及儲存型Snapshot複本的備份保留期間。SAP HANA主機數量決定了儲存控制器和所需磁碟數量。
+
+在容量調整期間、會使用RAM大小、每個SAP HANA主機磁碟上的淨資料大小、以及Snapshot複本備份保留期間做為輸入。
+
+下圖摘要說明規模調整程序。
+
+image:saphana_fas_fc_image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

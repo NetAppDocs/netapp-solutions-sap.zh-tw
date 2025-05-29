@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-overview-of-sys-clone-wf-sc.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
+---
+= SAP系統實體複製工作流程概述SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+如前一節所述、SnapCenter 透過任何現有的Snapshot備份、即可管理資料集的複本、並可將這些資料集快速配置至任何目標系統。將正式作業資料靈活且敏捷地配置至修復系統、以因應邏輯毀損、這是非常重要的、因為通常需要重設修復系統並選擇不同的正式作業資料集。FlexClone技術可實現快速資源配置程序、並可大幅節省容量、因為修復系統通常只會在短時間內使用。
+
+下圖摘要說明使用 SnapCenter 執行 SAP 系統複製作業所需的步驟。
+
+. 準備目標主機。
+. SnapCenter Clone 可為 SAP HANA 共享 Volume 建立工作流程。
+. 啟動SAP HANA服務。
+. SnapCenter Clone 可為 SAP HANA 資料 Volume 建立工作流程、包括資料庫還原。
+. SAP HANA 系統現在可做為修復系統使用。
+
+
+如果不再需要系統、請執行下列步驟進行清理程序。
+
+. SAP HANA 資料 Volume 的 SnapCenter 複製刪除工作流程、包括資料庫關機（使用自動化指令碼時）。
+. 停止SAP HANA服務。
+. SAP HANA 共用 Volume 的 SnapCenter 複製刪除工作流程。
+
+
+
+NOTE: 如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。不需要重新整理 SAP HANA 共用磁碟區。
+
+image:sc-copy-clone-image9.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+本節link:sc-copy-clone-sys-clone-with-sc.html["「SAP系統實體複製」SnapCenter"]提供系統複製工作流程的詳細逐步說明。

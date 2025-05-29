@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-br-scs-lab-setup.html 
+keywords: lab, setup, configuration, 
+summary: 本技術報告所使用的實驗室設定包含五種不同的SAP HANA組態。 
+---
+= 本報告所使用的實驗室設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本技術報告所使用的實驗室設定包含五種不同的SAP HANA組態：
+
+* * MS1.*
++
+** SAP HANA多主機的MDC單一租戶系統
+** 使用中央外掛主機（SnapCenter 支援伺服器）進行管理
+** 使用NFS做為儲存傳輸協定
+
+
+* * SS1.*
++
+** SAP HANA單一主機的MDC單一租戶系統
+** 在HANA資料庫主機上安裝HANA外掛程式時自動探索
+** 使用NFS做為儲存傳輸協定
+
+
+* * SM1.*
++
+** SAP HANA單一主機的MDC多租戶系統
+** 在HANA資料庫主機上安裝HANA外掛程式時自動探索
+** 使用NFS做為儲存傳輸協定
+
+
+* * SS2.*
++
+** SAP HANA單一主機的MDC單一租戶系統
+** 以中央外掛主機（SnapCenter 亦即支援伺服器）進行管理
+** 使用NFS做為儲存傳輸協定
+
+
+* * SS3.*
++
+** SAP HANA單一主機的MDC單一租戶系統
+** 在HANA資料庫主機上安裝HANA外掛程式時自動探索
+** 使用光纖通道SAN做為儲存傳輸協定
+
+
+
+
+下列各節將說明完整的組態、以及備份、還原及還原工作流程。說明涵蓋本機Snapshot備份、以及使用SnapVault 下列功能複寫至備份儲存設備：儲存虛擬機器（SVM）的主要儲存設備是「Hana主儲存設備」、異地備份儲存設備則是「Hana備份」。
+
+此伺服SnapCenter 器可作為HANA系統MS1和SS2的中央HANA外掛主機。
+
+下圖顯示實驗室設定。
+
+image:saphana-br-scs-image21.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

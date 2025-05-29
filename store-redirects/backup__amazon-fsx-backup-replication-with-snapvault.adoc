@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-backup-replication-with-snapvault.html 
+redirect: backup/fsxn-backup-replication-with-snapvault.html 
+---
+= 
+:allow-uri-read: 
+
+

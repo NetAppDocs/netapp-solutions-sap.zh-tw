@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-sr-scs-sap-hana-system-replication-overview.html 
+redirect: backup/hana-sr-scs-system-replication-overview.html 
+---
+= 
+:allow-uri-read: 
+
+

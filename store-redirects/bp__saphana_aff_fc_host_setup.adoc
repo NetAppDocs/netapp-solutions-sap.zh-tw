@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_aff_fc_host_setup.html 
+redirect: bp/hana-aff-fc-host-setup.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-requirements-best-practices.html 
+keywords: requirements, best, practices, microsoft, azure, virtual, machine, vm 
+summary: Microsoft Azure不保證在建立或啟動已取消分配的VM時、特定虛擬機器（VM）類型的可用度。 
+---
+= 要求與最佳實務做法
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Microsoft Azure不保證在建立或啟動已取消分配的VM時、特定虛擬機器（VM）類型的可用度。具體而言、在區域故障的情況下、許多用戶端可能需要在災難恢復區域中增加VM。因此、建議主動使用具備災難容錯移轉所需大小的VM、作為災難恢復區域的測試或QA系統、以便配置所需的VM類型。
+
+若要最佳化成本、在正常作業期間使用效能層較低的ANF容量資源池是很合理的做法。資料複寫不需要高效能、因此可以使用具有標準效能層的容量集區。對於災難恢復測試、或是需要災難容錯移轉時、磁碟區必須移至具有高效能層的容量集區。
+
+如果沒有第二個容量集區選項、則應根據容量需求來設定複寫目標磁碟區、而非在正常作業期間設定效能需求。配額或處理量（用於手動QoS）可在災難容錯移轉的情況下進行災難恢復測試。
+
+如需詳細資訊、請參閱 https://docs.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-requirements-considerations["使用Azure NetApp Files 分散各地的分散複寫功能的要求與考量| Microsoft文件"^]。

@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-backup-of-non-data-volumes.html 
+redirect: backup/fsxn-backup-of-non-data-volumes.html 
+---
+= 
+:allow-uri-read: 
+
+

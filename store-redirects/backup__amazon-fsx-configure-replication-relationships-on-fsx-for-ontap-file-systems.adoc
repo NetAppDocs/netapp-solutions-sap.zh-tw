@@ -1,0 +1,8 @@
+---
+permalink: backup/amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html 
+redirect: backup/fsxn-configure-replication-relationships.html 
+---
+= 
+:allow-uri-read: 
+
+

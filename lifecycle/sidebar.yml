@@ -7,23 +7,23 @@ entries:
   - title: 簡介
     url: "/lifecycle/lama-ansible-introduction.html"
   - title: SAP系統複製、複製及重新整理案例
-    url: "/lifecycle/lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html"
+    url: "/lifecycle/lama-ansible-sys-clone-copy-refresh.html"
   - title: 系統重新整理、複製及複製的使用案例
-    url: "/lifecycle/lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html"
+    url: "/lifecycle/lama-ansible-usecases-sys-refresh-copy-clone.html"
   - title: NetApp SAP Lama整合使用Ansible
-    url: "/lifecycle/lama-ansible-netapp-sap-lama-integration-using-ansible.html"
+    url: "/lifecycle/lama-ansible-netapp-integration.html"
   - title: 實作範例
     url: "/lifecycle/lama-ansible-example-implementation.html"
   - title: SAP Lama資源配置工作流程-複製系統
-    url: "/lifecycle/lama-ansible-sap-lama-provisioning-workflow-clone-system.html"
+    url: "/lifecycle/lama-ansible-provision-wf-clone-system.html"
   - title: SAP Lama取消資源配置工作流程-系統破壞
-    url: "/lifecycle/lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html"
+    url: "/lifecycle/lama-ansible-deprovision-wf-sys-destroy.html"
   - title: SAP Lama資源配置工作流程-複製系統
-    url: "/lifecycle/lama-ansible-sap-lama-provisioning-workflow-copy-system.html"
+    url: "/lifecycle/lama-ansible-provision-wf-copy-sys.html"
   - title: SAP Lama資源配置工作流程-系統更新
-    url: "/lifecycle/lama-ansible-sap-lama-provisioning-workflow-system-refresh.html"
+    url: "/lifecycle/lama-ansible-provision-wf-sys-refresh.html"
   - title: 提供者指令碼組態和可執行的方針
-    url: "/lifecycle/lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html"
+    url: "/lifecycle/lama-ansible-appendix.html"
   - title: 結論
     url: "/lifecycle/lama-ansible-conclusion.html"
 - title: 利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化
@@ -31,32 +31,32 @@ entries:
   - title: 簡介
     url: "/lifecycle/sc-copy-clone-introduction.html"
   - title: SAP系統複製、重新整理及複製案例
-    url: "/lifecycle/sc-copy-clone-sap-system-copy-refresh-and-clone-scenarios.html"
+    url: "/lifecycle/sc-copy-clone-sys-copy-refresh-clone.html"
   - title: 系統更新與複製的使用案例
-    url: "/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html"
+    url: "/lifecycle/sc-copy-clone-usecases-sys-refresh-cloning.html"
   - title: 支援的基礎架構和情境
-    url: "/lifecycle/sc-copy-clone-supported-infrastructure-and-scenarios.html"
+    url: "/lifecycle/sc-copy-clone-supported-infrastructure.html"
   - title: SAP系統更新工作流程概述SnapCenter （含）
-    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html"
+    url: "/lifecycle/sc-copy-clone-overview-sys-refresh-wf-sc.html"
   - title: SAP系統實體複製工作流程概述SnapCenter
-    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html"
+    url: "/lifecycle/sc-copy-clone-overview-of-sys-clone-wf-sc.html"
   - title: 使用儲存快照備份來執行 SAP HANA 系統更新作業的考量事項
-    url: "/lifecycle/sc-copy-clone-considerations-for-sap-hana-system-refresh-operations-using-snapshot-backups.html"
+    url: "/lifecycle/sc-copy-clone-sys-refresh-using-snapshot-backups.html"
   - title: 自動化範例指令碼
-    url: "/lifecycle/sc-copy-clone-automation-example-scripts.html"
+    url: "/lifecycle/sc-copy-clone-automation-scripts.html"
   - title: SAP HANA系統更新SnapCenter 功能
-    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html"
+    url: "/lifecycle/sc-copy-clone-hana-sys-refresh-with-sc.html"
   - title: SAP系統以SnapCenter 功能複製
-    url: "/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html"
+    url: "/lifecycle/sc-copy-clone-sys-clone-with-sc.html"
   - title: 何處可以找到其他資訊和版本歷程記錄
-    url: "/lifecycle/sc-copy-clone-where-to-find-additional-information.html"
+    url: "/lifecycle/sc-copy-clone-additional-info.html"
 - title: 利用Libelle SystemCopy自動化SAP系統複製作業
   entries:
   - title: 總覽
     url: "/lifecycle/libelle-sc-overview.html"
   - title: SAP HANA系統使用LSC和SnapCenter 功能更新
-    url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+    url: "/lifecycle/libelle-sc-hana-sys-refresh-lsc-sc.html"
   - title: SAP HANA系統使用LSC、AzAcSnap和Azure NetApp Files Sz.進行更新
-    url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html"
+    url: "/lifecycle/libelle-sc-hana-sys-refresh-lsc-azacsnap-anf.html"
   - title: 何處可以找到其他資訊和版本歷程記錄
-    url: "/lifecycle/libelle-sc-where-to-find-additional-information.html"
+    url: "/lifecycle/libelle-sc-additional-info.html"

@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_update_history.html 
+redirect: backup/hana-dr-anf-update-history.html 
+---
+= 
+:allow-uri-read: 
+
+

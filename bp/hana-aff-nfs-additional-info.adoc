@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-nfs-additional-info.html 
+keywords:  
+summary:  
+---
+= 何處可找到其他資訊
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
+
+* link:../index.html["SAP HANA軟體解決方案"]
+* link:../backup/hana-dr-sr-pdf-link.html["TR-4646：SAP HANA災難恢復與儲存複寫"]
+* link:../backup/hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"]
+* link:../lifecycle/sc-copy-clone-introduction.html["TR-4667 ：使用 SnapCenter SAP HANA 外掛程式將 SAP 系統複本自動化"]
+* NetApp文件中心
++
+https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]
+
+* SAP認證的SAP HANA企業儲存硬體
++
+http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html["http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html"^]
+
+* SAP HANA儲存需求
++
+https://www.sap.com/documents/2024/03/146274d3-ae7e-0010-bca6-c68f7e60039b.html["https://www.sap.com/documents/2024/03/146274d3-ae7e-0010-bca6-c68f7e60039b.html"^]
+
+* SAP HANA量身打造的資料中心整合常見問題集
++
+https://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["https://www.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html"^]
+
+* VMware vSphere Wiki 上的 SAP HANA
++
+https://help.sap.com/docs/SUPPORT_CONTENT/virtualization/3362185751.html["https://help.sap.com/docs/SUPPORT_CONTENT/virtualization/3362185751.html"^]
+
+* 《 SAP HANA on VMware vSphere 最佳實務指南》
++
+https://www.vmware.com/docs/sap_hana_on_vmware_vsphere_best_practices_guide-white-paper["https://www.vmware.com/docs/sap_hana_on_vmware_vsphere_best_practices_guide-white-paper"^]
+
+

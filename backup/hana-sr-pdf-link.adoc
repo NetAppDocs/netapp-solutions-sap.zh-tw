@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-pdf-link.html 
+keywords: tr-4719, pdf, sap, hana, backup, system replication, snapcenter 
+summary: TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式如何在SAP HANA系統複寫環境中用於備份與還原。 
+---
+= TR-4719：SAP HANA系統複寫- SnapCenter 利用功能進行備份與恢復
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式如何在SAP HANA系統複寫環境中用於備份與還原。
+
+NetApp公司Nils Bauer
+
+link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf"]

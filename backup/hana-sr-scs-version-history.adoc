@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-scs-version-history.html 
+keywords:  
+summary:  
+---
+= 版本歷程記錄
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+版本歷程記錄：
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2018年10月 | 初始版本 
+
+
+| 2.0版 | 2022年1月 | 更新以涵SnapCenter 蓋支援支援的功能 
+|===

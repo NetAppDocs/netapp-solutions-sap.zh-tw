@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana-fas-nfs_sap_hana_data_volume_size.html 
+redirect: bp/hana-fas-nfs-data-volume-size.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-additional-info.html 
+keywords:  
+summary:  
+---
+= 何處可找到其他資訊
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
+
+* FSX for NetApp ONTAP 解決方案使用者指南—什麼是Amazon FSX for NetApp ONTAP 呢？
++
+https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html[]
+
+* 支援資源頁面SnapCenter
++
+https://www.netapp.com/us/documentation/snapcenter-software.aspx["https://www.netapp.com/us/documentation/snapcenter-software.aspx"]
+
+* 軟件文檔SnapCenter
++
+https://docs.netapp.com/us-en/snapcenter/index.html["https://docs.netapp.com/us-en/snapcenter/index.html"]
+
+* TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業
++
+link:../lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]
+
+* TR-4719：SAP HANA系統複寫：SnapCenter 利用功能進行備份與恢復
++
+link:hana-sr-scs-system-replication-overview.html["使用 SnapCenter 進行備份與還原"]
+
+
+
+
+
+== 版本歷程記錄
+
+|===
+| 版本 | 日期 | 文件版本歷程記錄 
+
+
+| 1.0版 | 2022 年 5 月 | 初始版本。 
+|===

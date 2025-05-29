@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html 
+redirect: backup/hana-br-scs-resource-specific-config-non-data-volume-backups.html 
+---
+= 
+:allow-uri-read: 
+
+

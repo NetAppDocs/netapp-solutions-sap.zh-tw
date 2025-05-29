@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-br-scs-block-integrity-check.html 
+redirect: backup/hana-br-scs-block-integrity-check.html 
+---
+= 
+:allow-uri-read: 
+
+

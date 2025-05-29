@@ -5,128 +5,128 @@ entries:
 - title: "《SAP HANA on NetApp AFF 》《採用FCP組態的NetApp系統》指南"
   entries:
   - title: 簡介
-    url: "/bp/saphana_aff_fc_introduction.html"
+    url: "/bp/hana-aff-fc-introduction.html"
   - title: 架構
-    url: "/bp/saphana_aff_fc_architecture.html"
+    url: "/bp/hana-aff-fc-architecture.html"
   - title: 儲存規模調整
-    url: "/bp/saphana_aff_fc_storage_sizing.html"
+    url: "/bp/hana-aff-fc-storage-sizing.html"
   - title: 基礎架構設定與組態
     entries:
     - title: 基礎架構設定與組態總覽
-      url: "/bp/saphana_aff_fc_infrastructure_setup_and_configuration_overview.html"
+      url: "/bp/hana-aff-fc-infra-setup-config-overview.html"
     - title: SAN架構設定
-      url: "/bp/saphana_aff_fc_san_fabric_setup.html"
+      url: "/bp/hana-aff-fc-san-fabric-setup.html"
     - title: 時間同步
-      url: "/bp/saphana_aff_fc_time_synchronization.html"
+      url: "/bp/hana-aff-fc-time-synchronization.html"
     - title: 儲存控制器設定
-      url: "/bp/saphana_aff_fc_storage_controller_setup.html"
+      url: "/bp/hana-aff-fc-storage-controller-setup.html"
     - title: SAP HANA儲存連接器API
-      url: "/bp/saphana_aff_fc_sap_hana_storage_connector_api.html"
+      url: "/bp/hana-aff-fc-storage-connector-api.html"
     - title: 主機設定
-      url: "/bp/saphana_aff_fc_host_setup.html"
+      url: "/bp/hana-aff-fc-host-setup.html"
     - title: SAP HANA的I/O堆疊組態
-      url: "/bp/saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html"
+      url: "/bp/hana-aff-fc-io-stack-configuration.html"
     - title: SAP HANA軟體安裝
-      url: "/bp/saphana_aff_fc_sap_hana_software_installation.html"
+      url: "/bp/hana-aff-fc-software-install.html"
     - title: 為SAP HANA單一主機系統新增額外的資料Volume分割區
-      url: "/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
+      url: "/bp/hana-aff-fc-add-data-volume-partitions-single-host-systems.html"
   - title: 何處可找到其他資訊
-    url: "/bp/saphana_aff_fc_where_to_find_additional_information.html"
+    url: "/bp/hana-aff-fc-additional-info.html"
   - title: 更新歷史記錄
-    url: "/bp/saphana_aff_fc_update_history.html"
+    url: "/bp/hana-aff-fc-update-history.html"
 - title: "《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》"
   entries:
   - title: 簡介
-    url: "/bp/saphana_aff_nfs_introduction.html"
+    url: "/bp/hana-aff-nfs-introduction.html"
   - title: 架構
-    url: "/bp/saphana_aff_nfs_architecture.html"
+    url: "/bp/hana-aff-nfs-architecture.html"
   - title: 儲存規模調整
-    url: "/bp/saphana_aff_nfs_storage_sizing.html"
+    url: "/bp/hana-aff-nfs-storage-sizing.html"
   - title: 基礎架構設定與組態
     entries:
     - title: 網路設定
-      url: "/bp/saphana_aff_nfs_network_setup.html"
+      url: "/bp/hana-aff-nfs-network-setup.html"
     - title: 時間同步
-      url: "/bp/saphana_aff_nfs_time_synchronization.html"
+      url: "/bp/hana-aff-nfs-time-synchronization.html"
     - title: 儲存控制器設定
-      url: "/bp/saphana_aff_nfs_storage_controller_setup.html"
+      url: "/bp/hana-aff-nfs-storage-controller-setup.html"
     - title: 主機設定
-      url: "/bp/saphana_aff_nfs_host_setup.html"
+      url: "/bp/hana-aff-nfs-host-setup.html"
     - title: NFSv4的SAP HANA安裝準備
-      url: "/bp/saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html"
+      url: "/bp/hana-aff-nfs-install-prep-nfsv4.html"
     - title: SAP HANA的I/O堆疊組態
-      url: "/bp/saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html"
+      url: "/bp/hana-aff-nfs-io-stack-configuration.html"
     - title: SAP HANA資料Volume大小
-      url: "/bp/saphana_aff_nfs_sap_hana_data_volume_size.html"
+      url: "/bp/hana-aff-nfs-data-volume-size.html"
     - title: SAP HANA軟體安裝
-      url: "/bp/saphana_aff_nfs_sap_hana_software_installation.html"
+      url: "/bp/hana-aff-nfs-software_installation.html"
     - title: 新增其他資料Volume分割區
-      url: "/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html"
+      url: "/bp/hana-aff-nfs-add-data-volume-partitions.html"
   - title: 何處可找到其他資訊
-    url: "/bp/saphana_aff_nfs_where_to_find_additional_information.html"
+    url: "/bp/hana-aff-nfs-additional-info.html"
   - title: 更新歷史記錄
-    url: "/bp/saphana_aff_nfs_update_history.html"
+    url: "/bp/hana-aff-nfs-update-history.html"
 - title: "《SAP HANA on NetApp FAS 》《採用NFS的NetApp系統組態指南》"
   entries:
   - title: 簡介
-    url: "/bp/saphana-fas-nfs_introduction.html"
+    url: "/bp/hana-fas-nfs-introduction.html"
   - title: 架構
-    url: "/bp/saphana-fas-nfs_architecture.html"
+    url: "/bp/hana-fas-nfs-architecture.html"
   - title: 儲存規模調整
-    url: "/bp/saphana-fas-nfs_storage_sizing.html"
+    url: "/bp/hana-fas-nfs-storage-sizing.html"
   - title: 基礎架構設定與組態
     entries:
     - title: 網路設定
-      url: "/bp/saphana-fas-nfs_network_setup.html"
+      url: "/bp/hana-fas-nfs-network-setup.html"
     - title: 時間同步
-      url: "/bp/saphana-fas-nfs_time_synchronization.html"
+      url: "/bp/hana-fas-nfs-time-synchronization.html"
     - title: 儲存控制器設定
-      url: "/bp/saphana-fas-nfs_storage_controller_setup.html"
+      url: "/bp/hana-fas-nfs-storage-controller-setup.html"
     - title: 主機設定
-      url: "/bp/saphana-fas-nfs_host_setup.html"
+      url: "/bp/hana-fas-nfs-host-setup.html"
     - title: NFSv4的SAP HANA安裝準備
-      url: "/bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html"
+      url: "/bp/hana-fas-nfs-install-prep-nfsv4.html"
     - title: SAP HANA的I/O堆疊組態
-      url: "/bp/saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html"
+      url: "/bp/hana-fas-nfs-io-stack-configuration.html"
     - title: SAP HANA資料Volume大小
-      url: "/bp/saphana-fas-nfs_sap_hana_data_volume_size.html"
+      url: "/bp/hana-fas-nfs-data-volume-size.html"
     - title: SAP HANA軟體安裝
-      url: "/bp/saphana-fas-nfs_sap_hana_software_installation.html"
+      url: "/bp/hana-fas-nfs-software-installation.html"
     - title: 新增其他資料Volume分割區
-      url: "/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html"
+      url: "/bp/hana-fas-nfs-add-data-volume-partitions.html"
   - title: 何處可找到其他資訊
-    url: "/bp/saphana-fas-nfs_where_to_find_additional_information.html"
+    url: "/bp/hana-fas-nfs-additional-info.html"
   - title: 更新歷史記錄
-    url: "/bp/saphana-fas-nfs_update_history.html"
+    url: "/bp/hana-fas-nfs-update-history.html"
 - title: "《SAP HANA on FAS with FCP Configuration Guide》（英文）"
   entries:
   - title: 簡介
-    url: "/bp/saphana_fas_fc_introduction.html"
+    url: "/bp/hana-fas-fc-introduction.html"
   - title: 架構
-    url: "/bp/saphana_fas_fc_architecture.html"
+    url: "/bp/hana-fas-fc-architecture.html"
   - title: 儲存規模調整
-    url: "/bp/saphana_fas_fc_storage_sizing.html"
+    url: "/bp/hana-fas-fc-storage-sizing.html"
   - title: 基礎架構設定與組態
     entries:
     - title: 基礎架構設定與組態總覽
-      url: "/bp/saphana_fas_fc_infrastructure_setup_and_configuration_overview.html"
+      url: "/bp/hana-fas-fc-infra-setup-config-overview.html"
     - title: SAN架構設定
-      url: "/bp/saphana_fas_fc_san_fabric_setup.html"
+      url: "/bp/hana-fas-fc-san-fabric-setup.html"
     - title: 時間同步
-      url: "/bp/saphana_fas_fc_time_synchronization.html"
+      url: "/bp/hana-fas-fc-time-synchronization.html"
     - title: 儲存控制器設定
-      url: "/bp/saphana_fas_fc_storage_controller_setup.html"
+      url: "/bp/hana-fas-fc-storage-controller-setup.html"
     - title: SAP HANA儲存連接器API
-      url: "/bp/saphana_fas_fc_sap_hana_storage_connector_api.html"
+      url: "/bp/hana-fas-fc-storage-connector-api.html"
     - title: 主機設定
-      url: "/bp/saphana_fas_fc_host_setup.html"
+      url: "/bp/hana-fas-fc-host-setup.html"
     - title: SAP HANA的I/O堆疊組態
-      url: "/bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html"
+      url: "/bp/hana-fas-fc-io-stack-configuration.html"
     - title: SAP HANA軟體安裝
-      url: "/bp/saphana_fas_fc_sap_hana_software_installation.html"
+      url: "/bp/hana-fas-fc-software-install.html"
     - title: 為SAP HANA單一主機系統新增額外的資料Volume分割區
-      url: "/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
+      url: "/bp/hana-fas-fc-add-data-volume-partitions-single-host-systems.html"
   - title: 何處可找到其他資訊
-    url: "/bp/saphana_fas_fc_where_to_find_additional_information.html"
+    url: "/bp/hana-fas-fc-additional-info.html"
   - title: 更新歷史記錄
-    url: "/bp/saphana_fas_fc_update_history.html"
+    url: "/bp/hana-fas-fc-update-history.html"

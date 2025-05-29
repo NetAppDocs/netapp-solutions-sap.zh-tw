@@ -121,7 +121,7 @@ Alpaca 與 NetApp 資料管理技術的結合、提供強大的解決方案、�
 若要深入瞭解本文件所含資訊、請參閱下列文件與網站：
 
 * link:https://pcg.io/de/sap/alpaca/["羊駝"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]
+* link:../lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]
 * link:https://docs.netapp.com/us-en/snapcenter/sc-automation/reference_supported_rest_apis.html["SnapCenter 伺服器和外掛程式支援 REST API"]
 
 

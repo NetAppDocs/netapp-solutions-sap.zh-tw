@@ -1,0 +1,8 @@
+---
+permalink: backup/saphana-dr-anf_disaster_recovery_solution_comparison.html 
+redirect: backup/hana-dr-anf-dr-solution-comparison.html 
+---
+= 
+:allow-uri-read: 
+
+

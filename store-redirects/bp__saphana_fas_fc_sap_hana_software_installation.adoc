@@ -1,0 +1,8 @@
+---
+permalink: bp/saphana_fas_fc_sap_hana_software_installation.html 
+redirect: bp/hana-fas-fc-software-install.html 
+---
+= 
+:allow-uri-read: 
+
+

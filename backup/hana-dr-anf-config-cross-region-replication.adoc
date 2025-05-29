@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-config-cross-region-replication.html 
+keywords: configuration, options, cross, region, replication, sap, hana, azure 
+summary: 下圖顯示使用ANF跨區域複寫之SAP HANA系統的Volume複寫關係。 
+---
+= SAP HANA跨區域複寫的組態選項
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+下圖顯示使用ANF跨區域複寫之SAP HANA系統的Volume複寫關係。使用ANF跨區域複寫時、必須複寫HANA資料和HANA共享磁碟區。如果只複寫HANA資料磁碟區、則一般RPO值的範圍為一天。如果需要較低的RPO值、也必須複寫HANA記錄備份、才能進行轉送恢復。
+
+
+NOTE: 本文中使用的「記錄備份」一詞包括記錄備份和HANA備份目錄備份。需要HANA備份目錄才能執行轉送恢復作業。
+
+
+NOTE: 以下說明及實驗室設定著重於HANA資料庫。其他共享檔案（例如SAP傳輸目錄）的保護和複寫方式、與HANA共享磁碟區相同。
+
+若要使用記錄備份來啟用HANA儲存點還原或轉送還原、則必須在HANA資料磁碟區的主要站台建立應用程式一致的資料Snapshot備份。例如、您可以使用ANF備份工具AzAcSnap來完成這項作業（另請參閱 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction["什麼是Azure應用程式一致的Snapshot工具適用於Azure NetApp Files 《》| Microsoft文件"^]）。然後將在主站台建立的Snapshot備份複寫到DR站台。
+
+發生災難容錯移轉時、複寫關係必須中斷、磁碟區必須掛載至DR正式作業伺服器、且HANA資料庫必須還原至上次HANA儲存點、或使用複寫的記錄備份進行轉送恢復。本章link:hana-dr-anf-failover-overview.html["災難恢復容錯移轉"]介紹所需的步驟。
+
+下圖說明跨區域複寫的HANA組態選項。
+
+image:saphana-dr-anf_image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+使用目前版本的跨區域複寫時、只能選取固定的排程、而且使用者無法定義實際的複寫更新時間。可用的排程為每日、每小時及每10分鐘一次。使用這些排程選項時、兩種不同的組態會因應RPO需求而有所不同：資料磁碟區複寫不需記錄備份複寫、以及記錄備份複寫的排程（每小時或每10分鐘）。最低可達成的RPO約為20分鐘。下表摘要說明組態選項、以及所產生的RPO和RTO值。
+
+|===
+|  | 資料Volume複寫 | 資料與記錄備份磁碟區複寫 | 資料與記錄備份磁碟區複寫 
+
+
+| CRR排程資料Volume | 每日 | 每日 | 每日 
+
+
+| CRR排程記錄備份磁碟區 | 不適用 | 每小時 | 10分鐘 
+
+
+| 最大RPO | +24小時+ Snapshot排程（例如6小時）+ | 1小時 | 2 x 10分鐘 
+
+
+| 最大RTO | 主要是由HANA啟動時間所定義 | +HANA開機時間+恢復時間+ | +HANA開機時間+恢復時間+ 
+
+
+| 轉送恢復 | 不適用 | 過去24小時的+記錄+ Snapshot排程（例如6小時）+ | 過去24小時的+記錄+ Snapshot排程（例如6小時）+ 
+|===

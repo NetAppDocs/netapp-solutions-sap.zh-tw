@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-automation-scripts.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
+---
+= 自動化範例指令碼
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+在本文件中、有兩個指令碼可用於進一步自動化SnapCenter 建立及複製刪除作業。
+
+* 指令碼 `sc-system-refresh`.sh 用於系統重新整理和系統複製工作流程、以執行 SAP HANA 資料庫的恢復和關機作業。
+* 此指令碼 `sc-mount-volume.sh` 用於系統複製工作流程、以執行 SAP HANA 共用磁碟區的掛載和卸載作業。
++
+
+NOTE: 範例指令碼是以原樣提供、NetApp不支援。您可以透過電子郵件至 ng-sapcc@netapp.com 申請指令碼。
+
+
+
+
+
+== 指令碼sc-system-refresh.sh
+
+範例指令碼 `sc-system-refresh.sh` 用於執行恢復和關機作業。指令碼會在 SnapCenter 工作流程中使用特定的命令列選項來呼叫、複製建立和複製刪除、如下圖所示。
+
+指令碼為一般指令碼、可讀取所有必要參數、例如來自目標系統的 SID 。指令碼必須可在系統重新整理作業的目標主機上使用。必須在目標系統上為使用者 <SID> 設定 hdb 使用者存放區金鑰。金鑰必須允許存取 SAP HANA 系統資料庫、並提供還原作業的權限。金鑰的名稱必須是 <TARGET-SID> KEY.
+
+腳本將日誌文件寫入執行日誌文件的 `sc-system-refresh-SID.log``同一目錄。
+
+
+NOTE: 目前版本的指令碼支援單一主機系統的 MDC 單一租戶或 MDC 多租戶組態。不支援SAP HANA多主機系統。
+
+image:sc-copy-clone-image14.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== 支援的租戶還原作業
+
+如「 SAP HANA 系統使用儲存快照重新整理作業工作流程」一節所述、目標系統可能的租戶恢復作業取決於來源系統的租戶組態。指令碼 `sc-system-refresh.sh` 支援所有租戶恢復作業、這些作業可能視來源系統組態而定、如下表所示。
+
+如果目標系統需要不同的租戶名稱、則必須在恢復作業之後手動重新命名租戶。
+
+[cols="29%,35%,36%"]
+|===
+| SAP HANA 系統 | 租戶組態 + 來源系統 | 產生的租戶組態 + 位於目標系統 
+
+
+| 單一租戶 | 來源租戶名稱等於來源SID | 目標租戶名稱等於目標SID 
+
+
+| 單一租戶 | 來源租戶名稱不等於來源SID | 目標租戶名稱等於來源租戶名稱 
+
+
+| 多個用戶的MDC | 任何租戶名稱 | 所有租戶都會恢復、而且會與來源租戶擁有相同的名稱。 
+|===
+
+
+== 指令碼sc-mount-volume.sh
+
+範例指令碼 `sc-mount-volume.sh` 用於執行任何磁碟區的掛載和卸載。此指令碼可用於透過 SAP HANA 系統複製作業來掛載 SAP HANA 共用磁碟區。指令碼會在 SnapCenter 工作流程中使用特定的命令列選項來呼叫、複製建立和複製刪除、如下圖所示。
+
+
+NOTE: 此指令碼支援使用 NFS 做為儲存傳輸協定的 SAP HANA 系統。
+
+image:sc-copy-clone-image15.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+
+
+=== 局部環境變數SnapCenter
+
+提供一組環境變數、可在目標主機上執行的指令碼中使用。SnapCenter指令碼會使用這些變數來判斷相關的組態設定。
+
+* 指令碼變數 `STORAGE, JUNCTION_PATH` 用於掛載作業。
+* 衍生自'Clone磁碟區_mount_path'環境變數。
+* `CLONED_VOLUMES_MOUNT_PATH=${STORAGE}:/${JUNCTION_PATH}`
+* 例如： `CLONED_VOLUMES_MOUNT_PATH=192.168.175.117:/SS1_shared_Clone_05112206115489411`
+
+
+
+
+== 取得SnapCenter 局部環境變數的指令碼
+
+如果不應使用自動化指令碼、而且應手動執行這些步驟、您必須知道FlexClone Volume的儲存系統交會路徑。交叉路徑在SnapCenter 視覺上看不到、因此您需要直接在儲存系統上查詢交會路徑、或是使用簡單的指令碼、在SnapCenter 目標主機上提供各種版本的支援環境變數。此指令碼必須新增為SnapCenter 執行此動作的掛載作業指令碼、才能執行此動作。
+
+....
+ss1adm@hana-1:/mnt/sapcc-share/SAP-System-Refresh> cat get-env.sh
+#!/bin/bash
+env > /tmp/env-from-sc.txt
+ss1adm@hana-1:/mnt/sapcc-share/SAP-System-Refresh>
+....
+在「env-from sc.txt"檔案中、尋找變數「clone Volume _mount_path」、以取得FlexClone Volume的儲存系統IP位址和交會路徑。
+
+例如： `CLONED_VOLUMES_MOUNT_PATH=192.168.175.117:/SS1_data_mnt00001_Clone_05112206115489411`

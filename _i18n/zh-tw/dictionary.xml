@@ -4437,7 +4437,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="57c187411855aa330625e6e0331a74b7" category="paragraph"><block ref="57c187411855aa330625e6e0331a74b7" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a2ef5d14ae5c3accf7291e39163d1ebd" category="paragraph">每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。</block>
   <block id="ef8d203413a4aabe57527556e0ef5fcb" category="paragraph"><block ref="ef8d203413a4aabe57527556e0ef5fcb" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="7165d8e624155bf7a4889b98927f605c" category="list-text">ASA C250 、 ASA C400 、 ASA C800</block>
   <block id="5c93db5d513dfbb32e85b013261b5aa8" category="list-text">如中所述，檢查正確的磁碟櫃組態<block ref="039cb3f1d3f19b24b2d3e1a57595e88d" category="inline-xref-macro-rx"></block>。</block>
   <block id="cf0ea9a7f661e4a10ff9e179d0893564" category="list-text">如中所述，建立及設定所需的集合體<block ref="19f0aba2b822910f53ba3966ee7c8d59" category="inline-xref-macro-rx"></block>。</block>
   <block id="07701c9e659f97922638b5c031983241" category="list-text">建立儲存虛擬機器（ SVM ），如所述<block ref="7c58f6887f41bcea1635c2c18a7a4529" category="inline-xref-macro-rx"></block>。</block>
@@ -5494,4 +5493,5 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="3ff94088a12e40d70ab49680b4fa8d2d" category="sidebar">SnapCenter （不限平台）</block>
   <block id="58b9bbf1f64eb397b83e8797b4eb9abc" category="sidebar">SAP HANA 系統複寫：使用 SnapCenter 進行備份與還原</block>
   <block id="64b03de2a20ee77b8fcb65406457066c" category="sidebar">SAP HANA 跨區域複製概覽</block>
+  <block id="f8215a05c2f913eab74a6d7166384232" category="list-text">ASA C250 、 ASA C30 、 ASA C400 、 ASA C800</block>
 </blocks>

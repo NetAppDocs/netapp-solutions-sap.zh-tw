@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-storage-controller-setup_single_host.html 
+keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
+summary: 本節說明NetApp儲存系統的組態。您必須根據對應Data ONTAP 的《安裝與組態指南》完成主要安裝與設定。 
+---
+= 儲存控制器設定 - 單一主機
+:allow-uri-read: 
+
+
+
+
+== 儲存控制器設定 - 單一主機
+
+[role="lead"]
+本節介紹針對 SAP HANA 單主機系統的 NetApp 儲存系統配置
+
+
+
+== SAP HANA 單主機系統的 LUN 配置
+
+Linux LVM 用於提高效能並解決 LUN 大小限制。在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+
+|===
+| 邏輯磁碟區/LUN | SAP HANA主機的掛載點 | 附註 
+
+
+| LV：FC5_data_mnt0000-vol | /HANA /資料/ FC5/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LV：FC5_log_mnt00001-vol | /HANA / log / FC5/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LUN：FC5_共享 | /HANA /共享/ FC5 | 使用/etc/Fstab項目掛載 
+|===
+
+NOTE: 透過所述配置，  `/usr/sap/FC5`儲存使用者 FC5adm 預設主目錄的目錄位於本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議為 `/usr/sap/FC5`目錄，以便所有檔案系統都位於中央儲存空間上。
+
+
+
+== 建立 LUN 並將 LUN 對應到啟動程式群組
+
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
+
+
+NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。
+
+
+
+=== 使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組
+
+本節展示了使用 ONTAP 9 指令行為 SAP HANA 單主機系統（SID FC5，使用 LVM 且每個 LVM 磁碟區組有兩個 LUN）配置的範例設定：
+
+. 建立所有LUN。
++
+....
+lun create -path  FC5_data_mnt00001   -size 1t -ostype linux  -class regular
+lun create -path FC5_data2_mnt00001 -size 1t -ostype linux  -class regular
+lun create -path FC5_log_mnt00001 -size 260g -ostype linux  -class regular
+lun create -path FC5_log2_mnt00001 -size 260g -ostype linux  -class regular
+lun create -path FC5_shared -size 260g -ostype linux  -class regular
+
+....
+. 為屬於系統FC5的所有伺服器建立啟動器群組。
++
+....
+lun igroup create -igroup HANA-FC5 -protocol fcp -ostype linux -initiator 10000090fadcc5fa,10000090fadcc5fb -vserver svm1
+....
+. 將所有LUN對應至已建立的啟動器群組。
++
+....
+lun map -path FC5_data_mnt00001    -igroup HANA-FC5
+lun map -path FC5_data2_mnt00001  -igroup HANA-FC5
+lun map -path FC5_log_mnt00001  -igroup HANA-FC5
+lun map -path FC5_log2_mnt00001  -igroup HANA-FC5
+lun map -path FC5_shared  -igroup HANA-FC5
+....
+

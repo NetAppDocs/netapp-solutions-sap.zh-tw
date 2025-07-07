@@ -221,4 +221,4 @@ NetApp進行效能測試、以定義最佳價值。下表列出必須在SAP測�
 
 下圖摘要說明規模調整程序。
 
-image:saphana_fas_fc_image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_fas_fc_image8a.png["SAP HANA 規模調整流程"]

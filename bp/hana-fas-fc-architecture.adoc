@@ -34,7 +34,7 @@ image:saphana_fas_fc_image3.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 SAP HANA環境獨立於已部署FAS 的整個系統儲存模式、也可藉由新增更多儲存控制器來擴充、如下圖所示。
 
-image:saphana_fas_fc_image4.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_fas_fc_image4a.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
@@ -48,7 +48,7 @@ NetApp ONTAP 支援軟體內建備份SAP HANA資料庫的機制。以儲存為�
 
 資料庫記錄可以使用NFS掛載直接備份到次要儲存設備、如下圖所示。
 
-image:saphana_fas_fc_image5.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_asa_fc_image5a.png["SnapCenter 概述"]
 
 相較於檔案型備份、以儲存為基礎的Snapshot備份具有顯著的優勢。這些優勢包括：
 

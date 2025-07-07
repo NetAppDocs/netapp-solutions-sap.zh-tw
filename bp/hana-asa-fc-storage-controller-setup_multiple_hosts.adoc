@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-storage-controller-setup_multiple_hosts.html 
+keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
+summary: 本節介紹如何為多主機系統建立 LUN 
+---
+= 儲存控制器設定 - 多台主機
+:allow-uri-read: 
+
+
+
+
+== 儲存控制器設定 - 多台主機
+
+[role="lead"]
+本節介紹針對 SAP HANA 多主機系統的 NetApp 儲存系統配置
+
+
+
+== SAP HANA 多主機系統的 LUN 配置
+
+Linux LVM 用於提高效能並解決 LUN 大小限制。
+
+在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+
+|===
+| 邏輯磁碟區 (LV) | SAP HANA主機的掛載點 | 附註 
+
+
+| LV：FC5_data_mnt00001-vol | /HANA /資料/ FC5/mnt00001 | 使用儲存連接器安裝 
+
+
+| LV：FC5_log_mnt00001-vol | /HANA / log / FC5/mnt00001 | 使用儲存連接器安裝 
+
+
+| LV：FC5_data_mnt00002-vol | /HANA /資料/ FC5/mnt00002 | 使用儲存連接器安裝 
+
+
+| LV：FC5_log_mnt00002-vol | /HANA / log / FC5/mnt00002 | 使用儲存連接器安裝 
+
+
+| 外部 NFS 共用：FC5_shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+|===
+
+NOTE: SAP HANA 多主機系統需要 `/hana/shared`連接到系統所有主機的檔案系統。通常，這是由 NFS 伺服器提供的 NFS 共用。建議使用高可用性 NFS 伺服器，例如 NetApp FAS 或 AFF 系統。另一種選擇是使用 LINUX 主機的內建 NFS 伺服器。
+
+
+NOTE: 透過所述配置，  `/usr/sap/FC5`儲存使用者 FC5adm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議使用四個額外的 LUN 用於 `/usr/sap/FC5`檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。
+
+
+
+== 建立 LUN 並將 LUN 對應到啟動程式群組
+
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
+
+
+NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。
+
+
+
+=== 使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組
+
+本節展示了使用 ONTAP 9 指令行為 2+1 SAP HANA 多主機系統設定範例，該系統採用 FC5 FC5，使用 LVM，每個 LVM 磁碟區組有兩個 LUN：
+
+. 建立所有LUN。
++
+....
+lun create -path FC5_data_mnt00001   -size 1t -ostype linux  -class regular
+lun create -path FC5_data2_mnt00001 -size 1t -ostype linux  -class regular
+lun create -path FC5_data_mnt00002 -size 1t -ostype linux  -class regular
+lun create -path FC5_data2_mnt00002 -size 1t -ostype linux  -class regular
+lun create -path FC5_log_mnt00001 -size 260g -ostype linux  -class regular
+lun create -path FC5_log2_mnt00001 -size 260g -ostype linux  -class regular
+lun create -path FC5_log_mnt00002 -size 260g -ostype linux  -class regular
+lun create -path FC5_log2_mnt00002 -size 260g -ostype linux  -class regular
+....
+. 為屬於系統FC5的所有伺服器建立啟動器群組。
++
+....
+lun igroup create -igroup HANA-FC5 -protocol fcp -ostype linux -initiator 10000090fadcc5fa,10000090fadcc5fb,10000090fadcc5c1,10000090fadcc5c2,10000090fadcc5c3,10000090fadcc5c4 -vserver svm1
+....
+. 將所有LUN對應至已建立的啟動器群組。
++
+....
+lun map -path FC5_data_mnt00001  -igroup HANA-FC5
+lun map -path FC5_data2_mnt00001  -igroup HANA-FC5
+lun map -path FC5_data_mnt00002  -igroup HANA-FC5
+lun map -path FC5_data2_mnt00002  -igroup HANA-FC5
+lun map -path FC5_log_mnt00001  -igroup HANA-FC5
+lun map -path FC5_log2_mnt00001  -igroup HANA-FC5
+lun map -path FC5_log_mnt00002  -igroup HANA-FC5
+lun map -path FC5_log2_mnt00002  -igroup HANA-FC5
+....
+

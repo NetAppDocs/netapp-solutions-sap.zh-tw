@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-storage-controller-setup.html 
+keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
+summary: 本節說明NetApp儲存系統的組態。您必須根據對應Data ONTAP 的《安裝與組態指南》完成主要安裝與設定。 
+---
+= 儲存控制器設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本節說明NetApp儲存系統的組態。您必須根據對應Data ONTAP 的《安裝與組態指南》完成主要安裝與設定。
+
+
+
+== 儲存效率
+
+SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時壓縮及即時資料壓縮。
+
+
+
+== 服務品質
+
+QoS 可用於限制共用控制器上特定 SAP HANA 系統或非 SAP 應用程式的儲存處理量。
+
+
+
+=== 正式作業與開發 / 測試
+
+其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。
+
+
+
+=== 共享環境
+
+另一個使用案例是限制繁重寫入工作負載的處理量，特別是避免這些工作負載對其他對延遲敏感的寫入工作負載造成影響。在這類環境中，最佳做法是將非共用處理量上限 QoS 群組原則套用至每個儲存虛擬機器（ SVM ）內的每個 LUN ，以限制每個個別儲存物件的最大處理量達到指定值。如此可降低單一工作負載對其他工作負載造成負面影響的可能性。
+
+若要這麼做，必須使用 ONTAP 叢集的 CLI 為每個 SVM 建立群組原則：
+
+....
+qos policy-group create -policy-group <policy-name> -vserver <vserver name> -max-throughput 1000MB/s -is-shared false
+....
+並套用至 SVM 中的每個 LUN 。以下是將原則群組套用至 SVM 中所有現有 LUN 的範例：
+
+....
+lun modify -vserver <vserver name>  -path * -qos-policy-group  <policy-name>
+....
+每個 SVM 都必須完成這項工作。每個 SVM 的 QoS 警群組名稱必須不同。對於新的 LUN ，可直接套用原則：
+
+....
+lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
+....
+建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例link:hana-asa-fc-host-setup.html#create-lvm-volume-groups-and-logical-volumes["主機設定"]。
+
+
+NOTE: 此限制也適用於讀取。因此，請使用足夠的 LUN 來滿足 SAP HANA 資料庫啟動時間和備份所需的 SLA 。
+
+
+
+== 設定儲存設備
+
+以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存FCP連接埠與SAN架構之間的連線也必須已就緒。
+
+. 如中所述，檢查正確的磁碟櫃組態<<NVMe（100GbE）型磁碟櫃>>。
+. 使用 HANA 伺服器的全球名稱 (WWN) 建立啟動器群組 (igroup)，如連結：saphana-asa-fc-storage-controller-setup.html#initiator-groups 部分所述<<啟動器群組>> 。
+. 建立 LUN 並將其對應到本節中所述的伺服器link:hana-asa-fc-storage-controller-setup_single_host.html["SAP HANA 單主機系統的 LUN 配置"]和link:hana-asa-fc-storage-controller-setup_multiple_hosts.html["SAP HANA 多主機系統的 LUN 配置"]
+
+
+
+
+=== NVMe（100GbE）型磁碟櫃
+
+每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。磁碟會自動分配到 HA 對的兩個控制器。
+
+image:saphana_asa_fc_image11a.png["NS224 NVMe 磁碟櫃連線"]
+
+
+
+=== 啟動器群組
+
+您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。
+
+使用「sanlun」工具、執行下列命令以取得每個SAP HANA主機的WWPN：
+
+....
+sapcc-hana-tst:~ # sanlun fcp show adapter
+/sbin/udevadm
+/sbin/udevadm
+
+host0 ...... WWPN:2100000e1e163700
+host1 ...... WWPN:2100000e1e163701
+....
+
+NOTE: 此 `sanlun`工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節link:hana-asa-fc-host-setup.html["主機設定："]
+
+可以使用 ONTAP 叢集的 CLI 建立啟動器群組。
+
+....
+lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
+....

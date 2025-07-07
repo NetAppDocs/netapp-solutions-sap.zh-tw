@@ -10,6 +10,8 @@ indexpage:
       url: bp/hana-aff-fc-introduction.html
     - title: "《SAP HANA on NetApp AFF 》《採用NFS的NetApp系統組態指南》"
       url: bp/hana-aff-nfs-introduction.html
+    - title: "《SAP HANA on NetApp ASA 》《採用FCP組態的NetApp系統》指南"
+      url: "/bp/hana-asa-fc-introduction.html"
     - title: NetApp FAS 系統上的 SAP HANA with NFS 組態指南
       url: bp/hana-fas-nfs-introduction.html
     - title: 採用光纖通道傳輸協定的 NetApp FAS 系統上的 SAP HANA 組態指南

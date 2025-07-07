@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-infra-setup-config-overview.html 
+keywords:  
+summary:  
+---
+= 基礎架構設定與組態
+:allow-uri-read: 
+
+
+
+
+== 基礎架構設定與組態
+
+[role="lead"]
+以下各節提供SAP HANA基礎架構設定與組態準則、並說明設定SAP HANA系統所需的所有步驟。在這些章節中、使用下列組態範例：
+
+* 採用 SID=FC5 的 Hana 系統
++
+** SAP HANA單一和多部主機
+
+
+

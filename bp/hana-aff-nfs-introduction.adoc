@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: bp/hana-aff-nfs-introduction.html 
 keywords: introduction, certification, AFF A220, AFF A250, AFF A300, AFF A320, AFF A400, AFF A700s, AFF A700, AFF A800A, 
-summary: NetApp AFF 支援系統產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。通過認證的企業級儲存系統以NetApp ONTAP 的整套軟體為特色。 
+summary: NetApp AFF 支援系統產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。本指南提供了此平台上 SAP HANA 的最佳實務。 
 ---
 = NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南
 :hardbreaks:
@@ -14,9 +14,9 @@ summary: NetApp AFF 支援系統產品系列已通過認證、可在量身打造
 
 
 [role="lead"]
-NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。
+NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。本指南提供了此平台上適用於 NFS 的 SAP HANA 的最佳實務。
 
-NetApp 的 Marco sch(n
+NetApp的Marco. Schoen
 
 本認證適用於下列機型：
 
@@ -40,9 +40,10 @@ NOTE: 本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效
 
 您AFF 可以在下列連結中找到使用FCP的NetApp Sfor Systems組態指南、FAS 以及使用NFS或FCP的適用於Sfor Sfor Sfor Sfor Sfor Sfor Sfor Sfor the Systems：
 
-* link:hana-fas-fc-introduction.html["採用FAS Fibre Channel Protocol的NetApp解決方案上的SAP HANA"^]
+* link:hana-fas-fc-introduction.html["SAP HANA on NetApp FAS 》、採用FCP技術的系統"^]
 * link:hana-fas-nfs-introduction.html["SAP HANA on NetApp FAS 的NFS系統"^]
-* link:hana-aff-fc-introduction.html["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"^]
+* link:hana-aff-fc-introduction.html["SAP HANA on NetApp AFF 》、採用FCP技術的系統"^]
+* link:hana-asa-fc-introduction.html["SAP HANA on NetApp ASA 》、採用FCP技術的系統"^]
 
 
 下表顯示NFS版本、NFS鎖定及所需隔離實作的支援組合、視SAP HANA資料庫組態而定。

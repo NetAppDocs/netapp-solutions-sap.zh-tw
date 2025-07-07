@@ -26,7 +26,7 @@ https://www.netapp.com/support-and-training/documentation/["https://www.netapp.c
 
 * SAP認證的SAP HANA企業儲存硬體
 +
-http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html["http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html"^]
+https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/["https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/"^]
 
 * SAP HANA儲存需求
 +

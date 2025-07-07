@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: bp/hana-aff-fc-additional-info.html 
+permalink: bp/hana-asa-fc-additional-info.html 
 keywords:  
 summary:  
 ---
@@ -18,6 +18,7 @@ summary:
 
 * link:../index.html["SAP HANA軟體解決方案"]
 * link:../backup/hana-dr-sr-pdf-link.html["TR-4646：SAP HANA災難恢復與儲存複寫"]
+* link:../backup/hana-sc-vmware-smas-scope.html["SnapCenter ， SnapMirror Active Sync 和 VMware Metro Storage 叢集提供 SAP HANA 資料保護和高可用度"^]
 * link:../backup/hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"]
 * link:../lifecycle/sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"]
 * NetApp文件中心

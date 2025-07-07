@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-host-setup_multi.html 
+keywords: multipathing, fcp, hba, configure 
+summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支援網站下載、並安裝在HANA伺服器上。主機公用程式文件包含其他軟體的相關資訊、這些軟體必須視所使用的FCP HBA而安裝。 
+---
+= 多主機設定
+:allow-uri-read: 
+
+
+
+
+== 多主機設定
+
+[role="lead"]
+本章以 2+1 SAP HANA 多主機系統的設定為例進行說明。
+
+
+
+=== 建立LVM Volume群組和邏輯磁碟區
+
+. 將所有LUN初始化為實體磁碟區。
++
+....
+pvcreate /dev/mapper/hana-FC5_data_mnt00001
+pvcreate /dev/mapper/hana-FC5_data2_mnt00001
+pvcreate /dev/mapper/hana-FC5_data_mnt00002
+pvcreate /dev/mapper/hana-FC5_data2_mnt00002
+pvcreate /dev/mapper/hana-FC5_log_mnt00001
+pvcreate /dev/mapper/hana-FC5_log2_mnt00001
+pvcreate /dev/mapper/hana-FC5_log_mnt00002
+pvcreate /dev/mapper/hana-FC5_log2_mnt00002
+....
+. 為每個資料和記錄分割區建立磁碟區群組。
++
+....
+vgcreate FC5_data_mnt00001 /dev/mapper/hana-FC5_data_mnt00001 /dev/mapper/hana-FC5_data2_mnt00001
+vgcreate FC5_data_mnt00002 /dev/mapper/hana-FC5_data_mnt00002 /dev/mapper/hana-FC5_data2_mnt00002
+vgcreate FC5_log_mnt00001 /dev/mapper/hana-FC5_log_mnt00001 /dev/mapper/hana-FC5_log2_mnt00001
+vgcreate FC5_log_mnt00002 /dev/mapper/hana-FC5_log_mnt00002 /dev/mapper/hana-FC5_log2_mnt00002
+....
+. 為每個資料和記錄分割區建立邏輯磁碟區。使用等量磁碟區大小、等於每個磁碟區群組使用的LUN數量（在此範例中為兩個）、而資料使用的等量磁碟區大小為256k、記錄使用64k。SAP僅支援每個Volume群組一個邏輯Volume。
++
+....
+lvcreate --extents 100%FREE -i 2 -I 256k --name vol FC5_data_mnt00001
+lvcreate --extents 100%FREE -i 2 -I 256k --name vol FC5_data_mnt00002
+lvcreate --extents 100%FREE -i 2 -I 64k --name vol FC5_log_mnt00002
+lvcreate --extents 100%FREE -i 2 -I 64k --name vol FC5_log_mnt00001
+....
+. 掃描所有其他主機上的實體磁碟區、磁碟區群組和磁碟區群組。
+
+
+....
+modprobe dm_mod
+pvscan
+vgscan
+lvscan
+....
+
+NOTE: 如果這些命令找不到磁碟區、則需要重新啟動。
+
+若要掛載邏輯磁碟區、必須啟動邏輯磁碟區。若要啟動磁碟區、請執行下列命令：
+
+....
+vgchange -a y
+....
+
+
+=== 建立檔案系統
+
+在所有資料和日誌邏輯磁碟區上建立 XFS 檔案系統。
+
+....
+mkfs.xfs FC5_data_mnt00001-vol
+mkfs.xfs FC5_data_mnt00002-vol
+mkfs.xfs FC5_log_mnt00001-vol
+mkfs.xfs FC5_log_mnt00002-vol
+....
+
+
+=== 建立掛載點
+
+若要建立所需的掛載點目錄，請在所有工作主機和備用主機上設定權限並建立掛載點。
+
+....
+sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
+sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00001
+sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00002
+sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00002
+sapcc-hana-tst:/ # mkdir -p /hana/shared
+sapcc-hana-tst:/ # chmod –R 777 /hana/log/FC5
+sapcc-hana-tst:/ # chmod –R 777 /hana/data/FC5
+sapcc-hana-tst:/ # chmod 777 /hana/shared
+....
+
+
+=== 掛載檔案系統
+
+要安裝 `/hana/shared`檔案系統在系統啟動時使用 `/etc/fstab`配置文件，添加 `/hana/shared`檔案系統 `/etc/fstab`每個主機的設定檔。
+
+....
+sapcc-hana-tst:/ # cat /etc/fstab
+<storage-ip>:/hana_shared /hana/shared nfs rw,vers=3,hard,timeo=600, intr,noatime,nolock 0 0
+....
+
+NOTE: 所有資料與記錄檔系統都是透過SAP HANA儲存連接器掛載。
+
+若要掛載檔案系統、請在每個主機上執行「mount–a」命令。

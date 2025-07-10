@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-hana-config.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery 
+summary:  
+---
+= HANA 組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+== 配置SnapCenter資料庫用戶
+
+必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。
+
+image:sc-hana-asrr2-vmfs-image8.png["圖示範所討論的內容"]
+
+
+
+== 設定 hdb 用戶儲存金鑰
+
+必須為使用者 vfsadm 建立使用者儲存密鑰。必須相應地設定 HANA 實例編號以便與連接埠通訊。在我們的設定執行個體編號「 45 」中使用。
+
+....
+vfsadm@hana-8:/usr/sap/VFS/HDB45> hdbuserstore SET VFSKEY hana-8:34513 SNAPCENTER <password>
+
+Retroactive report: Operation succeed.
+....
+使用以下方式檢查存取權限：
+
+....
+vfsadm@hana-8:/usr/sap/VFS/HDB45> hdbsql -U VFSKEY
+
+Welcome to the SAP HANA Database interactive terminal.
+Type: \h for help with commands
+\q to quit
+hdbsql SYSTEMDB=> exit
+
+vfsadm@hana-8:/usr/sap/VFS/HDB45>
+....

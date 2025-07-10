@@ -91,6 +91,26 @@ entries:
     url: "/backup/hana-sc-vmware-smas-failover-scenarios.html"
   - title: 其他資訊和版本歷程記錄
     url: "/backup/hana-sc-vmware-smas-additional-info.html"
+- title: 使用 VMware VMFS 和NetApp ASA系統的SnapCenter進行 SAP HANA 資料保護
+  entries:
+  - title: 本文件的範圍
+    url: "/backup/hana-sc-vmfs-asar2-scope.html"
+  - title: 本文檔使用的實驗室設置
+    url: "/backup/hana-sc-vmfs-asar2-lab-setup.html"
+  - title: HANA 系統資源配置與安裝
+    url: "/backup/hana-sc-vmfs-asar2-hana-prov.html"
+  - title: HANA 組態
+    url: "/backup/hana-sc-vmfs-asar2-hana-config.html"
+  - title: 組態SnapCenter
+    url: "/backup/hana-sc-vmfs-asar2-sc-config.html"
+  - title: 支援備份作業SnapCenter
+    url: "/backup/hana-sc-vmfs-asar2-sc-backup.html"
+  - title: SnapCenter還原與復原作業
+    url: "/backup/hana-sc-vmfs-asar2-sc-restore.html"
+  - title: SAP 系統更新
+    url: "/backup/hana-sc-vmfs-asar2sap-refresh.html"
+  - title: 附加資訊和版本歷史記錄
+    url: "/backup/hana-sc-vmfs-asar2-add-info.html"
 - title: BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
   entries:
   - title: BlueXP Backup and Recovery for SAP HANA - 總覽

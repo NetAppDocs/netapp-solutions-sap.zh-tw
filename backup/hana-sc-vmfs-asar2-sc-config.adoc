@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-sc-config.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery 
+summary:  
+---
+= 組態SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+== 先決條件
+
+
+
+=== 必須自動探索 SnapCenter HANA 資源
+
+使用 VMware VMFS 配置的資源必須由SnapCenter自動發現，才能啟用這些配置所需的特定操作。
+
+由於 HANA 非資料磁碟區始終是SnapCenter中手動配置的資源，因此帶有 VMFS 的SnapCenter不支援它們。
+
+SAP HANA 多主機系統必須使用中央 HANA 插件進行配置，因此預設需要手動配置。使用 VMware VMFS 時， SnapCenter也不支援此類系統。
+
+
+
+=== SnapCenter for VMware vSphere 外掛程式
+
+SnapCenter for VMware vSphere 外掛程式必須部署在 VMware 環境中。
+
+
+
+=== 儲存SVM管理IP
+
+託管 LUN 的儲存 SVM 必須配置管理接口，否則使用「新增叢集」選項新增儲存裝置時 SVM 將不會在SnapCenter中列出，並且自動發現操作將會失敗。
+
+image:sc-hana-asrr2-vmfs-image9.png["圖示範所討論的內容"]
+
+image:sc-hana-asrr2-vmfs-image10.png["圖示範所討論的內容"]
+
+
+
+=== 虛擬機器磁碟參數
+
+必須依照章節說明設定參數link:hana-sc-vmfs-asar2-hana-prov.html#vm-parameter-disk-enableuuid["“虛擬機器參數磁碟.EnableUUID”"] ，否則SnapCenter資料庫自動發現將失敗。
+
+image:sc-hana-asrr2-vmfs-image11.png["圖示範所討論的內容"]
+
+
+
+=== 配置SnapCenter以使用 REST API 進行儲存通信
+
+必須將SnapCenter配置為使用 REST API 進行儲存通訊。否則，建立快照操作將會失敗，並顯示下列錯誤訊息。
+
+image:sc-hana-asrr2-vmfs-image12.png["圖示範所討論的內容"]
+
+設定檔+C:++\++Program Files++\++NetApp++\++SMCore++\++SMCoreServiceHost.dll.config中的參數「IsRestEnabledForStorageConnection」必須設定為「true」。
+
+++<++新增鍵=“IsRestEnabledForStorageConnection”值=“true”/++>++
+
+image:sc-hana-asrr2-vmfs-image13.png["圖示範所討論的內容"]
+
+完成變更後，必須停止並啟動SnapCenter SMCore 服務。
+
+image:sc-hana-asrr2-vmfs-image14.png["圖示範所討論的內容"]
+
+
+
+== 將 VMware 外掛程式加入SnapCenter
+
+在將主機新增至 SnapCenter 之前， VMware vSphere 的 SnapCenter 外掛程式必須部署在 VMware 環境中。另請參閱 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_deploy_snapcenter_plug-in_for_vmware_vsphere.html["部署SnapCenter VMware vSphere的VMware vCenter外掛程式"]。
+
+
+NOTE: 必須在主機新增工作流程期間設定認證，以便將 vSphere 選取為主機類型。
+
+image:sc-hana-asrr2-vmfs-image15.png["圖示範所討論的內容"]
+
+
+
+== 新增 HANA 主機
+
+
+NOTE: 無特定要求。外掛程式部署和自動探索會照常進行。
+
+image:sc-hana-asrr2-vmfs-image16.png["圖示範所討論的內容"]
+
+透過自動發現過程， SnapCenter偵測到 HANA 資源正在使用 VMFS 虛擬化運作。
+
+image:sc-hana-asrr2-vmfs-image17.png["圖示範所討論的內容"]
+
+
+
+== 策略和資源保護配置
+
+對於具有 VMFS 的 VMware 來說沒有什麼特別之處。

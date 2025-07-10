@@ -5583,4 +5583,164 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="526ffb7b57e2db6ab8a3f13077e8988c" category="sidebar">多主機 LUN 配置</block>
   <block id="50759eefac4f0ffd82247ab6b82e8407" category="sidebar">配置多路徑</block>
   <block id="b12ba339120dcf2901d4eb899fd432f4" category="sidebar">多主機</block>
+  <block id="b5c56e3ba8d38f1f3f0a7a5413fdeef2" category="paragraph">HANA 最佳實踐：</block>
+  <block id="c7666fa654de87dc33703084f80aa4be" category="list-text"><block ref="7912a6ea019693a170bbf40a62a72e9f" category="inline-link-rx"></block>。</block>
+  <block id="1902e4ab89c18ee8b918255bd4a42840" category="list-text"><block ref="1902e4ab89c18ee8b918255bd4a42840" category="inline-link-rx"></block></block>
+  <block id="686acd2e11e136510ec14f9d97c7ff2b" category="list-text"><block ref="686acd2e11e136510ec14f9d97c7ff2b" category="inline-link-rx"></block></block>
+  <block id="766ba9dc44e7046f7c6af47344e24026" category="list-text"><block ref="766ba9dc44e7046f7c6af47344e24026" category="inline-link-rx"></block></block>
+  <block id="31d7058304689e06db912e9954e30a03" category="inline-link">透過 SnapCenter™ SnapMirror主動同步和 VMware Metro Storage Cluster 實現 SAP HANA 資料保護和高可用性</block>
+  <block id="2d9241a18d70b18a2ee9eb0e84478a18" category="list-text"><block ref="0f7eff3318699c5566509659cc1b2254" category="inline-link-rx"></block></block>
+  <block id="fc762ac7f083d9e202e822b1fa322b8c" category="cell">07/2025</block>
+  <block id="30d1e657d64ccb4284e298d3b860a87c" category="doc">HANA 組態</block>
+  <block id="77fe69cec81dd794083875a29062f5a2" category="section-title">配置SnapCenter資料庫用戶</block>
+  <block id="4b244bed7a51953fb7d138e5d35e917a" category="paragraph">必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。</block>
+  <block id="9d1fbfa9e8e32a79e4a23e98af0670b1" category="paragraph"><block ref="9d1fbfa9e8e32a79e4a23e98af0670b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="147cbd5af1df109eb54c4e6242c3837f" category="section-title">設定 hdb 用戶儲存金鑰</block>
+  <block id="1f08611a23de2730d3dcdda198ad89cb" category="paragraph">必須為使用者 vfsadm 建立使用者儲存密鑰。必須相應地設定 HANA 實例編號以便與連接埠通訊。在我們的設定執行個體編號「 45 」中使用。</block>
+  <block id="14127bd47862dbb3e24c3d6ec4c6b9f4" category="paragraph">使用以下方式檢查存取權限：</block>
+  <block id="3c26608069377933b31d5aa3bb3dd8bc" category="paragraph">本章說明使用 VMFS 的 VMware 設定所特有的 SAP HANA 系統安裝與組態。其他一般最佳實務做法請參閱<block ref="5888c0fcaa90f43e1381a41ee8a6b7b6" category="inline-link-rx"></block>。</block>
+  <block id="8c3bf5f6d15c03785a898def5178f90a" category="paragraph">為了滿足 SAP 為生產 HANA 系統定義的儲存效能 KPI，必須為 HANA 系統的資料和日誌檔案系統配置專用 LUN 和資料儲存區。資料儲存區不得在多個 HANA 系統或其他工作負載之間共用。</block>
+  <block id="bfdedf5ba25d32c4f1b6c9711d39fc97" category="paragraph">已使用適用於 VMware (OTV) 的ONTAP工具為 HANA 系統 VFS 配置三個資料儲存庫。</block>
+  <block id="7a82859cadb1951dd78e138525e0d009" category="list-text">hana++_++資料++_++VFS</block>
+  <block id="a25af01a1dcd7358a5424304591980c8" category="list-text">hana++_++log++_++VFS</block>
+  <block id="3e8e1cb260d5311a94efd68c72a13240" category="list-text">hana++_++共享++_++VFS</block>
+  <block id="f0f3a981290ce91283a62f872992e9db" category="admonition">HANA 共用檔案系統的資料儲存也可以在多個 HANA 系統之間共用。</block>
+  <block id="f599573530db0752a2e90aced96a81a8" category="paragraph"><block ref="f599573530db0752a2e90aced96a81a8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3ddd5135c60cd685418c718a339804a1" category="paragraph">在儲存系統中，OTV 建立了三個 LUN。</block>
+  <block id="5f62823eb2a59b219c6cd02f2e6f7c35" category="paragraph"><block ref="5f62823eb2a59b219c6cd02f2e6f7c35" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cee670885c2f7687046ed5e734fbd513" category="paragraph">必須向 HANA VM 新增三個新磁碟 (VMDK)。每個磁碟都位於先前建立的資料儲存區中，如下圖所示。</block>
+  <block id="fa46aa47289006308772c70ed3e38330" category="paragraph"><block ref="fa46aa47289006308772c70ed3e38330" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6ef09e08bf1d070593faf7496c31d1ae" category="paragraph"><block ref="6ef09e08bf1d070593faf7496c31d1ae" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4287b2ca01984430bd31da731e2c3767" category="paragraph"><block ref="4287b2ca01984430bd31da731e2c3767" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="baf1444f8a77613237255aa5334aa120" category="paragraph">當這三個磁碟被添加到虛擬機器後，它們可以在作業系統層級列出。</block>
+  <block id="1c007f49b78d96561f9da05cacd33ec2" category="section-title">VM 參數 disk.EnableUUID</block>
+  <block id="c444cfed3f21d3a305c6639f685138fa" category="paragraph">必須相應地設定此參數，否則SnapCenter資料庫自動發現將失敗。</block>
+  <block id="64ff5b46dd80be4b6f42804e301ef777" category="list-text">關閉虛擬機</block>
+  <block id="f9f9cd478a7953bf030d52c20aafdb8a" category="list-text">新增參數“disk.EnableUUID”並設定為“TRUE”</block>
+  <block id="f327c6b8d960a063ccd09da39c3b7b97" category="list-text">啟動虛擬機</block>
+  <block id="94bff44061f52d768fa37614fee5b89f" category="paragraph"><block ref="94bff44061f52d768fa37614fee5b89f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c1a7ab041084f74b8386c23b9bc74251" category="admonition">依照所述配置，/usr/sap/VFS 目錄將位於 OS VMDK 上。如果要將 /usr/sap/VFS 儲存在共用 VMDK 中，則可以對 hana 共用磁碟進行分割區，以便為 /usr/sap/VFS 提供另一個檔案系統。</block>
+  <block id="25db1c184405fa694f255d026a8f6206" category="doc">本文檔使用的實驗室設置</block>
+  <block id="3b1bf1088e0cce0398f75cfe40404d41" category="paragraph">下圖簡要概述了所使用的實驗室設置。我們使用兩個單主機 HANA MDC 系統來示範各種操作。 HANA系統 VFS 用於執行備份、還原和復原作業，而 HANA 系統 QFS 則用作 SAP 系統刷新作業的目標系統。 SnapCenterfor VMwareSnapCenter對於SnapCenter管理配置了 VMware VMFS 的 HANA 資源至關重要。雖然使用了ONTAP for VMware 工具來為 HANA 系統配置儲存單元，但它們並非必要元件。</block>
+  <block id="387f80641bb4b96385f8e14363fb6027" category="paragraph"><block ref="387f80641bb4b96385f8e14363fb6027" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d723e9999868bf9803c0bd4c2b40d03f" category="cell">ASA A70 ONTAP 9.16.1</block>
+  <block id="1b4503c04f45d68ae09fb22125331a69" category="cell">6.1.0</block>
+  <block id="ed9018b2e8611a3d2c03bb6a205b9715" category="cell">VMware vSphere適用的工具ONTAP</block>
+  <block id="669ce1d03d9fa934e3a84459db318586" category="cell">10.4</block>
+  <block id="ab65e67792b36dde8f2a4168eae395f1" category="cell">適用於 SAP 15 SP6 的 SLES</block>
+  <block id="8ed383fa971db2bdb3c9dac3b1c99e0e" category="cell">6.1P1</block>
+  <block id="4416f771603feaecfeeb5f9c4a27acc6" category="paragraph">對於具有 VMFS 的 VMware 來說沒有什麼特別之處。</block>
+  <block id="f054b5b3562f8d94c0d5df072b0931c7" category="paragraph"><block ref="f054b5b3562f8d94c0d5df072b0931c7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="47c6f1b4b3a21ae5ef212d1a1b5597d2" category="paragraph"><block ref="47c6f1b4b3a21ae5ef212d1a1b5597d2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ef4b3aa222aed2409197402ed47a9656" category="paragraph">SnapCenter建立一個一致性群組 (CG)，並將儲存單元 hana++_++data++_++VFS 新增至 CG。快照在 CG 層級建立。</block>
+  <block id="54f6800487eaeb84fb5d1c2a8cf2117e" category="paragraph"><block ref="54f6800487eaeb84fb5d1c2a8cf2117e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="170a54035d1bf66f503a9b3a5973a85e" category="paragraph"><block ref="170a54035d1bf66f503a9b3a5973a85e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b1956e81ddbd7a2b708c3ce88498b2b9" category="paragraph"><block ref="b1956e81ddbd7a2b708c3ce88498b2b9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="714d1c0620034048eb38666e4046bd9c" category="paragraph">使用 VMware VMFS 配置的資源必須由SnapCenter自動發現，才能啟用這些配置所需的特定操作。</block>
+  <block id="5d6c989a1d8c90340545766ce51aaed1" category="paragraph">由於 HANA 非資料磁碟區始終是SnapCenter中手動配置的資源，因此帶有 VMFS 的SnapCenter不支援它們。</block>
+  <block id="7f26dcfefc7d3f600d8a342c73efe2fd" category="paragraph">SAP HANA 多主機系統必須使用中央 HANA 插件進行配置，因此預設需要手動配置。使用 VMware VMFS 時， SnapCenter也不支援此類系統。</block>
+  <block id="c0fc630d9e7214b10b62eba4b37eedf2" category="section-title">儲存SVM管理IP</block>
+  <block id="b474d7d9911854875b1bc5a470a3497a" category="paragraph">託管 LUN 的儲存 SVM 必須配置管理接口，否則使用「新增叢集」選項新增儲存裝置時 SVM 將不會在SnapCenter中列出，並且自動發現操作將會失敗。</block>
+  <block id="01c39c445d841c2aba19bb800b5e63d7" category="paragraph"><block ref="01c39c445d841c2aba19bb800b5e63d7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3ec4b5361dc3f883b22d66e791086743" category="paragraph"><block ref="3ec4b5361dc3f883b22d66e791086743" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e0a0b049a0819a386cca8792b2aeab93" category="section-title">虛擬機器磁碟參數</block>
+  <block id="d1fbdb4b15f40f2c2d44f9aeaf6a5aab" category="inline-link-macro">“虛擬機器參數磁碟.EnableUUID”</block>
+  <block id="740ee7f443c20b37d433001428dcd0a3" category="paragraph">必須依照章節說明設定參數<block ref="8fba2fcc5de70a68790dbaa8aced9fbf" category="inline-link-macro-rx"></block> ，否則SnapCenter資料庫自動發現將失敗。</block>
+  <block id="6c8dd41925abd42250ae273718901b27" category="paragraph"><block ref="6c8dd41925abd42250ae273718901b27" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="12b86f0b8e0c821f5b184bdeda2dc9ca" category="section-title">配置SnapCenter以使用 REST API 進行儲存通信</block>
+  <block id="bcfe1e13fb9df8a8aea8f708a21473aa" category="paragraph">必須將SnapCenter配置為使用 REST API 進行儲存通訊。否則，建立快照操作將會失敗，並顯示下列錯誤訊息。</block>
+  <block id="aad320481cc6b9210747b3a80802cf5d" category="paragraph"><block ref="aad320481cc6b9210747b3a80802cf5d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b7100b9860d7218e48d96aef40a016d5" category="paragraph">設定檔+C:++\++Program Files++\++NetApp++\++SMCore++\++SMCoreServiceHost.dll.config中的參數「IsRestEnabledForStorageConnection」必須設定為「true」。</block>
+  <block id="a0bce53c2c5386f21d4fda016a7b4367" category="paragraph">++&lt;++新增鍵=“IsRestEnabledForStorageConnection”值=“true”/++&gt;++</block>
+  <block id="52fa081403e5d450f2d3a0d1eece3b2e" category="paragraph"><block ref="52fa081403e5d450f2d3a0d1eece3b2e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4c1a6a0163eba6556b7c26f74286f9fe" category="paragraph">完成變更後，必須停止並啟動SnapCenter SMCore 服務。</block>
+  <block id="e0aff7174068510019783f890d9128a7" category="paragraph"><block ref="e0aff7174068510019783f890d9128a7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="540c7201ad9d8b7af82f2bdee81bd870" category="section-title">將 VMware 外掛程式加入SnapCenter</block>
+  <block id="04e7bb0411c1c8f56ca4fc8000c62ad8" category="inline-link">部署SnapCenter VMware vSphere的VMware vCenter外掛程式</block>
+  <block id="a1fbd22cbb6d87f7ad326da842e4174a" category="paragraph">在將主機新增至 SnapCenter 之前， VMware vSphere 的 SnapCenter 外掛程式必須部署在 VMware 環境中。另請參閱<block ref="6e2495e976c82c15186f3ed1897748e0" category="inline-link-rx"></block>。</block>
+  <block id="d428c43984fa552e6d78a83e7ff99080" category="paragraph"><block ref="d428c43984fa552e6d78a83e7ff99080" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d0718cd923bd1c3b14ee1d8817494d18" category="section-title">新增 HANA 主機</block>
+  <block id="1429646cb4b420782ce2688c6a69ebdb" category="admonition">無特定要求。外掛程式部署和自動探索會照常進行。</block>
+  <block id="a718c910e06a03a6ab11f6b85b57fa66" category="paragraph"><block ref="a718c910e06a03a6ab11f6b85b57fa66" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4050238dd9e8cc9e509a4172992b31d2" category="paragraph">透過自動發現過程， SnapCenter偵測到 HANA 資源正在使用 VMFS 虛擬化運作。</block>
+  <block id="6704fa3564e4a839466e839e9556e01e" category="paragraph"><block ref="6704fa3564e4a839466e839e9556e01e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="be1ed72dbb871c8f2508a11540f05280" category="section-title">策略和資源保護配置</block>
+  <block id="759d9708a1ad9a9c0b3937af6e7c43cc" category="paragraph">對於儲存在 VMFS/VMDK 的SnapCenter上的虛擬資源，復原作業始終透過複製、掛載、複製作業完成。</block>
+  <block id="f9badeec2d4b63a52a6b9f990dad8738" category="list-text">SnapCenter根據所選快照建立儲存克隆</block>
+  <block id="3e068d6a0678f44b0a89c70fc6cef201" category="list-text">SnapCenter將 LUN 作為新的資料儲存掛載到 ESX 主機</block>
+  <block id="bf399aad6f781f8b0fdd0eef2da23a57" category="list-text">SnapCenter執行 HANA 系統資料庫的恢復</block>
+  <block id="e8b7b00c48990267941307ac6c492a32" category="list-text">SnapCenter執行 HANA 租戶資料庫的恢復</block>
+  <block id="b9a9673e696444188a78cd3551806d04" category="paragraph">還原作業的整體運作時間取決於資料庫大小以及儲存叢集與 ESX 主機之間 FC 連線的吞吐量。在我們初步安裝 HANA 的實驗室設置中，運行時間約為 12 分鐘。</block>
+  <block id="e3447f36246011818eecb545a5d9709e" category="paragraph"><block ref="e3447f36246011818eecb545a5d9709e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e29553968060b7dec86ab852fb8381e0" category="paragraph"><block ref="e29553968060b7dec86ab852fb8381e0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="44a50b4a6877e72b50641338f74bc067" category="paragraph">在還原和復原作業運作時，您可以看到一個新的複製儲存單元。</block>
+  <block id="31d144a19554f94d0409543be9400a57" category="paragraph"><block ref="31d144a19554f94d0409543be9400a57" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3b0c4fc6659e17d5972df677ca77bd5c" category="paragraph">基於克隆儲存單元的新 LUN（資料儲存）將連接到 ESX 叢集。</block>
+  <block id="7887e2cbb99e1ac78448e0dba94e22e6" category="paragraph"><block ref="7887e2cbb99e1ac78448e0dba94e22e6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="51f138e1a6a1a0748940ed618b615e31" category="paragraph">資料儲存內的 VMDK 對應到目標 HANA VM 並安裝到 HANA 系統。</block>
+  <block id="d2015fdbff426ff13c6fb5e9b18652d8" category="paragraph"><block ref="d2015fdbff426ff13c6fb5e9b18652d8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="08d7f308077a841a71acbd22a0b41e2b" category="doc">使用 VMware VMFS 和NetApp ASA系統的SnapCenter進行 SAP HANA 資料保護</block>
+  <block id="6e68c6c25e00ca1603267ca3b45d493b" category="paragraph">本文檔概述了使用在 VMware 上運行的SnapCenter for HANA 系統以及使用 VMFS 和儲存在NetApp ASA系統上的 LUN 的資料儲存進行資料保護的最佳實務。</block>
+  <block id="1c13795e55120ebebabcc70fc98dfcd9" category="paragraph">它不是配置整個環境的逐步指南，而是專注於 VMFS 上的SnapCenter和 HANA 的具體細節，包括：</block>
+  <block id="2954798e6fde7d59a9eaaff7e6715c0e" category="list-text">使用 VMware VMFS 設定 SAP HANA 系統</block>
+  <block id="1b310d57c56de7853e5c89945d32e720" category="list-text">適用於 VMware 上具有 VMFS 的 HANA 的特定SnapCenter配置</block>
+  <block id="b8619f403c6d404de51d19667ec612bc" category="list-text">SnapCenter使用 VMFS 對 VMware 上的 HANA 進行備份、還原和復原作業</block>
+  <block id="0341cb73da00f7d06a746e7f9b8ca253" category="list-text">SnapCenter SAP 系統刷新作業適用於 VMware 上使用 VMFS 的 HANA</block>
+  <block id="36dce14f0655f4eebcfdc431a87cb912" category="inline-link-macro">“附加資訊”</block>
+  <block id="3bd68d50e54a537e6e9f2a5e47665875" category="paragraph">如需更多資訊和詳細配置說明，請參閱<block ref="cd186e727cc44e449e0e68e423bc0f88" category="inline-link-macro-rx"></block>章。</block>
+  <block id="2df734a60e2afa20a9e729d517b3c655" category="doc">SAP 系統更新</block>
+  <block id="96bc1b4e98932d87170662ccf1b2488a" category="paragraph">有關使用SnapCenter進行 SAP 系統刷新操作的詳細信息，請參閱<block ref="6c08dc4f79105734ee7967f4cc273b9b" category="inline-link-rx"></block> 。</block>
+  <block id="2079fbb897b42174a19c35aef528f6a2" category="inline-link-macro">“HANA 系統配置和安裝”</block>
+  <block id="f0cbbbdbda730c3942ce42c411b9c606" category="paragraph">第二個 HANA 系統 QFS 已依照第章所述的方式進行配置<block ref="778e00c6cff5f91c98f1fb38e6557c6f" category="inline-link-macro-rx"></block> 。</block>
+  <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">先決條件</block>
+  <block id="4757b083ccca46cc946355a7644afb0e" category="paragraph">SnapCenter的當前版本（6.1P1）存在一些限制，計劃在下一個版本中修復。</block>
+  <block id="f08745f6e1ee1df199798c87bc950e1b" category="list-text">每次「克隆建立」和「克隆刪除」工作流程之後，都需要在目標 HANA 主機上使用指令「systemctl restart spl」重新啟動 spl 進程。</block>
+  <block id="70b8a6e3e79b34ca80c0ab9072954c11" category="list-text">用作 SAP 系統刷新操作的來源和目標的 HANA VM 必須在同一 ESX 主機上運作。</block>
+  <block id="a630a4cb0c45889f878567c92eac06e1" category="section-title">工作流程摘要</block>
+  <block id="42804d24402bfee4f0feedc3ce385b5a" category="paragraph">在執行第一個 SAP 系統刷新操作之前，必須安裝目標 HANA 系統，並且必須將主機新增至SnapCenter。然後，必須關閉 HANA 系統並從主機上卸載 HANA 資料磁碟。</block>
+  <block id="5e324fafc49eb9a9b425c8e2c0ea1671" category="section-title">SnapCenter克隆創建工作流程</block>
+  <block id="6177379ddd923fc006d84a1b4bdfa11e" category="list-text">建立儲存克隆</block>
+  <block id="6b1ac37402b388342f15af22945494bb" category="list-text">配置儲存克隆的主機映射</block>
+  <block id="aa503537f9d0230e77615d9edd602f68" category="list-text">將儲存克隆（資料儲存）附加到 ESX 主機</block>
+  <block id="9f76fb2991dd9b945451dc4a5b109937" category="list-text">將新磁碟從資料儲存新增至目標 HANA VM</block>
+  <block id="5e7212619c374c1991c574f5315e8bfc" category="list-text">將磁碟裝載到 HANA VM OS</block>
+  <block id="c05b29ab086c4dc073cf2b7b7ee26b4c" category="list-text">使用後腳本恢復 HANA 系統</block>
+  <block id="76f66fe19fd2cc9f3b115d391205b495" category="paragraph">時長：12分鐘</block>
+  <block id="57499d66044710f028ac9242a56d0d40" category="admonition">與還原作業相比，複製作業的運行時間與 HANA 資料庫的大小無關。對於非常大的資料庫，步驟 1 至 5 的運行時間也類似。當然，對於更大的 HANA 系統，恢復需要更長的時間。</block>
+  <block id="003bc5ab6365079680b2fbe17888500b" category="section-title">SnapCenter克隆刪除工作流程</block>
+  <block id="3b6518ffeb7de00f217894cdce7c0116" category="list-text">使用預先腳本關閉 HANA 系統</block>
+  <block id="aa33d20356faa28516ac31ce1b081d4a" category="list-text">從 HANA VM OS 卸載磁碟</block>
+  <block id="9df5aa1d28a5f574d579ee864f4f721c" category="list-text">從 HANA VM 中刪除磁碟</block>
+  <block id="ac15ee968c0572ecf37de43f64d1bbd8" category="list-text">從 ESX 主機移除資料存儲</block>
+  <block id="fa517b0a284c691cebc761ee9d915f27" category="list-text">刪除儲存克隆</block>
+  <block id="3ec48eb55277a65c5a87692a53dbd888" category="paragraph">時長：11分鐘</block>
+  <block id="5e2536cee7fcd3ed9f17975073a9e76d" category="paragraph">透過選擇所需的快照並點擊克隆按鈕來啟動克隆創建工作流程。</block>
+  <block id="800d9d3a02e0c13ca6efbf109775e7c2" category="paragraph"><block ref="800d9d3a02e0c13ca6efbf109775e7c2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a7ab974a3c79bafa7490418c833596df" category="paragraph">必須提供目標主機和 SID。</block>
+  <block id="264341d1c8f0d8e679be834c421ee8a2" category="paragraph"><block ref="264341d1c8f0d8e679be834c421ee8a2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="07e7d1f9b1ea2251667d5f695d151297" category="paragraph"><block ref="07e7d1f9b1ea2251667d5f695d151297" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ea1d4131618eabe92205d1c5d678c9d6" category="paragraph">在我們的範例中，我們使用後腳本在目標主機上執行復原。</block>
+  <block id="3d58a75535160119cd18bc66b98dd0f2" category="paragraph"><block ref="3d58a75535160119cd18bc66b98dd0f2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a7e71b24beb99abb07c133f87059da6e" category="paragraph">工作流程啟動時， SnapCenter會根據所選快照建立複製儲存單元。</block>
+  <block id="1012ce68d24186d682921d9a72fd98e8" category="paragraph"><block ref="1012ce68d24186d682921d9a72fd98e8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="18f0f15ba5bb77d7dfa37e9a1342b56f" category="paragraph">然後， SnapCenter將 LUN（資料儲存）附加到目標 HANA VM 正在執行的 ESX 主機。</block>
+  <block id="7ce9d385eba95a4277a1ea30ba376217" category="paragraph"><block ref="7ce9d385eba95a4277a1ea30ba376217" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f5e20ceef3463e7156806c1f1e2a1315" category="paragraph">然後將新資料儲存內的 VMDK 新增到 HANA VM。</block>
+  <block id="71c304c35522bc0b087c60bf4a5beccc" category="paragraph"><block ref="71c304c35522bc0b087c60bf4a5beccc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b3c4937bd2b15ba9b77fd7dfda862b07" category="paragraph">然後， SnapCenter在 HANA Linux 系統上配置並安裝新磁碟。</block>
+  <block id="8d9a0bb87e2c43cda51aaa99491b263e" category="paragraph">以下螢幕截圖顯示了SnapCenter執行的作業步驟。</block>
+  <block id="63ee7aa9d3adc91b53dadd299f2dbf0a" category="paragraph"><block ref="63ee7aa9d3adc91b53dadd299f2dbf0a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a848dfb1809e83afb63e913de43aa4d1" category="paragraph">如「先決條件」部分所述，必須使用指令「systemctl restart spl」重新啟動 HANA 主機上的SnapCenter spl 服務，才能啟動正確的清理工作。此操作必須在作業完成後執行。</block>
+  <block id="98f4c0e499b34b6355cac72746f32aa4" category="paragraph">克隆工作流程完成後，可以透過點選資源 QFS 來啟動自動發現。自動發現過程完成後，新的儲存空間將列在資源的詳細資訊視圖中。</block>
+  <block id="533a233d8148c4d75faa083ebb9d8d43" category="paragraph"><block ref="533a233d8148c4d75faa083ebb9d8d43" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fdb03a861de182a381be87799b430837" category="paragraph">透過在來源 HANA 資源處選擇複製並點選刪除按鈕來啟動複製刪除工作流程。</block>
+  <block id="050509606ba7c5393e9a9686c3bd00f7" category="paragraph"><block ref="050509606ba7c5393e9a9686c3bd00f7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4ff8629d4d389f9c33ecd582c52c5105" category="paragraph">在我們的範例中，我們使用預先腳本來關閉目標 HANA 資料庫。</block>
+  <block id="f5fe6022b269aca8c0fb1781b5876f47" category="paragraph"><block ref="f5fe6022b269aca8c0fb1781b5876f47" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1b32269b7ab0ed1ae55e5e5641fcd17b" category="paragraph"><block ref="1b32269b7ab0ed1ae55e5e5641fcd17b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f5335ae75980fe9bd5d8ba6f48cb7f7f" category="paragraph">如「先決條件」部分所述，必須使用指令「systemctl restart spl」重新啟動 HANA 主機上的SnapCenter spl 服務才能啟動正確的清理。</block>
+  <block id="087870f30d860ffeb01eac4f727d6656" category="section-title">SnapCenter for VMware vSphere 插件</block>
+  <block id="5e9bba71efcdfbbed1dcf18802f8a227" category="sidebar">SnapCenter還原與復原作業</block>
+  <block id="743ac471396f82caf85eeeeac51160f8" category="sidebar">SAP 系統更新</block>
+  <block id="3a499e89a73d22ba78550fb47f2e0c88" category="sidebar">附加資訊和版本歷史記錄</block>
 </blocks>

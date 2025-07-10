@@ -21,6 +21,8 @@ indexpage:
     - title: SnapCenter ， SnapMirror Active Sync 和 VMware Metro Storage 叢集提供 SAP HANA
         資料保護和高可用度
       url: backup/hana-sc-vmware-smas-scope.html
+    - title: 使用 VMware VMFS 和NetApp ASA系統的SnapCenter進行 SAP HANA 資料保護
+      url: backup/hana-sc-vmfs-asar2-scope.html
     - title: BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
       url: backup/hana-hycl-backup-overview.html
     - title: SAP HANA災難恢復與儲存複寫

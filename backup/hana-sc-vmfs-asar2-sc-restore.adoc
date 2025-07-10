@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-sc-restore.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery 
+summary:  
+---
+= 還原與還原作業
+:allow-uri-read: 
+
+
+對於儲存在 VMFS/VMDK 的SnapCenter上的虛擬資源，復原作業始終透過複製、掛載、複製作業完成。
+
+. SnapCenter根據所選快照建立儲存克隆
+. SnapCenter將 LUN 作為新的資料儲存掛載到 ESX 主機
+. SnapCenter 將資料存放區內的 VMDK 新增為 HANA VM 的新磁碟
+. SnapCenter 會將新磁碟裝載到 Linux 作業系統
+. SnapCenter 會將資料從新磁碟複製回原始位置
+. 複製作業完成後，上述所有資源都會再次移除
+. SnapCenter執行 HANA 系統資料庫的恢復
+. SnapCenter執行 HANA 租戶資料庫的恢復
+
+
+還原作業的整體運作時間取決於資料庫大小以及儲存叢集與 ESX 主機之間 FC 連線的吞吐量。在我們初步安裝 HANA 的實驗室設置中，運行時間約為 12 分鐘。
+
+image:sc-hana-asrr2-vmfs-image23.png["圖示範所討論的內容"]
+
+image:sc-hana-asrr2-vmfs-image24.png["圖示範所討論的內容"]
+
+在還原和復原作業運作時，您可以看到一個新的複製儲存單元。
+
+image:sc-hana-asrr2-vmfs-image25.png["圖示範所討論的內容"]
+
+基於克隆儲存單元的新 LUN（資料儲存）將連接到 ESX 叢集。
+
+image:sc-hana-asrr2-vmfs-image26.png["圖示範所討論的內容"]
+
+資料儲存內的 VMDK 對應到目標 HANA VM 並安裝到 HANA 系統。
+
+....
+hana-8:~ # df -h
+
+Filesystem Size Used Avail Use% Mounted on
+/dev/mapper/system-root 60G 5.3G 54G 9% /
+devtmpfs 4.0M 8.0K 4.0M 1% /dev
+tmpfs 49G 0 49G 0% /dev/shm
+efivarfs 256K 57K 195K 23% /sys/firmware/efi/efivars
+tmpfs 13G 26M 13G 1% /run
+tmpfs 1.0M 0 1.0M 0% /run/credentials/systemd-tmpfiles-setup-dev-early.service
+tmpfs 1.0M 0 1.0M 0% /run/credentials/systemd-sysctl.service
+tmpfs 1.0M 0 1.0M 0% /run/credentials/systemd-sysusers.service
+tmpfs 1.0M 0 1.0M 0% /run/credentials/systemd-tmpfiles-setup-dev.service
+/dev/mapper/system-root 60G 5.3G 54G 9% /.snapshots
+/dev/mapper/system-root 60G 5.3G 54G 9% /boot/grub2/i386-pc
+/dev/mapper/system-root 60G 5.3G 54G 9% /boot/grub2/x86++_++64-efi
+/dev/mapper/system-root 60G 5.3G 54G 9% /home
+/dev/mapper/system-root 60G 5.3G 54G 9% /opt
+/dev/mapper/system-root 60G 5.3G 54G 9% /root
+/dev/mapper/system-root 60G 5.3G 54G 9% /srv
+/dev/mapper/system-root 60G 5.3G 54G 9% /usr/local
+/dev/mapper/system-root 60G 5.3G 54G 9% /tmp
+/dev/mapper/system-root 60G 5.3G 54G 9% /var
+tmpfs 1.0M 0 1.0M 0% /run/credentials/systemd-vconsole-setup.service
+/dev/sdc 95G 8.9G 87G 10% /hana/log/VFS/mnt00001
+/dev/sdb 95G 7.6G 88G 8% /hana/data/VFS/mnt00001
+/dev/sdd 95G 15G 81G 16% /hana/shared
+/dev/sda1 253M 5.9M 247M 3% /boot/efi
+tmpfs 1.0M 0 1.0M 0% /run/credentials/systemd-tmpfiles-setup.service
+192.168.175.86:/sapcc_share 1.4T 858G 568G 61% /mnt/sapcc-share
+tmpfs 6.3G 72K 6.3G 1% /run/user/464
+tmpfs 1.0M 0 1.0M 0% /run/credentials/getty@tty1.service
+tmpfs 6.3G 52K 6.3G 1% /run/user/0
+/dev/sde 95G 9.2G 86G 10% /var/opt/snapcenter/scu/clones/hana_data_VFS_mnt00001_142592_scu_clone_1
+
+hana-8:~ #
+....
+image:sc-hana-asrr2-vmfs-image27.png["圖示範所討論的內容"]

@@ -40,7 +40,7 @@ SAP HANA 多個主機系統必須使用中央 HANA 外掛程式進行設定，�
 
 
 
-=== SnapCenter for VMware vSphere 外掛程式
+=== SnapCenter for VMware vSphere 插件
 
 SnapCenter for VMware vSphere 外掛程式必須部署在 VMware 環境中。
 

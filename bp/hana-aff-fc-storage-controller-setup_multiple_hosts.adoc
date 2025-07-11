@@ -1,0 +1,207 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-storage-controller-setup_multiple_hosts.html 
+keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
+summary: 本節介紹如何為多主機系統建立 LUN 
+---
+= 儲存控制器設定 - 多台主機
+:allow-uri-read: 
+
+
+
+
+== 儲存控制器設定 - 多台主機
+
+[role="lead"]
+本節介紹針對 SAP HANA 多主機系統的 NetApp 儲存系統配置
+
+
+
+== SAP HANA多主機系統的Volume與LUN組態
+
+下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID_data_mnt00001」、控制器B上已設定磁碟區「ID_log_mnt00001」每個磁碟區內都會設定一個LUN。
+
+「/HANA /共享」磁碟區必須可供所有HANA主機存取、因此必須使用NFS匯出。雖然「/Hana /共享」檔案系統沒有特定的效能KPI、但NetApp建議使用10Gb乙太網路連線。
+
+
+NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和記錄磁碟區也可以儲存在同一個儲存控制器上。
+
+
+NOTE: NetApp ASA AFF 支援NFS作為傳輸協定、NetApp建議在AFF 「/Hana /共享」檔案系統中使用額外的功能不全或FAS 不全。
+
+image:saphana_aff_fc_image17a.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下表顯示4+1多主機SAP HANA系統的組態範例。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 節點1的資料與記錄磁碟區 | 資料磁碟區：SID_data_mnt00001 | – | 記錄磁碟區：SID_log_mnt00001 | – 
+
+
+| 節點2的資料與記錄磁碟區 | 記錄磁碟區：SID_log_mnt00002 | – | 資料Volume：SID_data_mnt00002 | – 
+
+
+| 節點3的資料與記錄磁碟區 | – | 資料Volume：SID_data_mnt00003 | – | 記錄磁碟區：SID_log_mnt00003 
+
+
+| 節點4的資料與記錄磁碟區 | – | 記錄磁碟區：SID_log_mnt00004 | – | 資料Volume：SID_data_mnt00004 
+
+
+| 所有主機的共享Volume | 共享Volume：SID_Shared | – | – | – 
+|===
+下表顯示具有四台作用中SAP HANA主機的多主機系統的組態和掛載點。
+
+|===
+| LUN或Volume | SAP HANA主機的掛載點 | 附註 
+
+
+| LUN：SID_data_mnt00001 | /HANA /資料/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00001 | /HANA /記錄/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| LUN：SID_data_mnt00002 | /HANA /資料/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00002 | /HANA /記錄/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| LUN：SID_data_mnt00003 | /HANA /資料/SID/mnt00003 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00003 | /HANA /記錄/SID/mnt00003 | 使用儲存連接器安裝 
+
+
+| LUN：SID_data_mnt00004 | /HANA /資料/SID/mnt00004 | 使用儲存連接器安裝 
+
+
+| LUN：SID_log_mnt00004 | /HANA /記錄/SID/mnt00004 | 使用儲存連接器安裝 
+
+
+| Volume：SID_Shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+|===
+
+NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。
+
+
+
+== 使用Linux LVM的SAP HANA多主機系統的Volume與LUN組態
+
+Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。
+
+
+NOTE: 不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定即符合所需的KPI。
+
+下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。
+
+|===
+| 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
+
+
+| 節點1的資料與記錄磁碟區 | 資料磁碟區：SID_data_mnt00001 | Log2 Volume：SID_log2_mnt00001 | 記錄磁碟區：SID_log_mnt00001 | Data2 Volume：SID_data2_mnt00001 
+
+
+| 節點2的資料與記錄磁碟區 | Log2 Volume：SID_log2_mnt00002 | 資料Volume：SID_data_mnt00002 | Data2 Volume：SID_data2_mnt00002 | 記錄磁碟區：SID_log_mnt00002 
+
+
+| 所有主機的共享Volume | 共享Volume：SID_Shared | – | – | – 
+|===
+在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+
+|===
+| 邏輯Volume（lv）或Volume | SAP HANA主機的掛載點 | 附註 
+
+
+| lv：SID_data_mnt001-vol | /HANA /資料/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| lv：SID_log_mnt001-vol | /HANA /記錄/SID/mnt00001 | 使用儲存連接器安裝 
+
+
+| lv：SID_data_mnt00002-vol | /HANA /資料/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| lv：SID_log_mnt00002-vol | /HANA /記錄/SID/mnt00002 | 使用儲存連接器安裝 
+
+
+| Volume：SID_Shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+|===
+
+NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。
+
+
+
+=== Volume選項
+
+下表所列的Volume選項必須在所有SVM上進行驗證和設定。
+
+|===
+| 行動 |  
+
+
+| 停用自動Snapshot複本 | Vol modify–vserver <vserver-name>-volume <volname>-snapshot policy nONE 
+
+
+| 停用Snapshot目錄的可見度 | Vol modify -vserver <vserver-name>-volume <volname>-snapdir-access假 
+|===
+
+
+== 建立LUN、磁碟區、並將LUN對應至啟動器群組
+
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
+
+
+NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。
+
+
+
+=== 使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組
+
+本節說明使用 ONTAP 9 命令列搭配 2+1 SAP HANA 多個主機系統的範例組態，其中包含使用 LVM 的 SID FC5 ，以及每個 LVM Volume 群組兩個 LUN ：
+
+. 建立所有必要的磁碟區。
++
+....
+vol create -volume FC5_data_mnt00001 -aggregate aggr1_1 -size 1200g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
+vol create -volume FC5_log_mnt00002  -aggregate aggr2_1 -size 280g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
+vol create -volume FC5_log_mnt00001  -aggregate aggr1_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_data_mnt00002  -aggregate aggr2_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_log2_mnt00002  -aggregate aggr2_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
+vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
+....
+. 建立所有LUN。
++
+....
+lun create -path  /vol/FC5_data_mnt00001/FC5_data_mnt00001   -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_data_mnt00002/FC5_data_mnt00002 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_data2_mnt00002/FC5_data2_mnt00002 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log_mnt00001/FC5_log_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log_mnt00002/FC5_log_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+....
+. 為屬於系統FC5的所有伺服器建立啟動器群組。
++
+....
+lun igroup create -igroup HANA-FC5 -protocol fcp -ostype linux -initiator 10000090fadcc5fa,10000090fadcc5fb,10000090fadcc5c1,10000090fadcc5c2,10000090fadcc5c3,10000090fadcc5c4 -vserver hana
+....
+. 將所有LUN對應至已建立的啟動器群組。
++
+....
+lun map -path /vol/FC5_data_mnt00001/FC5_data_mnt00001    -igroup HANA-FC5
+lun map -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_data_mnt00002/FC5_data_mnt00002  -igroup HANA-FC5
+lun map -path /vol/FC5_data2_mnt00002/FC5_data2_mnt00002  -igroup HANA-FC5
+lun map -path /vol/FC5_log_mnt00001/FC5_log_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_log_mnt00002/FC5_log_mnt00002  -igroup HANA-FC5
+lun map -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002  -igroup HANA-FC5
+....
+

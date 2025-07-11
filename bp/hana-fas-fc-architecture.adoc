@@ -94,4 +94,4 @@ image:saphana_fas_fc_image6.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
 
-image:saphana_fas_fc_image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_fas_image8.png["NetApp MetroCluster IP"]

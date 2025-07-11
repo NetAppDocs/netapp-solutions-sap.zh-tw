@@ -87,7 +87,7 @@ SAP HANA災難恢復（DR）可在資料庫層上使用SAP HANA系統複寫、�
 
 這兩種複寫方法都能讓您執行DR工作流程測試、而不會影響RPO和RTO。FlexClone磁碟區是在儲存設備上建立、並附加至DR測試伺服器。
 
-image:saphana_aff_nfs_image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_aff_nfs_image7b.png["NetApp SnapMirror"]
 
 同步複寫提供StrictSync模式。如果由於任何原因而無法完成對二線儲存設備的寫入、則應用程式I/O會失敗、因此可確保一線與二線儲存系統完全相同。只有在SnapMirror關係恢復為不同步狀態之後、應用程式I/O才會恢復主要連線。如果主儲存設備故障、在容錯移轉後、可在二線儲存設備上恢復應用程式I/O、而不會遺失資料。在StrictSync模式中、RPO永遠為零。
 
@@ -97,4 +97,4 @@ image:saphana_aff_nfs_image7.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 下圖顯示解決方案的高階概觀。每個站台的儲存叢集都提供本機高可用度、並用於正式作業工作負載。每個站台的資料會同步複寫到另一個位置、並可在發生災難容錯移轉時使用。
 
-image:saphana_aff_nfs_image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_aff_image7a.png["NetApp MetroCluster IP"]

@@ -505,7 +505,6 @@
   <block id="3e1a84486a34f2de53acbb9a76a7dacc" category="section-title">安裝在單一主機系統上</block>
   <block id="e4fd411b2330f50a5f169247fb9817ac" category="section-title">安裝在多主機系統上</block>
   <block id="877357acf24fb0c198118a9551671417" category="paragraph">在開始安裝之前、請先建立「global.ini`檔案」、以便在安裝過程中使用SAP儲存連接器。SAP儲存連接器會在安裝程序期間、將所需的檔案系統掛載到工作主機上。「global.ini`檔案必須可在所有主機（例如「/HANA /共享」檔案系統）存取的檔案系統中使用。</block>
-  <block id="f206fb31ca322606be1acbaecf34f9fa" category="paragraph">如果使用Linux LVM、則所需的組態會有所不同。下列範例顯示使用SID=FC5的2+1多主機設定。</block>
   <block id="e698d9fadd050973bab2f9f855248cca" category="admonition">視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝Python 2.7。</block>
   <block id="3a8abeead42ccd286a7d0cbd4af82313" category="cell">2014年4月</block>
   <block id="4d07a3bdc1f6c260f91eff5a8c4732c0" category="cell">2014年8月</block>
@@ -619,8 +618,6 @@
   <block id="29c8d00954b1d81fd235004ad72cdc15" category="admonition">在SAP HANA多主機組態中、必須在所有工作者和待命主機上執行步驟1到6。</block>
   <block id="face2730fdfb3061ad0f284515f9695d" category="paragraph">若要設定多重路徑、請完成下列步驟：</block>
   <block id="d49e35527dee3aa4c0935558a3ccd40e" category="list-text">在每個伺服器上執行Linux「scan-scsi-bus.sh -A'」命令、以探索新的LUN。</block>
-  <block id="75be82f3eaed4a8948bb32c324a96484" category="list-text">執行「lanlun LUN show」命令、確認所有必要的LUN都可見。以下範例顯示2+1多主機HANA系統的「左LUN show」命令輸出、其中包含兩個資料LUN和兩個記錄LUN。輸出會顯示LUN和對應的裝置檔案、例如LUN「S2_data_mnt00001」和裝置檔案「/sdag」、每個LUN有八個FC路徑從主機到儲存控制器。</block>
-  <block id="56674facde12d75bf46b49b5d6316f96" category="list-text">執行「multiPath-r」命令、取得裝置檔案名稱的全球識別碼（WWID）。</block>
   <block id="86551857b20d1627afd561e1111dd48c" category="admonition">在此範例中、有四個LUN。</block>
   <block id="b0a7dea9169ca74da0133eed343854ee" category="list-text">編輯「/etc/multipath.conf」檔案、然後新增WWID和別名。</block>
   <block id="649b8d1047ff4dbb68eac12144e5c1d5" category="admonition">輸出範例顯示/etc/multipath.conf檔案的內容、其中包含2+1多主機系統四個LUN的別名。如果沒有可用的多重路徑.conf檔案、您可以執行下列命令來建立檔案：「多重路徑-T &gt;/etc/multipath.conf」。</block>
@@ -628,7 +625,6 @@
   <block id="349df7a76ee939fd3552195d183e56a3" category="list-text">執行「multiPath-ll」命令來列出所有LUN、別名、作用中和待命路徑、以驗證組態。</block>
   <block id="3c440be39ee7b8ee32df76222e620417" category="admonition">下列輸出範例顯示2+1多主機HANA系統的輸出、其中包含兩個資料和兩個記錄LUN。</block>
   <block id="f54213342718e90a288d6625eb733968" category="section-title">建立LVM Volume群組和邏輯磁碟區</block>
-  <block id="eeeec6c7d6ba3ce79b3e9a26d6ebed05" category="paragraph">只有在使用LVM時才需要執行此步驟。下列範例適用於使用SID FC5設定2+1主機。</block>
   <block id="72d8906ce88673b5ddc42cd605b2aaa9" category="admonition">對於以LVM為基礎的設定、也必須完成上一節所述的多重路徑組態。在此範例中、必須設定八個LUN來執行多重路徑。</block>
   <block id="baf6ddaa837973f5c39837c3746535f5" category="list-text">將所有LUN初始化為實體磁碟區。</block>
   <block id="e4eae96188ebd77284f0fc28c5c7413d" category="list-text">為每個資料和記錄分割區建立磁碟區群組。</block>
@@ -781,7 +777,6 @@
   <block id="2b304fd148da024e97f54db599c2f521" category="paragraph">磁碟區和LUN的配置就像是單一主機的配置、只要有一個資料Volume分割區、就能在記錄磁碟區和其他資料磁碟區的不同集合體上儲存額外的資料磁碟區和LUN。下表顯示SAP HANA單一主機系統的組態範例、其中包含兩個資料Volume分割區。</block>
   <block id="d7021f52f260e11c8c2dd980991f38ae" category="paragraph">使用ONTAP 「系統管理程式」或ONTAP 「系統資訊管理系統」CLI建立新的資料LUN。</block>
   <block id="8c74ac3f77233a64ddd5171869c51c2a" category="paragraph">若要設定主機、請完成下列步驟：</block>
-  <block id="5bcb0bf87ac10e193de11e3c3c8eb488" category="list-text">如第0章所述、為其他LUN設定多重路徑。</block>
   <block id="572b2316d0cecf8ccd134b71ee2fce66" category="list-text">在屬於HANA系統的每個額外LUN上建立XFS檔案系統：</block>
   <block id="f255815987a5727cdc75e965673dc603" category="list-text">將其他檔案系統新增至「etc/stabs」組態檔。</block>
   <block id="c9b9bdcff428106a20521627c72baa32" category="admonition">用於資料和記錄LUN的XFS檔案系統必須以「作業系統」和「inode64」掛載選項掛載。</block>
@@ -4156,7 +4151,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="3bcc285c555f1a917d23761e04d98e2c" category="paragraph"><block ref="3bcc285c555f1a917d23761e04d98e2c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="adf2d4c62bc39518d50fe4a1329307e4" category="paragraph">版本歷程記錄：</block>
   <block id="55d5dfa50d04891918fe3ea9ad00059b" category="paragraph"><block ref="55d5dfa50d04891918fe3ea9ad00059b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="762fea8d2405197b39e9cd41b76d320c" category="paragraph"><block ref="762fea8d2405197b39e9cd41b76d320c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e6aabe615d4f04cff649751db99a960f" category="paragraph">本文件討論 NetApp FAS 系統和 NFS 的基礎架構設定與組態。</block>
   <block id="43eddd188c3e76947dbca863365a0183" category="paragraph"><block ref="43eddd188c3e76947dbca863365a0183" category="inline-image-macro-rx" type="image"></block></block>
   <block id="47fe5a641384ba3150a9df792aafd860" category="paragraph"><block ref="47fe5a641384ba3150a9df792aafd860" category="inline-image-macro-rx" type="image"></block></block>
@@ -4168,8 +4162,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="265ae4ad07ae6dd3140cd976e6e96a15" category="paragraph"><block ref="265ae4ad07ae6dd3140cd976e6e96a15" category="inline-image-macro-rx" type="image"></block></block>
   <block id="017e522349a0ff07067400d6b880e9df" category="paragraph">= ：硬中斷：：：頁尾：：圖示：字型： linkatt特點 ：：：： imagesdir: ../media/</block>
   <block id="2267b0943e951c31d5f31c288b6bfbe6" category="paragraph">NetApp AFF 上的 SAP HANA 搭配 NFS 傳輸協定。</block>
-  <block id="80d1a2a3304ad91fb33c08a071649f65" category="paragraph"><block ref="80d1a2a3304ad91fb33c08a071649f65" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b9dfea2f38da456216fb821bdace0099" category="paragraph"><block ref="b9dfea2f38da456216fb821bdace0099" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1061c8a586da3d6a249f18df930dc33a" category="paragraph">本文件討論 NetApp AFF 系統和 NFS 的基礎架構設定與組態。</block>
   <block id="c0c285f4d23d22653eba8dc9a75078b0" category="paragraph"><block ref="c0c285f4d23d22653eba8dc9a75078b0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bc6f4f64c41295649568c9b08222f2c3" category="paragraph"><block ref="bc6f4f64c41295649568c9b08222f2c3" category="inline-image-macro-rx" type="image"></block></block>
@@ -4177,7 +4169,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="b726daf8a2adf210c59b7ef834090339" category="paragraph"><block ref="b726daf8a2adf210c59b7ef834090339" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c8ad86db51ea3fec014b3b92b80c4f2e" category="paragraph"><block ref="c8ad86db51ea3fec014b3b92b80c4f2e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d64ce1ec53ddbb70221c0732f05697a6" category="paragraph"><block ref="d64ce1ec53ddbb70221c0732f05697a6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c0561b288a8933b1a53451f7c71e958e" category="paragraph"><block ref="c0561b288a8933b1a53451f7c71e958e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="57f3c3545cf78dda99e9898c26f43005" category="paragraph"><block ref="57f3c3545cf78dda99e9898c26f43005" category="inline-image-macro-rx" type="image"></block></block>
   <block id="87c981e26acc223a7d0dba3d39b42d11" category="paragraph"><block ref="87c981e26acc223a7d0dba3d39b42d11" category="inline-image-macro-rx" type="image"></block></block>
   <block id="286a02ac976f208a41714fb1b31d5563" category="paragraph"><block ref="286a02ac976f208a41714fb1b31d5563" category="inline-image-macro-rx" type="image"></block></block>
@@ -4435,9 +4426,7 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="102c21391acced3e67ae185a05909bc8" category="admonition">使用所述組態，<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block>儲存使用者 SIDadm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在具有磁碟型複寫的災難恢復設定中， NetApp 建議在磁碟區中為<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block>檔案系統建立四個子目錄<block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block>，以便每個資料庫主機在中央儲存設備上擁有其所有檔案系統。</block>
   <block id="dd3925da178560a888f5c0d4bd90dc73" category="paragraph">本節說明使用 ONTAP 9 命令列進行組態的範例，適用於使用 LVM 的 2+1 SAP HANA 多個主機系統，以及每個 LVM Volume 群組兩個 LUN 的 SID FC5 。</block>
   <block id="952239c31e0fbf4511610dae4cbe22be" category="paragraph">一個 NVMe SSD （資料）最多可支援 2 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。</block>
-  <block id="11f314ab4a94edb93dad0cd1712e5ea2" category="paragraph"><block ref="11f314ab4a94edb93dad0cd1712e5ea2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="01a8d3d035a390b9e2f8a164a50b3d9c" category="inline-image-macro">VMware 特定的網路設定</block>
-  <block id="0d76c6604b8441a790e29500bb1f3dbe" category="paragraph"><block ref="0d76c6604b8441a790e29500bb1f3dbe" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d4087e3f08b7a7f8751675ca82462e2a" category="list-text">TR-4667 ：使用 SnapCenter SAP HANA 外掛程式將 SAP 系統複本自動化</block>
   <block id="6c112b2b6e22e11b65018895aa298940" category="list-text">VMware vSphere Wiki 上的 SAP HANA</block>
   <block id="7fd039f168758cb7fad07015245b1afa" category="inline-link"><block ref="7fd039f168758cb7fad07015245b1afa" category="inline-link-rx"></block></block>
@@ -5366,7 +5355,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="4d1bc709bfba771f4ff18cae8cad5821" category="list-text"><block ref="4d1bc709bfba771f4ff18cae8cad5821" category="inline-link-macro-rx"></block></block>
   <block id="d1b4413cecd0416bbd7ac40af6b252af" category="list-text"><block ref="d1b4413cecd0416bbd7ac40af6b252af" category="inline-link-macro-rx"></block></block>
   <block id="caa68a1014a6d7327367831c0e373a1a" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在<block ref="3ebc92cb08a767ffa51923363e8b791d" category="inline-link-macro-rx"></block>中有詳細說明。</block>
-  <block id="a1728c64d9f47fea93e2e1ae0ac49847" category="paragraph">建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例<block ref="fcd51d35bad016304c14d35b9e13c40c" category="inline-link-macro-rx"></block>。</block>
   <block id="2d7472524212d38654f8712f8528de00" category="list-text">建立具全球名稱（ WWN ）的 HANA 伺服器啟動器群組（ igroup ），如連結： Hana <block ref="a30a5bc4156d5efb64f9f758389889ed" category="inline-xref-macro-rx"></block>， FAS ， fc-storage-controller ， setup.html#initiator 群組一節所述。</block>
   <block id="ca4e28b2d73ad674c0052aaa001a3fbe" category="admonition">此<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節<block ref="f75b5be3cddbf151c8e809ce5b0c771a" category="inline-link-macro-rx"></block></block>
   <block id="60c724065bc332dd941c269b2a5bf0f6" category="paragraph">除了一節中所述的工作之外，還<block ref="c2cc83b43967a333625e03c0c4e4e13e" category="inline-link-macro-rx"></block>必須建立新額外資料 Volume 的額外掛載點和<block ref="520a0201c5bdee02e1c617ad8c8e2596" prefix=" " category="inline-code"></block>項目，並且必須掛載新的 Volume 。</block>
@@ -5466,9 +5454,7 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="4ca95b5bca07e84d7755d3c0f50a04c9" category="inline-image-macro">SnapCenter 概述</block>
   <block id="391458da3f8da76431f5d01ec21de6bb" category="paragraph"><block ref="391458da3f8da76431f5d01ec21de6bb" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a322193ac8801771c1db2548d778d786" category="inline-image-macro">SnapMirror 解決方案</block>
-  <block id="5a2dc218d33ade0b8b2fe2666e194bdf" category="paragraph"><block ref="5a2dc218d33ade0b8b2fe2666e194bdf" category="inline-image-macro-rx" type="image"></block></block>
   <block id="164fe74cfbca9ef543331e42b891cf2c" category="inline-image-macro">NetApp MetroCluster</block>
-  <block id="fe7d60267be959d6843d6976892f7248" category="paragraph"><block ref="fe7d60267be959d6843d6976892f7248" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e0688cb7d6291c05b4b81e03674d396f" category="summary">NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。本指南提供了此平台上 SAP HANA 的最佳實務。</block>
   <block id="43af0fa315980d56444cafe5aa7da0d8" category="paragraph">NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。本指南為 FCP 提供了此平台上 SAP HANA 的最佳實務。</block>
   <block id="f24901db79bd7adbcfdc97deb6526be7" category="list-text">ASA A250 、 ASA A400 、 ASA A800 、 ASA A900</block>
@@ -5578,11 +5564,8 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="ecc900dd19f5c7d49be2feaf09c11e58" category="paragraph">NetApp FAS 產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。本指南提供了在此平台上使用 NFS 的 SAP HANA 的最佳實務。</block>
   <block id="00f5bf4413a98fc8af35089eab0ae424" category="paragraph"><block ref="00f5bf4413a98fc8af35089eab0ae424" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9c3e0c17f09b278cc6ad14ea10cda021" category="sidebar">《SAP HANA on NetApp ASA 》《採用FCP組態的NetApp系統》指南</block>
-  <block id="027add60276a1ee87099d7ae5bb5069e" category="sidebar">常規設定</block>
   <block id="ddb55e4334b26446b18503774881a2e5" category="sidebar">單主機 LUN 配置</block>
   <block id="526ffb7b57e2db6ab8a3f13077e8988c" category="sidebar">多主機 LUN 配置</block>
-  <block id="50759eefac4f0ffd82247ab6b82e8407" category="sidebar">配置多路徑</block>
-  <block id="b12ba339120dcf2901d4eb899fd432f4" category="sidebar">多主機</block>
   <block id="b5c56e3ba8d38f1f3f0a7a5413fdeef2" category="paragraph">HANA 最佳實踐：</block>
   <block id="c7666fa654de87dc33703084f80aa4be" category="list-text"><block ref="7912a6ea019693a170bbf40a62a72e9f" category="inline-link-rx"></block>。</block>
   <block id="1902e4ab89c18ee8b918255bd4a42840" category="list-text"><block ref="1902e4ab89c18ee8b918255bd4a42840" category="inline-link-rx"></block></block>
@@ -5743,4 +5726,23 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="5e9bba71efcdfbbed1dcf18802f8a227" category="sidebar">SnapCenter還原與復原作業</block>
   <block id="743ac471396f82caf85eeeeac51160f8" category="sidebar">SAP 系統更新</block>
   <block id="3a499e89a73d22ba78550fb47f2e0c88" category="sidebar">附加資訊和版本歷史記錄</block>
+  <block id="000c450c2b1b3fbe68fc0d1893fb42e7" category="list-text">為附加 LUN 設定多路徑，如章節所述<block ref="5dbefb7618e64c1782ebe16427fe0a08" category="inline-link-macro-rx"></block> 。</block>
+  <block id="6089175223f03bbb436ea3677ff5d54e" category="paragraph"><block ref="6089175223f03bbb436ea3677ff5d54e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3082ebb564b0862e5b62f45e9c7f2918" category="paragraph"><block ref="3082ebb564b0862e5b62f45e9c7f2918" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8f84ce7565f171f38c52c9b754fcb5c9" category="list-text">使用 Linux 邏輯磁碟區管理器 (LVM) 的 SAP HANA 單主機和多主機</block>
+  <block id="a235fb941d246b5d166648278909aa43" category="paragraph">以下輸出顯示了使用 SID=FC5 的 LVM 的 2+1 多主機設定的範例。</block>
+  <block id="a4505c7307a89303eb52005835050cb8" category="paragraph">建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例<block ref="5dbefb7618e64c1782ebe16427fe0a08" category="inline-link-macro-rx"></block>。</block>
+  <block id="1b5ffe4ee0faee4001d5027bc6594589" category="list-text">依照本節所述，使用 HANA 伺服器的全球名稱 (WWN) 建立啟動器群組 (igroup) <block ref="a30a5bc4156d5efb64f9f758389889ed" category="inline-xref-macro-rx"></block> 。</block>
+  <block id="a955b97b5c01140f8cd767c62ee1a00b" category="inline-link-macro">單主機設定</block>
+  <block id="e9c76a6a9dcbd2703cd41df706ca9bad" category="inline-link-macro">多主機設定</block>
+  <block id="ea8677c5cbdecd6a4693230ea4b208f7" category="list-text">請按照本節中的說明在聚合中建立和配置磁碟區和 LUN <block ref="02c588e18cfdd0a8f042f6bb77be7fc8" category="inline-link-macro-rx"></block>適用於單一主機或分段<block ref="bd9b341014e1ef6599e94d8ab2e59792" category="inline-link-macro-rx"></block></block>
+  <block id="ea651f4ee236b38f946242f8bfc0ac46" category="list-text">為屬於 FC5 的 sythe 主機的所有連接埠建立啟動器群組。</block>
+  <block id="9c1e9d82d3220658621f72dca978adb0" category="inline-image-macro">NetApp SnapMirror</block>
+  <block id="71079bf31f8a65ae836b1f5bc217fd74" category="paragraph"><block ref="71079bf31f8a65ae836b1f5bc217fd74" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="26a3afe8370c1799977f1b90c95aa439" category="inline-image-macro">NetApp MetroCluster IP</block>
+  <block id="e37aeb2676a6a4bb6829e2a314fefcdf" category="paragraph"><block ref="e37aeb2676a6a4bb6829e2a314fefcdf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="18e54879f416d5c92151dba61aa9b093" category="paragraph"><block ref="18e54879f416d5c92151dba61aa9b093" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a46e5bc27436967555509cdbd754e5e7" category="paragraph"><block ref="a46e5bc27436967555509cdbd754e5e7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="469f70c8bf9e7345451574deea79f80b" category="paragraph"><block ref="469f70c8bf9e7345451574deea79f80b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cac1665e63972e4a12b392296c7ff08b" category="sidebar">多台主機</block>
 </blocks>

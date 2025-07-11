@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-host-setup_single.html 
+keywords: multipathing, fcp, hba, configure 
+summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支援網站下載、並安裝在HANA伺服器上。主機公用程式文件包含其他軟體的相關資訊、這些軟體必須視所使用的FCP HBA而安裝。 
+---
+= 單主機設定
+:allow-uri-read: 
+
+
+
+
+== 單主機設定
+
+[role="lead"]
+本章介紹 SAP HANA 單主機的設定。
+
+
+
+=== 建立LVM Volume群組和邏輯磁碟區
+
+. 將所有LUN初始化為實體磁碟區。
++
+....
+pvcreate /dev/mapper/hana-FC5_data_mnt00001
+pvcreate /dev/mapper/hana-FC5_data2_mnt00001
+pvcreate /dev/mapper/hana-FC5_log_mnt00001
+pvcreate /dev/mapper/hana-FC5_log2_mnt00001
+....
+. 為每個資料和記錄分割區建立磁碟區群組。
++
+....
+vgcreate FC5_data_mnt00001 /dev/mapper/hana-FC5_data_mnt00001 /dev/mapper/hana-FC5_data2_mnt00001
+vgcreate FC5_log_mnt00001 /dev/mapper/hana-FC5_log_mnt00001 /dev/mapper/hana-FC5_log2_mnt00001
+....
+. 為每個資料和記錄分割區建立邏輯磁碟區。使用等量磁碟區大小、等於每個磁碟區群組使用的LUN數量（在此範例中為兩個）、而資料使用的等量磁碟區大小為256k、記錄使用64k。SAP僅支援每個Volume群組一個邏輯Volume。
++
+....
+lvcreate --extents 100%FREE -i 2 -I 256k --name vol FC5_data_mnt00001
+lvcreate --extents 100%FREE -i 2 -I 64k --name vol FC5_log_mnt00001
+....
+. 掃描所有其他主機上的實體磁碟區、磁碟區群組和磁碟區群組。
+
+
+....
+modprobe dm_mod
+pvscan
+vgscan
+lvscan
+....
+
+NOTE: 如果這些命令找不到磁碟區、則需要重新啟動。
+
+若要掛載邏輯磁碟區、必須啟動邏輯磁碟區。若要啟動磁碟區、請執行下列命令：
+
+....
+vgchange -a y
+....
+
+
+=== 建立檔案系統
+
+在所有資料和日誌邏輯磁碟區以及 hana 共用 LUN 上建立 XFS 檔案系統。
+
+....
+mkfs.xfs FC5_data_mnt00001-vol
+mkfs.xfs FC5_log_mnt00001-vol
+mkfs.xfs /dev/mapper/svm1-FC5_shared
+....
+
+NOTE: 多個主機範例命令顯示2+1多主機HANA系統。
+
+
+
+=== 建立掛載點
+
+若要建立所需的掛載點目錄、請執行下列其中一項動作：
+
+* 對於單一主機系統、請設定權限、並在資料庫主機上建立掛載點。
+
+
+....
+sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
+sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00001
+sapcc-hana-tst:/ # mkdir -p /hana/shared
+sapcc-hana-tst:/ # chmod –R 777 /hana/log/FC5
+sapcc-hana-tst:/ # chmod –R 777 /hana/data/FC5
+sapcc-hana-tst:/ # chmod 777 /hana/shared
+....
+
+
+=== 掛載檔案系統
+
+若要在系統開機期間使用「etc/stab'組態檔來掛載檔案系統、請完成下列步驟：
+
+* 對於單一主機系統、請將所需的檔案系統新增至「etc/stab'組態檔。
++
+....
+# cat /etc/fstab
+/dev/mapper/hana-FC5_shared /hana/shared xfs defaults 0 0
+/dev/mapper/FC5_log_mnt00001-vol /hana/log/FC5/mnt00001 xfs relatime,inode64 0 0
+/dev/mapper/FC5_data_mnt00001-vol /hana/data/FC5/mnt00001 xfs relatime,inode64 0 0
+....
++
+
+NOTE: 用於資料和記錄LUN的XFS檔案系統必須使用「RELatime」和「inode64」掛載選項掛載。
+
++
+若要掛載檔案系統，請執行 `mount –a`在主機上執行指令。
+
+

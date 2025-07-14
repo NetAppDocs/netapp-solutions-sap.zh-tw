@@ -66,14 +66,14 @@ NOTE: 此限制也適用於讀取。因此，請使用足夠的 LUN 來滿足 SA
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存FCP連接埠與SAN架構之間的連線也必須已就緒。
 
-. 如中所述，檢查正確的磁碟櫃組態<<NVMe（100GbE）型磁碟櫃>>。
+. 如中所述，檢查正確的磁碟櫃組態<<基於 NVMe 的磁碟架>>。
 . 使用 HANA 伺服器的全球名稱 (WWN) 建立啟動器群組 (igroup)，如連結：saphana-asa-fc-storage-controller-setup.html#initiator-groups 部分所述<<啟動器群組>> 。
 . 建立 LUN 並將其對應到本節中所述的伺服器link:hana-asa-fc-storage-controller-setup_single_host.html["SAP HANA 單主機系統的 LUN 配置"]和link:hana-asa-fc-storage-controller-setup_multiple_hosts.html["SAP HANA 多主機系統的 LUN 配置"]
 
 
 
 
-=== NVMe（100GbE）型磁碟櫃
+=== 基於 NVMe 的磁碟架
 
 每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。磁碟會自動分配到 HA 對的兩個控制器。
 

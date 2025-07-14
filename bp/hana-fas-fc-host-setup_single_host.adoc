@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
-permalink: bp/hana-asa-fc-host-setup_single.html 
-keywords: multipathing, fcp, hba, configure 
-summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支援網站下載、並安裝在HANA伺服器上。主機公用程式文件包含其他軟體的相關資訊、這些軟體必須視所使用的FCP HBA而安裝。 
+permalink: bp/hana-fas-fc-host-setup_single_host.html 
+keywords: configure, multipathing, create, lvm, volume, groups, logical, mount, points, file, systems 
+summary: 本文件也包含所使用Linux版本特有的多重路徑組態相關資訊。 
 ---
 = 單主機設定
 :allow-uri-read: 
@@ -67,9 +67,6 @@ mkfs.xfs FC5_data_mnt00001-vol
 mkfs.xfs FC5_log_mnt00001-vol
 mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
-
-NOTE: 多個主機範例命令顯示2+1多主機HANA系統。
-
 
 
 === 建立掛載點

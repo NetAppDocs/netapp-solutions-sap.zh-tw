@@ -68,16 +68,10 @@ mkfs.xfs FC5_log_mnt00001-vol
 mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
 
-NOTE: 多個主機範例命令顯示2+1多主機HANA系統。
-
-
 
 === 建立掛載點
 
-若要建立所需的掛載點目錄、請執行下列其中一項動作：
-
-* 對於單一主機系統、請設定權限、並在資料庫主機上建立掛載點。
-
+建立所需的掛載點目錄，並在資料庫主機上設定權限：
 
 ....
 sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
@@ -91,21 +85,15 @@ sapcc-hana-tst:/ # chmod 777 /hana/shared
 
 === 掛載檔案系統
 
-若要在系統開機期間使用「etc/stab'組態檔來掛載檔案系統、請完成下列步驟：
+使用以下方式在系統啟動期間掛載檔案系統 `/etc/fstab`配置文件，將所需的文件系統新增至 `/etc/fstab`設定檔：
 
-* 對於單一主機系統、請將所需的檔案系統新增至「etc/stab'組態檔。
-+
 ....
 # cat /etc/fstab
 /dev/mapper/hana-FC5_shared /hana/shared xfs defaults 0 0
 /dev/mapper/FC5_log_mnt00001-vol /hana/log/FC5/mnt00001 xfs relatime,inode64 0 0
 /dev/mapper/FC5_data_mnt00001-vol /hana/data/FC5/mnt00001 xfs relatime,inode64 0 0
 ....
-+
 
 NOTE: 用於資料和記錄LUN的XFS檔案系統必須使用「RELatime」和「inode64」掛載選項掛載。
 
-+
 若要掛載檔案系統，請執行 `mount –a`在主機上執行指令。
-
-

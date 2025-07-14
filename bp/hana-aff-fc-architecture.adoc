@@ -74,7 +74,7 @@ SAP HANA災難恢復可在資料庫層上使用SAP HANA系統複寫、或是在�
 
 下圖展示了一個三站點災難復原解決方案，該解決方案使用同步 SnapMirror 主動同步功能將資料複製到本地災難復原資料中心，並使用非同步 SnapMirror 將資料複製到遠端災難復原資料中心。 SnapMirror主動同步功能即使在整個站點發生故障的情況下也能使業務服務繼續運行，並支援應用程式使用輔助副本進行透明故障轉移（RPO=0 和 RTO=0）。不需要手動介入或自訂指令碼，即可觸發 SnapMirror 主動式同步的容錯移轉。從 ONTAP 9.15.1 開始， SnapMirror 主動式同步支援對稱式主動 / 主動式功能。對稱式主動 / 主動式可從受保護 LUN 的兩個複本啟用讀取和寫入 I/O 作業，並提供雙向同步複寫，讓兩個 LUN 複本都能在本機上執行 I/O 作業。
 
-更多詳情請訪問 https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["ONTAP 中的 SnapMirror 作用中同步總覽"] ..
+如需更多詳細資料，請參閱 https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["ONTAP 中的 SnapMirror 作用中同步總覽"^]。
 
 非同步 SnapMirror 複製的 RTO 主要取決於在 DR 網站啟動 HANA 資料庫並將資料載入到記憶體所需的時間。假設資料的讀取處理量為1000Mbps、載入1TB的資料大約需要18分鐘。
 

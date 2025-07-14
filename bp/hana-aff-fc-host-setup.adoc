@@ -5,12 +5,13 @@ keywords: multipathing, fcp, hba, configure
 summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支援網站下載、並安裝在HANA伺服器上。主機公用程式文件包含其他軟體的相關資訊、這些軟體必須視所使用的FCP HBA而安裝。 
 ---
 = 主機設定
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
 
-
-
-
-== 主機設定
 
 [role="lead"]
 設定主機之前、必須先從下載NetApp SAN主機公用程式 http://mysupport.netapp.com/["NetApp支援"^] 並安裝在HANA伺服器上。主機公用程式文件包含其他軟體的相關資訊、這些軟體必須視所使用的FCP HBA而安裝。

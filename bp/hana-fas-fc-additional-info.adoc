@@ -16,10 +16,10 @@ summary: 若要深入瞭解本文件所述資訊、請參閱下列文件和/或�
 [role="lead"]
 若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：
 
-* link:../index.html["SAP HANA軟體解決方案"]
-* link:../backup/hana-dr-sr-pdf-link.html["TR-4646：SAP HANA災難恢復與儲存複寫"]
-* link:../backup/hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"]
-* link:../lifecycle/sc-copy-clone-introduction.html["TR-4667 ：使用 SnapCenter SAP HANA 外掛程式將 SAP 系統複本自動化"]
+* link:../index.html["SAP HANA軟體解決方案"^]
+* link:../backup/hana-dr-sr-pdf-link.html["TR-4646：SAP HANA災難恢復與儲存複寫"^]
+* link:../backup/hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]
+* link:../lifecycle/sc-copy-clone-introduction.html["TR-4667 ：使用 SnapCenter SAP HANA 外掛程式將 SAP 系統複本自動化"^]
 * NetApp文件中心
 +
 https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]

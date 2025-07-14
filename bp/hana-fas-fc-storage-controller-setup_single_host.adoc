@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
-permalink: bp/hana-aff-fc-storage-controller-setup_single_host.html 
-keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
-summary: 本節說明NetApp儲存系統的組態。您必須根據對應Data ONTAP 的《安裝與組態指南》完成主要安裝與設定。 
+permalink: bp/hana-fas-fc-storage-controller-setup_single_host.html 
+keywords: storage, controller, setup, storage, efficiency volume, encryption, quality, configure, disk, connection, aggregate 
+summary: 本節說明NetApp儲存系統的組態。您必須根據對應ONTAP 的《安裝與組態指南》完成主要安裝與設定。 
 ---
 = 單一主機
 :allow-uri-read: 
@@ -19,12 +19,12 @@ summary: 本節說明NetApp儲存系統的組態。您必須根據對應Data ONT
 
 == SAP HANA單一主機系統的Volume與LUN組態
 
-下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定Volume「ID1_data_mnt00001」、而控制器B上已設定Volume「ID1_log_mnt00001」在每個磁碟區中、都會設定一個LUN。
+下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如，磁碟區 `SID1_data_mnt00001`是在控制器 A 上設定，而磁碟區 `SID1_log_mnt00001`是在控制器 B 上設定。在每個磁碟區內，都會設定單一 LUN 。
 
 
-NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。
+NOTE: 如果SAP HANA系統只使用高可用度（HA）配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。
 
-image:saphana_aff_fc_image16a.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:saphana_fas_fc_image18.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 每部SAP HANA主機都會設定資料Volume、記錄Volume和「/HANA /共享」的Volume。下表顯示四個SAP HANA單一主機系統的組態範例。
 
@@ -46,7 +46,7 @@ image:saphana_aff_fc_image16a.png["此圖顯示輸入 / 輸出對話方塊或表
 下表顯示單一主機系統的掛載點組態範例。
 
 |===
-| LUN | SAP HANA主機的掛載點 | 附註 
+| LUN | HANA主機的裝載點 | 附註 
 
 
 | SID1_data_mnt00001 | /HANA /資料/ SID1/mnt00001 | 使用/etc/Fstab項目掛載 
@@ -75,7 +75,7 @@ NOTE: 不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN�
 
 | 資料、記錄及共用磁碟區、適用於以LVM為基礎的系統 | 資料Volume：SID1_data_mnt00001 | 共享Volume：SID1_Shared Log2 Volume：SID1_log2_mnt00001 | Data2 Volume：SID1_data2_mnt00001 | 記錄磁碟區：SID1_log_mnt00001 
 |===
-在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+在SAP HANA主機上、必須建立及掛載Volume群組和邏輯磁碟區。下表列出使用LVM之單一主機系統的掛載點。
 
 |===
 | 邏輯磁碟區/LUN | SAP HANA主機的掛載點 | 附註 
@@ -109,7 +109,13 @@ NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/si
 |===
 
 
-=== 使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組
+=== 建立LUN、磁碟區、並將LUN對應至啟動器群組
+
+您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
+
+
+
+=== 使用CLI建立LUN、磁碟區、並將LUN對應至igroup
 
 本節展示了使用 ONTAP 9 指令行為 SAP HANA 單主機系統（SID FC5，使用 LVM 且每個 LVM 磁碟區組有兩個 LUN）配置的範例設定：
 

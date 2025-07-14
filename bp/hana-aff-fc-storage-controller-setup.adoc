@@ -96,12 +96,12 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 . 建立儲存虛擬機器（ SVM ），如所述<<儲存虛擬機器組態>>。
 . 建立邏輯介面（生命期）<<邏輯介面組態>>，如所述。
 . 依照本節所述，使用 HANA 伺服器的全球名稱 (WWN) 建立啟動器群組 (igroup) <<啟動器群組>> 。
-. 請按照本節中的說明在聚合中建立和配置磁碟區和 LUN link:hana-aff-fc-host-setup_single_host.html["單主機設定"]適用於單一主機或分段link:hana-aff-fc-host-setup_multiple_hosts.html["多主機設定"]
+. 請按照本節中的說明在聚合中建立和配置磁碟區和 LUN link:hana-aff-fc-storage-controller-setup_single_host.html["單主機設定"]適用於單一主機或分段link:hana-aff-fc-storage-controller-setup_multiple_hosts.html["多主機設定"]
 
 
 
 
-== 磁碟櫃連線
+== 磁碟架連接
 
 
 
@@ -116,7 +116,7 @@ image:saphana_aff_fc_image10.png["DS224C 磁碟櫃連線"]
 
 
 
-=== NVMe（100GbE）型磁碟櫃
+=== 基於 NVMe 的磁碟架
 
 每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2也用於NS224磁碟櫃。
 

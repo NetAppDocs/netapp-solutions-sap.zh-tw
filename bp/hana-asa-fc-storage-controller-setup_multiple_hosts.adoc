@@ -4,13 +4,13 @@ permalink: bp/hana-asa-fc-storage-controller-setup_multiple_hosts.html
 keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
 summary: 本節介紹如何為多主機系統建立 LUN 
 ---
-= 儲存控制器設定 - 多台主機
+= 多台主機
 :allow-uri-read: 
 
 
 
 
-== 儲存控制器設定 - 多台主機
+== 多台主機
 
 [role="lead"]
 本節介紹針對 SAP HANA 多主機系統的 NetApp 儲存系統配置

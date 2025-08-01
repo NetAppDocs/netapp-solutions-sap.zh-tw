@@ -17,21 +17,42 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+== SAP HANA 單主機系統的 LUN 配置
+
+Linux LVM 用於提高效能並解決 LUN 大小限制。在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+
+|===
+| 邏輯磁碟區/LUN | SAP HANA主機的掛載點 | 附註 
+
+
+| LV：FC5_data_mnt00001-vol | /HANA /資料/ FC5/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LV：FC5_log_mnt00001-vol | /HANA / log / FC5/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LUN：FC5_共享 | /HANA /共享/ FC5 | 使用/etc/Fstab項目掛載 
+|===
+
+NOTE: 透過所述配置，  `/usr/sap/FC5`儲存使用者 FC5adm 預設主目錄的目錄位於本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議為 `/usr/sap/FC5`目錄，以便所有檔案系統都位於中央儲存空間上。
+
+
+
 === 建立LVM Volume群組和邏輯磁碟區
 
 . 將所有LUN初始化為實體磁碟區。
 +
 ....
-pvcreate /dev/mapper/hana-FC5_data_mnt00001
-pvcreate /dev/mapper/hana-FC5_data2_mnt00001
-pvcreate /dev/mapper/hana-FC5_log_mnt00001
-pvcreate /dev/mapper/hana-FC5_log2_mnt00001
+pvcreate /dev/mapper/svm1-FC5_data_mnt00001_1
+pvcreate /dev/mapper/svm1-FC5_data_mnt00001_2
+pvcreate /dev/mapper/svm1-FC5_log_mnt00001_1
+pvcreate /dev/mapper/svm1-FC5_log_mnt00001_2
 ....
 . 為每個資料和記錄分割區建立磁碟區群組。
 +
 ....
-vgcreate FC5_data_mnt00001 /dev/mapper/hana-FC5_data_mnt00001 /dev/mapper/hana-FC5_data2_mnt00001
-vgcreate FC5_log_mnt00001 /dev/mapper/hana-FC5_log_mnt00001 /dev/mapper/hana-FC5_log2_mnt00001
+vgcreate FC5_data_mnt00001 /dev/mapper/svm1-FC5_data_mnt00001_1 /dev/mapper/svm1-FC5_data_mnt00001_2
+vgcreate FC5_log_mnt00001 /dev/mapper/svm1-FC5_log_mnt00001_1 /dev/mapper/svm1-FC5_log_mnt00001_2
 ....
 . 為每個資料和記錄分割區建立邏輯磁碟區。使用等量磁碟區大小、等於每個磁碟區群組使用的LUN數量（在此範例中為兩個）、而資料使用的等量磁碟區大小為256k、記錄使用64k。SAP僅支援每個Volume群組一個邏輯Volume。
 +

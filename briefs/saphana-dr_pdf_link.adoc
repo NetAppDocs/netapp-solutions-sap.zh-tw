@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: briefs/saphana-dr_pdf_link.html 
+keywords: sb-3968, sap, SAP HANA, Disaster Recovery 
+summary: 本文檔重點介紹 SAP HANA 的災難復原。 
+---
+= SB-3968：SAP HANA 的災難復原
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+== 挑戰
+
+業務連續性對於 IT 組織來說至關重要。他們必須能夠為客戶運營業務所需的關鍵任務應用程式提供高可用性服務。否則，他們的客戶將面臨生產力下降，電子商務組織的收入也可能直接受到影響。
+
+
+
+== 解決方案
+
+NetApp開發了全套技術和工具，可協助 IT 組織建置或調整其災難復原計劃，以滿足所有業務需求：
+
+link:https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf"]

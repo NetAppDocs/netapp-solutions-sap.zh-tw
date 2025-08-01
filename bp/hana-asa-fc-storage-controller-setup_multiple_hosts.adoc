@@ -17,62 +17,27 @@ summary: 本節介紹如何為多主機系統建立 LUN
 
 
 
-== SAP HANA 多主機系統的 LUN 配置
-
-Linux LVM 用於提高效能並解決 LUN 大小限制。
-
-在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
-
-|===
-| 邏輯磁碟區 (LV) | SAP HANA主機的掛載點 | 附註 
-
-
-| LV：FC5_data_mnt00001-vol | /HANA /資料/ FC5/mnt00001 | 使用儲存連接器安裝 
-
-
-| LV：FC5_log_mnt00001-vol | /HANA / log / FC5/mnt00001 | 使用儲存連接器安裝 
-
-
-| LV：FC5_data_mnt00002-vol | /HANA /資料/ FC5/mnt00002 | 使用儲存連接器安裝 
-
-
-| LV：FC5_log_mnt00002-vol | /HANA / log / FC5/mnt00002 | 使用儲存連接器安裝 
-
-
-| 外部 NFS 共用：FC5_shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
-|===
-
-NOTE: SAP HANA 多主機系統需要 `/hana/shared`連接到系統所有主機的檔案系統。通常，這是由 NFS 伺服器提供的 NFS 共用。建議使用高可用性 NFS 伺服器，例如 NetApp FAS 或 AFF 系統。另一種選擇是使用 LINUX 主機的內建 NFS 伺服器。
-
-
-NOTE: 透過所述配置，  `/usr/sap/FC5`儲存使用者 FC5adm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議使用四個額外的 LUN 用於 `/usr/sap/FC5`檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。
-
-
-
 == 建立 LUN 並將 LUN 對應到啟動程式群組
 
-您可以使用 NetApp ONTAP 系統管理員來建立儲存磁碟區和 LUN ，並將它們對應至伺服器的群組和 ONTAP CLI 。本指南說明 CLI 的使用方式。
-
-
-NOTE: 「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。
+您可以使用NetApp ONTAP System Manager 建立儲存磁碟區和 LUN，並將它們對應到伺服器的 igroup 和ONTAP CLI。
 
 
 
 === 使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組
 
-本節展示了使用 ONTAP 9 指令行為 2+1 SAP HANA 多主機系統設定範例，該系統採用 FC5 FC5，使用 LVM，每個 LVM 磁碟區組有兩個 LUN：
+本節說明使用 ONTAP 9 命令列搭配 2+1 SAP HANA 多個主機系統的範例組態，其中包含使用 LVM 的 SID FC5 ，以及每個 LVM Volume 群組兩個 LUN ：
 
 . 建立所有LUN。
 +
 ....
-lun create -path FC5_data_mnt00001   -size 1t -ostype linux  -class regular
-lun create -path FC5_data2_mnt00001 -size 1t -ostype linux  -class regular
-lun create -path FC5_data_mnt00002 -size 1t -ostype linux  -class regular
-lun create -path FC5_data2_mnt00002 -size 1t -ostype linux  -class regular
-lun create -path FC5_log_mnt00001 -size 260g -ostype linux  -class regular
-lun create -path FC5_log2_mnt00001 -size 260g -ostype linux  -class regular
-lun create -path FC5_log_mnt00002 -size 260g -ostype linux  -class regular
-lun create -path FC5_log2_mnt00002 -size 260g -ostype linux  -class regular
+lun create -path FC5_data_mnt00001_1 -size 1t -ostype linux  -class regular
+lun create -path FC5_data_mnt00001_2 -size 1t -ostype linux  -class regular
+lun create -path FC5_data_mnt00002_1 -size 1t -ostype linux  -class regular
+lun create -path FC5_data_mnt00002_2 -size 1t -ostype linux  -class regular
+lun create -path FC5_log_mnt00001_1 -size 260g -ostype linux  -class regular
+lun create -path FC5_log_mnt00001_2 -size 260g -ostype linux  -class regular
+lun create -path FC5_log_mnt00002_1 -size 260g -ostype linux  -class regular
+lun create -path FC5_log_mnt00002_2 -size 260g -ostype linux  -class regular
 ....
 . 為屬於系統FC5的所有伺服器建立啟動器群組。
 +
@@ -82,13 +47,105 @@ lun igroup create -igroup HANA-FC5 -protocol fcp -ostype linux -initiator 100000
 . 將所有LUN對應至已建立的啟動器群組。
 +
 ....
-lun map -path FC5_data_mnt00001  -igroup HANA-FC5
-lun map -path FC5_data2_mnt00001  -igroup HANA-FC5
-lun map -path FC5_data_mnt00002  -igroup HANA-FC5
-lun map -path FC5_data2_mnt00002  -igroup HANA-FC5
-lun map -path FC5_log_mnt00001  -igroup HANA-FC5
-lun map -path FC5_log2_mnt00001  -igroup HANA-FC5
-lun map -path FC5_log_mnt00002  -igroup HANA-FC5
-lun map -path FC5_log2_mnt00002  -igroup HANA-FC5
+lun map -path FC5_data_mnt00001_1 -igroup HANA-FC5
+lun map -path FC5_data_mnt00001_2 -igroup HANA-FC5
+lun map -path FC5_data_mnt00002_1 -igroup HANA-FC5
+lun map -path FC5_data_mnt00002_2 -igroup HANA-FC5
+lun map -path FC5_log_mnt00001_1 -igroup HANA-FC5
+lun map -path FC5_log_mnt00001_2 -igroup HANA-FC5
+lun map -path FC5_log_mnt00002_1 -igroup HANA-FC5
+lun map -path FC5_log_mnt00002_2 -igroup HANA-FC5
 ....
 
+
+
+
+=== 使用 GUI 建立 LUN 並將 LUN 對應到啟動程式群組
+
+本節展示了使用以下配置的範例 `ONTAP System Manager`對於使用 LVM 且每個 LVM 磁碟區組有兩個 LUN 的 SID FC5 的 2+1 SAP HANA 多主機系統：
+
+. 登入 `ONTAP System Manager`您的ONTAP集群並選擇 `Storage`從左側選單中。
++
+.. 按 `Add`
++
+image:saphana_asa_fc_image12.png["ONTAP系統管理員 - 存儲"]
+
+
+
+. 選擇 `More options`
++
+image:saphana_asa_fc_image13.png["ONTAP系統管理員 - 新增存儲"]
+
+. 提供所需資訊：
++
+.. 資料 LUN 的名稱，例如.`FC5_data_mnt00001`
+.. 要與 LVM 組合的 LUN 數量，例如 2
+.. 每個 LUN 的大小，例如 1000 GB
+.. 選擇 `SCSI (FC or iSCSI)`
+.. 選擇 `Linux`作為 `Host Operating system`
+.. 選擇 `New host`對於 `Host mapping`選項，提供一個名稱，例如 `FC5_host`，選擇或新增所需的啟動器
+.. 保持 `Schedule snapshots`未選取
+.. 按 `Add`
++
+image:saphana_asa_fc_image14.png["ONTAP系統管理員 - 建立資料 LUN"]
+
+
+
+. 按下 `Add`
++
+image:saphana_asa_fc_image15.png["ONTAP系統管理員 - 建立額外的資料 LUN"]
+
+. 提供所需資訊：
++
+.. 附加資料 LUN 的名稱，例如 `FC5_data_mnt00002`
+.. 要與 LVM 組合的 LUN 數量，例如 2
+.. 每個 LUN 的大小，例如 1000 GB
+.. 選擇 `Linux`作為 `Host Operating system`
+.. 選擇先前建立的映射 `FC5_host`對於 `Host mapping`選項
+.. 按 `Add`
+
+
++
+image:saphana_asa_fc_image20.png["ONTAP系統管理員 - 建立資料 LUN"]
+
+. 對每個額外的工作主機重複步驟 4 和 5
+. 成功建立資料 LUN 後，按 `Add`
++
+image:saphana_asa_fc_image21.png["ONTAP系統管理員 - 建立日誌 LUN"]
+
+. 提供所需資訊：
++
+.. 要與 LVM 結合的日誌 LUN 的名稱，例如 `FC5_log_mnt00001`
+.. 要與 LVM 組合的 LUN 數量，例如 2
+.. 每個 LUN 的大小，例如 260 GB
+.. 選擇 `Linux`作為 `Host Operating system`
+.. 選擇先前建立的映射 `FC5_host`對於 `Host mapping`選項
+.. 按 `Add`
++
+image:saphana_asa_fc_image22.png["ONTAP系統管理員 - 建立日誌 LUN"]
+
+
+
+. 按下 `Add`
++
+image:saphana_asa_fc_image23.png["ONTAP系統管理員 - 建立額外的日誌 LUN"]
+
+. 提供所需資訊：
++
+.. 附加日誌 LUN 的名稱，例如 `FC5_log_mnt00002`
+.. 要與 LVM 組合的 LUN 數量，例如 2
+.. 每個 LUN 的大小，例如 260 GB
+.. 選擇 `Linux`作為 `Host Operating system`
+.. 選擇先前建立的映射 `FC5_host`對於 `Host mapping`選項
+.. 按 `Add`
++
+image:saphana_asa_fc_image24.png["ONTAP系統管理員 - 建立額外的日誌 LUN"]
+
+
+
+. 對每個額外的工作主機重複步驟 9 和 10
+
+
+SAP HANA 多主機系統所需的所有 LUN 均已建立。
+
+image:saphana_asa_fc_image25.png["ONTAP系統管理員 - LUN 概述"]

@@ -13,7 +13,28 @@ summary: 本文件也包含所使用Linux版本特有的多重路徑組態相關
 == 單主機設定
 
 [role="lead"]
-本章介紹 SAP HANA 單主機的設定。
+本章介紹使用 Linux LVM 設定 SAP HANA 單主機。
+
+
+
+== SAP HANA 單主機系統的 LUN 配置
+
+在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+
+|===
+| 邏輯磁碟區/LUN | SAP HANA主機的掛載點 | 附註 
+
+
+| LV：FC5_data_mnt0000-vol | /hana/資料/FC51/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LV：FC5_log_mnt00001-vol | /HANA / log / FC5/mnt00001 | 使用/etc/Fstab項目掛載 
+
+
+| LUN：FC5_共享 | /HANA /共享/ FC5 | 使用/etc/Fstab項目掛載 
+|===
+
+NOTE: 透過所述配置， `/usr/sap/FC5`儲存使用者 FC5adm 的預設主目錄的目錄位於本機磁碟上。在基於磁碟的複製災難復原設定中， NetApp建議在 `FC5_shared`音量為 `/usr/sap/FC5`目錄，以便所有檔案系統都位於中央儲存空間上。
 
 
 

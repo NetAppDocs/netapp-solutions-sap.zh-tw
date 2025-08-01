@@ -97,9 +97,3 @@ host1 ...... WWPN:2100000e1e163701
 ....
 
 NOTE: 此 `sanlun`工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節link:hana-asa-fc-host-setup.html["主機設定："]
-
-可以使用 ONTAP 叢集的 CLI 建立啟動器群組。
-
-....
-lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
-....

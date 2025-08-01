@@ -27,7 +27,7 @@ summary: 本節介紹如何為多主機系統建立 LUN
 NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和記錄磁碟區也可以儲存在同一個儲存控制器上。
 
 
-NOTE: NetApp ASA AFF 支援NFS作為傳輸協定、NetApp建議在AFF 「/Hana /共享」檔案系統中使用額外的功能不全或FAS 不全。
+NOTE: NetApp ASA系統不支援 NFS 作為協定。  NetApp建議使用額外的AFF或FAS系統 `/hana/shared`文件系統。
 
 image:saphana_aff_fc_image17a.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
@@ -93,7 +93,7 @@ NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap
 Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。
 
 
-NOTE: 不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定即符合所需的KPI。
+NOTE: 沒有必要使用 LVM 來組合多個 LUN 來實現 SAP HANA KPI，但建議
 
 下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。
 
@@ -109,29 +109,6 @@ NOTE: 不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定�
 
 | 所有主機的共享Volume | 共享Volume：SID_Shared | – | – | – 
 |===
-在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
-
-|===
-| 邏輯Volume（lv）或Volume | SAP HANA主機的掛載點 | 附註 
-
-
-| lv：SID_data_mnt001-vol | /HANA /資料/SID/mnt00001 | 使用儲存連接器安裝 
-
-
-| lv：SID_log_mnt001-vol | /HANA /記錄/SID/mnt00001 | 使用儲存連接器安裝 
-
-
-| lv：SID_data_mnt00002-vol | /HANA /資料/SID/mnt00002 | 使用儲存連接器安裝 
-
-
-| lv：SID_log_mnt00002-vol | /HANA /記錄/SID/mnt00002 | 使用儲存連接器安裝 
-
-
-| Volume：SID_Shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
-|===
-
-NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。
-
 
 
 === Volume選項

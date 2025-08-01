@@ -5,9 +5,9 @@ entries:
 - title: SAP HANA生命週期管理
   url: "/briefs/saphana-lm-sb_pdf_link.html"
 - title: SAP HANA備份與還原
-  url: https://www.netapp.com/pdf.html?item=/media/6997-sb-3965pdf.pdf
+  url: "/briefs/saphana-backup_pdf_link.html"
 - title: SAP HANA災難恢復
-  url: https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf
+  url: "/briefs/saphana-dr_pdf_link.html"
 - title: 透過 Ansible 和 NetApp SnapCenter 實現 SAP 自動化
   url: "/briefs/sap-lama-ansible.html"
 - title: 運用 Alpaca 和 NetApp SnapCenter 實現 SAP 自動化

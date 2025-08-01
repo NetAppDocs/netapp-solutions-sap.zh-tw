@@ -17,6 +17,33 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+== SAP HANA 多主機系統的 LUN 配置
+
+在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
+
+|===
+| 邏輯Volume（lv）或Volume | SAP HANA主機的掛載點 | 附註 
+
+
+| LV：FC5_data_mnt00001-vol | /HANA /資料/ FC5/mnt00001 | 使用儲存連接器安裝 
+
+
+| LV：FC5_log_mnt00001-vol | /HANA / log / FC5/mnt00001 | 使用儲存連接器安裝 
+
+
+| LV：FC5_data_mnt00002-vol | /HANA /資料/ FC5/mnt00002 | 使用儲存連接器安裝 
+
+
+| LV：FC5_log_mnt00002-vol | /HANA / log / FC5/mnt00002 | 使用儲存連接器安裝 
+
+
+| 卷：FC5_shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+|===
+
+NOTE: 透過所述配置， `/usr/sap/FC5`儲存使用者 FC5adm 的預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中， NetApp建議在 `FC5_shared`音量為 `/usr/sap/FC5`檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。
+
+
+
 === 建立LVM Volume群組和邏輯磁碟區
 
 . 將所有LUN初始化為實體磁碟區。

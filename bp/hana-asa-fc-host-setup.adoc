@@ -35,38 +35,38 @@ sapcc-hana-tst:~ # sanlun lun show
 controller(7mode/E-Series)/                                  device          host                  lun
 vserver(cDOT/FlashRay)        lun-pathname                   filename        adapter    protocol   size    product
 ---------------------------------------------------------------------------------------------------------------
-svm1                          FC5_log2_mnt00002              /dev/sdbb       host21     FCP        500g    cDOT
-svm1                          FC5_log_mnt00002               /dev/sdba       host21     FCP        500g    cDOT
-svm1                          FC5_log2_mnt00001              /dev/sdaz       host21     FCP        500g    cDOT
-svm1                          FC5_log_mnt00001               /dev/sday       host21     FCP        500g    cDOT
-svm1                          FC5_data2_mnt00002             /dev/sdax       host21     FCP        1t      cDOT
-svm1                          FC5_data_mnt00002              /dev/sdaw       host21     FCP        1t      cDOT
-svm1                          FC5_data2_mnt00001             /dev/sdav       host21     FCP        1t      cDOT
-svm1                          FC5_data_mnt00001              /dev/sdau       host21     FCP        1t      cDOT
-svm1                          FC5_log2_mnt00002              /dev/sdat       host21     FCP        500g    cDOT
-svm1                          FC5_log_mnt00002               /dev/sdas       host21     FCP        500g    cDOT
-svm1                          FC5_log2_mnt00001              /dev/sdar       host21     FCP        500g    cDOT
-svm1                          FC5_log_mnt00001               /dev/sdaq       host21     FCP        500g    cDOT
-svm1                          FC5_data2_mnt00002             /dev/sdap       host21     FCP        1t      cDOT
-svm1                          FC5_data_mnt00002              /dev/sdao       host21     FCP        1t      cDOT
-svm1                          FC5_data2_mnt00001             /dev/sdan       host21     FCP        1t      cDOT
-svm1                          FC5_data_mnt00001              /dev/sdam       host21     FCP        1t      cDOT
-svm1                          FC5_log2_mnt00002              /dev/sdal       host20     FCP        500g    cDOT
-svm1                          FC5_log_mnt00002               /dev/sdak       host20     FCP        500g    cDOT
-svm1                          FC5_log2_mnt00001              /dev/sdaj       host20     FCP        500g    cDOT
-svm1                          FC5_log_mnt00001               /dev/sdai       host20     FCP        500g    cDOT
-svm1                          FC5_data2_mnt00002             /dev/sdah       host20     FCP        1t      cDOT
-svm1                          FC5_data_mnt00002              /dev/sdag       host20     FCP        1t      cDOT
-svm1                          FC5_data2_mnt00001             /dev/sdaf       host20     FCP        1t      cDOT
-svm1                          FC5_data_mnt00001              /dev/sdae       host20     FCP        1t      cDOT
-svm1                          FC5_log2_mnt00002              /dev/sdad       host20     FCP        500g    cDOT
-svm1                          FC5_log_mnt00002               /dev/sdac       host20     FCP        500g    cDOT
-svm1                          FC5_log2_mnt00001              /dev/sdab       host20     FCP        500g    cDOT
-svm1                          FC5_log_mnt00001               /dev/sdaa       host20     FCP        500g    cDOT
-svm1                          FC5_data2_mnt00002             /dev/sdz        host20     FCP        1t      cDOT
-svm1                          FC5_data_mnt00002              /dev/sdy        host20     FCP        1t      cDOT
-svm1                          FC5_data2_mnt00001             /dev/sdx        host20     FCP        1t      cDOT
-svm1                          FC5_data_mnt00001              /dev/sdw        host20     FCP        1t      cDOT
+svm1                          FC5_log_mnt00002_2             /dev/sdbb       host21     FCP        500g    cDOT
+svm1                          FC5_log_mnt00002_1             /dev/sdba       host21     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_2             /dev/sdaz       host21     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_1             /dev/sday       host21     FCP        500g    cDOT
+svm1                          FC5_data_mnt00002_2            /dev/sdax       host21     FCP        1t      cDOT
+svm1                          FC5_data_mnt00002_1            /dev/sdaw       host21     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_2            /dev/sdav       host21     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_1            /dev/sdau       host21     FCP        1t      cDOT
+svm1                          FC5_log_mnt00002_2             /dev/sdat       host21     FCP        500g    cDOT
+svm1                          FC5_log_mnt00002_1             /dev/sdas       host21     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_2             /dev/sdar       host21     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_1             /dev/sdaq       host21     FCP        500g    cDOT
+svm1                          FC5_data_mnt00002_2            /dev/sdap       host21     FCP        1t      cDOT
+svm1                          FC5_data_mnt00002_1            /dev/sdao       host21     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_2            /dev/sdan       host21     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_1            /dev/sdam       host21     FCP        1t      cDOT
+svm1                          FC5_log_mnt00002_2             /dev/sdal       host20     FCP        500g    cDOT
+svm1                          FC5_log_mnt00002_1             /dev/sdak       host20     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_2             /dev/sdaj       host20     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_1             /dev/sdai       host20     FCP        500g    cDOT
+svm1                          FC5_data_mnt00002_2            /dev/sdah       host20     FCP        1t      cDOT
+svm1                          FC5_data_mnt00002_1            /dev/sdag       host20     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_2            /dev/sdaf       host20     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_1            /dev/sdae       host20     FCP        1t      cDOT
+svm1                          FC5_log_mnt00002_2             /dev/sdad       host20     FCP        500g    cDOT
+svm1                          FC5_log_mnt00002_1             /dev/sdac       host20     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_2             /dev/sdab       host20     FCP        500g    cDOT
+svm1                          FC5_log_mnt00001_1             /dev/sdaa       host20     FCP        500g    cDOT
+svm1                          FC5_data_mnt00002_2            /dev/sdz        host20     FCP        1t      cDOT
+svm1                          FC5_data_mnt00002_1            /dev/sdy        host20     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_2            /dev/sdx        host20     FCP        1t      cDOT
+svm1                          FC5_data_mnt00001_1            /dev/sdw        host20     FCP        1t      cDOT
 
 ....
 . 運行 `multipath -r`和 `multipath -ll`命令取得裝置檔案名稱的全球識別碼 (WWID)。
@@ -147,35 +147,35 @@ sapcc-hana-tst:/ # cat /etc/multipath.conf
 multipaths {
                 multipath {
                 wwid    3600a098038314e63492b59326b4b786d
-                alias   svm1-FC5_data2_mnt00001
+                alias   svm1-FC5_data_mnt00001_2
         }
         multipath {
                 wwid    3600a098038314e63492b59326b4b786e
-                alias   svm1-FC5_data2_mnt00002
+                alias   svm1-FC5_data_mnt00002_2
         }
         multipath {
                 wwid    3600a098038314e63532459326d495a64
-                alias   svm1-FC5_data_mnt00001
+                alias   svm1-FC5_data_mnt00001_1
         }
         multipath {
                 wwid    3600a098038314e63532459326d495a65
-                alias   svm1-FC5_data_mnt00002
+                alias   svm1-FC5_data_mnt00002_1
         }
         multipath {
                 wwid    3600a098038314e63492b59326b4b786f
-                alias   svm1-FC5_log2_mnt00001
+                alias   svm1-FC5_log_mnt00001_2
         }
         multipath {
                 wwid    3600a098038314e63492b59326b4b7870
-                alias   svm1-FC5_log2_mnt00002
+                alias   svm1-FC5_log_mnt00002_2
         }
         multipath {
                 wwid    3600a098038314e63532459326d495a66
-                alias   svm1-FC5_log_mnt00001
+                alias   svm1-FC5_log_mnt00001_1
         }
         multipath {
                 wwid    3600a098038314e63532459326d495a67
-                alias   svm1-FC5_log_mnt00002
+                alias   svm1-FC5_log_mnt00002_1
         }
 
 
@@ -190,56 +190,56 @@ NOTE: 下列輸出範例顯示2+1多主機HANA系統的輸出、其中包含兩�
 +
 ....
 sapcc-hana-tst:~ # multipath -ll
-hsvm1-FC5_data2_mnt00001 (3600a098038314e63492b59326b4b786d) dm-7 NETAPP,LUN C-Mode
+svm1-FC5_data_mnt00001_2 (3600a098038314e63492b59326b4b786d) dm-7 NETAPP,LUN C-Mode
 size=1.0T features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:2 sdaf 65:240 active ready running
   |- 20:0:5:2 sdx  65:112 active ready running
   |- 21:0:4:2 sdav 66:240 active ready running
   `- 21:0:6:2 sdan 66:112 active ready running
-svm1-FC5_data2_mnt00002 (3600a098038314e63492b59326b4b786e) dm-9 NETAPP,LUN C-Mode
+svm1-FC5_data_mnt00002_2 (3600a098038314e63492b59326b4b786e) dm-9 NETAPP,LUN C-Mode
 size=1.0T features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:4 sdah 66:16  active ready running
   |- 20:0:5:4 sdz  65:144 active ready running
   |- 21:0:4:4 sdax 67:16  active ready running
   `- 21:0:6:4 sdap 66:144 active ready running
-svm1-FC5_data_mnt00001 (3600a098038314e63532459326d495a64) dm-6 NETAPP,LUN C-Mode
+svm1-FC5_data_mnt00001_1 (3600a098038314e63532459326d495a64) dm-6 NETAPP,LUN C-Mode
 size=1.0T features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:1 sdae 65:224 active ready running
   |- 20:0:5:1 sdw  65:96  active ready running
   |- 21:0:4:1 sdau 66:224 active ready running
   `- 21:0:6:1 sdam 66:96  active ready running
-svm1-FC5_data_mnt00002 (3600a098038314e63532459326d495a65) dm-8 NETAPP,LUN C-Mode
+svm1-FC5_data_mnt00002_1 (3600a098038314e63532459326d495a65) dm-8 NETAPP,LUN C-Mode
 size=1.0T features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:3 sdag 66:0   active ready running
   |- 20:0:5:3 sdy  65:128 active ready running
   |- 21:0:4:3 sdaw 67:0   active ready running
   `- 21:0:6:3 sdao 66:128 active ready running
-svm1-FC5_log2_mnt00001 (3600a098038314e63492b59326b4b786f) dm-11 NETAPP,LUN C-Mode
+svm1-FC5_log_mnt00001_2 (3600a098038314e63492b59326b4b786f) dm-11 NETAPP,LUN C-Mode
 size=500G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:6 sdaj 66:48  active ready running
   |- 20:0:5:6 sdab 65:176 active ready running
   |- 21:0:4:6 sdaz 67:48  active ready running
   `- 21:0:6:6 sdar 66:176 active ready running
-svm1-FC5_log2_mnt00002 (3600a098038314e63492b59326b4b7870) dm-13 NETAPP,LUN C-Mode
+svm1-FC5_log_mnt00002_2 (3600a098038314e63492b59326b4b7870) dm-13 NETAPP,LUN C-Mode
 size=500G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:8 sdal 66:80  active ready running
   |- 20:0:5:8 sdad 65:208 active ready running
   |- 21:0:4:8 sdbb 67:80  active ready running
   `- 21:0:6:8 sdat 66:208 active ready running
-svm1-FC5_log_mnt00001 (3600a098038314e63532459326d495a66) dm-10 NETAPP,LUN C-Mode
+svm1-FC5_log_mnt00001_1 (3600a098038314e63532459326d495a66) dm-10 NETAPP,LUN C-Mode
 size=500G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:5 sdai 66:32  active ready running
   |- 20:0:5:5 sdaa 65:160 active ready running
   |- 21:0:4:5 sday 67:32  active ready running
   `- 21:0:6:5 sdaq 66:160 active ready running
-svm1-FC5_log_mnt00002 (3600a098038314e63532459326d495a67) dm-12 NETAPP,LUN C-Mode
+svm1-FC5_log_mnt00002_1 (3600a098038314e63532459326d495a67) dm-12 NETAPP,LUN C-Mode
 size=500G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 20:0:4:7 sdak 66:64  active ready running

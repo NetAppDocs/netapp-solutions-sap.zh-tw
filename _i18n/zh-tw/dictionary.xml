@@ -44,8 +44,6 @@
   <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">專利</block>
   <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">如需最新的 NetApp 擁有專利清單、請參閱：</block>
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隱私權政策</block>
-  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">開放原始碼</block>
-  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知檔案提供有關 NetApp 軟體所使用之協力廠商版權與授權的資訊。</block>
   <block id="253e2318e8893b42b0160e70f2371673" category="summary">討論SAP備份、還原及災難恢復的一系列部落格</block>
   <block id="3c076a182be1751030f4612f09c54ab2" category="doc">SAP備份、還原及災難恢復部落格</block>
   <block id="dcfb0772c9f2c9e98d41f5f0e799a89a" category="paragraph">強調SAP備份、還原及災難恢復的部落格總覽。</block>
@@ -353,20 +351,15 @@
   <block id="f26f6073b7776e8f86f6bf13d02a97ca" category="admonition">使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。</block>
   <block id="8d4e658f528a31efe4237fe11774716f" category="section-title">使用Linux LVM的SAP HANA單一主機系統的Volume與LUN組態</block>
   <block id="4f2eb711021dab33e5ff7c3395979045" category="paragraph">Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示每個磁碟區群組兩個LUN的範例。</block>
-  <block id="bf2b73e5a1069f54823f3690829c44f7" category="admonition">不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN設定即符合所需的KPI。</block>
   <block id="50c8a736d0d7665eb46c9696d32e54b3" category="cell">資料、記錄及共用磁碟區、適用於以LVM為基礎的系統</block>
   <block id="e419668a145069bd5df27d1d94e5bf5a" category="cell">共享Volume：SID1_Shared Log2 Volume：SID1_log2_mnt00001</block>
   <block id="c5a46bab63449b2e1afaed056128e704" category="cell">Data2 Volume：SID1_data2_mnt00001</block>
   <block id="f077106d32b9bc50fe9eeac1cd3d7c18" category="paragraph">在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。</block>
   <block id="20c772a627871f53550c990cac40e436" category="cell">邏輯磁碟區/LUN</block>
-  <block id="4dbf191e4ed6b7c6ecc5f37903313222" category="cell">lv：SID1_data_mnt0000-vol</block>
-  <block id="45cf28b4bb0bed9fa061ae20911813ad" category="cell">lv：SID1_log_mnt001-vol</block>
-  <block id="0a0eb6344c43262455dfef7dd783c9a2" category="cell">LUN：SID1_shared</block>
   <block id="b25b558581b55b9f2fe2ef166b8c7153" category="section-title">SAP HANA多主機系統的Volume與LUN組態</block>
   <block id="6b7ff1a28666a16440c8c6ea6637d7a5" category="paragraph">下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID_data_mnt00001」、控制器B上已設定磁碟區「ID_log_mnt00001」每個磁碟區內都會設定一個LUN。</block>
   <block id="159562ba9c8d36ce5afba352e4de35a9" category="paragraph">「/HANA /共享」磁碟區必須可供所有HANA主機存取、因此必須使用NFS匯出。雖然「/Hana /共享」檔案系統沒有特定的效能KPI、但NetApp建議使用10Gb乙太網路連線。</block>
   <block id="11862afda87479323583a609effa0913" category="admonition">如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和記錄磁碟區也可以儲存在同一個儲存控制器上。</block>
-  <block id="453b8497395d5bbd79a0c8e798f0c9cc" category="admonition">NetApp ASA AFF 支援NFS作為傳輸協定、NetApp建議在AFF 「/Hana /共享」檔案系統中使用額外的功能不全或FAS 不全。</block>
   <block id="f4674e3b297184ff65e01cfe3e66e78c" category="paragraph">每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下表顯示4+1多主機SAP HANA系統的組態範例。</block>
   <block id="c50bebb751ab31a7b0e508e4dfdba06e" category="cell">節點1的資料與記錄磁碟區</block>
   <block id="a983282d84f231230a21d6e897fa5096" category="cell">資料磁碟區：SID_data_mnt00001</block>
@@ -407,17 +400,12 @@
   <block id="3e7047d2bf94461f14196805112df4f5" category="admonition">使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。</block>
   <block id="c054b3fc8b39c77b600c774805522378" category="section-title">使用Linux LVM的SAP HANA多主機系統的Volume與LUN組態</block>
   <block id="fb98d6eb62d89d96b064be4fe17f583e" category="paragraph">Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。</block>
-  <block id="3ba3509b7579ef045ff4c77476c7cf11" category="admonition">不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定即符合所需的KPI。</block>
   <block id="f7be036cddf21af55fc52689e1f3055b" category="paragraph">下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。</block>
   <block id="4d9935e6cd83034a64b5ac62866a0738" category="cell">Log2 Volume：SID_log2_mnt00001</block>
   <block id="d6b8eb7e3d6ddf4af2ac24f74f1ddee8" category="cell">Data2 Volume：SID_data2_mnt00001</block>
   <block id="ce92b52ec6796984f134f3d663d31dd9" category="cell">Log2 Volume：SID_log2_mnt00002</block>
   <block id="79c44c08a641df91246f70b5f4721b31" category="cell">Data2 Volume：SID_data2_mnt00002</block>
   <block id="120bb07a74c62db6e646c3e4c6894343" category="cell">邏輯Volume（lv）或Volume</block>
-  <block id="e0aca5a9c63604d53aca20804da97330" category="cell">lv：SID_data_mnt001-vol</block>
-  <block id="e865dd471095d94a2e4b63c8a0f33860" category="cell">lv：SID_log_mnt001-vol</block>
-  <block id="711212cf75d514aac51d33222c3265b1" category="cell">lv：SID_data_mnt00002-vol</block>
-  <block id="57d1d1afeed57e5be9d3694589233736" category="cell">lv：SID_log_mnt00002-vol</block>
   <block id="66cbf41a87a685e6ad37ed18e6f61f06" category="section-title">Volume選項</block>
   <block id="941ad2feba868268ee283fe1886c4440" category="paragraph">下表所列的Volume選項必須在所有SVM上進行驗證和設定。</block>
   <block id="004bf6c9a40003140292e97330236c53" category="cell">行動</block>
@@ -426,7 +414,6 @@
   <block id="59dafe6ffe356573f4a59e43b8c2a12d" category="cell">停用Snapshot目錄的可見度</block>
   <block id="bfcee32efb1a622a6e587e6e46aabb35" category="cell">Vol modify -vserver &lt;vserver-name&gt;-volume &lt;volname&gt;-snapdir-access假</block>
   <block id="b9c48200eb9eba714e3c88803e97b4ce" category="section-title">建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
-  <block id="a86be254d15f1254d56b97c8755a5b77" category="admonition">「ianlun」工具是NetApp主機公用程式的一部分、必須安裝在每個SAP HANA主機上。如需詳細資訊、請參閱「host_setup」一節。</block>
   <block id="8c4751bd2d7d17062a8b536388ba69bc" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至啟動器群組</block>
   <block id="c48caf1c739d7975abd91d926cd56982" category="list-text">建立所有必要的磁碟區。</block>
   <block id="8e5c1549db5f0e31853b6809f7049388" category="list-text">建立所有LUN。</block>
@@ -1009,14 +996,10 @@
   <block id="bc7b122f8c7d1a7a700fe37744267ae2" category="inline-link-macro">主機設定：</block>
   <block id="2c8d2683acd00fc6b7bdbecbc4077a74" category="admonition">如果SAP HANA系統只使用高可用度（HA）配對的一個儲存控制器、資料磁碟區和記錄磁碟區也可以儲存在同一個儲存控制器上。</block>
   <block id="7a1a0bd259dd739b7d810124fe9f4440" category="paragraph">下表顯示單一主機系統的掛載點組態範例。</block>
-  <block id="414644d9944d8acf448d00964757d116" category="admonition">不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN設定即符合所需的KPI。</block>
-  <block id="6ca08fbeb2f69e5ac6d7d31de1c0d50e" category="paragraph">在SAP HANA主機上、必須建立及掛載Volume群組和邏輯磁碟區。下表列出使用LVM之單一主機系統的掛載點。</block>
   <block id="ebcead3815b9e992a87a9c31a4be99fe" category="paragraph">每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下圖顯示4+1多主機SAP HANA系統的組態範例。</block>
   <block id="47efb02d47f9965ca8839f52ecc182bc" category="paragraph">下表顯示具有四台作用中SAP HANA主機的多主機系統組態和掛載點。</block>
   <block id="415dc524f4e8d720ce545c8d6263459c" category="cell">LUN或Volume</block>
   <block id="ea15b968cdc22cb1b865eba6daa0eae0" category="paragraph">Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。</block>
-  <block id="7e819a8bd73b862fc9b80deb044fa7da" category="admonition">不需要使用LVM合併多個LUN來達成SAP HANA KPI。單一LUN設定即符合所需的KPI。</block>
-  <block id="70993f32e0c2ae5000f9a5a9cbf641e4" category="paragraph">在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區：</block>
   <block id="203165a49e3a391bdbc44e3a05d54279" category="cell">功能9. ONTAP</block>
   <block id="77656454768235b0e1954805bd92d9c9" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至igroup</block>
   <block id="d21a66a2fd717a4acd6dd449ecac4839" category="list-text">為屬於系統FC5的所有伺服器建立igroup。</block>
@@ -5489,7 +5472,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="2ecd8267df97e61a6026b9d97834abe5" category="admonition">此<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節<block ref="651d6af67f47799de3de7127400bd073" category="inline-link-macro-rx"></block></block>
   <block id="8db99fa5fe9e83e6fc301d2677a74c9e" category="summary">本節介紹如何為多主機系統建立 LUN</block>
   <block id="d5395e37adfb8bd3cabb8db1bdb0abee" category="paragraph">本節介紹針對 SAP HANA 多主機系統的 NetApp 儲存系統配置</block>
-  <block id="b28af8f8515ecce98f0a5be7515b2b61" category="section-title">SAP HANA 多主機系統的 LUN 配置</block>
   <block id="ca896343d41b326aec5877cfd4d956dd" category="paragraph">Linux LVM 用於提高效能並解決 LUN 大小限制。</block>
   <block id="5e6b40484940ec07f5b5ecf3e4918dfc" category="cell">邏輯磁碟區 (LV)</block>
   <block id="7cad490ec2fc5e1b8cbade09d487d514" category="cell">LV：FC5_data_mnt00001-vol</block>
@@ -5505,7 +5487,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="5b10d0b1272d218e55f6473abcfbae9d" category="admonition">透過所述配置， <block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>儲存使用者 FC5adm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議使用四個額外的 LUN 用於<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。</block>
   <block id="d4f54d18b3b1b7422185c0c71038ff15" category="section-title">建立 LUN 並將 LUN 對應到啟動程式群組</block>
   <block id="b54a0f5023cc826b59cab28cc23f22cc" category="section-title">使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組</block>
-  <block id="2d39c77b49ea3785a21a4c7b0c611e44" category="paragraph">本節展示了使用 ONTAP 9 指令行為 2+1 SAP HANA 多主機系統設定範例，該系統採用 FC5 FC5，使用 LVM，每個 LVM 磁碟區組有兩個 LUN：</block>
   <block id="cf92b7cb5d4dd0e7883961b1bc9e7ab9" category="paragraph">本節介紹針對 SAP HANA 單主機系統的 NetApp 儲存系統配置</block>
   <block id="943a742a82131a53ada69df9430a1877" category="paragraph">Linux LVM 用於提高效能並解決 LUN 大小限制。在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。</block>
   <block id="f8f9e88eaa58d2028a8b1e060e5cf04d" category="cell">LV：FC5_data_mnt0000-vol</block>
@@ -5725,4 +5706,88 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="b46c19227accdcf131acd89ec837d719" category="list-text">如中所述，檢查正確的磁碟櫃組態<block ref="03b6386ad6a1dc10d9baa30820f92e6f" category="inline-xref-macro-rx"></block>。</block>
   <block id="5fd1fe4406610035d26bddd7285e2208" category="list-text">請按照本節中的說明在聚合中建立和配置磁碟區和 LUN <block ref="5cdae6b5e4c2b7c1786a252c1b2db361" category="inline-link-macro-rx"></block>適用於單一主機或分段<block ref="576df1336ee1cb2a072bb64be834429d" category="inline-link-macro-rx"></block>對於多個主機</block>
   <block id="fe19c797763ffd518a9713847adadc9f" category="section-title">NVMe 磁碟架</block>
+  <block id="ea13b0292be295ca3a3610f1baba7af5" category="cell">卷：FC5_shared</block>
+  <block id="74a45bc8a76dc8851afe39b96fb0a96a" category="admonition">透過所述配置，<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>儲存使用者 FC5adm 的預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中， NetApp建議在<block ref="9bfe65825cda87178edc3ba9f8299b5b" prefix=" " category="inline-code"></block>音量為<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。</block>
+  <block id="731029fe8023134b7b2cfe0f6b60a062" category="paragraph">本章介紹使用 LINUX LVM 設定 SAP HANA 單主機。</block>
+  <block id="1347f8e1e71f136f4775e716ea4ffe79" category="cell">/hana/資料/FC51/mnt00001</block>
+  <block id="8605d3de78deff9736f57392e34596e6" category="admonition">透過所述配置，<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>儲存使用者 FC5adm 的預設主目錄的目錄位於本機磁碟上。在基於磁碟的複製災難復原設定中， NetApp建議在<block ref="9bfe65825cda87178edc3ba9f8299b5b" prefix=" " category="inline-code"></block>音量為<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>目錄，以便所有檔案系統都位於中央儲存空間上。</block>
+  <block id="96b45d8155e675bfeba1a557f8d2c076" category="admonition">NetApp ASA系統不支援 NFS 作為協定。  NetApp建議使用額外的AFF或FAS系統<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>文件系統。</block>
+  <block id="af7dc91d6c9878ceafb1b3fda7b49ff6" category="admonition">沒有必要使用 LVM 來組合多個 LUN 來實現 SAP HANA KPI，但建議</block>
+  <block id="b4421a31caaf211d702cdbef54c45f59" category="admonition">沒有必要使用具有多個 LUN 的 LVM 來滿足 SAP HANA KPI，但建議這樣做。</block>
+  <block id="c3b8b3942717ccdfa536ffb850c19eec" category="paragraph">您可以使用NetApp ONTAP System Manager 建立儲存磁碟區和 LUN，並將它們對應到伺服器的 igroup 和ONTAP CLI。</block>
+  <block id="67890e88e0e5160d6cb44b90f45ea61a" category="section-title">使用 GUI 建立 LUN 並將 LUN 對應到啟動程式群組</block>
+  <block id="bc68290108b8ab51d23362d1aaf94562" category="paragraph">本節展示了使用以下配置的範例<block ref="6ad5e0a20f49ad6a370454bb3afc9a9e" prefix=" " category="inline-code"></block>對於使用 LVM 且每個 LVM 磁碟區組有兩個 LUN 的 SID FC5 的 2+1 SAP HANA 多主機系統：</block>
+  <block id="7c626127bb2a06954519c34045e302b6" category="list-text">登入<block ref="6ad5e0a20f49ad6a370454bb3afc9a9e" prefix=" " category="inline-code"></block>您的ONTAP集群並選擇<block ref="8c4aa541ee911e8d80451ef8cc304806" prefix=" " category="inline-code"></block>從左側選單中。</block>
+  <block id="caf7f785e92060870ad044cd4c58f8a5" category="list-text">按<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
+  <block id="e74f72bcf292db134a76557e398076c6" category="inline-image-macro">ONTAP系統管理員 - 存儲</block>
+  <block id="b99cc12d14d7f93f9644ebbe4e251423" category="paragraph"><block ref="b99cc12d14d7f93f9644ebbe4e251423" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2f034fb82312475c2c86eaa7b37b2866" category="list-text">選擇<block ref="4dab36ac83853282fc0d7bae20c19e90" prefix=" " category="inline-code"></block></block>
+  <block id="28c9d0da97b681e3f4240f98eba3ef1f" category="inline-image-macro">ONTAP系統管理員 - 新增存儲</block>
+  <block id="896e6fb48e70839293cee9df98db83d9" category="paragraph"><block ref="896e6fb48e70839293cee9df98db83d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="06b97c41aa527667da7e7e745c867d3c" category="list-text">提供所需資訊：</block>
+  <block id="07fdaa28fad4bbade25878098189637f" category="list-text">資料 LUN 的名稱，例如<block ref="0732d94c1b058c8ff29a0e7586908d15" prefix="." category="inline-code"></block></block>
+  <block id="a0a9fead14f8e9bd6beb766196fe2750" category="list-text">要與 LVM 組合的 LUN 數量，例如 2</block>
+  <block id="fb963521d62e8baca5de6b2b0ffd1ccd" category="list-text">每個 LUN 的大小，例如 1000 GB</block>
+  <block id="4d6cedb4bd1ccde77fefd2a974d71de0" category="list-text">選擇<block ref="b6af823402873717782ba4f4608767e7" prefix=" " category="inline-code"></block></block>
+  <block id="302ecbd4c9f6f6c0488e8731852f7154" category="list-text">選擇<block ref="edc9f0a5a5d57797bf68e37364743831" prefix=" " category="inline-code"></block>作為<block ref="f707c24bf34b82cbda7ce1afab8b5e26" prefix=" " category="inline-code"></block></block>
+  <block id="ad87f81d298f3904424a68b483982bca" category="list-text">選擇<block ref="e906379c0f98afa688062e92ac0d94cb" prefix=" " category="inline-code"></block>對於<block ref="1ccf75762b2e153de8560735dcafec7b" prefix=" " category="inline-code"></block>選項，提供一個名稱，例如<block ref="7ec1cfc1baa5aeab43433af3f4c2d35a" prefix=" " category="inline-code"></block>，選擇或新增所需的啟動器</block>
+  <block id="59a31f7c91f0fb3d50c4d50c2dcae323" category="list-text">保持<block ref="e31a3e7ac59a5476665c7f7c45e14c31" prefix=" " category="inline-code"></block>未選取</block>
+  <block id="8457eef1aadf48a34435b86b7aaa16f0" category="list-text">按<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
+  <block id="8784d5f647146dfe70b10b214a3a2fdd" category="inline-image-macro">ONTAP系統管理員 - 建立資料 LUN</block>
+  <block id="f90a85d8f2219069e101b79e10ac325e" category="paragraph"><block ref="f90a85d8f2219069e101b79e10ac325e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="45d66fdb36c8c84bf6b708d035e41853" category="list-text">按下<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
+  <block id="02ed70f96574f1017b25ff4f367ac4ff" category="inline-image-macro">ONTAP系統管理員 - 建立額外的資料 LUN</block>
+  <block id="ae58399fc2b6cdb9a23d039c605755e9" category="paragraph"><block ref="ae58399fc2b6cdb9a23d039c605755e9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c281fd6a54589cdc5d837aef73b36268" category="list-text">附加資料 LUN 的名稱，例如<block ref="6ce7d5981e394c99f64f1b0215329269" prefix=" " category="inline-code"></block></block>
+  <block id="5f62ac587839660fa2ea6a6c3b5d7999" category="list-text">選擇先前建立的映射<block ref="7ec1cfc1baa5aeab43433af3f4c2d35a" prefix=" " category="inline-code"></block>對於<block ref="1ccf75762b2e153de8560735dcafec7b" prefix=" " category="inline-code"></block>選項</block>
+  <block id="4cbebe53efcb8e9b23e0f55ac0aa03e0" category="inline-image-macro">ONTAP系統管理員 - 建立資料 LUN</block>
+  <block id="f49ebf8541cfd6e434663646a0751828" category="paragraph"><block ref="f49ebf8541cfd6e434663646a0751828" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5d3d2618bef5d8e4c274a84e35aa6f58" category="list-text">對每個額外的工作主機重複步驟 4 和 5</block>
+  <block id="07d3bacb52cc5cfae2b95ad38024bc61" category="list-text">成功建立資料 LUN 後，按<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
+  <block id="14146bfdc8a39f564cd77fb78ac56230" category="inline-image-macro">ONTAP系統管理員 - 建立日誌 LUN</block>
+  <block id="54892c3762fa9e40f2abfb8ace716ce4" category="paragraph"><block ref="54892c3762fa9e40f2abfb8ace716ce4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="38d3bfe58a56c277581bf554d58567bb" category="list-text">要與 LVM 結合的日誌 LUN 的名稱，例如<block ref="65c06cc2828e391723bfb5cf196d549d" prefix=" " category="inline-code"></block></block>
+  <block id="f2f463cdd25cba04bd03ae9c978fcf8a" category="list-text">每個 LUN 的大小，例如 260 GB</block>
+  <block id="ec3ba9cd272dc2bace8316ea5b74f511" category="paragraph"><block ref="ec3ba9cd272dc2bace8316ea5b74f511" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0aecf7c695760ec27de2589c7174b43c" category="list-text">按下<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
+  <block id="040534489cc3ab96d2b9c1a9b4dd3584" category="inline-image-macro">ONTAP系統管理員 - 建立額外的日誌 LUN</block>
+  <block id="967b5bf37f794d92b79fc703d07d677a" category="paragraph"><block ref="967b5bf37f794d92b79fc703d07d677a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1460ee577c37a9641ceef15f4ebd5a99" category="list-text">附加日誌 LUN 的名稱，例如<block ref="e5a5a4aa7eb1d1dc60047ec06e0714ba" prefix=" " category="inline-code"></block></block>
+  <block id="530da82f791224fdf4ed02ce35f16033" category="paragraph"><block ref="530da82f791224fdf4ed02ce35f16033" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e77ae688820ea0899797f6e8a2fd2341" category="list-text">對每個額外的工作主機重複步驟 9 和 10</block>
+  <block id="a7da894b87be1b2a1f2e6e550fbfae86" category="paragraph">SAP HANA 多主機系統所需的所有 LUN 均已建立。</block>
+  <block id="a19492c01beba75d08e3918c3bad4afa" category="inline-image-macro">ONTAP系統管理員 - LUN 概述</block>
+  <block id="f71c442cde1008bd67ecfdb3508bb658" category="paragraph"><block ref="f71c442cde1008bd67ecfdb3508bb658" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6c4ed775692b60dfa35324a5b3f4d7bf" category="paragraph">本節展示了使用以下配置的範例<block ref="6ad5e0a20f49ad6a370454bb3afc9a9e" prefix=" " category="inline-code"></block>對於使用 LVM 且每個 LVM 磁碟區組有兩個 LUN 的 SID FC5 的 SAP HANA 單主機系統：</block>
+  <block id="e37757a957452864d513d8119c467b6a" category="list-text">資料 LUN 的名稱，例如<block ref="0732d94c1b058c8ff29a0e7586908d15" prefix="." category="inline-code"></block></block>
+  <block id="ffbf4bb11063e63557383f1fa010045d" category="paragraph"><block ref="ffbf4bb11063e63557383f1fa010045d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fa118acc2526207f6cb46749535ef468" category="list-text">日誌 LUN 的名稱，例如<block ref="65c06cc2828e391723bfb5cf196d549d" prefix=" " category="inline-code"></block></block>
+  <block id="2faf52143dd721486f45c996e0ded500" category="paragraph"><block ref="2faf52143dd721486f45c996e0ded500" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0dde6a8a986ffedc56f4ed820236f7bb" category="list-text">成功建立日誌 LUN 後，以下列方式建立共用 LUN<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
+  <block id="b1cce5cd0b4d46f2a45882a434783853" category="inline-image-macro">ONTAP系統管理員 - 建立共用 LUN</block>
+  <block id="17aee1cfb8dac57978b091627cecc5aa" category="paragraph"><block ref="17aee1cfb8dac57978b091627cecc5aa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cd4fc94119743ee614fc111808abd9e5" category="list-text">共享 LUN 的名稱，例如<block ref="9bfe65825cda87178edc3ba9f8299b5b" prefix="." category="inline-code"></block></block>
+  <block id="97bb7629e83ed16ce51e71ab96d81f22" category="list-text">LUN 數量，例如 1</block>
+  <block id="ac2b98385f9bdb4cda106d130486c553" category="list-text">LUN 的大小，例如 520 GB</block>
+  <block id="e202505305253e821c52be15bf346b91" category="inline-image-macro">ONTAP系統管理員 - 建立共用 LUN</block>
+  <block id="bf816653c9d3731a9ca6adeba22f606f" category="paragraph"><block ref="bf816653c9d3731a9ca6adeba22f606f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a0e6aba914a6fff1219af2df9f67a134" category="paragraph">SAP HANA 單機系統所需的所有 LUN 均已建立。</block>
+  <block id="53a66df77c3b6f05620f5351b866d122" category="paragraph"><block ref="53a66df77c3b6f05620f5351b866d122" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a390eaee29bd03c83e6cee2fc64b8974" category="paragraph">本章介紹使用 Linux LVM 設定 SAP HANA 單主機。</block>
+  <block id="f1facf724edfec93ca90bbae3b165c87" category="admonition">沒有必要使用 LVM 組合多個 LUN 來實現 SAP HANA KPI，但建議這樣做。</block>
+  <block id="1f75ae545cb5470642699c7eb92843b0" category="admonition">沒有必要使用具有多個 LUN 的 LVM 來滿足 SAP HANA KPI，但建議</block>
+  <block id="cdaef5754ea3f6c219a21dfee90c7848" category="summary">本文檔重點介紹 SAP HANA 的備份和復原。</block>
+  <block id="495da755b58883e2ca5e4985ee3f602e" category="doc">SB-3965：SAP HANA 的備份與復原</block>
+  <block id="235cb526e2c6b642c718f0d78e3ae92e" category="section-title">挑戰</block>
+  <block id="3c4ac70408381221e011d1b8eb9ca8ce" category="paragraph">使用 SAP HANA 備份和復原作業時，您的組織面臨以下挑戰：• 長時間備份作業會導致生產 SAP 系統效能下降 • 由於長時間復原和復原作業導致系統停機時間不可接受 • 由於應用程式的重要性而縮小備份視窗 • 需要靈活的解決方案來緩解邏輯損壞</block>
+  <block id="34e74b1c7f4aad91715567cf698912f6" category="section-title">解決方案</block>
+  <block id="b230779de102682fe4be587788f9b085" category="paragraph">透過執行NetApp ONTAP ® 資料管理軟體的NetApp ® 儲存解決方案，結合NetApp SnapCenter ® 資料保護軟體，您可以應付所有這些挑戰。透過ONTAP軟體中包含的NetApp Snapshot™ 技術，您可以在幾秒鐘內建立備份或執行任何大小資料集的復原作業。  SAP HANA 支援使用基於儲存的 Snapshot 副本作為有效的備份作業。</block>
+  <block id="07d632c80bac8a4755255f5e335d8974" category="inline-link-macro"><block ref="07d632c80bac8a4755255f5e335d8974" category="inline-link-rx"></block></block>
+  <block id="e3d55b357098828096098ba417d3c90c" category="paragraph"><block ref="e3d55b357098828096098ba417d3c90c" category="inline-link-macro-rx"></block></block>
+  <block id="9446c7c84986f94f08b68900006bb1e5" category="summary">本文檔重點介紹 SAP HANA 的災難復原。</block>
+  <block id="bf6723a5d293af775d564a8960e50265" category="doc">SB-3968：SAP HANA 的災難復原</block>
+  <block id="24226245cbb8f6448d2fc2fad9d6d847" category="paragraph">業務連續性對於 IT 組織來說至關重要。他們必須能夠為客戶運營業務所需的關鍵任務應用程式提供高可用性服務。否則，他們的客戶將面臨生產力下降，電子商務組織的收入也可能直接受到影響。</block>
+  <block id="d9bb80ae32f686bbae368979a76f86d7" category="paragraph">NetApp開發了全套技術和工具，可協助 IT 組織建置或調整其災難復原計劃，以滿足所有業務需求：</block>
+  <block id="6a9c098947d8b811552347f2ed990ebd" category="inline-link-macro"><block ref="6a9c098947d8b811552347f2ed990ebd" category="inline-link-rx"></block></block>
+  <block id="702c9bfa6d3b8d8b923fbeba4db3625f" category="paragraph"><block ref="702c9bfa6d3b8d8b923fbeba4db3625f" category="inline-link-macro-rx"></block></block>
 </blocks>

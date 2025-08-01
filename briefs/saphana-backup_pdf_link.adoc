@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: briefs/saphana-backup_pdf_link.html 
+keywords: sb-3965, sap, SAP HANA, Backup & Recovery 
+summary: 本文檔重點介紹 SAP HANA 的備份和復原。 
+---
+= SB-3965：SAP HANA 的備份與復原
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+== 挑戰
+
+使用 SAP HANA 備份和復原作業時，您的組織面臨以下挑戰：• 長時間備份作業會導致生產 SAP 系統效能下降 • 由於長時間復原和復原作業導致系統停機時間不可接受 • 由於應用程式的重要性而縮小備份視窗 • 需要靈活的解決方案來緩解邏輯損壞
+
+
+
+== 解決方案
+
+透過執行NetApp ONTAP ® 資料管理軟體的NetApp ® 儲存解決方案，結合NetApp SnapCenter ® 資料保護軟體，您可以應付所有這些挑戰。透過ONTAP軟體中包含的NetApp Snapshot™ 技術，您可以在幾秒鐘內建立備份或執行任何大小資料集的復原作業。  SAP HANA 支援使用基於儲存的 Snapshot 副本作為有效的備份作業。
+
+link:https://www.netapp.com/pdf.html?item=/media/6997-sb-3965pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6997-sb-3965pdf.pdf"]

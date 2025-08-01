@@ -67,27 +67,13 @@ NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/si
 Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示每個磁碟區群組兩個LUN的範例。
 
 
-NOTE: 不需要搭配多個LUN使用LVM、就能達成SAP HANA KPI。單一LUN設定即符合所需的KPI。
+NOTE: 沒有必要使用具有多個 LUN 的 LVM 來滿足 SAP HANA KPI，但建議
 
 |===
 | 目的 | 控制器A的Aggregate 1 | 控制器A的Aggregate 2 | 控制器B的Aggregate 1 | 控制器B的Aggregate 2 
 
 
 | 資料、記錄及共用磁碟區、適用於以LVM為基礎的系統 | 資料Volume：SID1_data_mnt00001 | 共享Volume：SID1_Shared Log2 Volume：SID1_log2_mnt00001 | Data2 Volume：SID1_data2_mnt00001 | 記錄磁碟區：SID1_log_mnt00001 
-|===
-在SAP HANA主機上、必須建立及掛載Volume群組和邏輯磁碟區。下表列出使用LVM之單一主機系統的掛載點。
-
-|===
-| 邏輯磁碟區/LUN | SAP HANA主機的掛載點 | 附註 
-
-
-| lv：SID1_data_mnt0000-vol | /HANA /資料/ SID1/mnt00001 | 使用/etc/Fstab項目掛載 
-
-
-| lv：SID1_log_mnt001-vol | /HANA / log / SID1/mnt00001 | 使用/etc/Fstab項目掛載 
-
-
-| LUN：SID1_shared | /HANA /共享/ SID1 | 使用/etc/Fstab項目掛載 
 |===
 
 NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。

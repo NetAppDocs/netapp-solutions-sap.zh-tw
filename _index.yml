@@ -1,6 +1,6 @@
 ---
 indexpage:
-  title: SAP商業應用程式與SAP HANA資料庫解決方案
+  title: SAP 業務應用程式和 SAP HANA 資料庫解決方案
   summary: NetApp針對SAP與SAP HANA提供豐富的技術報告、經過驗證的設計、影片、部落格與解決方案簡介。
   lead: NetApp針對SAP與SAP HANA提供豐富的技術報告、經過驗證的設計、影片、部落格與解決方案簡介。
   tiles:
@@ -63,3 +63,7 @@ indexpage:
       url: backup/snapcenter-ibm-db2.html
     - title: SnapCenter Integration for SAP MaxDB 資料庫
       url: backup/snapcenter-sap-maxdb.html
+  - title: SAP解決方案FlexPod
+    links:
+    - title: FlexPod上的 SAP 簡介
+      url: https://docs.netapp.com/us-en/flexpod/ent-db/index.html

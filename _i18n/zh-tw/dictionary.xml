@@ -13,7 +13,6 @@
   <block id="088c8c258db90c09658a39d2839f52b0" category="inline-link-macro">TR-4384：FAS 《SAP HANA on NetApp》《採用光纖通道傳輸協定的NetApp系統組態指南》</block>
   <block id="0db6b81db5bd35e1eef1e83e154c3cb5" category="inline-link-macro">TR-4436：AFF 採用Fibre Channel Protocol的NetApp穩定系統上的SAP HANA</block>
   <block id="c54076227bebe4b120f17a0f5a22ce81" category="summary">NetApp針對SAP與SAP HANA提供豐富的技術報告、經過驗證的設計、影片、部落格與解決方案簡介。</block>
-  <block id="269e48a148be46c6e5fb065e74629d57" category="doc">SAP商業應用程式與SAP HANA資料庫解決方案</block>
   <block id="dd39ffa36b8ed682c45520c7d7dc8517" category="summary">SAP生命週期管理的工具與秘訣</block>
   <block id="9ed86ffbd478752ccf2baab032a8e364" category="doc">SAP生命週期管理工具</block>
   <block id="08fc5b32a35c491189156ebd21b39ecf" category="paragraph">SAP生命週期管理解決方案與解決方案輔助文件工具總覽。</block>
@@ -2317,9 +2316,7 @@
   <block id="6db8f8c174516b1dc5a1f3305fe43190" category="paragraph">下圖說明在這兩個站台執行多個移轉並建立Snapshot備份的案例。在目前狀態下、主機Hana 3是主要主機、而最新的備份則是T4、這是在主機Hana 3建立的。如果您需要執行還原與還原作業、備份T1和T4可在SnapCenter 還原與還原。在主機Hana 4（T2、T3）建立的備份、無法使用SnapCenter 還原功能還原。這些備份必須手動複製到Hana 3的資料磁碟區以進行還原。</block>
   <block id="dd8cf04faf0e63219895ef355bac05f9" category="summary">一系列討論SAP生命週期管理的部落格</block>
   <block id="ab6524564d590a2cf59d10dcc63ff99e" category="paragraph">強調SAP生命週期管理的部落格總覽。</block>
-  <block id="677f2e7e550075f7bbbdac91e0918f2f" category="sidebar">SAP解決方案</block>
   <block id="b45ecd3afcfa865514a59b475de3e93e" category="sidebar">SAP解決方案FlexPod</block>
-  <block id="fcf140abed196b8eba71c45f21312bce" category="sidebar">NetApp解決方案</block>
   <block id="fa532045e834ec2fac1200964a189516" category="sidebar">生命週期管理</block>
   <block id="f01120deea316d303519ad5ab689a57f" category="sidebar">解決方案簡介</block>
   <block id="d5d6ed7727f0e542e6846a58af1d02ba" category="sidebar">SAP HANA生命週期管理</block>
@@ -5790,4 +5787,27 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="d9bb80ae32f686bbae368979a76f86d7" category="paragraph">NetApp開發了全套技術和工具，可協助 IT 組織建置或調整其災難復原計劃，以滿足所有業務需求：</block>
   <block id="6a9c098947d8b811552347f2ed990ebd" category="inline-link-macro"><block ref="6a9c098947d8b811552347f2ed990ebd" category="inline-link-rx"></block></block>
   <block id="702c9bfa6d3b8d8b923fbeba4db3625f" category="paragraph"><block ref="702c9bfa6d3b8d8b923fbeba4db3625f" category="inline-link-macro-rx"></block></block>
+  <block id="225b42e7cb6036e97607adda6dcca1c3" category="summary">NetApp針對 SAP 解決方案的最新變更日誌。</block>
+  <block id="4a2fff3ce5a292ada8e788cd34005db8" category="doc">NetApp虛擬化解決方案的新功能</block>
+  <block id="2ca0fa0a322d6c31c3d0906a34c85e6c" category="paragraph">了解 SAP 解決方案的新功能。</block>
+  <block id="bab52961b58c502c7991d35556c25367" category="section-title">2025年8月18日</block>
+  <block id="47e26e0d5bbeef43c544dd9ae72e66b0" category="inline-link-macro">NetApp解決方案系列</block>
+  <block id="840125a006aee7dc0e8efd313e7b614e" category="paragraph">NetApp解決方案網站現在是<block ref="f083b096ae581e72c5ab727ef8bd5732" category="inline-link-macro-rx"></block>，其中包括以下網站：</block>
+  <block id="e87298059f60b0844dc971f315184cf5" category="inline-link-macro">NetApp人工智慧解決方案</block>
+  <block id="ac42ca0e1f789a8367b40d9824726778" category="list-text"><block ref="ac42ca0e1f789a8367b40d9824726778" category="inline-link-macro-rx"></block></block>
+  <block id="9cae574c1dc1ca50a949c1e889637ba7" category="inline-link-macro">NetApp容器解決方案</block>
+  <block id="31d1ae0120af1d791e4320e17eb10687" category="list-text"><block ref="31d1ae0120af1d791e4320e17eb10687" category="inline-link-macro-rx"></block></block>
+  <block id="3947417923606d3599bcba7a82f71f1b" category="inline-link-macro">NetApp資料管理解決方案</block>
+  <block id="56c054d4bb919790ebe189f7a7d11c3c" category="list-text"><block ref="56c054d4bb919790ebe189f7a7d11c3c" category="inline-link-macro-rx"></block></block>
+  <block id="9bb3e58246c5654a6d8e08a7bddd60ec" category="inline-link-macro">NetApp資料庫解決方案</block>
+  <block id="3e2420ab1ec1d6e02b32b017d3ba969a" category="list-text"><block ref="3e2420ab1ec1d6e02b32b017d3ba969a" category="inline-link-macro-rx"></block></block>
+  <block id="a37049a2a78422ac5627c7987db5c337" category="inline-link-macro">NetApp公有雲與混合雲解決方案</block>
+  <block id="144417321224efbf0afc2ae665a84a46" category="list-text"><block ref="144417321224efbf0afc2ae665a84a46" category="inline-link-macro-rx"></block></block>
+  <block id="2729aba3baa90aaaed37b282e515f6e4" category="list-text">適用於 SAP 的NetApp解決方案</block>
+  <block id="4ead908c2ca3b4c7156e0e703642415d" category="inline-link-macro">NetApp虛擬化解決方案</block>
+  <block id="3100186c9f62cec85ac05309c5d10217" category="list-text"><block ref="3100186c9f62cec85ac05309c5d10217" category="inline-link-macro-rx"></block></block>
+  <block id="a96e55f331afdc0c9a301d1a5ad2c3db" category="sidebar">SAP 業務應用程式和 SAP HANA 資料庫解決方案</block>
+  <block id="7caa0b3fa0fd74ced773a86b62850a8b" category="sidebar">FlexPod上的 SAP 簡介</block>
+  <block id="36211f481e2e2626220b1d9e8a3325bb" category="sidebar">SAP 解決方案</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">什麼是新的</block>
 </blocks>

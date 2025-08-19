@@ -3181,15 +3181,12 @@
   <block id="e2aad9960e8d21643cd0c96d6d0231cc" category="cell">nfsver=3 、節點鎖定、</block>
   <block id="9bb4ef49da8c49be50e8756f6e99e5fa" category="cell">nfsves=4.1 、鎖定</block>
   <block id="dae81ce43b95196ee53c797d1ddda090" category="cell">nfsver=3 、無鎖定</block>
-  <block id="fcb7778cf38a196128c87d1b6e20281e" category="paragraph">NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。</block>
-  <block id="326f77b6d7cda2b57e0f8e89a8f89959" category="admonition">NetApp AFF C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
   <block id="f7d09d43174d21d3203d6472d2543dc2" category="section-title">NetApp Volume 和 Aggregate Encryption</block>
   <block id="381cfdf4e70ff7173296a764c78e97ae" category="paragraph">SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。</block>
   <block id="5d10dd356a9d8604eaed291a9dfeb67e" category="section-title">NetApp Volume 和 Aggregate 加密</block>
   <block id="2976619a79e897d24427ec6796aa4a70" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。
 請將這些區段的預設重試時間間隔保持在 10 秒內。</block>
   <block id="73d4ace7e434b8709f5a930ad845d6d6" category="paragraph">如果使用具有主機自動容錯移轉功能的 SAP HANA 多主機系統、則需要在中調整容錯移轉參數<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> 如下表所示。請在這些區段內保留預設的重試時間間隔10秒。</block>
-  <block id="ba7dc8a883957fda819c429f468dc4d0" category="admonition">NetApp AFF 和 ASA C 系列需要 NetApp ONTAP 9.13.1 或更新版本</block>
   <block id="b5816060ccee493fc8a2946c9d33de20" category="paragraph">您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備份。</block>
   <block id="5cd519503ff0d358e76b5be6e9b7d14e" category="paragraph">建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。此外、使用Snapshot技術也不會影響即時SAP系統的效能。因此、您可以排程建立Snapshot複本、而不需考慮尖峰對話或批次活動期間。SAP與NetApp客戶通常會在一天內排程多個線上Snapshot備份、例如、每六小時一次就很常見。這些Snapshot備份通常會在一線儲存系統上保留三到五天、然後再移除或分層至較便宜的儲存設備、以供長期保留。</block>
   <block id="30fb58b3c8613fe4e4ee034a17cad743" category="paragraph">您可以建立隨需 Snapshot 備份和隨需區塊完整性檢查作業。</block>
@@ -4299,9 +4296,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="9adaadfddff33c2daa546229f2809747" category="list-text">使用 SAP<block ref="b0aa3e7cad7b6222087aedbd4c799832" prefix=" " category="inline-code"></block> 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項添加第二個工作人員<block ref="7e4282317c0dcc7ce1f24f047b09f466" prefix="(" category="inline-code"></block>）<block ref="d6075976fde6718b25d21e4894d5d07d" prefix="(" category="inline-code"></block>和備用主機）。</block>
   <block id="dc6dd758c7cbed933fdee36ba03835f9" category="admonition">CLI 選項中包含準備好的檔案所在<block ref="09c9689230344c41364f0fa22da928c6" prefix=" " category="inline-code"></block><block ref="1b723e0f23eac7863dadd5b0b02436e4" prefix="(" category="inline-code"></block>的目錄<block ref="1611b9881f1a590d33bbbcfdd9c55ca7" prefix=" " category="inline-code"></block>）。</block>
   <block id="b5b2eafc66ebc94cfb50a26c15cf1f52" category="paragraph">使用 SAP<block ref="e57381f2a2aa941f8d88ba956c77d978" prefix=" " category="inline-code"></block> 安裝工具、在其中一台工作者主機上執行下列命令、以開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項新增第二名工作者（ sapcc-hana TST-06 ）和待命主機（ sapcc-hana TST-07 ）。CLI 選項<block ref="1b723e0f23eac7863dadd5b0b02436e4" prefix="(" category="inline-code"></block>中包含已準備好檔案的儲存<block ref="09c9689230344c41364f0fa22da928c6" prefix=" " category="inline-code"></block>目錄<block ref="1611b9881f1a590d33bbbcfdd9c55ca7" prefix=" " category="inline-code"></block>）。視所使用的作業系統版本而定、在安裝SAP HANA資料庫之前、可能需要先安裝pherton 2.7。</block>
-  <block id="1a808aae97e904d2d0d8b853c60fa475" category="list-text">AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A900 ， AFF A1K ， AFF A90 ， AFF A70 ， AFF A800</block>
-  <block id="19fe8eb256f35b3d5110d29e652ce432" category="list-text">AFF C250 ， AFF C30 ， AFF C400 ， AFF C60 ， AFF C800 ， AFF C80</block>
-  <block id="968cad2bf5c711dad5ccd0efa3e1ff9f" category="list-text">AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A90 ， AFF A1K ， AFF A900 ， AFF A70 ， AFF A800</block>
   <block id="54652d040ebb810c360684ca8e231a52" category="paragraph">也支援NFS資料存放區或VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。</block>
   <block id="7d631f41ea82e4581ac749b6874d885a" category="paragraph">也支援原始裝置對應（RDM）、FCP資料存放區或具有FCP功能的VVOL資料存放區。對於這兩種資料存放區選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區內、才能有效使用。</block>
   <block id="efd1d0d586a27578c98f10496d441cd4" category="paragraph">也支援NFS資料存放區和VVOL資料存放區搭配NFS。對於這兩種選項、只有一個SAP HANA資料或記錄磁碟區必須儲存在資料存放區中、才能用於正式作業使用案例。</block>
@@ -5405,8 +5399,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="164fe74cfbca9ef543331e42b891cf2c" category="inline-image-macro">NetApp MetroCluster</block>
   <block id="e0688cb7d6291c05b4b81e03674d396f" category="summary">NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。本指南提供了此平台上 SAP HANA 的最佳實務。</block>
   <block id="43af0fa315980d56444cafe5aa7da0d8" category="paragraph">NetApp AFF 產品系列通過認證、可在TDI專案中搭配SAP HANA使用。本指南為 FCP 提供了此平台上 SAP HANA 的最佳實務。</block>
-  <block id="f24901db79bd7adbcfdc97deb6526be7" category="list-text">ASA A250 、 ASA A400 、 ASA A800 、 ASA A900</block>
-  <block id="7165d8e624155bf7a4889b98927f605c" category="list-text">ASA C250 、 ASA C400 、 ASA C800</block>
   <block id="22b98f7a97d9cee874821e4b572b6c5d" category="inline-link-macro">SAP HANA on NetApp ASA 》、採用FCP技術的系統</block>
   <block id="8a3ac33050df8d373b59758f241b1e68" category="list-text"><block ref="8a3ac33050df8d373b59758f241b1e68" category="inline-link-macro-rx"></block></block>
   <block id="7f07617f785b58f6b368eb03e7188fdd" category="paragraph"><block ref="7f07617f785b58f6b368eb03e7188fdd" category="inline-image-macro-rx" type="image"></block></block>
@@ -5415,7 +5407,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="cd4edf52138d04dee0b63f481803c909" category="paragraph"><block ref="cd4edf52138d04dee0b63f481803c909" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e86ef10a731bbc034f957525a4267b82" category="paragraph"><block ref="e86ef10a731bbc034f957525a4267b82" category="inline-image-macro-rx" type="image"></block></block>
   <block id="7ea917f7bcbac29ff77e06d916b6e4bf" category="summary">NetApp AFF 支援系統產品系列已通過認證、可在量身打造的資料中心整合（TDI）專案中搭配SAP HANA使用。本指南提供了此平台上 SAP HANA 的最佳實務。</block>
-  <block id="33af92fae250bf5ae7bd6f087c68910d" category="paragraph">NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。本指南提供了此平台上適用於 NFS 的 SAP HANA 的最佳實務。</block>
   <block id="8c1992cbbe373136f1e087b51b1fa92a" category="inline-link-macro">SAP HANA on NetApp AFF 》、採用FCP技術的系統</block>
   <block id="26e279412c39b8d78be1eba7d6340c48" category="list-text"><block ref="26e279412c39b8d78be1eba7d6340c48" category="inline-link-macro-rx"></block></block>
   <block id="c9baa6589eb03e3de8596468ec4d3113" category="inline-image-macro">SAP HANA 儲存大小調整流程</block>
@@ -5810,4 +5801,7 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="7caa0b3fa0fd74ced773a86b62850a8b" category="sidebar">FlexPod上的 SAP 簡介</block>
   <block id="36211f481e2e2626220b1d9e8a3325bb" category="sidebar">SAP 解決方案</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">什麼是新的</block>
+  <block id="11c46485b4b3a1ac8c78c2b4fab3494c" category="paragraph">NetApp AFF/ ASA A 系列產品系列已通過認證，可在客製化資料中心整合 (TDI) 專案中與 SAP HANA 一起使用。</block>
+  <block id="570cc63e0195f0a2bf35f6333e8c271b" category="list-text">AFF A20、 AFF A30、 AFF A50、 AFF A70、 AFF A90、 AFF A1K</block>
+  <block id="650bbb24893f36d6991bb48ee757fff0" category="paragraph">NetApp AFF A 系列產品系列已通過認證，可在客製化資料中心整合 (TDI) 專案中與 SAP HANA 一起使用。本指南提供了此平台上適用於 NFS 的 SAP HANA 的最佳實務。</block>
 </blocks>

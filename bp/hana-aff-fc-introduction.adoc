@@ -22,18 +22,11 @@ NetApp的Marco. Schoen
 
 == 簡介
 
-NetApp AFF A 系列和 AFF C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。
+NetApp AFF/ ASA A 系列產品系列已通過認證，可在客製化資料中心整合 (TDI) 專案中與 SAP HANA 一起使用。
 
 本認證適用於下列機型：
 
-* AFF A150 ， AFF A20 ， AFF A250 ， AFF A30 ， AFF A400 ， AFF A50 ， AFF A900 ， AFF A1K ， AFF A90 ， AFF A70 ， AFF A800
-* AFF C250 ， AFF C30 ， AFF C400 ， AFF C60 ， AFF C800 ， AFF C80
-* ASA A250 、 ASA A400 、 ASA A800 、 ASA A900
-* ASA C250 、 ASA C400 、 ASA C800
-+
-
-NOTE: NetApp AFF 和 ASA C 系列需要 NetApp ONTAP 9.13.1 或更新版本
-
+* AFF A20、 AFF A30、 AFF A50、 AFF A70、 AFF A90、 AFF A1K
 
 
 如需SAP HANA的NetApp認證儲存解決方案完整清單、請參閱 https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["獲得認證且支援的SAP HANA硬體目錄"^]。

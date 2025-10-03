@@ -3247,73 +3247,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="36098c0d1c3de71d8727b1543bace633" category="cell">2022 年 4 月</block>
   <block id="95798f037b7bacec7599a19423a6bb64" category="cell">2018年2月</block>
   <block id="8e070ffcf4d959eabcd3559b9bb17ec6" category="sidebar">何處可以找到其他資訊和版本歷程記錄</block>
-  <block id="2c7a6a1ad3b3855b3dd5766cc2c1b15c" category="summary">本節說明如何使用 BlueXP 還原 SAP HANA 備份。</block>
-  <block id="8513aa8ec75c0057744a444420581eac" category="doc">還原 SAP HANA BlueXP 備份</block>
-  <block id="630146410475bf00902dbc3588f48b64" category="paragraph">從備份還原只能在內部部署的 NetApp ONTAP 型儲存系統或雲端內的 NetApp CVO 進行。您可以執行下列步驟來完成還原：</block>
-  <block id="ae9c703fb18f8c682d52518823ea9112" category="list-text">在 BlueXP UI 中、按一下 * 保護 * &gt;   * 備份與恢復 * &gt; * 應用程式 * 、然後選擇混合式。</block>
-  <block id="16365f9a8d0b7866f7271510a28d1db2" category="list-text">在 * 篩選條件 * 欄位中、選取篩選條件 * 類型 *  、然後從下拉式清單中選取 * HANA * 。</block>
-  <block id="47abe672471325a3aa63fcd85f6e3367" category="list-text">對於 NAS 環境、請指定要將從物件存放區還原的磁碟區匯出至的主機的 FQDN 或 IP 位址。</block>
-  <block id="831b20d8b0ff4f1e50aecadcdcdc885d" category="list-text">對於 SAN 環境、請指定主機的啟動器、將從物件存放區還原的磁碟區 LUN 對應到該主機的啟動器。</block>
-  <block id="eee7cd91c87d431eb526192fb8d8f8fa" category="list-text">如果快照位於歸檔儲存設備中、請選擇從歸檔儲存設備還原資料的優先順序。</block>
-  <block id="c309fef296cf37f3a835cb24529d8905" category="list-text">如果來源儲存空間不足、或來源儲存空間關閉、請選取 * 變更儲存位置 * 。</block>
-  <block id="7d7bd9e2f6791a41e19d3f4c2cfbd112" category="list-text">如果您選取 * 變更儲存位置 * 、您可以將尾碼附加至目的地磁碟區。如果尚未選中該複選框，則默認情況下  會將 *_restore * 附加到目標卷。按一下 * 下一步 * 。</block>
-  <block id="09fbcde15932165bde251a10dbf240e4" category="list-text">如果您選取變更儲存位置、請指定從物件存放區還原的資料將儲存在儲存對應頁面中的替代儲存位置詳細資料、然後按一下 * 下一步 * 。</block>
-  <block id="e5c7ac753b7a6121d9687b3fc4c66f25" category="summary">本節說明如何設定工作環境、如何設定 SnapCenter 、以及如何在 BlueXP 中設定及啟動 SAP HANA 備份。</block>
-  <block id="bba044fc5fd2c6b6b93f83b61a607e30" category="doc">設定 SAP HANA 的 BlueXP 備份與恢復</block>
-  <block id="84e76e0953f8a5f72d754729d1eaf1ae" category="section-title">為 BlueXP 建立工作環境</block>
-  <block id="210e8952dc88c73e56d56a168cfe0616" category="list-text">在左功能表中選擇 * 儲存 * -&gt; * 畫布 * -&gt; * 我的工作 * 環境。</block>
-  <block id="6689e50f5e4a08328fa676a7ebb07f17" category="section-title">在內部部署儲存系統和物件儲存貯體之間建立關係</block>
-  <block id="eab79ca7fb49f80130fae7b1656f7ebc" category="inline-link">Amazon S3 的閘道端點： Amazon Virtual Private Cloud</block>
-  <block id="4513d4d932152177142c02ca2a383afc" category="paragraph">若要建立第一個磁碟區備份、請執行下列步驟：</block>
-  <block id="690e7cac4bb20bc16d03d9e8c2976d36" category="section-title">在 SnapCenter 設定 SAP HANA 系統資源</block>
-  <block id="522c073cfbc968ed21bb5b8292358b24" category="section-title">將 SnapCenter 新增至 BlueXP 工作環境</block>
-  <block id="63cebe46588c644def8c8d7ad33d7579" category="list-text">在左功能表中選擇 * 保護 * -&gt; * 備份與恢復 * -&gt; * 應用程式 * 。</block>
-  <block id="5a367c49e14aa13d1f3d9dbbc659e2ae" category="section-title">建立應用程式備份的備份原則</block>
-  <block id="01f80398f488785a735c649b98cb461b" category="section-title">利用 Cloud Backup for Applications 保護 SAP HANA 資料庫</block>
-  <block id="a0e8aadf9440319ad134e14b8cd7944e" category="paragraph">在某些環境中、可能需要移除 SnapMirror 來源的任何現有排程設定。爲此，請在源 ONTAP 系統上執行以下命令： _SnapMirror modify -destination-path &lt;hana-cloud-svm&gt; ： &lt;SID_data_mnt00001&gt; 複製 -schedule "_ 。</block>
-  <block id="3b6e263c9f3e6b5ae82e2961e7499aa8" category="summary">本技術報告提供使用 NetApp BlueXP 應用程式備份 nad 恢復的 SAP HANA 資料保護最佳實務做法。本文件涵蓋概念、組態建議及作業工作流程、包括組態、備份作業、 和還原作業。</block>
-  <block id="b9a6a76ee21e4b2e63f002e8171e92cb" category="doc">BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地</block>
-  <block id="b5810ff76e2c858c26eb34fd554d4cd5" category="paragraph">本文件說明如何使用 NetApp BlueXP 設定及設定 SAP HANA 、從內部部署到雲端型物件存放區的資料保護。其中涵蓋解決方案的 BlueXP 備份與還原部分。此解決方案使用 NetApp Snap Center 強化內部部署的 SAP HANA 備份解決方案、並提供具成本效益的方式、可將 SAP HANA 備份長期歸檔至雲端型物件儲存設備、並可選擇將物件儲存設備分層至 AWS Glacier / Deep Glacier 等歸檔儲存設備、 Microsoft Azure Blob Archive 和 GCP 歸檔儲存設備。</block>
-  <block id="efabc7b5ad8cc75eaf149a7744db8028" category="inline-link">TR-4614 ：使用 SnapCenter 進行 SAP HANA 備份與還原（ netapp.com ）</block>
-  <block id="c81a8bcb625915f9445bc27152702a6c" category="section-title">BlueXP 備份與還原架構</block>
-  <block id="b2bf2bbf7e6b4629b50b4af1483af0ba" category="section-title">安裝與組態步驟總覽</block>
-  <block id="f3cf1278a15cf0b578a48d8ef6a60523" category="inline-link">SnapCenter 組態（ netapp.com ）</block>
-  <block id="a63540c81089e8aba203a4ec3fca1e34" category="list-text">NetApp BlueXP元件的安裝與組態。</block>
-  <block id="60cb8be07c4c55cabf60de71b7a9b4b2" category="paragraph">在資料保護解決方案的初始設定期間、需要執行一次。</block>
-  <block id="d695b2f7d2eff56585ac33b59ae50cde" category="list-text">NetApp SnapCenter 的準備步驟。</block>
-  <block id="6d95f48ab62edee63c2cc9fda6615760" category="paragraph">每個 SAP HANA 資料庫都必須加以保護。</block>
-  <block id="c24f27d2fb45abb4ddc4c6dac6b3f9b9" category="list-text">BlueXP 備份與還原的組態步驟。</block>
-  <block id="0e7839906008338e5f608eca614e1cc7" category="section-title">NetApp BlueXP 混合式應用程式備份的安裝與組態</block>
-  <block id="9293673edeb2321146de2dbe903787cc" category="inline-link">保護內部部署應用程式資料 | NetApp 文件</block>
-  <block id="1b21781469d6b56757c78d09d90f83be" category="paragraph">中說明NetApp BlueXP元件的安裝與組態<block ref="36b413e5ecd6dd30fe4575aa917373d9" category="inline-link-rx"></block>。</block>
-  <block id="c3c6e6b1d05fc3c3c73b5ab9af3ea3ee" category="list-text">註冊 BlueXP 並在設定 NetApp 帳戶<block ref="7dd2072632295c5a9abd61523c46bd40" category="inline-link-rx"></block>。</block>
-  <block id="44de63d2b4a3805e8a143a8425e912c6" category="inline-link">深入瞭解 Connectors | NetApp 文件</block>
-  <block id="bc9a4ad171b5071191568c8006c63dc6" category="list-text">在您的環境中部署 BlueXP Connector 。說明請參閱<block ref="a6131392110983029d1dff188cde678b" category="inline-link-rx"></block>。</block>
-  <block id="6691a23f272bb7c1d702c8963a326dc0" category="list-text">在 BlueXP 新增 / 購買 Cloud Backup 授權：<block ref="57c4a53c7a746551566c6506aa924ffc" category="inline-link-rx"></block>。</block>
-  <block id="d497834786aa54c08eaf2f867588d576" category="list-text">在 SnapCenter 設定 SAP HANA 系統資源。</block>
-  <block id="465f4a123cd3df663bb4b5d781e3755f" category="list-text">將 Snap Center 新增至您的工作環境。</block>
-  <block id="87a323c396d1f0b11c5c63017a081d0a" category="list-text">為您的環境建立原則。</block>
-  <block id="a33d9e49823debc4eac9a3f6fed5ed4f" category="list-text">保護您的 SAP HANA 系統。</block>
-  <block id="b1708148488f2ff73841c4df62f35be1" category="doc">其他資訊和版本歷程記錄</block>
-  <block id="5d2dace1bbb099eb2c0c668ec3e8c3b6" category="list-text">NetApp BlueXP 備份與還原產品文件 +
-<block ref="2337d886e4f2f876275339e16f80eafd" category="inline-link-rx"></block></block>
-  <block id="d7a15f16d93378f9428254d47703abd2" category="cell">2024 年 3 月</block>
-  <block id="c9dd6bad4c7d561872f2e2d498a990bf" category="inline-link">互通性對照表工具IMT （不含）</block>
-  <block id="c5358f17fd6fd13a64169fc38a03495f" category="paragraph">請參閱<block ref="2a186a9053db553d8a98e2d5f86d7002" category="inline-link-rx"></block> 在 NetApp 支援網站上，驗證您的特有環境是否支援本文件中所述的明確產品與功能版本。NetApp IMT 解決方案定義了可用於建構NetApp支援組態的產品元件和版本。具體結果取決於每位客戶根據已發佈的規格進行安裝。</block>
-  <block id="ca996b238b1f32bd7d6b941eb3464b17" category="sidebar">BlueXP Backup and Recovery for SAP HANA - 總覽</block>
-  <block id="deac54b4ceeb072a80124bd022d78294" category="sidebar">還原 SAP HANA BlueXP 備份</block>
-  <block id="1605c9a8e838f67f2b16a4053e1e045d" category="paragraph">此 TR 僅說明如何利用以 AWS S3 物件儲存為例的 SAP HANA BlueXP 備份與還原功能來強化內部部署 SnapCenter 型 SAP HANA 備份與還原解決方案。使用 Microsoft Azure 和 GCP 物件儲存設備而非 AWS S3 進行的設定和組態類似、但本文件並未說明。</block>
-  <block id="dce65a9e030d5dbde345a046d948f2bf" category="paragraph">BlueXP 備份與還原是一種 SaaS 解決方案、可為在 NetApp 內部部署儲存設備上執行的應用程式提供資料保護功能、並將其移轉至雲端。它使用 NetApp 儲存設備、為 SAP HANA 提供高效率、應用程式一致且以原則為基礎的保護。此外、 BlueXP 備份與還原可提供集中化的控制與監督、同時委派使用者管理應用程式專屬的備份與還原作業的能力。</block>
-  <block id="ef7bad3edebf99f3bb50f4d8bbaa37d6" category="paragraph">BlueXP 備份與還原在 NetApp BlueXP 中以 SaaS 形式執行、並運用架構與 UI 。BlueXP 工作環境架構用於設定及管理 NetApp ONTAP 內部部署儲存設備和 NetApp SnapCenter 伺服器的認證。</block>
-  <block id="284528a6422c1ab87246e51dcb6b3ae5" category="paragraph">需要在客戶虛擬網路中部署 BlueXP Connector 。內部環境與雲端環境之間需要連線、例如站台對站台 VPN 連線。NetApp SaaS 元件與客戶環境之間的通訊只能透過 Connector 進行。連接器使用 ONTAP 和 SnapCenter 管理 API 來執行儲存作業。</block>
-  <block id="3df2c2f8f80654c02cea27e8354aee2a" category="paragraph">內部部署儲存設備與雲端儲存區之間的資料傳輸受到端點對端保護、可在靜止時使用 AES 256 位元加密、傳輸中使用 TLS/HTTPS 加密、以及客戶管理金鑰（ CMK ）支援。+
-備份的資料可以儲存在不可改變且無法磨滅的 WORM 狀態。從物件儲存設備存取資料的唯一方法是將資料還原至 NetApp ONTAP 型儲存設備、包括 NetApp CVO 。</block>
-  <block id="6cb139093b769a68f6abbb55400df4d8" category="list-text">在 BlueXP 中新增內部部署儲存設備、為 NetApp 內部部署環境和雲端目的地建立工作環境。</block>
-  <block id="49d37c51268190a8f072cf6f400be18f" category="list-text">為內部部署儲存設備建立新的物件儲存關係、使其成為 AWS S3 儲存區。</block>
-  <block id="6cf9c506a56175d20b049edfdc810cec" category="paragraph">將內部部署儲存系統新增至您的工作環境。</block>
-  <block id="35fb81d7bc669beabd5887c5308a5374" category="paragraph">內部儲存設備與 S3 儲存區之間的關係是透過建立磁碟區的備份或啟動應用程式的備份來達成。如果將現有的站台對站台 VPN 用於將資料從內部部署傳輸到 S3 、則需要使用磁碟區備份來建立內部部署儲存設備與 S3 儲存區之間的關係、做為 VPC 端點。+
-建立此文件時、應用程式備份工作流程並未提供選擇 VPC 端點來存取 S3 儲存區的功能。+
-請參閱<block ref="7f3b31b88f0e42104578f538777bc3e6" category="inline-link-rx"></block> 如何在 VPC 中設定 S3 的 VPC 端點。</block>
   <block id="9c485d8d0a0f2d60633001b05d342eed" category="doc">NetApp FAS 系統上的 SAP HANA with NFS 組態指南</block>
   <block id="b7bda169ccba06e8cbcf02ba0fab5928" category="doc">採用光纖通道傳輸協定的 NetApp FAS 系統上的 SAP HANA 組態指南</block>
   <block id="a56f5f8ccd94f38be4e8a0f1faf81823" category="doc">NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南</block>
@@ -3816,45 +3749,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="5bf509e6d43ff3eb5c07c44c1546ab09" category="paragraph"><block ref="5bf509e6d43ff3eb5c07c44c1546ab09" category="inline-image-macro-rx" type="image"></block></block>
   <block id="55aab77fa5d7f50b7fbedbf0df160938" category="paragraph"><block ref="55aab77fa5d7f50b7fbedbf0df160938" category="inline-link-rx"></block></block>
   <block id="5455f48dc7894a1b2782bb01cf938a86" category="paragraph"><block ref="5455f48dc7894a1b2782bb01cf938a86" category="inline-link-rx"></block></block>
-  <block id="6e0b32969c38b1fb3a586b9c8bca6d29" category="inline-image-macro">hana hycl-back － image2 、 width=624 、 height =316</block>
-  <block id="04c6fea5cff3e4aa7643ec678d204fdc" category="inline-image-macro">Ein Bild 、 das Text en ä lt 。Automatisch generierte Beschreibung,width=624,height =316</block>
-  <block id="e67b31693fccd64a3bacc0e55452cae2" category="inline-image-macro">Hana hycl-back 影像 5 、寬度 = 624 、高度 = 316</block>
-  <block id="bea671570e246847e20efc713c53c69e" category="inline-image-macro">Ein Bild 、 das Diagramm en ä lt 。Automatisch generierte Beschreibung,width=624,height =316</block>
-  <block id="dd78ee4baa00b09244d3a2f25c867ae5" category="inline-image-macro">hana hycl-back － image7 、 width=624 、 height =308</block>
-  <block id="271dec539afcefba0b81c99e084b109c" category="inline-image-macro">Hana hycl-back 影像 8 、寬度 = 624 、高度 = 309</block>
-  <block id="b0ea90440a1c4c0ce85aa8e6a6798323" category="inline-image-macro">hana hycl-back 影像 9 、 width=624 、 height =304</block>
-  <block id="16c981d74d1a7a65432b0b676f94b05d" category="inline-image-macro">Hana hycl-back 影像 10 、寬度 = 624 、高度 = 307</block>
-  <block id="3fe7bd8162333cf5226079e598f88f63" category="inline-image-macro">hana hycl-back 影像 12 、寬度 = 624 、高度 = 305</block>
-  <block id="8de11028ada12771254470b000810e23" category="inline-image-macro">Hana hycl-back 影像 11 、寬度 = 624 、高度 = 304</block>
-  <block id="eb54efc82bc89a6f6a8a311be7a01d24" category="inline-image-macro">Ein Bild 、 das Text 、 Software 、 Computersymbol 、 Webseite enthä lt 。Automatisch generierte Beschreibung,width=624,height =306</block>
-  <block id="75e71600dc8b519173f07bb53132cfea" category="inline-image-macro">Hana hycl-back 影像 14 、寬度 = 624 、高度 = 306</block>
-  <block id="844815fed3e149f6fc8998b67459b8a9" category="inline-image-macro">hana hycl-back 影像 15 、 width=624 、 height =304</block>
-  <block id="a8520b5a7e60b78ae1f8faf41e825735" category="inline-image-macro">hana hycl-back － image16 、 width=624 、 height =304</block>
-  <block id="46694ff89d2e1049db53b085f808204b" category="inline-image-macro">hana hycl-back 影像 17 、 width=624 、 height =304</block>
-  <block id="6b1682473b222d2b053e1f829a4dfa26" category="inline-image-macro">圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =156</block>
-  <block id="ec949205c32b4dcbf3d33ae3d2653d23" category="list-text">請檢查是否已透過叢集新增儲存 SAP HANA 系統的 SVM （本範例中為 Hana ）。如果只新增 SVM 、請新增叢集。+<block ref="a21a8efefc66cab38c485ab2857055c4" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fa2838d19a717f2eaaa40e2f1f725b14" category="inline-image-macro">圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =140</block>
-  <block id="015b0ff295262d8372bb8eaf0e7007fa" category="inline-image-macro">hana hycl-back － image20 、 width=167 、 height =167</block>
-  <block id="fc770d11db32177599ce06cc7a281439" category="inline-image-macro">圖形化使用者介面、自動產生應用程式說明、寬度 =604 、高度 =215</block>
-  <block id="84c8d37516c033f0c33377c3d5233ad4" category="list-text">將新原則新增至 SAP HANA 系統、並指派每日排程。+<block ref="7adbf922feb3d32be59867cb2db85d53" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f306bf0a63220090651328d0787ebdef" category="inline-image-macro">圖形化使用者介面、應用程式、自動產生的團隊說明、寬度 = 604 、高度 = 193</block>
-  <block id="8b7d9c683eee25ba85d1f605aa5bfc73" category="list-text">根據定義的排程執行原則之後、即可使用此原則設定的新備份。<block ref="4cdd66955f0a12d8fd4b6c1593da46ce" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9a74817b35b4d995ea09e91b80d35939" category="inline-image-macro">hana hycl-back 影像 23 、 width=624 、 height =316</block>
-  <block id="f1fa07b4f7836783fffe714d5a32befc" category="inline-image-macro">hana hycl-back － image26 、 width=624 、 height =315</block>
-  <block id="4d57087fb6eb4ef48dd81d74b0599e61" category="inline-image-macro">hana hycl-back － image27 、 width=624 、 height =316</block>
-  <block id="649a9b7aadbc8a5543b6a50f4b67635f" category="inline-image-macro">hana hycl-back － image29 、 width=624 、 height =316</block>
-  <block id="349ab45b449e8c58be43aa51b5414b97" category="inline-image-macro">hana hycl-back 影像 30 、寬度 = 624 、高度 = 316</block>
-  <block id="62a3ac1a1f8d319fbc334f7bb626e92f" category="inline-image-macro">hana hycl-back － image31 、 width=624 、 height =315</block>
-  <block id="56a584207272fdc3949d5cfbeddc6890" category="inline-image-macro">hana hycl-back － image32 、 width=624 、 height =315</block>
-  <block id="76e2dedbbcb80bd757e7f109e362eddf" category="inline-image-macro">寬度 =624 、高度 =316</block>
-  <block id="659017308b6b80ebac0dc21912936c14" category="inline-image-macro">寬度 =624 、高度 =337</block>
-  <block id="a852f184953f796252263a558df2db56" category="inline-image-macro">hana hycl-back － image37 、 width=624 、 height =316</block>
-  <block id="c7fbbf7c043fddfe22030f95f982786c" category="summary">本節列出可在何處找到其他資訊、並顯示版本歷程記錄。</block>
-  <block id="41bb765509308cdc44c413e512e52e34" category="inline-image-macro">Ein Bild 、 das Text 、 Screenshot 、 Diagramm 、 Kreis enthä lt 。Automatisch generierte Beschreibung,width=624,height =450</block>
-  <block id="796b2f89ad255115d9dff26e3177a467" category="paragraph"><block ref="796b2f89ad255115d9dff26e3177a467" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="7bff1872092b4daae129c007c84cd996" category="inline-image-macro">hana hycl-back 影像 38 、 width=624 、 height =305</block>
-  <block id="a50aa712257968ee6554358d180aeec3" category="inline-image-macro">寬度 =624 、高度 =308</block>
-  <block id="c2dc9045e50399390c48484b265865e6" category="inline-image-macro">Hana hycl-back 影像 41 、寬度 = 624 、高度 = 309</block>
   <block id="607e9caaefc803f1d39242ad4334a766" category="paragraph"><block ref="607e9caaefc803f1d39242ad4334a766" category="inline-image-macro-rx" type="image"></block></block>
   <block id="46f88568036f8d70f81f56eb754440ba" category="paragraph"><block ref="46f88568036f8d70f81f56eb754440ba" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0e84b80d2a5f8afd1eeb5f706b957809" category="paragraph"><block ref="0e84b80d2a5f8afd1eeb5f706b957809" category="inline-image-macro-rx" type="image"></block></block>
@@ -4352,7 +4246,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="a1498fba486158dfd616e2bc1f205275" category="admonition">新增更多磁碟櫃並不會增加儲存控制器所能支援的 SAP HANA 主機數量上限。</block>
   <block id="a2ef5d14ae5c3accf7291e39163d1ebd" category="paragraph">每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。</block>
   <block id="ef8d203413a4aabe57527556e0ef5fcb" category="paragraph"><block ref="ef8d203413a4aabe57527556e0ef5fcb" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="5c93db5d513dfbb32e85b013261b5aa8" category="list-text">如中所述，檢查正確的磁碟櫃組態<block ref="039cb3f1d3f19b24b2d3e1a57595e88d" category="inline-xref-macro-rx"></block>。</block>
   <block id="cf0ea9a7f661e4a10ff9e179d0893564" category="list-text">如中所述，建立及設定所需的集合體<block ref="19f0aba2b822910f53ba3966ee7c8d59" category="inline-xref-macro-rx"></block>。</block>
   <block id="07701c9e659f97922638b5c031983241" category="list-text">建立儲存虛擬機器（ SVM ），如所述<block ref="7c58f6887f41bcea1635c2c18a7a4529" category="inline-xref-macro-rx"></block>。</block>
   <block id="9a7dedbc9b05dfef2c16b4468bbc6d42" category="list-text">建立邏輯介面（生命期）<block ref="fc903155b67a1626f9032f79a26da71f" category="inline-xref-macro-rx"></block>，如所述。</block>
@@ -5070,45 +4963,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="e34ce3b231903e44c3708a8295d4abc8" category="admonition">次要原則標籤必須與儲存層資料保護組態中的SnapMirror標籤相同。請參閱一節<block ref="9709887b2e10facf416fc3560603f9b8" category="inline-link-macro-rx"></block></block>
   <block id="f87531f2bfe441193671ca21c1af5569" category="paragraph">發生災難容錯移轉時、複寫關係必須中斷、磁碟區必須掛載至DR正式作業伺服器、且HANA資料庫必須還原至上次HANA儲存點、或使用複寫的記錄備份進行轉送恢復。本章<block ref="e662c9f6046b2d69b33032921c282f16" category="inline-link-macro-rx"></block>介紹所需的步驟。</block>
   <block id="fd8ff870af3225045cae849a29ee9c7c" category="paragraph">有關不同組態選項的詳細資訊<block ref="52361ff2780d39b847dad2f6438b837e" category="inline-link-macro-rx"></block>，請參閱第章。</block>
-  <block id="e2a4d74d9da0f37cf75c01a592cccda1" category="list-text">按 *+ 新增工作環境 * 。+<block ref="244734d9a715669af19beac37418cc69" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="487444cd9d2276bc7a0457c80118ecc8" category="list-text">選擇 * 內部部署 * 。+<block ref="e2dbe10136eb44d00f6ea57dbc61dbf3" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="5f0bcbad0f64ed212671e0e94fe377d3" category="list-text">選擇 * 探索內部部署的 ONTAP * 。+<block ref="c373c9a6bc5f211b8506ef9fbccc4011" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="31b63ccfc00a87f4a0934a0009a846df" category="list-text">新增 ONTAP 叢集的 IP 位址和密碼、然後按 * 探索 * 。+<block ref="377b624e95c0a3e30f2686a4faa1ebed" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e6906c1f38dbed8e1e05842ff6286585" category="list-text">ONTAP 叢集現在可供使用。+<block ref="f027fc2d9f697bc8a53fef90fc34acd6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fd13c146e0766b30e17141fd79e917bb" category="list-text">瀏覽 * 保護 * 至 * 備份與恢復 * 、然後選擇 * 磁碟區 * 。+<block ref="37456cd827740a922e3efb17ffba4398" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e8d6313bf00288819643ab8e400670ef" category="list-text">按 * 啟動備份 * 按鈕。+<block ref="c372536652e895dd7d75f8a09398380b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d9a0e0cda5e1db18333387626bd238f4" category="list-text">選擇所需的內部部署儲存系統、然後按一下 * 啟動備份 * 。+<block ref="dec3e4e769c8ac62648df6cd1390fd33" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="5fad0330d15b001ea9ddb8076af3574f" category="list-text">選擇 * 備份 * 。+<block ref="207e65c3d4a711c8387574765084cefe" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="63ba88b030ae789f4aed3eb5dd3f7963" category="list-text">選擇與 SAP HANA 資料檔案儲存在同一個 SVM 的 Volume 、然後按下 * 下一步 * 。在此範例中、已選擇 /Hana / Shared 的磁碟區。+<block ref="4d3350cffa19f3cd959b7120cc46c077" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f807dc984612de42e2803ec8811279a4" category="list-text">* 繼續 * （如果存在現有策略）。+<block ref="0512ce0c50e2b38b84d08a2aeb441a14" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="2e6492f95475ccdc8c8633e4e3a777fa" category="list-text">請勾選 * 備份選項 * 、然後選擇您想要的備份供應商。在此 AWS 範例中。+ 核取已有原則的選項。+ 取消核取您不想使用的選項。+<block ref="076b2db5fd2dd85efd4b4ce9c10783e2" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="08c2b3c3f4b0a4da3e410a3d2c7a80b1" category="list-text">建立新的貯體或選擇現有的貯體。提供 AWS 帳戶設定、區域、存取金鑰和秘密金鑰。按 * 下一步 * 。+<block ref="fcd2110b19ec8e0a5c1f57035990560a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="bb7816e48b641793b34661b87a385315" category="list-text">選擇內部部署儲存系統的正確 IPspace 、選取 * 私有端點組態 * 、然後選擇 S3 的 VPC 端點。按 * 下一步 * 。+<block ref="33e10a566213a6a475d417a3000cbf46" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="72811a0b1e049021699cde08c8d273a0" category="list-text">檢閱您的組態並按下 * 啟動備份 * 。+<block ref="3d06d54330c9e8aa49ee9d5c2427605c" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="6ef4e48db7837bb4b18a4999b9b87f08" category="list-text">備份已成功初始化。+<block ref="942d980a9dd4c5c16db513a30ca11cb8" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0fdd2ecdd94b659b9a48810552358736" category="list-text">使用每日、每週或每月排程類型來定義排程原則。+<block ref="4053c2b580ac63fbd3aca168d4d20e18" category="inline-image-macro-rx" type="image"></block> <block ref="e4037ddbb5c26d524521d26f37ae8f52" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0df67991d6f19d68be5a1f806ea33ba8" category="list-text">從下拉式功能表中選擇 * 混合 * 。+<block ref="50b62de2b206c907297feb41ea8c584e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e168337ad80dacfb777dfb5b9d16d1b6" category="list-text">在「設定」功能表中選擇 * SnapCenter Servers* 。+<block ref="b8a08223f5755a38417573c44c7115d2" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="2d03f1780fa4abc5c29edf1a7376f442" category="list-text">註冊 SnapCenter 伺服器。+<block ref="dca8f8475b9f80caacbae88f15d95adf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="a9288106bf9ce2dc4c764fab82260680" category="list-text">新增 SnapCenter 伺服器認證。+<block ref="1f1add5901b34cb27bd11009a4bdf830" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ddc6a127dfd0f26869593648a25756a7" category="list-text">已新增 SnapCenter 伺服器、並將探索到資料。+<block ref="5b4b1c8299226aa8a2b083d1352dba59" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c875706a996c5fcf3565a727ad698f17" category="list-text">一旦完成探索工作、 SAP HANA 系統就能使用。+<block ref="be655bf65dd56c79dc95dbfa07634cfc" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="74e83dca0aa27b732266bd94e5b121c7" category="list-text">在設定功能表中選擇 * 原則 * 。+<block ref="e795cb19dc5cd5daf529720180130b91" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="6044544f3420c01cf19975ce598455f0" category="list-text">如有需要、請按一下 * 建立原則 * 來建立新原則。+<block ref="d480fe1c409cf4f84bdc7ee238e839c8" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c5342b2db061cb16c3806776ac15c963" category="list-text">提供原則名稱、所需的 SnapMirror 標籤、選擇所需的選項、然後按 * Create * 。+<block ref="bac41397b788aa7d17de3980c0ed6ddd" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e645d4f0db4c9dbeb4ca23b11261a3f3" category="list-text">新原則可供使用。+<block ref="449c23022bfb13eda82ce7584605e31e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1ad5f9eb966551a1c729bc1bb9ae4549" category="list-text">選擇 * 啟動 SAP HANA 系統的備份 * 。+<block ref="5589cd08880f60d2123164b618a2d3e6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="accd433ef37c2537a94a3c084d2f1907" category="list-text">選擇先前建立的原則、然後按一下 * 下一步 * 。+<block ref="91384b55a136ca1c585e2c2884eb4bca" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c9ad830bea03b11fd05ba79eaf0ec5f6" category="list-text">由於儲存系統和連接器已預先設定、備份將會啟動。+<block ref="55f436d2fa7549d6372fa3c35565c4a4" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="cb0d8c7c771bfde22fa72cdc285079e2" category="list-text">工作完成後、系統將會列出。+<block ref="88e6e4ade5b4c937312486c5dd3e1978" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="a2eb1ff416cbd26d08b23a37d3c82da7" category="list-text">一段時間後、備份會列在 SAP HANA 系統的詳細檢視畫面中。+ 第二天將列出每日備份。+<block ref="ac6a034c4eb3ed5655ae8237fc420fb0" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ddf969692f0e57fae57aaff1456799a0" category="list-text"><block ref="ddf969692f0e57fae57aaff1456799a0" category="inline-link-macro-rx"></block></block>
-  <block id="3c7416820648f591bb3fa1d31f7bcf03" category="paragraph">內部部署 SAP HANA 備份與還原解決方案的設定與組態<block ref="159877d61f413e893b32f610f850cc28" category="inline-link-macro-rx"></block>如中所述。</block>
-  <block id="552f6a9485fc60bb7f55b449a97dc4e2" category="paragraph">所需的安裝和組態步驟可分為三個部分。+ 先決條件是已在 NetApp Snap Center 設定 SAP HANA 備份組態。如需設定 Snap Center for SAP HANA 的第一站<block ref="df47df2d53579a5ed631e4604d5acca1" category="inline-link-macro-rx"></block>，請參閱。</block>
-  <block id="c7ac945124ce2a979ffd642d40432d85" category="list-text">按一下  與您要還原的資料庫相對應的 * 檢視詳細資料 * 。+<block ref="acd713c1b2b085fc56261aa0cfad9c89" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e60ebdb0aaaf0d4fb13bfd7d896cf8bf" category="list-text">選取所需的備份、然後選擇儲存匯出。+<block ref="b77d2ab3123688d838c2ad8eb51692dc" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f9435ac70c6aa2a726c5283ca2bb9bc7" category="list-text">提供所需選項： +<block ref="49dd4ae51b31524f137f2bd709126245" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="08862f459410ef47bf21a7834acd3afd" category="list-text">查看詳細資料、然後按一下 * 還原 * 。<block ref="552dceb28f1276cb45b6d2afff2ae744" category="inline-image-macro-rx" type="image"></block>+ + + 此作業僅會匯出指定主機的還原備份。您必須手動將檔案系統掛載到主機、然後開啟資料庫。使用磁碟區之後、儲存管理員可以從 ONTAP 叢集刪除磁碟區。</block>
   <block id="cbfd61eacaaf6c950b89d6113ccfe679" category="paragraph"><block ref="cbfd61eacaaf6c950b89d6113ccfe679" category="inline-link-macro-rx"></block></block>
   <block id="3149d7f53627e7a4811812a5342ef935" category="paragraph"><block ref="3149d7f53627e7a4811812a5342ef935" category="inline-link-macro-rx"></block></block>
   <block id="aa00b093336debfc20dbc4fc69cb70d8" category="paragraph"><block ref="aa00b093336debfc20dbc4fc69cb70d8" category="inline-link-macro-rx"></block></block>
@@ -5313,7 +5167,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="e6b7e7bf86715e60d66e0c4fd326c955" category="paragraph">如需使用 SnapCenter 的 SAP HANA 備份與還原解決方案的詳細資訊<block ref="0a5fce897a9b356de9fbfc0e516c7392" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="5b30611fb0620adc53c494ca5e20e5d0" category="paragraph">如需使用 SnapCenter 的 SAP HANA 災難恢復解決方案的詳細資訊<block ref="9e073a57f7a3e69defc613fe0d2d690f" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="e409da5f49cbcd0d5f6f423a57a43e78" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在<block ref="d1b4413cecd0416bbd7ac40af6b252af" category="inline-link-macro-rx"></block>中有詳細說明。</block>
-  <block id="a49d9f984a7158fad1ccd4db2fb62927" category="paragraph">建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例<block ref="b31e32426f0cc5eb025339912edb2d91" category="inline-link-macro-rx"></block>。</block>
   <block id="60e3819e2b8858d6ed1ed9bf9b7ea912" category="paragraph"><block ref="60e3819e2b8858d6ed1ed9bf9b7ea912" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5f1ae89b567878eafdf31bc9d9aab95c" category="admonition">此<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節<block ref="1970c05dedf021dcfe0fe0afe84eb11e" category="inline-link-macro-rx"></block></block>
   <block id="21a371be04b3decb0d2708ebbabb53cb" category="paragraph"><block ref="21a371be04b3decb0d2708ebbabb53cb" category="inline-image-macro-rx" type="image"></block></block>
@@ -5450,7 +5303,6 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="2a48b320782f505d499eb2656e4beeb6" category="paragraph">下列範例顯示使用SID=FC5的2+1多主機設定。</block>
   <block id="608ffc0c69fcd322ae0112af21ce3c4d" category="paragraph">使用 SAP hdblcm 安裝工具，在其中一個工作主機上執行下列命令開始安裝。使用<block ref="9676c5ff8ed94e9d3ceba55f16dde62f" prefix=" " category="inline-code"></block>選項新增第二名工作者（ sapcc-hana TST-06 ）和待命主機（ sapcc-hana TST-07 ）。</block>
   <block id="26b17225b626fb9238849fd60eabdf60" category="paragraph">+</block>
-  <block id="fbb87f9a8e02229a1bda368258b0705e" category="paragraph">建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例<block ref="60502400ca116a44af7f5b80e6597e3d" category="inline-link-macro-rx"></block>。</block>
   <block id="6184bd9e1a3ce0ee5585d5645a62615e" category="list-text">使用 HANA 伺服器的全球名稱 (WWN) 建立啟動器群組 (igroup)，如連結：saphana-asa-fc-storage-controller-setup.html#initiator-groups 部分所述<block ref="a30a5bc4156d5efb64f9f758389889ed" category="inline-xref-macro-rx"></block> 。</block>
   <block id="5b1acf5a0d4700aa212fae66acc8c9da" category="inline-link-macro">SAP HANA 單主機系統的 LUN 配置</block>
   <block id="d8e1a4cd040958dd75d0dcc1425db696" category="inline-link-macro">SAP HANA 多主機系統的 LUN 配置</block>
@@ -5804,4 +5656,11 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="11c46485b4b3a1ac8c78c2b4fab3494c" category="paragraph">NetApp AFF/ ASA A 系列產品系列已通過認證，可在客製化資料中心整合 (TDI) 專案中與 SAP HANA 一起使用。</block>
   <block id="570cc63e0195f0a2bf35f6333e8c271b" category="list-text">AFF A20、 AFF A30、 AFF A50、 AFF A70、 AFF A90、 AFF A1K</block>
   <block id="650bbb24893f36d6991bb48ee757fff0" category="paragraph">NetApp AFF A 系列產品系列已通過認證，可在客製化資料中心整合 (TDI) 專案中與 SAP HANA 一起使用。本指南提供了此平台上適用於 NFS 的 SAP HANA 的最佳實務。</block>
+  <block id="1fefbbe1f6719cf83eabfdf1a5ee8d0a" category="list-text">檢查正確的磁碟架配置，如<block ref="4faed6de755c26533eccd0e0858cad65" category="inline-xref-macro-rx"></block>。</block>
+  <block id="bd4e4c5c3d8d52054de3892b6f5dc693" category="paragraph">建議使用 1000MB/s 作為給定 LUN 的最大吞吐量。如果應用程式需要更大的吞吐量，則應使用具有 LUN 條帶化的多個 LUN 來提供所需的頻寬。本指南提供了基於 Linux LVM 的 SAP HANA 範例，請參閱第<block ref="e432b9ef93debe720a3ece302cbcca1c" category="inline-link-macro-rx"></block>。</block>
+  <block id="b9ee3cd7dd759d764d0324a8cdadec91" category="paragraph">建議使用 1000MB/s 作為給定 LUN 的最大吞吐量。如果應用程式需要更大的吞吐量，則應使用具有 LUN 條帶化的多個 LUN 來提供所需的頻寬。本指南提供了基於 Linux LVM 的 SAP HANA 範例，請參閱第<block ref="ede92b3cf72760c585979de2c2a3139a" category="inline-link-macro-rx"></block>。</block>
+  <block id="e95b75f557af9310f3d9c6299286a533" category="sidebar">解決方案請求和回饋</block>
+  <block id="22d04ecae9fae88d0b8d4548a46a545b" category="sidebar">請求自動化</block>
+  <block id="776ab15fef436c9315c14738509d299e" category="sidebar">提出新的解決方案</block>
+  <block id="cfdaac8ef24ac5b2612570c34da00954" category="sidebar">提供解決方案回饋</block>
 </blocks>

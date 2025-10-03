@@ -23,8 +23,6 @@ indexpage:
       url: backup/hana-sc-vmware-smas-scope.html
     - title: 使用 VMware VMFS 和NetApp ASA系統的SnapCenter進行 SAP HANA 資料保護
       url: backup/hana-sc-vmfs-asar2-scope.html
-    - title: BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
-      url: backup/hana-hycl-backup-overview.html
     - title: SAP HANA災難恢復與儲存複寫
       url: backup/hana-dr-sr-pdf-link.html
     - title: SAP HANA系統使用LSC和SnapCenter 功能更新
@@ -67,3 +65,11 @@ indexpage:
     links:
     - title: FlexPod上的 SAP 簡介
       url: https://docs.netapp.com/us-en/flexpod/ent-db/index.html
+  - title: 解決方案請求和回饋
+    links:
+    - title: 請求自動化
+      url: https://github.com/NetAppDocs/netapp-solutions-family/issues/new?labels=sap,automation&title=Request%20Automation%20-%20%3Crequest_title%3E&body=[Request%20Automation]%0A%0A%20Solution%20Name:%20%0A%20Request%20Title:%20%0A%20Description:%0A%20Suggestions:%0A
+    - title: 提出新的解決方案
+      url: https://github.com/NetAppDocs/netapp-solutions-family/issues/new?labels=sap,solution&title=Request%20Solution%20-%20%3Csolution%3E&body=[Request%20Solution]%0A%0A%20Solution%20Use%20Case:%20%0A%20Solution%20Description:%20%0A%20Additional%20Comments:%0A
+    - title: 提供解決方案回饋
+      url: https://github.com/NetAppDocs/netapp-solutions-family/issues/new?labels=sap,feedback&title=Solution%20Feedback%20-%20%3Csolution%3E&body=[Solution%20Feedback]%0A%0A%20Solution%20Name:%20%0A%20Solution%20Feedback:%20%0A%20Additional%20Comments:%0A

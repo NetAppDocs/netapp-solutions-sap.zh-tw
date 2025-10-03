@@ -69,7 +69,7 @@ lun modify -vserver <vserver name>  -path * -qos-policy-group  <policy-name>
 ....
 lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
 ....
-建議使用 1000MB/s 作為指定 LUN 的最大處理量。如果應用程式需要更高的處理量，則應使用具有 LUN 分段的多個 LUN 來提供所需的頻寬。本指南在一節中提供以 Linux LVM 為基礎的 SAP HANA 範例link:hana-fas-fc-host-setup.html#create-lvm-volume-groups-and-logical-volumes["主機設定"]。
+建議使用 1000MB/s 作為給定 LUN 的最大吞吐量。如果應用程式需要更大的吞吐量，則應使用具有 LUN 條帶化的多個 LUN 來提供所需的頻寬。本指南提供了基於 Linux LVM 的 SAP HANA 範例，請參閱第link:hana-fas-fc-host-setup.html["主機設定"]。
 
 
 NOTE: 此限制也適用於讀取。因此，請使用足夠的 LUN 來滿足 SAP HANA 資料庫啟動時間和備份所需的 SLA 。
@@ -93,13 +93,17 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在開始執行這些步驟之前、請先完成儲存硬體設定、ONTAP 安裝支援軟體、並將儲存FCP連接埠連線至SAN架構。
 
-. 如中所述，檢查正確的磁碟櫃組態<<磁碟櫃連線>>。
+. 檢查正確的磁碟架配置，如<<磁碟架連接>>。
 . 如中所述，建立及設定所需的集合體<<Aggregate組態>>。
 . 建立儲存虛擬機器（ SVM ），如所述<<儲存虛擬機器組態>>。
 . 建立邏輯介面（生命期）<<邏輯介面組態>>，如所述。
 . 建立具全球名稱（ WWN ）的 HANA 伺服器啟動器群組（ igroup ），如連結： Hana <<啟動器群組>>， FAS ， fc-storage-controller ， setup.html#initiator 群組一節所述。
 . 請按照本節中的說明在聚合中建立和配置磁碟區和 LUN link:hana-fas-fc-storage-controller-setup_single_host.html["單主機設定"]適用於單一主機或分段link:hana-fas-fc-storage-controller-setup_multiple_hosts.html["多主機設定"]對於多個主機
 
+
+
+
+== 磁碟架連接
 
 使用HDD時、最多可將兩個DS2246磁碟櫃或四個DS224C磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
 

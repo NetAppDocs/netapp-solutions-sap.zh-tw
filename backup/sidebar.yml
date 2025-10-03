@@ -111,16 +111,6 @@ entries:
     url: "/backup/hana-sc-vmfs-asar2sap-refresh.html"
   - title: 附加資訊和版本歷史記錄
     url: "/backup/hana-sc-vmfs-asar2-add-info.html"
-- title: BlueXP SAP HANA 備份與恢復：雲端物件儲存設備做為備份目的地
-  entries:
-  - title: BlueXP Backup and Recovery for SAP HANA - 總覽
-    url: "/backup/hana-hycl-backup-overview.html"
-  - title: 設定 SAP HANA 的 BlueXP 備份與恢復
-    url: "/backup/hana-hycl-backup-conf.html"
-  - title: 還原 SAP HANA BlueXP 備份
-    url: "/backup/hana-hycl-backup-restore.html"
-  - title: 其他資訊和版本歷程記錄
-    url: "/backup/hana-hycl-backup-info-version.html"
 - title: SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
   entries:
   - title: SAP HANA系統複寫總覽

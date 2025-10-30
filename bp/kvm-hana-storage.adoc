@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: bp/kvm-hana-storage.html 
+keywords: NetApp storage, KVM, SAP HANA, tailored data center integration, NFS, FCP 
+summary: 本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE KVM 的資訊。 
+---
+= 將儲存連接到 SAP HANA 的 KVM 虛擬機
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+虛擬機器配置成功後，即可從虛擬機器內部連接儲存設備。  + 對於 NFS，請遵循 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-nfs-introduction.html["NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南"]對於FCP，請遵循下列任一方法 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-fc-introduction.html["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]指南或 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-asa-fc-introduction.html["採用ASA Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]根據所使用的儲存產品而定。

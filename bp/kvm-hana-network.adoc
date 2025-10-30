@@ -1,0 +1,338 @@
+---
+sidebar: sidebar 
+permalink: bp/kvm-hana-network.html 
+keywords: Ethernet,KVM, SAP HANA, tailored data center integration,  NFS 
+summary: 本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE KVM 的資訊。 
+---
+= 設定乙太網路
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本節提供如何在 SUSE KVM 中使用NetApp儲存為 SAP HANA 配置 SR-IOV 的資訊。
+
+
+
+== SR-IOV的設定
+
+本部分介紹如何使用 Mellanox Connect-X 網路卡設定 SR-IOV。它是基於 https://enterprise-support.nvidia.com/s/article/HowTo-Configure-SR-IOV-for-ConnectX-4-ConnectX-5-ConnectX-6-with-KVM-Ethernet["NVIDIA企業支援入口網站 | 如何為 ConnectX-4/ConnectX-5/ConnectX-6 設定 SR-IOV（乙太網路）"]。  SUSE SAP HANA KVM 指南以英特爾網卡為例對此進行了描述。 + 建議使用冗餘乙太網路連接，將兩個實體連接埠組合成 trunk/bond。指派給虛擬機器的虛擬連接埠（VF）也需要在虛擬機器內部進行中繼配置。
+
+image:kvm-hana-image1.png["寬度=493，高度=409"]
+
+先決條件：
+
+* KVM 已安裝
+* 伺服器BIOS中已啟用SR-IOV。
+* 透過在引導程式中新增“intel_iommu=on”和“iommu=pt”選項來啟用PCI直通。
+* KVM 主機和虛擬機器上都已安裝最新的 MLNX_OFED 驅動程式。
+
+
+
+
+== 啟用 SR-IOV 並設定 VF 數量
+
+在本章中，SR-IOV 功能已啟用，每個實體連接埠的最大 VF（虛擬介面）數量已在適配器韌體中設置，並且每個實體連接埠（100GbE）使用的 VF 數量已設置，在本例中為 4。
+
+
+NOTE: 分配給虛擬機器的每個虛擬功能至少需要 10Gbit/s 的頻寬。例如，不要為 25GbE 實體連接埠建立和指派兩個以上的 VF。
+
+. 運行 MFT（Mellanox 韌體工具）：
+
+
+....
+# mst start
+Starting MST (Mellanox Software Tools) driver set
+Loading MST PCI module – Success
+Loading MST PCI configuration module – Success
+Create devices
+Unloading MST PCI module (unused) – Success
+....
+. 找到設備：
+
+
+....
+# mst status
+MST modules:
+------------
+MST PCI module is not loaded
+MST PCI configuration module loaded
+
+MST devices:
+
+------------
+
+/dev/mst/mt4125_pciconf0 - PCI configuration cycles access.
+domain:bus:dev.fn=0000:ab:00.0 addr.reg=88 data.reg=92 cr_bar.gw_offset=-1
+
+Chip revision is: 00
+....
+. 檢查設備狀態：
+
+
+....
+mlxconfig -d /dev/mst/mt4125_pciconf0 q |grep -e SRIOV_EN -e NUM_OF_VFS
+NUM_OF_VFS 8
+SRIOV_EN True(1)_
+....
+. 如有必要，請啟用 SR-IOV：
+
+
+....
+mlxconfig -d /dev/mst/mt4125_pciconf0 set SRIOV_EN=1
+....
+. 設定 VF 的最大數量：
+
+
+....
+mlxconfig -d /dev/mst/mt4125_pciconf0 set  NUM_OF_VFS=4
+....
+. 如果需要啟用該功能或更改最大 VF 數量，請重新啟動伺服器。
+
+
+
+
+=== 建立虛擬介面
+
+本節中，每個實體連接埠建立 4 個 VF。
+
+. 找到設備：
+
+
+....
+# ibstat
+
+CA 'mlx5_0'
+CA type: MT4125
+Number of ports: 1
+Firmware version: 22.36.1010
+Hardware version: 0
+Node GUID: 0xa088c20300a6f6fc
+System image GUID: 0xa088c20300a6f6fc
+Port 1:
+State: Active
+Physical state: LinkUp
+Rate: 100
+Base lid: 0
+LMC: 0
+SM lid: 0
+Capability mask: 0x00010000
+Port GUID: 0xa288c2fffea6f6fd
+Link layer: Ethernet
+CA 'mlx5_1'
+CA type: MT4125
+Number of ports: 1
+Firmware version: 22.36.1010
+Hardware version: 0
+Node GUID: 0xa088c20300a6f6fd
+System image GUID: 0xa088c20300a6f6fc
+Port 1:
+State: Active
+Physical state: LinkUp
+Rate: 100
+Base lid: 0
+LMC: 0
+SM lid: 0
+Capability mask: 0x00010000
+Port GUID: 0xa288c2fffea6f6fd
+Link layer: Ethernet
+....
+. 如果債券已創建，則輸出結果如下所示：
+
+
+....
+# ibstat
+CA 'mlx5_bond_0'
+CA type: MT4125
+Number of ports: 1
+Firmware version: 22.36.1010
+Hardware version: 0
+Node GUID: 0xa088c20300a6f6fc
+System image GUID: 0xa088c20300a6f6fc
+Port 1:
+State: Active
+Physical state: LinkUp
+Rate: 100
+Base lid: 0
+LMC: 0
+SM lid: 0
+Capability mask: 0x00010000
+Port GUID: 0xa288c2fffea6f6fc
+Link layer: Ethernet
+#:/etc/sysconfig/network # cat /sys/class/infiniband/mlx5_bond_0/device/
+aerdevcorrectable iommugroup/ resetmethod
+aerdevfatal irq resource
+aerdevnonfatal link/ resource0
+arienabled localcpulist resource0wc
+brokenparitystatus localcpus revision
+class maxlinkspeed rom
+config maxlinkwidth sriovdriversautoprobe
+consistentdmamaskbits mlx5_core.eth.0/ sriovnumvfs
+urrentlinkspeed mlx5_core.rdma.0/ sriovoffset
+currentlinkwidth modalias sriovstride
+d3coldallowed msibus sriovtotalvfs
+device msiirqs/ sriovvfdevice
+dmamaskbits net/ sriovvftotalmsix
+driver/ numanode subsystem/
+driveroverride pools subsystemdevice
+enable power/ subsystemvendor
+firmwarenode/ powerstate uevent
+infiniband/ ptp/ vendor
+infinibandmad/ remove vpd
+infinibandverbs/ rescan
+iommu/ reset
+....
+....
+# ibdev2netdev
+mlx5_0 port 1 ==> eth4 (Up)
+mlx5_1 port 1 ==> eth5 (Up)
+....
+. 取得韌體中允許和配置的 VF 總數：
+
+
+....
+# cat /sys/class/net/eth4/device/sriov_totalvfs
+4
+# cat /sys/class/net/eth5/device/sriov_totalvfs
+4
+....
+. 取得此裝置上目前的 VF 數量：
+
+
+....
+# cat /sys/class/infiniband/mlx5_0/device/sriov_numvfs
+0
+# cat /sys/class/infiniband/mlx5_1/device/sriov_numvfs
+0
+....
+. 設定所需的 VF 數量：
+
+
+....
+# echo 4 > /sys/class/infiniband/mlx5_0/device/sriov_numvfs
+# echo 4 > /sys/class/infiniband/mlx5_1/device/sriov_numvfs
+....
+
+NOTE: 如果您已經使用這兩個連接埠配置了綁定，則需要執行第一個命令來建立綁定：
+
+....
+# echo 4 > /sys/class/infiniband/mlx5_bond_0/device/sriov_numvfs
+....
+. 檢查PCI匯流排：
+
+
+....
+# lspci -D | grep Mellanox
+
+0000:ab:00.0 Ethernet controller: Mellanox Technologies MT2892 Family [ConnectX-6 Dx]
+0000:ab:00.1 Ethernet controller: Mellanox Technologies MT2892 Family [ConnectX-6 Dx]
+0000:ab:00.2 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:00.3 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:00.4 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:00.5 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:01.2 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:01.3 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:01.4 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+0000:ab:01.5 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
+....
+....
+# ibdev2netdev -v
+
+0000:ab:00.0 mlx5_0 (MT4125 - 51TF3A5000XV3) Mellanox ConnectX-6 Dx 100GbE QSFP56 2-port PCIe 4 Ethernet Adapter fw 22.36.1010 port 1 (ACTIVE) ==> eth4 (Up)
+0000:ab:00.1 mlx5_1 (MT4125 - 51TF3A5000XV3) Mellanox ConnectX-6 Dx 100GbE QSFP56 2-port PCIe 4 Ethernet Adapter fw 22.36.1010 port 1 (ACTIVE) ==> eth6 (Up)
+0000:ab:00.2 mlx523 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth6 (Down)
+0000:ab:00.3 mlx5_3 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth7 (Down)
+0000:ab:00.4 mlx5_4 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth8 (Down)
+0000:ab:00.5 mlx5_5 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth9 (Down)
+0000:ab:01.2 mlx5_6 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth10 (Down)
+0000:ab:01.3 mlx5_7 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth11 (Down)
+0000:ab:01.4 mlx5_8 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth12 (Down)
+0000:ab:01.5 mlx5_9 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth13 (Down)
+....
+. 透過 IP 工具檢查 VF 設定：
+
+
+....
+# ip link show
+…
+6: eth4: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 9000 qdisc mq master bond0 state UP mode DEFAULT group default qlen 1000
+
+link/ether a0:88:c2:a6:f6:fd brd ff:ff:ff:ff:ff:ff permaddr a0:88:c2:a6:f6:fc
+vf 0 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+vf 1 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+vf 2 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+vf 3 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+
+altname enp171s0f0np0
+altname ens3f0np0
+
+7: eth5: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 9000 qdisc mq master bond0 state UP mode DEFAULT group default qlen 1000
+
+link/ether a0:88:c2:a6:f6:fd brd ff:ff:ff:ff:ff:ff
+vf 0 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+vf 1 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+vf 2 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+vf 3 link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff, spoof checking off, link-state auto, trust off, query_rss off
+
+altname enp171s0f1np1
+altname ens3f1np1
+…
+....
+
+
+=== 在啟動期間啟用虛擬功能
+
+上述配置在重啟後會失效。  + 為了使其持久化，需要建立一個名為 /etc/systemd/system/after.local 的 systemd 單元文件，內容如下：
+
+....
+[Unit]
+Description=/etc/init.d/after.local Compatibility
+After=libvirtd.service Requires=libvirtd.service
+
+[Service]
+Type=oneshot
+ExecStart=/etc/init.d/after.local
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+....
+之後，建立腳本 /etc/init.d/after.local：
+
+....
+#! /bin/sh
+#
+#
+# ...
+echo 4 > /sys/class/infiniband/mlx5_bond_0/device/sriov_numvfs
+echo 4 > /sys/class/infiniband/mlx5_1/device/sriov_numvfs
+....
+文件創建完成後，請確保該文件可以執行：
+
+....
+# cd /etc/init.d/
+# chmod 750 after.local
+....
+
+
+== 將虛擬介面分配給虛擬機
+
+本章介紹如何使用 _virt-manager_ 將虛擬介面指派給虛擬機器。
+
+. 啟動 virt-manager。+ image:kvm-hana-image2.png["寬度=601，高度=385"]
+. 開啟所需的虛擬機器。+ image:kvm-hana-image3.png["寬度=300，高度=385"]
+. 按下“添加硬體”。+ image:kvm-hana-image4.png["Virtmanager 增加硬件，寬度=601，高度=443"]
+. 從 PCI 主機設備清單中的第一個實體連接埠選擇所需的虛擬網路卡，然後按完成鍵。 + 在此範例中，0000.AB:00:2 - 0000.AB:00:4 屬於第一個實體端口，0000.AB:01:2 - 0000.AB:01:4 屬於第二個實體連接埠。+ image:kvm-hana-image5.png["寬度=601，高度=442"]
+. 從 PCI 主機設備清單中選擇下一個虛擬網卡端口，使用第二個實體端口上的虛擬端口，然後按完成。+ image:kvm-hana-image6.png["寬度=601，高度=441"]
+. 之後，將虛擬介面指派給虛擬機，即可啟動虛擬機。+ image:kvm-hana-image7.png["寬度=601，高度=443"]
+
+
+
+
+== 配置虛擬機器內的網路介面
+
+登入虛擬機器並將兩個虛擬功能配置為綁定。選擇模式 0 或模式 2。請勿使用 LACP，因為 LACP 只能用於實體連接埠。下圖顯示了使用 YAST 的模式 2 配置。  + +image:kvm-hana-image8.png["寬度=601，高度=335"]

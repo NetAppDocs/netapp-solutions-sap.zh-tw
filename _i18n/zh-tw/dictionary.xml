@@ -5663,82 +5663,167 @@ IBM Power 上的 Linux 集中外掛部署</block>
   <block id="22d04ecae9fae88d0b8d4548a46a545b" category="sidebar">請求自動化</block>
   <block id="776ab15fef436c9315c14738509d299e" category="sidebar">提出新的解決方案</block>
   <block id="cfdaac8ef24ac5b2612570c34da00954" category="sidebar">提供解決方案回饋</block>
-  <block id="025fdaebed933b3ef8744794e3642e67" category="summary">本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE KVM 的資訊。</block>
-  <block id="4e9afc23010f0f8fd0e4bea40bc33af8" category="doc">配置光纖通道網路</block>
-  <block id="b6ffc719394402d518ed33294dc1168e" category="paragraph">本節提供如何在 SUSE KVM 中使用NetApp儲存為 SAP HANA 配置 FCP 的資訊。</block>
-  <block id="aa333c022a0c75f9b8937fe1749fed93" category="section-title">將 FCP 連接埠分配給虛擬機</block>
-  <block id="89274ac507ae30fa488107b60bc1e7d0" category="paragraph">由於 FCP 沒有類似 SR-IOV 的功能，因此需要將實體 HBA 連接埠指派給 VM。需要使用連接到不同織物的兩個實體連接埠。</block>
-  <block id="a882a37620b2a72eae6b08fd459027bf" category="admonition">一個實體連接埠只能分配給一台虛擬機器。</block>
-  <block id="ebe8d99441628fca31b18174e6ad03a9" category="paragraph">為此，請完成以下步驟：</block>
   <block id="fe7249de7be1e4067048b2cd42dc1558" category="inline-image-macro">寬度=601，高度=385</block>
-  <block id="73529689347d632104dcdd8fbe1fda28" category="list-text">啟動 _virt-manager._ +<block ref="67449e77167341992a8149878f984078" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="31f4d10d207f9259aafbe4939d847939" category="list-text">開啟所需的虛擬機器。+ <block ref="74e05f7af8bfa5048cbbb53547b7ed5c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="21062b23e4c5e3d69247d3cd1fc4d6d6" category="inline-image-macro">Virtmanager 增加硬件，寬度=601，高度=443</block>
-  <block id="0262e43da3988c482465d0ce90dc0a76" category="list-text">按下“添加硬體”。+ <block ref="17baf7e659a9b105db5a7481d32c661b" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c0a3ca4d6887eb5487746b7fd52fe4ea" category="inline-image-macro">寬度=601，高度=441</block>
-  <block id="9efc381e3d49840d49e0f1712a390c16" category="list-text">從 PCI 主機設備清單中選擇所需的 HBA 端口，然後按完成。 + 在這個例子中 0000.A2:00:0。+ <block ref="cc5a14692b3545864a48b1e7fbd421ed" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e953c895dee7e3068f263de9230cf8f4" category="list-text">從屬於第二個交換矩陣的 PCI 主機設備清單中選擇所需的 HBA 端口，然後按下完成鍵。在這個例子中，0000.A2:00:1。+ <block ref="7cab4ef576f317563758495d48d22a47" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="95ac4248298ce1002ffdbedf24b79f25" category="list-text">之後，將實體 HBA 連接埠指派給虛擬機，即可啟動虛擬機。+ <block ref="c618e2f3f30bf44f6670e6c0b2536f70" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="47fb02d8ec04a1657ac73edae4d85161" category="paragraph">由於實體連接埠已傳遞到虛擬機，因此無需進行其他準備工作。</block>
   <block id="5d9becebd742ba55a338e721cb4098bc" category="doc">SAP HANA 與 SUSE KVM 和NetApp存儲</block>
   <block id="0a2894548989381718d6bc91587921e8" category="inline-link">SUSE 在 KVM 上部署 SAP HANA 的最佳實踐</block>
-  <block id="2980caf8c0ff377268301f9201cf1996" category="paragraph">本文檔介紹了在 SUSE KVM 上使用NetApp儲存空間部署 SAP HANA 單主機所需的其他步驟。它是基於<block ref="23bdf6475773b02163c12d0b92b72377" category="inline-link-rx"></block>。</block>
-  <block id="12895d4e4739d2c12502578dfef5f6b4" category="paragraph">它主要展示瞭如何在 KVM 主機上配置 SR-IOV（單根 I/O 虛擬化）的網路接口，將這些虛擬接口 (VF) 分配給 VM，以及如何在 VM 內配置接口以使用 NFS 訪問 SAP HANA 存儲。此外，它還介紹如何在虛擬機器中設定 FCP 以用於 SAP HANA。</block>
-  <block id="3a0bb9b73945369e4fddd447feb5c8b7" category="admonition">SR-IOV 必須用於 SAP HANA 網路通訊和使用 NFS 進行儲存存取。若要使用 FCP LUN，必須將實體 FCP HBA 連接埠指派給 VM 作為 PCI 設備。不支援 SAP HANA 多主機系統。</block>
-  <block id="9ef309801e99327d39e34d8b8f3c1269" category="paragraph">本指南適用於作為 KVM 主機的 Linux Enterprise Server for SAP Applications 15 SP5/SP6。 + 必須使用經過認證的 SAP HANA 伺服器和NetApp儲存。請查看 SAP HANA 硬體目錄以了解可用選項<block ref="cfdcebd42ee4084db8ab7e5ca8b76355" category="inline-link-rx"></block></block>
-  <block id="402541bc2c208d57f7b56e1766de8b58" category="paragraph">KVM主機和虛擬機器的設定和配置必須按照以下方式進行：<block ref="23bdf6475773b02163c12d0b92b72377" category="inline-link-rx"></block> 。</block>
   <block id="2cfc5ea27e5946f6879fde36c69e3ec6" category="inline-link">3538596 - SAP HANA on SUSE KVM Virtualization with SLES 15 SP5 - SAP for Me</block>
-  <block id="b593cf38a6aca41d2e26cfef58b78c69" category="paragraph">有關最新資訊（包括支援的 CPU 架構和限制），請查看 SAP Note +<block ref="45a646d413a8e112569c4bcf09c8acf0" category="inline-link-rx"></block></block>
-  <block id="0cf0d4d9ffb72f820de0cd0bb276688b" category="doc">設定乙太網路</block>
-  <block id="ef0ecaaad0ae5326ba0bbb7a003063ad" category="paragraph">本節提供如何在 SUSE KVM 中使用NetApp儲存為 SAP HANA 配置 SR-IOV 的資訊。</block>
-  <block id="b22691643961c0e6d3dbf19fd20b5e11" category="section-title">SR-IOV的設定</block>
   <block id="15ddad260ba43b42e35fa929f499221f" category="inline-link">NVIDIA企業支援入口網站 | 如何為 ConnectX-4/ConnectX-5/ConnectX-6 設定 SR-IOV（乙太網路）</block>
-  <block id="9a8af93192272eb8a618da5f0b3e47f4" category="paragraph">本部分介紹如何使用 Mellanox Connect-X 網路卡設定 SR-IOV。它是基於<block ref="e682021759c826481e76b33aabbf6839" category="inline-link-rx"></block>。  SUSE SAP HANA KVM 指南以英特爾網卡為例對此進行了描述。 + 建議使用冗餘乙太網路連接，將兩個實體連接埠組合成 trunk/bond。指派給虛擬機器的虛擬連接埠（VF）也需要在虛擬機器內部進行中繼配置。</block>
   <block id="6b02943983965065df18dd4bfa58b5f0" category="inline-image-macro">寬度=493，高度=409</block>
   <block id="78c43044658ad43ea5759ac7d4d547e3" category="paragraph"><block ref="78c43044658ad43ea5759ac7d4d547e3" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d9a414100020a5250a8c1cc4fe4fbf37" category="paragraph">先決條件：</block>
   <block id="87047cacb7092834aeedbfe4d39a1d6b" category="list-text">KVM 已安裝</block>
   <block id="7e61de7d34bc38af442a3429ff7cd59f" category="list-text">伺服器BIOS中已啟用SR-IOV。</block>
   <block id="40a39c2818c8085d368e300b188ee953" category="list-text">透過在引導程式中新增“intel_iommu=on”和“iommu=pt”選項來啟用PCI直通。</block>
   <block id="dd776684598cc1802a5f724e5e686f1a" category="list-text">KVM 主機和虛擬機器上都已安裝最新的 MLNX_OFED 驅動程式。</block>
-  <block id="4f99cb390b4241e8836acf74a5f14650" category="section-title">啟用 SR-IOV 並設定 VF 數量</block>
-  <block id="80e78ad8a7abc903dd1f0db64748ffc9" category="paragraph">在本章中，SR-IOV 功能已啟用，每個實體連接埠的最大 VF（虛擬介面）數量已在適配器韌體中設置，並且每個實體連接埠（100GbE）使用的 VF 數量已設置，在本例中為 4。</block>
-  <block id="7e60feb9082ac369c825e2963c485c07" category="admonition">分配給虛擬機器的每個虛擬功能至少需要 10Gbit/s 的頻寬。例如，不要為 25GbE 實體連接埠建立和指派兩個以上的 VF。</block>
   <block id="f0a5f64e3ce501aa763556df4de1bade" category="list-text">運行 MFT（Mellanox 韌體工具）：</block>
   <block id="59e83a9226907551061e22ef6f658b9a" category="list-text">找到設備：</block>
   <block id="2c0a000894a0ff085f3e9f7c10012618" category="list-text">檢查設備狀態：</block>
   <block id="f4825784778b21faf4943633b8c6b73c" category="list-text">如有必要，請啟用 SR-IOV：</block>
   <block id="823a26b863b7e3b98c4e7f4fac3e5c66" category="list-text">設定 VF 的最大數量：</block>
   <block id="2ce341b6fb6664bf6931338274995ff8" category="list-text">如果需要啟用該功能或更改最大 VF 數量，請重新啟動伺服器。</block>
-  <block id="2796925716e27af006ec310bfe9e913b" category="section-title">建立虛擬介面</block>
-  <block id="b2893e3480865fd511aa0ba8d0dadacd" category="paragraph">本節中，每個實體連接埠建立 4 個 VF。</block>
   <block id="0ce769e692ad52beb5c2033d3577b13f" category="list-text">找到設備：</block>
   <block id="bce1b3e6c793399764ad3815edea34f5" category="list-text">如果債券已創建，則輸出結果如下所示：</block>
   <block id="c59955e5dd08a8d75d43e771d23c3fa9" category="list-text">取得韌體中允許和配置的 VF 總數：</block>
   <block id="4b0ffecd26fa6b6b73caac2ac117a243" category="list-text">取得此裝置上目前的 VF 數量：</block>
   <block id="4b704bbc9b5a23526fc14d1449f0aeb8" category="list-text">設定所需的 VF 數量：</block>
-  <block id="cc4147023dd6f20f25282ba65e424f81" category="admonition">如果您已經使用這兩個連接埠配置了綁定，則需要執行第一個命令來建立綁定：</block>
   <block id="cb04700bc1cc1f92d74bafa5f2a16513" category="list-text">檢查PCI匯流排：</block>
   <block id="cfa752dcd4eec4b7932fc6bc82b38eb2" category="list-text">透過 IP 工具檢查 VF 設定：</block>
-  <block id="dc10962a8ef59be6285512e7be986efa" category="section-title">在啟動期間啟用虛擬功能</block>
-  <block id="04b5951cff725448a7c1fef330b9677e" category="paragraph">上述配置在重啟後會失效。  + 為了使其持久化，需要建立一個名為 /etc/systemd/system/after.local 的 systemd 單元文件，內容如下：</block>
-  <block id="8127e5ab3b71c16b1018c6393af2fe25" category="paragraph">之後，建立腳本 /etc/init.d/after.local：</block>
-  <block id="93d5de8665e3498d6702a2b2b55cb7fb" category="paragraph">文件創建完成後，請確保該文件可以執行：</block>
-  <block id="0e3294ac3537a71584604ebf93913b5e" category="section-title">將虛擬介面分配給虛擬機</block>
-  <block id="f0a059949e4caf4d815eaf1d63f0772e" category="paragraph">本章介紹如何使用 _virt-manager_ 將虛擬介面指派給虛擬機器。</block>
-  <block id="ea2efe32581d1fa9886a8b71f61b0781" category="list-text">啟動 virt-manager。+ <block ref="67449e77167341992a8149878f984078" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ff7a7b64d32a687daaf248a4ea85cf14" category="inline-image-macro">寬度=300，高度=385</block>
-  <block id="1a77493ca9d38bc19f6c60b164ba4db5" category="list-text">開啟所需的虛擬機器。+ <block ref="3b95b85ad197385c008534f297bad92b" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2b8408e83ca7cc606ff088b65f733275" category="inline-image-macro">寬度=601，高度=442</block>
-  <block id="83a605138ee086e093e62873d59e8baa" category="list-text">從 PCI 主機設備清單中的第一個實體連接埠選擇所需的虛擬網路卡，然後按完成鍵。 + 在此範例中，0000.AB:00:2 - 0000.AB:00:4 屬於第一個實體端口，0000.AB:01:2 - 0000.AB:01:4 屬於第二個實體連接埠。+ <block ref="eb7bd24e0b56f5777d5b425cfc062bad" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ab1c3455116e637fc33c2f3e20c62c76" category="list-text">從 PCI 主機設備清單中選擇下一個虛擬網卡端口，使用第二個實體端口上的虛擬端口，然後按完成。+ <block ref="86d9ed6b798c83dee81453df0172d3cb" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2ddd841723e666cdb729b31416e30b16" category="inline-image-macro">寬度=601，高度=443</block>
   <block id="7486088dd1934c377b220d7fea4687c3" category="list-text">之後，將虛擬介面指派給虛擬機，即可啟動虛擬機。+ <block ref="a38eafd6166db5da699d994fbd08b2c0" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="8907025843794a4b3e47439c798be8e0" category="section-title">配置虛擬機器內的網路介面</block>
   <block id="d008048be4dc72eaa7cf879a0572b115" category="inline-image-macro">寬度=601，高度=335</block>
-  <block id="bfda3fc91b1de580b80c015a5e0545da" category="paragraph">登入虛擬機器並將兩個虛擬功能配置為綁定。選擇模式 0 或模式 2。請勿使用 LACP，因為 LACP 只能用於實體連接埠。下圖顯示了使用 YAST 的模式 2 配置。  + +<block ref="6ead8b266f13d468fde6dd9c2ec2f4d4" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d004f57551c9de1758f93e8f469d5a1c" category="doc">將儲存連接到 SAP HANA 的 KVM 虛擬機</block>
-  <block id="7b428f668f33177791df5bfc85810f73" category="paragraph">虛擬機器配置成功後，即可從虛擬機器內部連接儲存設備。  + 對於 NFS，請遵循<block ref="7e09f319f840ce6f9661c40dda015fc6" category="inline-link-rx"></block>對於FCP，請遵循下列任一方法<block ref="93a85cdbb8bf5de28f70fc5d954abb76" category="inline-link-rx"></block>指南或<block ref="5888c0fcaa90f43e1381a41ee8a6b7b6" category="inline-link-rx"></block>根據所使用的儲存產品而定。</block>
   <block id="99dfa28920a40a7be0858c50f989a3e5" category="cell">2025年10月</block>
-  <block id="964f4c690da6d84867ab7b2a1bd0d379" category="sidebar">附加儲存</block>
+  <block id="0fb495ad4cb00168e2cedda2dddf8f7a" category="summary">透過將實體 HBA 連接埠指派給虛擬機器作為 PCI 設備，為 SUSE KVM 上的 SAP HANA 配置光纖通道網路。使用連接到不同交換矩陣交換器的兩個實體連接埠建立冗餘的FCP連線。</block>
+  <block id="0ca4328fcbfe8492c41d8870dc4161f0" category="doc">在 SUSE KVM 上為 SAP HANA 配置光纖通道網路</block>
+  <block id="0b442b099e0d7f1ca9f68b047537e5c1" category="admonition">僅當使用 FCP 作為儲存協定時才需要以下步驟。如果使用 NFS，則無需執行這些步驟。</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">關於此任務</block>
+  <block id="283d93ce46a26fbc26b3628183ee5bef" category="paragraph">由於 FCP 沒有 SR-IOV 等效功能，請將實體 HBA 連接埠直接指派給 VM。使用連接到不同網路結構的兩個實體連接埠來實現冗餘。</block>
+  <block id="d05beb8b0605cb41e1881e781b7cd852" category="admonition">一個實體連接埠只能分配給一台虛擬機器。</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步驟</block>
+  <block id="3d02f6152291d1635f2a434d79e670a5" category="list-text">啟動 virt-manager：</block>
+  <block id="67449e77167341992a8149878f984078" category="paragraph"><block ref="67449e77167341992a8149878f984078" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="57ae5317b9ca841d850cfb970650fda5" category="list-text">開啟所需的虛擬機器。<block ref="74e05f7af8bfa5048cbbb53547b7ed5c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="36c2477a7899616343d94d668e433fd7" category="list-text">選擇“新增硬體”。</block>
+  <block id="17baf7e659a9b105db5a7481d32c661b" category="paragraph"><block ref="17baf7e659a9b105db5a7481d32c661b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0671de2d1c6622a7a83cc4d9c21eb4bc" category="list-text">從 PCI 主機設備清單中選擇所需的 HBA 端口，然後按完成。</block>
+  <block id="43b3a1282e707bb6730d6eb4ae874de0" category="paragraph">在這個例子中，0000.A2:00:0。</block>
+  <block id="cc5a14692b3545864a48b1e7fbd421ed" category="paragraph"><block ref="cc5a14692b3545864a48b1e7fbd421ed" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bc53cfedf3c4ef586de976e1d08b1b14" category="list-text">從屬於第二個交換矩陣的 PCI 主機設備清單中選擇所需的 HBA 端口，然後按下完成鍵。在這個例子中，0000.A2:00:1。</block>
+  <block id="7cab4ef576f317563758495d48d22a47" category="paragraph"><block ref="7cab4ef576f317563758495d48d22a47" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="63226372c1a3f569ce16db2a36070406" category="list-text">之後，將實體 HBA 連接埠指派給虛擬機，即可啟動虛擬機。</block>
+  <block id="c618e2f3f30bf44f6670e6c0b2536f70" category="paragraph"><block ref="c618e2f3f30bf44f6670e6c0b2536f70" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0d36962bd4c3fbd54cd92771a0fab9c5" category="paragraph">實體連接埠直接傳遞到虛擬機，因此虛擬機內部無需進行額外的準備工作。</block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="section-title">下一步是什麼？</block>
+  <block id="e0cea4063843f093e0b0f91abd78560c" category="inline-link-macro">配置用於 SAP HANA 的NetApp存儲</block>
+  <block id="b04f5fdeaf8c08267bf339c96ea39e88" category="paragraph">配置光纖通道網路後，<block ref="ae7fcde62644d7c2cce7447887af291a" category="inline-link-macro-rx"></block> 。</block>
+  <block id="eedf6199d892536e90e4f5f5e9aeead0" category="summary">使用具有 SR-IOV 網路介面和 NFS 或 FCP 儲存存取的NetApp存儲，在 SUSE KVM 上部署 SAP HANA 單主機。請按照此工作流程配置虛擬接口，將其指派給虛擬機，並設定儲存連接以獲得最佳效能。</block>
+  <block id="b2b3540e7a5adcde33ace97349e2560a" category="doc">使用 SR-IOV 和 NFS 在 SUSE KVM 上部署 SAP HANA，並使用NetApp儲存。</block>
+  <block id="0e271a63b035a81107076af36774e567" category="paragraph">有關 SAP HANA on KVM 虛擬化的概述，請參閱 SUSE 文件：<block ref="23bdf6475773b02163c12d0b92b72377" category="inline-link-rx"></block> 。</block>
+  <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">一</block>
+  <block id="a83565177e04591255a835fde719da37" category="inline-link-macro">查看配置要求</block>
+  <block id="ce32521677a8f52f50fefa7a065fa3bc" category="paragraph"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="d33d8d02b4f9bbbf424db99eecbc1fd5" category="inline-link-macro-rx"></block></block>
+  <block id="f0445ea946867f2221026c8df22edaa6" category="paragraph">審查在 SUSE KVM 上使用NetApp儲存、SR-IOV 和儲存協定部署 SAP HANA 的關鍵要求。</block>
+  <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">二</block>
+  <block id="6d52d1e9ed076307b793e7ecfd0c7d97" category="inline-link-macro">配置SR-IOV網路介面</block>
+  <block id="7b5326a1933bf9a5ca774172650df053" category="paragraph"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="3114037f1b7f3adcfd47ed6deac28bab" category="inline-link-macro-rx"></block></block>
+  <block id="43d234205866994eb68b7f61ccfceb66" category="paragraph">在 KVM 主機上設定 SR-IOV（單一 I/O 虛擬化），並為 VM 指派虛擬介面以進行網路通訊和儲存存取。</block>
+  <block id="ca8a2087e5557e317599344687a57391" category="inline-image-macro">三</block>
+  <block id="bd7dbd45540c4c36454bf7b3a243faa2" category="inline-link-macro">配置光纖通道網路</block>
+  <block id="68bd0b0bd8f4db3b1a74bab66cb83a41" category="paragraph"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="6c37895ebc9e4f355be2ae1f1a66b011" category="inline-link-macro-rx"></block></block>
+  <block id="73f81c41fe1582923ccf87ba578d7e4f" category="paragraph">將實體 FCP HBA 連接埠指派給 VM 作為 PCI 設備，以便在 SAP HANA 中使用 FCP LUN。</block>
+  <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">四</block>
+  <block id="a0e92b00188356e314e7e27ea6f2caba" category="inline-link-macro">配置用於 SAP HANA 的NetApp存儲</block>
+  <block id="5a7441c2e91382bc4cc135730626dd48" category="paragraph"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="113b0e8dbd64738f1249aa736c9aafa9" category="inline-link-macro-rx"></block></block>
+  <block id="eaa946087d06ee1fee769e3564e0e00a" category="paragraph">在虛擬機器和NetApp儲存系統之間建立 NFS 或 FCP 儲存連接，用於 SAP HANA 資料庫檔案。</block>
+  <block id="46086226fd4f9834e26bad399e56adba" category="summary">使用 Mellanox ConnectX 網路卡在 SUSE KVM 上為 SAP HANA 設定 SR-IOV 網路介面。設定虛擬功能，將其分配給虛擬機，並配置冗餘網路連接，以實現最佳效能和儲存存取。</block>
+  <block id="1a4209a0d3141f25300c6ebecb02b5ca" category="doc">在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路接口</block>
+  <block id="64a9f5744e810899375650d8c2d3fec9" category="paragraph">在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路介面。設定虛擬功能 (VF)，將其分配給虛擬機，並配置冗餘網路連接，以實現最佳效能和儲存存取。</block>
+  <block id="3e8724f246e16510aad52dd9ecb49a3d" category="section-title">步驟 1：設定 SR-IOV</block>
+  <block id="6b314738afe5bc77a71fceeb84ceb155" category="paragraph">在適配器韌體中啟用和配置 SR-IOV 功能，以允許建立虛擬功能。</block>
+  <block id="b99f7ff8b05c08aee442951722cb0edf" category="paragraph">該程式基於<block ref="e682021759c826481e76b33aabbf6839" category="inline-link-rx"></block>。SUSE SAP HANA KVM 指南以英特爾網卡為例對此進行了描述。</block>
+  <block id="245ec115e5574825b23e7853bd266d54" category="paragraph">建議使用冗餘乙太網路連接，將兩個實體連接埠組合成 trunk/bond。指派給虛擬機器的虛擬連接埠（VF）也需要在虛擬機器內部進行中繼配置。</block>
+  <block id="135b308ed83c53f1516b7c754566d1c4" category="paragraph-title">開始之前</block>
+  <block id="35b2712db7d90b7ac83004e4abd55cfb" category="paragraph">請確保滿足以下先決條件：</block>
+  <block id="f10b4cf53387d68a4898acbf422972e8" category="admonition">分配給虛擬機器的每個虛擬功能至少需要 10 Gbit/s 頻寬。對於 25GbE 實體端口，請勿建立和分配超過兩個 VF。</block>
+  <block id="dd91264b58d9f595eacdc7b64123900b" category="section-title">步驟 2：建立虛擬接口</block>
+  <block id="44de7e2c4013a173730eb31d21302cf4" category="paragraph">在實體網路連接埠上建立虛擬功能（VF），以啟用 SR-IOV 功能。在此步驟中，每個實體連接埠建立四個虛擬功能 (VF)。</block>
+  <block id="014ef900e8be91c024503ccade6fd53e" category="paragraph">*如果您已經使用這兩個連接埠配置了綁定*，則需要針對該綁定執行第一個命令：</block>
+  <block id="27a28f15a2f277aea5926a15045b2573" category="section-title">步驟 3：啟動時啟用虛擬功能</block>
+  <block id="0796f6b0d247ba3a3e6dce2e2336305b" category="paragraph">透過建立 systemd 服務和啟動腳本，配置 VF 設定以使其在系統重新啟動後仍然有效。</block>
+  <block id="76df589935f4399ba4c4370601ad583c" category="list-text">建立一個 systemd 單元文件<block ref="1176e346fbd328332471afe442b75ae9" prefix=" " category="inline-code"></block>內容如下：</block>
+  <block id="2b3d215c4a896111db944510e74abf0d" category="list-text">建立腳本 _/etc/init.d/after.local_：</block>
+  <block id="bc942a96f2ce0c8e240f9f1179b0ceed" category="list-text">確保檔案可以執行：</block>
+  <block id="174555b4df4ecdeab25e6b7947624fb0" category="section-title">步驟 4：將虛擬介面指派給虛擬機</block>
+  <block id="c34e09757a882cce19d8b6d0256d35de" category="paragraph">使用 _virt-manager_ 將建立的虛擬功能作為 PCI 主機設備指派給 SAP HANA VM。</block>
+  <block id="63eab6098f4bfc071c9727954e74ee0d" category="list-text">啟動 virt-manager。</block>
+  <block id="936d56790a3ed3e68e8ce2667d3aea65" category="list-text">開啟所需的虛擬機器。</block>
+  <block id="3b95b85ad197385c008534f297bad92b" category="paragraph"><block ref="3b95b85ad197385c008534f297bad92b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="393fe19076bf485ee97d78ca29019ddb" category="list-text">選擇“新增硬體”。+ <block ref="17baf7e659a9b105db5a7481d32c661b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="445752da230b9193a3c8cce8f3b39be5" category="list-text">從 PCI 主機設備清單中的第一個實體連接埠選擇所需的虛擬網路卡，然後按完成鍵。</block>
+  <block id="d614a40a2abe54368e505d2419de4308" category="paragraph">在這個例子中，0000.AB:00:2 - 0000.AB:00:4 屬於第一個實體端口，而 0000.AB:01:2 - 0000.AB:01:4 屬於第二個實體端口。</block>
+  <block id="eb7bd24e0b56f5777d5b425cfc062bad" category="paragraph"><block ref="eb7bd24e0b56f5777d5b425cfc062bad" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3cac3f23bb74b618471bd50749f79cd5" category="list-text">從 PCI 主機設備清單中選擇下一個虛擬網卡端口，使用第二個實體端口的虛擬端口，然後選擇“完成”。</block>
+  <block id="86d9ed6b798c83dee81453df0172d3cb" category="paragraph"><block ref="86d9ed6b798c83dee81453df0172d3cb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="493be5891ecbc7678622e5684802e282" category="section-title">步驟 5：設定虛擬機器內的網路介面</block>
+  <block id="fbfdda9cd0c781b651e1abb4c9027a32" category="paragraph">登入虛擬機器並將兩個虛擬功能配置為綁定。選擇模式 0 或模式 2。請勿使用 LACP，因為 LACP 只能用於實體連接埠。下圖顯示了使用 YAST 的模式 2 配置。</block>
+  <block id="6ead8b266f13d468fde6dd9c2ec2f4d4" category="paragraph"><block ref="6ead8b266f13d468fde6dd9c2ec2f4d4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3a7752268f3213d09e74b7cab5a0b35a" category="inline-link-macro">配置光纖通道網路</block>
+  <block id="4944a5ec933e53d6bc1126d5a10ffd1f" category="paragraph">配置完SR-IOV網路介面後，<block ref="c36e9bed41f3cdde147c411d491714d9" category="inline-link-macro-rx"></block>如果使用FCP作為儲存協定。</block>
+  <block id="d66532473b0c81051538fec983e44f0c" category="summary">檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS 或 FCP 儲存協定部署 SAP HANA 單主機的要求。</block>
+  <block id="78dfe664b173bccfc91ad97911a9ac75" category="doc">在 SUSE KVM 上使用NetApp儲存部署 SAP HANA 的要求</block>
+  <block id="2e451559162579f33aaaa1a5f71342a5" category="paragraph">此部署需要經過認證的 SAP HANA 伺服器、 NetApp儲存系統、支援 SR-IOV 的網路介面卡以及作為 KVM 主機的 SUSE Linux Enterprise Server for SAP Applications。</block>
+  <block id="439af0eafa830454ed233636672264ba" category="section-title">基礎設施需求</block>
+  <block id="ac356f582258049ecc494b04de18b40f" category="paragraph">請確保以下組件和配置已就位：</block>
+  <block id="42d25268ae119d14a935ef9a534bbd25" category="inline-link">SAP HANA 硬體目錄</block>
+  <block id="1372d1a7dfde60f9ea88e92417814cf5" category="list-text">經過認證的 SAP HANA 伺服器和NetApp儲存系統。請參閱<block ref="e75e457f3ff4c5c50048c06a093e7805" category="inline-link-rx"></block>可供選擇的方案：</block>
+  <block id="835fd6a0840373da3a5fcaaffcfa0409" category="list-text">SUSE Linux Enterprise Server for SAP Applications 15 SP5/SP6 作為 KVM 主機</block>
+  <block id="3750f88478aefcf20c9e5c66df48c6ad" category="list-text">NetApp ONTAP儲存系統，配備儲存虛擬機器 (SVM)，並配置了 NFS 和/或 FCP 流量。</block>
+  <block id="16a4856edc1c42226aaa1d37827a2fc5" category="list-text">在對應的網路上為 NFS 和 FCP 流量建立邏輯介面 (LIF)。</block>
+  <block id="d7c7e191ee6d1a797e5df384683aea38" category="list-text">支援 SR-IOV 的網路適配器（例如 Mellanox ConnectX 系列）</block>
+  <block id="d2e6b4405b465bc9b022aac442b1b10a" category="list-text">用於FCP儲存存取的光纖通道HBA適配器</block>
+  <block id="f31568af9160e2aa82d3db92980e5c3e" category="list-text">支援所需 VLAN 和網路段的網路基礎設施</block>
+  <block id="eeb238b1c48c2357fe3444616c9ebced" category="list-text">根據以下方式配置虛擬機<block ref="8185340d5b69ab85cc184c018157df93" category="inline-link-rx"></block></block>
+  <block id="50a1170f516bd7e65549254bce84c24c" category="section-title">重要考慮因素</block>
+  <block id="a738c5891f5961226a6dde61f1afbb37" category="list-text">SR-IOV 必須用於 SAP HANA 網路通訊和使用 NFS 進行儲存存取。分配給虛擬機器的每個虛擬功能 (VF) 至少需要 10 Gbit/s 頻寬。</block>
+  <block id="5978d0cfedef13194dff39678fea0182" category="list-text">若要使用 FCP LUN，必須將實體 FCP HBA 連接埠指派給 VM 作為 PCI 設備。一個實體連接埠只能分配給一台虛擬機器。</block>
+  <block id="39f701bd19a2da681aadb2c2080ee6ac" category="list-text">此配置不支援 SAP HANA 多主機系統。</block>
+  <block id="8cd58c89ff3d51a256ecfe3fe8bab20f" category="section-title">其他資源</block>
+  <block id="eaba74287739b947e76e82a1d0b0b128" category="list-text">有關最新資訊（包括支援的 CPU 架構和限制），請參閱 SAP 說明。<block ref="7da6a569286eed69a835786cc64ede56" category="inline-link-rx"></block> 。</block>
+  <block id="c09b5be4c2da04f4040eef1878f258aa" category="inline-link">ONTAP 9 文件</block>
+  <block id="9a421dce29a43d6aa8fe214499fe1e4a" category="list-text">有關配置ONTAP儲存系統的信息，請參閱<block ref="6f483b863c5185fefdfed5a5dff0efff" category="inline-link-rx"></block>。</block>
+  <block id="1d3f77b304dcdf504c9e8550fc7801e7" category="inline-link">NetApp SAP 解決方案文檔</block>
+  <block id="6a82945cec312ed10a1c640fec0804e9" category="list-text">有關使用NetApp系統的 SAP HANA 儲存配置，請參閱以下內容：<block ref="79c896f7308ea25a7dcd50ea3803b20c" category="inline-link-rx"></block> 。</block>
+  <block id="d0c263555b8ff040e7f5e83dad0737e5" category="inline-link-macro">設定 SR-IOV 網路介面</block>
+  <block id="b02be26121568bbe52a0047f6a24f779" category="paragraph">在您審核部署要求之後，<block ref="f7575ecc745a8f292813f54a1e406bf8" category="inline-link-macro-rx"></block> 。</block>
+  <block id="64770002759b83e76fe4b3fb7bde7758" category="summary">使用 NFS 或 FCP 協定在 SUSE KVM 上為 SAP HANA 配置NetApp儲存。在虛擬機器和NetApp ONTAP系統之間建立儲存連接，以獲得最佳資料庫效能。</block>
+  <block id="6cd06365fd58d4b2cf497c6fb76d4295" category="doc">在 SUSE KVM 上為 SAP HANA 配置NetApp存儲</block>
+  <block id="cceb8662eb7befd8c8bda29c01af6343" category="paragraph">在配置了具有 SR-IOV 網路介面或 FCP HBA 連接埠的 VM 之後，從 VM 內部設定儲存存取。根據您選擇的儲存協議，使用對應的NetApp SAP HANA 配置指南。</block>
+  <block id="8c47a445e345ddc25a8f3997af2d4a3b" category="section-title">配置 SAP HANA 的 NFS 存儲</block>
+  <block id="c735b6e648f2e7ab7e826385b62b1785" category="paragraph">如果要使用 NFS 協定進行 SAP HANA 存儲，請使用先前建立的 SR-IOV 網路介面。</block>
+  <block id="2931726ae64df0da9f6b47215f4e1bb0" category="paragraph">請依照完整的設定步驟進行操作。<block ref="7e09f319f840ce6f9661c40dda015fc6" category="inline-link-rx"></block> 。</block>
+  <block id="52b72abf8ced73ff7195698371aee75c" category="paragraph">KVM環境的關鍵配置注意事項：</block>
+  <block id="f2080eb01eadf0d9ce9d1fe36236f051" category="list-text">使用先前設定的 SR-IOV 虛擬功能 (VF) 來處理網路流量</block>
+  <block id="15b94503f9caa84a347ea43d0fe1cdce" category="list-text">在虛擬機器內配置網路綁定以實現冗餘</block>
+  <block id="a84930bba39a0ce2bbd8cd9837d02570" category="list-text">確保虛擬機器和NetApp儲存SVM之間網路切換正常。</block>
+  <block id="ecddb8344e3fac6742e74052af87612a" category="list-text">根據 SAP HANA 配置指南配置儲存控制器和虛擬機器。</block>
+  <block id="2d636ce28a21948f0a038f5c4ae03933" category="section-title">配置 SAP HANA 的 FCP 存儲</block>
+  <block id="51c08c4cbc731fee5733af18513079c1" category="paragraph">如果 SAP HANA 儲存要使用 FCP 協議，則應將指派給 VM 的實體 HBA 連接埠用作 PCI 設備。</block>
+  <block id="66185f01bc141a9d87670caf954e3bc1" category="paragraph">根據您的NetApp儲存系統選擇合適的設定指南：</block>
+  <block id="25b2cbc9592c4119e8ca65a514996d42" category="list-text">適用於NetApp AFF系統：<block ref="93a85cdbb8bf5de28f70fc5d954abb76" category="inline-link-rx"></block></block>
+  <block id="713f7a71c2ae56696c4ed8c19b92e29d" category="list-text">適用於NetApp ASA系統：<block ref="5888c0fcaa90f43e1381a41ee8a6b7b6" category="inline-link-rx"></block></block>
+  <block id="a40ac5e1ad2910385b3c7fcf069a5b91" category="list-text">使用透過 PCI 直通分配給虛擬機器的實體 HBA 連接埠。</block>
+  <block id="5f05fd970d378d7b908fd310167d1342" category="list-text">在虛擬機器內配置多路徑，以實現跨交換矩陣交換器的冗餘。</block>
+  <block id="b3529caae24ec3b6317fed33b199fc17" category="list-text">根據 SAP HANA 配置指南配置儲存控制器和虛擬機</block>
+  <block id="57e1771ce1e6d595e42a3b886ca50109" category="cell">2025年11月</block>
+  <block id="08fc16a4a36250041009c3c33c9c9388" category="cell">佈局更新。</block>
+  <block id="ba6af9e4a46c6c9c5542891d417327e8" category="section-title">2025年11月12日</block>
+  <block id="1ae3ab0d4dcb2d1a3eb0edf2e52ce3a2" category="paragraph">新方案<block ref="2c0446aa059b701d9c0d685bc6675dbe" category="inline-link-macro-rx"></block>：</block>
+  <block id="c91527b6024ce916ee9e7634580b91cf" category="paragraph">使用具有 SR-IOV 網路介面和 NFS 或 FCP 儲存存取的NetApp存儲，在 SUSE KVM 上部署 SAP HANA 單主機。</block>
+  <block id="ab3ccb0be518e752d20f706d36d252c9" category="sidebar">部署工作流程</block>
+  <block id="ff31982aef870d546d52f49bb30ef34b" category="sidebar">部署要求</block>
+  <block id="be9795993b0f7ea6e032752c428deb13" category="sidebar">設定乙太網路</block>
+  <block id="6ea13559c46e38e3cf3559ec91659a75" category="sidebar">配置光纖通道網路</block>
+  <block id="b3cb0a0b8107b0dbcf00b7ef366e3fa1" category="sidebar">配置儲存</block>
 </blocks>

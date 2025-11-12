@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: bp/kvm-hana-storage.html 
-keywords: NetApp storage, KVM, SAP HANA, tailored data center integration, NFS, FCP 
-summary: 本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE KVM 的資訊。 
+keywords: NetApp storage, KVM, SAP HANA, NFS, FCP, ONTAP, storage configuration 
+summary: 使用 NFS 或 FCP 協定在 SUSE KVM 上為 SAP HANA 配置NetApp儲存。在虛擬機器和NetApp ONTAP系統之間建立儲存連接，以獲得最佳資料庫效能。 
 ---
-= 將儲存連接到 SAP HANA 的 KVM 虛擬機
+= 在 SUSE KVM 上為 SAP HANA 配置NetApp存儲
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,4 +14,41 @@ summary: 本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE K
 
 
 [role="lead"]
-虛擬機器配置成功後，即可從虛擬機器內部連接儲存設備。  + 對於 NFS，請遵循 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-nfs-introduction.html["NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南"]對於FCP，請遵循下列任一方法 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-fc-introduction.html["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]指南或 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-asa-fc-introduction.html["採用ASA Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]根據所使用的儲存產品而定。
+使用 NFS 或 FCP 協定在 SUSE KVM 上為 SAP HANA 配置NetApp儲存。在虛擬機器和NetApp ONTAP系統之間建立儲存連接，以獲得最佳資料庫效能。
+
+在配置了具有 SR-IOV 網路介面或 FCP HBA 連接埠的 VM 之後，從 VM 內部設定儲存存取。根據您選擇的儲存協議，使用對應的NetApp SAP HANA 配置指南。
+
+
+
+== 配置 SAP HANA 的 NFS 存儲
+
+如果要使用 NFS 協定進行 SAP HANA 存儲，請使用先前建立的 SR-IOV 網路介面。
+
+請依照完整的設定步驟進行操作。 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-nfs-introduction.html["NetApp AFF Systems with NFS 上的 SAP HANA - 組態指南"] 。
+
+KVM環境的關鍵配置注意事項：
+
+* 使用先前設定的 SR-IOV 虛擬功能 (VF) 來處理網路流量
+* 在虛擬機器內配置網路綁定以實現冗餘
+* 確保虛擬機器和NetApp儲存SVM之間網路切換正常。
+* 根據 SAP HANA 配置指南配置儲存控制器和虛擬機器。
+
+
+
+
+== 配置 SAP HANA 的 FCP 存儲
+
+如果 SAP HANA 儲存要使用 FCP 協議，則應將指派給 VM 的實體 HBA 連接埠用作 PCI 設備。
+
+根據您的NetApp儲存系統選擇合適的設定指南：
+
+* 適用於NetApp AFF系統： https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-fc-introduction.html["採用AFF Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]
+* 適用於NetApp ASA系統： https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-asa-fc-introduction.html["採用ASA Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]
+
+
+KVM環境的關鍵配置注意事項：
+
+* 使用透過 PCI 直通分配給虛擬機器的實體 HBA 連接埠。
+* 在虛擬機器內配置多路徑，以實現跨交換矩陣交換器的冗餘。
+* 根據 SAP HANA 配置指南配置儲存控制器和虛擬機
+

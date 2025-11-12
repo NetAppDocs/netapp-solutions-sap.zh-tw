@@ -189,13 +189,13 @@ entries:
     url: "/bp/hana-fas-fc-update-history.html"
 - title: SAP HANA 與 SUSE KVM 和NetApp存儲
   entries:
-  - title: 簡介
+  - title: 部署工作流程
     url: "/bp/kvm-hana-introduction.html"
+  - title: 部署要求
+    url: "/bp/kvm-hana-requirements.html"
   - title: 設定乙太網路
     url: "/bp/kvm-hana-network.html"
   - title: 配置光纖通道網路
     url: "/bp/kvm-hana-fcn.html"
-  - title: 附加儲存
+  - title: 配置儲存
     url: "/bp/kvm-hana-storage.html"
-  - title: 更新歷史記錄
-    url: "/bp/kvm-hana-update-history.html"

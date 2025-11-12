@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: bp/kvm-hana-network.html 
-keywords: Ethernet,KVM, SAP HANA, tailored data center integration,  NFS 
-summary: 本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE KVM 的資訊。 
+keywords: SR-IOV,KVM, SAP HANA, Mellanox, virtual functions, network configuration, NFS 
+summary: 使用 Mellanox ConnectX 網路卡在 SUSE KVM 上為 SAP HANA 設定 SR-IOV 網路介面。設定虛擬功能，將其分配給虛擬機，並配置冗餘網路連接，以實現最佳效能和儲存存取。 
 ---
-= 設定乙太網路
+= 在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路接口
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,17 +14,22 @@ summary: 本指南提供有關如何使用NetApp儲存配置 SAP HANA 的 SUSE K
 
 
 [role="lead"]
-本節提供如何在 SUSE KVM 中使用NetApp儲存為 SAP HANA 配置 SR-IOV 的資訊。
+在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路介面。設定虛擬功能 (VF)，將其分配給虛擬機，並配置冗餘網路連接，以實現最佳效能和儲存存取。
 
 
 
-== SR-IOV的設定
+== 步驟 1：設定 SR-IOV
 
-本部分介紹如何使用 Mellanox Connect-X 網路卡設定 SR-IOV。它是基於 https://enterprise-support.nvidia.com/s/article/HowTo-Configure-SR-IOV-for-ConnectX-4-ConnectX-5-ConnectX-6-with-KVM-Ethernet["NVIDIA企業支援入口網站 | 如何為 ConnectX-4/ConnectX-5/ConnectX-6 設定 SR-IOV（乙太網路）"]。  SUSE SAP HANA KVM 指南以英特爾網卡為例對此進行了描述。 + 建議使用冗餘乙太網路連接，將兩個實體連接埠組合成 trunk/bond。指派給虛擬機器的虛擬連接埠（VF）也需要在虛擬機器內部進行中繼配置。
+在適配器韌體中啟用和配置 SR-IOV 功能，以允許建立虛擬功能。
+
+該程式基於 https://enterprise-support.nvidia.com/s/article/HowTo-Configure-SR-IOV-for-ConnectX-4-ConnectX-5-ConnectX-6-with-KVM-Ethernet["NVIDIA企業支援入口網站 | 如何為 ConnectX-4/ConnectX-5/ConnectX-6 設定 SR-IOV（乙太網路）"]。SUSE SAP HANA KVM 指南以英特爾網卡為例對此進行了描述。
+
+建議使用冗餘乙太網路連接，將兩個實體連接埠組合成 trunk/bond。指派給虛擬機器的虛擬連接埠（VF）也需要在虛擬機器內部進行中繼配置。
 
 image:kvm-hana-image1.png["寬度=493，高度=409"]
 
-先決條件：
+.開始之前
+請確保滿足以下先決條件：
 
 * KVM 已安裝
 * 伺服器BIOS中已啟用SR-IOV。
@@ -33,17 +38,11 @@ image:kvm-hana-image1.png["寬度=493，高度=409"]
 
 
 
+NOTE: 分配給虛擬機器的每個虛擬功能至少需要 10 Gbit/s 頻寬。對於 25GbE 實體端口，請勿建立和分配超過兩個 VF。
 
-== 啟用 SR-IOV 並設定 VF 數量
-
-在本章中，SR-IOV 功能已啟用，每個實體連接埠的最大 VF（虛擬介面）數量已在適配器韌體中設置，並且每個實體連接埠（100GbE）使用的 VF 數量已設置，在本例中為 4。
-
-
-NOTE: 分配給虛擬機器的每個虛擬功能至少需要 10Gbit/s 的頻寬。例如，不要為 25GbE 實體連接埠建立和指派兩個以上的 VF。
-
+.步驟
 . 運行 MFT（Mellanox 韌體工具）：
-
-
++
 ....
 # mst start
 Starting MST (Mellanox Software Tools) driver set
@@ -53,8 +52,7 @@ Create devices
 Unloading MST PCI module (unused) – Success
 ....
 . 找到設備：
-
-
++
 ....
 # mst status
 MST modules:
@@ -72,22 +70,19 @@ domain:bus:dev.fn=0000:ab:00.0 addr.reg=88 data.reg=92 cr_bar.gw_offset=-1
 Chip revision is: 00
 ....
 . 檢查設備狀態：
-
-
++
 ....
 mlxconfig -d /dev/mst/mt4125_pciconf0 q |grep -e SRIOV_EN -e NUM_OF_VFS
 NUM_OF_VFS 8
 SRIOV_EN True(1)_
 ....
 . 如有必要，請啟用 SR-IOV：
-
-
++
 ....
 mlxconfig -d /dev/mst/mt4125_pciconf0 set SRIOV_EN=1
 ....
 . 設定 VF 的最大數量：
-
-
++
 ....
 mlxconfig -d /dev/mst/mt4125_pciconf0 set  NUM_OF_VFS=4
 ....
@@ -96,13 +91,13 @@ mlxconfig -d /dev/mst/mt4125_pciconf0 set  NUM_OF_VFS=4
 
 
 
-=== 建立虛擬介面
+== 步驟 2：建立虛擬接口
 
-本節中，每個實體連接埠建立 4 個 VF。
+在實體網路連接埠上建立虛擬功能（VF），以啟用 SR-IOV 功能。在此步驟中，每個實體連接埠建立四個虛擬功能 (VF)。
 
+.步驟
 . 找到設備：
-
-
++
 ....
 # ibstat
 
@@ -141,9 +136,10 @@ Capability mask: 0x00010000
 Port GUID: 0xa288c2fffea6f6fd
 Link layer: Ethernet
 ....
-. 如果債券已創建，則輸出結果如下所示：
++
+如果債券已創建，則輸出結果如下所示：
 
-
++
 ....
 # ibstat
 CA 'mlx5_bond_0'
@@ -186,14 +182,14 @@ infinibandmad/ remove vpd
 infinibandverbs/ rescan
 iommu/ reset
 ....
++
 ....
 # ibdev2netdev
 mlx5_0 port 1 ==> eth4 (Up)
 mlx5_1 port 1 ==> eth5 (Up)
 ....
 . 取得韌體中允許和配置的 VF 總數：
-
-
++
 ....
 # cat /sys/class/net/eth4/device/sriov_totalvfs
 4
@@ -201,8 +197,7 @@ mlx5_1 port 1 ==> eth5 (Up)
 4
 ....
 . 取得此裝置上目前的 VF 數量：
-
-
++
 ....
 # cat /sys/class/infiniband/mlx5_0/device/sriov_numvfs
 0
@@ -210,21 +205,20 @@ mlx5_1 port 1 ==> eth5 (Up)
 0
 ....
 . 設定所需的 VF 數量：
-
-
++
 ....
 # echo 4 > /sys/class/infiniband/mlx5_0/device/sriov_numvfs
 # echo 4 > /sys/class/infiniband/mlx5_1/device/sriov_numvfs
 ....
++
+*如果您已經使用這兩個連接埠配置了綁定*，則需要針對該綁定執行第一個命令：
 
-NOTE: 如果您已經使用這兩個連接埠配置了綁定，則需要執行第一個命令來建立綁定：
-
++
 ....
 # echo 4 > /sys/class/infiniband/mlx5_bond_0/device/sriov_numvfs
 ....
 . 檢查PCI匯流排：
-
-
++
 ....
 # lspci -D | grep Mellanox
 
@@ -239,6 +233,7 @@ NOTE: 如果您已經使用這兩個連接埠配置了綁定，則需要執行�
 0000:ab:01.4 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
 0000:ab:01.5 Ethernet controller: Mellanox Technologies ConnectX Family mlx5Gen Virtual Function
 ....
++
 ....
 # ibdev2netdev -v
 
@@ -254,8 +249,7 @@ NOTE: 如果您已經使用這兩個連接埠配置了綁定，則需要執行�
 0000:ab:01.5 mlx5_9 (MT4126 - NA) fw 22.36.1010 port 1 (DOWN ) ==> eth13 (Down)
 ....
 . 透過 IP 工具檢查 VF 設定：
-
-
++
 ....
 # ip link show
 …
@@ -284,10 +278,14 @@ altname ens3f1np1
 ....
 
 
-=== 在啟動期間啟用虛擬功能
 
-上述配置在重啟後會失效。  + 為了使其持久化，需要建立一個名為 /etc/systemd/system/after.local 的 systemd 單元文件，內容如下：
 
+== 步驟 3：啟動時啟用虛擬功能
+
+透過建立 systemd 服務和啟動腳本，配置 VF 設定以使其在系統重新啟動後仍然有效。
+
+. 建立一個 systemd 單元文件 `/etc/systemd/system/after.local`內容如下：
++
 ....
 [Unit]
 Description=/etc/init.d/after.local Compatibility
@@ -301,8 +299,8 @@ RemainAfterExit=true
 [Install]
 WantedBy=multi-user.target
 ....
-之後，建立腳本 /etc/init.d/after.local：
-
+. 建立腳本 _/etc/init.d/after.local_：
++
 ....
 #! /bin/sh
 #
@@ -311,28 +309,53 @@ WantedBy=multi-user.target
 echo 4 > /sys/class/infiniband/mlx5_bond_0/device/sriov_numvfs
 echo 4 > /sys/class/infiniband/mlx5_1/device/sriov_numvfs
 ....
-文件創建完成後，請確保該文件可以執行：
-
+. 確保檔案可以執行：
++
 ....
 # cd /etc/init.d/
 # chmod 750 after.local
 ....
 
 
-== 將虛擬介面分配給虛擬機
 
-本章介紹如何使用 _virt-manager_ 將虛擬介面指派給虛擬機器。
 
-. 啟動 virt-manager。+ image:kvm-hana-image2.png["寬度=601，高度=385"]
-. 開啟所需的虛擬機器。+ image:kvm-hana-image3.png["寬度=300，高度=385"]
-. 按下“添加硬體”。+ image:kvm-hana-image4.png["Virtmanager 增加硬件，寬度=601，高度=443"]
-. 從 PCI 主機設備清單中的第一個實體連接埠選擇所需的虛擬網路卡，然後按完成鍵。 + 在此範例中，0000.AB:00:2 - 0000.AB:00:4 屬於第一個實體端口，0000.AB:01:2 - 0000.AB:01:4 屬於第二個實體連接埠。+ image:kvm-hana-image5.png["寬度=601，高度=442"]
-. 從 PCI 主機設備清單中選擇下一個虛擬網卡端口，使用第二個實體端口上的虛擬端口，然後按完成。+ image:kvm-hana-image6.png["寬度=601，高度=441"]
+== 步驟 4：將虛擬介面指派給虛擬機
+
+使用 _virt-manager_ 將建立的虛擬功能作為 PCI 主機設備指派給 SAP HANA VM。
+
+. 啟動 virt-manager。
++
+image:kvm-hana-image2.png["寬度=601，高度=385"]
+
+. 開啟所需的虛擬機器。
++
+image:kvm-hana-image3.png["寬度=300，高度=385"]
+
+. 選擇“新增硬體”。+ image:kvm-hana-image4.png["Virtmanager 增加硬件，寬度=601，高度=443"]
+. 從 PCI 主機設備清單中的第一個實體連接埠選擇所需的虛擬網路卡，然後按完成鍵。
++
+在這個例子中，0000.AB:00:2 - 0000.AB:00:4 屬於第一個實體端口，而 0000.AB:01:2 - 0000.AB:01:4 屬於第二個實體端口。
+
++
+image:kvm-hana-image5.png["寬度=601，高度=442"]
+
+. 從 PCI 主機設備清單中選擇下一個虛擬網卡端口，使用第二個實體端口的虛擬端口，然後選擇“完成”。
++
+image:kvm-hana-image6.png["寬度=601，高度=441"]
+
 . 之後，將虛擬介面指派給虛擬機，即可啟動虛擬機。+ image:kvm-hana-image7.png["寬度=601，高度=443"]
 
 
 
 
-== 配置虛擬機器內的網路介面
+== 步驟 5：設定虛擬機器內的網路介面
 
-登入虛擬機器並將兩個虛擬功能配置為綁定。選擇模式 0 或模式 2。請勿使用 LACP，因為 LACP 只能用於實體連接埠。下圖顯示了使用 YAST 的模式 2 配置。  + +image:kvm-hana-image8.png["寬度=601，高度=335"]
+登入虛擬機器並將兩個虛擬功能配置為綁定。選擇模式 0 或模式 2。請勿使用 LACP，因為 LACP 只能用於實體連接埠。下圖顯示了使用 YAST 的模式 2 配置。
+
+image:kvm-hana-image8.png["寬度=601，高度=335"]
+
+
+
+== 下一步是什麼？
+
+配置完SR-IOV網路介面後，link:kvm-hana-fcn.html["配置光纖通道網路"]如果使用FCP作為儲存協定。

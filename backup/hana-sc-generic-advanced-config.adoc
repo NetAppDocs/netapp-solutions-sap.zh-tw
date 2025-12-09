@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-advanced-config.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 為 SAP HANA 配置進階SnapCenter選項
+:allow-uri-read: 
+
+
+[role="lead"]
+為 SAP HANA 環境配置進階SnapCenter設置，包括抑制虛擬機器內 NFS 掛載的 VMware 警告訊息、停用自動日誌備份清理以及為 HANA 資料庫連線啟用 SSL 加密。
+
+
+
+== 虛擬化環境和客戶機內掛載的警告訊息
+
+例如，當使用 VMware 和 NFS 用戶機內掛載時， SnapCenter會發出警告訊息，提示應該使用SnapCenter VMware 外掛程式。由於虛擬機器內掛載不需要 VMware 插件，因此可以忽略並關閉該警告訊息。若要配置SnapCenter以抑制此警告，必須套用下列配置：
+
+. 從「設定」索引標籤、選取「全域設定」。
+. 針對Hypervisor設定、選取VM Hs Hs iSCSI Direct Attached Disk或NFS for All hosts（VM有iSCSI Direct附加磁碟或NFS用於所有主機）、然後更新設定。
+
+
+image:hana-sc-generic-image-134.png["寬度=601，高度=176"]
+
+
+
+== 停用自動記錄備份管理
+
+日誌備份管理功能預設為啟用，可以在 HANA 插件主機層級停用。使用 PowerShell 指令：
+
+指令 Set-SmConfigSettings -Plugin -HostName <pluginhostname> -PluginCode hana -configSettings @{"LOG_CLEANUP_DISABLE" = "Y"} 停用此 SAP HANA 主機的日誌備份清理。
+
+
+
+== 實現與HANA資料庫的安全通訊
+
+如果 HANA 資料庫配置了安全通信，則SnapCenter執行的 hdbsql 命令必須使用額外的命令列選項。
+
+SSL通訊有多種設定選項。預設情況下， SnapCenter使用 -e ssltrustcert hdbsql 命令列選項。此選項可實現無需伺服器憑證驗證的 SSL 通信，且此選項也適用於未啟用 SSL 的 HANA 系統。
+
+如果需要在伺服器端和/或用戶端進行憑證驗證，則需要不同的 hdbsql 命令列選項，並且必須依照 SAP HANA 安全性指南中的說明相應地設定 PSE 環境。
+
+這可以透過使用包裝腳本來實現，該腳本使用所需的選項來呼叫 hdbsql。無需在 hana.properties 文件中配置 hdbsql 可執行文件，而是新增了包裝腳本。
+
+....
+
+HANA_HDBSQL_CMD = /usr/sap/SM1/HDB12/exe/hdbsqls
+....
+包裝腳本 hdbsqls 使用所需的命令列選項呼叫 hdbsql。
+
+....
+#/bin/bash
+/usr/sap/SM1/HDB12/exe/hdbsql <command line options> $*
+....
+
+
+== 停用HANA外掛主機上的自動探索
+
+若要停用 HANA 外掛程式主機上的自動發現功能，請完成下列步驟：
+
+. 在SnapCenter伺服器上，開啟 PowerShell。透過執行 Open-SmConnection 指令連線到SnapCenter伺服器，並在開啟的登入視窗中指定使用者名稱和密碼。
+. 若要停用自動發現，請執行 Set-SmConfigSettings 指令。
+
+
+對於 HANA 主機 hana-2，指令如下：
+
+....
+
+PS C:\Users\administrator.SAPCC> Set-SmConfigSettings -Agent -Hostname hana-2 -configSettings @{"DISABLE_AUTO_DISCOVERY"="true"}
+
+Name Value
+
+---- -----
+
+DISABLE_AUTO_DISCOVERY true
+
+PS C:\Users\administrator.SAPCC>
+
+Verify the configuration by running the Get- SmConfigSettings command.
+
+PS C:\Users\administrator.SAPCC> Get-SmConfigSettings -Agent -Hostname hana-2 -key all
+
+Key: CUSTOMPLUGINS_OPERATION_TIMEOUT_IN_MSEC Value: 3600000 Details: Plug-in API operation Timeout
+
+Key: CUSTOMPLUGINS_HOSTAGENT_TO_SERVER_TIMEOUT_IN_SEC Value: 1800 Details: Web Service API Timeout
+
+Key: CUSTOMPLUGINS_ALLOWED_CMDS Value: *; Details: Allowed Host OS Commands
+
+Key: DISABLE_AUTO_DISCOVERY Value: true Details:
+
+Key: PORT Value: 8145 Details: Port for server communication
+
+PS C:\Users\administrator.SAPCC>
+
+....
+組態會寫入主機上的代理程式組態檔、並在使用SnapCenter 更新程式進行外掛程式後仍可使用。
+
+....
+
+hana-2:/opt/NetApp/snapcenter/scc/etc # cat /opt/NetApp/snapcenter/scc/etc/agent.properties | grep DISCOVERY
+DISABLE_AUTO_DISCOVERY = true
+hana-2:/opt/NetApp/snapcenter/scc/etc #
+....

@@ -1,0 +1,290 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-concepts.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 了解SnapCenter資料保護概念和最佳實踐
+:allow-uri-read: 
+
+
+[role="lead"]
+了解SnapCenter在 SAP HANA 環境中的部署選項、資料保護原則和備份保留管理。SnapCenter支援在資料庫主機或中央主機上進行插件部署、自動發現和手動配置、使用基於檔案的備份或 hdbpersdiag 進行區塊一致性檢查，以及跨主儲存和輔助儲存的全面保留管理。
+
+
+
+== SnapCenter插件在 SAP HANA 中的部署選項
+
+下圖顯示了SnapCenter伺服器、SAP HANA 資料庫和儲存系統之間通訊的邏輯視圖。SnapCenter伺服器利用 HANA 和 Linux 插件與 HANA 資料庫和 Linux 作業系統進行通訊。
+
+image:hana-sc-generic-image-008.png["寬度=601，高度=199"]
+
+SnapCenter插件的推薦和預設部署選項是安裝在 HANA 資料庫主機上。使用此部署選項， SnapCenter支援的設定章節中所述的所有配置和功能均有效。也有一些例外情況，即SnapCenter插件不能安裝在 HANA 資料庫主機上，而需要在中央插件主機上進行配置，該主機可以是SnapCenter伺服器本身。HANA 多主機系統或在 IBM Power 平台上運作的 HANA 系統需要中央插件主機。兩種部署選項也可以混合使用，例如，將SnapCenter伺服器用作多主機系統的中央插件主機，並將插件部署在所有其他單主機 HANA 系統的 HANA 資料庫主機上。
+
+在SnapCenter中，HANA 資源既可以自動發現，也可以手動設定。一旦在資料庫主機上部署了 HANA 和 Linux 插件，HANA 系統就會預設自動被發現。SnapCenter自動發現功能不支援在同一台主機上安裝多個 HANA。使用中央插件主機管理的 HANA 系統必須在SnapCenter中手動設定。此外，非資料卷預設是手動配置的資源。
+
+[cols="29%,34%,37%"]
+|===
+|  | 插件已部署 | SnapCenter資源 
+
+
+| HANA 資料庫 | 資料庫主機 | 自動發現 
+
+
+| HANA 資料庫 | 中央插件主機 | 手動配置 
+
+
+| 非資料卷 | 不適用 | 手動配置 
+|===
+雖然SnapCenter支援 HANA 系統的集中式插件部署，但在平台和功能支援方面有其限制。對於配置了中央插件主機的 HANA 系統，以下基礎架構配置和操作不受支援：
+
+* VMware 與 FC 資料存儲
+* SnapMirror主動同步
+* 如果將SnapCenter伺服器用作中央插件主機，則可實現高可用性。
+* HANA系統自動發現
+* 自動化 HANA 資料庫恢復
+* SAP系統自動刷新
+* 單一租戶恢復
+
+
+
+
+=== 部署在 SAP HANA 資料庫主機上的SnapCenter HANA 插件
+
+SnapCenter伺服器透過 HANA 插件與 HANA 資料庫通訊。HANA 外掛程式使用 HANA hdbsql 用戶端軟體向 HANA 資料庫執行 SQL 指令。HANA hdb 使用者儲存用於提供存取 HANA 資料庫的使用者憑證、主機名稱和連接埠資訊。SnapCenter Linux 外掛程式用於涵蓋任何主機檔案系統操作以及檔案系統和儲存資源的自動發現。
+
+當 HANA 插件部署在 HANA 資料庫主機上時， SnapCenter會自動發現 HANA 系統，並將其標記為SnapCenter中的自動發現資源。
+
+image:hana-sc-generic-image-009.png["寬度=601，高度=304"]
+
+
+
+=== 高可用度的伺服器SnapCenter
+
+SnapCenter可以配置為雙節點高可用性配置。在這種配置中，使用負載平衡器（例如 F5）來存取SnapCenter主機。SnapCenter會在兩個主機之間複製SnapCenter儲存庫（MySQL 資料庫），以便SnapCenter資料始終保持同步。
+
+如果在SnapCenter伺服器上安裝了 HANA 插件，則不支援SnapCenter伺服器高可用性。有關SnapCenter HA 的更多詳細信息，請訪問： https://docs.netapp.com/us-en/snapcenter/install/concept_configure_snapcenter_servers_for_high_availabiity_using_f5.html["配置SnapCenter伺服器以實現高可用性"]。
+
+image:hana-sc-generic-image-010.png["寬度=601，高度=307"]
+
+
+
+=== 中央插件主機
+
+如前一章所述，需要一個中央插件。
+
+* HANA 多主機系統
+* 運行在 IBM Power 上的 HANA 系統
+
+
+使用中央插件主機時，HANA 插件和 SAP HANA hdbsql 用戶端必須安裝在 HANA 資料庫主機以外的主機上。該主機可以是任何 Windows 或 Linux 主機，例如SnapCenter伺服器。
+
+
+NOTE: 在 Windows 系統上執行SnapCenter伺服器時，您可以將 Windows 系統用作中央插件主機。在 Linux 上執行SnapCenter伺服器時，必須使用不同的主機作為中央插件主機。
+
+對於 HANA 多主機系統，必須在中央插件主機上設定所有工作主機和備用主機的 SAP HANA 使用者儲存金鑰。SnapCenter嘗試使用提供的每個金鑰連接到資料庫，因此即使系統資料庫（HANA 名稱伺服器）故障轉移到不同的主機，它也能獨立運作。
+
+image:hana-sc-generic-image-011.png["寬度=601，高度=314"]
+
+對於由中央插件主機管理的多個單主機 HANA 系統，所有 HANA 系統的個別 SAP HANA 使用者儲存金鑰都必須在中央插件主機上進行設定。
+
+image:hana-sc-generic-image-012.png["寬度=601，高度=338"]
+
+
+
+== SAP HANA 區塊一致性檢查
+
+SAP 建議將定期 HANA 資料塊一致性檢查納入整體備份策略。傳統的基於檔案的備份方式，每次備份操作都會進行此檢查。使用快照備份時，除了執行快照備份作業之外，還必須執行一致性檢查，例如每週一次。
+
+從技術上講，執行區塊一致性檢查有兩種方法。
+
+* 執行基於檔案或基於 backint 的標準備份
+* 執行 HANA 工具 hdbpersdiag，另請參閱 https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/60e110ea8f9e457095210115487e11a6.html?locale=en-US&state=PRODUCTION&version=2.0.08&q=hdbpersdiag["持久性一致性檢查 | SAP 說明門戶"]
+
+
+HANA hdbpersdiag 工具是 HANA 安裝的一部分，允許對離線 HANA 資料庫執行區塊一致性檢查操作。因此，它非常適合與快照備份結合使用，可以將現有的快照備份呈現給 hdbpersdiag。
+
+比較這兩種方法，hdbpersdiag 在 HANA 區塊一致性檢查方面比基於檔案的備份具有顯著優勢。其中一個維度是所需的儲存容量。對於基於檔案的備份，每個 HANA 系統至少需要有一個備份大小的空間。例如，如果您有 15 個 HANA 系統，每個系統的持久化大小為 3TB，那麼您僅一致性檢查就需要額外的 45TB。使用 hdbpersdiag 不需要額外的儲存容量，因為該操作是針對現有的快照備份或現有快照備份的FlexClone執行的。第二個維度是 HANA 主機在一致性檢查作業期間的 CPU 負載。基於檔案的備份需要 HANA 資料庫主機上的 CPU 週期，而當與中央驗證主機結合使用時，hdbpersdiag 處理可以完全從 HANA 主機卸載。下表總結了主要特徵。
+
+[cols="34%,^33%,^33%"]
+|===
+|  | 所需儲存容量 | HANA主機的CPU與網路負載 
+
+
+| 基於檔案的備份 | 每個 HANA 系統至少需要 1 倍資料備份大小。 | 高的 
+
+
+| hdbpersdiag 使用 HANA 主機上的快照目錄（僅限 NFS） | 沒有任何 | 中等的 
+
+
+| 用於運行 hdbpersdiag 和FlexClone磁碟區的中央驗證主機 | 沒有任何 | 沒有任何 
+|===
+NetApp建議使用 hdbpersdiag 執行 HANA 區塊一致性檢查。有關實施的更多詳細信息，請參閱第 1 章。 link:hana-sc-generic-block-check.html["使用SnapCenter進行區塊一致性檢查"]。
+
+
+
+== 資料保護策略
+
+在設定SnapCenter 功能完善的功能和SAP HANA外掛程式之前、必須根據各種SAP系統的RTO和RPO需求來定義資料保護策略。
+
+常見的方法是定義系統類型、例如正式作業、開發、測試或沙箱系統。同一系統類型的所有SAP系統通常具有相同的資料保護參數。
+
+必須定義的參數包括：
+
+* Snapshot備份應多久執行一次？
+* Snapshot複本備份應保留在主要儲存系統上多久？
+* 應多久執行一次區塊完整性檢查？
+* 是否應該將主備份複製到輔助備份站點？
+* 備份檔案應該在輔助備份儲存裝置上保留多久？
+
+
+下表顯示了生產、開發和測試系統類型的資料保護參數範例。對於生產系統，已定義了較高的備份頻率，備份資料每天複製到輔助備份站點一次。測試系統的要求較低，且不需要複製備份。
+
+[cols="25%,25%,25%,25%"]
+|===
+| 參數 | 正式作業系統 | 開發系統 | 測試系統 
+
+
+| 備份頻率 | 每6小時 | 每6小時 | 每隔12小時 
+
+
+| 主要保留 | 3天 | 3天 | 6天 
+
+
+| 區塊完整性檢查 | 每週一次 | 每週一次 | 否 
+
+
+| 複製到輔助備份站點 | 每天一次 | 每天一次 | 否 
+
+
+| 二級備份保留 | 2週 | 2週 | 否 
+|===
+下表顯示了上述資料保護參數所需配置的策略和計畫。
+
+[cols="24%,23%,13%,12%,14%,14%"]
+|===
+| 政策 | 備份類型 | 排程頻率 | 主要保留 | 內部複寫SnapVault | 二次滯留 
+
+
+| LocalSnap | 快照型 | 每6小時 | 計數=12 | 否 | 不適用 
+
+
+| 本機快照和快照庫 | 快照型 | 每天一次 | 計數=2 | 是的 | 計數=14 
+
+
+| SnapAndCallHdbpersdiag | 快照型 | 每週一次 | 計數=2 | 否 | 不適用 
+|===
+
+NOTE: 對於ONTAP系統或 FSx for ONTAP ，必須在ONTAP中為SnapVault複製配置資料保護關係，然後SnapCenter才能執行SnapVault更新作業。二級保留策略在ONTAP保護策略中定義。
+
+
+NOTE: 對於 ANF 備份，在SnapCenter之外不需要額外的配置。ANF備份輔助保留由SnapCenter管理。
+
+
+NOTE: 在本範例配置中，hdbpersdiag 用於區塊完整性檢查操作。更多詳情請參考章節。 link:hana-sc-generic-block-check.html["使用SnapCenter進行區塊一致性檢查"]。
+
+下圖總結了計劃和備份保留期限。如果使用SnapCenter管理日誌備份保留，則所有早於最早的快照備份的日誌備份都將被刪除。換句話說，日誌備份會保留足夠長的時間，以便能夠及時將每個可用備份還原到目前狀態。
+
+image:hana-sc-generic-image-013.png["寬度=601，高度=192"]
+
+
+
+== 加密根金鑰備份
+
+使用 HANA 持久加密時，除了標準資料備份之外，建立根金鑰備份也至關重要。如果資料磁碟區和 HANA 安裝檔案系統遺失，則需要根金鑰備份來還原 HANA 資料庫。更多資訊請參見 https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b1e7562e2c704c19bd86f2f9f4feedc4.html["SAP HANA系統管理指南"]。
+
+
+NOTE: 請注意，如果根密鑰發生更改，則無法使用新的根密鑰來恢復先前建立的舊 HANA 資料庫備份。您始終需要建立備份時處於活動狀態的根金鑰。
+
+
+
+== 備份作業
+
+SnapCenter支援對具有單一或多個租用戶的 HANA MDC 系統進行快照備份作業。SnapCenter也支援 HANA MDC 系統的兩種不同的恢復操作。您可以還原整個系統、系統資料庫和所有租戶，也可以只恢復一個租戶。要讓SnapCenter能夠執行這些操作，需要滿足一些先決條件。
+
+在 MDC 系統中，租用戶配置不一定是靜態的。可以新增租戶，也可以刪除租戶。SnapCenter不能依賴 HANA 資料庫新增至SnapCenter時所發現的配置。若要實現單一租用戶復原作業， SnapCenter必須知道每個快照備份包含哪些租用戶。此外，它還必須知道快照備份中包含的每個租用戶分別擁有哪些檔案和目錄。
+
+因此，每次備份作業時， SnapCenter都會識別租用戶資訊。這包括租戶名稱以及相應的文件和目錄資訊。為了支援單一租用戶復原操作，必須將此資料儲存在快照備份元資料中。
+
+應用程式自動發現的另一個步驟是偵測 HANA 系統複製 (HSR) 主節點或輔助節點。如果 HANA 系統配置了 HSR，SnapCenter必須在每次備份作業中識別主節點，以便在 HSR 主節點上執行備份 SQL 指令。參見 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sr-scs-system-replication-overview.html["SAP HANA 系統複寫：使用 SnapCenter 進行備份與還原"]。
+
+SnapCenter還能偵測 HANA 資料卷配置，並將其對應到檔案系統和儲存資源。透過這種方法， SnapCenter可以處理 HANA 磁碟區組態更改，例如多個分割區或儲存配置更改，如磁碟區遷移。
+
+下一步是執行快照備份操作本身。此步驟包括觸發 HANA 資料庫快照、儲存快照備份的 SQL 指令，以及關閉 HANA 快照作業的 SQL 指令。透過使用 close 指令，HANA 資料庫會更新系統資料庫和每個租用戶的備份目錄。
+
+
+NOTE: 當一或多個租戶停止時、SAP不支援針對MDC系統進行Snapshot備份作業。
+
+為了保留資料備份和HANA備份目錄管理、SnapCenter 必須針對系統資料庫和第一步中識別的所有租戶資料庫、執行目錄刪除作業。如同記錄備份一樣、SnapCenter 非同步工作流程必須在備份作業的每個租戶上運作。
+
+下圖顯示備份工作流程的總覽。
+
+image:hana-sc-generic-image-014.png["寬度=601，高度=237"]
+
+
+
+== 備份保留管理
+
+資料備份保留管理與記錄備份管理可分為五大領域、包括保留管理：
+
+* 主儲存設備的本機備份
+* 檔案型備份
+* 輔助儲存上的備份（SnapVault或 ANF 備份）
+* SAP HANA備份目錄中的資料備份
+* SAP HANA 備份目錄和檔案系統中的日誌備份
+
+
+下圖概述不同的工作流程、以及每項作業的相依性。以下各節將詳細說明不同的作業。
+
+image:hana-sc-generic-image-015.png["寬度=601，高度=309"]
+
+
+
+=== 主儲存設備的本機備份保留管理
+
+SnapCenter負責 SAP HANA 資料庫備份和非資料磁碟區備份的維護，它會根據SnapCenter備份原則中定義的保留期限，刪除主儲存和SnapCenter儲存庫中的快照副本。SnapCenter中的每個備份工作流程都包含保留管理功能。也可以在SnapCenter中手動刪除主儲存體上的本機備份。
+
+
+
+=== 檔案型備份的保留管理
+
+SnapCenter透過根據SnapCenter備份策略中定義的保留期限刪除檔案系統上的備份來管理基於檔案的備份。SnapCenter中的每個備份工作流程都會執行保留管理邏輯。
+
+
+
+=== 輔助儲存（SnapVault）備份的保留管理
+
+輔助儲存（SnapVault）上的備份保留管理由ONTAP依據ONTAP保護關係中定義的保留期限進行處理。為了將這些變更同步到SnapCenter儲存庫的輔助儲存上， SnapCenter使用計畫清理作業。此清理作業會將所有輔助儲存備份與SnapCenter儲存庫同步，以涵蓋所有SnapCenter外掛程式和所有資源。
+
+預設情況下，清理工作每周安排一次。與輔助儲存中已刪除的備份相比，這種每週計畫會導致SnapCenter和 SAP HANA Studio 中已刪除的備份出現延遲。為了避免這種不一致，客戶可以將送貨頻率提高，例如每天一次。有關如何調整清理作業的計劃或如何觸發手動刷新的詳細信息，請參閱相關章節。 link:hana-sc-generic-backup-operations.html#cleanup-of-secondary-backups["清理輔助備份"]。
+
+
+
+=== 輔助儲存（ANF備份）備份的保留管理
+
+ANF 備份的保留由SnapCenter配置和處理。SnapCenter透過根據SnapCenter備份策略中定義的保留期限刪除備份來處理 ANF 備份的清理工作。SnapCenter中的每個備份工作流程都包含保留管理功能。
+
+
+
+=== SAP HANA備份目錄中的資料備份保留管理
+
+當SnapCenter刪除任何備份（本機快照或基於檔案的備份）時，或當SnapCenter偵測到輔助儲存中的備份被刪除時，此資料備份也會在 SAP HANA 備份目錄中被刪除。在刪除主儲存中本機快照備份的 SAP HANA 目錄項目之前， SnapCenter會檢查輔助儲存中是否存在該備份。
+
+
+
+=== 記錄備份的保留管理
+
+SAP HANA 資料庫會自動建立日誌備份。這些操作會在 SAP HANA 中設定的備份目錄中為每個 SAP HANA 服務建立備份檔案。早於最新資料備份的日誌備份不再需要用於向前恢復，因此可以刪除。SnapCenter透過執行以下步驟，在檔案系統層級以及 SAP HANA 備份目錄中處理日誌檔案備份的維護工作：
+
+. SnapCenter讀取 SAP HANA 備份目錄，以取得最早的成功資料備份的備份 ID。
+. 還原刪除SAP HANA目錄中的所有記錄備份、以及早於此備份ID的檔案系統。SnapCenter
+
+
+
+NOTE: 僅處理由還原所建立備份的內部管理作業。SnapCenter SnapCenter如果在SnapCenter 不支援的情況下建立其他檔案型備份、您必須確定已從備份目錄中刪除檔案型備份。如果這類資料備份未從備份目錄手動刪除、則可能會成為最舊的資料備份、而且在刪除此檔案型備份之前、不會刪除舊版記錄備份。
+
+
+NOTE: 即使策略配置中定義了按需備份的保留策略，但只有在執行另一個按需備份時才會進行清理工作。因此，通常必須在SnapCenter中手動刪除按需備份，以確保這些備份也在 SAP HANA 備份目錄中被刪除，並且日誌備份清理不會基於舊的按需備份。
+
+
+NOTE: 日誌備份保留管理預設啟用。如有需要，可以依照「停用自動日誌備份清理」部分的說明停用此功能。

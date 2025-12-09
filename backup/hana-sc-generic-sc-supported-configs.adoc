@@ -1,0 +1,343 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-supported-configs.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 了解SnapCenter支援的 SAP HANA 配置
+:allow-uri-read: 
+
+
+[role="lead"]
+SnapCenter支援各種 SAP HANA 系統架構和部署場景，涵蓋本機和雲端儲存平台。了解每個環境支援的 SAP HANA 配置、平台組合、儲存協定以及可用的備份和復原作業。
+
+
+
+== 支援的 SAP HANA 配置
+
+SnapCenter支援以下 HANA 配置和功能：
+
+* SAP HANA 單主機系統
+* SAP HANA 多主機系統
++
+** 需要按照所述進行集中式插件部署 link:hana-sc-generic-concepts.html#deployment-options-for-snapcenter-plug-in-for-sap-hana["SnapCenter插件在 SAP HANA 中的部署選項"]。
+
+
+* SAP HANA MDC 系統
++
+** 單一租戶或多個租戶
+
+
+* 具有多個分割區的 SAP HANA 系統
+* SAP HANA系統複寫
+* SAP HANA 加密（資料、日誌、備份）
+
+
+
+
+== 支援的平台和基礎架構配置
+
+SnapCenter支援以下主機平台、檔案系統和儲存平台的組合。
+
+[cols="24%,47%,29%"]
+|===
+| 主機平台 | SAP HANA 儲存連接和檔案系統 | 儲存平台 
+
+
+| VMware | 客戶機內 NFS 掛載 | ONTAP AFF 
+
+
+| VMware | FC 資料儲存（VMFS + XFS 虛擬機，有或沒有 Linux LVM） | ONTAP AFF或ASA 
+
+
+| 虛擬機 | 客戶機內 NFS 掛載 | ONTAP AFF 
+
+
+| 裸機伺服器 | NFS掛載 | ONTAP AFF 
+
+
+| 裸機伺服器 | FC SAN+ 和 XFS（有或沒有 Linux LVM） | ONTAP AFF或ASA (*) 
+
+
+| Azure VM | NFS掛載 | Azure NetApp Files 
+
+
+| AWS EC2 | NFS掛載 | 適用於ONTAP的 FSx 
+|===
+(*): 從SnapCenter 6.2 版本開始提供ASA支持
+
+
+NOTE: HANA 和 Linux 外掛僅適用於 Intel CPU 平台。對於 IBM Power 上的 Linux 系統，需要依照下列說明設定中央 HANA 插件部署： link:hana-sc-generic-concepts.html#deployment-options-for-snapcenter-plug-in-for-sap-hana["SnapCenter插件在 SAP HANA 中的部署選項"]。
+
+
+
+== 支援的功能和操作
+
+
+
+=== 縮寫解釋
+
+* VBSR：基於磁碟區的SnapRestore+ 基於磁碟區的SnapRestore會將磁碟區還原到快照的狀態。
+* SFSR：單一檔案SnapRestore + 單一檔案SnapRestore可用於復原磁碟區中的特定檔案或 LUN。
+
+
+參見 https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_types_of_restore_performed_for_auto_discovered_sap_hana_databases.html["自動發現的 SAP HANA 資料庫的還原操作類型"]
+
+
+
+=== ONTAP AFF和 FSx for ONTAP
+
+
+NOTE: 下表中只有第 1 列（NFS 掛載）與 FSx for ONTAP相關。
+
+[cols="40%,20%,20%,20%"]
+|===
+| 手術 | NFS掛載點可以是裸機，也可以是VMware或KVM虛擬機內部。 | FC SAN + 裸金屬 | FC 資料儲存 VMware VMFS 
+
+
+| HANA資料庫快照備份與復原作業 |  |  |  
+
+
+| 快照備份 | 是的 | 是的 | 是的 
+
+
+| 防篡改快照 | 是的 | 是的 | 是的 
+
+
+| 完全恢復 | VBSR 或 SFSR（可選） | 完整 LUN 的 SFSR | 克隆、掛載、複製 
+
+
+| 單一租戶恢復 | 蘇維埃社會主義共和國 | 克隆、掛載、複製 | 克隆、掛載、複製 
+
+
+| * SnapVault HANA 資料庫備份與復原作業* |  |  |  
+
+
+| 內部複寫SnapVault | 是的 | 是的 | 是的 
+
+
+| 防篡改快照 | 是的 | 是的 | 是的 
+
+
+| 完全恢復 | 是的 | 是的 | 克隆、掛載、複製 
+
+
+| 單一租戶恢復 | 是的 | 克隆、掛載、複製 | 克隆、掛載、複製 
+
+
+| *從主快照或SnapVault目標執行 HANA 復原操作* |  |  |  
+
+
+| 自動恢復 MDC 單一租戶 | 是的 | 是的 | 是的 
+
+
+| 自動恢復 MDC 多租戶 | 否 | 否 | 否 
+
+
+| *備份和還原非資料卷* |  |  |  
+
+
+| 快照備份 | 是的 | 是的 | 是的 （*） 
+
+
+| 從快照還原 | VBSR 或 SFSR（可選） | 完整 LUN 的 SFSR | VBSR (*) 
+
+
+| 內部複寫SnapVault | 是的 | 是的 | 是的 （*） 
+
+
+| 從SnapVault目標恢復 | 是的 | 是的 | 是的 （*） 
+
+
+| SAP系統刷新 |  |  |  
+
+
+| 來自主快照 | 是的 | 是的 （**） | 是的 （**） 
+
+
+| 來自SnapVault目標 | 是的 | 是的 （**） | 是的 （**） 
+
+
+| *HA 和 DR* |  |  |  
+
+
+| HSR 支援快照和SnapVault | 是的 | 是的 | 是的 
+
+
+| SnapMirror複製更新與SC | 是的 | 是的 | 是的 
+
+
+| SnapMirror主動同步 | 不適用 | 是的 | 是的 
+|===
+(*): 無 VMware 整合 - 崩潰映像快照和完整磁碟區恢復
+
+（**）： SnapCenter版本低於 6.2 時需要使用變通方法
+
+
+
+=== ONTAP ASA
+
+[cols="40%,30%,30%"]
+|===
+| 手術 | FC SAN + 裸機 (*) | FC 資料儲存 VMware VMFS 
+
+
+| HANA資料庫快照備份與復原作業 |  |  
+
+
+| 快照備份 | 是的 | 是的 
+
+
+| 防篡改快照 | 否 | 否 
+
+
+| 完全恢復 | 完整 LUN 的 SFSR | 克隆、掛載、複製 
+
+
+| 單一租戶恢復 | 克隆、掛載、複製 | 克隆、掛載、複製 
+
+
+| * SnapVault HANA 資料庫備份與復原作業* |  |  
+
+
+| 內部複寫SnapVault | 是的 | 是的 
+
+
+| 防篡改快照 | 否 | 否 
+
+
+| 完全恢復 | 是的 | 克隆、掛載、複製 
+
+
+| 單一租戶恢復 | 克隆、掛載、複製 | 克隆、掛載、複製 
+
+
+| *從主快照或SnapVault目標執行 HANA 復原操作* |  |  
+
+
+| 自動恢復 MDC 單一租戶 | 是的 | 是的 
+
+
+| 自動恢復 MDC 多租戶 | 否 | 否 
+
+
+| *備份和還原非資料卷* |  |  
+
+
+| 快照備份 | 是的 （*） | 是的 （*） 
+
+
+| 從快照還原 | 完整 LUN 的 SFSR (*) | 完整 LUN 的 SFSR (*) 
+
+
+| 內部複寫SnapVault | 是的 （*） | 是的 （*） 
+
+
+| 從SnapVault目標恢復 | 是的 （*） | 是的 （*） 
+
+
+| SAP系統刷新 |  |  
+
+
+| 來自主快照 | 是的 （**） | 是的 （**） 
+
+
+| 來自SnapVault目標 | 是的 （**） | 是的 （**） 
+
+
+| *HA 和 DR* |  |  
+
+
+| HSR 支援快照和SnapVault | 是的 | 是的 
+
+
+| SnapMirror複製更新由SnapCenter觸發 | 是的 | 是的 
+
+
+| SnapMirror主動同步 | 是的 | 是的 
+|===
+(*): 從SnapCenter 6.2 版本開始支持
+
+（**）： SnapCenter版本低於 6.2 時需要使用變通方法
+
+
+
+=== Azure NetApp Files
+
+[cols="60%,40%"]
+|===
+| 手術 | NFS掛載 
+
+
+| HANA資料庫快照備份與復原作業 |  
+
+
+| 快照備份 | 是的 
+
+
+| 防篡改快照 | 否 
+
+
+| 完全就地恢復 | 音量恢復或SFSR（可選） 
+
+
+| 單一租戶恢復 | 蘇維埃社會主義共和國 
+
+
+| *HANA資料庫的ANF備份與復原作業* |  
+
+
+| ANF備份複製 | 是的 
+
+
+| 防篡改快照 | 否 
+
+
+| 完全就地恢復 | 是的 
+
+
+| 單一租戶恢復 | 是的 
+
+
+| *從主快照或 ANF 備份進行 HANA 還原作業* |  
+
+
+| 自動恢復 MDC 單一租戶 | 是的 
+
+
+| 自動恢復 MDC 多租戶 | 否 
+
+
+| *備份和還原非資料卷* |  
+
+
+| 快照備份 | 是的 
+
+
+| 從快照還原 | 銷量回落 
+
+
+| ANF備份複製 | 是的 
+
+
+| 從 ANF 備份進行完整原地恢復 | 不 （*） 
+
+
+| SAP系統刷新 |  
+
+
+| 來自主快照 | 是的 
+
+
+| 來自 ANF 備份 | 是的 
+
+
+| *HA 和 DR* |  
+
+
+| HSR 支援快照和 ANF 備份 | 是的 
+
+
+| SnapCenter觸發的跨區域複製更新 | 否 
+|===
+(*): 在目前版本中，還原作業必須使用 Azure 入口網站或 CLI 執行。

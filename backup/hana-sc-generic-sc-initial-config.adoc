@@ -1,0 +1,327 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-initial-config.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 配置 SAP HANA 的初始SnapCenter設置
+:allow-uri-read: 
+
+
+[role="lead"]
+透過設定 Azure 服務主體的憑證、新增儲存系統以及建立快照備份、區塊完整性檢查和輔助複製策略，為 SAP HANA 環境配置初始SnapCenter設定。
+
+SnapCenter 的初始配置包括以下步驟：
+
+. 認證設定
++
+.. 對於配置了Azure NetApp Files(ANF) 的 HANA 系統，必須準備一個服務主體，然後在SnapCenter中進行設定。
+.. 必須提供主機憑證，才能在 HANA 資料庫主機上自動安裝 HANA 插件。
+
+
+. 儲存系統組態
++
+.. 對於配置了 ANF 的 HANA 系統，可以選擇所需的NetApp帳戶並將其新增至SnapCenter配置中。
+.. 對於ONTAP或 FSx for ONTAP儲存系統，可以將 SVM 或整個儲存叢集新增至SnapCenter。
+
+
+. 原則組態
++
+.. 可以為 ANF 以及ONTAP和 FSx for ONTAP儲存系統設定基於快照的備份策略以及區塊完整性檢查作業。
+.. 防篡改快照和使用SnapVault或SnapMirror的輔助備份策略只能配置於ONTAP和 FSx for ONTAP儲存系統。
+.. 對於配置了 ANF 的 HANA 系統，策略可以包含 https://learn.microsoft.com/en-us/azure/azure-netapp-files/backup-introduction["ANF備份"]。
+
+
+
+
+
+NOTE: 相同的快照備份策略既可用於 HANA 資料庫，也可用於非資料卷，例如 HANA 共用磁碟區。
+
+下圖總結了配置部分。
+
+image:hana-sc-generic-image-017.png["寬度=601，高度=158"]
+
+以下章節將介紹初步設定步驟。
+
+
+
+== 認證設定
+
+
+
+=== HANA插件部署憑證
+
+憑證在「設定」部分中配置，方法是選擇「憑證」標籤。點擊“+”圖示即可新增憑證。
+
+image:hana-sc-generic-image-018.png["寬度=601，高度=118"]
+
+NetApp建議在所有 HANA 資料庫主機上設定一個使用者（例如 scuser），並依照指示設定 sudo 權限。 https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_prerequisites_to_adding_hosts_and_installing_snapcenter_plug_in_for_sap_hana_database.html#windows-hosts["新增主機和安裝適用於 SAP HANA 資料庫的SnapCenter插件的先決條件"]。
+
+image:hana-sc-generic-image-019.png["寬度=287，高度=247"]
+
+
+
+=== Azure NetApp Files憑證
+
+必須準備 Azure 服務主體，以便SnapCenter能夠對 ANF 磁碟區執行所需的操作。下面的範例顯示了必須包含的最低必要權限。
+
+....
+
+    "assignableScopes": [
+        "/subscriptions/xxx"
+    ],
+    "createdBy": "xxx",
+    "createdOn": "2025-05-07T07:12:14.451483+00:00",
+    "description": "Restricted Access for SnapCenter ",
+    "id": "/subscriptions/xxx/providers/Microsoft.Authorization/roleDefinitions/xxx",
+    "name": "xxx",
+    "permissions": [
+        {
+            "actions": [
+            "Microsoft.NetApp/register/action",
+            "Microsoft.NetApp/unregister/action",
+            "Microsoft.NetApp/netAppAccounts/read",
+            "Microsoft.NetApp/netAppAccounts/getKeyVaultStatus/action",
+            "Microsoft.NetApp/netAppAccounts/migrateEncryption/action",
+            "Microsoft.NetApp/netAppAccounts/transitionToCmk/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/write",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/delete",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/revert/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/poolChange/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/finalizeRelocation/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/revertRelocation/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/breakFileLocks/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/getGroupIdListForLdapUser/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/backups/write",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/backups/restoreFiles/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/write",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/delete",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/restoreFiles/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/write",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/getMetadata/action",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/volumeQuotaRules/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/latestRestoreStatus/current/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/mountTargets/read",
+            "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/restoreStatus/read",
+            "Microsoft.NetApp/netAppAccounts/snapshotPolicies/read",
+            "Microsoft.NetApp/netAppAccounts/snapshotPolicies/write",
+            "Microsoft.NetApp/netAppAccounts/snapshotPolicies/listVolumes/read",
+            "Microsoft.NetApp/netAppAccounts/snapshotPolicies/volumes/read",
+            "Microsoft.NetApp/netAppAccounts/volumeGroups/read",
+            "Microsoft.NetApp/netAppAccounts/volumeGroups/write",
+            "Microsoft.NetApp/locations/checknameavailability/action",
+            "Microsoft.NetApp/locations/checkfilepathavailability/action",
+            "Microsoft.NetApp/locations/operationresults/read",
+            "Microsoft.NetApp/Operations/read",
+            "Microsoft.Resources/resources/read",
+            "Microsoft.Resources/subscriptions/resourceGroups/read",
+            "Microsoft.Resources/subscriptions/resourcegroups/resources/read",
+            "Microsoft.Network/virtualNetworks/read",
+            "Microsoft.Network/virtualNetworks/subnets/read",
+            "Microsoft.Network/virtualNetworks/write",
+            "Microsoft.Network/virtualNetworks/subnets/write"
+            ],
+            "condition": null,
+            "conditionVersion": null,
+            "dataActions": [],
+            "notActions": [],
+            "notDataActions": []
+        }
+    ],
+    "roleName": "SnapCenter-Restricted-Access",
+    "roleType": "CustomRole",
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": "xxx",
+    "updatedOn": "2025-05-07T07:12:14.451483+00:00"
+}
+....
+憑證在「設定」部分中配置，方法是選擇「憑證」標籤。點擊“+”圖示即可配置憑證。
+
+image:hana-sc-generic-image-020.png["寬度=601，高度=116"]
+
+在下列畫面中，必須提供憑證名稱，並且必須選擇驗證模式「Azure 憑證」。然後需要配置租戶ID、客戶端ID和客戶端密鑰。
+
+image:hana-sc-generic-image-021.png["寬度=252，高度=246"]
+
+
+
+== 儲存系統組態
+
+
+
+=== ONTAP系統和 FSx for ONTAP
+
+可以透過提供叢集憑證或每個所需 SVM 的憑證，將ONTAP系統或 FSx for ONTAP新增至SnapCenter 。當提供叢集憑證時，叢集中的所有 SVM 都會新增到SnapCenter。
+
+在我們的實驗室設置中，我們將儲存叢集新增至SnapCenter 。在「儲存系統」部分，透過選擇ONTAP儲存標籤和ONTAP叢集類型來配置ONTAP叢集。點擊“+”圖示即可新增新的集群。
+
+image:hana-sc-generic-image-022.png["寬度=601，高度=117"]
+
+在以下畫面中，您需要提供群集使用者的憑證。
+
+
+NOTE: 不應使用群集使用者管理員。相反，應該按照所述方式建立一個具有所需權限的新使用者。 https://docs.netapp.com/us-en/snapcenter/install/task_create_an_ontap_cluster_role_with_minimum_privileges.html["建立具有最低權限的ONTAP叢集角色"]ASA系統所需的權限可在下列位置找到： https://docs.netapp.com/us-en/snapcenter/install/create-cluster-roles-asa-r2-resources.html["為ASA r2 系統建立ONTAP叢集角色"]。
+
+image:hana-sc-generic-image-023.png["寬度=299，高度=176"]
+
+在儲存系統部分，透過選擇ONTAP儲存標籤和ONTAP SVMS 類型來設定 SVM。點擊“+”圖示即可新增新的SVM。
+
+在以下畫面中，您需要提供群集使用者的憑證。
+
+
+NOTE: 不應使用 SVM 使用者 vsadmin。相反，應該按照所述方式建立一個具有所需權限的新使用者。 https://docs.netapp.com/us-en/snapcenter/install/create-svm-roles-minimum-privileges.html["建立具有最低權限的 SVM 角色"]ASA系統所需的權限可在下列位置找到： https://docs.netapp.com/us-en/snapcenter/install/create-svm-roles-asa-r2-resources.html["為ASA r2 系統建立 SVM 角色"]。
+
+
+NOTE: SVM 的 DNS 名稱必須與ONTAP系統中配置的 SVM 名稱相符。
+
+image:hana-sc-generic-image-024.png["寬度=331，高度=199"]
+
+
+
+=== Azure NetApp Files
+
+設定 ANF 憑證後，即可將 ANF NetApp帳戶新增至SnapCenter。NetApp帳戶在「儲存系統」部分中配置，方法是選擇Azure NetApp Files標籤。點擊「+」圖示即可新增新的NetApp帳號。
+
+image:hana-sc-generic-image-025.png["寬度=601，高度=117"]
+
+選擇 ANF 憑證和訂閱後，即可將NetApp帳號新增至SnapCenter。
+
+image:hana-sc-generic-image-026.png["寬度=401，高度=176"]
+
+
+
+=== 使用SnapMirror主動同步時的儲存配置
+
+具體儲存配置步驟詳見下文。 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmware-smas-sc-config.html#add-storage-systems["使用SnapMirror主動同步的儲存配置"]。
+
+
+
+== 原則組態
+
+如本節所述，資料保護策略策略通常獨立於資源進行配置，並且可以用於多個 SAP HANA 系統。
+
+典型的最低組態包含下列原則：
+
+* 不進行複製的每小時備份策略
+* 使用SnapVault或 ANF 備份複製進行每日備份的策略
+* 每週區塊完整性檢查操作政策
++
+** 使用基於檔案的備份
+** 使用 HANA 工具 hdbpersdiag
+
+
+
+
+以下各節將說明這三項原則的組態。
+
+策略在「設定」部分中配置，方法是選擇「策略」標籤。點擊“+”圖示即可配置新策略。下面的兩個螢幕截圖分別顯示了使用Azure NetApp Files運行的 HANA 系統的政策清單和使用ONTAP儲存系統或 FSx for ONTAP運行的 HANA 系統的策略清單。
+
+image:hana-sc-generic-image-027.png["寬度=601，高度=133"]
+
+image:hana-sc-generic-image-028.png["寬度=601，高度=138"]
+
+
+
+=== 使用ONTAP系統和 FSx for ONTAP進行快照備份
+
+ONTAP系統或 FSx for ONTAP的快照備份策略可以將本機快照與複製或快照鎖定（防篡改快照）操作結合。此範例展示了使用SnapVault複製到輔助儲存的策略。
+
+請提供保單名稱，並可新增保單說明。
+
+image:hana-sc-generic-image-029.png["寬度=376，高度=103"]
+
+選擇ONTAP儲存類型和快照策略範圍。
+
+image:hana-sc-generic-image-030.png["寬度=385，高度=97"]
+
+此策略配置了每日行程安排類型。每天都會建立一個快照，並且快照增量將使用SnapVault複製到輔助儲存。
+
+
+NOTE: 該計劃本身是根據各個 HANA 資源保護配置進行配置的。
+
+策略中配置的保留策略僅對主快照有效。SnapVault目標處的保留策略是根據ONTAP複製關係，針對 HANA 資料庫的各個磁碟區進行配置的，具體配置方式請參閱第 1 章。 link:hana-sc-generic-backup-operations.html["SAP HANA 快照備份作業"]。策略中配置的快照標籤必須與ONTAP複製關係中配置的標籤相符。
+
+點擊複選框並定義鎖定週期即可啟用快照鎖定（防篡改快照）。此功能需要在儲存系統上擁有SnapLock許可證，並且需要配置合規時脈。
+
+僅針對本機快照的策略可以透過設定每小時更新一次的計劃，並停用「更新SnapVault」複選框來配置。
+
+image:hana-sc-generic-image-031.png["寬度=378，高度=352"]
+
+摘要畫面顯示已配置的參數。
+
+image:hana-sc-generic-image-032.png["寬度=385，高度=119"]
+
+
+
+=== 使用Azure NetApp Files進行快照備份
+
+Azure NetApp Files快照備份策略可將本機快照與 ANF 備份結合，從而將快照資料複製到 Azure Blob。此範例展示了使用 ANF 備份進行複製的策略。
+
+請提供保單名稱，並可新增保單說明。
+
+image:hana-sc-generic-image-033.png["寬度=356，高度=95"]
+
+選擇Azure NetApp Files儲存類型和快照策略範圍。
+
+image:hana-sc-generic-image-034.png["寬度=360，高度=102"]
+
+此策略配置了每日行程安排類型。每天都會建立一個快照，快照增量將使用 ANF 備份複製到備份庫。
+
+
+NOTE: 該計劃本身是根據各個 HANA 資源保護配置進行配置的。
+
+策略中設定的快照保留策略對 ANF 磁碟區上的主快照有效。ANF 備份的保留期限透過備份保留設定進行設定。
+
+僅本地快照策略可以透過設定每小時一次的計劃，並取消勾選「啟用備份」複選框來配置。
+
+image:hana-sc-generic-image-035.png["寬度=373，高度=361"]
+
+摘要畫面顯示已配置的參數。
+
+image:hana-sc-generic-image-036.png["寬度=376，高度=138"]
+
+
+
+=== 所有平台的區塊完整性檢查操作
+
+
+
+==== HANA 工具 hdbpersdiag
+
+詳情請見章節。 link:hana-sc-generic-block-check.html["使用SnapCenter進行區塊一致性檢查"]。
+
+
+
+==== 基於檔案的備份
+
+請提供保單名稱，並可新增保單說明。
+
+image:hana-sc-generic-image-037.png["寬度=346，高度=95"]
+
+根據您的設定選擇ONTAP或Azure NetApp Files儲存類型，並選擇基於檔案的策略範圍。
+
+image:hana-sc-generic-image-038.png["寬度=357，高度=98"]
+
+如前所述，建議每週執行一次區塊完整性檢查。因此，我們選擇每週制定一個計劃表。
+
+
+NOTE: 該計劃本身是根據各個 HANA 資源保護配置進行配置的。
+
+
+NOTE: 檔案備份寫入的檔案系統必須提供足夠的容量，以容納比保留設定中定義的備份數量多一個的備份，因為SnapCenter會在建立新備份後刪除舊備份。在這個例子中，需要兩個備份的空間，但只保留一個備份。最小可配置保留值為零。
+
+image:hana-sc-generic-image-039.png["寬度=351，高度=173"]
+
+摘要畫面顯示已配置的參數。
+
+image:hana-sc-generic-image-040.png["寬度=366，高度=101"]
+
+
+
+=== 使用SnapMirror主動同步時的政策配置
+
+文件中描述了具體的策略配置步驟。 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmware-smas-sc-config.html#policy-configuration["策略配置SnapMirror活動同步"]。

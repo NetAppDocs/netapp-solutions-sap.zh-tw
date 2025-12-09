@@ -84,8 +84,8 @@ vgchange -a y
 在所有資料和日誌邏輯磁碟區以及 hana 共用 LUN 上建立 XFS 檔案系統。
 
 ....
-mkfs.xfs FC5_data_mnt00001-vol
-mkfs.xfs FC5_log_mnt00001-vol
+mkfs.xfs /dev/mapper/FC5_data_mnt00001-vol
+mkfs.xfs /dev/mapper/FC5_log_mnt00001-vol
 mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
 
@@ -98,8 +98,8 @@ mkfs.xfs /dev/mapper/svm1-FC5_shared
 sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
 sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00001
 sapcc-hana-tst:/ # mkdir -p /hana/shared
-sapcc-hana-tst:/ # chmod –R 777 /hana/log/FC5
-sapcc-hana-tst:/ # chmod –R 777 /hana/data/FC5
+sapcc-hana-tst:/ # chmod -R 777 /hana/log/FC5
+sapcc-hana-tst:/ # chmod -R 777 /hana/data/FC5
 sapcc-hana-tst:/ # chmod 777 /hana/shared
 ....
 
@@ -110,11 +110,11 @@ sapcc-hana-tst:/ # chmod 777 /hana/shared
 
 ....
 # cat /etc/fstab
-/dev/mapper/hana-FC5_shared /hana/shared xfs defaults 0 0
+/dev/mapper/svm1-FC5_shared /hana/shared xfs defaults 0 0
 /dev/mapper/FC5_log_mnt00001-vol /hana/log/FC5/mnt00001 xfs relatime,inode64 0 0
 /dev/mapper/FC5_data_mnt00001-vol /hana/data/FC5/mnt00001 xfs relatime,inode64 0 0
 ....
 
 NOTE: 用於資料和記錄LUN的XFS檔案系統必須使用「RELatime」和「inode64」掛載選項掛載。
 
-若要掛載檔案系統，請執行 `mount –a`在主機上執行指令。
+若要掛載檔案系統，請執行下列命令 `mount -a` 在主機上執行指令。

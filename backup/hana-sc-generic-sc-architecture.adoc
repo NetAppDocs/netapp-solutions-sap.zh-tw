@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-architecture.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 了解SnapCenter架構
+:allow-uri-read: 
+
+
+[role="lead"]
+了解SnapCenter的 SAP HANA 資料保護架構，包括SnapCenter伺服器、插件元件和支援的儲存平台。SnapCenter為ONTAP系統、 Azure NetApp Files和 FSx for ONTAP上的 SAP HANA 資料庫提供集中式備份、復原和複製管理。
+
+SnapCenter是一個統一的平台，用於實現應用程式一致的資料保護。SnapCenter提供集中控制和監督，同時允許使用者管理特定應用程式的備份、復原和複製作業。NetApp SnapCenter是一款單一工具，資料庫和儲存管理員可以使用它來管理各種應用程式和資料庫的備份、還原和複製作業。SnapCenter支援NetApp ONTAP儲存系統，以及Azure NetApp Files和 FSx for ONTAP。您也可以使用SnapCenter在本機環境之間、本機環境與雲端之間以及私有雲、混合雲或公有雲之間複製資料。
+
+SnapCenter包含SnapCenter伺服器和SnapCenter插件。這些插件適用於各種應用程式和基礎架構元件。SnapCenter伺服器既可以在 Windows 上運行，也可以在 Linux 上運行。
+
+image:hana-sc-generic-image-005.png["寬度=601，高度=275"]

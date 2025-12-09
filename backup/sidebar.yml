@@ -2,6 +2,38 @@
 section: backup
 title: 備份、還原及災難恢復
 entries:
+- title: SAP HANA利用SnapCenter NetApp備份與還原
+  entries:
+  - title: 解決方案總覽
+    url: "/backup/hana-sc-generic-scope.html"
+  - title: SAP HANA 資料保護
+    url: "/backup/hana-sc-generic-overview-dp.html"
+  - title: 架構SnapCenter
+    url: "/backup/hana-sc-generic-sc-architecture.html"
+  - title: SnapCenter for SAP HANA 備份解決方案
+    url: "/backup/hana-sc-generic-sc-backup-solution.html"
+  - title: SnapCenter支援的配置
+    url: "/backup/hana-sc-generic-sc-supported-configs.html"
+  - title: 概念和最佳實踐
+    url: "/backup/hana-sc-generic-concepts.html"
+  - title: SnapCenter配置概述
+    url: "/backup/hana-sc-generic-sc-config-overview.html"
+  - title: 初始組態SnapCenter
+    url: "/backup/hana-sc-generic-sc-initial-config.html"
+  - title: SAP HANA資料庫備份的資源專屬組態SnapCenter
+    url: "/backup/hana-sc-generic-sc-resource-config.html"
+  - title: 非資料磁碟區備份的資源特定組態SnapCenter
+    url: "/backup/hana-sc-generic-sc-config-non-data-vols.html"
+  - title: 中央插件主機配置
+    url: "/backup/hana-sc-generic-central-plugin.html"
+  - title: SAP HANA 快照備份作業
+    url: "/backup/hana-sc-generic-backup-operations.html"
+  - title: 使用SnapCenter進行區塊一致性檢查
+    url: "/backup/hana-sc-generic-block-check.html"
+  - title: 使用SnapCenter進行復原和還原
+    url: "/backup/hana-sc-generic-restore.html"
+  - title: 進階組態與調校
+    url: "/backup/hana-sc-generic-advanced-config.html"
 - title: SAP HANA on Amazon FSX for NetApp ONTAP Sf-利用SnapCenter NetApp進行備份與恢復
   entries:
   - title: 總覽
@@ -34,36 +66,6 @@ entries:
       url: "/backup/fsxn-restore-recover-from-secondary-storage.html"
   - title: 何處可找到其他資訊
     url: "/backup/fsxn-additional-info.html"
-- title: SAP HANA利用SnapCenter NetApp備份與還原
-  entries:
-  - title: 總覽
-    url: "/backup/hana-br-scs-overview.html"
-  - title: 架構SnapCenter
-    url: "/backup/hana-br-scs-snapcenter-architecture.html"
-  - title: SAP HANA備份解決方案SnapCenter
-    url: "/backup/hana-br-scs-snapcenter-backup.html"
-  - title: 概念與最佳實務做法SnapCenter
-    url: "/backup/hana-br-scs-concepts-best-practices.html"
-  - title: 本報告所使用的實驗室設定
-    url: "/backup/hana-br-scs-lab-setup.html"
-  - title: 組態SnapCenter
-    url: "/backup/hana-br-scs-snapcenter-config.html"
-  - title: 初始組態SnapCenter
-    url: "/backup/hana-br-scs-snapcenter-initial-config.html"
-  - title: SAP HANA資料庫備份的資源專屬組態SnapCenter
-    url: "/backup/hana-br-scs-resource-config-hana-database-backups.html"
-  - title: 非資料磁碟區備份的資源特定組態SnapCenter
-    url: "/backup/hana-br-scs-resource-specific-config-non-data-volume-backups.html"
-  - title: 資料庫備份
-    url: "/backup/hana-br-scs-database-backups.html"
-  - title: 區塊完整性檢查
-    url: "/backup/hana-br-scs-block-integrity-check.html"
-  - title: 還原與還原
-    url: "/backup/hana-br-scs-restore-recovery.html"
-  - title: 進階組態與調校
-    url: "/backup/hana-br-scs-advanced-config-tuning.html"
-  - title: 何處可以找到其他資訊和版本歷程記錄
-    url: "/backup/hana-br-scs-additional-info.html"
 - title: SnapCenter ， SnapMirror Active Sync 和 VMware Metro Storage 叢集提供 SAP HANA
     資料保護和高可用度
   entries:

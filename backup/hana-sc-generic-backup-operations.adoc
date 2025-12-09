@@ -1,0 +1,240 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-backup-operations.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 在SnapCenter中了解 SAP HANA 快照的備份作業
+:allow-uri-read: 
+
+
+[role="lead"]
+使用SnapCenter執行 SAP HANA 快照備份。了解如何使用SnapVault或Azure NetApp Files備份進行資料庫快照備份、區塊完整性檢查、非資料磁碟區備份和備份複製。
+
+在功能方面、資料庫備份通常是使用每個HANA資料庫的資源保護組態中定義的排程來執行。SnapCenter
+
+您可以使用SnapCenter RESIGUI、PowerShell命令列或REST API來執行隨需資料庫備份。
+
+SnapCenter支援以下備份操作。
+
+* HANA 資料庫快照備份作業
+* 區塊完整性檢查操作
+* 非資料磁碟區的快照備份
+* 使用SnapVault或 ANF 備份進行 HANA 資料庫或非資料磁碟區備份的備份複製
+
+
+以下各節描述了由SnapCenter （部署在 HANA 資料庫主機上的 HANA 插件）自動發現的單主機 HANA 系統的不同操作。
+
+
+
+== SnapCenter中的 SAP HANA 快照備份
+
+SnapCenter資源拓樸顯示了SnapCenter所建立的備份清單。下圖顯示了主儲存上的可用備份，並突出顯示了最新的備份。
+
+image:hana-sc-generic-image-064.png["寬度=601，高度=293"]
+
+點擊 Vault 副本圖標，即可列出輔助儲存中的備份。
+
+image:hana-sc-generic-image-065.png["寬度=601，高度=294"]
+
+以下螢幕截圖顯示了系統 SM1 的備份列表，其中已配置了防篡改快照。
+
+image:hana-sc-generic-image-066.png["寬度=601，高度=293"]
+
+
+
+== SAP HANA Studio 中的 SAP HANA 快照備份
+
+使用儲存快照對 SAP HANA MDC 系統執行備份時，會建立資料磁碟區的快照副本。此資料卷包含系統資料庫的資料以及所有租戶資料庫的資料。為了反映這種實體架構，每當SnapCenter觸發快照備份時，SAP HANA 都會在內部執行系統資料庫以及所有租用戶資料庫的組合內部資料庫快照。這樣一來，SAP HANA 備份目錄中就會出現多個單獨的備份條目：一個用於系統資料庫，每個租用戶資料庫一個。
+
+在 SAP HANA 備份目錄中， SnapCenter備份名稱儲存為「註解」欄位以及「外部備份 ID (EBID)」。以下螢幕截圖顯示了系統資料庫的情況，接下來的螢幕截圖顯示了租戶資料庫 SS1 的情況。這兩個數字都突出顯示了儲存在註釋欄位中的 SnapCenter備份名稱和 EBID。
+
+image:hana-sc-generic-image-067.png["寬度=601，高度=289"]
+
+image:hana-sc-generic-image-068.png["寬度=601，高度=296"]
+
+
+NOTE: SnapCenter只知道它自己的備份。例如，使用 SAP HANA Studio 建立的其他備份在 SAP HANA 目錄中可見，但在SnapCenter中不可見。此外，直接在儲存系統上建立的快照也不會在SnapCenter中顯示。
+
+
+
+== 儲存層上的 SAP HANA 快照備份
+
+若要查看儲存層的備份，可以使用NetApp系統管理員並選擇資料庫磁碟區。以下螢幕截圖顯示了主儲存中資料庫磁碟區 SS1_data_mnt00001 的可用備份。高亮顯示的備份是先前圖片中在SnapCenter和 SAP HANA Studio 中顯示的備份，並且具有相同的命名約定。
+
+image:hana-sc-generic-image-069.png["寬度=601，高度=294"]
+
+以下螢幕截圖顯示了輔助儲存系統中複製目標磁碟區 hana_SS1_data_mnt00001_dest 的可用備份。
+
+image:hana-sc-generic-image-070.png["寬度=601，高度=294"]
+
+
+
+== 使用 ANF 的 SAP HANA 快照備份
+
+以下螢幕截圖顯示了使用Azure NetApp Files 的HANA 系統的拓撲視圖。已為該 HANA 系統配置了本機快照備份以及使用 ANF 備份的備份複製。
+
+image:hana-sc-generic-image-071.png["寬度=601，高度=303"]
+
+可以使用 Azure 入口網站列出 ANF 磁碟區上的快照備份。
+
+image:hana-sc-generic-image-072.png["寬度=601，高度=258"]
+
+點擊備份圖標，即可列出已使用 ANF 備份進行複製的備份。
+
+image:hana-sc-generic-image-073.png["寬度=601，高度=304"]
+
+ANF 備份也可以在 Azure 入口網站中列出。
+
+image:hana-sc-generic-image-074.png["寬度=601，高度=216"]
+
+
+
+== 非資料磁碟區的快照備份
+
+SnapCenter資源拓撲顯示了非資料磁碟區的備份清單。下圖列出了 HANA 共享磁碟區的備份。
+
+image:hana-sc-generic-image-075.png["寬度=601，高度=294"]
+
+
+
+== HANA資料庫備份的備份工作流程
+
+HANA 資料庫快照備份的備份工作流程包含三個主要部分。
+
+* 自動發現
++
+** 應用程式發現，例如
++
+*** SnapCenter會偵測任何租戶配置更改
+*** SnapCenter偵測到 HANA 系統複製主節點
+
+
+** 文件系統和儲存發現，例如
++
+*** SnapCenter會偵測磁碟區配置的任何更改
+*** SnapCenter偵測到 HANA 多分割區配置
+
+
+
+
+* HANA 和快照備份作業
++
+** 觸發 HANA 資料庫快照
+** 建立儲存快照
+** 確認 HANA 資料庫快照並將備份註冊到 HANA 備份目錄中
+
+
+* 保留管理
++
+** 根據定義的保留期限刪除快照備份
++
+*** SnapCenter儲存庫
+*** 儲存
+*** HANA備份目錄
+
+
+** 日誌備份保留管理
++
+*** 刪除檔案系統和 HANA 備份目錄中的日誌備份
+
+
+
+
+
+
+image:hana-sc-generic-image-076.png["寬度=339，高度=475"]
+
+
+
+== 非資料卷的備份工作流程
+
+對於非資料卷，備份工作流程包括快照操作和保留管理作業。
+
+image:hana-sc-generic-image-077.png["寬度=329，高度=404"]
+
+
+
+== 清理輔助備份
+
+如上文所述 link:hana-sc-generic-concepts.html#retention-management-of-backups-at-the-secondary-storage-snapvault["二級備份的保留管理"]ONTAP負責管理資料備份到輔助備份儲存的保留管理。SnapCenter會定期檢查ONTAP是否已刪除輔助備份儲存體中的備份，方法是執行清理作業，預設排程為每週一次。
+
+SnapCenter清理作業會刪除SnapCenter儲存庫中的備份，如果已辨識出輔助備份儲存中的任何已刪除備份，則會刪除 SAP HANA 備份目錄中的備份。
+
+image:hana-sc-generic-image-078.png["寬度=601，高度=158"]
+
+image:hana-sc-generic-image-079.png["寬度=267，高度=330"]
+
+在計劃的清理工作完成之前，SAP HANA 和SnapCenter仍會顯示已從輔助備份儲存中刪除的備份。即使輔助備份儲存體上的對應基於儲存的快照備份已被刪除，也會保留額外的日誌備份。NetApp建議將備份計畫從每週改為每天，以避免保留不再需要的日誌備份。
+
+
+
+=== 變更SnapCenter 執行效能不整工作的頻率
+
+SnapCenter預設每週對所有資源執行清理作業 SnapCenter_RemoveSecondaryBackup。這可以透過SnapCenter PowerShell cmdlet 進行更改。
+
+....
+SnapCenterPS C:\> Open-SmConnection
+
+Enter username/password
+User: sapcc\scadmin
+Password for user sapcc\scadmin: **********
+
+SnapCenterPS C:\> Set-SmSchedule -ScheduleInformation @{"ScheduleType"="Daily";"StartTime"="03:45 AM";"DaysInterval"="1"} -TaskName SnapCenter_RemoveSecondaryBackup
+
+TaskName : SnapCenter_RemoveSecondaryBackup
+Hosts : {}
+StartTime : 8/25/2025 3:45:00 AM
+DaysoftheMonth :
+MonthsofTheYear :
+DaysInterval : 1
+DaysOfTheWeek :
+AllowDefaults : False
+ReplaceJobIfExist : False
+UserName :
+Password :
+SchedulerType : Daily
+RepeatTask_Every_Hour : 1
+IntervalDuration :
+EndTime :
+LocalScheduler : False
+AppType : False
+AuthMode :
+SchedulerSQLInstance : SMCoreContracts.SmObject
+MonthlyFrequency :
+Hour : 0
+Minute : 0
+NodeName :
+ScheduleID : 0
+RepeatTask_Every_Mins :
+CronExpression :
+CronOffsetInMinutes :
+StrStartTime :
+StrEndTime :
+ScheduleCategory :
+PolicyId : 0
+PolicyName :
+ProtectionGroupId : 0
+ProtectionGroupName :
+PluginCode : NONE
+PolicyType : None
+ReportTriggerName :
+PolicyScheduleId : 0
+HoursOfTheDay :
+DayStartTime :
+MinuteOffset : ZeroMinutes
+SnapMirrorLabel :
+BackupType :
+SnapCenterPS C:\>
+....
+也可以在SnapCenter UI 的「監控 - 計畫」視圖中查看設定。
+
+image:hana-sc-generic-image-080.png["寬度=601，高度=257"]
+
+
+
+=== 手動重新整理資源層級
+
+如有需要，也可以在資源的拓樸視圖中手動清理輔助備份。選擇輔助備份時， SnapCenter會顯示輔助備份儲存體上的備份，如下面的螢幕截圖所示。點選「刷新」圖標， SnapCenter執行清理操作，以同步此資源的備份。
+
+image:hana-sc-generic-image-081.png["寬度=601，高度=291"]

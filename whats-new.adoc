@@ -4,7 +4,7 @@ permalink: whats-new.html
 keywords: 'netapp, solutions, sap, sap hana, what"s new, updates, change log' 
 summary: NetApp針對 SAP 解決方案的最新變更日誌。 
 ---
-= NetApp虛擬化解決方案的新功能
+= NetApp SAP 解決方案有哪些新特性
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
@@ -12,6 +12,14 @@ summary: NetApp針對 SAP 解決方案的最新變更日誌。
 
 [role="lead"]
 了解 SAP 解決方案的新功能。
+
+
+
+== 2025年12月2日
+
+新方案：link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"^]
+
+該解決方案提供了使用NetApp SnapCenter進行 SAP HANA 資料保護的最佳實踐，涵蓋了SnapCenter配置和操作指南，用於保護ONTAP AFF和ASA系統、 Azure NetApp Files和Amazon FSx for ONTAP上的 SAP HANA 系統。
 
 
 

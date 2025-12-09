@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-central-plugin.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 配置SnapCenter中央插件主機以用於 SAP HANA
+:allow-uri-read: 
+
+
+[role="lead"]
+在中央主機上部署SnapCenter HANA 插件，以支援 SAP HANA 多主機系統或 IBM Power 上的 HANA 系統。此過程包括在 Windows 或 Linux 主機上安裝插件、設定 SAP HANA hdbsql 用戶端以及為每個受保護的 HANA 系統設定使用者儲存金鑰。
+
+正如在…中討論的那樣 link:hana-sc-generic-concepts.html#deployment-options-for-snapcenter-plug-in-for-sap-hana["SnapCenter插件在 SAP HANA 中的部署選項"]HANA 插件可以部署在 HANA 資料庫之外，以支援集中式插件配置，這是 SAP HANA 多主機系統或 IBM Power 上的 SAP HANA 環境所必需的。
+
+中央插件主機可以是任何 Windows 或 Linux 主機，但通常SnapCenter伺服器本身用作中央插件主機。
+
+中央插件主機的配置包括以下步驟：
+
+* SnapCenter HANA 插件部署
+* SAP HANA hdbsql 用戶端安裝與設定
+* SAP HANA 使用者儲存配置，用於保護受中央插件主機保護的每個 HANA 系統。
+
+
+
+
+== SnapCenter HANA 插件部署
+
+主機需求列於此處 https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["安裝適用於 Linux 的SnapCenter插件包的主機需求"]。
+
+將中央插件主機新增為主機，並將 SAP HANA 插件安裝在該主機上。下面的螢幕截圖顯示了運行於 Windows 上的SnapCenter伺服器上的插件部署情況。
+
+. 移至主機、然後按一下新增。
+. 提供所需的主機資訊。按一下「提交」。
+
+
+image:hana-sc-generic-image-060.png["寬度=601，高度=166"]
+
+
+
+== SAP HANA hdbsql用戶端軟體安裝與組態
+
+SAP HANA hdbsql 用戶端軟體必須安裝在與 SAP HANA 插件相同的宿主機上。軟體可從以下網址下載： https://support.sap.com/en/index.html["SAP支援入口網站"]。
+
+在 HANA 資源配置期間配置的 hdbsql 作業系統使用者必須能夠執行 hdbsql 可執行檔。hdbsql 可執行檔的路徑必須在 hana.properties 檔案或作業系統使用者的搜尋路徑參數 (%PATH%, $PATH) 中設定。
+
+Windows 上的中央插件主機：
+
+....
+C:\More C:\Program Files\NetApp\SnapCenter\Snapcenter Plug-in Creator\etc\hana.properties
+
+HANA_HDBSQL_CMD=C:\\Program Files\\sap\\hdbclient\\hdbsql.exe
+....
+Linux 上的中央插件主機：
+
+....
+cat /opt/NetApp/snapcenter/scc/etc/hana.properties
+
+HANA_HDBSQL_CMD=/usr/sap/hdbclient/hdbsql
+....
+
+
+== SAP HANA 使用者儲存中央插件主機的配置
+
+對於由中央插件主機管理的每個 HANA 系統，必須設定 SAP HANA 使用者儲存金鑰。在中央插件主機上配置金鑰之前，必須按照所述方式建立資料庫使用者。 link:hana-sc-generic-sc-resource-config.html#sap-hana-backup-user-and-sap-hana-user-store-configuration["SAP HANA備份使用者和SAP HANA用戶儲存配置"]。
+
+如果 SAP HANA 外掛程式和 SAP hdbsql 用戶端安裝在 Windows 上，則本機系統使用者執行 hdbsql 指令，並且預設會在資源配置中進行設定。因為系統使用者不是登入用戶，所以必須使用 -u <User> 選項以不同的使用者身分配置 SAP HANA 使用者儲存。
+
+....
+hdbuserstore.exe -u SYSTEM set <key> <host>:<port> <database user> <password>
+....
+對於 SAP HANA 多主機設置，必須配置所有主機的 SAP HANA 使用者儲存金鑰。SnapCenter嘗試使用提供的每個金鑰連接到資料庫，因此即使系統資料庫（HANA 名稱伺服器）故障轉移到不同的主機，它也能獨立運作。為所有工作主機和備用主機設定 SAP HANA 使用者儲存金鑰。在本例中，HANA 資料庫使用者 SNAPCENTER 是在系統資料庫中配置的使用者。
+
+....
+
+hdbuserstore.exe -u SYSTEM set MS1KEYHOST1 hana-4:30013 SNAPCENTER password
+hdbuserstore.exe -u SYSTEM set MS1KEYHOST2 hana-5:30013 SNAPCENTER password
+hdbuserstore.exe -u SYSTEM set MS1KEYHOST3 hana-6:30013 SNAPCENTER password
+C:\Program Files\sap\hdbclient>hdbuserstore.exe -u SYSTEM list
+DATA FILE : C:\ProgramData\.hdb\SNAPCENTER-61\S-1-5-18\SSFS_HDB.DAT
+KEY FILE : C:\ProgramData\.hdb\SNAPCENTER-61\S-1-5-18\SSFS_HDB.KEY
+KEY MS1KEYHOST1
+ENV : hana-4:30013
+USER: SNAPCENTER
+KEY MS1KEYHOST2
+ENV : hana-5:30013
+USER: SNAPCENTER
+KEY MS1KEYHOST3
+ENV : hana-6:30013
+USER: SNAPCENTER
+KEY SS2KEY
+ENV : hana-3:30013
+USER: SNAPCENTER
+
+C:\Program Files\sap\hdbclient>
+
+....
+
+
+== HANA 手動資源配置
+
+在SnapCenter中，透過點選資源視圖中的「新增」按鈕，即可建立手動設定的 HANA 系統資源。
+
+image:hana-sc-generic-image-061.png["寬度=601，高度=189"]
+
+在下一個畫面中，您需要提供一些系統參數。
+
+* 插件主機：必須選擇中央插件主機。
+* SAP HANA 使用者儲存金鑰：對於單主機 HANA 系統，必須提供在中央插件主機上所準備的金鑰名稱。對於多主機 HANA 系統，必須提供以逗號分隔的系統所有按鍵的清單。
+* HDBSQL OS 使用者：如果中央插件主機運行在 Windows 系統上，則使用者將預先選擇為 SYSTEM 使用者。否則，必須提供用於 SAP HANA 使用者儲存金鑰的使用者。
+
+
+image:hana-sc-generic-image-062.png["寬度=384，高度=357"]
+
+下一步需要配置儲存空間。屬於 HANA 系統的所有ONTAP或 ANF 磁碟區都必須加入此。
+
+image:hana-sc-generic-image-063.png["寬度=385，高度=359"]
+
+現在資源保護配置可以採用與自動發現的 HANA 系統相同的方式進行。

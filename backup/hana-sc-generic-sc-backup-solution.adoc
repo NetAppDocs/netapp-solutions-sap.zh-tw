@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-backup-solution.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 了解SnapCenter對 SAP HANA 的備份與恢復
+:allow-uri-read: 
+
+
+[role="lead"]
+SnapCenter使用基於儲存的快照副本、自動保留管理以及與NetApp ONTAP、 Azure NetApp Files和 FSx for NetApp ONTAP的集成，為 SAP HANA 資料庫提供全面的備份和恢復功能。此解決方案支援應用程式一致性資料庫備份、非資料磁碟區保護、區塊完整性檢查以及使用SnapVault或 ANF 備份複製到輔助儲存。
+
+適用於SAP HANA的解決方案包含下列領域：SnapCenter
+
+* 備份作業、排程及保留管理
+* SAP HANA資料備份搭配儲存型Snapshot複本
+* 使用基於儲存的快照副本進行非資料磁碟區備份（例如，/hana/shared）
+* 資料庫區塊完整性檢查操作
++
+** 使用基於檔案的備份
+** 使用 SAP HANA hdbpersdiag 工具
+
+
+* 快照備份複製到輔助備份位置
++
+** 使用SnapVault/ SnapMirror
+** 使用Azure NetApp Files (ANF) 備份
+
+
+* SAP HANA備份目錄的管理
++
+** 用於 HANA 資料備份（快照和檔案備份）
+** 用於 HANA 日誌備份
+
+
+* 還原與還原作業
++
+** 自動化還原與還原
+** 單一租戶恢復操作
+
+
+
+
+資料庫資料備份由SnapCenter與SnapCenter SAP HANA 插件配合使用執行。該外掛程式會觸發 SAP HANA 內部資料庫快照，以便在儲存系統上建立的快照基於 SAP HANA 資料庫的應用程式一致性映像。
+
+SnapCenter可以使用SnapVault或SnapMirror^.^ 功能將一致的資料庫映像複製到輔助備份或災難復原位置。通常情況下，主儲存和輔助儲存上的備份會定義不同的保留策略。SnapCenter負責主儲存的保留， ONTAP負責輔助備份儲存的保留。
+
+為了完整備份所有SAP HANA相關資源、SnapCenter 利用SAP HANA外掛程式搭配儲存型Snapshot複本、即可備份所有非資料磁碟區。您可以從資料庫資料備份獨立排程非資料磁碟區、以啟用個別的保留與保護原則。
+
+SAP 建議將基於儲存的快照備份與持久層的每週一致性檢查相結合。您可以透過執行基於檔案的備份或執行 SAP hdbpersdiag 工具，從SnapCenter內部執行區塊一致性檢查。
+
+根據您設定的保留策略， SnapCenter管理主儲存中的資料檔案備份、日誌檔案備份和 SAP HANA 備份目錄的維護。
+
+支援主儲存設備的保留、而支援功能則可管理二線備份保留。SnapCenter ONTAP
+
+下圖顯示SnapCenter 了關於「不支援資料」備份與保留管理作業的總覽。
+
+執行SAP HANA資料庫的儲存型Snapshot備份時SnapCenter 、執行下列工作：
+
+* 備份作業：
++
+** 觸發內部 HANA 資料庫快照，以取得持久層上應用程式一致的映像。
+** 建立基於儲存的資料卷快照備份
+** 關閉內部 HANA 資料庫快照，確認或放棄備份作業。此步驟會將備份註冊到 HANA 備份目錄中。
+
+
+* 留存管理：
++
+** 根據定義的保留期限刪除儲存快照備份。
+** 刪除儲存層上的快照
+** 刪除 SAP HANA 備份目錄條目
+** 刪除所有早於最早資料備份的日誌備份。日誌備份將從檔案系統和 SAP HANA 備份目錄中刪除。
+
+
+
+
+image:hana-sc-generic-image-006.png["寬度=601，高度=285"]
+
+如果配置了輔助備份（無論是使用SnapVault/ SnapMirror還是 ANF 備份），則在主磁碟區上建立的快照將複製到輔助備份儲存。SnapCenter管理 HANA 備份目錄以及根據輔助備份的可用性進行日誌備份保留。
+
+image:hana-sc-generic-image-007.png["寬度=601，高度=278"]

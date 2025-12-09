@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-config-overview.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 了解如何為 SAP HANA 環境配置SnapCenter
+:allow-uri-read: 
+
+
+[role="lead"]
+使用兩階段方法為 SAP HANA 環境配置SnapCenter ：對共享資源（憑證、儲存系統和政策）進行初始配置，對各個 HANA 系統進行特定於資源的配置（主機部署、自動發現和保護設定）。
+
+對於具有多個 HANA 系統的 SAP HANA 環境， SnapCenter配置可以分為兩個主要部分：
+
+* 初始配置
++
+** 憑證、儲存和策略配置。+ 這些設定或資源通常被多個 HANA 系統使用。
+
+
+* HANA資源特定配置
++
+** 主機、HANA 和資源保護配置必須針對每個 HANA 系統單獨進行。
+
+
+
+
+下圖展示了不同的配置組件及其依賴關係。
+
+以下各主題將詳細介紹所有設定步驟。
+
+
+NOTE: 文件中的描述和螢幕截圖均基於SnapCenter自動發現的 HANA 系統。針對使用中央插件主機的手動設定資源，也描述了其他或不同的設定步驟。 link:hana-sc-generic-central-plugin.html["中央插件主機配置"]。
+
+image:hana-sc-generic-image-016.png["寬度=601，高度=319"]

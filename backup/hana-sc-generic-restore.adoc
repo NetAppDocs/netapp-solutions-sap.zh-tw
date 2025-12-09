@@ -1,0 +1,363 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-restore.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 使用SnapCenter恢復 SAP HANA 資料庫
+:allow-uri-read: 
+
+
+[role="lead"]
+使用SnapCenter恢復 SAP HANA 系統，提供自動或手動恢復選項。這包括完整的系統還原、 ONTAP、 Azure NetApp Files和 FSx for ONTAP上 HANA 資料庫的單一租用戶還原。
+
+SnapCenter支援以下恢復操作。
+
+* 採用單一租戶的 SAP HANA MDC 系統
++
+** 端對端自動化恢復
+** 端對端自動恢復和手動恢復（可選）
+
+
+* SAP HANA MDC 系統支援多租戶
++
+** 端對端自動化恢復，恢復過程需要手動完成。
+
+
+* 還原單一租戶
++
+** 端對端自動化恢復，恢復過程需要手動完成。
+
+
+
+
+
+NOTE: 只有當 HANA 插件部署在 HANA 資料庫主機上，且 HANA 系統被SnapCenter自動發現時，才會支援自動復原。使用中央插件主機設定時，在SnapCenter執行復原作業後需要手動進行復原。
+
+
+NOTE: 支援從主 ANF 磁碟區恢復。目前尚不支援從 ANF 備份進行復原。必須使用 Azure 入口網站或 CLI 手動執行就地還原或從 ANF 備份還原到新磁碟區的作業。
+
+
+
+== 針對單一租用戶 SAP HANA MDC 系統，實現自動化復原和還原
+
+若要啟動復原操作，請在資源拓撲視圖中選擇快照備份，然後按一下「復原」。
+
+image:hana-sc-generic-image-098.png["寬度=601，高度=294"]
+
+對於使用 ANF 上的 NFS、 ONTAP的 FSx 或ONTAP儲存系統的 HANA 系統，您可以選擇對主磁碟區快照執行完整還原作業，無論是否執行磁碟區還原作業。
+
+* 完整資源無需磁碟區還原即可使用單一檔案SnapRestore(SFSR) 還原資料庫的所有檔案。
+* 使用磁碟區還原功能還原整個資源，該功能使用基於磁碟區的還原作業 (VBSR) 將整個磁碟區還原到所選快照的狀態。
+
+
+
+NOTE: 如果您需要還原到比目前活動的SnapVault或SnapMirror複製快照更舊的快照，則無法使用磁碟區還原功能。
+
+
+NOTE: 磁碟區還原作業將刪除所有比要還原的快照更新的快照備份。
+
+
+NOTE: 使用 SFSR 進行復原的速度幾乎與磁碟區還原操作一樣快，但會阻塞任何快照操作，直到後台程序完成元資料操作。
+
+image:hana-sc-generic-image-099.png["寬度=300"]
+
+對於使用 FC SAN 的裸機主機上的 HANA 系統，不支援磁碟區還原 (VBSR)，而是始終使用 SFSR 進行復原作業。對於在 VMware 上運作且採用 VMFS 檔案系統的 HANA 系統，將採用複製、掛載、複製作業。
+
+image:hana-sc-generic-image-100.png["寬度=345，高度=325"]
+
+若要從輔助備份恢復，您需要選擇存檔位置。
+
+image:hana-sc-generic-image-101.png["寬度=345，高度=323"]
+
+透過復原範圍，您可以選擇「還原到最近狀態」、「還原到某個時間點」或還原到儲存點，而無需使用日誌備份。如果選擇“不恢復”， SnapCenter只會執行還原操作，恢復過程需要按照指示手動完成。 link:hana-sc-generic-restore.html#manual-recovery-with-hana-studio["使用 HANA Studio 進行手動恢復"]。
+
+
+NOTE: SnapCenter使用 SAP HANA 中配置的路徑作為日誌備份和目錄備份位置。如果您有分層備份到其他位置，則可以新增這些其他路徑。
+
+image:hana-sc-generic-image-102.png["寬度=346，高度=324"]
+
+您也可以選擇新增恢復前和恢復後腳本。
+
+image:hana-sc-generic-image-103.png["寬度=348，高度=326"]
+
+image:hana-sc-generic-image-104.png["寬度=359，高度=335"]
+
+在摘要畫面中按一下「完成」後，恢復操作即開始。
+
+image:hana-sc-generic-image-105.png["寬度=361，高度=336"]
+
+復原和還原工作流程可以分為三個主要部分。
+
+* HANA系統關閉
+* 還原作業
++
+** 檔案系統特定準備工作，例如卸載操作
+** 快照恢復操作
+** 檔案系統特定的後操作，例如掛載操作
+
+
+* HANA恢復
++
+** 系統資料庫恢復
+** 租戶資料庫恢復
+
+
+
+
+image:hana-sc-generic-image-106.png["寬度=357，高度=439"]
+
+
+
+== 使用 HANA Studio 進行手動恢復
+
+若要使用 SAP HANA Studio 和SnapCenter復原具有單一或多個租用戶的 SAP HANA MDC 系統，請完成下列步驟：
+
+. 利用SAP HANA Studio準備還原與還原程序：
++
+.. 選取「恢復系統資料庫」並確認SAP HANA系統關機。
+.. 選擇復原類型並提供備份目錄位置。
+.. 此時會顯示資料備份清單。選取備份以查看外部備份ID。
+
+
+. 利用下列功能執行還原程序SnapCenter ：
++
+.. 在資源的拓撲視圖中，選擇「本機副本」以從主儲存還原，或選擇「儲存庫副本」以從輔助備份儲存還原。
+.. 從SnapCenter SAP HANA Studio選取符合外部備份ID或備註欄位的支援功能。
+.. 開始還原程序。
+
+
+. 使用SAP HANA Studio執行系統資料庫的還原程序：
++
+.. 按一下備份清單中的重新整理、然後選取可用的備份以供還原（以綠色圖示表示）。
+.. 開始恢復程序。恢復程序完成後、系統資料庫便會啟動。
+
+
+. 使用SAP HANA Studio執行租戶資料庫的還原程序：
++
+.. 選取「恢復租戶資料庫」、然後選取要恢復的租戶。
+.. 選取恢復類型和記錄備份位置。
+.. 此時會顯示一份資料備份清單。由於資料磁碟區已還原、因此租戶備份會顯示為可用（綠色）。
+.. 選取此備份並開始恢復程序。還原程序完成後、租戶資料庫會自動啟動。
+
+
+. 對於具有多個租用戶的 HANA 系統，請對每個租用戶重複步驟 4。
+
+
+
+NOTE: 使用 SAP HANA Cockpit 進行手動復原的步驟相同。
+
+以下部分描述了具有單一租用戶的 SAP HANA MDC 系統的復原和復原操作步驟。
+
+在 HANA Studio 中選擇「備份和還原」和「復原系統資料庫」。
+
+image:hana-sc-generic-image-107.png["寬度=450，高度=368"]
+
+確認關機操作；僅當 HANA 系統仍在運作時才需要執行此操作。
+
+image:hana-sc-generic-image-108.png["寬度=349，高度=83"]
+
+選擇恢復操作。在這個例子中，我們希望恢復到最近的狀態。
+
+image:hana-sc-generic-image-109.png["寬度=345，高度=359"]
+
+提供備份目錄位置。
+
+image:hana-sc-generic-image-110.png["寬度=343，高度=356"]
+
+HANA Studio 會列出儲存在 HANA 備份目錄中的最新備份。
+
+根據備份目錄的內容，顯示可用備份清單。選擇所需的備份並記下外部備份 ID：在本例中，即最新備份。
+
+image:hana-sc-generic-image-111.png["寬度=391，高度=283"]
+
+從SnapCenter GUI 中選擇資源拓樸視圖，然後選擇要還原的備份，在本例中，選擇最新的主備份。點擊“恢復”圖示開始恢復。
+
+image:hana-sc-generic-image-112.png["寬度=601，高度=294"]
+
+SnapCenter恢復精靈啟動。選擇“完全資源”還原類型和“卷還原”以使用基於卷的還原。
+
+image:hana-sc-generic-image-113.png["寬度=346，高度=325"]
+
+選擇「不恢復」可將恢復作業從SnapCenter工作流程中排除。
+
+image:hana-sc-generic-image-114.png["寬度=358，高度=336"]
+
+點選“完成”開始恢復操作。
+
+image:hana-sc-generic-image-115.png["寬度=361，高度=339"]
+
+SnapCenter正在執行恢復操作。
+
+* 檔案系統特定準備工作，例如卸載操作
+* 快照恢復操作
+* 檔案系統特定的後操作，例如掛載操作
+
+
+image:hana-sc-generic-image-116.png["寬度=322，高度=398"]
+
+當SnapCenter復原快照時，HANA 資料卷的系統和租用戶資料庫子目錄中會產生一個 snapshot_databackup_0_1 檔案。此檔案由 HANA 資料庫在建立 HANA 資料庫快照期間建立。HANA 會在備份作業完成後刪除該文件，因此這些文件僅在快照備份中可見。任何恢復操作都需要這些文件。復原完成後，這些檔案將會被 HANA 資料庫刪除。
+
+....
+
+hana-1:~ # cd /hana/data/SS1/mnt00001/
+hana-1:/hana/data/SS1/mnt00001 # ls -al *
+-rw-r--r-- 1 ss1adm sapsys 16 Aug 26 06:00 nameserver.lck
+hdb00001:
+total 4992236
+drwxr-x--- 2 ss1adm sapsys 4096 Aug 26 06:00 .
+drwxr-x--- 5 ss1adm sapsys 4096 Aug 26 06:00 ..
+-rw-r----- 1 ss1adm sapsys 0 Nov 3 2020 __DO_NOT_TOUCH_FILES_IN_THIS_DIRECTORY__
+-rw-r----- 1 ss1adm sapsys 5100273664 Aug 26 06:00 datavolume_0000.dat
+-rw-r----- 1 ss1adm sapsys 36 Aug 25 10:30 landscape.id
+-rw-r----- 1 ss1adm sapsys 163840 Aug 26 06:00 snapshot_databackup_0_1
+hdb00002.00003:
+total 201420
+drwxr-xr-- 2 ss1adm sapsys 4096 Nov 3 2020 .
+drwxr-x--- 5 ss1adm sapsys 4096 Aug 26 06:00 ..
+-rw-r--r-- 1 ss1adm sapsys 0 Nov 3 2020 __DO_NOT_TOUCH_FILES_IN_THIS_DIRECTORY__
+-rw-r--r-- 1 ss1adm sapsys 335544320 Aug 26 06:00 datavolume_0000.dat
+hdb00003.00003:
+total 4803140
+drwxr-xr-- 2 ss1adm sapsys 4096 Aug 26 06:00 .
+drwxr-x--- 5 ss1adm sapsys 4096 Aug 26 06:00 ..
+-rw-r--r-- 1 ss1adm sapsys 0 Nov 3 2020 __DO_NOT_TOUCH_FILES_IN_THIS_DIRECTORY__
+-rw-r--r-- 1 ss1adm sapsys 4898947072 Aug 26 06:00 datavolume_0000.dat
+-rw-r----- 1 ss1adm sapsys 159744 Aug 26 06:00 snapshot_databackup_0_1
+hana-1:/hana/data/SS1/mnt00001 #
+
+....
+前往 SAP HANA Studio 並按一下「重新整理」以更新可用備份清單。使用SnapCenter恢復的備份現在在備份清單中以綠色圖示顯示。選擇備份文件，然後按一下“下一步”。
+
+image:hana-sc-generic-image-117.png["寬度=400，高度=290"]
+
+提供記錄備份的位置。按一下「下一步」
+
+
+NOTE: SAP HANA Studio 使用 SAP HANA 中設定的路徑作為日誌備份和目錄備份位置。如果您有分層備份到其他位置，則可以新增這些其他路徑。
+
+image:hana-sc-generic-image-118.png["寬度=465，高度=296"]
+
+視需要選取其他設定。請確定未選取「使用差異備份」。按一下「下一步」
+
+image:hana-sc-generic-image-119.png["寬度=466，高度=296"]
+
+檢閱恢復設定、然後按一下「Finish（完成）」。
+
+點選“顯示 SQL 語句”，HANA Studio 將顯示為恢復操作執行的 SQL 指令。
+
+image:hana-sc-generic-image-120.png["寬度=464，高度=295"]
+
+恢復過程開始。請等待系統資料庫復原完成。
+
+image:hana-sc-generic-image-121.png["寬度=376，高度=239"]
+
+在SAP HANA Studio中、選取系統資料庫的項目、然後開始備份恢復-恢復租戶資料庫。
+
+image:hana-sc-generic-image-122.png["寬度=476，高度=315"]
+
+選取要恢復的租戶、然後按「Next（下一步）」。
+
+image:hana-sc-generic-image-123.png["寬度=342，高度=355"]
+
+指定恢復類型、然後按「Next（下一步）」。
+
+image:hana-sc-generic-image-124.png["寬度=343，高度=356"]
+
+確認備份目錄位置、然後按「Next（下一步）」。
+
+image:hana-sc-generic-image-125.png["寬度=342，高度=355"]
+
+確認租戶資料庫已關閉。
+
+image:hana-sc-generic-image-126.png["寬度=348，高度=85"]
+
+由於資料卷的恢復是在系統資料庫恢復之前完成的，因此租戶備份可以立即使用。選擇綠色高亮顯示的備份，然後按一下「下一步」。
+
+image:hana-sc-generic-image-127.png["寬度=433，高度=349"]
+
+提供記錄備份的位置。按一下「下一步」
+
+
+NOTE: SAP HANA Studio 使用 SAP HANA 中設定的路徑作為日誌備份和目錄備份位置。如果您有分層備份到其他位置，則可以新增這些其他路徑。
+
+image:hana-sc-generic-image-128.png["寬度=384，高度=310"]
+
+視需要選取其他設定。請確定未選取「使用差異備份」。按一下「下一步」
+
+image:hana-sc-generic-image-129.png["寬度=384，高度=310"]
+
+檢閱恢復設定、然後按一下「Finish（完成）」。
+
+點選“顯示 SQL 語句”，HANA Studio 將顯示為恢復操作執行的 SQL 指令。
+
+image:hana-sc-generic-image-130.png["寬度=380，高度=307"]
+
+等到還原完成、租戶資料庫開始。
+
+image:hana-sc-generic-image-131.png["寬度=378，高度=305"]
+
+租戶恢復完成後，SAP HANA 系統即可啟動並運作。
+
+
+NOTE: 對於具有多個租用戶的 SAP HANA MDC 系統，必須對每個租用戶重複執行租用戶復原。
+
+
+
+== 使用 SQL 命令進行手動恢復
+
+您也可以使用 SQL 語句來還原 HANA 系統。
+
+首先需要恢復系統資料庫。
+
+....
+
+HDBSettings.sh recoverSys.py --command="RECOVER DATABASE UNTIL TIMESTAMP '2026-08-26 10:55:49' USING CATALOG PATH ('mnt/log-backup/SYSTEMDB') USING LOG PATH ('mnt/log-backup/SYSTEMDB') USING SNAPSHOT"
+....
+第二步，您需要連接到系統資料庫並開始復原租戶資料庫。在本例中，租用戶資料庫為 SS1。
+
+....
+
+hdbsql SYSTEMDB=> RECOVER DATABASE FOR SS1 UNTIL TIMESTAMP '2026-08-26 10:55:49' USING CATALOG PATH ('mnt/log-backup/DB_SS1') USING LOG PATH ('mnt/log-backup/DB_SS1') USING SNAPSHOT
+....
+
+
+== 單一租戶恢復
+
+使用SnapCenter執行的單一租用戶還原和復原作業與上一主題中所述的工作流程非常相似。 link:hana-sc-generic-restore.html#manual-recovery-with-hana-studio["使用 HANA Studio 進行手動恢復"]。
+
+若要使用SAP HANA Studio和SnapCenter NetApp還原SAP HANA MDC單租戶系統、請完成下列步驟：
+
+. 利用SAP HANA Studio準備還原與還原程序：
++
+.. 選擇「恢復租戶資料庫」並確認關閉租戶資料庫。
+.. 選擇復原類型並提供備份目錄位置。
+.. 此時會顯示資料備份清單。選取備份以查看外部備份ID。
+
+
+. 利用下列功能執行還原程序SnapCenter ：
++
+.. 在資源的拓撲視圖中，選擇「本機副本」以從主儲存還原，或選擇「儲存庫副本」以從輔助備份儲存還原。
+.. 從SnapCenter SAP HANA Studio選取符合外部備份ID或備註欄位的支援功能。
+.. 啟動租戶的恢復程序。
+
+
+. 使用SAP HANA Studio執行租戶資料庫的還原程序：
++
+.. 按一下備份清單中的重新整理、然後選取可用的備份以供還原（以綠色圖示表示）。
+.. 啟動恢復程序。復原過程完成後，租戶資料庫啟動。
+
+
+
+
+
+
+== 恢復非資料卷
+
+若要啟動非資料磁碟區的復原作業，請在非資料磁碟區資源的拓樸檢視中選擇快照備份，然後按一下「復原」。
+
+image:hana-sc-generic-image-132.png["寬度=601，高度=294"]
+
+對於使用 NFS 的非資料卷，可以選擇完整資源 (VBSR) 或檔案層級 (SFSR) 復原作業。對於檔案級還原，可以定義要還原的所有檔案或單一檔案。
+
+image:hana-sc-generic-image-133.png["寬度=369，高度=344"]

@@ -1,0 +1,207 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-resource-config.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= 為各 SAP HANA 資料庫配置SnapCenter資源
+:allow-uri-read: 
+
+
+[role="lead"]
+在SnapCenter中配置各個 SAP HANA 資料庫，方法是建立備份使用者和使用者儲存金鑰，設定輔助備份的儲存複製，部署用於自動發現的 HANA 插件，以及使用原則和計畫配置資源保護。
+
+在SnapCenter中設定 HANA 資料庫需要依照以下步驟進行：
+
+. 必須在 HANA 系統資料庫中設定SnapCenter備份用戶，並且必須在 HANA 資料庫主機上設定 SAP HANA 用戶儲存金鑰。
+. 如果需要將資料複製到輔助存儲，則必須配置 HANA 資料卷的ONTAP儲存複製。
+. SnapCenter HANA 插件必須部署在 HANA 資料庫主機上。
++
+.. 自動發現過程啟動
+.. 必須在SnapCenter中設定 SAP HANA 使用者儲存金鑰。
+.. 自動發現的第二階段開始， SnapCenter會自動新增 HANA 資源。
+
+
+. 必須為新新增的 HANA 資源配置 HANA 資源保護。
+
+
+如前一主題所述， SnapCenter 的初始配置 link:hana-sc-generic-initial.html["初始組態SnapCenter"] 必須先完成此操作，因為在 HANA 資料庫資源配置期間需要憑證、儲存系統和政策。下圖總結了各個步驟及其相互依賴關係。
+
+下圖可視化了不同的配置組件和依賴關係。
+
+image:hana-sc-generic-image-041.png["寬度=601，高度=315"] 以下各節詳細介紹了所需的設定步驟。
+
+
+
+== SAP HANA備份使用者和SAP HANA用戶儲存配置
+
+NetApp建議在 HANA 資料庫中設定一個專用用戶，使用SnapCenter執行備份作業。第二步，為此備份使用者配置 SAP HANA 使用者儲存金鑰，並在SnapCenter配置中提供 SAP HANA 使用者儲存金鑰。
+
+下圖顯示了 SAP HANA Studio，透過該 Studio 可以建立備份用戶，在本例中為 SNAPCENTER。
+
+
+NOTE: 備份使用者需要設定備份管理員、目錄讀取、資料庫備份管理員和資料庫復原操作員權限。
+
+
+NOTE: 必須在系統資料庫中建立備份用戶，因為系統資料庫和租戶資料庫的所有備份命令都是透過系統資料庫執行的。
+
+image:hana-sc-generic-image-042.png["寬度=601，高度=382"]
+
+
+
+=== SAP HANA 使用者儲存配置位於 HANA 資料庫主機上
+
+SnapCenter使用 <sid>adm 使用者與 HANA 資料庫通訊。因此，必須使用資料庫主機上的 <sid>adm 使用者來設定 SAP HANA 使用者儲存金鑰。
+
+hdbuserstore 設定 <key-name> <host>:<port> <資料庫使用者> <密碼>
+
+對於 SAP HANA MDC 系統，HANA 系統資料庫的連接埠為 3<實例編號>13。
+
+
+
+=== SAP HANA 使用者儲存設定範例
+
+輸出結果顯示了為 HANA 系統配置的金鑰 SS1KEY，實例編號為 00。
+
+....
+ss1adm@hana-1:/usr/sap/SS1/HDB00> hdbuserstore list
+DATA FILE : /usr/sap/SS1/home/.hdb/hana-1/SSFS_HDB.DAT
+KEY FILE : /usr/sap/SS1/home/.hdb/hana-1/SSFS_HDB.KEY
+KEY SS1SAPDBCTRL
+ENV : hana-1:30013
+USER: SAPDBCTRL
+KEY SS1KEY
+ENV : hana-1:30013
+USER: SNAPCENTER
+KEY SYSTEMKEY
+ENV : hana-1:30013
+USER: SYSTEM
+ACTIVE RECORDS : 10
+DELETED RECORDS : 15
+NUMBER OF COMPLETE KEY: 3
+Operation succeed.
+ss1adm@hana-1:/usr/sap/SS1/HDB00>
+....
+輸出結果顯示了為 HANA 系統配置的金鑰 SM1KEY，實例編號為 12。
+
+....
+sm1adm@hana-2:/usr/sap/SM1/HDB12> hdbuserstore list
+DATA FILE : /usr/sap/SM1/home/.hdb/hana-2/SSFS_HDB.DAT
+KEY FILE : /usr/sap/SM1/home/.hdb/hana-2/SSFS_HDB.KEY
+KEY SM1SAPDBCTRL
+ENV : hana-2:31213
+USER: SAPDBCTRL
+KEY SM1KEY
+ENV : hana-2:31213
+USER: SNAPCENTER
+ACTIVE RECORDS : 7
+DELETED RECORDS : 9
+NUMBER OF COMPLETE KEY: 2
+Operation succeed.
+sm1adm@hana-2:/usr/sap/SM1/HDB12>
+....
+
+
+== 儲存複製配置
+
+資料保護關係的組態以及初始資料傳輸必須先執行、才能SnapCenter 由效益管理系統來管理複寫更新。
+
+以下螢幕截圖顯示了使用ONTAP系統管理員的配置。對於 FSx for ONTAP系統，複製必須使用ONTAP CLI 完成，具體說明請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/fsxn-backup-replication-with-snapvault-overview.html["總覽- SnapVault 利用功能進行備份複寫"]。
+
+下圖顯示了 SAP HANA 系統 SS1 資料卷的配置保護關係。在本例中，SVM hana-primary 的來源磁碟區 SS1_data_mnt00001 複製到 SVM hana-backup 和目標磁碟區 SS1_data_mnt00001_dst。
+
+image:hana-sc-generic-image-043.png["寬度=601，高度=183"]
+
+下圖顯示了為該實驗室環境建立的保護策略。用於保護關係的保護策略定義了SnapMirror標籤，以及在輔助儲存中保留備份。在這個例子中，使用的標籤是“每日”，保留期設定為 5。
+
+
+NOTE: 複製原則中的SnapMirror標籤必須與SnapCenter政策配置中定義的標籤相符。
+
+
+NOTE: 必須將關係計劃設為“無”，因為SnapCenter會根據先前建立的應用程式一致性快照，在備份作業期間觸發SnapVault更新。
+
+
+NOTE: 輔助備份儲存中的備份保留期限在策略中定義，並由ONTAP控制。
+
+image:hana-sc-generic-image-044.png["寬度=601，高度=180"]
+
+
+
+== ANF備份配置
+
+對於 ANF 備份，無需任何特殊準備。一旦執行第一個啟用 ANF 備份的備份， SnapCenter就會建立一個名為 snapcenter-vault 的 Azure 備份保管庫。然後， SnapCenter執行的所有後續 ANF 備份作業都會使用此備份庫。
+
+image:hana-sc-generic-image-045.png["寬度=601，高度=227"]
+
+
+
+== SnapCenter插件在 SAP HANA 上的部署
+
+主機需求列於此處 https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["安裝適用於 Linux 的SnapCenter插件包的主機需求"]。
+
+HANA 插件的部署是透過點擊SnapCenter UI 的「主機」部分中的「新增」按鈕完成的。
+
+image:hana-sc-generic-image-046.png["寬度=601，高度=145"]
+
+在「新增主機」畫面中，您需要提供主機類型、名稱以及部署程序要使用的憑證。此外，也必須選擇 SAP HANA 插件。點擊提交後，部署過程即開始。
+
+
+NOTE: 在本描述中，我們沒有新增主機，而是展示了SnapCenter中現有主機的配置。
+
+image:hana-sc-generic-image-047.png["寬度=601，高度=154"]
+
+
+
+== HANA自動發現
+
+HANA 插件部署完成後，自動發現程序隨即啟動。在第一階段，僅發現基本設置， SnapCenter會建立一個新資源，該資源會列在 UI 的「資源」部分，並帶有紅色掛鎖標記。
+
+image:hana-sc-generic-image-048.png["寬度=601，高度=169"]
+
+點選資源時，系統會要求您輸入此 HANA 資料庫的 SAP HANA 使用者儲存金鑰。
+
+image:hana-sc-generic-image-049.png["寬度=316，高度=180"]
+
+提供密鑰後，自動發現過程的第二階段隨即開始。自動發現程序會偵測 HANA 系統中的所有租用戶資料庫、日誌和目錄備份配置詳細資訊以及 HANA 系統複製角色。此外，系統也會自動發現儲存空間佔用情況的詳細資訊。可以透過選擇資源並點擊“詳細資料”按鈕來查看這些設定。
+
+
+NOTE: 每次備份作業都會執行此自動發現過程，以便自動偵測 HANA 系統所做的與備份作業相關的任何變更。
+
+image:hana-sc-generic-image-050.png["寬度=601，高度=219"]
+
+
+
+== 資源保護組態
+
+自動發現程序完成後，按一下資源即可開啟資源保護配置畫面。本文檔中的螢幕截圖顯示了現有資源的保護配置。
+
+為快照配置自訂名稱格式。NetApp建議使用自訂快照名稱，以便輕鬆識別哪些備份是使用哪種策略和計劃類型建立的。
+
+在下圖所示的組態中、備份與Snapshot複本名稱的格式如下：
+
+* 計畫每小時備份：+ SnapCenter_<主機名稱>_LocalSnap_Hourly_<時間戳>
+* 每日計畫備份：+ SnapCenter_<主機名稱>_LocalSnapAndSnapVault_Daily_<時間戳記>
+
+
+image:hana-sc-generic-image-051.png["寬度=601，高度=294"]
+
+在下一個畫面中，可以設定腳本，這些腳本應在備份工作流程的各個步驟中執行。
+
+image:hana-sc-generic-image-052.png["寬度=601，高度=294"]
+
+現在策略已附加到資源上，並且已製定計劃。
+
+在這個例子中，我們已經配置好了。
+
+* 每週進行一次區塊完整性檢查，每週日
+* 每 4 小時進行一次本地快照備份
+* 每日快照備份，並啟用SnapVault複製功能，每天一次
+
+
+image:hana-sc-generic-image-053.png["寬度=601，高度=294"]
+
+可以配置電子郵件通知。
+
+image:hana-sc-generic-image-054.png["寬度=601，高度=294"]
+
+資源保護配置完成後，將根據定義的設定執行計畫備份。

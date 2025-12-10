@@ -24,7 +24,7 @@ SAP Anyca的預設SnapCenter 值為安裝本地的程序、SnapCenter 除了資�
 * *使用中央通訊主機進行的支援安裝*。*中央通訊主機安裝了支援資料庫相關作業的支援中心、SAP HANA外掛程式和HANA資料庫用戶端、可在環境中備份及還原多個SAP HANA系統的SAP HANA資料庫。SnapCenter SnapCenter因此、中央通訊主機不需要安裝完整的SAP HANA資料庫系統。
 
 
-如需這些不同 SnapCenter 代理程式和 SAP HANA 資料庫外掛程式安裝選項的詳細資訊link:../backup/hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用"^]，請參閱技術報告。
+有關這些不同的SnapCenter代理和 SAP HANA 資料庫插件安裝選項的更多詳細信息，請參閱技術報告。 link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"^]。
 
 以下各節將強調使用SnapCenter 標準安裝或中央通訊主機、將LSC與支援功能整合的差異。值得注意的是、無論安裝選項和使用的資料庫為何、未反白顯示的所有組態步驟都是相同的。
 
@@ -89,9 +89,8 @@ LSC主機和LSC工作人員必須安裝在SAP環境中。在此部署中、我�
 
 * https://docs.netapp.com/us-en/snapcenter/["資訊中心SnapCenter"^]
 * https://www.netapp.com/pdf.html?item=/media/12403-tr4700.pdf["TR-47700：SnapCenter 適用於Oracle資料庫的支援"^]
-* https://www.netapp.com/pdf.html?item=/media/12405-tr4614pdf.pdf["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]
+* link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]
 * link:sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"^]
-* https://fieldportal.netapp.com/content/883721["TR-4769 - SnapCenter 《最佳實務做法與規模調整準則》"^]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP2880726["《英文）》第4.6版Cmdlet參考指南SnapCenter"^]
 
 

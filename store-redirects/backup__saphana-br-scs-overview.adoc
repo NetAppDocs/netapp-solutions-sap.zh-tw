@@ -1,6 +1,6 @@
 ---
-permalink: backup/saphana-br-scs-overview.html 
-redirect: backup/hana-br-scs-overview.html 
+permalink: backup/saphana-sc-generic-scope.html 
+redirect: backup/hana-sc-generic-scope.html 
 ---
 = 
 :allow-uri-read: 

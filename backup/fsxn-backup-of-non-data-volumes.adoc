@@ -123,7 +123,7 @@ image:amazon-fsx-image69.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 . 選取還原範圍和類型。
 +
-HANA MDC單一租戶系統的標準案例是使用完整資源進行磁碟區還原。若為具有多個租戶的HANA MDC系統、您可能只想還原單一租戶。如需單一租戶還原的詳細資訊，請參閱link:hana-br-scs-restore-recovery.html["還原與還原（netapp.com）"^]。
+HANA MDC 單一租用戶系統的標準方案是使用完整資源並進行捲回滾。對於具有多個租用戶的 HANA MDC 系統，您可能只想恢復單一租用戶。有關單一租戶恢復的更多信息，請參閱 link:hana-sc-generic-restore.html["還原與還原（netapp.com）"^]。
 
 +
 image:amazon-fsx-image70.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]

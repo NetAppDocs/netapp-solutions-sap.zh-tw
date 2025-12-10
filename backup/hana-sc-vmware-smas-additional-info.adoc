@@ -17,7 +17,7 @@ summary:
 
 產品特色：SnapCenter
 
-link:hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用"]
+link:hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"]
 
 link:hana-sr-scs-system-replication-overview.html["TR-4719：SAP HANA系統複寫- SnapCenter 利用功能進行備份與恢復"]
 

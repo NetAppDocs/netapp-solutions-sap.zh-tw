@@ -58,7 +58,7 @@ image:saphana_asa_fc_image5a.png["SnapCenter 概述"]
 * 根據區塊變更、將具空間效益且具頻寬效益的複寫至二線儲存設備
 
 
-如需使用 SnapCenter 的 SAP HANA 備份與還原解決方案的詳細資訊link:../backup/hana-br-scs-overview.html["TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）"^]，請參閱。
+有關使用SnapCenter的 SAP HANA 備份和復原解決方案的詳細信息，請參閱 link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]。
 
 
 

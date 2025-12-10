@@ -84,7 +84,7 @@ image:amazon-fsx-image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫
 
 == 本文件的範圍
 
-本文件說明SnapCenter SAP HANA MDC單一主機系統最常見的功能、其中只有一個租戶位於FSXfor ONTAP Sf.上。其他組態選項也有可能、在某些情況下、特定SAP HANA系統（例如多主機系統）需要使用這些選項。如需其他組態選項的詳細說明，請參閱link:hana-br-scs-concepts-best-practices.html["概念與最佳實務做法（netapp.com）SnapCenter"^]。
+本文檔描述了在 FSx for ONTAP上具有單一租用戶的 SAP HANA MDC 單主機系統最常見的SnapCenter設定選項。對於特定的 SAP HANA 系統，例如多主機系統，也可能存在其他設定選項，並且在某些情況下，這些選項是必要的。有關其他配置選項的詳細說明，請參閱 link:hana-sc-generic-concepts.html["概念與最佳實務做法（netapp.com）SnapCenter"^]。
 
 在本文件中、我們使用Amazon Web Services（AWS）主控台和FSXfor ONTAP Suse CLI、在儲存層上執行所需的組態步驟。您也可以使用NetApp Cloud Manager來管理FSX for ONTAP Suse、但本文檔已超出此範圍。如需有關使用NetApp Cloud Manager for FSX for ONTAP Sf,請參閱 https://docs.netapp.com/us-en/occm/concept_fsx_aws.html["深入瞭解Amazon FSX for ONTAP NetApp（netapp.com）"^]。
 

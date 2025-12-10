@@ -230,7 +230,6 @@
   <block id="d953c3b1d4ebbca797ea1cbd2db09e48" category="list-text">由於儲存層的還原時間快得多（幾分鐘）、而且備份頻率更高、因此可減少RTO</block>
   <block id="f458c876961fbe066dc1f94b4d8f0606" category="list-text">在備份與還原作業期間、SAP HANA資料庫主機、網路或儲存設備的效能不會降低</block>
   <block id="ca34922c96391967c8028dc44cd98e22" category="list-text">根據區塊變更、將具空間效益且具頻寬效益的複寫至二線儲存設備</block>
-  <block id="c67ddee39e41dfe63b7c798d76514143" category="inline-link">TR-4614：SAP HANA備份與還原SnapCenter 功能（含功能）</block>
   <block id="dd44a87fdee6157429ed3ab3b6e9ead4" category="section-title">SAP HANA災難恢復</block>
   <block id="1901dda5acbabe5dc59a8bf332104608" category="paragraph">SAP HANA災難恢復可在資料庫層上使用SAP HANA系統複寫、或是在儲存層上使用儲存複寫技術。下節概述以儲存複寫為基礎的災難恢復解決方案。</block>
   <block id="1ff29e7b597f9f2f9d2a5edf1b79532b" category="inline-link">TR-4646：SAP HANA災難恢復與儲存複寫</block>
@@ -1315,7 +1314,6 @@
   <block id="81dbd9083542b5058eeff2a69b9df0f1" category="summary">跨區域複寫的應用程式無關資訊可在下列位置找到。</block>
   <block id="1cc8efad9ef8bc01d2445bfc8d04e15c" category="doc">Anf SAP HANA跨區域複寫</block>
   <block id="a9f4d9aafbea086205494239b45e7d8a" category="inline-link">本文檔| Microsoft文件Azure NetApp Files</block>
-  <block id="47f5c5f7b80224cb7832ed3973296f38" category="doc">TR-4614：SAP HANA備份與還原SnapCenter 功能搭配使用</block>
   <block id="7b84e8d1abd1ca9b58ab3e77d620c832" category="summary">TR-4711說明NetApp與CommVault解決方案的SAP HANA設計、其中包括CommVault IntelliSnap快照管理技術與NetApp Snapshot技術。此解決方案以NetApp儲存設備和CommVault資料保護套件為基礎。</block>
   <block id="8fb21969b8486293a6e9aad64bfdce52" category="doc">TR-4711：使用NetApp儲存系統和CommVault軟體的SAP HANA備份與恢復</block>
   <block id="6b6da8403e50e999c81fff1b93ddd075" category="inline-link-macro"><block ref="6b6da8403e50e999c81fff1b93ddd075" category="inline-link-rx"></block></block>
@@ -2024,9 +2022,6 @@
   <block id="5f238be6282547752bdf3926f1af44c2" category="list-text"><block ref="5f238be6282547752bdf3926f1af44c2" category="inline-link-rx"></block></block>
   <block id="550ff411af842971b5bef45c5d9d1a59" category="inline-link">TR-47700：SnapCenter 適用於Oracle資料庫的支援</block>
   <block id="2c7b4a7cfd7910e959b3899cdd539867" category="list-text"><block ref="2c7b4a7cfd7910e959b3899cdd539867" category="inline-link-rx"></block></block>
-  <block id="4d0488fb3017f2f14273ce8765843a99" category="list-text"><block ref="4d0488fb3017f2f14273ce8765843a99" category="inline-link-rx"></block></block>
-  <block id="56f5eeda3975435c8530355bc5441429" category="inline-link">TR-4769 - SnapCenter 《最佳實務做法與規模調整準則》</block>
-  <block id="025547de09dae9dc145b97701e1b973f" category="list-text"><block ref="025547de09dae9dc145b97701e1b973f" category="inline-link-rx"></block></block>
   <block id="6be1ed7d0e35cab2dd490a58f13d3761" category="inline-link">《英文）》第4.6版Cmdlet參考指南SnapCenter</block>
   <block id="76f3b0f8b6a51710bcff71e212056376" category="list-text"><block ref="76f3b0f8b6a51710bcff71e212056376" category="inline-link-rx"></block></block>
   <block id="6273877c694f4875c4ab83bf5ef28e30" category="paragraph">本節說明在示範資料中心中設定的架構範例。此設定分為標準安裝和使用中央通訊主機的安裝。</block>
@@ -3422,7 +3417,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="dd3925da178560a888f5c0d4bd90dc73" category="paragraph">本節說明使用 ONTAP 9 命令列進行組態的範例，適用於使用 LVM 的 2+1 SAP HANA 多個主機系統，以及每個 LVM Volume 群組兩個 LUN 的 SID FC5 。</block>
   <block id="952239c31e0fbf4511610dae4cbe22be" category="paragraph">一個 NVMe SSD （資料）最多可支援 2 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。</block>
   <block id="01a8d3d035a390b9e2f8a164a50b3d9c" category="inline-image-macro">VMware 特定的網路設定</block>
-  <block id="d4087e3f08b7a7f8751675ca82462e2a" category="list-text">TR-4667 ：使用 SnapCenter SAP HANA 外掛程式將 SAP 系統複本自動化</block>
   <block id="6c112b2b6e22e11b65018895aa298940" category="list-text">VMware vSphere Wiki 上的 SAP HANA</block>
   <block id="7fd039f168758cb7fad07015245b1afa" category="inline-link"><block ref="7fd039f168758cb7fad07015245b1afa" category="inline-link-rx"></block></block>
   <block id="c0e729cc3b2e2214e3e2d35e123b1732" category="paragraph"><block ref="c0e729cc3b2e2214e3e2d35e123b1732" category="inline-link-rx"></block></block>
@@ -4096,24 +4090,16 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="475f69cf41ea6662f4b22c6f70e6908a" category="paragraph"><block ref="475f69cf41ea6662f4b22c6f70e6908a" category="inline-link-macro-rx"></block></block>
   <block id="a201805882d53b0d86eb70856415289e" category="inline-link-macro">使用 SnapCenter 進行備份與還原</block>
   <block id="dde57db73596e74078e45164bdb7bd33" category="paragraph"><block ref="dde57db73596e74078e45164bdb7bd33" category="inline-link-macro-rx"></block></block>
-  <block id="ce4589128029e47b2ddedb1d962263a0" category="paragraph">HANA MDC單一租戶系統的標準案例是使用完整資源進行磁碟區還原。若為具有多個租戶的HANA MDC系統、您可能只想還原單一租戶。如需單一租戶還原的詳細資訊，請參閱<block ref="39ba00e9dd4ac940d535c2591ecdb23b" category="inline-link-macro-rx"></block>。</block>
   <block id="2f430b9352cf5338fe7797399f3883e2" category="paragraph">如第章<block ref="c51f667ca6b84ee5b3dd69f787a989c4" category="inline-link-macro-rx"></block>所述，複寫目標必須是另一個可用區域中 ONTAP 檔案系統的第二個 FSX ，才能避免 ONTAP 檔案系統的主要 FSX 故障。此外、HANA共享磁碟區也應複寫至次要FSXfor ONTAP the Sfor the Sf二 檔案系統。</block>
-  <block id="93d6beb28ac909b433df94308b360fa7" category="paragraph">本文件說明SnapCenter SAP HANA MDC單一主機系統最常見的功能、其中只有一個租戶位於FSXfor ONTAP Sf.上。其他組態選項也有可能、在某些情況下、特定SAP HANA系統（例如多主機系統）需要使用這些選項。如需其他組態選項的詳細說明，請參閱<block ref="18e3b66784490dc66af7b05ef4fbd38c" category="inline-link-macro-rx"></block>。</block>
   <block id="3bbbb9b799728fb6c79de967a65e92f1" category="paragraph">備份完成後、拓撲檢視中會顯示新項目。備份名稱遵循與本節中定義的 Snapshot 名稱相同的命名慣例<block ref="d4f6e24221d73a5247f7989bd3e6279a" category="inline-link-macro-rx"></block></block>
   <block id="f87531f2bfe441193671ca21c1af5569" category="paragraph">發生災難容錯移轉時、複寫關係必須中斷、磁碟區必須掛載至DR正式作業伺服器、且HANA資料庫必須還原至上次HANA儲存點、或使用複寫的記錄備份進行轉送恢復。本章<block ref="e662c9f6046b2d69b33032921c282f16" category="inline-link-macro-rx"></block>介紹所需的步驟。</block>
   <block id="fd8ff870af3225045cae849a29ee9c7c" category="paragraph">有關不同組態選項的詳細資訊<block ref="52361ff2780d39b847dad2f6438b837e" category="inline-link-macro-rx"></block>，請參閱第章。</block>
-  <block id="cbfd61eacaaf6c950b89d6113ccfe679" category="paragraph"><block ref="cbfd61eacaaf6c950b89d6113ccfe679" category="inline-link-macro-rx"></block></block>
   <block id="3149d7f53627e7a4811812a5342ef935" category="paragraph"><block ref="3149d7f53627e7a4811812a5342ef935" category="inline-link-macro-rx"></block></block>
   <block id="aa00b093336debfc20dbc4fc69cb70d8" category="paragraph"><block ref="aa00b093336debfc20dbc4fc69cb70d8" category="inline-link-macro-rx"></block></block>
   <block id="882fe2ce394c7d9c0385b7a97a8950d8" category="paragraph">本章說明使用 VMFS 的 VMware 設定所特有的 SAP HANA 系統安裝與組態。其他一般最佳實務做法<block ref="06906b11f7ae357da484fb08941ebda3" category="inline-link-macro-rx"></block>請參閱。</block>
-  <block id="d3450fdafc4244aee5c63cfcfde1e9b1" category="paragraph">如需更詳細的說明，請參閱<block ref="cf0f4aceb2724dbd12ffb8937b40a02d" category="inline-link-macro-rx"></block></block>
   <block id="e710d3810f7e451ec6523f0e9e885294" category="paragraph">如需系統重新整理工作流程的詳細資訊，請參閱：<block ref="aa00b093336debfc20dbc4fc69cb70d8" category="inline-link-macro-rx"></block></block>
-  <block id="cb1c427f849c2d72a11deb653146971d" category="paragraph">資料庫使用者「 SnapCenter 」是為 HANA 系統資料庫所建立、其中包含執行備份與還原作業所需的 Privileges （請參閱<block ref="49fdeef268de6c02607d61f7ad78837d" category="inline-link-macro-rx"></block>）。HANA使用者存放區金鑰必須在兩個主機上使用上述資料庫使用者進行設定。</block>
-  <block id="2ee7482c97f57196dcd82677dc69cfaf" category="paragraph">還原與還原作業針對SnapCenter 某個資源群組組組態、與自動探索的非系統複寫設定相同。所有的還原和自動還原選項均可供使用。有關詳細信息，請參閱技術報告<block ref="a89d8332f01e75c4fbbb76087191a365" category="inline-link-macro-rx"></block>。</block>
   <block id="a3051f2748b88ccf17cf01b6ad73fabe" category="paragraph"><block ref="acf62b44d5a90b4d958a3c0c6b8a0edb" category="inline-link-macro-rx"></block>在另一臺主機上創建的備份還原操作將在一節中介紹。</block>
-  <block id="d852a1a7f80061a0cea060eff4f24745" category="list-text"><block ref="d852a1a7f80061a0cea060eff4f24745" category="inline-link-macro-rx"></block></block>
   <block id="17b4daea6f84861e54f9cacd1bbd3604" category="paragraph">如一節<block ref="4a1e790749396e92e0acae21d9b3b1c2" category="inline-link-macro-rx"></block>所述，儲存型 Snapshot 備份的還原作業會有所不同，視必須還原的備份而定。請務必識別備份所在的主機、以判斷是否可在本機儲存磁碟區執行還原、或是必須在其他主機的儲存磁碟區執行還原。</block>
-  <block id="e67d97d89f9c40cfae5324b32057baf6" category="paragraph">您可以在技術報告 TR-4614 中找到 SAP HANA 外掛部署選項和使用者存放區組態的詳細資訊：<block ref="49fdeef268de6c02607d61f7ad78837d" category="inline-link-macro-rx"></block>。</block>
   <block id="e1de529a8060a08809a319261affb84a" category="paragraph">SAP HANA Studio 的還原與還原作業與一節中所述的步驟完全相同<block ref="b4ea72f2d8ae046f29d30c5810a2bb91" category="inline-link-macro-rx"></block>。</block>
   <block id="634026d49ebac88d23dd5c784943ae14" category="paragraph">使用 SAP HANA Studio 進行還原<block ref="b4ea72f2d8ae046f29d30c5810a2bb91" category="inline-link-macro-rx"></block>，如一節所述。</block>
   <block id="a2033f3b8dbfdd7480dec7410e656b54" category="inline-link-macro">NetApp SAP 解決方案：使用案例，最佳實務做法和效益的相關資訊</block>
@@ -4286,8 +4272,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="5ff448003ebaf80171d13e6e73920334" category="cell">2025 年 5 月</block>
   <block id="aec8b279f6bbfa44c38f060c1a4d9c75" category="cell">初始版本–備份 / 恢復 MaxDB 資料庫</block>
   <block id="f43189b608fe679c2f5bfe1fa09a6987" category="paragraph"><block ref="f43189b608fe679c2f5bfe1fa09a6987" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="41fc9942bec5239323b5dd801f5bee58" category="list-text"><block ref="41fc9942bec5239323b5dd801f5bee58" category="inline-link-macro-rx"></block></block>
-  <block id="d2904072197c733bd10bb3985e8b304d" category="paragraph">如需 SAP HANA 備份與還原解決方案的詳細資訊<block ref="0a5fce897a9b356de9fbfc0e516c7392" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="b6e1c7dc173d5846c1c02517be7f17ef" category="paragraph">如需 SAP HANA 災難恢復解決方案的詳細資訊<block ref="9e073a57f7a3e69defc613fe0d2d690f" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="da49521caaf686b5ddf9ad44b46ff253" category="list-text"><block ref="da49521caaf686b5ddf9ad44b46ff253" category="inline-link-macro-rx"></block></block>
   <block id="4d1bc709bfba771f4ff18cae8cad5821" category="list-text"><block ref="4d1bc709bfba771f4ff18cae8cad5821" category="inline-link-macro-rx"></block></block>
@@ -4296,14 +4280,12 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="ca4e28b2d73ad674c0052aaa001a3fbe" category="admonition">此<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block>工具是 NetApp 主機公用程式的一部分，必須安裝在每個 SAP HANA 主機上。如需詳細資訊，請參閱一節<block ref="f75b5be3cddbf151c8e809ce5b0c771a" category="inline-link-macro-rx"></block></block>
   <block id="60c724065bc332dd941c269b2a5bf0f6" category="paragraph">除了一節中所述的工作之外，還<block ref="c2cc83b43967a333625e03c0c4e4e13e" category="inline-link-macro-rx"></block>必須建立新額外資料 Volume 的額外掛載點和<block ref="520a0201c5bdee02e1c617ad8c8e2596" prefix=" " category="inline-code"></block>項目，並且必須掛載新的 Volume 。</block>
   <block id="d810b6120408f928c8d432b920338406" category="paragraph"><block ref="d810b6120408f928c8d432b920338406" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c5098abcd11f62e55614ae7323201c3d" category="admonition">如需 SAP HANA 備份與還原解決方案的詳細資訊<block ref="0a5fce897a9b356de9fbfc0e516c7392" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="34bab9646046fb6a7d08a42312ff5c0a" category="paragraph">如需 SAP HANA 災難恢復解決方案的詳細資訊<block ref="9e073a57f7a3e69defc613fe0d2d690f" category="inline-link-macro-rx"></block>、請參閱。</block>
   <block id="1e72fb5aa3fd5c3621864de3f10cf8cf" category="admonition">如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽數量應根據下列規則進行調整：工作階段插槽數量等於 &lt;nconnect value&gt; x 64 。在主機上、這會先加上輔助<block ref="1f544d9bef8ddb99793e0436d6362920" prefix=" " category="inline-code"></block>、然後再重新開機。也必須調整伺服器端值，如所述設定工作階段插槽數<block ref="b7e4d6f25b44e37cc0e24fba4db18d4d" category="inline-link-macro-rx"></block></block>
   <block id="11cfc0b9a7c7ee9b54ba196748406dc0" category="admonition">視SAP HANA主機數量和使用的連線速度而定、需要不同數量的作用中實體連接埠。有關詳細信息，請參閱一節<block ref="ca84783cbbdbff2bbccb3b70787d54c2" category="inline-link-macro-rx"></block>。</block>
   <block id="44724b96d03ee7072b74f4df6d742efa" category="admonition">請注意，停用數字 ID 需要使用者管理，如一節所述<block ref="171b753eb8efc5cb753cd0dd58fc8169" category="inline-link-macro-rx"></block></block>
   <block id="11eae0cf8eb7987977f94d2eaeba6b9d" category="admonition">NFSv4 網域 ID 必須在所有 Linux 伺服器上設為相同的值<block ref="f606fb2da2ae329157d791c6955a0337" prefix="(" category="inline-code"></block>）和 SVM ，如一節所述<block ref="171b753eb8efc5cb753cd0dd58fc8169" category="inline-link-macro-rx"></block></block>
   <block id="81ed243e0aa50a10ea422c0e85319d46" category="paragraph"><block ref="81ed243e0aa50a10ea422c0e85319d46" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="e6b7e7bf86715e60d66e0c4fd326c955" category="paragraph">如需使用 SnapCenter 的 SAP HANA 備份與還原解決方案的詳細資訊<block ref="0a5fce897a9b356de9fbfc0e516c7392" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="5b30611fb0620adc53c494ca5e20e5d0" category="paragraph">如需使用 SnapCenter 的 SAP HANA 災難恢復解決方案的詳細資訊<block ref="9e073a57f7a3e69defc613fe0d2d690f" category="inline-link-macro-rx"></block>，請參閱。</block>
   <block id="e409da5f49cbcd0d5f6f423a57a43e78" category="paragraph">將儲存設備連接至虛擬機器（VM）有多種選項可供選擇。偏好的做法是將儲存磁碟區與NFS直接從客體作業系統連線。此選項在<block ref="d1b4413cecd0416bbd7ac40af6b252af" category="inline-link-macro-rx"></block>中有詳細說明。</block>
   <block id="60e3819e2b8858d6ed1ed9bf9b7ea912" category="paragraph"><block ref="60e3819e2b8858d6ed1ed9bf9b7ea912" category="inline-image-macro-rx" type="image"></block></block>
@@ -4337,7 +4319,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="cfbcab52e9219a88b453d8640a695b5c" category="paragraph"><block ref="cfbcab52e9219a88b453d8640a695b5c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="8182e6c407ae4266fab449c510893871" category="paragraph"><block ref="8182e6c407ae4266fab449c510893871" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a7ff5809b72a550475c833f91f3adb78" category="paragraph"><block ref="a7ff5809b72a550475c833f91f3adb78" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="a2e0ccc67df24c6d663ad8bb51e2ebee" category="paragraph">如需這些不同 SnapCenter 代理程式和 SAP HANA 資料庫外掛程式安裝選項的詳細資訊<block ref="e9d950f5d5f56487dcd7311f01f0531d" category="inline-link-macro-rx"></block>，請參閱技術報告。</block>
   <block id="d5a7518453c3639808aa5fee5b36fce5" category="paragraph">若要從來源資料庫執行自動的 Snapshot 複本型備份，並建立新目標資料庫的複本， LSC 與 SnapCenter 之間所述的整合會使用中所述的組態選項與指令碼<block ref="49d1af2cf82cf0b45d74f29b4b37bfb7" category="inline-link-macro-rx"></block>。</block>
   <block id="49d1af2cf82cf0b45d74f29b4b37bfb7" category="list-text"><block ref="49d1af2cf82cf0b45d74f29b4b37bfb7" category="inline-link-macro-rx"></block></block>
   <block id="df896ef034b20676d525fde3b569e0fd" category="paragraph">雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。有關不同使用案例的詳細資料<block ref="49d1af2cf82cf0b45d74f29b4b37bfb7" category="inline-link-macro-rx"></block>，請參閱技術報告。</block>
@@ -4351,8 +4332,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="cdf522f142e0cdba9292a69965f7987c" category="list-text"><block ref="cdf522f142e0cdba9292a69965f7987c" category="inline-link-macro-rx"></block></block>
   <block id="64098a348b693b068c8a5f7cc6b6c53f" category="inline-link-macro">使用 Avantra 和 NetApp SnapCenter 自動化 SAP 系統複本，重新整理及複製工作流程</block>
   <block id="323450f90563551d13fe3ac0a1078ed2" category="list-text"><block ref="323450f90563551d13fe3ac0a1078ed2" category="inline-link-macro-rx"></block></block>
-  <block id="c5f4ddebe5050f29cfac9f464f218997" category="paragraph">所有 SAP HANA 系統都必須根據組態指南<block ref="f7f1322fc01ab9c31c98cc0e27ac7c60" category="inline-link-macro-rx"></block>進行設定。SnapCenter 和 SAP HANA 資源是根據最佳實務指南<block ref="3d48c3f615eb3308bf93e425d017a973" category="inline-link-macro-rx"></block>進行設定。</block>
-  <block id="c9fb4441cc296fc20e6422304f80ca05" category="list-text">如所述，在 SnapCenter 中設定 SAP HANA 系統<block ref="41fc9942bec5239323b5dd801f5bee58" category="inline-link-macro-rx"></block></block>
   <block id="ee519a6a522a3796e2c9e59317999081" category="list-text">如果在來源系統啟用 SAP HANA 持續性加密、則必須匯入一次加密根金鑰。如果金鑰在來源系統中已變更、也需要匯入。請參閱第章 <block ref="2403d000b1cc698c05ad24f9b7418ccf" category="inline-link-macro-rx"></block></block>
   <block id="fd3c9302330a899fd41bdcf7c2f93e79" category="paragraph"><block ref="bb259d3519df9e585015ef9bdd8404c4" category="inline-link-macro-rx"></block></block>
   <block id="3248f470b458c5d4a6999f060cee6ac9" category="paragraph"><block ref="e3e93ab2e46b454dca6e093a872bc6fb" category="inline-link-macro-rx"></block></block>
@@ -4491,7 +4470,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="526ffb7b57e2db6ab8a3f13077e8988c" category="sidebar">多主機 LUN 配置</block>
   <block id="b5c56e3ba8d38f1f3f0a7a5413fdeef2" category="paragraph">HANA 最佳實踐：</block>
   <block id="c7666fa654de87dc33703084f80aa4be" category="list-text"><block ref="7912a6ea019693a170bbf40a62a72e9f" category="inline-link-rx"></block>。</block>
-  <block id="1902e4ab89c18ee8b918255bd4a42840" category="list-text"><block ref="1902e4ab89c18ee8b918255bd4a42840" category="inline-link-rx"></block></block>
   <block id="686acd2e11e136510ec14f9d97c7ff2b" category="list-text"><block ref="686acd2e11e136510ec14f9d97c7ff2b" category="inline-link-rx"></block></block>
   <block id="766ba9dc44e7046f7c6af47344e24026" category="list-text"><block ref="766ba9dc44e7046f7c6af47344e24026" category="inline-link-rx"></block></block>
   <block id="31d7058304689e06db912e9954e30a03" category="inline-link">透過 SnapCenter™ SnapMirror主動同步和 VMware Metro Storage Cluster 實現 SAP HANA 資料保護和高可用性</block>
@@ -4668,8 +4646,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="469f70c8bf9e7345451574deea79f80b" category="paragraph"><block ref="469f70c8bf9e7345451574deea79f80b" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cac1665e63972e4a12b392296c7ff08b" category="sidebar">多台主機</block>
   <block id="712c708011e4893134a7a63c8e632e86" category="list-text"><block ref="712c708011e4893134a7a63c8e632e86" category="inline-link-macro-rx"></block></block>
-  <block id="9e073a57f7a3e69defc613fe0d2d690f" category="list-text"><block ref="9e073a57f7a3e69defc613fe0d2d690f" category="inline-link-macro-rx"></block></block>
-  <block id="0a5fce897a9b356de9fbfc0e516c7392" category="list-text"><block ref="0a5fce897a9b356de9fbfc0e516c7392" category="inline-link-macro-rx"></block></block>
   <block id="a87cc9a0cddc926dc2ba557a1f1d1c5a" category="list-text"><block ref="a87cc9a0cddc926dc2ba557a1f1d1c5a" category="inline-link-macro-rx"></block></block>
   <block id="029173fd9d282281adb302f9da539864" category="paragraph">如需更多詳細資料，請參閱<block ref="b2c2dfcc705383497470185015318f31" category="inline-link-rx"></block>。</block>
   <block id="186ddcef8e98235019fb2aee09ca9f46" category="paragraph">建立所需的掛載點目錄，並在所有工作主機和備用主機上設定權限：</block>
@@ -4680,7 +4656,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="67ef18ec0407e7911a4fd5ea0f9c8292" category="section-title">磁碟架連接</block>
   <block id="7f35619142e0b236607c3f699395261d" category="section-title">基於 NVMe 的磁碟架</block>
   <block id="da937f71706b325fe054a66a403e7e70" category="paragraph">必須在用於 SAP HANA 的所有磁碟區上驗證並設定下表中所列的磁碟區選項。</block>
-  <block id="3895d8c4d4623881a3a460da07e7b347" category="list-text"><block ref="3895d8c4d4623881a3a460da07e7b347" category="inline-link-macro-rx"></block></block>
   <block id="b46c19227accdcf131acd89ec837d719" category="list-text">如中所述，檢查正確的磁碟櫃組態<block ref="03b6386ad6a1dc10d9baa30820f92e6f" category="inline-xref-macro-rx"></block>。</block>
   <block id="5fd1fe4406610035d26bddd7285e2208" category="list-text">請按照本節中的說明在聚合中建立和配置磁碟區和 LUN <block ref="5cdae6b5e4c2b7c1786a252c1b2db361" category="inline-link-macro-rx"></block>適用於單一主機或分段<block ref="576df1336ee1cb2a072bb64be834429d" category="inline-link-macro-rx"></block>對於多個主機</block>
   <block id="fe19c797763ffd518a9713847adadc9f" category="section-title">NVMe 磁碟架</block>
@@ -5680,7 +5655,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="4e5ce8f2b542a0328ee0c760a2b78b52" category="list-text">必須在SnapCenter中設定 SAP HANA 使用者儲存金鑰。</block>
   <block id="1631588183ad95b29197662a21ea2a60" category="list-text">自動發現的第二階段開始， SnapCenter會自動新增 HANA 資源。</block>
   <block id="ebd5715192ae7abe635c415a32c56a3d" category="list-text">必須為新新增的 HANA 資源配置 HANA 資源保護。</block>
-  <block id="3bb1ab7a48113869fa87086d1fb4a2fd" category="paragraph">如前一主題所述， SnapCenter 的初始配置 <block ref="6b39f66912940c710421480de57a151e" category="inline-link-macro-rx"></block> 必須先完成此操作，因為在 HANA 資料庫資源配置期間需要憑證、儲存系統和政策。下圖總結了各個步驟及其相互依賴關係。</block>
   <block id="6f5935f05e0abaec0734f60812b9033a" category="paragraph">下圖可視化了不同的配置組件和依賴關係。</block>
   <block id="52a43fc415f983c765fb2102a0c381d5" category="inline-image-macro">寬度=601，高度=315</block>
   <block id="3e3d546e0fb0541099b7f61da0c7ddaa" category="paragraph"><block ref="e83d78fed80cfec47a4e3ba8f80a6ea5" category="inline-image-macro-rx" type="image"></block> 以下各節詳細介紹了所需的設定步驟。</block>
@@ -5856,4 +5830,26 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="146a0da98c6afd7d9d0cc1cab826d153" category="sidebar">概念和最佳實踐</block>
   <block id="a6c8ce5b1be4f81aa18039d8230c90c0" category="sidebar">SnapCenter配置概述</block>
   <block id="d8fc4d50b1a586af97b1644a22f18a03" category="sidebar">使用SnapCenter進行復原和還原</block>
+  <block id="0a118770d83dc0e15561efe7c13f645a" category="paragraph">HANA MDC 單一租用戶系統的標準方案是使用完整資源並進行捲回滾。對於具有多個租用戶的 HANA MDC 系統，您可能只想恢復單一租用戶。有關單一租戶恢復的更多信息，請參閱 <block ref="29b39faf449a0b4b82f848138b3c68e7" category="inline-link-macro-rx"></block>。</block>
+  <block id="67d8db86e742391788fdad756222fd19" category="paragraph">本文檔描述了在 FSx for ONTAP上具有單一租用戶的 SAP HANA MDC 單主機系統最常見的SnapCenter設定選項。對於特定的 SAP HANA 系統，例如多主機系統，也可能存在其他設定選項，並且在某些情況下，這些選項是必要的。有關其他配置選項的詳細說明，請參閱 <block ref="020d0a360464f9035e0f9bb195334fe9" category="inline-link-macro-rx"></block>。</block>
+  <block id="3475a565911d6bd9a617b6ab762b2c75" category="paragraph">如前一主題所述， SnapCenter 的初始配置 <block ref="7012f688baa91d9ebc57f2cb27ae3cbe" category="inline-link-macro-rx"></block> 必須先完成此操作，因為在 HANA 資料庫資源配置期間需要憑證、儲存系統和政策。下圖總結了各個步驟及其相互依賴關係。</block>
+  <block id="901a2bc2f6ff9ea437ee778e39a35443" category="list-text"><block ref="901a2bc2f6ff9ea437ee778e39a35443" category="inline-link-rx"></block></block>
+  <block id="07f5505a6deaed629ac785a35135f2f3" category="paragraph"><block ref="07f5505a6deaed629ac785a35135f2f3" category="inline-link-macro-rx"></block></block>
+  <block id="49811dd79e4967b8e16fece280616ad0" category="paragraph">更詳細的描述請參見： <block ref="4411ddf270f0dc66ffb4c6bcb6ed9a91" category="inline-link-macro-rx"></block></block>
+  <block id="2e5fcbb55a6e3f09e588aafc166c2d61" category="paragraph">已為 HANA 系統資料庫建立了一個名為「SnapCenter」的資料庫用戶，並賦予其執行備份和復原作業所需的權限（請參閱）。 <block ref="076b09adb56f6e06a8f550235e80e909" category="inline-link-macro-rx"></block>）。必須在兩台主機上使用上述資料庫使用者設定 HANA 使用者儲存金鑰。</block>
+  <block id="70784a8f4cae4852b24a54bcb7be993a" category="paragraph">SnapCenter 4.6 資源組配置的復原作業與自動發現的非系統複製設定相同。所有恢復和自動恢復選項均可使用。更多詳情請參閱技術報告。 <block ref="076b09adb56f6e06a8f550235e80e909" category="inline-link-macro-rx"></block>。</block>
+  <block id="ea5193c5d6286e2aeeacd1195fb20be3" category="list-text"><block ref="ea5193c5d6286e2aeeacd1195fb20be3" category="inline-link-macro-rx"></block></block>
+  <block id="a040d2762f0d661cdfbe6215c9aaaba1" category="paragraph">您可以在技術報告 TR-4614 中找到有關 SAP HANA 插件部署選項和使用者儲存配置的更多資訊： <block ref="076b09adb56f6e06a8f550235e80e909" category="inline-link-macro-rx"></block>。</block>
+  <block id="ecf73301d284c20db0a178fbd9a5da7e" category="list-text"><block ref="ecf73301d284c20db0a178fbd9a5da7e" category="inline-link-macro-rx"></block></block>
+  <block id="e19cc48971e50b2f1d6f6b5f83c0be2a" category="list-text"><block ref="e19cc48971e50b2f1d6f6b5f83c0be2a" category="inline-link-macro-rx"></block></block>
+  <block id="02282267b64788809e152e7b8117d68a" category="list-text"><block ref="02282267b64788809e152e7b8117d68a" category="inline-link-macro-rx"></block></block>
+  <block id="c7125ea10960c72d9982037e444e4663" category="paragraph">有關 SAP HANA 備份和復原解決方案的詳細信息，請參閱 <block ref="e19cc48971e50b2f1d6f6b5f83c0be2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="1e83c49aed775d711f6d1a9a0a6a7060" category="inline-link-macro">使用SnapCenter SAP HANA 插件自動複製 SAP 系統</block>
+  <block id="0ff3d09e887d355ba6c183ae442718d5" category="list-text"><block ref="0ff3d09e887d355ba6c183ae442718d5" category="inline-link-macro-rx"></block></block>
+  <block id="eb521c389f95a471c2352ac6d655637a" category="admonition">有關 SAP HANA 備份和復原解決方案的詳細信息，請參閱 <block ref="e19cc48971e50b2f1d6f6b5f83c0be2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="104ab35664c45e0439ce8525fca173c9" category="paragraph">有關使用SnapCenter的 SAP HANA 備份和復原解決方案的詳細信息，請參閱 <block ref="e19cc48971e50b2f1d6f6b5f83c0be2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="dbeb7011fa920a46b0b5d60e1ec8dae2" category="paragraph">有關這些不同的SnapCenter代理和 SAP HANA 資料庫插件安裝選項的更多詳細信息，請參閱技術報告。 <block ref="80943e001e4bae7bff5e03f1c650f193" category="inline-link-macro-rx"></block>。</block>
+  <block id="9ef0e6db74ead6e253e590aa60f2fde2" category="list-text"><block ref="9ef0e6db74ead6e253e590aa60f2fde2" category="inline-link-macro-rx"></block></block>
+  <block id="bf66bdc508e82500386f614a6b05787f" category="paragraph">所有 SAP HANA 系統都必須依照設定指南進行設定。 <block ref="f7f1322fc01ab9c31c98cc0e27ac7c60" category="inline-link-macro-rx"></block>。SnapCenter和 SAP HANA 資源均依照最佳實務指南進行設定。 <block ref="9ef0e6db74ead6e253e590aa60f2fde2" category="inline-link-macro-rx"></block>。</block>
+  <block id="8c03d45a7e32b97c861b0c9bcb5f2058" category="list-text">依照SnapCenter中的描述配置 SAP HANA 系統 <block ref="9ef0e6db74ead6e253e590aa60f2fde2" category="inline-link-macro-rx"></block></block>
 </blocks>

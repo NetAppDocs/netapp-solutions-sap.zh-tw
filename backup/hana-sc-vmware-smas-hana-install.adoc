@@ -167,8 +167,8 @@ hana-1:/install #
 hana-1:/ # mkdir -p /hana/data/SMA/mnt00001
 hana-1:/ # mkdir -p /hana/log/SMA/mnt00001
 hana-1:/ # mkdir -p /hana/shared
-hana-1:/ # chmod –R 777 /hana/log/SMA
-hana-1:/ # chmod –R 777 /hana/data/SMA
+hana-1:/ # chmod -R 777 /hana/log/SMA
+hana-1:/ # chmod -R 777 /hana/data/SMA
 hana-1:/ # chmod -R 777 /hana/shared
 ....
 
@@ -234,7 +234,7 @@ NOTE: 使用所述組態時， /usr/sap/sma 目錄將位於 OS VMDK 上。如果
 
 必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。通訊連接埠必須適當設定 HANA 執行個體編號。在我們的設定執行個體編號「 00 」中使用。
 
-如需更詳細的說明，請參閱link:hana-br-scs-resource-config-hana-database-backups.html#sap-hana-backup-user-and-hdbuserstore-configuration["SAP HANA資料庫備份的資源專屬組態SnapCenter"]
+更詳細的描述請參見： link:hana-sc-generic-sc-resource-config.html#sap-hana-backup-user-and-sap-hana-user-store-configuration["SAP HANA資料庫備份的資源專屬組態SnapCenter"]
 
 ....
 smaadm@hana-1:/usr/sap/SMA/HDB00> hdbuserstore set SMAKEY hana-1:30013 SNAPCENTER <password>

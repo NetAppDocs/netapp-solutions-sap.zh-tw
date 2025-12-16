@@ -123,7 +123,13 @@ image:hana-sc-generic-image-019.png["寬度=287，高度=247"]
             "Microsoft.Network/virtualNetworks/read",
             "Microsoft.Network/virtualNetworks/subnets/read",
             "Microsoft.Network/virtualNetworks/write",
-            "Microsoft.Network/virtualNetworks/subnets/write"
+            "Microsoft.Network/virtualNetworks/subnets/write",
+            "Microsoft.NetApp/netAppAccounts/backupVaults/read",
+            "Microsoft.NetApp/netAppAccounts/backupVaults/write",
+            "Microsoft.NetApp/netAppAccounts/backupVaults/backups/read",
+            "Microsoft.NetApp/netAppAccounts/backupVaults/backups/write",
+            "Microsoft.NetApp/netAppAccounts/backupVaults/backups/delete",
+            "Microsoft.NetApp/netAppAccounts/backupVaults/backups/restoreFiles/action"
             ],
             "condition": null,
             "conditionVersion": null,

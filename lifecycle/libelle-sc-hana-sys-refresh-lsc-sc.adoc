@@ -28,7 +28,7 @@ SAP Anyca的預設SnapCenter 值為安裝本地的程序、SnapCenter 除了資�
 
 以下各節將強調使用SnapCenter 標準安裝或中央通訊主機、將LSC與支援功能整合的差異。值得注意的是、無論安裝選項和使用的資料庫為何、未反白顯示的所有組態步驟都是相同的。
 
-若要從來源資料庫執行自動的 Snapshot 複本型備份，並建立新目標資料庫的複本， LSC 與 SnapCenter 之間所述的整合會使用中所述的組態選項與指令碼link:sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"^]。
+為了從來源資料庫執行基於 Snapshot 複本的自動備份並為新的目標資料庫建立複製，LSC 和 SnapCenter 之間描述的整合使用了 link:sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"^] 中所述的設定選項和腳本。
 
 
 
@@ -88,9 +88,9 @@ LSC主機和LSC工作人員必須安裝在SAP環境中。在此部署中、我�
 文件資源：
 
 * https://docs.netapp.com/us-en/snapcenter/["資訊中心SnapCenter"^]
-* https://www.netapp.com/pdf.html?item=/media/12403-tr4700.pdf["TR-47700：SnapCenter 適用於Oracle資料庫的支援"^]
+* https://www.netapp.com/pdf.html?item=/media/12403-tr4700.pdf["SnapCenter Plug-in for Oracle Database"^]
 * link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]
-* link:sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"^]
+* link:sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"^]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP2880726["《英文）》第4.6版Cmdlet參考指南SnapCenter"^]
 
 

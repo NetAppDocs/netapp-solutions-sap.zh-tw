@@ -23,20 +23,21 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 |  | * 內部部署 NetApp 系統 * | * AWS FSX for NetApp ONTAP * | * Azure NetApp Files * 
 
 
-| 儲存傳輸協定 | NFS 、 Fibre Channel | NFS | NFS 
+| 儲存協定和檔案系統 | 裸機：NFS、FC 搭配 XFS VMware：NFS in-guest 掛載、FC 搭配 VMDK 和 XFS | NFS | NFS 
 
 
-| 精簡複製（ FlexClone ） | 是的 | 是的 | 否、目前的 anf 版本一律會分割複製的 Volume 
+| 精簡複製（ FlexClone ） | 是的 | 是的 | 是、但未整合至 SnapCenter 
 
 
-| 複製分割作業 | 是的 | 是的 | 不適用 
+| 複製分割作業 | 是的 | 是的 | 是、但未整合至 SnapCenter 
 
 
 | 從主要複製 | 是的 | 是的 | 是的 
 
 
-| 從異地備份進行複製 | 是的 | 是的 | 否 
+| 從異地備份進行複製 | 是的 | 是的 | 是的，從 ANF 備份還原到新磁碟區 
 
 
 | 在 DR 站台進行複製 | 是的 | 是的 | 是、但未整合至 SnapCenter 
 |===
+有關 HANA 與 VMware VMFS 和 NetApp ASAr2 系統 SAP 系統刷新操作的更多資訊，請參閱  https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmfs-asar2sap-refresh.html["SAP 系統更新"]。

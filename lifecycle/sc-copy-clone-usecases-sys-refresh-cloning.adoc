@@ -32,7 +32,7 @@ image:sc-copy-clone-image4.png["此圖顯示輸入 / 輸出對話方塊或表示
 
 == 解決邏輯毀損問題
 
-邏輯毀損可能是由軟體錯誤、人為錯誤或破壞所造成。遺憾的是、邏輯毀損問題通常無法透過標準的高可用度與災難恢復解決方案來解決。因此、視發生邏輯毀損的層級、應用程式、檔案系統或儲存設備而定、有時無法滿足最短停機時間和最大資料遺失需求。
+邏輯損壞可能由軟體錯誤、人為錯誤或惡意破壞引起。遺憾的是，標準的高可用性和災難復原解決方案通常無法解決邏輯損壞問題。因此，根據邏輯損壞發生的層級、應用程式、檔案系統或儲存位置，有時可能無法滿足最大停機時間和資料遺失的要求。
 
 最糟的情況是SAP應用程式的邏輯毀損。SAP應用程式通常會在不同應用程式彼此通訊及交換資料的環境中運作。因此、還原及還原發生邏輯毀損的SAP系統並非建議的方法。將系統還原至毀損發生前的某個時間點、會導致資料遺失。此外、SAP環境也不再同步、需要額外的後處理。
 
@@ -56,6 +56,6 @@ image:sc-copy-clone-image5.png["此圖顯示輸入 / 輸出對話方塊或表示
 
 image:sc-copy-clone-image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"] 詳細的逐步說明可在技術報告中找到
 
-https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["TR-4646 ： SAP HANA 災難恢復與儲存複寫（ netapp.com ）"]
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["SAP HANA災難恢復與儲存複寫"]
 
-link:../backup/hana-dr-anf-data-protection-overview.html["TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用"]
+link:../backup/hana-dr-anf-data-protection-overview.html["使用 Azure NetApp Files 進行 SAP HANA 災難恢復"]

@@ -4,7 +4,7 @@ permalink: backup/hana-dr-sr-pdf-link.html
 keywords: tr-4646, pdf, sap, hana, backup, storage, replication, dr, snapmirror, snapcenter 
 summary: TR-4646概述SAP HANA的災難恢復保護選項。其中包含詳細的設定資訊、以及以同步和非同步NetApp SnapMirror儲存複寫為基礎的三站台災難恢復解決方案使用案例說明。上述解決方案使用NetApp SnapCenter 功能搭配SAP HANA外掛程式來管理資料庫一致性。 
 ---
-= TR-4646：SAP HANA災難恢復與儲存複寫
+= SAP HANA災難恢復與儲存複寫
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: TR-4646概述SAP HANA的災難恢復保護選項。其中包含詳細�
 
 
 [role="lead"]
-TR-4646概述SAP HANA的災難恢復保護選項。其中包含詳細的設定資訊、以及以同步和非同步NetApp SnapMirror儲存複寫為基礎的三站台災難恢復解決方案使用案例說明。上述解決方案使用NetApp SnapCenter 功能搭配SAP HANA外掛程式來管理資料庫一致性。
+本文檔概述了 SAP HANA 的災難復原保護選項。它包含詳細的設定資訊，並描述了一個基於同步和非同步 NetApp SnapMirror 儲存複製的三站點災難復原解決方案的用例。此解決方案使用 NetApp SnapCenter 與 SAP HANA 外掛程式來管理資料庫一致性。
 
 作者： Nils Bauer 、 NetApp
 

@@ -54,7 +54,7 @@ image:sc-copy-clone-image7.png["此圖顯示輸入 / 輸出對話方塊或表示
 NOTE: 分割FlexClone Volume時SnapCenter 、將刪除在目標系統上建立的所有備份。
 
 
-NOTE: 使用 SnapCenter 和 Azure NetApp Files 時、複製分割作業無法使用、因為 Azure NetApp Files 一律會在建立後分割複本。
+NOTE: 使用 SnapCenter 和 Azure NetApp Files 時，複製分割作業不可用，複製總是在建立後進行分割。
 
 包括複製分割的重新整理作業包含下列步驟。
 

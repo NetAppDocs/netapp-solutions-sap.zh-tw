@@ -54,7 +54,7 @@ image:saphana-sr-scs-image30.png["此圖顯示輸入 / 輸出對話方塊或表�
 ....
 hdbuserstore.exe -u SYSTEM set SSRKEY ssr-vip:31013 SNAPCENTER <password>
 ....
-您可以在技術報告 TR-4614 中找到有關 SAP HANA 插件部署選項和使用者儲存配置的更多資訊： link:hana-sc-generic-scope.html["SAP HANA利用SnapCenter 功能進行備份與還原"^]。
+您可以在 link:hana-sc-generic-scope.html["SAP HANA利用SnapCenter 功能進行備份與還原"^] 中找到有關 SAP HANA 插件部署選項和使用者儲存配置的更多資訊。
 
 在支援區中、資源的設定如下圖所示、使用之前設定的使用者儲存金鑰、以及將支援區伺服器設定為「hdbsql"通訊主機。SnapCenter SnapCenter
 

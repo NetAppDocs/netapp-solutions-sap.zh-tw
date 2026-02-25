@@ -4,7 +4,7 @@ permalink: lifecycle/libelle-sc-overview.html
 keywords: tr4929, 4929, overview, introduction 
 summary: NetApp的SAP生命週期管理最佳化解決方案已整合至SAP Anywhere和SAP HANA資料庫。此外、NetApp也整合至SAP生命週期管理工具中、結合高效的應用程式整合式資料保護、以及靈活的SAP測試系統資源配置。 
 ---
-= TR-4929：利用Libelle SystemCopy自動化SAP系統複製作業
+= 利用Libelle SystemCopy自動化SAP系統複製作業
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -85,6 +85,6 @@ Libelle SystemCopy是一套架構型軟體解決方案、可建立全自動化�
 * 災難恢復測試案例
 
 
-雖然修復系統和災難恢復測試系統通常是使用SAP系統複製（不需要大量的後處理作業）來進行更新的測試和訓練系統、但必須套用這些後處理步驟、才能與來源系統共存。因此、本文著重於SAP系統重新整理案例。有關不同使用案例的詳細資料link:sc-copy-clone-introduction.html["TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業"^]，請參閱技術報告。
+儘管修復系統和災難復原測試系統通常使用 SAP 系統克隆（不需要大量後處理作業）來提供，但對於重新整理的測試和訓練系統，必須套用這些後處理步驟以實現與來源系統的共存。因此，本文件著重於 SAP 系統重新整理情境。有關不同使用案例的更多詳細資訊，請參閱技術報告 link:sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"^]。
 
 本文的其餘部分分為兩部分。第一部分說明NetApp SnapCenter 功能與Libelle SystemCopy的整合、適用於SAP HANA、以及在ONTAP 內部部署的NetApp作業系統上執行SAP Anywhere系統。第二部分說明AzAcSnap與LSC的整合、適用於在Microsoft Azure上執行Azure NetApp Files 的SAP HANA系統、並提供功能。儘管底層ONTAP 的不穩定技術相同、Azure NetApp Files 但與原生ONTAP 的不穩定安裝相比、支援不同的介面和工具整合（例如AzacSnap）。

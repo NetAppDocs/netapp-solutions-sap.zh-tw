@@ -15,6 +15,14 @@ summary: NetApp針對 SAP 解決方案的最新變更日誌。
 
 
 
+== 2026 年 2 月 26 日
+
+更新 https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]解決方案以涵蓋使用本機安全儲存（LSS）進行 SAP HANA 磁碟區加密。
+
+更新 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter 功能進行備份與還原"]解決方案以涵蓋使用本機安全儲存區（LSS）的 SAP HANA Volume 加密，以及新的支援組態。
+
+
+
 == 2025年12月2日
 
 新方案：link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"^]

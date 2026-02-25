@@ -4,7 +4,7 @@ permalink: lifecycle/sc-copy-clone-introduction.html
 keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
 summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資料庫與生命週期管理工具、結合高效的應用程式整合式資料保護功能、以及靈活配置 SAP 測試系統。 
 ---
-= TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業
+= 利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -65,9 +65,9 @@ SAP測試系統的資源配置有多種情境和使用案例、您可能也有�
 
 SAP 測試系統的完整自動化端對端配置可透過協力廠商工具和 NetApp 功能整合來執行。如需更多詳細資料、請參閱：
 
-link:lama-ansible-introduction.html["TR-4953：使用Ansible的NetApp SAP Landscape Management整合"]
+link:lama-ansible-introduction.html["使用Ansible的NetApp SAP Landscape Management整合"]
 
-link:libelle-sc-overview.html["TR-4929 ：使用 Libelle SystemCopy 自動化 SAP 系統複製作業（ netapp.com ）"]
+link:libelle-sc-overview.html["使用 Libelle SystemCopy (netapp.com) 實現 SAP 系統複製操作自動化"]
 
 link:../briefs/sap-alpaca-automation.html#solution-overview["將 SAP 系統複製與擴大機自動化； #44 ；重新整理與擴大； #44 ；以及使用羊駝和 NetApp SnapCenter 複製工作流程"]
 

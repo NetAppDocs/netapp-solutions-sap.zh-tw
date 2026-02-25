@@ -29,15 +29,25 @@ SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資�
 
 NOTE: 一旦任何租戶在來源系統上執行建立、重新命名或刪除作業、 SAP HANA 資料庫就會刪除此組態旗標。因此、即使已將組態恢復至租戶= SID、旗標也無法再使用、而且無法再使用工作流程3的租戶還原例外。在此情況下、選項2是必要的工作流程。
 
-image:sc-copy-clone-image10.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:sc-copy-clone-image10.png[""]
 
-image:sc-copy-clone-image11.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:sc-copy-clone-image11.png[""]
 
 
 
 == 採用 SAP HANA 加密技術的系統更新工作流程
 
-啟用 SAP HANA 持續性加密後、您必須採取其他步驟、才能在目標系統上恢復 SAP HANA 資料庫。
+啟用 SAP HANA 持久加密後，根據用於加密根金鑰的安全儲存（執行個體 SFSS 或本機安全儲存 LSS），在目標系統上復原 SAP HANA 資料庫之前，需要執行額外的步驟。
+
+使用 SFSS 時，根金鑰儲存在檔案系統中，除了 HANA 資料庫之外，還必須單獨備份。然後，必須將根金鑰備份匯入目標系統，才能還原 HANA 資料庫。如果根金鑰未發生更改，則只需執行此操作一次。
+
+使用 LSS，根金鑰會與 HANA 資料庫一起備份和還原，只需一次操作即可完成。為了能夠復原 HANA 資料庫，您需要擁有用於備份根金鑰的密碼。
+
+所需操作將在後續章節中進行更詳細的描述。
+
+
+
+=== 安全儲存 SFSS
 
 在來源系統上、您需要為系統資料庫以及所有租戶資料庫建立加密根金鑰的備份。備份檔案必須複製到目標系統、而且必須先從備份匯入根金鑰、然後才能執行還原作業。
 
@@ -45,7 +55,7 @@ image:sc-copy-clone-image11.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
-=== 根金鑰備份
+==== 根金鑰備份
 
 如果根金鑰有任何變更、則永遠需要備份根金鑰。備份命令需要使用 DBID 做為 CLI 參數。可使用以下 SQL 陳述式來識別 DBID 。
 
@@ -96,7 +106,7 @@ done.
 ....
 
 
-=== 在目標系統匯入根金鑰
+==== 在目標系統匯入根金鑰
 
 第一次執行系統重新整理作業時、一開始就需要匯入根金鑰。如果根金鑰未在來源系統中變更、則不需要額外匯入。匯入命令需要 DBID 做為 CLI 參數。DBID 的識別方式與根金鑰備份的識別方式相同。
 
@@ -125,10 +135,40 @@ qs1adm@hana-7:/usr/sap/QS1/HDB11>
 ....
 
 
-=== 根金鑰匯入（如果目標不存在 DBID ）
+==== 根金鑰匯入（如果目標不存在 DBID ）
 
 如前一章所述、系統和所有租戶資料庫的根金鑰都需要 DBID 。雖然系統資料庫一律為 DBID=0 、但租戶資料庫可以有不同的 DBID 。
 
-image:sc-copy-clone-image13.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+image:sc-copy-clone-image13.png[""]
 
 以上輸出顯示 DBID=3 和 DBID=4 的兩個租戶。如果目標系統尚未裝載 DBID=4 的租戶、則根金鑰匯入將會失敗。在這種情況下、您需要先恢復系統資料庫、然後再匯入 DBID=4 租戶的金鑰。
+
+
+
+=== 安全儲存 LSS
+
+
+NOTE: 您需要使用至少 HANA 版本 2.00.088，否則所述程序將無法運作，另請參閱 SAP note 3613110。
+
+若要還原使用加密和 LSS 的 HANA 系統、您需要用於備份根金鑰的密碼。
+
+SQL 語句
+
+....
+alter system set encryption root keys backup password <backup-pw-of-source-system>;
+....
+可用於在目標系統的 LSS 設定中設定來源系統的密碼。系統資料庫和租戶資料庫必須使用相同的語句。
+
+如果事先沒有設定密碼，您可以在還原作業期間提供密碼。
+
+系統資料庫：
+
+....
+./exe/Python/bin/python /usr/sap/QM1/HDB22/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG ENCRYPTION ROOT KEYS BACKUP PASSWORD '<backup-pw-of-source-system>'"
+....
+租戶資料庫：
+
+....
+hdbsql SYSTEMDB=> RECOVER DATA for QM1 USING SNAPSHOT CLEAR LOG ENCRYPTION ROOT KEYS BACKUP PASSWORD '<backup-pw-of-source-system>';
+
+....

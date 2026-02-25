@@ -4,7 +4,7 @@ permalink: backup/hana-dr-anf-data-protection-overview.html
 keywords:  
 summary:  
 ---
-= TR-4891：SAP HANA災難恢復Azure NetApp Files 功能搭配使用
+= 使用 Azure NetApp Files 進行 SAP HANA 災難恢復
 :allow-uri-read: 
 
 

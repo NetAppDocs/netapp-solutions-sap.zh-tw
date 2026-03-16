@@ -17,6 +17,36 @@ summary: 本節介紹如何為多主機系統建立 LUN
 
 
 
+== LUN 概述
+
+下表顯示 2+1 多主機 SAP HANA 系統的 LUN 組態。
+
+|===
+| 目的 | LUN | LVM 邏輯磁碟區 
+
+
+| 資料主機 1 | FC5_data_mnt00001_1 FC5_data_mnt00001_2 | FC5_data_mnt00001-vol 
+
+
+| 資料主機 2 | FC5_data_mnt00002_1 FC5_data_mnt00002_2 | FC5_data_mnt00002-vol 
+
+
+| 記錄主機 1 | FC5_log_mnt00001_1 FC5_log_mnt00001_2 | FC5_log_mnt00001-vol 
+
+
+| 記錄主機 2 | FC5_log_mnt00002_1 FC5_log_mnt00002_2 | FC5_log_mnt00002-vol 
+|===
+
+NOTE: /hana/shared 磁碟區必須可供所有 SAP HANA 主機存取，因此通常使用 NFS 匯出。由於 NetApp ASA 系統不支援 NFS 協定，NetApp 建議為 /hana/shared 檔案系統使用額外的 AFF 或 FAS 系統。
+
+
+NOTE: 使用上述組態時、儲存使用者SIDadm預設主目錄的「/usr/sap/sID」目錄、會位於每個HANA主機的本機磁碟上。在採用磁碟型複寫的災難恢復設定中、NetApp建議在「usr/sap/sid」檔案系統的「ID_shared」磁碟區中建立四個子目錄、以便每個資料庫主機在中央儲存設備上都擁有其所有檔案系統。
+
+
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則 `/lss/shared/SID` 目錄必須可在所有主機上存取，因此通常使用 NFS 匯出。由於 NetApp ASA 系統不支援 NFS 作為通訊協定，NetApp 建議為 /lss/shared 檔案系統使用額外的 AFF 或 FAS 系統。
+
+
+
 == 建立 LUN 並將 LUN 對應到啟動程式群組
 
 您可以使用NetApp ONTAP System Manager 建立儲存磁碟區和 LUN，並將它們對應到伺服器的 igroup 和ONTAP CLI。
@@ -39,6 +69,10 @@ lun create -path FC5_log_mnt00001_2 -size 260g -ostype linux  -class regular
 lun create -path FC5_log_mnt00002_1 -size 260g -ostype linux  -class regular
 lun create -path FC5_log_mnt00002_2 -size 260g -ostype linux  -class regular
 ....
++
+
+NOTE: 使用 GUI 停用這些 LUN 的自主勒索軟體保護
+
 . 為屬於系統FC5的所有伺服器建立啟動器群組。
 +
 ....
@@ -115,7 +149,7 @@ image:saphana_asa_fc_image21.png["ONTAP系統管理員 - 建立日誌 LUN"]
 
 . 提供所需資訊：
 +
-.. 要與 LVM 結合的日誌 LUN 的名稱，例如 `FC5_log_mnt00001`
+.. 要與 LVM 合併的日誌 LUN 名稱，例如 `FC5_log_mnt00001`
 .. 要與 LVM 組合的 LUN 數量，例如 2
 .. 每個 LUN 的大小，例如 260 GB
 .. 選擇 `Linux`作為 `Host Operating system`
@@ -149,3 +183,11 @@ image:saphana_asa_fc_image24.png["ONTAP系統管理員 - 建立額外的日誌 L
 SAP HANA 多主機系統所需的所有 LUN 均已建立。
 
 image:saphana_asa_fc_image25.png["ONTAP系統管理員 - LUN 概述"]
+
+
+
+=== 對所有資料和日誌 LUN 停用自主勒索軟體保護
+
+開啟每個資料和日誌 LUN 的內容功能表，並停用勒索軟體防護
+
+image:saphana_asa_fc_image19_5.png["ONTAP系統管理員 - LUN 概述"]

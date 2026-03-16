@@ -43,6 +43,9 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 NOTE: 透過所述配置， `/usr/sap/FC5`儲存使用者 FC5adm 的預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中， NetApp建議在 `FC5_shared`音量為 `/usr/sap/FC5`檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。
 
 
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則 `/lss/shared/SID`目錄必須可在所有主機上存取。NetApp 建議為 `/lss/shared/SID`目錄建立一個磁碟區，並使用 NFS 將其掛載到所有主機上。
+
+
 
 === 建立LVM Volume群組和邏輯磁碟區
 

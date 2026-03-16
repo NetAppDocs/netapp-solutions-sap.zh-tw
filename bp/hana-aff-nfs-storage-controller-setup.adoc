@@ -36,6 +36,14 @@ SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate E
 
 
 
+== ONTAP 自主勒索軟體保護
+
+ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的前向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"]。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。
+
+雖然可以在建立 ONTAP 叢集磁碟區時停用此功能的自動啟動，但建議保留預設設定，並在不需要此功能的磁碟區上停用此功能。
+
+
+
 == 服務品質
 
 QoS可用於限制共享控制器上特定SAP HANA系統或其他應用程式的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。
@@ -175,6 +183,9 @@ image:saphana_aff_nfs_image16a.png["Volume Configuration SAP HANA 單一主機"]
 |===
 下表顯示單一主機系統的掛載點組態範例。若要將「sidadm'」使用者的主目錄放在中央儲存設備上、則應該從「ID_shared」磁碟區掛載「usr/sap/sid」檔案系統。
 
+
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS）， `/lss/shared/SID` 目錄（LSS 的預設安裝目錄）位於本機磁碟上。在採用磁碟型複寫的災難恢復設定中，NetApp 建議在  `SID_shared` 磁碟區內為  `/lss/shared/SID` 目錄建立一個目錄，以便所有檔案系統都位於中央儲存設備上。
+
 |===
 | 交會路徑 | 目錄 | HANA主機的裝載點 
 
@@ -185,7 +196,7 @@ image:saphana_aff_nfs_image16a.png["Volume Configuration SAP HANA 單一主機"]
 | SID_log_mnt00001 |  | /HANA /記錄/SID/mnt00001 
 
 
-| SID_Shared | user-SAP共享 | /USP/SAP/SID /Hana /共享/ 
+| SID 共享 | usr-sap ＋ shared ＋ lss-shared | /usr/sap/SID + /hana/shared + /lss/shared/SID 
 |===
 
 
@@ -223,6 +234,9 @@ image:saphana_aff_nfs_image17a.png["Volume Configuration SAP HANA 多部主機"]
 |===
 下表顯示具有四台作用中SAP HANA主機的多主機系統的組態和掛載點。若要將每個主機的「sidadm'」使用者主目錄放在中央儲存設備上、則會從「ID_shared」磁碟區掛載「usr/sap/sid」檔案系統。
 
+
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則  `/lss/shared/SID` 目錄必須可從所有主機存取。NetApp 建議在  `SID_shared` 磁碟區內為  `/lss/shared/SID` 目錄建立一個子目錄。
+
 |===
 | 交會路徑 | 目錄 | SAP HANA主機的掛載點 | 附註 
 
@@ -254,6 +268,9 @@ image:saphana_aff_nfs_image17a.png["Volume Configuration SAP HANA 多部主機"]
 | SID_Shared | 共享 | /Hana /共享/SID | 安裝於所有主機 
 
 
+| SID_Shared | lss-shared | /lss/shared/SID | 安裝於所有主機 
+
+
 | SID_Shared | USR-SAP-host1 | /usr/sap/sID | 安裝於主機1 
 
 
@@ -281,7 +298,10 @@ image:saphana_aff_nfs_image17a.png["Volume Configuration SAP HANA 多部主機"]
 | 停用Snapshot目錄的可見度 | Vol modify -vserver <vserver-name>-volume <volname>-snapdir-access假 
 
 
-| 停用自動Snapshot複本 | Vol modify–vserver <vserver-name>-volume <volname>-snapshot policy nONE 
+| 停用自動Snapshot複本 | vol modify -vserver <vserver-name> -volume <volname> -snapshot-policy none 
+
+
+| 停用勒索軟體保護，但 SID_shared 磁碟區除外 | vol modify -vserver <vserver-name> -volume <volname> -anti-ransomware-state disabled 
 
 
 | 停用存取時間更新、但SID_Shared Volume除外 | 設定進階vol modify -vserver <vserver-name>-volume <volname>-atime-update假設定admin 

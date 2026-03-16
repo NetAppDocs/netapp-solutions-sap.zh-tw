@@ -765,7 +765,6 @@
   <block id="5722c99f4a5680ae1ee34f95cc81e80c" category="paragraph">下表顯示每個實體介面的資料量和記錄磁碟區裝載上限。</block>
   <block id="36913193033e347ca8ec536cf018744d" category="admonition">如果資料和記錄磁碟區儲存在同一個控制器上、則必須使用兩個不同的生命體來執行從伺服器到儲存設備的存取：一個LIF用於存取資料磁碟區、另一個LIF用於存取記錄磁碟區。</block>
   <block id="34a9cf7a71d5de61eb0516df58caeb4d" category="paragraph">每部SAP HANA主機都會設定資料Volume、記錄Volume和「/HANA /共享」的Volume。下表顯示單一主機SAP HANA系統的組態範例。</block>
-  <block id="7a2dcccea93b2a3993b37840c369bf46" category="cell">/USP/SAP/SID /Hana /共享/</block>
   <block id="edf427eb9e76414a3f84589e9f2ecf37" category="paragraph">下表顯示具有四台作用中SAP HANA主機的多主機系統的組態和掛載點。若要將每個主機的「sidadm'」使用者主目錄放在中央儲存設備上、則會從「ID_shared」磁碟區掛載「usr/sap/sid」檔案系統。</block>
   <block id="6c973aa519b6f8499c2dc9a71251b4f7" category="cell">停用存取時間更新、但SID_Shared Volume除外</block>
   <block id="8ec2236fd6ed4715167a8899b66d149b" category="paragraph">下表所列的NFS選項必須在所有儲存控制器上進行驗證和設定。對於本表所示的某些命令、您必須切換至進階權限模式。</block>
@@ -816,9 +815,7 @@
   <block id="82740b25df395d68a79118ebc5c4da80" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
   <block id="c2e770dd6d768668395e4b8d3b9291d1" category="paragraph">從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
   <block id="4142bd640477d1c4292c7fcbb3bb1f57" category="section-title">在/HANA /共享磁碟區中建立子目錄</block>
-  <block id="67435e0588f5cb039a7fb0f4578e90a7" category="admonition">這些範例顯示SID=NF2的SAP HANA資料庫。</block>
   <block id="73534bc746cc8b23b1e96428d64fb98d" category="paragraph">若要建立必要的子目錄、請執行下列其中一項動作：</block>
-  <block id="4dedcda7bf51022c092ff39d3a6d5686" category="list-text">對於多主機系統、請掛載「/HANA /共享」磁碟區、並為每個主機建立「共享」和「USR SAP」子目錄。</block>
   <block id="456f14e4dccd61c74e863ee833a9ca13" category="paragraph">下列命令範例適用於2+1多主機HANA系統。</block>
   <block id="436b2f88b88434a5965be45b319737cd" category="paragraph">視NFS版本和ONTAP 發行版而定、必須使用不同的掛載選項。下列檔案系統必須掛載到主機：</block>
   <block id="2f44a4485ee99d4db07e6c780160d663" category="list-text">/hana /資料/SID/mnt0000*</block>
@@ -842,11 +839,7 @@
   <block id="1017e4c4798ba77b88c85f3b8c6fdf03" category="cell">rw、bg、hard、timeo=600、noatime、</block>
   <block id="4a09ae73b23148acb0508b47589e3623" category="cell">rsize=1048576、wsize=262144、</block>
   <block id="7d7894f31c9b83146d2bc22185ed5db0" category="cell">rsize=65536、wsize=65536、</block>
-  <block id="ae2c578e6abfee06e6c468fd4e7cb392" category="paragraph">若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：</block>
-  <block id="f9d7623ba6cc83509340e737618f63c2" category="paragraph">以下範例顯示單一主機SAP HANA資料庫、其中SID=NF2使用NFSv3、NFS傳輸大小為1MB（讀取）、256k（寫入）。</block>
   <block id="f731bd3074578aba0a3c1b5ab0ca78ee" category="list-text">將所需的檔案系統新增至「etc/stab'組態檔。</block>
-  <block id="aff8bbab4f16423ec5907aed644aead6" category="list-text">執行「mount–a」、在所有主機上掛載檔案系統。</block>
-  <block id="b6002aa673859c29cc8fc6915c01cf54" category="paragraph">下一個範例顯示使用NFSv4.1的多主機SAP HANA資料庫、使用SID=NF2的資料與記錄檔系統、以及使用NFSv3的「/HANA /共享」和「USP/SAP/NF2」檔案系統。NFS傳輸大小為1MB、用於讀取、256k用於寫入。</block>
   <block id="2555851d01cabd281a371497bed0a9a9" category="list-text">將所需的檔案系統新增至所有主機上的「etc/stb'組態檔」。</block>
   <block id="7f5e79baae33aa1aca5c990882a844cb" category="summary">NFS版本4及更新版本需要使用者驗證。此驗證可透過使用集中式使用者管理工具（例如輕量型目錄存取傳輸協定（LDAP）伺服器或本機使用者帳戶）來完成。下列各節將說明如何設定本機使用者帳戶。</block>
   <block id="e3a77a70624c57f3f0e2fc7075e4f75f" category="doc">NFSv4的SAP HANA安裝準備</block>
@@ -881,8 +874,6 @@
   <block id="179a425489e8da15ef704b42e37645c8" category="section-title">Red Hat Enterprise Linux 7.2或更新版本的組態參數</block>
   <block id="e19cf298e039e5acff1dbe7e98090d84" category="paragraph">您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。</block>
   <block id="5491b828c5fede318e582fdb0621d64f" category="paragraph">從Red Hat Enterprise Linux 7.2開始、您必須在/etc/syscl.d目錄的組態檔中設定核心參數。例如、您必須建立名稱為「91-NetApp-HANA」的組態檔。</block>
-  <block id="b57aa9745ef1f47f50b9a81013b110fc" category="admonition">以下範例顯示SID=NF2的SAP HANA資料庫。</block>
-  <block id="7e0efdf8314ae57608296d0f91d73af0" category="list-text">對於單一主機系統、請掛載「/HANA /共享」磁碟區、然後建立「共享」和「USR SAP」子目錄。</block>
   <block id="efa2100424814ed736c66e231fca168e" category="paragraph">下表顯示單一主機和多主機SAP HANA資料庫的不同檔案系統必須使用的NFS版本。</block>
   <block id="2f47d7fd74fc1974289ac9986bf3aadc" category="admonition">SAP Lama需要將/usr/sap/sID目錄變成本機目錄。因此、如果您使用的是SAP Lama、請勿掛載USr/SAP/SID的NFS磁碟區。</block>
   <block id="2d10c7ea8ceb7d4d67cf331de62acb84" category="paragraph">對於NFSv3、您必須關閉NFS鎖定、以免在軟體或伺服器故障時執行NFS鎖定清除作業。</block>
@@ -981,7 +972,6 @@
   <block id="ebcead3815b9e992a87a9c31a4be99fe" category="paragraph">每部SAP HANA主機都會建立一個資料磁碟區和一個記錄磁碟區。SAP HANA系統的所有主機都會使用「/HANA /共享」磁碟區。下圖顯示4+1多主機SAP HANA系統的組態範例。</block>
   <block id="47efb02d47f9965ca8839f52ecc182bc" category="paragraph">下表顯示具有四台作用中SAP HANA主機的多主機系統組態和掛載點。</block>
   <block id="415dc524f4e8d720ce545c8d6263459c" category="cell">LUN或Volume</block>
-  <block id="ea15b968cdc22cb1b865eba6daa0eae0" category="paragraph">Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。</block>
   <block id="203165a49e3a391bdbc44e3a05d54279" category="cell">功能9. ONTAP</block>
   <block id="77656454768235b0e1954805bd92d9c9" category="section-title">使用CLI建立LUN、磁碟區、並將LUN對應至igroup</block>
   <block id="d21a66a2fd717a4acd6dd449ecac4839" category="list-text">為屬於系統FC5的所有伺服器建立igroup。</block>
@@ -4379,8 +4369,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="31dad34440bb6733bc03eadd388195f9" category="cell">/HANA /資料/ FC5/mnt00002</block>
   <block id="7ee7f8e2c85175d00eefd856f485ae00" category="cell">LV：FC5_log_mnt00002-vol</block>
   <block id="6d32edddb8a4b0a8c803f59c2cd3cdf1" category="cell">/HANA / log / FC5/mnt00002</block>
-  <block id="44cc7dc291b1a462651371e51bb9fa0f" category="cell">外部 NFS 共用：FC5_shared</block>
-  <block id="cef7183e022592f117a580def3299e72" category="admonition">SAP HANA 多主機系統需要<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>連接到系統所有主機的檔案系統。通常，這是由 NFS 伺服器提供的 NFS 共用。建議使用高可用性 NFS 伺服器，例如 NetApp FAS 或 AFF 系統。另一種選擇是使用 LINUX 主機的內建 NFS 伺服器。</block>
   <block id="5b10d0b1272d218e55f6473abcfbae9d" category="admonition">透過所述配置， <block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>儲存使用者 FC5adm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議使用四個額外的 LUN 用於<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。</block>
   <block id="d4f54d18b3b1b7422185c0c71038ff15" category="section-title">建立 LUN 並將 LUN 對應到啟動程式群組</block>
   <block id="b54a0f5023cc826b59cab28cc23f22cc" category="section-title">使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組</block>
@@ -4599,7 +4587,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="731029fe8023134b7b2cfe0f6b60a062" category="paragraph">本章介紹使用 LINUX LVM 設定 SAP HANA 單主機。</block>
   <block id="1347f8e1e71f136f4775e716ea4ffe79" category="cell">/hana/資料/FC51/mnt00001</block>
   <block id="8605d3de78deff9736f57392e34596e6" category="admonition">透過所述配置，<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>儲存使用者 FC5adm 的預設主目錄的目錄位於本機磁碟上。在基於磁碟的複製災難復原設定中， NetApp建議在<block ref="9bfe65825cda87178edc3ba9f8299b5b" prefix=" " category="inline-code"></block>音量為<block ref="ea6f2eb226c57300be10268ea33e50e3" prefix=" " category="inline-code"></block>目錄，以便所有檔案系統都位於中央儲存空間上。</block>
-  <block id="96b45d8155e675bfeba1a557f8d2c076" category="admonition">NetApp ASA系統不支援 NFS 作為協定。  NetApp建議使用額外的AFF或FAS系統<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>文件系統。</block>
   <block id="af7dc91d6c9878ceafb1b3fda7b49ff6" category="admonition">沒有必要使用 LVM 來組合多個 LUN 來實現 SAP HANA KPI，但建議</block>
   <block id="b4421a31caaf211d702cdbef54c45f59" category="admonition">沒有必要使用具有多個 LUN 的 LVM 來滿足 SAP HANA KPI，但建議這樣做。</block>
   <block id="c3b8b3942717ccdfa536ffb850c19eec" category="paragraph">您可以使用NetApp ONTAP System Manager 建立儲存磁碟區和 LUN，並將它們對應到伺服器的 igroup 和ONTAP CLI。</block>
@@ -4634,7 +4621,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="07d3bacb52cc5cfae2b95ad38024bc61" category="list-text">成功建立資料 LUN 後，按<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
   <block id="14146bfdc8a39f564cd77fb78ac56230" category="inline-image-macro">ONTAP系統管理員 - 建立日誌 LUN</block>
   <block id="54892c3762fa9e40f2abfb8ace716ce4" category="paragraph"><block ref="54892c3762fa9e40f2abfb8ace716ce4" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="38d3bfe58a56c277581bf554d58567bb" category="list-text">要與 LVM 結合的日誌 LUN 的名稱，例如<block ref="65c06cc2828e391723bfb5cf196d549d" prefix=" " category="inline-code"></block></block>
   <block id="f2f463cdd25cba04bd03ae9c978fcf8a" category="list-text">每個 LUN 的大小，例如 260 GB</block>
   <block id="ec3ba9cd272dc2bace8316ea5b74f511" category="paragraph"><block ref="ec3ba9cd272dc2bace8316ea5b74f511" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0aecf7c695760ec27de2589c7174b43c" category="list-text">按下<block ref="ec211f7c20af43e742bf2570c3cb84f9" prefix=" " category="inline-code"></block></block>
@@ -5843,4 +5829,70 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="56a5c925d77740ea69d50272863f3f75" category="section-title">2026 年 2 月 26 日</block>
   <block id="7dad4c0ee446a92530a257db0791c76e" category="paragraph">更新<block ref="c3708ebf567e377ab7439ca8121b298b" category="inline-link-rx"></block>解決方案以涵蓋使用本機安全儲存（LSS）進行 SAP HANA 磁碟區加密。</block>
   <block id="b0b371f39676ba260f78c6fc42cd0308" category="paragraph">更新<block ref="047d8918c69d98d218dfb2d8e936ae4c" category="inline-link-rx"></block>解決方案以涵蓋使用本機安全儲存區（LSS）的 SAP HANA Volume 加密，以及新的支援組態。</block>
+  <block id="6abba955e8b19f1de497e7dffab9251a" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），則<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block>目錄必須可在所有主機上存取。NetApp 建議為<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block>目錄建立一個磁碟區，並使用 NFS 將其掛載到所有主機上。</block>
+  <block id="fd4003edaa3f81dc91905cd394448d22" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），則<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄（LSS 的預設安裝目錄）位於本地磁碟。在使用磁碟型複寫的災難復原架構中，NetApp 建議在<block ref="ab07e4bbf6e507a26a731683320de6e3" prefix=" " category="inline-code"></block> 磁區內為<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立額外的 LUN，以便所有檔案系統都位於中央儲存設備上。</block>
+  <block id="26614a7649b9605c8e9b89f419dcbbc9" category="section-title">ONTAP 自主勒索軟體保護</block>
+  <block id="88d57ef62d73e184723a681269640515" category="paragraph">ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的正向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區。請改用基於 SnapCenter 的資料保護與 Tamperproof Snapshot 來防範勒索軟體。<block ref="f7a9a89a273a9d57fcd022d94d56f53f" category="inline-link-macro-rx"></block> ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。</block>
+  <block id="cd24d7da1b8ee6e375962e161af1c899" category="paragraph">雖然可以在建立 ONTAP 叢集磁碟區時停用此功能的自動啟動，但建議保留預設設定，並在不需要此功能的磁碟區上停用此功能。</block>
+  <block id="f142ca5f8fc4ad82d3c9a25e62538498" category="admonition">NetApp ASA 系統不支援 NFS 作為傳輸協定。NetApp 建議使用額外的 AFF 或 FAS 系統作為 <block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> 和 <block ref="6a2045342e385b7ce35428d8aab5be27" prefix=" " category="inline-code"></block> 檔案系統。</block>
+  <block id="0e3955f50c51a60e9df91a2e151d50d9" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），則 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄必須可在所有主機上存取。NetApp 建議為 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立磁碟區，並使用 NFS 將其掛載到所有主機上。</block>
+  <block id="067545c231b0b26bac61a3124245e16d" category="paragraph">LVM 磁碟區群組的 LUN 應儲存在不同的 Aggregate 中、並位於不同的控制器上。下表顯示 2+1 SAP HANA 多主機系統每個磁碟區群組兩個 LUN 的範例。</block>
+  <block id="12e9e557c1c029e6aafa6564f0f21ef8" category="cell">停用勒索軟體保護，但 SID_shared 磁碟區除外</block>
+  <block id="3ae79969356e4b645267c0cd2017a473" category="cell">vol modify -vserver &lt;vserver-name&gt; -volume &lt;volname&gt; -anti-ransomware-state disabled</block>
+  <block id="3bf8d6be05d956fede1cf634ede69f84" category="admonition">以下範例在建立磁碟區期間設定這些選項</block>
+  <block id="001d61e98da450396ceb3d66e2d75ae7" category="cell">vol modify -vserver &lt;vserver-name&gt; -volume &lt;volname&gt; -snapshot-policy none</block>
+  <block id="58cd7dc403225c3fae0f809947405f7a" category="admonition">以下範例展示了使用 LSS 的 SID=NF2 SAP HANA 資料庫。</block>
+  <block id="021cec2f2ae89f6cd58d5c43fdbce31c" category="list-text">對於單主機系統、掛載 <block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> 磁碟區並建立 <block ref="9e81e7b963c71363e2fb3eefcfecfc0e" prefix=" " category="inline-code"></block>、<block ref="5aac74b892b1c8416fe50a1ce9cc2c71" prefix=" " category="inline-code"></block> 和 <block ref="0d24115d39c3b819064955cf824ba7ec" prefix=" " category="inline-code"></block> 子目錄。</block>
+  <block id="cdc81112c5a6aa3638a4bc33f0a0df92" category="list-text">對於多主機系統，掛載 <block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block> 磁碟區並為每個主機建立 <block ref="9e81e7b963c71363e2fb3eefcfecfc0e" prefix=" " category="inline-code"></block>、<block ref="5aac74b892b1c8416fe50a1ce9cc2c71" prefix=" " category="inline-code"></block> 和 <block ref="0d24115d39c3b819064955cf824ba7ec" prefix=" " category="inline-code"></block> 子目錄。</block>
+  <block id="e9df1c5500993329ea1c3572ae534967" category="list-text"><block ref="6a2045342e385b7ce35428d8aab5be27" prefix="" category="inline-code"></block></block>
+  <block id="6a2045342e385b7ce35428d8aab5be27" category="cell">/lss/shared</block>
+  <block id="d5f4ae60785555540242e42c7b3997e6" category="list-text">執行 <block ref="9f7a2b0acd2325ca01c92df6a9e32ef7" prefix=" " category="inline-code"></block> 以在所有主機上掛載檔案系統。</block>
+  <block id="447186ce0957b457e38b60ad6935bf17" category="paragraph">下一個範例展示了一個多主機 SAP HANA 資料庫，其 SID=NF2，資料和日誌檔案系統使用 NFSv4.1，<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>、<block ref="6a2045342e385b7ce35428d8aab5be27" prefix=" " category="inline-code"></block> 和 <block ref="68727786e22b015e3091f141273c8e9a" prefix=" " category="inline-code"></block> 檔案系統使用 NFSv3。讀取操作的 NFS 傳輸大小為 1MB，寫入操作的 NFS 傳輸大小為 256k。</block>
+  <block id="68bb0afd9f75db09a9936329013b7f31" category="paragraph">ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的前向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：<block ref="f7a9a89a273a9d57fcd022d94d56f53f" category="inline-link-macro-rx"></block>。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。</block>
+  <block id="d68a9cc1ad57a1b45c718a98cf06c5e8" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄（LSS 的預設安裝目錄）位於本機磁碟上。在採用磁碟型複寫的災難恢復設定中，NetApp 建議在 <block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block> 磁碟區內為 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立一個目錄，以便所有檔案系統都位於中央儲存設備上。</block>
+  <block id="5343b98bc4bd7ff24e4885d18da21133" category="cell">SID 共享</block>
+  <block id="8c60f3bdaf864f1378bf15bdbf286234" category="cell">usr-sap ＋ shared ＋ lss-shared</block>
+  <block id="c4fb2c28012cba7a96234792c8a571ee" category="cell">/usr/sap/SID + /hana/shared + /lss/shared/SID</block>
+  <block id="d8c3aafaff42f2496baa3efed098ed54" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），則 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄必須可從所有主機存取。NetApp 建議在 <block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block> 磁碟區內為 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立一個子目錄。</block>
+  <block id="5aac74b892b1c8416fe50a1ce9cc2c71" category="cell">lss-shared</block>
+  <block id="1d7604fd1dd9d655c19ff0843bcd1cab" category="cell">/lss/shared/SID</block>
+  <block id="beee35b505dad80cd7cd18e197637511" category="cell">vol modify -vserver &lt;vserver-name&gt; -volume &lt;volname&gt; -snapshot-policy none</block>
+  <block id="407bb1f33718ec45fa319cb50fcc7b97" category="cell">外部 NFS 共用：+ FC5_shared</block>
+  <block id="d21241ce24640b5a4bf00766df44b91d" category="admonition">SAP HANA 多主機系統需要<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>檔案系統和<block ref="6a2045342e385b7ce35428d8aab5be27" prefix=" " category="inline-code"></block>檔案系統，如果使用 SAP Local Secure Store 服務（LSS），則需要連接到系統的所有主機。通常這是由 NFS 伺服器提供的 NFS 共用。建議使用高可用性 NFS 伺服器，例如 NetApp FAS 或 AFF 系統。另一種選擇是使用 LINUX 主機的內建 NFS 伺服器。</block>
+  <block id="64981b526d5b35ac09f02c48453d6f35" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block>目錄（LSS 的預設安裝目錄）位於本機磁碟上。在採用磁碟型複寫的災難恢復設定中，NetApp 建議為 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立額外的 LUN，以便所有檔案系統都位於中央儲存設備上。</block>
+  <block id="12ccabf84c21c14e6551f42509f3b977" category="section-title">LUN 概述</block>
+  <block id="0b37ec6af096731a213f36e2166d3d2a" category="paragraph">下表顯示 2+1 多主機 SAP HANA 系統的 LUN 組態。</block>
+  <block id="7b3c6a2d089eb1b6f8959e7e61a50c07" category="cell">LUN</block>
+  <block id="04c7f125503417660995afc6fa1421d7" category="cell">LVM 邏輯磁碟區</block>
+  <block id="41384d57430dc5ab72f37f393655f8bc" category="cell">資料主機 1</block>
+  <block id="f6e0235f101367ef53495d79d7a3d70d" category="cell">FC5_data_mnt00001_1 FC5_data_mnt00001_2</block>
+  <block id="1f0d31288f476cfe2e133221414df507" category="cell">FC5_data_mnt00001-vol</block>
+  <block id="3970fc12a56316e6f6e9db16a426efc0" category="cell">資料主機 2</block>
+  <block id="2aca948cce804cc9664e0462a0046129" category="cell">FC5_data_mnt00002_1 FC5_data_mnt00002_2</block>
+  <block id="0d0b488fab32fe772633ff5e38511cb6" category="cell">FC5_data_mnt00002-vol</block>
+  <block id="32911bfac2fea6da30105fbc8be0e921" category="cell">記錄主機 1</block>
+  <block id="4a10ff90e91f48e6f669846ec3087266" category="cell">FC5_log_mnt00001_1 FC5_log_mnt00001_2</block>
+  <block id="c97584592958ee2c6a93761573a5c46a" category="cell">FC5_log_mnt00001-vol</block>
+  <block id="6a1061f578bdc6ce815ed84151eb9709" category="cell">記錄主機 2</block>
+  <block id="c6cf4a33a26a4900a2a6d9aa56ee9b36" category="cell">FC5_log_mnt00002_1 FC5_log_mnt00002_2</block>
+  <block id="18efe4d83c560f2432eaf2f599628297" category="cell">FC5_log_mnt00002-vol</block>
+  <block id="252d3743e15f6d6f4bd2f5d442a8e00d" category="admonition">/hana/shared 磁碟區必須可供所有 SAP HANA 主機存取，因此通常使用 NFS 匯出。由於 NetApp ASA 系統不支援 NFS 協定，NetApp 建議為 /hana/shared 檔案系統使用額外的 AFF 或 FAS 系統。</block>
+  <block id="7cc6c30a9b9935b1520035dedaab2e46" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），則<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄必須可在所有主機上存取，因此通常使用 NFS 匯出。由於 NetApp ASA 系統不支援 NFS 作為通訊協定，NetApp 建議為 /lss/shared 檔案系統使用額外的 AFF 或 FAS 系統。</block>
+  <block id="cff8c0860eb3aaa9d990b85bb767bc29" category="admonition">使用 GUI 停用這些 LUN 的自主勒索軟體保護</block>
+  <block id="ab1010420f90f8dbe2a9fd15c5bdd149" category="list-text">要與 LVM 合併的日誌 LUN 名稱，例如<block ref="65c06cc2828e391723bfb5cf196d549d" prefix=" " category="inline-code"></block></block>
+  <block id="c3910183d4d4e0f43b4acfa76737f1e8" category="section-title">對所有資料和日誌 LUN 停用自主勒索軟體保護</block>
+  <block id="e8746ab7bcc4ca7345212370e6e8e9b1" category="paragraph">開啟每個資料和日誌 LUN 的內容功能表，並停用勒索軟體防護</block>
+  <block id="c728a7ce0a9bfb9c44b3c4ae50dd6577" category="paragraph"><block ref="c728a7ce0a9bfb9c44b3c4ae50dd6577" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="72d03a30fdf7d7305becff30d809d139" category="paragraph">下表顯示單一主機 SAP HANA 系統的 LUN 組態。</block>
+  <block id="f6068daa29dbb05a7ead1e3b5a48bbee" category="cell">資料</block>
+  <block id="ce0be71e33226e4c1db2bcea5959f16b" category="cell">記錄</block>
+  <block id="a6156ea9d66fef24e87e841fbabf7cca" category="cell">共享</block>
+  <block id="9bfe65825cda87178edc3ba9f8299b5b" category="cell">FC5_shared</block>
+  <block id="26f38965a7bce5fc6004dbd78b9e4788" category="admonition">依照上述配置，儲存使用者 SID1adm 預設主目錄的<block ref="1c6e4d45ea710f75ef527bf5644cf69e" prefix=" " category="inline-code"></block>目錄位於本機磁碟上。在採用基於磁碟複製的災難復原設定中，NetApp 建議為<block ref="1c6e4d45ea710f75ef527bf5644cf69e" prefix=" " category="inline-code"></block>目錄建立額外的 LUN，以便所有檔案系統都位於中央儲存設備上。</block>
+  <block id="4a95172eb256f511fef386008c699e6e" category="paragraph">該<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>磁碟區必須可供所有 HANA 主機訪問，因此使用 NFS 匯出。儘管<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>檔案系統沒有特定的效能 KPI，但 NetApp 建議使用 10Gb 乙太網路連線。</block>
+  <block id="1946f3132a161c2002c2a7d1ef4fc6ac" category="admonition">範例展示了使用 LSS 的 SID=NF2 SAP HANA 資料庫。</block>
+  <block id="eccd23339a640cd644c7eb79a2dc7915" category="paragraph">下一個範例展示了一個多主機 SAP HANA 資料庫，其 SID=NF2，資料和日誌檔案系統使用 NFSv4.1，<block ref="b61595b5b7b716bd6b8bd21e4fa4a3bf" prefix=" " category="inline-code"></block>、<block ref="6a2045342e385b7ce35428d8aab5be27" prefix=" " category="inline-code"></block> 和 <block ref="68727786e22b015e3091f141273c8e9a" prefix=" " category="inline-code"></block> 檔案系統使用 NFSv3。讀取操作的 NFS 傳輸大小為 1MB，寫入操作的 NFS 傳輸大小為 256k。</block>
+  <block id="3d4f8b4b1b1faa02f0aa9e9f49fe9088" category="paragraph">ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的正向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：<block ref="f7a9a89a273a9d57fcd022d94d56f53f" category="inline-link-macro-rx"></block>。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。</block>
+  <block id="5c9e36a122daafc35d852512bd535596" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block>目錄（LSS 的預設安裝目錄）位於本機磁碟上。在採用磁碟型複寫的災難恢復設定中，NetApp 建議在 <block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block> 磁碟區內為 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立一個目錄，以便所有檔案系統都位於中央儲存設備上。</block>
+  <block id="3ee7f42a5f57f42357faa6066ecfb5d8" category="cell">/lss/shared/</block>
 </blocks>

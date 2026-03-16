@@ -61,6 +61,9 @@ image:saphana_aff_fc_image16a.png["此圖顯示輸入 / 輸出對話方塊或表
 NOTE: 使用上述組態時、儲存使用者SID1adm預設主目錄的「/usr/sid1」目錄會儲存在本機磁碟上。在使用磁碟型複寫的災難恢復設定中、NetApp建議在「USP/SAP/SID1」目錄的「ID1_shared」磁碟區內建立額外的LUN、以便所有檔案系統都位於中央儲存設備上。
 
 
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則 `/lss/shared/SID` 目錄（LSS 的預設安裝目錄）位於本地磁碟。在使用磁碟型複寫的災難復原架構中，NetApp 建議在 `SID1_shared` 磁區內為 `/lss/shared/SID` 目錄建立額外的 LUN，以便所有檔案系統都位於中央儲存設備上。
+
+
 
 == 使用Linux LVM的SAP HANA單一主機系統的Volume與LUN組態
 
@@ -85,11 +88,17 @@ NOTE: 沒有必要使用具有多個 LUN 的 LVM 來滿足 SAP HANA KPI，但建
 | 行動 | 功能9. ONTAP 
 
 
-| 停用自動Snapshot複本 | Vol modify–vserver <vserver-name>-volume <volname>-snapshot policy nONE 
+| 停用自動Snapshot複本 | vol modify -vserver <vserver-name> -volume <volname> -snapshot-policy none 
 
 
 | 停用Snapshot目錄的可見度 | Vol modify -vserver <vserver-name>-volume <volname>-snapdir-access假 
+
+
+| 停用勒索軟體保護，但 SID_shared 磁碟區除外 | vol modify -vserver <vserver-name> -volume <volname> -anti-ransomware-state disabled 
 |===
+
+NOTE: 以下範例在建立磁碟區期間設定這些選項
+
 
 
 === 使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組
@@ -99,11 +108,11 @@ NOTE: 沒有必要使用具有多個 LUN 的 LVM 來滿足 SAP HANA KPI，但建
 . 建立所有必要的磁碟區。
 +
 ....
-vol create -volume FC5_data_mnt00001 -aggregate aggr1_1 -size 1200g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_log_mnt00001  -aggregate aggr1_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
+vol create -volume FC5_data_mnt00001 -aggregate aggr1_1 -size 1200g  -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_log_mnt00001  -aggregate aggr1_2 -size 280g -snapshot-policy none -foreground true -encrypt false -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false -snapdir-access false -space-guarantee none
 ....
 . 建立所有LUN。
 +
@@ -112,6 +121,7 @@ lun create -path  /vol/FC5_data_mnt00001/FC5_data_mnt00001   -size 1t -ostype li
 lun create -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
 lun create -path /vol/FC5_log_mnt00001/FC5_log_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
 lun create -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path /vol/FC5_shared/FC5_shared -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
 ....
 . 為屬於 FC5 的 sythe 主機的所有連接埠建立啟動器群組。
 +
@@ -125,5 +135,6 @@ lun map -path /vol/FC5_data_mnt00001/FC5_data_mnt00001    -igroup HANA-FC5
 lun map -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001  -igroup HANA-FC5
 lun map -path /vol/FC5_log_mnt00001/FC5_log_mnt00001  -igroup HANA-FC5
 lun map -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001  -igroup HANA-FC5
+lun map -path /vol/FC5_shared/FC5_shared -igroup HANA-FC5
 ....
 

@@ -75,22 +75,23 @@ NOTE: 從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System�
 == 在/HANA /共享磁碟區中建立子目錄
 
 
-NOTE: 這些範例顯示SID=NF2的SAP HANA資料庫。
+NOTE: 範例展示了使用 LSS 的 SID=NF2 SAP HANA 資料庫。
 
 若要建立必要的子目錄、請執行下列其中一項動作：
 
-* 對於單一主機系統、請掛載「/HANA /共享」磁碟區、然後建立「共享」和「USR SAP」子目錄。
+* 對於單主機系統、掛載  `/hana/shared` 磁碟區並建立  `shared`、 `lss-shared` 和  `usr-sap` 子目錄。
 
 
 ....
 sapcc-hana-tst-06:/mnt # mount <storage-hostname>:/NF2_shared /mnt/tmp
 sapcc-hana-tst-06:/mnt # cd /mnt/tmp
 sapcc-hana-tst-06:/mnt/tmp # mkdir shared
+sapcc-hana-tst-06:/mnt/tmp # mkdir lss-shared
 sapcc-hana-tst-06:/mnt/tmp # mkdir usr-sap
 sapcc-hana-tst-06:mnt/tmp # cd ..
 sapcc-hana-tst-06:/mnt # umount /mnt/tmp
 ....
-* 對於多主機系統、請掛載「/HANA /共享」磁碟區、並為每個主機建立「共享」和「USR SAP」子目錄。
+* 對於多主機系統，掛載  `/hana/shared` 磁碟區並為每個主機建立  `shared`、 `lss-shared` 和  `usr-sap` 子目錄。
 +
 範例命令顯示2+1多主機HANA系統。
 
@@ -100,6 +101,7 @@ sapcc-hana-tst-06:/mnt # umount /mnt/tmp
 sapcc-hana-tst-06:/mnt # mount <storage-hostname>:/NF2_shared /mnt/tmp
 sapcc-hana-tst-06:/mnt # cd /mnt/tmp
 sapcc-hana-tst-06:/mnt/tmp # mkdir shared
+sapcc-hana-tst-06:/mnt/tmp # mkdir lss-shared
 sapcc-hana-tst-06:/mnt/tmp # mkdir usr-sap-host1
 sapcc-hana-tst-06:/mnt/tmp # mkdir usr-sap-host2
 sapcc-hana-tst-06:/mnt/tmp # mkdir usr-sap-host3
@@ -111,7 +113,7 @@ sapcc-hana-tst-06:/mnt # umount /mnt/tmp
 == 建立掛載點
 
 
-NOTE: 這些範例顯示SID=NF2的SAP HANA資料庫。
+NOTE: 範例展示了使用 LSS 的 SID=NF2 SAP HANA 資料庫。
 
 若要建立所需的掛載點目錄、請執行下列其中一項動作：
 
@@ -122,10 +124,12 @@ NOTE: 這些範例顯示SID=NF2的SAP HANA資料庫。
 sapcc-hana-tst-06:/ # mkdir -p /hana/data/NF2/mnt00001
 sapcc-hana-tst-06:/ # mkdir -p /hana/log/NF2/mnt00001
 sapcc-hana-tst-06:/ # mkdir -p /hana/shared
+sapcc-hana-tst-06:/ # mkdir -p /lss/shared/
 sapcc-hana-tst-06:/ # mkdir -p /usr/sap/NF2
 sapcc-hana-tst-06:/ # chmod –R 777 /hana/log/NF2
 sapcc-hana-tst-06:/ # chmod –R 777 /hana/data/NF2
 sapcc-hana-tst-06:/ # chmod -R 777 /hana/shared
+sapcc-hana-tst-06:/ # chmod -R 777 /lss/shared
 sapcc-hana-tst-06:/ # chmod -R 777 /usr/sap/NF2
 ....
 * 對於多主機系統、請建立掛載點、並在所有工作者和待命主機上設定權限。
@@ -144,10 +148,12 @@ sapcc-hana-tst-06:~ # mkdir -p /hana/data/NF2/mnt00002
 sapcc-hana-tst-06:~ # mkdir -p /hana/log/NF2/mnt00001
 sapcc-hana-tst-06:~ # mkdir -p /hana/log/NF2/mnt00002
 sapcc-hana-tst-06:~ # mkdir -p /hana/shared
+sapcc-hana-tst-06:/ # mkdir -p /lss/shared/
 sapcc-hana-tst-06:~ # mkdir -p /usr/sap/NF2
 sapcc-hana-tst-06:~ # chmod -R 777 /hana/log/NF2
 sapcc-hana-tst-06:~ # chmod -R 777 /hana/data/NF2
 sapcc-hana-tst-06:~ # chmod -R 777 /hana/shared
+sapcc-hana-tst-06:/ # chmod -R 777 /lss/shared
 sapcc-hana-tst-06:~ # chmod -R 777 /usr/sap/NF2
 ....
 * 第二工作者主機：
@@ -159,10 +165,12 @@ sapcc-hana-tst-07:~ # mkdir -p /hana/data/NF2/mnt00002
 sapcc-hana-tst-07:~ # mkdir -p /hana/log/NF2/mnt00001
 sapcc-hana-tst-07:~ # mkdir -p /hana/log/NF2/mnt00002
 sapcc-hana-tst-07:~ # mkdir -p /hana/shared
+sapcc-hana-tst-07:/ # mkdir -p /lss/shared/
 sapcc-hana-tst-07:~ # mkdir -p /usr/sap/NF2
 sapcc-hana-tst-07:~ # chmod -R 777 /hana/log/NF2
 sapcc-hana-tst-07:~ # chmod -R 777 /hana/data/NF2
 sapcc-hana-tst-07:~ # chmod -R 777 /hana/shared
+sapcc-hana-tst-07:/ # chmod -R 777 /lss/shared
 sapcc-hana-tst-07:~ # chmod -R 777 /usr/sap/NF2
 ....
 * 待命主機：
@@ -174,10 +182,12 @@ sapcc-hana-tst-08:~ # mkdir -p /hana/data/NF2/mnt00002
 sapcc-hana-tst-08:~ # mkdir -p /hana/log/NF2/mnt00001
 sapcc-hana-tst-08:~ # mkdir -p /hana/log/NF2/mnt00002
 sapcc-hana-tst-08:~ # mkdir -p /hana/shared
+sapcc-hana-tst-08:/ # mkdir -p /lss/shared/
 sapcc-hana-tst-08:~ # mkdir -p /usr/sap/NF2
 sapcc-hana-tst-08:~ # chmod -R 777 /hana/log/NF2
 sapcc-hana-tst-08:~ # chmod -R 777 /hana/data/NF2
 sapcc-hana-tst-08:~ # chmod -R 777 /hana/shared
+sapcc-hana-tst-08:/ # chmod -R 777 /lss/shared
 sapcc-hana-tst-08:~ # chmod -R 777 /usr/sap/NF2
 ....
 
@@ -189,6 +199,7 @@ sapcc-hana-tst-08:~ # chmod -R 777 /usr/sap/NF2
 * /hana /資料/SID/mnt0000*
 * /hana / log / si/mnt0000*
 * 《Hana / Shared》（《Hana /共享》）
+* `/lss/shared`
 * usr/sap/sID
 
 
@@ -205,6 +216,9 @@ sapcc-hana-tst-08:~ # chmod -R 777 /usr/sap/NF2
 
 
 | /HANA /共享 | NFSv3或NFSv4 | NFSv3或NFSv4 
+
+
+| /lss/shared | NFSv3或NFSv4 | NFSv3或NFSv4 
 
 
 | /usr/sap/sID | NFSv3或NFSv4 | NFSv3或NFSv4 
@@ -237,9 +251,7 @@ NOTE: NetApp從ONTAP 支援使用支援支援NFSv4.1的S9.8和SUSE SLES15SP2或R
 NOTE: 如果 nconnect 正與 NFSv4.x 一起使用、則 NFSv4.x 工作階段插槽數量應根據下列規則進行調整：工作階段插槽數量等於 <nconnect value> x 64 。在主機上、這會先加上輔助
 `echo options nfs max_session_slots=<calculated value> > /etc/modprobe.d/nfsclient.conf`、然後再重新開機。也必須調整伺服器端值，如所述設定工作階段插槽數link:hana-fas-nfs-storage-controller-setup.html#nfs-configuration-for-nfsv4["NFSv4的NFS組態。"]
 
-若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：
-
-以下範例顯示單一主機SAP HANA資料庫、其中SID=NF2使用NFSv3、NFS傳輸大小為1MB（讀取）、256k（寫入）。
+以下範例顯示單一主機SAP HANA資料庫、其中SID=NF2使用NFSv3、NFS傳輸大小為1MB（讀取）、256k（寫入）。若要在系統開機期間使用「etc/stab'組態檔掛載檔案系統、請完成下列步驟：
 
 . 將所需的檔案系統新增至「etc/stab'組態檔。
 +
@@ -249,11 +261,12 @@ sapcc-hana-tst-06:/ # cat /etc/fstab
 <storage-vif-log01>:/NF2_log_mnt00001 /hana/log/NF2/mnt00001 nfs rw,nfsvers=3,hard,timeo=600,nconnect=2,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
 <storage-vif-data01>:/NF2_shared/usr-sap /usr/sap/NF2 nfs rw,nfsvers=3,hard,timeo=600,nconnect=4,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
 <storage-vif-data01>:/NF2_shared/shared /hana/shared nfs rw,nfsvers=3,hard,timeo=600,nconnect=4,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
+<storage-vif-data01>:/NF2_shared/lss-shared /lss/shared nfs rw,nfsvers=3,hard,timeo=600,nconnect=4,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
 ....
-. 執行「mount–a」、在所有主機上掛載檔案系統。
+. 執行  `mount -a` 以在所有主機上掛載檔案系統。
 
 
-下一個範例顯示使用NFSv4.1的多主機SAP HANA資料庫、使用SID=NF2的資料與記錄檔系統、以及使用NFSv3的「/HANA /共享」和「USP/SAP/NF2」檔案系統。NFS傳輸大小為1MB、用於讀取、256k用於寫入。
+下一個範例展示了一個多主機 SAP HANA 資料庫，其 SID=NF2，資料和日誌檔案系統使用 NFSv4.1， `/hana/shared`、 `/lss/shared` 和  `/usr/sap/NF2` 檔案系統使用 NFSv3。讀取操作的 NFS 傳輸大小為 1MB，寫入操作的 NFS 傳輸大小為 256k。
 
 . 將所需的檔案系統新增至所有主機上的「etc/stb'組態檔」。
 +
@@ -269,6 +282,7 @@ sapcc-hana-tst-06:/ # cat /etc/fstab
 <storage-vif-log02>:/NF2_log_mnt00002 /hana/log/NF2/mnt00002 nfs rw,nfsvers=4.1,hard,timeo=600,nconnect=2,rsize=1048576,wsize=262144,bg,noatime,lock 0 0
 <storage-vif-data02>:/NF2_shared/usr-sap-host1 /usr/sap/NF2 nfs rw,nfsvers=3,hard,timeo=600,nconnect=4,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
 <storage-vif-data02>:/NF2_shared/shared /hana/shared nfs rw,nfsvers=3,hard,timeo=600,nconnect=4,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
+<storage-vif-data02>:/NF2_shared/lss-shared /lss/shared nfs rw,nfsvers=3,hard,timeo=600,nconnect=4,rsize=1048576,wsize=262144,bg,noatime,nolock 0 0
 ....
-. 執行「mount–a」、在所有主機上掛載檔案系統。
+. 執行  `mount -a` 以在所有主機上掛載檔案系統。
 

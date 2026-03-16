@@ -21,7 +21,7 @@ summary: 本節說明NetApp儲存系統的組態。您必須根據對應ONTAP �
 
 下圖顯示4+1多主機SAP HANA系統的Volume組態。每個SAP HANA主機的資料磁碟區和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定磁碟區「ID_data_mnt00001」、控制器B上已設定磁碟區「ID_log_mnt00001」每個磁碟區內都會設定一個LUN。
 
-「/HANA /共享」磁碟區必須可供所有HANA主機存取、因此必須使用NFS匯出。雖然「/Hana /共享」檔案系統沒有特定的效能KPI、但NetApp建議使用10Gb乙太網路連線。
+該 `/hana/shared`磁碟區必須可供所有 HANA 主機訪問，因此使用 NFS 匯出。儘管 `/hana/shared`檔案系統沒有特定的效能 KPI，但 NetApp 建議使用 10Gb 乙太網路連線。
 
 
 NOTE: 如果SAP HANA系統只使用HA配對的一個儲存控制器、資料和記錄磁碟區也可以儲存在同一個儲存控制器上。
@@ -84,10 +84,15 @@ image:saphana_fas_fc_image19.png["此圖顯示輸入 / 輸出對話方塊或表�
 NOTE: 使用所述組態， `/usr/sap/SID`儲存使用者 SIDadm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在具有磁碟型複寫的災難恢復設定中， NetApp 建議在磁碟區中為 `/usr/sap/SID`檔案系統建立四個子目錄 `SID_shared`，以便每個資料庫主機在中央儲存設備上擁有其所有檔案系統。
 
 
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則 `/lss/shared/SID`目錄必須可在所有主機上存取。NetApp 建議為 `/lss/shared/SID`目錄建立一個磁碟區，並使用 NFS 將其掛載到所有主機上。
+
+
 
 == 使用Linux LVM的SAP HANA多主機系統的Volume與LUN組態
 
-Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。下表顯示2+1 SAP HANA多主機系統每個Volume群組兩個LUN的範例。
+Linux LVM可用來提高效能、並解決LUN大小限制。LVM Volume群組的不同LUN應儲存在不同的Aggregate中、並儲存在不同的控制器上。
+
+LVM 磁碟區群組的 LUN 應儲存在不同的 Aggregate 中、並位於不同的控制器上。下表顯示 2+1 SAP HANA 多主機系統每個磁碟區群組兩個 LUN 的範例。
 
 
 NOTE: 沒有必要使用 LVM 組合多個 LUN 來實現 SAP HANA KPI，但建議這樣做。
@@ -118,7 +123,13 @@ NOTE: 沒有必要使用 LVM 組合多個 LUN 來實現 SAP HANA KPI，但建議
 
 
 | 停用Snapshot目錄的可見度 | Vol modify -vserver <vserver-name>-volume <volname>-snapdir-access假 
+
+
+| 停用勒索軟體保護，但 SID_shared 磁碟區除外 | vol modify -vserver <vserver-name> -volume <volname> -anti-ransomware-state disabled 
 |===
+
+NOTE: 以下範例在建立磁碟區期間設定這些選項
+
 
 
 == 建立LUN、磁碟區、並將LUN對應至啟動器群組
@@ -134,15 +145,15 @@ NOTE: 沒有必要使用 LVM 組合多個 LUN 來實現 SAP HANA KPI，但建議
 . 建立所有必要的磁碟區。
 +
 ....
-vol create -volume FC5_data_mnt00001 -aggregate aggr1_1 -size 1200g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_log_mnt00002  -aggregate aggr2_1 -size 280g  -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_log_mnt00001  -aggregate aggr1_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_data_mnt00002  -aggregate aggr2_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_log2_mnt00002  -aggregate aggr2_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
-vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
+vol create -volume FC5_data_mnt00001 -aggregate aggr1_1 -size 1200g  -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_log_mnt00002  -aggregate aggr2_1 -size 280g  -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_log_mnt00001  -aggregate aggr1_2 -size 280g -snapshot-policy none -foreground true -encrypt false -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_data_mnt00002  -aggregate aggr2_2 -size 1200g -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_log2_mnt00002  -aggregate aggr2_2 -size 280g -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none-anti-ransomware-state disabled
+vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false  -snapdir-access false -space-guarantee none -anti-ransomware-state disabled
+vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -snapdir-access false -space-guarantee none
 ....
 . 建立所有LUN。
 +

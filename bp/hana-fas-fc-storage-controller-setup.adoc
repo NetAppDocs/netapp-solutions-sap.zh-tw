@@ -38,6 +38,14 @@ SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate E
 
 
 
+== ONTAP 自主勒索軟體保護
+
+ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的前向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"]。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。
+
+雖然可以在建立 ONTAP 叢集磁碟區時停用此功能的自動啟動，但建議保留預設設定，並在不需要此功能的磁碟區上停用此功能。
+
+
+
 == 服務品質
 
 QoS 可用於限制共用控制器上特定 SAP HANA 系統或非 SAP 應用程式的儲存處理量。

@@ -39,10 +39,10 @@ Linux LVM 用於提高效能並解決 LUN 大小限制。
 | LV：FC5_log_mnt00002-vol | /HANA / log / FC5/mnt00002 | 使用儲存連接器安裝 
 
 
-| 外部 NFS 共用：FC5_shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
+| 外部 NFS 共用：+ FC5_shared | /HANA /共享 | 使用NFS和/etc/Fstab項目安裝在所有主機上 
 |===
 
-NOTE: SAP HANA 多主機系統需要 `/hana/shared`連接到系統所有主機的檔案系統。通常，這是由 NFS 伺服器提供的 NFS 共用。建議使用高可用性 NFS 伺服器，例如 NetApp FAS 或 AFF 系統。另一種選擇是使用 LINUX 主機的內建 NFS 伺服器。
+NOTE: SAP HANA 多主機系統需要 `/hana/shared`檔案系統和 `/lss/shared`檔案系統，如果使用 SAP Local Secure Store 服務（LSS），則需要連接到系統的所有主機。通常這是由 NFS 伺服器提供的 NFS 共用。建議使用高可用性 NFS 伺服器，例如 NetApp FAS 或 AFF 系統。另一種選擇是使用 LINUX 主機的內建 NFS 伺服器。
 
 
 NOTE: 透過所述配置，  `/usr/sap/FC5`儲存使用者 FC5adm 預設主目錄的目錄位於每個 HANA 主機的本機磁碟上。在基於磁碟的複製災難復原設定中，NetApp 建議使用四個額外的 LUN 用於 `/usr/sap/FC5`檔案系統，以便每個資料庫主機在中央儲存上都有其所有的檔案系統。

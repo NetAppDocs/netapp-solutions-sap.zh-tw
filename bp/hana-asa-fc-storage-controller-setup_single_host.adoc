@@ -17,6 +17,30 @@ summary: 本節說明NetApp儲存系統的組態。您必須根據對應Data ONT
 
 
 
+== LUN 概述
+
+下表顯示單一主機 SAP HANA 系統的 LUN 組態。
+
+|===
+| 目的 | LUN | LVM 邏輯磁碟區 
+
+
+| 資料 | FC5_data_mnt00001_1 FC5_data_mnt00001_2 | FC5_data_mnt00001-vol 
+
+
+| 記錄 | FC5_log_mnt00001_1 FC5_log_mnt00001_2 | FC5_log_mnt00001-vol 
+
+
+| 共享 | FC5_shared | 不適用 
+|===
+
+NOTE: 依照上述配置，儲存使用者 SID1adm 預設主目錄的 `/usr/sap/SID1`目錄位於本機磁碟上。在採用基於磁碟複製的災難復原設定中，NetApp 建議為 `/usr/sap/SID1`目錄建立額外的 LUN，以便所有檔案系統都位於中央儲存設備上。
+
+
+NOTE: 如果使用 SAP Local Secure Store 服務（LSS）， `/lss/shared/SID`目錄（LSS 的預設安裝目錄）位於本機磁碟上。在採用磁碟型複寫的災難恢復設定中，NetApp 建議為  `/lss/shared/SID` 目錄建立額外的 LUN，以便所有檔案系統都位於中央儲存設備上。
+
+
+
 == 建立 LUN 並將 LUN 對應到啟動程式群組
 
 您可以使用NetApp ONTAP System Manager 建立儲存磁碟區和 LUN，並將它們對應到伺服器的 igroup 和ONTAP CLI。
@@ -35,8 +59,11 @@ lun create -path FC5_data_mnt00001_2 -size 1t -ostype linux  -class regular
 lun create -path FC5_log_mnt00001_1 -size 260g -ostype linux  -class regular
 lun create -path FC5_log_mnt00001_2 -size 260g -ostype linux  -class regular
 lun create -path FC5_shared -size 260g -ostype linux  -class regular
-
 ....
++
+
+NOTE: 使用 GUI 停用這些 LUN 的自主勒索軟體保護
+
 . 為屬於系統FC5的所有伺服器建立啟動器群組。
 +
 ....
@@ -125,3 +152,11 @@ image:saphana_asa_fc_image18.png["ONTAP系統管理員 - 建立共用 LUN"]
 SAP HANA 單機系統所需的所有 LUN 均已建立。
 
 image:saphana_asa_fc_image19.png["ONTAP系統管理員 - LUN 概述"]
+
+
+
+=== 對所有資料和日誌 LUN 停用自主勒索軟體保護
+
+開啟每個資料和日誌 LUN 的內容功能表，並停用勒索軟體防護
+
+image:saphana_asa_fc_image19_5.png["ONTAP系統管理員 - LUN 概述"]

@@ -235,8 +235,6 @@
   <block id="4bb047f8c530785002e490ef17fa725e" category="doc">何處可找到其他資訊</block>
   <block id="345245c83d2b2c4c2a5eb9f2887da627" category="paragraph">若要深入瞭解本文件所述資訊、請參閱下列文件和/或網站：</block>
   <block id="0efd230d120bc177f0918dac852f2cf2" category="list-text">SAP認證的SAP HANA企業儲存硬體</block>
-  <block id="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link"><block ref="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link-rx"></block></block>
-  <block id="3710f13cc62644ea40b0af38f0b1198e" category="paragraph"><block ref="3710f13cc62644ea40b0af38f0b1198e" category="inline-link-rx"></block></block>
   <block id="6137d44b5191549a06e7bea8ffd942d3" category="inline-link"><block ref="6137d44b5191549a06e7bea8ffd942d3" category="inline-link-rx"></block></block>
   <block id="c54847a2046020d06d345fd8b61fc169" category="list-text">NetApp文件中心</block>
   <block id="1f97b7a68d0268791593f9152a2471f4" category="list-text">SAP HANA軟體解決方案</block>
@@ -5891,8 +5889,11 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="3d4f8b4b1b1faa02f0aa9e9f49fe9088" category="paragraph">ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的正向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：<block ref="f7a9a89a273a9d57fcd022d94d56f53f" category="inline-link-macro-rx"></block>。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。</block>
   <block id="5c9e36a122daafc35d852512bd535596" category="admonition">如果使用 SAP Local Secure Store 服務（LSS），<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block>目錄（LSS 的預設安裝目錄）位於本機磁碟上。在採用磁碟型複寫的災難恢復設定中，NetApp 建議在 <block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block> 磁碟區內為 <block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> 目錄建立一個目錄，以便所有檔案系統都位於中央儲存設備上。</block>
   <block id="3ee7f42a5f57f42357faa6066ecfb5d8" category="cell">/lss/shared/</block>
-  <block id="e72900b6484d9e136f9baaf67301d38d" category="paragraph"><block ref="8878a31e958f2f4fbc2f0cb5299a88fc" category="inline-link-rx"></block>]</block>
   <block id="b0b3e68761dd70d0fa49b725910dc993" category="list-text">SAP HANA Tailored Data Center Integration</block>
   <block id="37716fa00dd641976ad10af0418c9f93" category="inline-link">SAP HANA Tailored Data Center Integration</block>
   <block id="74e5a15645e2d65a375593199e01c962" category="list-text"><block ref="74e5a15645e2d65a375593199e01c962" category="inline-link-rx"></block></block>
+  <block id="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link"><block ref="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link-rx"></block></block>
+  <block id="55162df4eaa40993b4b04219f5dd5e87" category="paragraph"><block ref="55162df4eaa40993b4b04219f5dd5e87" category="inline-link-rx"></block></block>
+  <block id="9b3c3b7775f8b0fe4b367630784b02be" category="inline-link"><block ref="9b3c3b7775f8b0fe4b367630784b02be" category="inline-link-rx"></block></block>
+  <block id="09e3bfa407b8475f684f4afa0d1a65d0" category="paragraph"><block ref="09e3bfa407b8475f684f4afa0d1a65d0" category="inline-link-rx"></block></block>
 </blocks>

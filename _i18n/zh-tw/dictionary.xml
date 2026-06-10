@@ -1283,8 +1283,6 @@
   <block id="1cc8efad9ef8bc01d2445bfc8d04e15c" category="doc">Anf SAP HANA跨區域複寫</block>
   <block id="a9f4d9aafbea086205494239b45e7d8a" category="inline-link">本文檔| Microsoft文件Azure NetApp Files</block>
   <block id="7b84e8d1abd1ca9b58ab3e77d620c832" category="summary">TR-4711說明NetApp與CommVault解決方案的SAP HANA設計、其中包括CommVault IntelliSnap快照管理技術與NetApp Snapshot技術。此解決方案以NetApp儲存設備和CommVault資料保護套件為基礎。</block>
-  <block id="6b6da8403e50e999c81fff1b93ddd075" category="inline-link-macro"><block ref="6b6da8403e50e999c81fff1b93ddd075" category="inline-link-rx"></block></block>
-  <block id="974fc1d6f48a5236cf23f9d95df8992c" category="paragraph"><block ref="974fc1d6f48a5236cf23f9d95df8992c" category="inline-link-macro-rx"></block></block>
   <block id="89b5eb16af03c7090de707cc37ac1f09" category="summary">下圖顯示使用ANF跨區域複寫之SAP HANA系統的Volume複寫關係。</block>
   <block id="7d224183d244c3eb1b578f3d5d711cfb" category="doc">SAP HANA跨區域複寫的組態選項</block>
   <block id="3743669162e4cca4ba5fb8da0d3aa70a" category="paragraph">下圖顯示使用ANF跨區域複寫之SAP HANA系統的Volume複寫關係。使用ANF跨區域複寫時、必須複寫HANA資料和HANA共享磁碟區。如果只複寫HANA資料磁碟區、則一般RPO值的範圍為一天。如果需要較低的RPO值、也必須複寫HANA記錄備份、才能進行轉送恢復。</block>
@@ -5896,4 +5894,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="55162df4eaa40993b4b04219f5dd5e87" category="paragraph"><block ref="55162df4eaa40993b4b04219f5dd5e87" category="inline-link-rx"></block></block>
   <block id="9b3c3b7775f8b0fe4b367630784b02be" category="inline-link"><block ref="9b3c3b7775f8b0fe4b367630784b02be" category="inline-link-rx"></block></block>
   <block id="09e3bfa407b8475f684f4afa0d1a65d0" category="paragraph"><block ref="09e3bfa407b8475f684f4afa0d1a65d0" category="inline-link-rx"></block></block>
+  <block id="5f3a885afe628dc765db372d552dfc3f" category="inline-link-macro"><block ref="5f3a885afe628dc765db372d552dfc3f" category="inline-link-rx"></block></block>
+  <block id="2deb8c2352bb64efaab57e5552bc808d" category="paragraph"><block ref="2deb8c2352bb64efaab57e5552bc808d" category="inline-link-macro-rx"></block></block>
 </blocks>

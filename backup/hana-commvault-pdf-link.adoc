@@ -18,4 +18,4 @@ summary: TR-4711說明NetApp與CommVault解決方案的SAP HANA設計、其中�
 
 作者： NetApp 的 Marco Schoen ； CommVault Systems 的 Tristan Daude 博士
 
-link:https://www.netapp.com/pdf.html?item=/media/17050-tr4711pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17050-tr4711pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/17050-tr4711.pdf["https://www.netapp.com/pdf.html?item=/media/17050-tr4711.pdf"^]

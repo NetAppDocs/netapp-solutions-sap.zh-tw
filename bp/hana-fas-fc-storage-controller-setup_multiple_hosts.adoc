@@ -158,14 +158,14 @@ vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -polic
 . 建立所有LUN。
 +
 ....
-lun create -path  /vol/FC5_data_mnt00001/FC5_data_mnt00001   -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_data_mnt00002/FC5_data_mnt00002 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_data2_mnt00002/FC5_data2_mnt00002 -size 1t -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_log_mnt00001/FC5_log_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_log_mnt00002/FC5_log_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
-lun create -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
+lun create -path  /vol/FC5_data_mnt00001/FC5_data_mnt00001   -size 1t -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_data2_mnt00001/FC5_data2_mnt00001 -size 1t -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_data_mnt00002/FC5_data_mnt00002 -size 1t -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_data2_mnt00002/FC5_data2_mnt00002 -size 1t -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_log_mnt00001/FC5_log_mnt00001 -size 260g -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001 -size 260g -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_log_mnt00002/FC5_log_mnt00002 -size 260g -ostype linux -space-reserve disabled
+lun create -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002 -size 260g -ostype linux -space-reserve disabled
 ....
 . 為屬於系統FC5的所有伺服器建立igroup。
 +

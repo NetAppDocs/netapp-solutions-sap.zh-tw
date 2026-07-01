@@ -4693,7 +4693,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="c0a3ca4d6887eb5487746b7fd52fe4ea" category="inline-image-macro">寬度=601，高度=441</block>
   <block id="5d9becebd742ba55a338e721cb4098bc" category="doc">SAP HANA 與 SUSE KVM 和NetApp存儲</block>
   <block id="0a2894548989381718d6bc91587921e8" category="inline-link">SUSE 在 KVM 上部署 SAP HANA 的最佳實踐</block>
-  <block id="2cfc5ea27e5946f6879fde36c69e3ec6" category="inline-link">3538596 - SAP HANA on SUSE KVM Virtualization with SLES 15 SP5 - SAP for Me</block>
   <block id="15ddad260ba43b42e35fa929f499221f" category="inline-link">NVIDIA企業支援入口網站 | 如何為 ConnectX-4/ConnectX-5/ConnectX-6 設定 SR-IOV（乙太網路）</block>
   <block id="6b02943983965065df18dd4bfa58b5f0" category="inline-image-macro">寬度=493，高度=409</block>
   <block id="78c43044658ad43ea5759ac7d4d547e3" category="paragraph"><block ref="78c43044658ad43ea5759ac7d4d547e3" category="inline-image-macro-rx" type="image"></block></block>
@@ -4745,7 +4744,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="b04f5fdeaf8c08267bf339c96ea39e88" category="paragraph">配置光纖通道網路後，<block ref="ae7fcde62644d7c2cce7447887af291a" category="inline-link-macro-rx"></block> 。</block>
   <block id="eedf6199d892536e90e4f5f5e9aeead0" category="summary">使用具有 SR-IOV 網路介面和 NFS 或 FCP 儲存存取的NetApp存儲，在 SUSE KVM 上部署 SAP HANA 單主機。請按照此工作流程配置虛擬接口，將其指派給虛擬機，並設定儲存連接以獲得最佳效能。</block>
   <block id="b2b3540e7a5adcde33ace97349e2560a" category="doc">使用 SR-IOV 和 NFS 在 SUSE KVM 上部署 SAP HANA，並使用NetApp儲存。</block>
-  <block id="0e271a63b035a81107076af36774e567" category="paragraph">有關 SAP HANA on KVM 虛擬化的概述，請參閱 SUSE 文件：<block ref="23bdf6475773b02163c12d0b92b72377" category="inline-link-rx"></block> 。</block>
   <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">一</block>
   <block id="a83565177e04591255a835fde719da37" category="inline-link-macro">查看配置要求</block>
   <block id="ce32521677a8f52f50fefa7a065fa3bc" category="paragraph"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="d33d8d02b4f9bbbf424db99eecbc1fd5" category="inline-link-macro-rx"></block></block>
@@ -4764,7 +4762,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="eaa946087d06ee1fee769e3564e0e00a" category="paragraph">在虛擬機器和NetApp儲存系統之間建立 NFS 或 FCP 儲存連接，用於 SAP HANA 資料庫檔案。</block>
   <block id="46086226fd4f9834e26bad399e56adba" category="summary">使用 Mellanox ConnectX 網路卡在 SUSE KVM 上為 SAP HANA 設定 SR-IOV 網路介面。設定虛擬功能，將其分配給虛擬機，並配置冗餘網路連接，以實現最佳效能和儲存存取。</block>
   <block id="1a4209a0d3141f25300c6ebecb02b5ca" category="doc">在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路接口</block>
-  <block id="64a9f5744e810899375650d8c2d3fec9" category="paragraph">在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路介面。設定虛擬功能 (VF)，將其分配給虛擬機，並配置冗餘網路連接，以實現最佳效能和儲存存取。</block>
   <block id="3e8724f246e16510aad52dd9ecb49a3d" category="section-title">步驟 1：設定 SR-IOV</block>
   <block id="6b314738afe5bc77a71fceeb84ceb155" category="paragraph">在適配器韌體中啟用和配置 SR-IOV 功能，以允許建立虛擬功能。</block>
   <block id="b99f7ff8b05c08aee442951722cb0edf" category="paragraph">該程式基於<block ref="e682021759c826481e76b33aabbf6839" category="inline-link-rx"></block>。SUSE SAP HANA KVM 指南以英特爾網卡為例對此進行了描述。</block>
@@ -4809,13 +4806,10 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="d7c7e191ee6d1a797e5df384683aea38" category="list-text">支援 SR-IOV 的網路適配器（例如 Mellanox ConnectX 系列）</block>
   <block id="d2e6b4405b465bc9b022aac442b1b10a" category="list-text">用於FCP儲存存取的光纖通道HBA適配器</block>
   <block id="f31568af9160e2aa82d3db92980e5c3e" category="list-text">支援所需 VLAN 和網路段的網路基礎設施</block>
-  <block id="eeb238b1c48c2357fe3444616c9ebced" category="list-text">根據以下方式配置虛擬機<block ref="8185340d5b69ab85cc184c018157df93" category="inline-link-rx"></block></block>
   <block id="50a1170f516bd7e65549254bce84c24c" category="section-title">重要考慮因素</block>
-  <block id="a738c5891f5961226a6dde61f1afbb37" category="list-text">SR-IOV 必須用於 SAP HANA 網路通訊和使用 NFS 進行儲存存取。分配給虛擬機器的每個虛擬功能 (VF) 至少需要 10 Gbit/s 頻寬。</block>
   <block id="5978d0cfedef13194dff39678fea0182" category="list-text">若要使用 FCP LUN，必須將實體 FCP HBA 連接埠指派給 VM 作為 PCI 設備。一個實體連接埠只能分配給一台虛擬機器。</block>
   <block id="39f701bd19a2da681aadb2c2080ee6ac" category="list-text">此配置不支援 SAP HANA 多主機系統。</block>
   <block id="8cd58c89ff3d51a256ecfe3fe8bab20f" category="section-title">其他資源</block>
-  <block id="eaba74287739b947e76e82a1d0b0b128" category="list-text">有關最新資訊（包括支援的 CPU 架構和限制），請參閱 SAP 說明。<block ref="7da6a569286eed69a835786cc64ede56" category="inline-link-rx"></block> 。</block>
   <block id="c09b5be4c2da04f4040eef1878f258aa" category="inline-link">ONTAP 9 文件</block>
   <block id="9a421dce29a43d6aa8fe214499fe1e4a" category="list-text">有關配置ONTAP儲存系統的信息，請參閱<block ref="6f483b863c5185fefdfed5a5dff0efff" category="inline-link-rx"></block>。</block>
   <block id="1d3f77b304dcdf504c9e8550fc7801e7" category="inline-link">NetApp SAP 解決方案文檔</block>
@@ -4842,7 +4836,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="5f05fd970d378d7b908fd310167d1342" category="list-text">在虛擬機器內配置多路徑，以實現跨交換矩陣交換器的冗餘。</block>
   <block id="b3529caae24ec3b6317fed33b199fc17" category="list-text">根據 SAP HANA 配置指南配置儲存控制器和虛擬機</block>
   <block id="57e1771ce1e6d595e42a3b886ca50109" category="cell">2025年11月</block>
-  <block id="08fc16a4a36250041009c3c33c9c9388" category="cell">佈局更新。</block>
   <block id="ba6af9e4a46c6c9c5542891d417327e8" category="section-title">2025年11月12日</block>
   <block id="1ae3ab0d4dcb2d1a3eb0edf2e52ce3a2" category="paragraph">新方案<block ref="2c0446aa059b701d9c0d685bc6675dbe" category="inline-link-macro-rx"></block>：</block>
   <block id="c91527b6024ce916ee9e7634580b91cf" category="paragraph">使用具有 SR-IOV 網路介面和 NFS 或 FCP 儲存存取的NetApp存儲，在 SUSE KVM 上部署 SAP HANA 單主機。</block>
@@ -5896,4 +5889,13 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="09e3bfa407b8475f684f4afa0d1a65d0" category="paragraph"><block ref="09e3bfa407b8475f684f4afa0d1a65d0" category="inline-link-rx"></block></block>
   <block id="5f3a885afe628dc765db372d552dfc3f" category="inline-link-macro"><block ref="5f3a885afe628dc765db372d552dfc3f" category="inline-link-rx"></block></block>
   <block id="2deb8c2352bb64efaab57e5552bc808d" category="paragraph"><block ref="2deb8c2352bb64efaab57e5552bc808d" category="inline-link-macro-rx"></block></block>
+  <block id="917f9e6cc78a34f25bcca44ee758fdfd" category="paragraph">有關 SAP HANA on KVM 虛擬化的概述，請參閱 SUSE 文件：<block ref="07290f5e8fedcd643d91fbceebffb3f1" category="inline-link-rx"></block>。</block>
+  <block id="6ae55f1d87d24ddbfbd0d6c2cbd52508" category="paragraph">在 SUSE KVM 上為 SAP HANA 配置 SR-IOV 網路介面。設定虛擬功能 (VF)，將其指派給 VM，並配置冗餘網路連線以實現最佳效能和儲存存取。同時支援橋接網路。</block>
+  <block id="11b12737d363a1c1fc891c84c512bfe8" category="list-text">根據 <block ref="84f9f0cb560c07061eb0a9c9983073cf" category="inline-link-rx"></block> 配置的 VM</block>
+  <block id="88bfc74e7f9daec3034975bb2ccf2c26" category="list-text">SR-IOV 應盡可能用於 SAP HANA 網路通訊和儲存存取（使用 NFS），但也支援橋接網路。分配給虛擬機器的每個虛擬功能 （VF） 至少需要 10 Gbit/s 的頻寬。</block>
+  <block id="ae19611463c7931f079137442f375669" category="inline-link">3741904 - 搭配 SLES 15 SP7 的 SUSE KVM 虛擬化上的 SAP HANA - SAP for Me</block>
+  <block id="cfe5524e84c4886ba33731b20fe14a28" category="list-text">有關最新資訊（包括支援的 CPU 架構和限制），請參閱 SAP Note<block ref="814684ca8fb6c36f22754431c3a4a6ca" category="inline-link-rx"></block>。</block>
+  <block id="a28cf561c8f701ff19b2c0c69e0dfc34" category="cell">版面更新</block>
+  <block id="c21446b3ecfb30ed6c2760d686bd4578" category="cell">2026 年 6 月</block>
+  <block id="ac644778c82f08cf6b78f5b122e0d378" category="cell">SUSE SLES 15SP7 更新</block>
 </blocks>

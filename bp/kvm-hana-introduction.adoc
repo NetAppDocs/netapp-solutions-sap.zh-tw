@@ -16,7 +16,7 @@ summary: 使用具有 SR-IOV 網路介面和 NFS 或 FCP 儲存存取的NetApp�
 [role="lead"]
 使用具有 SR-IOV 網路介面和 NFS 或 FCP 儲存存取的NetApp存儲，在 SUSE KVM 上部署 SAP HANA 單主機。請按照此工作流程配置虛擬接口，將其指派給虛擬機，並設定儲存連接以獲得最佳效能。
 
-有關 SAP HANA on KVM 虛擬化的概述，請參閱 SUSE 文件： https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["SUSE 在 KVM 上部署 SAP HANA 的最佳實踐"] 。
+有關 SAP HANA on KVM 虛擬化的概述，請參閱 SUSE 文件： https://documentation.suse.com/sbp/sap-15/html/SBP-SLES4SAP-HANAonKVM-SLES15SP7/["SUSE 在 KVM 上部署 SAP HANA 的最佳實踐"]。
 
 image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"]link:kvm-hana-requirements.html["查看配置要求"]
 

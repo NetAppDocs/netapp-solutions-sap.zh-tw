@@ -31,14 +31,14 @@ summary: 檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS �
 * 支援 SR-IOV 的網路適配器（例如 Mellanox ConnectX 系列）
 * 用於FCP儲存存取的光纖通道HBA適配器
 * 支援所需 VLAN 和網路段的網路基礎設施
-* 根據以下方式配置虛擬機 https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["SUSE 在 KVM 上部署 SAP HANA 的最佳實踐"^]
+* 根據  https://documentation.suse.com/sbp/sap-15/html/SBP-SLES4SAP-HANAonKVM-SLES15SP7/["SUSE 在 KVM 上部署 SAP HANA 的最佳實踐"^] 配置的 VM
 
 
 
 
 == 重要考慮因素
 
-* SR-IOV 必須用於 SAP HANA 網路通訊和使用 NFS 進行儲存存取。分配給虛擬機器的每個虛擬功能 (VF) 至少需要 10 Gbit/s 頻寬。
+* SR-IOV 應盡可能用於 SAP HANA 網路通訊和儲存存取（使用 NFS），但也支援橋接網路。分配給虛擬機器的每個虛擬功能 （VF） 至少需要 10 Gbit/s 的頻寬。
 * 若要使用 FCP LUN，必須將實體 FCP HBA 連接埠指派給 VM 作為 PCI 設備。一個實體連接埠只能分配給一台虛擬機器。
 * 此配置不支援 SAP HANA 多主機系統。
 
@@ -47,7 +47,7 @@ summary: 檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS �
 
 == 其他資源
 
-* 有關最新資訊（包括支援的 CPU 架構和限制），請參閱 SAP 說明。 https://me.sap.com/notes/3538596["3538596 - SAP HANA on SUSE KVM Virtualization with SLES 15 SP5 - SAP for Me"] 。
+* 有關最新資訊（包括支援的 CPU 架構和限制），請參閱 SAP Note https://me.sap.com/notes/3741904["3741904 - 搭配 SLES 15 SP7 的 SUSE KVM 虛擬化上的 SAP HANA - SAP for Me"]。
 * 有關配置ONTAP儲存系統的信息，請參閱 https://docs.netapp.com/us-en/ontap["ONTAP 9 文件"]。
 * 有關使用NetApp系統的 SAP HANA 儲存配置，請參閱以下內容： https://docs.netapp.com/us-en/netapp-solutions-sap/["NetApp SAP 解決方案文檔"] 。
 

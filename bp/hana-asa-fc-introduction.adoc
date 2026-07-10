@@ -20,6 +20,7 @@ NetApp的Marco. Schoen
 
 
 
+[[introduction]]
 == 簡介
 
 NetApp ASA A 系列和 ASA C 系列產品已通過認證、可與 SAP HANA 搭配量身打造的資料中心整合（ TDI ）專案使用。本指南介紹了以下認證模型的最佳實踐：
@@ -39,6 +40,7 @@ NOTE: 本白皮書所述的組態是達成所需SAP HANA KPI及SAP HANA最佳效
 
 
 
+[[sap-hana-tailored-data-center-integration]]
 == SAP HANA量身打造的資料中心整合
 
 NetApp ASA 儲存系統已通過 SAP HANA TDI 計畫認證，使用 FC（SAN）協議，可部署在任何目前 SAP HANA 場景中，例如 HANA 上的 SAP Business Suite、S/4HANA、BW/4HANA 或 HANA 上的 SAP Business Warehouse，無論是單一主機或多主機配置。任何經認證可搭配SAP HANA使用的伺服器、均可與NetApp認證的儲存解決方案搭配使用。下圖顯示架構總覽。

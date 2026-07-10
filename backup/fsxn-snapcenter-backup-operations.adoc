@@ -18,6 +18,7 @@ summary: 本節說明如何建立隨需Snapshot備份和隨需區塊完整性檢
 
 
 
+[[create-an-on-demand-snapshot-backup]]
 == 建立隨需Snapshot備份
 
 請依照下列步驟建立隨需Snapshot備份。
@@ -78,6 +79,7 @@ sapcc-hana-svm::>
 ....
 
 
+[[create-an-on-demand-block-integrity-check-operation]]
 == 建立隨需區塊完整性檢查作業
 
 透過選取原則BlockIntegrityCheck、隨需區塊完整性檢查作業的執行方式與Snapshot備份工作相同。使用此原則排程備份時SnapCenter 、將為系統和租戶資料庫建立標準的SAP HANA檔案備份。

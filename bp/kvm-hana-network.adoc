@@ -18,6 +18,7 @@ summary: 使用 Mellanox ConnectX 網路卡在 SUSE KVM 上為 SAP HANA 設定 S
 
 
 
+[[step-1-setup-sr-iov]]
 == 步驟 1：設定 SR-IOV
 
 在適配器韌體中啟用和配置 SR-IOV 功能，以允許建立虛擬功能。
@@ -91,6 +92,7 @@ mlxconfig -d /dev/mst/mt4125_pciconf0 set  NUM_OF_VFS=4
 
 
 
+[[step-2-create-the-virtual-interfaces]]
 == 步驟 2：建立虛擬接口
 
 在實體網路連接埠上建立虛擬功能（VF），以啟用 SR-IOV 功能。在此步驟中，每個實體連接埠建立四個虛擬功能 (VF)。
@@ -280,6 +282,7 @@ altname ens3f1np1
 
 
 
+[[step-3-enable-vfs-during-boot]]
 == 步驟 3：啟動時啟用虛擬功能
 
 透過建立 systemd 服務和啟動腳本，配置 VF 設定以使其在系統重新啟動後仍然有效。
@@ -319,6 +322,7 @@ echo 4 > /sys/class/infiniband/mlx5_1/device/sriov_numvfs
 
 
 
+[[step-4-assign-the-virtual-interfaces-to-the-vm]]
 == 步驟 4：將虛擬介面指派給虛擬機
 
 使用 _virt-manager_ 將建立的虛擬功能作為 PCI 主機設備指派給 SAP HANA VM。
@@ -348,6 +352,7 @@ image:kvm-hana-image6.png["寬度=601，高度=441"]
 
 
 
+[[step-5-configure-network-interfaces-within-the-vm]]
 == 步驟 5：設定虛擬機器內的網路介面
 
 登入虛擬機器並將兩個虛擬功能配置為綁定。選擇模式 0 或模式 2。請勿使用 LACP，因為 LACP 只能用於實體連接埠。下圖顯示了使用 YAST 的模式 2 配置。
@@ -356,6 +361,7 @@ image:kvm-hana-image8.png["寬度=601，高度=335"]
 
 
 
+[[whats-next]]
 == 下一步是什麼？
 
 配置完SR-IOV網路介面後，link:kvm-hana-fcn.html["配置光纖通道網路"]如果使用FCP作為儲存協定。

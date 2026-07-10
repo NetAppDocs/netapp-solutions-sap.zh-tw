@@ -18,6 +18,7 @@ summary:
 
 
 
+[[pre-requisites]]
 == 先決條件
 
 必須對儲存叢集和相關的 SVM 進行對等處理。
@@ -30,6 +31,7 @@ image:sc-saphana-vmware-smas-image11.png["圖示範所討論的內容"]
 
 
 
+[[storage-layout-and-consistency-group-configuration]]
 == 儲存配置和一致性群組組組態
 
 在 ONTAP 文件中， https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html#key-concepts["ONTAP 中的 SnapMirror 作用中同步總覽"] SnapMirror 主動式同步的一致性群組概念如下所述：
@@ -44,6 +46,7 @@ image:sc-saphana-vmware-smas-image12.png["圖示範所討論的內容"]
 
 
 
+[[initiator-group-configuration]]
 == 啟動器群組組態
 
 在我們的實驗室設定中，我們建立了一個啟動器群組，其中包括用於 SnapMirror 主動同步複寫的兩個儲存 SVM 。在稍後所述的 SnapMirror 主動式同步組態中，我們將定義啟動器群組將是複寫的一部分。
@@ -59,12 +62,14 @@ NOTE: 在非統一存取設定中，主要儲存叢集（ A700 ）的啟動器�
 
 
 
+[[configure-protection-with-ontap-system-manager]]
 == 使用 ONTAP 系統管理員設定保護
 
 image:sc-saphana-vmware-smas-image15.png["圖示範所討論的內容"]
 
 
 
+[[consistency-group-and-initiator-group-replication]]
 === 一致性群組和啟動器群組複寫
 
 必須建立新的一致性群組，而且 HANA 系統的所有三個 LUN 都必須新增至一致性群組。
@@ -84,6 +89,7 @@ image:sc-saphana-vmware-smas-image17.png["圖示範所討論的內容"]
 
 
 
+[[synchronisation]]
 === 同步處理
 
 在 A700 儲存叢集（來源），新的關係現已列出。
@@ -96,12 +102,14 @@ image:sc-saphana-vmware-smas-image19.png["圖示範所討論的內容"]
 
 
 
+[[infrastructure-datastore]]
 == 基礎架構資料存放區
 
 儲存 HANA 系統， SnapCenter 和 vSphere 外掛程式之作業系統映像的資料存放區，會依照 HANA 資料庫資料存放區的相同方式進行複寫。
 
 
 
+[[primary-site]]
 == 主要站台
 
 SnapMirror 主動式同步處理行為是對稱的，但有一個重要例外：主要站台組態。

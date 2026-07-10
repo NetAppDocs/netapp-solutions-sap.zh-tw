@@ -24,6 +24,7 @@ summary:
 
 
 
+[[snapcenter-hana-plug-in-deployment]]
 == SnapCenter HANA 插件部署
 
 主機需求列於此處 https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["安裝適用於 Linux 的SnapCenter插件包的主機需求"]。
@@ -38,6 +39,7 @@ image:hana-sc-generic-image-060.png["寬度=601，高度=166"]
 
 
 
+[[sap-hana-hdbsql-client-software-installation-and-configuration]]
 == SAP HANA hdbsql用戶端軟體安裝與組態
 
 SAP HANA hdbsql 用戶端軟體必須安裝在與 SAP HANA 插件相同的宿主機上。軟體可從以下網址下載： https://support.sap.com/en/index.html["SAP支援入口網站"]。
@@ -60,6 +62,7 @@ HANA_HDBSQL_CMD=/usr/sap/hdbclient/hdbsql
 ....
 
 
+[[sap-hana-user-store-configuration-for-a-central-plug-in-host]]
 == SAP HANA 使用者儲存中央插件主機的配置
 
 對於由中央插件主機管理的每個 HANA 系統，必須設定 SAP HANA 使用者儲存金鑰。在中央插件主機上配置金鑰之前，必須按照所述方式建立資料庫使用者。 link:hana-sc-generic-sc-resource-config.html#sap-hana-backup-user-and-sap-hana-user-store-configuration["SAP HANA備份使用者和SAP HANA用戶儲存配置"]。
@@ -97,6 +100,7 @@ C:\Program Files\sap\hdbclient>
 ....
 
 
+[[hana-manual-resource-configuration]]
 == HANA 手動資源配置
 
 在SnapCenter中，透過點選資源視圖中的「新增」按鈕，即可建立手動設定的 HANA 系統資源。

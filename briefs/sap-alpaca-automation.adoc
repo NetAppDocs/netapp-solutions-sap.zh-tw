@@ -18,6 +18,7 @@ summary: 本文件著重於將 NetApp ® Snapshot ™和 FlexClone ® 技術整�
 
 
 
+[[solution-overview]]
 == 解決方案總覽
 
 SAP 系統與解決方案的營運非常複雜。不過、對於使用 SAP 的公司而言、系統和服務是其業務流程的核心。SAP 系統管理員可將系統複製和更新作業等日常例行作業自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。
@@ -32,12 +33,14 @@ image:sap-alpaca-image1.png["羊駝平台的圖表"]
 
 
 
+[[target-audience]]
 === 目標對象
 
 本文件的目標對象是已手動執行 SAP 系統複本的 SAP 系統管理員、並希望使用羊駝來自動化此活動。結合 NetApp Snapshot 和 FlexClone 技術（由 NetApp SnapCenter 協調）與 Alpaca 工作流程的目標、是縮短完全自動化 SAP 系統複本的持續時間。
 
 
 
+[[sap-system-clone-copy-and-refresh-scenarios]]
 === SAP系統複製、複製及重新整理案例
 
 術語 SAP 系統複本通常是三種不同程序的同義詞： SAP 系統複本、 SAP 系統複本和 SAP 系統重新整理。請務必區分這些作業、因為工作流程和使用案例不同。
@@ -61,6 +64,7 @@ image:sap-alpaca-image4.png["顯示 SAP 系統重新整理的影像"]
 
 
 
+[[solution-technology]]
 === 解決方案技術
 
 整體解決方案包含以下主要元件：
@@ -90,6 +94,7 @@ image:sap-alpaca-image5.png["顯示羊駝伺服器、 NetApp SnapCenter 伺服�
 
 
 
+[[use-case-summary]]
 === 使用案例摘要
 
 在幾種情況下、來源系統的資料必須提供給目標系統、以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集執行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層的多項工作、視自動化層級而定、可能需要數天的時間。
@@ -102,12 +107,14 @@ image:sap-alpaca-image6.png["顯示使用自動化時可能改善營運效率的
 
 
 
+[[integrating-the-technology-components]]
 === 整合技術元件
 
 SnapCenter 在 Alpaca 工作流程中的實際整合包括使用 Shell 指令碼來存取 NetApp SnapCenter REST API 。這項 REST API 型整合可建立 SAP 來源系統的 Snapshot 複本、建立 FlexClone Volume 、並將其裝載到 SAP 目標系統。儲存設備和 SAP 管理員知道如何開發由 SnapCenter 觸發並由 SnapCenter 代理程式執行的指令碼、以自動化例行的日常作業工作。這種鬆散結合的架構會透過 Shell 指令碼觸發 SnapCenter 工作、讓他們能夠重複使用現有的自動化程序、以羊駝作為端點對端點自動化的工作流程引擎、更快達到所需的結果。
 
 
 
+[[conclusion]]
 == 結論
 
 Alpaca 與 NetApp 資料管理技術的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與精力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。
@@ -116,6 +123,7 @@ Alpaca 與 NetApp 資料管理技術的結合、提供強大的解決方案、�
 
 
 
+[[where-to-find-additional-information]]
 == 何處可找到其他資訊
 
 若要深入瞭解本文件所含資訊、請參閱下列文件與網站：
@@ -127,6 +135,7 @@ Alpaca 與 NetApp 資料管理技術的結合、提供強大的解決方案、�
 
 
 
+[[version-history]]
 == 版本歷程記錄
 
 [cols="25,25,50"]

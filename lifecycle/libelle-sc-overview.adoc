@@ -32,24 +32,28 @@ NetApp的SAP生命週期管理最佳化解決方案已整合至SAP Anywhere和SA
 
 
 
+[[application-integrated-snapshot-copy-operation]]
 == 應用程式整合的Snapshot複本作業
 
 在儲存層上建立應用程式一致的NetApp Snapshot複本、是本文件所述系統複製與系統複製作業的基礎。以儲存為基礎的Snapshot複本是使用NetApp SnapCenter 的NetApp功能性外掛程式建立、適用於SAP HANA或SAP原生NetApp ONTAP 版本系統上的任何DB、或是使用建立 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction["Microsoft Azure應用程式一致的Snapshot工具"^] （AzAcSnap）和介面、由在Microsoft Azure上執行的SAP HANA和Oracle資料庫提供。使用SAP HANA時SnapCenter 、將SAP HANA備份目錄中的Snapshot快照複本以供還原與還原、以及複製作業使用。
 
 
 
+[[off-site-backup-andor-disaster-recovery-data-replication]]
 == 異地備份及/或災難恢復資料複寫
 
 應用程式一致的Snapshot複本可在儲存層複製到異地備份站台或SnapCenter 由內部部署的站台所控制的災難恢復站台。複寫作業是根據區塊變更而進行、因此空間和頻寬都能達到極高的效率。透過Azure NetApp Files 跨區域複製（CRR）功能、可在Azure NetApp Files Azure地區之間有效複寫各種不同的資料、同樣的技術也適用於在Azure中執行以供執行的SAP HANA和Oracle系統。
 
 
 
+[[use-any-snapshot-copy-for-sap-system-copy-or-clone-operations]]
 == 使用任何Snapshot複本進行SAP系統複製或複製作業
 
 NetApp技術與軟體整合可讓您使用來源系統的任何Snapshot複本進行SAP系統複製或複製作業。此Snapshot複本可從SAP正式作業系統所使用的相同儲存設備、用於異地備份的儲存設備（例如Azure NetApp Files Azure中的還原備份）、或是災難恢復站台的儲存設備Azure NetApp Files （亦即RCRR目標磁碟區）中選取。這種靈活度可讓您視需要將開發與測試系統與正式作業區分開、並涵蓋其他案例、例如在災難恢復站台測試災難恢復。
 
 
 
+[[automation-with-integration]]
 == 自動化與整合
 
 SAP測試系統的資源配置有多種情境和使用案例、您可能也有不同的自動化層級需求。適用於SAP的NetApp軟體產品可整合至SAP與其他協力廠商（例如Libelle）的資料庫與生命週期管理產品、以支援不同的自動化情境與層級。
@@ -60,6 +64,7 @@ SAP測試系統的全自動化端點對端點資源配置或更新、可透過Li
 
 
 
+[[libelle-systemcopy]]
 == Libelle SystemCopy
 
 Libelle SystemCopy是一套架構型軟體解決方案、可建立全自動化的系統和橫向複本。只要按下按鈕、QA和測試系統就能以最新的正式作業資料進行更新。Libelle SystemCopy支援所有傳統資料庫和作業系統、為所有平台提供自己的複製機制、但同時整合了備份/還原程序或儲存工具、例如NetApp Snapshot複本和NetApp FlexClone Volume。系統複製期間所需的活動是從SAP ABAP堆疊外部控制。如此一來、SAP應用程式就不需要傳輸或其他變更。一般而言、成功完成系統複製程序所需的所有步驟可分為四個步驟：
@@ -76,6 +81,7 @@ Libelle SystemCopy是一套架構型軟體解決方案、可建立全自動化�
 
 
 
+[[use-cases-for-sap-system-refresh-and-cloning]]
 == SAP系統重新整理與複製的使用案例
 
 在多種情況下、必須將來源系統的資料提供給目標系統：

@@ -13,6 +13,7 @@ summary: 本文件說明 Avantra 如何與 NetApp SnapCenter ® 平台整合。
 
 
 
+[[solution-overview]]
 == 解決方案總覽
 
 SAP 系統和解決方案的營運非常複雜。然而、對於使用 SAP 的公司而言、這些系統和服務是其業務流程的核心。SAP 系統管理員可將日常例行作業（例如系統複製和重新整理作業）自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。
@@ -23,12 +24,14 @@ SAP 系統和解決方案的營運非常複雜。然而、對於使用 SAP 的�
 
 
 
+[[target-audience]]
 === 目標對象
 
 本文件的目標對象是先前曾手動執行 SAP 系統複本、並想要使用 Avantra 將此活動自動化的 SAP 系統管理員。將 NetApp Snapshot 和 FlexClone 技術（由 NetApp SnapCenter 協調）與 Avantra 工作流程結合在一起的目標是全面自動化 SAP 系統複本、以加快其速度。
 
 
 
+[[sap-system-clone-copy-and-refresh-scenarios]]
 === SAP系統複製、複製及重新整理案例
 
 術語 SAP 系統複本通常是三種不同程序的總括術語： SAP 系統複製、 SAP 系統複本和 SAP 系統重新整理。請務必區分不同的作業、因為工作流程和使用案例不同。
@@ -52,6 +55,7 @@ image:sap-avantra-image3.png["顯示 SAP 系統重新整理的影像"]
 
 
 
+[[solution-technology]]
 === 解決方案技術
 
 整體解決方案包含以下主要元件：
@@ -81,6 +85,7 @@ image:sap-avantra-image4.png["顯示 Avantra 伺服器、 NetApp SnapCenter 伺�
 
 
 
+[[use-case-summary]]
 === 使用案例摘要
 
 在幾種情況下、來源系統的資料必須提供給目標系統、以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集執行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層的多項工作、視自動化層級而定、可能需要數天的時間。
@@ -93,6 +98,7 @@ image:sap-avantra-image5.png["顯示使用自動化時可能改善營運效率�
 
 
 
+[[integrating-the-different-technology-components]]
 === 整合不同的技術元件
 
 SnapCenter 在 Avantra 工作流程中的實際整合包括使用 JavaScript 來存取 NetApp SnapCenter REST API 。這項 REST API 型整合可建立 SAP 來源系統的 Snapshot 複本、建立 FlexClone Volume 、並將其裝載到 SAP 目標系統。
@@ -101,6 +107,7 @@ SnapCenter 在 Avantra 工作流程中的實際整合包括使用 JavaScript 來
 
 
 
+[[conclusion]]
 == 結論
 
 Avantra 與 NetApp 資料管理技術的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與心力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。
@@ -109,6 +116,7 @@ Avantra 與 NetApp 資料管理技術的結合、提供強大的解決方案、�
 
 
 
+[[where-to-find-additional-information]]
 == 何處可找到其他資訊
 
 若要深入瞭解本文所述資訊、請檢閱下列文件與網站：
@@ -120,6 +128,7 @@ Avantra 與 NetApp 資料管理技術的結合、提供強大的解決方案、�
 
 
 
+[[version-history]]
 == 版本歷程記錄
 
 [cols="25,25,50"]

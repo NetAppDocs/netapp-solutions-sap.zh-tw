@@ -22,6 +22,7 @@ summary:
 
 
 
+[[sap-hana-system-replication-hsr]]
 == SAP HANA 系統複寫（ HSR ）
 
 SAP HANA 系統複寫提供一種作業模式，可同步複寫資料，預先載入記憶體，並在次要主機上持續更新。此模式可實現極低的 RTO 值（約 1 分鐘或更短時間），但也需要專用伺服器，僅用於從來源系統接收複寫資料。由於容錯移轉時間較短，因此 SAP HANA 系統複寫也常用於近乎零停機的維護作業，例如 HANA 軟體升級。Linux Pacemaker 叢集解決方案通常用於自動化容錯移轉作業。
@@ -34,6 +35,7 @@ image:sc-saphana-vmware-smas-image2.png["圖示範所討論的內容"]
 
 
 
+[[netapp-snapmirror-active-sync]]
 == NetApp SnapMirror 作用中同步
 
 SnapMirror 主動式同步可讓業務服務持續運作、即使整個站台故障也沒問題、支援應用程式使用次要複本以透明方式容錯移轉。不需要手動介入或自訂指令碼，即可觸發 SnapMirror 主動式同步的容錯移轉。AFF 叢集， All Flash SAN Array （ ASA ）叢集和 C 系列（ AFF 或 ASA ）支援 SnapMirror 主動式同步。SnapMirror 主動式同步功能可保護應用程式與 iSCSI 或 FCP LUN 。
@@ -44,6 +46,7 @@ SnapMirror 主動式同步可讓業務服務持續運作、即使整個站台故
 
 
 
+[[hana-bare-metal]]
 === Hana 裸機
 
 在裸機伺服器上執行 SAP HANA 時，您可以使用 SnapMirror Active Sync 來提供高可用度的儲存解決方案。資料會同步複寫，因此會提供 RPO=0 。
@@ -56,6 +59,7 @@ image:sc-saphana-vmware-smas-image3.png["圖示範所討論的內容"]
 
 
 
+[[vsphere-metro-storage-cluster-vmsc]]
 === vSphere Metro 儲存叢集（ VMSC ）
 
 在 VMware 環境中使用 FCP 附加資料存放區執行 SAP HANA 時，您可以使用 SnapMirror Active Sync 來建置 VMware Metro Storage 叢集。在這樣的設定中， HANA 系統所使用的資料存放區會同步複寫到次要站台。
@@ -68,6 +72,7 @@ image:sc-saphana-vmware-smas-image4.png["圖示範所討論的內容"]
 
 
 
+[[solution-comparison]]
 == 解決方案比較
 
 下表摘要說明上述解決方案的主要特性。

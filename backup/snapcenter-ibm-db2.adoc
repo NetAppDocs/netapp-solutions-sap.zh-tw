@@ -18,6 +18,7 @@ summary: 本文件說明 SAP 環境中所使用之 IBM DB2 資料庫的 SnapCent
 
 
 
+[[introduction]]
 == 簡介
 
 本文件並非針對如何設定完整環境的逐步說明，而是涵蓋與下列項目相關的概念和相關詳細資料：
@@ -32,6 +33,7 @@ summary: 本文件說明 SAP 環境中所使用之 IBM DB2 資料庫的 SnapCent
 
 
 
+[[example-configuration-overview]]
 == 組態概觀範例
 
 適用於在 Azure 平台上執行之 SAP 系統的 SnapCenter DB2 外掛程式實作範例。
@@ -45,10 +47,12 @@ image:sc-ibm-db2-image01.png["IBM DB2 實作範例的圖表"]
 
 
 
+[[demo-environment]]
 == 示範環境
 
 
 
+[[software-versions]]
 === 軟體版本
 
 [cols="50%, 50%"]
@@ -69,6 +73,7 @@ image:sc-ibm-db2-image01.png["IBM DB2 實作範例的圖表"]
 |===
 
 
+[[db2-volume-design]]
 === DB2 Volume 設計
 
 必須使用「 Volume 至少配置」來啟用 DB2 資料庫的備份 / 還原和複製使用案例。範例組態使用 <SID> ： D01 。
@@ -146,6 +151,7 @@ image:sc-ibm-db2-image02.png["資料庫檔案路徑的螢幕擷取畫面"]
 
 
 
+[[steps-to-protect-database-d01]]
 === 保護資料庫 D01 的步驟
 
 * 根據範例版面配置檢查檔案發佈
@@ -157,6 +163,7 @@ image:sc-ibm-db2-image02.png["資料庫檔案路徑的螢幕擷取畫面"]
 
 
 
+[[prerequisites-on-host]]
 === 主機上的先決條件
 
 此處可能提供更多最新資訊：
@@ -179,6 +186,7 @@ image:sc-ibm-db2-image02.png["資料庫檔案路徑的螢幕擷取畫面"]
 
 
 
+[[prerequisites-for-the-database-enable-logging-and-backups]]
 === 資料庫的必要條件–啟用記錄與備份
 
 
@@ -202,6 +210,7 @@ NOTE: 若要啟用離線記錄，需要對資料庫進行離線完整備份。�
 
 
 
+[[deploy-snapcenter-agent-to-host-vm-d01]]
 === 將 SnapCenter 代理程式部署至主機 VM-D01
 
 如需詳細資訊link:https://docs.netapp.com/us-en/snapcenter/protect-scu/task_add_hosts_and_install_the_snapcenter_plug_ins_package_for_linux.html["本文檔SnapCenter"]，請參閱。
@@ -217,6 +226,7 @@ image:sc-ibm-db2-image04.png["主機上資料庫探索的螢幕擷取畫面"]
 
 
 
+[[create-resource-configuration-for-database-d01]]
 === 建立資料庫 D01 的資源組態
 
 選取探索到的資源 D01
@@ -252,6 +262,7 @@ image:sc-ibm-db2-image07.png["設定原則和通知設定的螢幕擷取畫面"]
 
 
 
+[[recover-database-d01]]
 === 恢復資料庫 D01
 
 * 在主機 VM-D01 上停止 SAP 系統 + DB D01
@@ -304,6 +315,7 @@ NOTE: 「 db2inidb D01 as mirror 」是 SnapCenter 還原工作流程的一部�
 
 
 
+[[additional-information-and-version-history]]
 == 其他資訊和版本歷程記錄
 
 下列已重新編碼的展示可支援文件。
@@ -330,6 +342,7 @@ video::3a82e561-e5a2-4a23-9465-b2b900c1fac5[panopto,width=360]
 
 
 
+[[version-history]]
 === 版本歷程記錄
 
 [cols="25 %, 25%, 50%"]

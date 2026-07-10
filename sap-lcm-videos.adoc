@@ -18,6 +18,7 @@ keywords: netapp, solutions, SAP, lifecycle, management, lcm, videos, demos
 
 
 
+[[sap-lifecycle-management-videos-and-demos]]
 == SAP生命週期管理影片與示範
 
 * link:https://media.netapp.com/video-detail/c1229d10-fe84-58f1-9cdf-ca3c0f9d9104/ensure-continuity-for-lines-of-business-in-the-face-of-unexpected-events["確保業務單位在面臨非預期事件時能持續運作"^]

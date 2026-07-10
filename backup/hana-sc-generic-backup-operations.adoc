@@ -27,6 +27,7 @@ SnapCenter支援以下備份操作。
 
 
 
+[[sap-hana-snapshot-backups-in-snapcenter]]
 == SnapCenter中的 SAP HANA 快照備份
 
 SnapCenter資源拓樸顯示了SnapCenter所建立的備份清單。下圖顯示了主儲存上的可用備份，並突出顯示了最新的備份。
@@ -43,6 +44,7 @@ image:hana-sc-generic-image-066.png["寬度=601，高度=293"]
 
 
 
+[[sap-hana-snapshot-backups-in-sap-hana-studio]]
 == SAP HANA Studio 中的 SAP HANA 快照備份
 
 使用儲存快照對 SAP HANA MDC 系統執行備份時，會建立資料磁碟區的快照副本。此資料卷包含系統資料庫的資料以及所有租戶資料庫的資料。為了反映這種實體架構，每當SnapCenter觸發快照備份時，SAP HANA 都會在內部執行系統資料庫以及所有租用戶資料庫的組合內部資料庫快照。這樣一來，SAP HANA 備份目錄中就會出現多個單獨的備份條目：一個用於系統資料庫，每個租用戶資料庫一個。
@@ -58,6 +60,7 @@ NOTE: SnapCenter只知道它自己的備份。例如，使用 SAP HANA Studio �
 
 
 
+[[sap-hana-snapshot-backups-on-storage-layer]]
 == 儲存層上的 SAP HANA 快照備份
 
 若要查看儲存層的備份，可以使用NetApp系統管理員並選擇資料庫磁碟區。以下螢幕截圖顯示了主儲存中資料庫磁碟區 SS1_data_mnt00001 的可用備份。高亮顯示的備份是先前圖片中在SnapCenter和 SAP HANA Studio 中顯示的備份，並且具有相同的命名約定。
@@ -70,6 +73,7 @@ image:hana-sc-generic-image-070.png["寬度=601，高度=294"]
 
 
 
+[[sap-hana-snapshot-backups-with-anf]]
 == 使用 ANF 的 SAP HANA 快照備份
 
 以下螢幕截圖顯示了使用Azure NetApp Files 的HANA 系統的拓撲視圖。已為該 HANA 系統配置了本機快照備份以及使用 ANF 備份的備份複製。
@@ -90,6 +94,7 @@ image:hana-sc-generic-image-074.png["寬度=601，高度=216"]
 
 
 
+[[snapshot-backups-of-non-data-volumes]]
 == 非資料磁碟區的快照備份
 
 SnapCenter資源拓撲顯示了非資料磁碟區的備份清單。下圖列出了 HANA 共享磁碟區的備份。
@@ -98,6 +103,7 @@ image:hana-sc-generic-image-075.png["寬度=601，高度=294"]
 
 
 
+[[backup-workflow-for-hana-database-backups]]
 == HANA資料庫備份的備份工作流程
 
 HANA 資料庫快照備份的備份工作流程包含三個主要部分。
@@ -147,6 +153,7 @@ image:hana-sc-generic-image-076.png["寬度=339，高度=475"]
 
 
 
+[[backup-workflow-for-non-data-volumes]]
 == 非資料卷的備份工作流程
 
 對於非資料卷，備份工作流程包括快照操作和保留管理作業。
@@ -155,6 +162,7 @@ image:hana-sc-generic-image-077.png["寬度=329，高度=404"]
 
 
 
+[[cleanup-of-secondary-backups]]
 == 清理輔助備份
 
 如上文所述 link:hana-sc-generic-concepts.html#retention-management-of-backups-at-the-secondary-storage-snapvault["二級備份的保留管理"]ONTAP負責管理資料備份到輔助備份儲存的保留管理。SnapCenter會定期檢查ONTAP是否已刪除輔助備份儲存體中的備份，方法是執行清理作業，預設排程為每週一次。
@@ -169,6 +177,7 @@ image:hana-sc-generic-image-079.png["寬度=267，高度=330"]
 
 
 
+[[change-the-frequency-of-the-snapcenter-cleanup-job]]
 === 變更SnapCenter 執行效能不整工作的頻率
 
 SnapCenter預設每週對所有資源執行清理作業 SnapCenter_RemoveSecondaryBackup。這可以透過SnapCenter PowerShell cmdlet 進行更改。
@@ -233,6 +242,7 @@ image:hana-sc-generic-image-080.png["寬度=601，高度=257"]
 
 
 
+[[manual-refresh-on-resource-level]]
 === 手動重新整理資源層級
 
 如有需要，也可以在資源的拓樸視圖中手動清理輔助備份。選擇輔助備份時， SnapCenter會顯示輔助備份儲存體上的備份，如下面的螢幕截圖所示。點選「刷新」圖標， SnapCenter執行清理操作，以同步此資源的備份。

@@ -14,6 +14,7 @@ summary:
 
 
 
+[[prerequisites]]
 === 先決條件
 
 對於 SnapCenter 版本 < 6.2，存在一些需要考慮的限制。
@@ -24,6 +25,7 @@ summary:
 
 
 
+[[workflow-summary]]
 === 工作流程摘要
 
 在執行第一個 SAP 系統刷新操作之前，必須安裝目標 HANA 系統，並且必須將主機新增至SnapCenter。然後，必須關閉 HANA 系統並從主機上卸載 HANA 資料磁碟。
@@ -60,6 +62,7 @@ NOTE: 與還原作業相比，複製作業的運行時間與 HANA 資料庫的�
 
 
 
+[[snapcenter-clone-create-workflow]]
 === SnapCenter克隆創建工作流程
 
 透過選擇所需的快照並點擊克隆按鈕來啟動克隆創建工作流程。
@@ -160,6 +163,7 @@ image:sc-hana-asrr2-vmfs-image36.png["圖示範所討論的內容"]
 
 
 
+[[snapcenter-clone-delete-workflow]]
 === SnapCenter克隆刪除工作流程
 
 透過在來源 HANA 資源處選擇複製並點選刪除按鈕來啟動複製刪除工作流程。

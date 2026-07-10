@@ -18,6 +18,7 @@ summary: 將Ansible等現代化自動化架構整合到SAP Lama資源配置工�
 
 
 
+[[where-to-find-additional-information]]
 == 何處可找到其他資訊
 
 若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
@@ -70,6 +71,7 @@ https://www.netapp.com/support-and-training/documentation/["https://www.netapp.c
 
 
 
+[[version-history]]
 == 版本歷程記錄
 
 |===

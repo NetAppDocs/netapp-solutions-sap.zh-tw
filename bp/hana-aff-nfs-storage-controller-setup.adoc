@@ -18,24 +18,28 @@ summary: 本節說明NetApp儲存系統的組態。您必須根據對應ONTAP �
 
 
 
+[[storage-efficiency]]
 == 儲存效率
 
 SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時壓縮及即時資料壓縮。
 
 
 
+[[netapp-flexgroup-volumes]]
 == NetApp FlexGroup Volumes
 
 SAP HANA 不支援使用 NetApp FlexGroup Volumes 。由於 SAP HANA 架構的緣故、使用 FlexGroup Volumes 並未帶來任何效益、也可能導致效能問題。
 
 
 
+[[netapp-volume-and-aggregate-encryption]]
 == NetApp Volume 和 Aggregate Encryption
 
 SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。
 
 
 
+[[ontap-autonomous-ransomware-protection]]
 == ONTAP 自主勒索軟體保護
 
 ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的前向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"]。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。
@@ -44,6 +48,7 @@ ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HA
 
 
 
+[[quality-of-service]]
 == 服務品質
 
 QoS可用於限制共享控制器上特定SAP HANA系統或其他應用程式的儲存處理量。其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。
@@ -56,6 +61,7 @@ QoS可用於限制共享控制器上特定SAP HANA系統或其他應用程式的
 
 
 
+[[netapp-fabricpool]]
 == NetApp FabricPool
 
 NetApp FabricPool 的支援技術不得用於SAP HANA系統中的主動式主要檔案系統。這包括資料和記錄區域的檔案系統、以及「/HANA /共享」檔案系統。如此會導致無法預測的效能、尤其是在SAP HANA系統啟動期間。
@@ -69,6 +75,7 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 
 
+[[storage-configuration]]
 == 儲存組態
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在本節中、我們假設已設定儲存硬體、ONTAP 且已安裝此功能。此外、儲存連接埠（10GbE或更快）與網路之間的連線也必須已經就緒。
@@ -85,10 +92,12 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 
 
+[[disk-shelf-connection]]
 == 磁碟櫃連線
 
 
 
+[[sas-disk-shelves]]
 === SAS磁碟櫃
 
 最多可將一個磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2可搭配ONTAP 使用EST9和DS224C磁碟櫃。
@@ -100,6 +109,7 @@ image:saphana_aff_nfs_image13.png["SAS 機架連線"]
 
 
 
+[[nvme-100gbe-disk-shelves]]
 === NVMe（100GbE）磁碟櫃
 
 每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。ADPv2（如Aggregate組態一章所述）也用於NS224磁碟櫃。
@@ -108,6 +118,7 @@ image:saphana_aff_nfs_image14a.png["MVMe 磁碟櫃連線"]
 
 
 
+[[aggregate-configuration]]
 == Aggregate組態
 
 一般而言、您必須針對每個控制器設定兩個Aggregate、獨立於所使用的磁碟櫃或磁碟機技術（SAS SSD或NVMe SSD）。
@@ -118,6 +129,7 @@ image:saphana_aff_nfs_image15a.png["Aggregate 組態"]
 
 
 
+[[svm-configuration]]
 == SVM組態
 
 SAP HANA資料庫的多個SAP環境可以使用單一SVM。如有必要、也可將SVM指派給每個SAP環境、以便由公司內的不同團隊進行管理。
@@ -129,6 +141,7 @@ vserver modify -vserver <svm-name> -qos-policy-group none
 ....
 
 
+[[lif-configuration]]
 == LIF組態
 
 對於SAP HANA正式作業系統、您必須使用不同的lifs、從SAP HANA主機掛載資料Volume和記錄Volume。因此至少需要兩個生命期。
@@ -152,6 +165,7 @@ NOTE: 在不同的SAP HANA主機之間共享一個LIF、可能需要將資料或
 
 
 
+[[volume-configuration-for-sap-hana-single-host-systems]]
 == SAP HANA單一主機系統的Volume組態
 
 下圖顯示四個單一主機SAP HANA系統的Volume組態。每個SAP HANA系統的資料和記錄磁碟區都會分散到不同的儲存控制器。例如、控制器A上已設定Volume「ID1_data_mnt00001」、而控制器B上已設定Volume「ID1_log_mnt00001」
@@ -200,6 +214,7 @@ NOTE: 如果使用 SAP Local Secure Store 服務（LSS）， `/lss/shared/SID` �
 |===
 
 
+[[volume-configuration-for-sap-hana-multiple-host-systems]]
 == SAP HANA多主機系統的Volume組態
 
 下圖顯示4+1 SAP HANA系統的Volume組態。每個SAP HANA主機的資料和記錄磁碟區都會分散到不同的儲存控制器。例如、磁碟區「ID1_data1_mnt00001」是在控制器A上設定、而磁碟區「ID1_log1_mnt00001」則是在控制器B上設定
@@ -287,6 +302,7 @@ NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則  `/lss/shared/SI
 |===
 
 
+[[volume-options]]
 == Volume選項
 
 您必須在所有SVM上驗證並設定下表所列的Volume選項。對於某些命令、您必須切換ONTAP 到位於景點內的進階權限模式。
@@ -308,6 +324,7 @@ NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則  `/lss/shared/SI
 |===
 
 
+[[nfs-configuration-for-nfsv3]]
 == NFSv3的NFS組態
 
 下表所列的NFS選項必須在所有儲存控制器上進行驗證和設定。對於本表所示的某些命令、您必須切換至進階權限模式。
@@ -326,6 +343,7 @@ NOTE: 在具有不同工作負載的共用環境中、將 NFS TCP 傳輸大小�
 
 
 
+[[nfs-configuration-for-nfsv4]]
 == NFSv4的NFS組態
 
 下表所列的NFS選項必須在所有SVM上進行驗證和設定。
@@ -391,6 +409,7 @@ NOTE: 可以啟用和使用 pNFS 。
 |===
 
 
+[[mount-volumes-to-namespace-and-set-export-policies]]
 == 將磁碟區掛載到命名空間並設定匯出原則
 
 建立磁碟區時、磁碟區必須掛載到命名空間。在本文中、我們假設交會路徑名稱與Volume名稱相同。根據預設、磁碟區會以預設原則匯出。必要時可調整匯出原則。

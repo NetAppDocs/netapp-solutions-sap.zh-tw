@@ -21,6 +21,7 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。您可以透過電�
 
 
 
+[[provider-configuration-file-netappclone-conf]]
 == 供應商組態檔NetApp_clone.conf
 
 組態檔會依照中所述建立 https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/250dfc5eef4047a38bab466c295d3a49.html["SAP Lama文件-設定SAP主機代理程式登錄指令碼"^]。此組態檔必須位於安裝SAP主機代理程式的Ansible控制節點上。
@@ -40,12 +41,14 @@ Platform: Unix
 ....
 
 
+[[provider-script-netappclone-sh]]
 == 提供者指令碼netapp_clone.sh
 
 提供者指令碼必須儲存在中 `/usr/sap/scripts` 如供應商組態檔中所設定。
 
 
 
+[[variables]]
 === 變數
 
 下列變數會在指令碼中進行硬式編碼、必須加以調整。
@@ -61,18 +64,21 @@ NOTE: 如果不同的SAP系統需要不同的叢集或SVM、則這些變數可�
 
 
 
+[[function-create-inventory-file]]
 === 功能：建立庫存檔案
 
 為了讓Ansible教戰手冊的執行更具動態性 `inventory. yml` 檔案會即時建立。部分靜態值會在變數區段中設定、部分靜態值會在執行期間動態建立。
 
 
 
+[[function-run-ansible-playbook]]
 === 功能：執行Ansible教戰手冊
 
 此功能可用來執行Ansible教戰手冊、以及動態建立的 `inventory.yml` 檔案：教戰手冊的命名慣例為 `netapp_lama_${HookOperationName}.yml`。的值 `${HookOperationName}` 取決於Lama作業、並由Lama作為命令列參數移交。
 
 
 
+[[section-main]]
 === 章節主要
 
 本節包含主要執行計畫。變數 `${HookOperationName}` 包含Lama置換步驟的名稱、並在指令碼被呼叫時由Lama提供。
@@ -97,6 +103,7 @@ NOTE: 如果不同的SAP系統需要不同的叢集或SVM、則這些變數可�
 
 
 
+[[hookoperationname-clonevolumes]]
 === HookoperationName = ClonVolumes
 
 執行此步驟時、會執行可執行的教戰手冊、以觸發Snapshot複本和複製作業。SAP Lama會透過變數中定義的XML檔案來移交磁碟區名稱和掛載組態 `$MOUNT_XML_PATH`。此檔案會儲存、因為稍後會在步驟中使用 `FinalizeCloneVolumes` 以建立新的掛載點組態。磁碟區名稱會從XML檔案擷取、並針對每個磁碟區執行「Ansible Cloning」方針。
@@ -106,6 +113,7 @@ NOTE: 在此範例中、AS執行個體和中央服務共用相同的磁碟區。
 
 
 
+[[hookoperationname-postclonevolumes]]
 === HookoperationName =後ClonewVolumes
 
 在此步驟中、自訂屬性 `ClonePostFix` 和 `SnapPostFix` 並維護目標系統的掛載點組態。
@@ -128,6 +136,7 @@ NOTE: 在此範例中、儲存系統上的qtree是將不同資料放在單一磁
 
 
 
+[[hookoperationname-serviceconfigremoval]]
 === HookoperationName = ServiceConfigRemoval
 
 在此步驟中、負責刪除磁碟區複本的Ansible教戰手冊正在執行中。
@@ -141,6 +150,7 @@ NOTE: 在此範例中、AS執行個體和中央服務共用相同的磁碟區。
 
 
 
+[[hookoperationname-clearmountconfig]]
 === HookoperationName = ClearMountConfig
 
 在此步驟中、負責在系統重新整理工作流程期間刪除磁碟區複本的Ansible教戰手冊正在執行中。
@@ -373,6 +383,7 @@ exit 0
 ....
 
 
+[[ansible-playbook-netapplamaclonevolumes-yml]]
 == Ansible教戰手冊NetApp_Lama Clonewores.yml
 
 在Lama系統實體複製工作流程的ClonVolumes步驟中執行的方針組合為 `create_snapshot.yml` 和 `create_clone.yml` （請參閱 https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["NetApp Ansible模組- Yaml檔案"^]）。本方針可輕鬆擴充、涵蓋其他使用案例、例如從二線複製和複製分割作業複製。
@@ -416,6 +427,7 @@ root@sap-jump:~# cat /usr/sap/scripts/ansible/netapp_lama_CloneVolumes.yml
 ....
 
 
+[[ansible-playbook-netapplamaserviceconfigremoval-yml]]
 == Ansible教戰手冊NetApp_Lama _ServiceConfigRemove.yml
 
 在執行期間執行的教戰手冊 `ServiceConfigRemoval` Lama系統銷毀工作流程的階段是結合的 `delete_clone.yml` 和 `delete_snapshot.yml` （請參閱 https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["NetApp Ansible模組- Yaml檔案"^]）。它必須與的執行步驟一致 `netapp_lama_CloneVolumes` 教戰守則：
@@ -458,6 +470,7 @@ root@sap-jump:~#
 ....
 
 
+[[ansible-playbook-netapplamaclearmountconfig-yml]]
 == Ansible教戰手冊NetApp_Lama _ClearMountConfig.yml
 
 執行期間的教戰手冊 `netapp_lama_ClearMountConfig` 系統重新整理工作流程的階段是結合的 `delete_clone.yml` 和 `delete_snapshot.yml` （請參閱 https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["NetApp Ansible模組- Yaml檔案"^]）。它必須與的執行步驟一致 `netapp_lama_CloneVolumes` 教戰守則：
@@ -500,6 +513,7 @@ root@sap-jump:~#
 ....
 
 
+[[sample-ansible-inventory-yml]]
 == Ansible inventory.yml範例
 
 此庫存檔案是在工作流程執行期間動態建置的、僅在此顯示以供說明。

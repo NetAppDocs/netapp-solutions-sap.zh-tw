@@ -21,6 +21,7 @@ NOTE: SAP HANA單一主機和SAP HANA多主機系統可使用兩個以上的個�
 
 
 
+[[enabling-additional-data-volume-partitions]]
 == 啟用其他資料Volume分割區
 
 若要啟用其他資料Volume分割區、請在SysSTEMDB組態中使用SAP HANA Studio或Cockpit、在global.ini`中新增下列項目。
@@ -34,6 +35,7 @@ NOTE: 手動將參數新增至「global.ini`」檔案、需要重新啟動資料
 
 
 
+[[volume-configuration-for-single-host-sap-hana-systems]]
 == 單一主機SAP HANA系統的Volume組態
 
 具有多個分割區的單一主機SAP HANA系統的磁碟區配置、就像具有一個資料磁碟區分割的系統配置、但另一個資料磁碟區儲存在不同的集合體上、如同記錄磁碟區和其他資料磁碟區。下表顯示SAP HANA單一主機系統的組態範例、其中包含兩個資料Volume分割區。
@@ -65,6 +67,7 @@ NOTE: 手動將參數新增至「global.ini`」檔案、需要重新啟動資料
 
 
 
+[[volume-configuration-for-multiple-host-sap-hana-systems]]
 == 多主機SAP HANA系統的Volume組態
 
 磁碟區的配置就像多主機SAP HANA系統的配置一樣、只要有一個資料Volume分割區、但有一個額外的資料磁碟區儲存在不同的Aggregate上、就像記錄磁碟區和其他資料磁碟區一樣。下表顯示SAP HANA多主機系統的組態範例、其中包含兩個資料Volume分割區。
@@ -150,6 +153,7 @@ NOTE: 手動將參數新增至「global.ini`」檔案、需要重新啟動資料
 
 
 
+[[host-configuration]]
 == 主機組態
 
 除了一節中所述的工作之外，還link:hana-aff-nfs-host-setup.html["主機設定、"]必須建立新額外資料 Volume 的額外掛載點和 `fstab`項目，並且必須掛載新的 Volume 。
@@ -210,6 +214,7 @@ NOTE: 使用不同的儲存虛擬介面來連接每個資料磁碟區、以確�
 
 
 
+[[adding-an-additional-data-volume-partition]]
 == 新增額外的資料Volume分割區
 
 針對租戶資料庫執行下列SQL陳述式、將額外的資料磁碟區分割新增至租戶資料庫。使用其他磁碟區的路徑：

@@ -18,12 +18,14 @@ summary: 以下是SAP HANA軟體安裝需求。
 
 
 
+[[install-on-single-host-system]]
 == 安裝在單一主機系統上
 
 SAP HANA軟體安裝不需要為單一主機系統做任何額外準備。
 
 
 
+[[install-on-multiple-host-system]]
 == 安裝在多主機系統上
 
 若要在多主機系統上安裝SAP HANA、請完成下列步驟：

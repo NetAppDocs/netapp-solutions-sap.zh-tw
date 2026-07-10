@@ -18,6 +18,7 @@ summary: 您必須執行本節中的步驟、才能SnapCenter 設定基礎的功
 
 
 
+[[overview-configuration-steps]]
 == 組態步驟總覽
 
 您必須執行下列步驟、才能SnapCenter 設定基礎的資訊穩定功能、並保護HANA資源。以下各章將詳細說明每個步驟。
@@ -32,6 +33,7 @@ summary: 您必須執行本節中的步驟、才能SnapCenter 設定基礎的功
 
 
 
+[[sap-hana-backup-user-and-hdbuserstore-configuration]]
 == SAP HANA備份使用者與hdbuserstore組態
 
 NetApp建議在HANA資料庫中設定專屬的資料庫使用者、以SnapCenter 執行使用效益的備份作業。第二步是針對此備份使用者設定SAP HANA使用者存放區金鑰、此使用者存放區金鑰用於SnapCenter 設定SAP HANA外掛程式。
@@ -84,6 +86,7 @@ hdbsql SYSTEMDB=>
 ....
 
 
+[[configure-storage]]
 == 設定儲存設備
 
 請依照下列步驟在SnapCenter 不執行儲存的情況下進行設定。
@@ -120,6 +123,7 @@ image:amazon-fsx-image14.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[create-credentials-for-plugin-deployment]]
 === 建立外掛程式部署的認證資料
 
 若要在SnapCenter HANA主機上部署必要的外掛程式、必須設定使用者認證。
@@ -145,6 +149,7 @@ hana-1:/etc/sudoers.d #
 ....
 
 
+[[add-a-sap-hana-host]]
 == 新增SAP HANA主機
 
 新增SAP HANA主機時SnapCenter 、NetApp會在資料庫主機上部署所需的外掛程式、並執行自動探索作業。
@@ -201,6 +206,7 @@ image:amazon-fsx-image22.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[configure-policies]]
 == 設定原則
 
 原則通常會獨立設定資源、可供多個SAP HANA資料庫使用。
@@ -215,6 +221,7 @@ image:amazon-fsx-image22.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[policy-for-snapshot-backups]]
 === Snapshot備份原則
 
 請依照下列步驟設定Snapshot備份原則。
@@ -253,6 +260,7 @@ image:amazon-fsx-image29.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[policy-for-block-integrity-check]]
 === 區塊完整性檢查原則
 
 請依照下列步驟設定區塊完整性檢查原則。
@@ -281,6 +289,7 @@ image:amazon-fsx-image34.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[configure-and-protect-a-hana-resource]]
 == 設定及保護HANA資源
 
 外掛程式安裝完成後、HANA資源的自動探索程序會自動啟動。在「資源」畫面中、會建立一個新的資源、並以紅色掛鎖圖示標示為鎖定。若要設定及保護新的HANA資源、請依照下列步驟操作：

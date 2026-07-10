@@ -22,6 +22,7 @@ summary: 本節說明用於災難恢復容錯移轉的伺服器所需的準備�
 
 
 
+[[target-server-host-name-and-ip-address]]
 == 目標伺服器主機名稱和IP位址
 
 目標伺服器的主機名稱必須與來源系統的主機名稱相同。IP位址可能不同。
@@ -31,6 +32,7 @@ NOTE: 必須建立適當的目標伺服器隔離、使其無法與其他系統�
 
 
 
+[[install-required-software]]
 == 安裝所需軟體
 
 SAP主機代理程式軟體必須安裝在目標伺服器上。如需完整資訊、請參閱 https://help.sap.com/viewer/9f03f1852ce94582af41bb49e0a667a7/103/en-US["SAP主機代理程式"^] SAP說明入口網站。
@@ -40,6 +42,7 @@ NOTE: 如果將主機用作HANA QA或測試系統、則已安裝SAP主機代理�
 
 
 
+[[configure-users-ports-and-sap-services]]
 == 設定使用者、連接埠和SAP服務
 
 SAP HANA資料庫所需的使用者和群組必須可在目標伺服器上使用。通常會使用集中式使用者管理、因此不需要在目標伺服器上執行任何組態步驟。HANA資料庫所需的連接埠必須在目標主機上設定。您可以將「/etc/services」檔案複製到目標伺服器、從來源系統複製組態。
@@ -54,6 +57,7 @@ limit.descriptors=1048576
 ....
 
 
+[[prepare-hana-log-volume]]
 == 準備HANA記錄磁碟區
 
 由於HANA記錄磁碟區並非複寫的一部分、因此目標主機上必須存在一個空的記錄磁碟區。記錄磁碟區必須包含與來源HANA系統相同的子目錄。
@@ -70,6 +74,7 @@ vm-pr1:~ #
 ....
 
 
+[[prepare-log-backup-volume]]
 == 準備記錄備份磁碟區
 
 由於來源系統設定有獨立的磁碟區用於HANA記錄備份、因此目標主機上也必須有記錄備份磁碟區可供使用。記錄備份的磁碟區必須在目標主機上設定及掛載。
@@ -78,6 +83,7 @@ vm-pr1:~ #
 
 
 
+[[prepare-file-system-mounts]]
 == 準備檔案系統掛載
 
 下表顯示實驗室設定中使用的命名慣例。災難恢復站點上的Volume名稱包含在「etc/stab」中。

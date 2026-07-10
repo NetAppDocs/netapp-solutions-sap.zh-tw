@@ -18,6 +18,7 @@ summary: 本文件說明 SAP 環境中使用的 SAP MaxDB 資料庫的 SnapCente
 
 
 
+[[introduction]]
 == 簡介
 
 本文件並非針對如何設定完整環境的逐步說明，而是涵蓋與下列項目相關的概念和相關詳細資料：
@@ -30,6 +31,7 @@ summary: 本文件說明 SAP 環境中使用的 SAP MaxDB 資料庫的 SnapCente
 
 
 
+[[example-configuration-overview]]
 == 組態概觀範例
 
 SnapCenter MaxDB 外掛程式的實作範例，適用於在示範中心執行的 SAP 系統。
@@ -41,12 +43,14 @@ NOTE: 此實作說明所需的最低磁碟區組態。資料傾印備份與記�
 
 
 
+[[demo-environment]]
 == 示範環境
 
 image:sc-sap-maxdb-image01.png["該圖強調了所使用的示範環境"]
 
 
 
+[[software-versions]]
 == 軟體版本
 
 [cols="50%, 50%"]
@@ -67,6 +71,7 @@ image:sc-sap-maxdb-image01.png["該圖強調了所使用的示範環境"]
 |===
 
 
+[[maxdb-volume-design]]
 == MaxDB Volume Design
 
 必須使用「 Volume 至少配置」來啟用 SAP MaxDB 資料庫的備份 / 還原和複製使用案例。範例組態使用 <SID> ： M02 。
@@ -107,6 +112,7 @@ image:sc-sap-maxdb-image01.png["該圖強調了所使用的示範環境"]
 |===
 
 
+[[steps-to-protect-database-m02]]
 == 保護資料庫 M02 的步驟
 
 * 根據範例版面配置檢查檔案發佈
@@ -118,6 +124,7 @@ image:sc-sap-maxdb-image01.png["該圖強調了所使用的示範環境"]
 
 
 
+[[prerequisites-on-host]]
 == 主機上的先決條件
 
 可能提供更多最新link:https://docs.netapp.com/us-en/snapcenter/protect-scu/reference_prerequisites_for_adding_hosts_and_installing_snapcenter_plug_ins_package_for_linux.html["請按這裡"]資訊。
@@ -136,6 +143,7 @@ image:sc-sap-maxdb-image01.png["該圖強調了所使用的示範環境"]
 
 
 
+[[prerequisites-for-the-database-create-backup-templates-enable-logbackup]]
 == 資料庫的必要條件–建立備份範本，啟用記錄備份
 
 * 建立資料與記錄備份目錄（ /sapdb/m02/backup/data ， /sapdb/m02/backup/log –擁有者 sdb:sdba –權限 755 ）
@@ -177,6 +185,7 @@ image:sc-sap-maxdb-image01.png["該圖強調了所使用的示範環境"]
 
 
 
+[[deploy-snapcenter-agent-to-host-sap-lnx25]]
 == 將 SnapCenter 代理程式部署至主機 SAP-lnx25
 
 如需更多資訊link:https://docs.netapp.com/us-en/snapcenter/protect-scu/task_add_hosts_and_install_the_snapcenter_plug_ins_package_for_linux.html["本文檔SnapCenter"]，請參閱。
@@ -187,6 +196,7 @@ image:sc-sap-maxdb-image02.png["新增主機使用者介面的螢幕擷取畫面
 
 
 
+[[create-snapcenter-resource-configuration-for-database-m02]]
 == 為資料庫 M02 建立 SnapCenter 資源組態
 
 資源 -> SAP MaxDB -> 新增資源
@@ -246,6 +256,7 @@ image:sc-sap-maxdb-image13.png["Add MaxDB Resource 使用者介面的螢幕擷�
 
 
 
+[[sequence-to-recover-system-m02]]
 == 恢復系統 M02 的順序
 
 . 停止 SAP System M02 （包括資料庫），停止 sapinit
@@ -262,6 +273,7 @@ image:sc-sap-maxdb-image13.png["Add MaxDB Resource 使用者介面的螢幕擷�
 
 
 
+[[recover-instance-m02]]
 == 恢復執行個體 M02
 
 * 在主機 SAP-lnx25 上停止 SAP 系統 + DB M02
@@ -371,10 +383,12 @@ NOTE: 如需恢復的詳細資訊，請參閱link:https://help.sap.com/docs/SUPP
 
 
 
+[[additional-information-and-version-history]]
 == 其他資訊和版本歷程記錄
 
 
 
+[[recorded-demos]]
 === 錄製的示範
 
 下列已重新編碼的展示可支援文件。
@@ -385,6 +399,7 @@ video::4b9ca452-d282-44c1-82ab-b2e501188b0f[panopto,width=360]
 video::ecd66443-637f-4e67-90a0-b2e501188acf[panopto,width=360]
 
 
+[[external-documentation]]
 === 外部文件
 
 若要深入瞭解本文所述資訊、請檢閱下列文件和 / 或網站：
@@ -408,6 +423,7 @@ video::ecd66443-637f-4e67-90a0-b2e501188acf[panopto,width=360]
 
 
 
+[[version-history]]
 === 版本歷程記錄
 
 [cols="25%, 25%, 50%"]

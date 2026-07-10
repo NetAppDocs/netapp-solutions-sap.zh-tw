@@ -24,6 +24,7 @@ summary: 非資料磁碟區的備份是SnapCenter 整合在整個過程中的一
 
 
 
+[[configure-non-data-volume-resources]]
 === 設定非資料磁碟區資源
 
 請依照下列步驟設定非資料磁碟區資源：

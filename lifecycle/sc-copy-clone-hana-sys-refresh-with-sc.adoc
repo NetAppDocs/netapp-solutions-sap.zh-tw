@@ -66,6 +66,7 @@ image:sc-copy-clone-image7.png["此圖顯示輸入 / 輸出對話方塊或表示
 
 
 
+[[prerequisites-and-limitations]]
 == 先決條件與限制
 
 下列各節所述的工作流程、對於 SAP HANA 系統架構和 SnapCenter 組態有一些先決條件和限制。
@@ -78,6 +79,7 @@ image:sc-copy-clone-image7.png["此圖顯示輸入 / 輸出對話方塊或表示
 
 
 
+[[lab-setup]]
 == 實驗室設定
 
 下圖顯示用於不同系統重新整理作業選項的實驗室設定。
@@ -110,6 +112,7 @@ image:sc-copy-clone-image16.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[initial-one-time-preparation-steps]]
 == 初始一次性準備步驟
 
 在初始步驟中、目標 SAP HANA 系統必須在 SnapCenter 中設定。
@@ -142,6 +145,7 @@ hana-7:/opt/NetApp/snapcenter/scc/etc #
 ....
 
 
+[[cloning-from-primary-storage-with-tenant-name-equal-to-sid]]
 == 從主儲存設備複製、租戶名稱等於SID
 
 本節說明 SAP HANA 系統重新整理工作流程、其中來源和目標系統的租戶名稱與 SID 相同。儲存複製是在主要儲存設備上執行、而還原則是使用指令碼自動執行 `sc-system-refresh.sh`。
@@ -285,6 +289,7 @@ image:sc-copy-clone-image28.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[cloning-from-off-site-backup-storage]]
 == 從異地備份儲存設備進行複製
 
 本節說明 SAP HANA 系統重新整理工作流程、來源和目標系統的租戶名稱與 SID 相同。儲存複製是在異地備份儲存區執行、並使用 SC-system-refresh.sh 指令碼進一步自動化。
@@ -301,6 +306,7 @@ image:sc-copy-clone-image31.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[cloning-a-sap-hana-system-with-multiple-tenants]]
 == 複製具有多個租戶的 SAP HANA 系統
 
 本節說明 SAP HANA 系統更新工作流程、其中包含多個租戶。儲存複製是在主要儲存設備上執行、並使用指令碼進一步自動化 `sc-system-refresh.sh`。
@@ -365,6 +371,7 @@ TENANT1) and starting recovery
 ....
 
 
+[[clone-delete-operation]]
 == Clone刪除作業
 
 新的SAP HANA系統更新作業是透過SnapCenter 使用「取消實體複製」作業來清理目標系統、以開始執行。
@@ -417,6 +424,7 @@ OK
 
 
 
+[[sap-hana-system-refresh-with-clone-split-operation]]
 == SAP HANA系統透過實體複本分割作業進行更新
 
 如果系統重新整理作業的目標系統計畫要使用較長的時間範圍、則將 FlexClone Volume 分割為系統重新整理作業的一部分是合理的做法。
@@ -457,6 +465,7 @@ image:sc-copy-clone-image40.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapcenter-workflow-automation-with-powershell-scripts]]
 == 利用PowerShell指令碼實現工作流程自動化SnapCenter
 
 在前幾節中、使用SnapCenter 者介面執行不同的工作流程。所有的工作流程也可以透過PowerShell指令碼或REST API呼叫來執行、以進一步實現自動化。下列各節說明下列工作流程的基本PowerShell指令碼範例。
@@ -473,6 +482,7 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。
 
 
 
+[[create-clone]]
 === 建立實體複本
 
 以下簡單的指令碼說明SnapCenter 如何使用PowerShell命令執行實體複製建立作業。執行「New-SmClone」命令時、會使用實驗室環境所需的命令列選項、以及先前討論的自動化指令碼。SnapCenter
@@ -535,6 +545,7 @@ Clone create job has been finshed.
 ....
 
 
+[[delete-clone]]
 === 刪除實體複本
 
 以下簡單的指令碼示範SnapCenter 如何使用PowerShell命令執行循環複製刪除作業。使用實驗室環境所需的命令列選項和之前討論的自動化指令碼、執行「移除短完整複製」命令。SnapCenter

@@ -18,12 +18,14 @@ summary: 本節所述的所有步驟均適用於實體伺服器上的SAP HANA環
 
 
 
+[[configuration-parameter-for-suse-linux-enterprise-server]]
 == SUSE Linux Enterprise Server的組態參數
 
 每個SAP HANA主機上的其他核心和組態參數必須針對SAP HANA產生的工作負載進行調整。
 
 
 
+[[suse-linux-enterprise-server-12-and-15]]
 === SUSE Linux Enterprise Server 12和15
 
 從SUSE Linux Enterprise Server（SLES）12 SP1開始、核心參數必須設定在/etc/syscl.d目錄的組態檔中。例如、必須建立名稱為「91-NetApp-HANA」的組態檔。
@@ -47,6 +49,7 @@ NOTE: 適用於SAP OS版本的SLES隨附的Saptune可用來設定這些值。請
 
 
 
+[[configuration-parameter-for-red-hat-enterprise-linux-7-2-or-later]]
 == Red Hat Enterprise Linux 7.2或更新版本的組態參數
 
 您必須針對SAP HANA產生的工作負載、在每個SAP HANA主機上調整額外的核心和組態參數。
@@ -72,6 +75,7 @@ NOTE: 從RedHat Enterprise Linux版本8.6開始、您也可以使用RHEL System�
 
 
 
+[[create-subdirectories-in-hanashared-volume]]
 == 在/HANA /共享磁碟區中建立子目錄
 
 
@@ -110,6 +114,7 @@ sapcc-hana-tst-06:/mnt # umount /mnt/tmp
 ....
 
 
+[[create-mount-points]]
 == 建立掛載點
 
 
@@ -192,6 +197,7 @@ sapcc-hana-tst-08:~ # chmod -R 777 /usr/sap/NF2
 ....
 
 
+[[mount-file-systems]]
 == 掛載檔案系統
 
 根據NFS版本和ONTAP 發行版、會使用不同的掛載選項。下列檔案系統必須掛載到主機：

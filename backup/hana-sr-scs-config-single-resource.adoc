@@ -41,6 +41,7 @@ image:saphana-sr-scs-image29.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapcenter-configuration]]
 == 組態SnapCenter
 
 下圖顯示實驗室設定、以及所需SnapCenter 的功能表組態總覽。
@@ -73,6 +74,7 @@ image:saphana-sr-scs-image33.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapcenter-backup-operation]]
 == 支援的備份作業SnapCenter
 
 現在、備份作業會如常執行。資料與記錄備份的管理作業會獨立執行、而SAP HANA主機是主要或次要主機。
@@ -96,6 +98,7 @@ image:saphana-sr-scs-image36.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[restore-and-recovery]]
 == 還原與還原
 
 如前所述、您必須能夠識別建立所選備份的位置、以定義所需的還原作業。如果SAP HANA資料庫仍在線上、您可以使用SAP HANA Studio識別建立備份的主機。如果資料庫離線、則資訊僅可在SnapCenter 還原工作記錄中取得。
@@ -124,6 +127,7 @@ image:saphana-sr-scs-image38.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapcenter-restore-of-the-valid-backup-only]]
 === 僅還原有效的備份SnapCenter
 
 下圖顯示本節所述的還原與還原案例總覽。
@@ -167,6 +171,7 @@ image:saphana-sr-scs-image44.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapcenter-restore-of-valid-backup-and-crash-image]]
 === 還原有效的備份與當機映像SnapCenter
 
 下圖顯示本節所述的還原與還原案例總覽。

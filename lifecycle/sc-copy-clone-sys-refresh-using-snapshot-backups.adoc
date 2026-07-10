@@ -18,6 +18,7 @@ SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP HANA 資�
 
 
 
+[[tenant-names-at-target-system]]
 == 目標系統的租戶名稱
 
 執行 SAP HANA 系統重新整理所需的步驟取決於來源系統租戶組態、以及目標系統所需的租戶名稱、如下圖所示。
@@ -35,6 +36,7 @@ image:sc-copy-clone-image11.png[""]
 
 
 
+[[system-refresh-workflow-with-enabled-sap-hana-encryption]]
 == 採用 SAP HANA 加密技術的系統更新工作流程
 
 啟用 SAP HANA 持久加密後，根據用於加密根金鑰的安全儲存（執行個體 SFSS 或本機安全儲存 LSS），在目標系統上復原 SAP HANA 資料庫之前，需要執行額外的步驟。
@@ -47,6 +49,7 @@ image:sc-copy-clone-image11.png[""]
 
 
 
+[[secure-store-sfss]]
 === 安全儲存 SFSS
 
 在來源系統上、您需要為系統資料庫以及所有租戶資料庫建立加密根金鑰的備份。備份檔案必須複製到目標系統、而且必須先從備份匯入根金鑰、然後才能執行還原作業。
@@ -145,6 +148,7 @@ image:sc-copy-clone-image13.png[""]
 
 
 
+[[secure-store-lss]]
 === 安全儲存 LSS
 
 

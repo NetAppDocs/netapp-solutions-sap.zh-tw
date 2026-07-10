@@ -18,12 +18,14 @@ summary: 本節說明在單一主機和多主機系統上安裝SAP HANA所需的
 
 
 
+[[installation-on-single-host-system]]
 == 安裝在單一主機系統上
 
 SAP HANA軟體安裝不需要為單一主機系統做任何額外準備。
 
 
 
+[[installation-on-multiple-host-system]]
 == 安裝在多主機系統上
 
 在開始安裝之前、請先建立「global.ini`檔案」、以便在安裝過程中使用SAP儲存連接器。SAP儲存連接器會在安裝程序期間、將所需的檔案系統掛載到工作主機上。「global.ini`檔案必須可在所有主機（例如「/HANA /共享」檔案系統）存取的檔案系統中使用。

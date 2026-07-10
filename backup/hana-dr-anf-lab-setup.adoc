@@ -31,6 +31,7 @@ image:saphana-dr-anf_image7.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapshot-backup-configuration-with-azacsnap]]
 == 使用AzAcSnap進行Snapshot備份組態
 
 在主要站台上、AzAcSnap已設定為針對HANA系統PR1建立應用程式一致的Snapshot備份。這些Snapshot備份可在PR1 HANA系統的ANF資料磁碟區取得、也可在SAP HANA備份目錄中註冊、如下圖所示。Snapshot備份排程為每4小時執行一次。

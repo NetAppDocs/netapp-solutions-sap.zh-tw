@@ -35,6 +35,7 @@ root     23359  2597  0 11:29 pts/1    00:00:00 grep --color=auto sap
 
 
 
+[[recovery-to-latest-hana-data-volume-backup-savepoint]]
 == 恢復至最新的HANA資料Volume備份儲存點
 
 使用下列命令作為使用者pr1adm執行還原至最新的備份儲存點：
@@ -57,6 +58,7 @@ Within hdbsql: RECOVER DATA FOR PR1 USING SNAPSHOT CLEAR LOG
 
 
 
+[[system-database-recovery]]
 === 系統資料庫恢復
 
 ....
@@ -87,6 +89,7 @@ pr1adm@vm-pr1:/usr/sap/PR1/HDB01>
 ....
 
 
+[[tenant-database-recovery]]
 === 租戶資料庫恢復
 
 如果尚未在來源系統上為pr1adm使用者建立使用者存放區金鑰、則必須在目標系統上建立金鑰。金鑰中設定的資料庫使用者必須擁有執行租戶還原作業的權限。
@@ -109,6 +112,7 @@ HANA資料庫現已開始運作、HANA資料庫的災難恢復工作流程已通
 
 
 
+[[recovery-with-forward-recovery-using-logcatalog-backups]]
 == 使用記錄/目錄備份進行轉送恢復
 
 正在從來源系統複寫記錄備份和HANA備份目錄。
@@ -136,6 +140,7 @@ NOTE: 若要使用所有可用的記錄進行還原、您可以隨時將恢復�
 
 
 
+[[system-database-recovery]]
 === 系統資料庫恢復
 
 ....
@@ -165,6 +170,7 @@ recoverSys finished successfully: 2021-02-19 16:07:20
 ....
 
 
+[[tenant-database-recovery]]
 === 租戶資料庫恢復
 
 ....
@@ -182,6 +188,7 @@ HANA資料庫現已開始運作、HANA資料庫的災難恢復工作流程已通
 
 
 
+[[check-consistency-of-latest-log-backups]]
 == 檢查最新記錄備份的一致性
 
 由於記錄備份磁碟區複寫是獨立於SAP HANA資料庫執行的記錄備份程序、因此災難恢復站台可能會有開放且不一致的記錄備份檔案。只有最新的記錄備份檔案可能不一致、在災難恢復站台使用「hdbbackupcheck」工具執行轉送恢復之前、應先檢查這些檔案。

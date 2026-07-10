@@ -10,6 +10,7 @@ summary: 本節介紹如何為多主機系統建立 LUN
 
 
 
+[[multiple-hosts]]
 == 多台主機
 
 [role="lead"]
@@ -17,6 +18,7 @@ summary: 本節介紹如何為多主機系統建立 LUN
 
 
 
+[[lun-overview]]
 == LUN 概述
 
 下表顯示 2+1 多主機 SAP HANA 系統的 LUN 組態。
@@ -47,12 +49,15 @@ NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則 `/lss/shared/SID
 
 
 
+[[creating-luns-and-mapping-luns-to-initiator-groups]]
+[[lun_create]]
 == 建立 LUN 並將 LUN 對應到啟動程式群組
 
 您可以使用NetApp ONTAP System Manager 建立儲存磁碟區和 LUN，並將它們對應到伺服器的 igroup 和ONTAP CLI。
 
 
 
+[[creating-luns-and-mapping-luns-to-initiator-groups-using-the-cli]]
 === 使用 CLI 建立 LUN 並將 LUN 對應到啟動程式群組
 
 本節說明使用 ONTAP 9 命令列搭配 2+1 SAP HANA 多個主機系統的範例組態，其中包含使用 LVM 的 SID FC5 ，以及每個 LVM Volume 群組兩個 LUN ：
@@ -94,6 +99,7 @@ lun map -path FC5_log_mnt00002_2 -igroup HANA-FC5
 
 
 
+[[creating-luns-and-mapping-luns-to-initiator-groups-using-the-gui]]
 === 使用 GUI 建立 LUN 並將 LUN 對應到啟動程式群組
 
 本節展示了使用以下配置的範例 `ONTAP System Manager`對於使用 LVM 且每個 LVM 磁碟區組有兩個 LUN 的 SID FC5 的 2+1 SAP HANA 多主機系統：
@@ -186,6 +192,7 @@ image:saphana_asa_fc_image25.png["ONTAP系統管理員 - LUN 概述"]
 
 
 
+[[disable-autonomous-ransomware-protection-for-all-data-und-log-luns]]
 === 對所有資料和日誌 LUN 停用自主勒索軟體保護
 
 開啟每個資料和日誌 LUN 的內容功能表，並停用勒索軟體防護

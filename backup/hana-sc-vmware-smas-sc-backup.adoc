@@ -20,6 +20,7 @@ image:sc-saphana-vmware-smas-image31.png["圖示範所討論的內容"]
 
 
 
+[[topology-view]]
 == 拓撲視圖
 
 在拓撲視圖中， SnapCenter 會顯示來源和目的地儲存叢集的備份。
@@ -34,6 +35,7 @@ image:sc-saphana-vmware-smas-image34.png["圖示範所討論的內容"]
 
 
 
+[[snapshots-at-storage-systems]]
 == 儲存系統的快照
 
 SnapCenter 所建立的 Snapshot 備份可在兩個儲存系統的兩個 HANA 資料磁碟區中使用。ONTAP 會在一致性群組層級建立額外的快照，其他所有 HANA 磁碟區也可以使用。

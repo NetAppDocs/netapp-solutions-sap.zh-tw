@@ -20,6 +20,7 @@ summary: 使用 NFS 或 FCP 協定在 SUSE KVM 上為 SAP HANA 配置NetApp儲�
 
 
 
+[[configure-nfs-storage-for-sap-hana]]
 == 配置 SAP HANA 的 NFS 存儲
 
 如果要使用 NFS 協定進行 SAP HANA 存儲，請使用先前建立的 SR-IOV 網路介面。
@@ -36,6 +37,7 @@ KVM環境的關鍵配置注意事項：
 
 
 
+[[configure-fcp-storage-for-sap-hana]]
 == 配置 SAP HANA 的 FCP 存儲
 
 如果 SAP HANA 儲存要使用 FCP 協議，則應將指派給 VM 的實體 HBA 連接埠用作 PCI 設備。

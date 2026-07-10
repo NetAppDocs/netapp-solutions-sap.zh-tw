@@ -46,6 +46,7 @@ summary:
 
 
 
+[[consistency-checks-with-hdbpersdiag-using-the-local-snapshot-directory]]
 == 使用本機快照目錄透過 hdbpersdiag 進行一致性檢查
 
 在SnapCenter中，為 hdbpersdiag 操作建立了一個專用策略，該策略具有每日計劃和保留 2 的記錄。我們不使用每週計劃，因為那樣我們至少會有 2 個快照備份（最小保留期=2），其中一個備份可能已經存放了兩週。
@@ -179,6 +180,7 @@ LobFileIDMap OK
 ....
 
 
+[[consistency-checks-with-hdbpersdiag-using-a-central-verification-host]]
 == 使用中央驗證主機透過 hdbpersdiag 進行一致性檢查
 
 下圖顯示了解決方案架構和工作流程的高階視圖。借助中央驗證主機，可以使用驗證主機來檢查多個不同的 HANA 系統的一致性。此解決方案利用SnapCenter克隆建立和刪除工作流程，將 HANA 系統中的複製磁碟區附加到驗證主機，以便進行檢查。克隆後腳本用於運行 HANA hdbpersdiag 工具。第二步，使用SnapCenter克隆刪除工作流程來解除安裝和刪除複製的磁碟區。
@@ -220,6 +222,7 @@ NOTE: 範例腳本 call-hdbpersdiag-flexclone.sh 按原樣提供，不在NetApp�
 
 
 
+[[manual-workflow-execution]]
 === 手動工作流程執行
 
 在大多數情況下，一致性檢查操作將作為計劃操作運行，如下一章所述。但是，了解手動工作流程有助於理解自動化流程中使用的參數。
@@ -369,6 +372,7 @@ SnapCenter現在將從驗證主機卸載克隆卷，並將在儲存系統中刪�
 
 
 
+[[snapcenter-workflow-automation-using-powershell-scripts]]
 === 使用 PowerShell 腳本實現SnapCenter工作流程自動化
 
 在上一節中，克隆建立和克隆刪除工作流程是使用SnapCenter UI 執行的。所有工作流程均可透過 PowerShell 腳本或 REST API 呼叫執行，從而實現進一步的自動化。以下部分描述了一個基本的 PowerShell 腳本範例，用於執行SnapCenter克隆建立和克隆刪除工作流程。
@@ -510,6 +514,7 @@ hana-7:/mnt/sapcc-share/hdbpersdiag #
 ....
 
 
+[[file-based-backup]]
 == 基於檔案的備份
 
 SnapCenter支援使用策略來執行區塊完整性檢查，在該原則中，基於檔案的備份被選為備份類型。

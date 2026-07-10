@@ -45,10 +45,12 @@ image:hana-sc-generic-image-017.png["寬度=601，高度=158"]
 
 
 
+[[credentials-configuration]]
 == 認證設定
 
 
 
+[[credentials-for-hana-plug-in-deployment]]
 === HANA插件部署憑證
 
 憑證在「設定」部分中配置，方法是選擇「憑證」標籤。點擊“+”圖示即可新增憑證。
@@ -61,6 +63,7 @@ image:hana-sc-generic-image-019.png["寬度=287，高度=247"]
 
 
 
+[[credentials-for-azure-netapp-files]]
 === Azure NetApp Files憑證
 
 必須準備 Azure 服務主體，以便SnapCenter能夠對 ANF 磁碟區執行所需的操作。下面的範例顯示了必須包含的最低必要權限。
@@ -155,10 +158,12 @@ image:hana-sc-generic-image-021.png["寬度=252，高度=246"]
 
 
 
+[[storage-system-configuration]]
 == 儲存系統組態
 
 
 
+[[ontap-systems-and-fsx-for-ontap]]
 === ONTAP系統和 FSx for ONTAP
 
 可以透過提供叢集憑證或每個所需 SVM 的憑證，將ONTAP系統或 FSx for ONTAP新增至SnapCenter 。當提供叢集憑證時，叢集中的所有 SVM 都會新增到SnapCenter。
@@ -188,6 +193,7 @@ image:hana-sc-generic-image-024.png["寬度=331，高度=199"]
 
 
 
+[[azure-netapp-files]]
 === Azure NetApp Files
 
 設定 ANF 憑證後，即可將 ANF NetApp帳戶新增至SnapCenter。NetApp帳戶在「儲存系統」部分中配置，方法是選擇Azure NetApp Files標籤。點擊「+」圖示即可新增新的NetApp帳號。
@@ -200,12 +206,14 @@ image:hana-sc-generic-image-026.png["寬度=401，高度=176"]
 
 
 
+[[storage-configuration-when-using-snapmirror-active-sync]]
 === 使用SnapMirror主動同步時的儲存配置
 
 具體儲存配置步驟詳見下文。 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmware-smas-sc-config.html#add-storage-systems["使用SnapMirror主動同步的儲存配置"]。
 
 
 
+[[policies-configuration]]
 == 原則組態
 
 如本節所述，資料保護策略策略通常獨立於資源進行配置，並且可以用於多個 SAP HANA 系統。
@@ -232,6 +240,7 @@ image:hana-sc-generic-image-028.png["寬度=601，高度=138"]
 
 
 
+[[snapshot-backups-with-ontap-systems-and-fsx-for-ontap]]
 === 使用ONTAP系統和 FSx for ONTAP進行快照備份
 
 ONTAP系統或 FSx for ONTAP的快照備份策略可以將本機快照與複製或快照鎖定（防篡改快照）操作結合。此範例展示了使用SnapVault複製到輔助儲存的策略。
@@ -263,6 +272,7 @@ image:hana-sc-generic-image-032.png["寬度=385，高度=119"]
 
 
 
+[[snapshot-backups-with-azure-netapp-files]]
 === 使用Azure NetApp Files進行快照備份
 
 Azure NetApp Files快照備份策略可將本機快照與 ANF 備份結合，從而將快照資料複製到 Azure Blob。此範例展示了使用 ANF 備份進行複製的策略。
@@ -292,6 +302,7 @@ image:hana-sc-generic-image-036.png["寬度=376，高度=138"]
 
 
 
+[[block-integrity-check-operations-for-all-platforms]]
 === 所有平台的區塊完整性檢查操作
 
 
@@ -328,6 +339,7 @@ image:hana-sc-generic-image-040.png["寬度=366，高度=101"]
 
 
 
+[[policy-configuration-when-using-snapmirror-active-sync]]
 === 使用SnapMirror主動同步時的政策配置
 
 文件中描述了具體的策略配置步驟。 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmware-smas-sc-config.html#policy-configuration["策略配置SnapMirror活動同步"]。

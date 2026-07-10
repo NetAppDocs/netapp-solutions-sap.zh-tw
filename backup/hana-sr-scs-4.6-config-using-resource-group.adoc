@@ -18,6 +18,7 @@ summary: 支援針對採用HANA系統複寫的HANA系統進行自動探索。Sna
 
 
 
+[[snapcenter-4-6-configuration-of-hana-system-replication-environments]]
 == 適用於HANA系統複寫環境的功能SnapCenter
 
 下圖顯示本章所使用的實驗室設定。兩台HANA主機Hana（Hana）3和Hana（Hana）4均設定HANA系統複寫。
@@ -82,6 +83,7 @@ image:saphana-sr-scs-image16.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapshot-backup-operations]]
 == Snapshot備份作業
 
 執行資源群組的備份作業時SnapCenter 、支援功能可識別哪個主機為主要主機、而且只會在主要主機上觸發備份。這表示只會快照主主機的資料磁碟區。在我們的範例中、Hana 3是目前的主要主機、並在此主機上執行備份。
@@ -121,12 +123,14 @@ image:saphana-sr-scs-image24.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[block-integrity-check-operations-with-file-based-backups]]
 == 以檔案型備份來進行區塊完整性檢查作業
 
 根據Snapshot備份作業所述、支援以檔案為基礎的備份進行區塊完整性檢查作業時、可使用相同的邏輯。SnapCenter此系統可識別目前的主要HANA主機、並針對此主機執行檔案型備份。SnapCenter保留管理也會在兩個主機上執行、因此無論目前哪個主機為主要主機、都會刪除最舊的備份。
 
 
 
+[[snapvault-replication]]
 == 內部複寫SnapVault
 
 若要在接管和獨立的情況SnapVault 下、讓透明的備份作業無需手動互動、而HANA主機目前是主要主機、您必須為兩個主機的資料磁碟區設定一個「不穩定」關係。在每次執行備份時、將針對目前的主要主機執行一個更新作業。SnapCenter SnapVault
@@ -143,6 +147,7 @@ image:saphana-sr-scs-image25.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[retention-management]]
 == 保留管理
 
 由於支援Snapshot備份、區塊完整性檢查作業、HANA備份目錄項目、以及兩個HANA主機之間的記錄備份（若未停用）、因此無論目前的主要或次要主機為何、都能順利保留資料。SnapCenter無論目前的主要或次要主機是否需要刪除作業、HANA目錄中的備份（資料和記錄）和項目都會根據定義的保留來刪除。換句話說、如果執行接管作業和（或）將複寫設定為另一個方向、則不需要手動互動。
@@ -151,6 +156,7 @@ image:saphana-sr-scs-image25.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[restore-and-recovery]]
 == 還原與還原
 
 下圖說明在這兩個站台執行多個移轉並建立Snapshot備份的案例。在目前狀態下、主機Hana 3是主要主機、而最新的備份則是T4、這是在主機Hana 3建立的。如果您需要執行還原與還原作業、備份T1和T4可在SnapCenter 還原與還原。在主機Hana 4（T2、T3）建立的備份、無法使用SnapCenter 還原功能還原。這些備份必須手動複製到Hana 3的資料磁碟區以進行還原。

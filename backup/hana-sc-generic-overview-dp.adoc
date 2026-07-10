@@ -17,6 +17,7 @@ summary:
 
 
 
+[[backup-and-recovery-using-snapshot-backups]]
 == 使用快照備份進行備份和還原
 
 您可以使用NetApp快照技術在幾分鐘內建立資料庫備份。建立快照副本所需的時間與資料庫的大小無關，因為快照副本不會移動儲存平台上的任何實體資料區塊。此外，由於所有操作都在儲存系統中執行，因此使用快照技術不會對即時 SAP 系統的效能產生影響。因此，您可以安排建立快照副本，而無需考慮對話高峰期或批次活動期。SAP on NetApp客戶通常會在一天內安排多次線上快照備份；例如，每六小時備份一次很常見。這些快照備份通常會在主儲存系統上保留三到五天，然後被刪除或分層儲存到更便宜的儲存系統中以進行長期保留。
@@ -33,6 +34,7 @@ NetApp SnapRestore技術能夠根據目前可用的快照備份還原整個資�
 
 
 
+[[runtime-of-snapshot-backup-and-restore-operations]]
 == Snapshot備份與還原作業的執行時間
 
 下圖顯示了客戶的 HANA Studio 使用快照備份作業的情況。影像顯示，使用快照備份技術備份 HANA 資料庫（大小約 4TB）僅需 1 分 20 秒，而使用基於檔案的備份作業則需要 4 個多小時。
@@ -43,12 +45,14 @@ image:hana-sc-generic-image-001.png["寬度=624，高度=267"]
 
 
 
+[[recovery-time-objective-comparison]]
 == 恢復時間目標比較
 
 本節對基於檔案的快照備份和基於儲存的快照備份的復原時間目標 (RTO) 進行了比較。RTO 定義為恢復資料庫、重新啟動資料庫以及啟動資料庫所需的時間總和。
 
 
 
+[[time-needed-to-restore-database]]
 === 還原資料庫所需的時間
 
 使用檔案型備份時、還原時間取決於資料庫和備份基礎架構的大小、而備份基礎架構會以每秒MB為單位來定義還原速度。例如、如果基礎架構支援以250Mbps速度還原作業、則還原持續性資料庫時、大約需要4.5小時的時間、以4TB為單位。
@@ -57,6 +61,7 @@ image:hana-sc-generic-image-001.png["寬度=624，高度=267"]
 
 
 
+[[time-needed-to-recover-database]]
 === 恢復資料庫所需的時間
 
 恢復時間取決於還原後必須套用的記錄數目。此數字取決於資料備份的頻率。
@@ -67,12 +72,14 @@ image:hana-sc-generic-image-001.png["寬度=624，高度=267"]
 
 
 
+[[time-needed-to-start-database]]
 === 啟動資料庫所需的時間
 
 資料庫開始時間取決於資料庫的大小、以及將資料載入記憶體所需的時間。在下列範例中、假設資料可以以1000Mbps載入。將4TB載入記憶體約需1小時10分鐘。檔案型與Snapshot型還原與還原作業的開始時間相同。
 
 
 
+[[restore-and-recovery-sample-calculation]]
 === 恢復和回收樣品計算
 
 下圖顯示了使用每日檔案備份和不同排程的快照備份進行復原作業的比較。
@@ -85,6 +92,7 @@ image:hana-sc-generic-image-002.png["寬度=624，高度=326"]
 
 
 
+[[use-cases-and-values-of-accelerated-backup-and-cloning-operations]]
 == 加速備份與複製作業的使用案例與價值
 
 執行備份是任何資料保護策略的關鍵部分。定期排程備份、確保您能從系統故障中恢復。這是最明顯的使用案例、但也有其他SAP生命週期管理工作、因此加速備份與還原作業至關重要。

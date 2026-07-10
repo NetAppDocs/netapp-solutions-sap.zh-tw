@@ -34,12 +34,14 @@ image:libelle-sc-image23.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[prerequisites-and-limitations]]
 == 先決條件與限制
 
 必須滿足下列先決條件。
 
 
 
+[[azacsnap-installed-and-configured-for-the-source-database]]
 === 已為來源資料庫安裝及設定AzAcSnap
 
 一般而言、AzAcSnap有兩種部署選項、如下圖所示。
@@ -50,6 +52,7 @@ AzAcSnap可安裝並在集中儲存所有資料庫組態檔案的中央Linux VM�
 
 
 
+[[libelle-systemcopy-installed-and-configured-for-source-and-target-sap-system]]
 === 安裝及設定適用於來源和目標SAP系統的Libelle SystemCopy
 
 Libelle SystemCopy部署包含下列元件：
@@ -71,6 +74,7 @@ image:libelle-sc-image26.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[known-limitations]]
 === 已知限制
 
 此處說明的AzAcSnap與LSC整合僅適用於SAP HANA單一主機資料庫。也可支援SAP HANA多主機（或橫向擴充）部署、但這類部署需要對複製階段和底層指令碼的LSC自訂工作進行一些調整或增強。本文件並未涵蓋此類增強功能。
@@ -79,6 +83,7 @@ SAP系統重新整理整合一律會使用來源系統最新成功的Snapshot複
 
 
 
+[[lab-setup]]
 == 實驗室設定
 
 實驗室設定包含來源SAP系統和目標SAP系統、兩者均在SAP HANA單一主機資料庫上執行。
@@ -103,6 +108,7 @@ image:libelle-sc-image27.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[initial-one-time-preparation-steps]]
 == 初始一次性準備步驟
 
 在執行第一次SAP系統重新整理之前、您必須先整合Azure NetApp Files AzAcSnap執行的以Snapshot複製與複製為基礎的儲存作業。您也必須執行輔助指令碼、以啟動和停止資料庫、以及掛載或卸載Azure NetApp Files 等功能。所有必要的工作都會在LSC中以自訂工作的形式執行、作為複製階段的一部分。下圖顯示LSC工作清單中的自訂工作。
@@ -116,6 +122,7 @@ NOTE: 範例指令碼係依現狀提供、且不受NetApp支援。您可以透�
 
 
 
+[[sc-system-refresh-sh-configuration-file]]
 === Sc-system-refresh.sh組態檔
 
 如前所述、輔助指令碼可用來啟動和停止資料庫、掛載Azure NetApp Files 和卸載整個過程、以及從Snapshot複本恢復SAP HANA資料庫。指令碼「shc-system-refresh.sh」儲存在中央NFS共用區。指令碼需要每個目標資料庫的組態檔、而且必須儲存在與指令碼本身相同的資料夾中。組態檔必須具有下列名稱：「c-system-refresh-<target DB SID>.cfg/」（例如本實驗室環境中的「c-system-refresh-Ql1.cfg/」）。此處使用的組態檔使用固定/硬編碼的來源DB SID。只要做一些變更、就能增強指令碼和組態檔、將來源DB SID當作輸入參數。
@@ -134,6 +141,7 @@ export CLONED_VOLUMES_MOUNT_PATH=`tail -2 /mnt/software/AZACSNAP/snapshot_tool/l
 ....
 
 
+[[zsccopyshutdown]]
 === ZSCCOPYSHUTDOWN
 
 此工作會停止目標SAP HANA資料庫。本工作的「程式碼」區段包含下列文字：
@@ -148,6 +156,7 @@ image:libelle-sc-image29.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[zsccopyumount]]
 === ZSCCOPYMOUUNT
 
 這項工作會從Azure NetApp Files 目標DB作業系統（OS）卸載舊版的支援資料磁碟區。此工作的程式碼區段包含下列文字：
@@ -160,6 +169,7 @@ sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh umount $_syste
 
 
 
+[[zazacsnaprestore]]
 === ZAZACSNAPRESORE
 
 此工作會執行AzAcSnap、將來源資料庫的最新成功Snapshot複本複製到目標資料庫的新Volume。此作業相當於在傳統備份環境中重新導向備份還原。不過、Snapshot複本與複製功能可讓您在數秒內執行此工作、即使是最大的資料庫、但傳統備份也可能需要數小時的時間。此工作的程式碼區段包含下列文字：
@@ -179,6 +189,7 @@ image:libelle-sc-image30.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[zsccopymount]]
 === ZSCCOPYMOUUNT
 
 此工作會在Azure NetApp Files 目標資料庫的作業系統上掛載新的「更新資料」磁碟區。此工作的程式碼區段包含下列文字：
@@ -191,6 +202,7 @@ sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh mount $_system
 
 
 
+[[zsccopyrecover]]
 === ZSCCOPYRECOVER
 
 此工作會根據還原（複製）的Snapshot複本、執行系統資料庫和租戶資料庫的SAP HANA資料庫還原。此處使用的還原選項適用於特定資料庫備份、例如不套用其他記錄以進行轉送恢復。因此、恢復時間非常短（最多只需幾分鐘）。此作業的執行時間取決於SAP HANA資料庫在還原程序之後自動啟動。若要加速啟動時間、Azure NetApp Files 可根據本Azure文件中的說明、視需要暫時增加功能： https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-performance-considerations["動態增加或減少磁碟區配額"^]。此工作的程式碼區段包含下列文字：
@@ -203,6 +215,7 @@ sudo /mnt/software/scripts/sc-system-refresh/sc-system-refresh.sh recover $_syst
 
 
 
+[[sap-hana-system-refresh-operation]]
 == SAP HANA系統更新作業
 
 在本節中、實驗室系統的更新作業範例顯示此工作流程的主要步驟。

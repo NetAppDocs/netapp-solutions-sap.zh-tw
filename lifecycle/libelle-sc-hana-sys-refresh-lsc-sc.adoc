@@ -32,6 +32,7 @@ SAP Anyca的預設SnapCenter 值為安裝本地的程序、SnapCenter 除了資�
 
 
 
+[[overview]]
 == 總覽
 
 下圖顯示了SAP系統更新生命週期的典型高層工作流程SnapCenter 、其中包含不含LSC的現象：
@@ -53,6 +54,7 @@ image:libelle-sc-image1.png["此圖顯示輸入 / 輸出對話方塊或表示寫
 
 
 
+[[prerequisites-and-limitations]]
 == 先決條件與限制
 
 必須滿足下列先決條件：
@@ -96,12 +98,14 @@ LSC主機和LSC工作人員必須安裝在SAP環境中。在此部署中、我�
 
 
 
+[[lab-setup]]
 == 實驗室設定
 
 本節說明在示範資料中心中設定的架構範例。此設定分為標準安裝和使用中央通訊主機的安裝。
 
 
 
+[[standard-installation]]
 === 標準安裝
 
 下圖顯示SnapCenter 一套標準安裝、其中來源與目標資料庫伺服器上的來源與目標資料庫伺服器、均安裝了包含資料庫外掛程式在內的Rse-Agent。在實驗室設定中、我們安裝了SAP HANA外掛程式。此外、LSC員工也安裝在目標伺服器上。為了簡化並減少虛擬伺服器的數量、我們在SnapCenter 支援服務器上安裝了LSC主機。下圖說明不同元件之間的通訊。
@@ -110,6 +114,7 @@ image:libelle-sc-image7.png["此圖顯示輸入 / 輸出對話方塊或表示寫
 
 
 
+[[central-communication-host]]
 === 集中通訊主機
 
 下圖顯示使用中央通訊主機的設定。在此組態中SnapCenter 、專屬伺服器上安裝了包含SAP HANA外掛程式和HANA資料庫用戶端的功能。在此設定中、我們使用SnapCenter 支援服務器來安裝中央通訊主機。此外、LSC工作人員也再次安裝在目標伺服器上。為了簡化並減少虛擬伺服器的數量、我們決定也在SnapCenter 該伺服器上安裝LSC主機。不同元件之間的通訊如下圖所示。
@@ -118,6 +123,7 @@ image:libelle-sc-image8.png["此圖顯示輸入 / 輸出對話方塊或表示寫
 
 
 
+[[initial-one-time-preparation-steps-for-libelle-systemcopy]]
 == Libelle SystemCopy的初始一次性準備步驟
 
 LSC安裝有三個主要元件：
@@ -144,6 +150,7 @@ image:libelle-sc-image9.png["此圖顯示輸入 / 輸出對話方塊或表示寫
 
 
 
+[[standard-installation]]
 === 標準安裝
 
 本節說明使用標準安裝時所需的組態步驟、SnapCenter 其中來源系統和目標系統上安裝了哪些組件和必要的資料庫外掛程式。使用標準安裝時、掛載實體磁碟區及還原目標系統所需的所有工作、都是從SnapCenter 伺服器本身的目標資料庫系統上執行的程式庫代理程式執行。這可讓您存取SnapCenter 所有與實體複製相關的詳細資料、這些詳細資料可透過來自於該代理程式的環境變數取得。因此、您只需要在LSC複製階段建立一個額外工作。此工作會在來源資料庫系統上執行Snapshot複製程序、並在目標資料庫系統上執行實體複製與還原程序。所有SnapCenter 的相關工作都是使用在LSC工作「NTAP_system_clone」中輸入的PowerShell指令碼來觸發。
@@ -174,6 +181,7 @@ image:libelle-sc-image13.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[central-communication-host]]
 === 集中通訊主機
 
 若要SnapCenter 使用中央通訊主機整合LSC與Sfor、唯一必須進行的調整只能在複製階段執行。Snapshot複本和實體複本是使用SnapCenter 中央通訊主機上的支援中心代理程式所建立。因此、新建立的磁碟區的所有詳細資料只能在中央通訊主機上使用、而無法在目標資料庫伺服器上使用。不過、目標資料庫伺服器需要這些詳細資料、才能掛載複製磁碟區並執行還原。這就是複製階段需要執行兩項額外工作的原因。在中央通訊主機上執行一項工作、並在目標資料庫伺服器上執行一項工作。這兩項工作如下圖所示。
@@ -233,6 +241,7 @@ image:libelle-sc-image20.png["此圖顯示輸入 / 輸出對話方塊或表示�
 
 
 
+[[sap-hana-system-refresh-operation]]
 == SAP HANA系統更新作業
 
 現在LSC和NetApp SnapCenter 供應器之間的所有必要整合工作都已經完成、因此只要按一下滑鼠、就能開始全自動SAP系統更新。

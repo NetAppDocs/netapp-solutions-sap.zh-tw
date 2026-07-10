@@ -33,6 +33,7 @@ image:hana-sc-generic-image-041.png["寬度=601，高度=315"] 以下各節詳�
 
 
 
+[[sap-hana-backup-user-and-sap-hana-user-store-configuration]]
 == SAP HANA備份使用者和SAP HANA用戶儲存配置
 
 NetApp建議在 HANA 資料庫中設定一個專用用戶，使用SnapCenter執行備份作業。第二步，為此備份使用者配置 SAP HANA 使用者儲存金鑰，並在SnapCenter配置中提供 SAP HANA 使用者儲存金鑰。
@@ -49,6 +50,7 @@ image:hana-sc-generic-image-042.png["寬度=601，高度=382"]
 
 
 
+[[sap-hana-user-store-configuration-on-the-hana-database-host]]
 === SAP HANA 使用者儲存配置位於 HANA 資料庫主機上
 
 SnapCenter使用 <sid>adm 使用者與 HANA 資料庫通訊。因此，必須使用資料庫主機上的 <sid>adm 使用者來設定 SAP HANA 使用者儲存金鑰。
@@ -59,6 +61,7 @@ hdbuserstore 設定 <key-name> <host>:<port> <資料庫使用者> <密碼>
 
 
 
+[[sap-hana-user-store-configuration-examples]]
 === SAP HANA 使用者儲存設定範例
 
 輸出結果顯示了為 HANA 系統配置的金鑰 SS1KEY，實例編號為 00。
@@ -102,6 +105,7 @@ sm1adm@hana-2:/usr/sap/SM1/HDB12>
 ....
 
 
+[[storage-replication-configuration]]
 == 儲存複製配置
 
 資料保護關係的組態以及初始資料傳輸必須先執行、才能SnapCenter 由效益管理系統來管理複寫更新。
@@ -127,6 +131,7 @@ image:hana-sc-generic-image-044.png["寬度=601，高度=180"]
 
 
 
+[[anf-backup-configuration]]
 == ANF備份配置
 
 對於 ANF 備份，無需任何特殊準備。一旦執行第一個啟用 ANF 備份的備份， SnapCenter就會建立一個名為 snapcenter-vault 的 Azure 備份保管庫。然後， SnapCenter執行的所有後續 ANF 備份作業都會使用此備份庫。
@@ -135,6 +140,7 @@ image:hana-sc-generic-image-045.png["寬度=601，高度=227"]
 
 
 
+[[deployment-of-snapcenter-plug-in-for-sap-hana]]
 == SnapCenter插件在 SAP HANA 上的部署
 
 主機需求列於此處 https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["安裝適用於 Linux 的SnapCenter插件包的主機需求"]。
@@ -152,6 +158,7 @@ image:hana-sc-generic-image-047.png["寬度=601，高度=154"]
 
 
 
+[[hana-auto-discovery]]
 == HANA自動發現
 
 HANA 插件部署完成後，自動發現程序隨即啟動。在第一階段，僅發現基本設置， SnapCenter會建立一個新資源，該資源會列在 UI 的「資源」部分，並帶有紅色掛鎖標記。
@@ -171,6 +178,7 @@ image:hana-sc-generic-image-050.png["寬度=601，高度=219"]
 
 
 
+[[resource-protection-configuration]]
 == 資源保護組態
 
 自動發現程序完成後，按一下資源即可開啟資源保護配置畫面。本文檔中的螢幕截圖顯示了現有資源的保護配置。

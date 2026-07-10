@@ -21,6 +21,7 @@ NOTE: 請聯絡您的NetApp或NetApp合作夥伴銷售代表、以支援儲存�
 
 
 
+[[performance-considerations]]
 == 效能考量
 
 SAP已定義一組靜態的儲存KPI。這些KPI適用於所有正式作業SAP HANA環境、不受資料庫主機記憶體大小和使用SAP HANA資料庫的應用程式所影響。這些KPI適用於HANA上的單一主機、多主機、Business Suite、HANA上的Business倉儲、S/4HANA及BS/4HANA環境。因此、目前的效能規模調整方法只取決於連接至儲存系統的作用中SAP HANA主機數量。
@@ -39,6 +40,7 @@ NOTE: 通過認證FAS 的VMware產品系列儲存控制器也可搭配其他磁�
 
 
 
+[[hard-disk-drives]]
 === 硬碟機
 
 每個SAP HANA節點至少需要10個資料磁碟（10k RPM SAS）、才能實現SAP的儲存效能KPI。
@@ -48,6 +50,7 @@ NOTE: 這項計算與所使用的儲存控制器和磁碟櫃無關。
 
 
 
+[[solid-state-drives]]
 === 固態硬碟
 
 使用固態磁碟機（SSD）時、資料磁碟的數量取決於儲存控制器到SSD機櫃的SAS連線處理量。
@@ -73,12 +76,14 @@ NOTE: 此計算方式與所使用的儲存控制器無關。新增更多磁碟�
 
 
 
+[[ns224-nvme-shelf]]
 === NS224 NVMe機櫃
 
 一個 NVMe SSD （資料）最多可支援 2 個 SAP HANA 主機。SSD和SAP HANA主機必須在兩個儲存控制器之間平均分散。
 
 
 
+[[mixed-workloads]]
 == 混合式工作負載
 
 支援在相同儲存控制器或相同儲存Aggregate上執行的SAP HANA及其他應用程式工作負載。不過、將SAP HANA工作負載與所有其他應用程式工作負載分開是NetApp的最佳實務做法。
@@ -89,6 +94,7 @@ SAP Hcmt測試工具必須用於檢查是否可在已用於其他工作負載的
 
 
 
+[[capacity-considerations]]
 == 容量考量
 
 SAP HANA容量需求的詳細說明請參閱 https://launchpad.support.sap.com/#/notes/1900823["SAP附註1900823"^] 白皮書。
@@ -98,6 +104,7 @@ NOTE: 使用NetApp提供的SAP HANA儲存規模調整工具、必須決定使用
 
 
 
+[[configuration-of-performance-test-tool]]
 == 效能測試工具的組態
 
 從SAP HANA 1.0 SPS10開始、SAP引進參數來調整I/O行為、並針對所使用的檔案和儲存系統最佳化資料庫。當使用SAP測試工具測試儲存效能時、也必須為SAP的效能測試工具（fsperf）設定這些參數。
@@ -211,6 +218,7 @@ NetApp進行效能測試、以定義最佳價值。下表列出必須在SAP測�
 ....
 
 
+[[storage-sizing-process-overview]]
 == 儲存規模調整程序總覽
 
 每個HANA主機的磁碟數量、以及每個儲存模式的SAP HANA主機密度、均由SAP HANA測試工具決定。

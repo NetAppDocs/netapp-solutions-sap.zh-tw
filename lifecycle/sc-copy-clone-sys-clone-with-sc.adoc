@@ -28,17 +28,29 @@ summary: SAP 生命週期管理最佳化的 NetApp 解決方案已整合至 SAP 
 NOTE: 如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。SAP HANA 共用磁碟區可繼續裝載。
 
 +
-如果不再需要系統、請執行下列步驟進行清理程序。
+如果不再需要該系統，則依照下列步驟執行清理程序：
 
-. SAP HANA 資料 Volume 的 SnapCenter 複製刪除工作流程、包括資料庫關機。
-. 停止SAP HANA服務。
-. SAP HANA 共用 Volume 的 SnapCenter 複製刪除工作流程。
++
+.. 執行 SAP HANA 資料磁碟區的 SnapCenter 複製刪除工作流程，包括資料庫關機。
++
+[NOTE]
+====
+SnapCenter 複製刪除工作流程預設不會刪除  `/etc/fstab` 項目。
+
+為了使  `/etc/fstab` 條目在複製刪除過程中自動刪除，必須先恢復複製並將其設定為自動探索資源。如果未執行此步驟，則  `/etc/fstab` 條目不會自動刪除，需要手動移除。
+
+====
+.. 停止SAP HANA服務。
+.. 針對 SAP HANA 共享磁碟區執行 SnapCenter 複製刪除工作流程。
+
+
 
 
 image:sc-copy-clone-image9.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
 
 
 
+[[prerequisites-and-limitations]]
 == 先決條件與限制
 
 下列各節所述的工作流程、對於 SAP HANA 系統架構和 SnapCenter 組態有一些先決條件和限制。
@@ -51,6 +63,7 @@ image:sc-copy-clone-image9.png["此圖顯示輸入 / 輸出對話方塊或表示
 
 
 
+[[lab-setup]]
 == 實驗室設定
 
 下圖顯示用於系統複製作業的實驗室設定。
@@ -69,6 +82,7 @@ image:sc-copy-clone-image41.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[target-host-preparation]]
 == 目標主機準備
 
 本節說明做為系統複製目標之伺服器所需的準備步驟。
@@ -79,6 +93,7 @@ image:sc-copy-clone-image41.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[target-server-host-name-and-ip-address]]
 === * 目標伺服器主機名稱和 IP 位址 *
 
 目標伺服器的主機名稱必須與來源系統的主機名稱相同。IP位址可能不同。
@@ -91,6 +106,7 @@ NOTE: 在實驗室設定中、我們只從目標系統的觀點、在內部變�
 
 
 
+[[install-required-software]]
 === * 安裝必要的軟體 *
 
 SAP主機代理程式軟體必須安裝在目標伺服器上。如需完整資訊、請參閱 https://help.sap.com/doc/saphelp_nw73ehp1/7.31.19/en-US/8b/92b1cf6d5f4a7eac40700295ea687f/content.htm?no_cache=true["SAP主機代理程式"] SAP 說明入口網站上的。
@@ -99,6 +115,7 @@ SnapCenter SAP HANA 外掛程式必須使用 SnapCenter 內的 ADD 主機作業�
 
 
 
+[[configure-users-ports-and-sap-services]]
 === * 設定使用者、連接埠和 SAP 服務 *
 
 SAP HANA資料庫所需的使用者和群組必須可在目標伺服器上使用。通常會使用集中式使用者管理、因此不需要在目標伺服器上執行任何組態步驟。必須在目標主機上設定 SAP HANA 資料庫所需的連接埠。您可以將 /etc/services 檔案複製到目標伺服器、從來源系統複製組態。
@@ -112,6 +129,7 @@ limit.descriptors=1048576
 ....
 
 
+[[prepare-log-and-log-backup-volume]]
 === 準備記錄和記錄備份磁碟區
 
 由於您不需要從來源系統複製記錄磁碟區、而且任何還原都是使用清除記錄選項執行、因此必須在目標主機上準備一個空的記錄磁碟區。
@@ -146,6 +164,7 @@ drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:14 SYSTEMDB
 ....
 
 
+[[prepare-file-system-mounts]]
 === * 準備檔案系統掛載 *
 
 您必須為資料和共享磁碟區準備掛載點。
@@ -154,6 +173,7 @@ drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:14 SYSTEMDB
 
 
 
+[[prepare-script-execution]]
 === * 準備指令碼執行 *
 
 您必須將目標系統上應執行的指令碼新增至 SnapCenter 所允許的命令組態檔。
@@ -168,6 +188,7 @@ hana-7:/opt/NetApp/snapcenter/scc/etc #
 ....
 
 
+[[cloning-the-hana-shared-volume]]
 == 複製HANA共享磁碟區
 
 . 從來源系統 SS1 共用磁碟區選取 Snapshot 備份、然後按一下 Clone （複製）。
@@ -247,6 +268,7 @@ hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 ....
 
 
+[[cloning-additional-sap-application-services]]
 == 複製其他SAP應用程式服務
 
 其他 SAP 應用程式服務的複製方式與 SAP HANA 共用磁碟區相同、如「複製 SAP HANA 共用磁碟區」一節所述。當然、 SAP 應用程式伺服器所需的儲存磁碟區也必須使用 SnapCenter 加以保護。
@@ -255,6 +277,7 @@ hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 
 
 
+[[cloning-the-data-volume-and-recovery-of-the-hana-database]]
 == 複製資料磁碟區並恢復HANA資料庫
 
 . 從來源系統 SS1 選取 SAP HANA Snapshot 備份。

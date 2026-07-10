@@ -26,6 +26,7 @@ SAP HANA系統複寫通常是SAP HANA資料庫的高可用度或災難恢復解�
 
 
 
+[[high-availability-with-an-rpo-of-zero-and-a-minimal-rto]]
 == 高可用度、RPO為零、RTO最低
 
 系統複寫的設定是使用預先載入至次要SAP HANA主機記憶體的表格進行同步複寫。此高可用度解決方案可用於解決硬體或軟體故障、並可在SAP HANA軟體升級期間（幾乎無停機作業）減少計畫性停機時間。
@@ -40,6 +41,7 @@ image:saphana-sr-scs-image1.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[disaster-recovery-over-a-large-distance]]
 == 遠距離進行災難恢復
 
 系統複寫可設定為非同步複寫、而非預先載入至次要主機記憶體的表格。此解決方案用於解決資料中心故障、而且容錯移轉作業通常是手動執行。

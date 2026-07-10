@@ -18,6 +18,7 @@ summary: 本文件著重於使用 Ansible Playbooks 和自訂指令碼、將 Net
 
 
 
+[[solution-overview]]
 == 解決方案總覽
 
 SAP 系統非常複雜。但對於使用 SAP 的公司而言、這些系統是其業務流程的核心。SAP 系統管理員可將日常例行作業工作自動化、以更輕鬆的方式管理更多系統、產生可重複的結果、並減少人為錯誤。
@@ -26,12 +27,14 @@ SAP 系統非常複雜。但對於使用 SAP 的公司而言、這些系統是�
 
 
 
+[[target-audience]]
 === 目標對象
 
 本文件的目標對象是沒有太多（或任何） Ansible 自動化經驗的 SAP 系統管理員。這應該有助於您開始使用 Ansible 、執行第一本教戰手冊、以及設定並執行第一次 SAP Lama 系統更新作業。
 
 
 
+[[sap-system-clone-copy-and-refresh-scenarios]]
 === SAP系統複製、複製及重新整理案例
 
 術語 SAP 系統複本通常是三種不同程序的同義詞： SAP 系統複本、 SAP 系統複本和 SAP 系統重新整理。請務必區分不同的作業、因為工作流程和使用案例不同。
@@ -47,6 +50,7 @@ image:sap-lama-image1.png["顯示與 NetAppstorage 相關的 SAP 系統複製、
 
 
 
+[[solution-technology]]
 === 解決方案技術
 
 整體解決方案包含以下主要元件：
@@ -72,6 +76,7 @@ image:sap-lama-image2.png["此影像顯示 SAP Lama 和 NetApp 儲存系統如�
 
 
 
+[[use-case-summary]]
 === 使用案例摘要
 
 在幾種情況下、來源系統的資料必須提供給目標系統、以供測試或訓練之用。這些測試與訓練系統必須定期更新來源系統的資料、以確保使用目前的資料集執行測試與訓練。這些系統重新整理作業包含基礎架構、資料庫和應用程式層的多項工作、視自動化層級而定、可能需要數天的時間。
@@ -84,6 +89,7 @@ image:sap-lama-image3.png["顯示使用自動化時可能改善營運效率的�
 
 
 
+[[integrating-the-different-technology-components]]
 === 整合不同的技術元件
 
 若要使用 Ansible 將 SAP Lama 與 NetApp 儲存系統整合、您需要一個可執行 Ansible Playbooks 的節點。我們建議您使用 Ansible Automation Platform 。若要在此主機上執行 Shell 指令碼和 Ansible Playbooks （從 SAP Lama 開始）、您需要在此伺服器上執行 SAP Host Agent 。SAP Host Agent 會接管與 SAP Lama 的雙向通訊、並執行將觸發實際教戰手冊的 Shell 指令碼。
@@ -92,6 +98,7 @@ image:sap-lama-image3.png["顯示使用自動化時可能改善營運效率的�
 
 
 
+[[conclusion]]
 == 結論
 
 NetApp 、 SAP Lama 和 Ansible Automation Platform 的結合、提供強大的解決方案、可大幅減少與 SAP 系統管理相關的最複雜且耗時的工作所需的時間與心力。這種組合也有助於避免人為錯誤在系統之間造成的組態飄移。
@@ -100,6 +107,7 @@ NetApp 、 SAP Lama 和 Ansible Automation Platform 的結合、提供強大的�
 
 
 
+[[where-to-find-additional-information]]
 == 何處可找到其他資訊
 
 若要深入瞭解本文所述資訊、請檢閱下列文件與網站：
@@ -112,6 +120,7 @@ NetApp 、 SAP Lama 和 Ansible Automation Platform 的結合、提供強大的�
 
 
 
+[[version-history]]
 == 版本歷程記錄
 
 [cols="25,25,50"]

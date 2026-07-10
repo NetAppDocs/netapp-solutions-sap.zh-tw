@@ -40,6 +40,7 @@ link:hana-sr-scs-system-replication-overview.html["使用 SnapCenter 進行備�
 
 
 
+[[version-history]]
 == 版本歷程記錄
 
 |===

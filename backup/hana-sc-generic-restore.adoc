@@ -42,6 +42,7 @@ NOTE: 如果啟用了磁碟區加密並使用了 SAP 本機安全儲存（LSS）
 
 
 
+[[automated-restore-and-recovery-for-sap-hana-mdc-systems-with-a-single-tenant]]
 == 針對單一租用戶 SAP HANA MDC 系統，實現自動化復原和還原
 
 若要啟動復原操作，請在資源拓撲視圖中選擇快照備份，然後按一下「復原」。
@@ -112,6 +113,7 @@ image:hana-sc-generic-image-106.png["寬度=357，高度=439"]
 
 
 
+[[manual-recovery-with-hana-studio]]
 == 使用 HANA Studio 進行手動恢復
 
 若要使用 SAP HANA Studio 和SnapCenter復原具有單一或多個租用戶的 SAP HANA MDC 系統，請完成下列步驟：
@@ -307,6 +309,7 @@ NOTE: 對於具有多個租用戶的 SAP HANA MDC 系統，必須對每個租用
 
 
 
+[[manual-recovery-with-sql-commands]]
 == 使用 SQL 命令進行手動恢復
 
 您也可以使用 SQL 語句來還原 HANA 系統。
@@ -325,6 +328,7 @@ hdbsql SYSTEMDB=> RECOVER DATABASE FOR SS1 UNTIL TIMESTAMP '2026-08-26 10:55:49'
 ....
 
 
+[[single-tenant-restore-and-recovery]]
 == 單一租戶恢復
 
 使用SnapCenter執行的單一租用戶還原和復原作業與上一主題中所述的工作流程非常相似。 link:hana-sc-generic-restore.html#manual-recovery-with-hana-studio["使用 HANA Studio 進行手動恢復"]。
@@ -355,6 +359,7 @@ hdbsql SYSTEMDB=> RECOVER DATABASE FOR SS1 UNTIL TIMESTAMP '2026-08-26 10:55:49'
 
 
 
+[[restore-of-non-data-volumes]]
 == 恢復非資料卷
 
 若要啟動非資料磁碟區的復原作業，請在非資料磁碟區資源的拓樸檢視中選擇快照備份，然後按一下「復原」。

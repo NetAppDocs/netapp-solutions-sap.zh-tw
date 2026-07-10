@@ -24,6 +24,7 @@ summary: 本節將說明如何針對ONTAP 下列項目建立對等FSX-以利執�
 
 
 
+[[peer-fsx-for-ontap-file-systems]]
 == 對等FSXfor ONTAP Sf供 檔案系統使用
 
 ....
@@ -74,6 +75,7 @@ FsxId05f7f00af49dc7a3e    1-80-000011           Available      ok
 ....
 
 
+[[peer-svms]]
 == 對等SVM
 
 ....
@@ -96,6 +98,7 @@ sapcc-backup-target-zone5
 ....
 
 
+[[create-a-target-volume]]
 == 建立目標Volume
 
 您必須使用「DP」類型建立目標磁碟區、將其標示為複寫目標。
@@ -106,6 +109,7 @@ FsxId05f7f00af49dc7a3e::> volume create -vserver sapcc-backup-target-zone5  -vol
 ....
 
 
+[[create-a-snapmirror-policy]]
 == 建立SnapMirror原則
 
 SnapMirror原則和新增規則定義了保留和SnapMirror標籤、以識別應複寫的Snapshot。稍後建立SnapCenter 「樣」原則時、您必須使用相同的標籤。
@@ -127,6 +131,7 @@ FsxId00fa9e3c784b6abbb
 ....
 
 
+[[create-snapmirror-relationship]]
 == 建立SnapMirror關係
 
 現在已定義來源與目標Volume之間的關係、以及XDP類型和我們先前建立的原則。
@@ -137,6 +142,7 @@ Operation succeeded: snapmirror create for the relationship with destination "sa
 ....
 
 
+[[initialize-snapmirror]]
 == 初始化SnapMirror
 
 使用此命令會啟動初始複寫。這是將所有資料從來源磁碟區完整傳輸至目標磁碟區的方式。

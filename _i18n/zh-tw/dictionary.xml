@@ -2830,7 +2830,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="c877627d59d4aabd928b804662a092c9" category="list-text">重新整理作業之後、舊的目標資料磁碟區仍然存在、必須手動刪除、例如使用 ONTAP 系統管理員。</block>
   <block id="b15c25b8eded6042b31638d675f46bbb" category="paragraph">畫面輸出會顯示 clone – delete.ps1 PowerShell 指令碼的執行。</block>
   <block id="c02f461d6bc735814c693a2961f876d0" category="admonition">如果您必須將系統重設為不同的Snapshot備份、則步驟6和步驟4就足夠了。SAP HANA 共用磁碟區可繼續裝載。</block>
-  <block id="3a76181089e0a4d1760e6aee32bf113f" category="list-text">SAP HANA 資料 Volume 的 SnapCenter 複製刪除工作流程、包括資料庫關機。</block>
   <block id="5c1f104318aa49fc440eebd55451b8ee" category="list-text">上述工作流程適用於單一主機 SAP HANA MDC 系統。不支援多個主機系統。</block>
   <block id="db2df21a0523790017cef08c7f5c3eaa" category="list-text">SnapCenter SAP HANA 外掛程式必須部署在目標主機上、才能執行自動化指令碼。</block>
   <block id="679aaef31443a5734d1e57a79b042625" category="list-text">此工作流程已通過NFS驗證。用於裝載 SAP HANA 共用磁碟區的自動化<block ref="9042a1dcfe3f159e3f1da35f8f9052d7" prefix=" " category="inline-code"></block>功能不支援 FCP 。此步驟必須手動完成、或是延伸指令碼。</block>
@@ -5898,4 +5897,9 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="a28cf561c8f701ff19b2c0c69e0dfc34" category="cell">版面更新</block>
   <block id="c21446b3ecfb30ed6c2760d686bd4578" category="cell">2026 年 6 月</block>
   <block id="ac644778c82f08cf6b78f5b122e0d378" category="cell">SUSE SLES 15SP7 更新</block>
+  <block id="e06fdb15754bae3bee4e6e049930207a" category="paragraph">如果不再需要該系統，則依照下列步驟執行清理程序：</block>
+  <block id="5eea4d822d88acd321dd20b3ecfeb0dc" category="list-text">執行 SAP HANA 資料磁碟區的 SnapCenter 複製刪除工作流程，包括資料庫關機。</block>
+  <block id="caa5de93118549a4fb1b814eeb2f5544" category="paragraph">SnapCenter 複製刪除工作流程預設不會刪除 <block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> 項目。</block>
+  <block id="8bfab5683aa400a8bc0f218a12d430e9" category="paragraph">為了使 <block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> 條目在複製刪除過程中自動刪除，必須先恢復複製並將其設定為自動探索資源。如果未執行此步驟，則 <block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> 條目不會自動刪除，需要手動移除。</block>
+  <block id="c18615d685f179944bb9c594c9e6c732" category="list-text">針對 SAP HANA 共享磁碟區執行 SnapCenter 複製刪除工作流程。</block>
 </blocks>

@@ -20,6 +20,7 @@ summary: 檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS �
 
 
 
+[[infrastructure-requirements]]
 == 基礎設施需求
 
 請確保以下組件和配置已就位：
@@ -36,6 +37,7 @@ summary: 檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS �
 
 
 
+[[important-considerations]]
 == 重要考慮因素
 
 * SR-IOV 應盡可能用於 SAP HANA 網路通訊和儲存存取（使用 NFS），但也支援橋接網路。分配給虛擬機器的每個虛擬功能 （VF） 至少需要 10 Gbit/s 的頻寬。
@@ -45,6 +47,7 @@ summary: 檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS �
 
 
 
+[[additional-resources]]
 == 其他資源
 
 * 有關最新資訊（包括支援的 CPU 架構和限制），請參閱 SAP Note https://me.sap.com/notes/3741904["3741904 - 搭配 SLES 15 SP7 的 SUSE KVM 虛擬化上的 SAP HANA - SAP for Me"]。
@@ -54,6 +57,7 @@ summary: 檢視在 SUSE KVM 上使用NetApp儲存、SR-IOV 網路介面和 NFS �
 
 
 
+[[whats-next]]
 == 下一步是什麼？
 
 在您審核部署要求之後，link:kvm-hana-network.html["設定 SR-IOV 網路介面"] 。

@@ -24,12 +24,14 @@ link:../lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現
 
 
 
+[[pre-requisites]]
 == 先決條件
 
 一般而言，在將受保護的資源新增至 SnapCenter 之前，應先設定 SnapMirror 作用中同步。如果備份是在設定 SnapMirror 主動式同步之前建立的，則只會存在於原始主要儲存設備，之後就不會複寫。
 
 
 
+[[snapcenter-hana-resource-must-be-auto-discovered]]
 === 必須自動探索 SnapCenter HANA 資源
 
 SnapCenter 必須自動探索使用 VMware VMFS 設定的資源，或使用 SnapMirror 主動式同步保護的資源，以允許這些組態所需的特定作業。
@@ -40,18 +42,21 @@ SAP HANA 多個主機系統必須使用中央 HANA 外掛程式進行設定，�
 
 
 
+[[snapcenter-for-vmware-vsphere-plugin]]
 === SnapCenter for VMware vSphere 插件
 
 SnapCenter for VMware vSphere 外掛程式必須部署在 VMware 環境中。
 
 
 
+[[management-ip-address-on-svm-hosting-the-volumes]]
 === 託管磁碟區的 SVM 上的管理 IP 位址
 
 即使叢集將新增至 SnapCenter ，主控來源和目的地磁碟區的 SVM 也必須設定管理 IP 位址。
 
 
 
+[[rest-apis-for-storage-communication]]
 === 用於儲存通訊的 REST API
 
 SnapMirror 主動式同步的管理與監控需要 REST API 存取。因此， SnapCenter 必須設定為使用 REST API 進行儲存通訊。組態檔 + C ： ++++++++ 程式檔案 +++++SMCore+++++++++++SMCoreServiceHost.dll.config 中的參數 "IsRestEnabledForStorageConnection" NetApp 必須設為 TRUE 。
@@ -67,6 +72,7 @@ image:sc-saphana-vmware-smas-image22.png["圖示範所討論的內容"]
 
 
 
+[[add-storage-systems]]
 == 新增儲存系統
 
 SnapCenter 的 REST API 啟用後，即可新增儲存系統。需要同時新增兩個儲存叢集，而非個別 SVM 。
@@ -77,6 +83,7 @@ image:sc-saphana-vmware-smas-image24.png["圖示範所討論的內容"]
 
 
 
+[[add-host-snapcenter-for-vmware-vsphere-plugin]]
 == 新增主機： SnapCenter for VMware vSphere 外掛程式
 
 如果 SnapCenter 中的資源是在虛擬化的 VMware 環境中執行， SnapCenter 會利用適用於 VMware vSphere 的 SnapCenter 外掛程式，以 VMware 層上所需的步驟來擴充 SnapCenter 備份，還原和複製工作流程。
@@ -97,6 +104,7 @@ NOTE: SnapCenter 不需要額外的 vSphere 外掛程式組態。
 
 
 
+[[add-host-hana-system]]
 == 新增主機– HANA 系統
 
 
@@ -113,6 +121,7 @@ image:sc-saphana-vmware-smas-image28.png["圖示範所討論的內容"]
 
 
 
+[[policy-configuration]]
 == 原則組態
 
 即使 SnapCenter 未觸發任何 SnapMirror 更新作業，也必須使用 SnapMirror 複寫來設定受 SnapMirror 作用中同步保護的資源原則。
@@ -123,6 +132,7 @@ image:sc-saphana-vmware-smas-image30.png["圖示範所討論的內容"]
 
 
 
+[[hana-resource-protection-configuration]]
 == HANA 資源保護組態
 
 無特定要求。資源保護組態會照常進行。

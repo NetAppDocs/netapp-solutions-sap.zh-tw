@@ -20,6 +20,7 @@ summary:
 
 
 
+[[scope-of-this-document]]
 == 本文件的範圍
 
 它不是配置整個環境的逐步指南，而是專注於 VMFS 上的SnapCenter和 HANA 的具體細節，包括：

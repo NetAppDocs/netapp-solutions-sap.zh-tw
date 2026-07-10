@@ -13,6 +13,7 @@ SnapCenter支援各種 SAP HANA 系統架構和部署場景，涵蓋本機和雲
 
 
 
+[[supported-sap-hana-configurations]]
 == 支援的 SAP HANA 配置
 
 SnapCenter支援以下 HANA 配置和功能：
@@ -35,6 +36,7 @@ SnapCenter支援以下 HANA 配置和功能：
 
 
 
+[[supported-platform-and-infrastructure-configurations]]
 == 支援的平台和基礎架構配置
 
 SnapCenter支援以下主機平台、檔案系統和儲存平台的組合。
@@ -71,10 +73,12 @@ NOTE: HANA 和 Linux 外掛僅適用於 Intel CPU 平台。對於 IBM Power 上�
 
 
 
+[[supported-features-and-operations]]
 == 支援的功能和操作
 
 
 
+[[abbreviation-explanation]]
 === 縮寫解釋
 
 * VBSR：基於磁碟區的SnapRestore+ 基於磁碟區的SnapRestore會將磁碟區還原到快照的狀態。
@@ -85,6 +89,7 @@ NOTE: HANA 和 Linux 外掛僅適用於 Intel CPU 平台。對於 IBM Power 上�
 
 
 
+[[ontap-aff-and-fsx-for-ontap]]
 === ONTAP AFF和 FSx for ONTAP
 
 
@@ -175,6 +180,7 @@ NOTE: 下表中只有第 1 列（NFS 掛載）與 FSx for ONTAP相關。
 
 
 
+[[ontap-asa]]
 === ONTAP ASA
 
 [cols="40%,30%,30%"]
@@ -262,6 +268,7 @@ NOTE: 下表中只有第 1 列（NFS 掛載）與 FSx for ONTAP相關。
 
 
 
+[[azure-netapp-files]]
 === Azure NetApp Files
 
 [cols="60%,40%"]

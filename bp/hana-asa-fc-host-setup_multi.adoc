@@ -10,6 +10,7 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+[[multiple-hosts-setup]]
 == 多主機設定
 
 [role="lead"]
@@ -17,6 +18,7 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+[[lun-configuration-for-sap-hana-multiple-hosts-systems]]
 == SAP HANA 多主機系統的 LUN 配置
 
 Linux LVM 用於提高效能並解決 LUN 大小限制。
@@ -49,6 +51,7 @@ NOTE: 透過所述配置，  `/usr/sap/FC5`儲存使用者 FC5adm 預設主目�
 
 
 
+[[create-lvm-volume-groups-and-logical-volumes]]
 === 建立LVM Volume群組和邏輯磁碟區
 
 . 將所有LUN初始化為實體磁碟區。
@@ -98,6 +101,7 @@ vgchange -a y
 ....
 
 
+[[create-file-systems]]
 === 建立檔案系統
 
 在所有資料和日誌邏輯磁碟區上建立 XFS 檔案系統。
@@ -110,6 +114,7 @@ mkfs.xfs /dev/mapper/FC5_log_mnt00002-vol
 ....
 
 
+[[create-mount-points]]
 === 建立掛載點
 
 建立所需的掛載點目錄，並在所有工作主機和備用主機上設定權限：
@@ -126,6 +131,7 @@ sapcc-hana-tst:/ # chmod 777 /hana/shared
 ....
 
 
+[[mount-file-systems]]
 === 掛載檔案系統
 
 要安裝 `/hana/shared`檔案系統在系統啟動時使用 `/etc/fstab`配置文件，添加 `/hana/shared`檔案系統 `/etc/fstab`每個主機的設定檔。

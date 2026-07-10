@@ -22,6 +22,7 @@ summary:
 
 
 
+[[storage-configuration]]
 == 儲存組態
 
 下圖顯示 HANA 系統的儲存與資料存放區組態。您必須為 HANA 系統的每個檔案系統設定專用磁碟區， LUN ，資料存放區。資料存放區不得在多個 HANA 系統或其他工作負載之間共用。
@@ -39,6 +40,7 @@ image:sc-saphana-vmware-smas-image6.png["圖示範所討論的內容"]
 
 
 
+[[datastore-provisioning]]
 == 資料存放區資源配置
 
 我們使用先前配置的三個 LUN ，為 HANA 系統建立了三個資料存放區。此外，我們也使用基礎架構 LUN 建立基礎架構資料存放區。
@@ -47,12 +49,14 @@ image:sc-saphana-vmware-smas-image7.png["圖示範所討論的內容"]
 
 
 
+[[vm-provisioning-and-os-installation]]
 == VM 資源配置與作業系統安裝
 
 在我們的實驗室設定中，我們部署了新的 VM ，並將適用於 Linux 作業系統的 VMDK 放在基礎架構資料存放區中。
 
 
 
+[[vm-disk-configuration]]
 == VM 磁碟組態
 
 HANA VM 新增了三個磁碟，每個磁碟位於其中一個為 HANA 系統建立的資料存放區內。
@@ -61,6 +65,7 @@ image:sc-saphana-vmware-smas-image8.png["圖示範所討論的內容"]
 
 
 
+[[vm-parameter-setting]]
 == VM 參數設定
 
 必須添加參數 disk.EnableUUID 並將其設置爲 true 。SnapCenter 需要此參數。如果未設定， SnapCenter 「探索虛擬資源」作業將會失敗。
@@ -87,10 +92,12 @@ Unit serial number: 6000c293fecf25ac6bc457af67fe1f54
 ....
 
 
+[[file-system-preparation-at-linux-host]]
 == Linux 主機上的檔案系統準備工作
 
 
 
+[[creation-of-xfs-filesystem-on-new-disks]]
 === 在新磁碟上建立 xfs 檔案系統
 
 新磁碟的裝置名稱可以使用下列命令來檢查。
@@ -161,6 +168,7 @@ hana-1:/install #
 ....
 
 
+[[creation-of-mount-points]]
 === 建立掛載點
 
 ....
@@ -173,6 +181,7 @@ hana-1:/ # chmod -R 777 /hana/shared
 ....
 
 
+[[configuration-of-etcfstab]]
 === 設定 /etc/fstab
 
 ....
@@ -221,6 +230,7 @@ hana-1:/install #
 ....
 
 
+[[hana-installation]]
 == HANA 安裝
 
 HANA 安裝現在可以執行。
@@ -230,6 +240,7 @@ NOTE: 使用所述組態時， /usr/sap/sma 目錄將位於 OS VMDK 上。如果
 
 
 
+[[userstore-key-for-snapcenter]]
 == SnapCenter 的使用者存放區金鑰
 
 必須為系統資料庫使用者建立使用者存放區， SnapCenter 應使用該存放區。通訊連接埠必須適當設定 HANA 執行個體編號。在我們的設定執行個體編號「 00 」中使用。

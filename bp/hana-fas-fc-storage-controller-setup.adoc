@@ -18,6 +18,7 @@ summary: 本節說明NetApp儲存系統的組態。您必須根據對應ONTAP �
 
 
 
+[[storage-efficiency]]
 == 儲存效率
 
 SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資料刪除、即時資料壓縮及即時資料壓縮等功能。
@@ -26,18 +27,21 @@ SSD組態中的SAP HANA支援即時重複資料刪除、跨Volume即時重複資
 
 
 
+[[netapp-flexgroup-volumes]]
 == NetApp FlexGroup Volumes
 
 SAP HANA 不支援使用 NetApp FlexGroup Volumes 。由於 SAP HANA 架構的緣故、使用 FlexGroup Volumes 並未帶來任何效益、也可能導致效能問題。
 
 
 
+[[netapp-volume-and-aggregate-encryption]]
 == NetApp Volume 和 Aggregate Encryption
 
 SAP HANA 支援使用 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）。
 
 
 
+[[ontap-autonomous-ransomware-protection]]
 == ONTAP 自主勒索軟體保護
 
 ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HANA 資料庫的前向還原。因此，不建議將其用於 SAP HANA 資料和記錄磁碟區，並且應停用這些磁碟區的功能。請改用以 SnapCenter 為基礎、具有防竄改 Snapshot 的資料保護來進行勒索軟體防護：link:../backup/hana-sc-generic-scope.html["SAP HANA利用SnapCenter NetApp備份與還原"]。ONTAP Autonomous Ransomware Protection 可能對其他磁碟區（例如 /hana/shared）有益。
@@ -46,18 +50,21 @@ ONTAP Autonomous Ransomware Protection 所建立的 Snapshot 無法用於 SAP HA
 
 
 
+[[quality-of-service]]
 == 服務品質
 
 QoS 可用於限制共用控制器上特定 SAP HANA 系統或非 SAP 應用程式的儲存處理量。
 
 
 
+[[production-and-devtest]]
 === 正式作業與開發 / 測試
 
 其中一個使用案例是限制開發與測試系統的處理量、使其無法影響混合式設定中的正式作業系統。在調整規模的過程中、您應該決定非正式作業系統的效能需求。開發與測試系統的規模可以較低的效能值、通常在SAP定義的正式作業系統KPI的20%至50%範圍內。大寫入I/O對儲存系統的效能影響最大。因此、QoS處理量限制應設定為資料和記錄磁碟區中對應寫入SAP HANA儲存效能KPI值的百分比。
 
 
 
+[[shared-environments]]
 === 共享環境
 
 另一個使用案例是限制繁重寫入工作負載的處理量，特別是避免這些工作負載對其他對延遲敏感的寫入工作負載造成影響。在這類環境中，最佳做法是將非共用處理量上限 QoS 群組原則套用至每個儲存虛擬機器（ SVM ）內的每個 LUN ，以限制每個個別儲存物件的最大處理量達到指定值。如此可降低單一工作負載對其他工作負載造成負面影響的可能性。
@@ -84,6 +91,7 @@ NOTE: 此限制也適用於讀取。因此，請使用足夠的 LUN 來滿足 SA
 
 
 
+[[netapp-fabricpool]]
 == NetApp FabricPool
 
 NetApp FabricPool 的支援技術不得用於SAP HANA系統中的主動式主要檔案系統。這包括資料和記錄區域的檔案系統、以及「/HANA /共享」檔案系統。如此會導致無法預測的效能、尤其是在SAP HANA系統啟動期間。
@@ -97,6 +105,7 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 
 
+[[configure-storage]]
 == 設定儲存設備
 
 以下總覽摘要說明所需的儲存組態步驟。後續章節將詳細說明每個步驟。在開始執行這些步驟之前、請先完成儲存硬體設定、ONTAP 安裝支援軟體、並將儲存FCP連接埠連線至SAN架構。
@@ -111,6 +120,7 @@ NOTE: 使用支援在一線儲存設備上分層Snapshot複本、或使用支援
 
 
 
+[[disk-shelf-connections]]
 == 磁碟架連接
 
 使用HDD時、最多可將兩個DS2246磁碟櫃或四個DS224C磁碟櫃連接至一個SAS堆疊、以提供SAP HANA主機所需的效能、如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
@@ -123,6 +133,7 @@ image:saphana_fas_fc_image11.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[nvme-disk-shelves]]
 === NVMe 磁碟架
 
 每個 NS224 NVMe 磁碟櫃每個控制器都連接兩個 100GbE 連接埠，如下圖所示。每個機櫃內的磁碟必須平均分配給HA配對的兩個控制器。
@@ -131,12 +142,14 @@ image:saphana_fas_ns224.png["MVMe 磁碟櫃連線"]
 
 
 
+[[aggregate-configuration]]
 == Aggregate組態
 
 一般而言、每個控制器都必須設定兩個Aggregate、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。您必須執行此步驟、才能使用所有可用的控制器資源。對於Solid2000系列系統、只需一個資料集合體就足夠了。FAS
 
 
 
+[[aggregate-configuration-with-hdds]]
 === 使用HDD進行Aggregate組態
 
 下圖顯示八部SAP HANA主機的組態。每個儲存控制器均連接四台SAP HANA主機。配置兩個獨立的集合體、每個儲存控制器各一個。每個Aggregate均設定4 x 10 = 40個資料磁碟（HDD）。
@@ -145,6 +158,7 @@ image:saphana_fas_fc_image12.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[aggregate-configuration-with-sdd-only-systems]]
 === 使用純SDD系統進行Aggregate組態
 
 一般而言、每個控制器都必須設定兩個集合體、獨立於使用的磁碟櫃或磁碟技術（SSD或HDD）。
@@ -155,12 +169,14 @@ image:saphana_fas_fc_image13.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[storage-virtual-machine-configuration]]
 == 儲存虛擬機器組態
 
 使用SAP HANA資料庫的多主機SAP環境可以使用單一SVM。如有必要、也可將SVM指派給每個SAP環境、以便由公司內的不同團隊進行管理。本文檔中的截圖和命令輸出使用名爲「Hana」的SVM。
 
 
 
+[[logical-interface-configuration]]
 == 邏輯介面組態
 
 在儲存叢集組態中、必須建立一個網路介面（LIF）、並將其指派給專屬的FCP連接埠。例如、如果基於效能考量、需要四個FCP連接埠、則必須建立四個生命期。下圖顯示 SVM 上設定的八個生命的螢幕擷取畫面。
@@ -175,6 +191,7 @@ image:saphana_fas_fc_image15a.png["SVM 建立"]
 
 
 
+[[initiator-groups]]
 == 啟動器群組
 
 您可以為每部伺服器或需要存取LUN的伺服器群組設定igroup。igroup組態需要伺服器的全球連接埠名稱（WWPN）。

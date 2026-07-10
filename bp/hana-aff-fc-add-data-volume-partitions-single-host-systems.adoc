@@ -26,6 +26,7 @@ NOTE: 只有SAP HANA單一主機系統才能使用兩個以上的個別LUN來處
 
 
 
+[[enabling-additional-data-volume-partitions]]
 == 啟用其他資料Volume分割區
 
 若要啟用其他資料磁碟區分割、請完成下列步驟：
@@ -41,6 +42,7 @@ persistence_datavolume_partition_multipath = true
 
 
 
+[[volume-and-lun-configuration]]
 == Volume與LUN組態
 
 磁碟區和LUN的配置就像是單一主機的配置、只要有一個資料Volume分割區、就能在記錄磁碟區和其他資料磁碟區的不同集合體上儲存額外的資料磁碟區和LUN。下表顯示SAP HANA單一主機系統的組態範例、其中包含兩個資料Volume分割區。
@@ -72,6 +74,7 @@ persistence_datavolume_partition_multipath = true
 
 
 
+[[host-configuration]]
 == 主機組態
 
 若要設定主機、請完成下列步驟：
@@ -106,6 +109,7 @@ stlrx300s8-6:/ # chmod –R 777 /hana/data2/FC5
 
 
 
+[[adding-an-additional-datavolume-partition]]
 == 新增額外的datavolume分割區
 
 若要將額外的資料流磁碟分割新增至租戶資料庫、請針對租戶資料庫執行下列SQL陳述式。每個額外的LUN可以有不同的路徑：

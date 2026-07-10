@@ -26,6 +26,7 @@ NOTE: 範例指令碼是以原樣提供、NetApp不支援。您可以透過電�
 
 
 
+[[script-sc-system-refresh-sh]]
 == 指令碼sc-system-refresh.sh
 
 範例指令碼 `sc-system-refresh.sh` 用於執行恢復和關機作業。指令碼會在 SnapCenter 工作流程中使用特定的命令列選項來呼叫、複製建立和複製刪除、如下圖所示。
@@ -41,6 +42,7 @@ image:sc-copy-clone-image14.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[supported-tenant-recovery-operations]]
 === 支援的租戶還原作業
 
 如「 SAP HANA 系統使用儲存快照重新整理作業工作流程」一節所述、目標系統可能的租戶恢復作業取決於來源系統的租戶組態。指令碼 `sc-system-refresh.sh` 支援所有租戶恢復作業、這些作業可能視來源系統組態而定、如下表所示。
@@ -62,6 +64,7 @@ image:sc-copy-clone-image14.png["此圖顯示輸入 / 輸出對話方塊或表�
 |===
 
 
+[[script-sc-mount-volume-sh]]
 == 指令碼sc-mount-volume.sh
 
 範例指令碼 `sc-mount-volume.sh` 用於執行任何磁碟區的掛載和卸載。此指令碼可用於透過 SAP HANA 系統複製作業來掛載 SAP HANA 共用磁碟區。指令碼會在 SnapCenter 工作流程中使用特定的命令列選項來呼叫、複製建立和複製刪除、如下圖所示。
@@ -73,6 +76,7 @@ image:sc-copy-clone-image15.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[snapcenter-environment-variables]]
 === 局部環境變數SnapCenter
 
 提供一組環境變數、可在目標主機上執行的指令碼中使用。SnapCenter指令碼會使用這些變數來判斷相關的組態設定。
@@ -85,6 +89,7 @@ image:sc-copy-clone-image15.png["此圖顯示輸入 / 輸出對話方塊或表�
 
 
 
+[[script-to-get-snapcenter-environment-variables]]
 == 取得SnapCenter 局部環境變數的指令碼
 
 如果不應使用自動化指令碼、而且應手動執行這些步驟、您必須知道FlexClone Volume的儲存系統交會路徑。交叉路徑在SnapCenter 視覺上看不到、因此您需要直接在儲存系統上查詢交會路徑、或是使用簡單的指令碼、在SnapCenter 目標主機上提供各種版本的支援環境變數。此指令碼必須新增為SnapCenter 執行此動作的掛載作業指令碼、才能執行此動作。

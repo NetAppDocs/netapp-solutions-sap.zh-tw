@@ -20,6 +20,7 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+[[configure-multipathing]]
 === 設定多重路徑
 
 

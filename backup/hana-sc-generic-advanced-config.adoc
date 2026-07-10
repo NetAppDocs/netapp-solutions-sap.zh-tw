@@ -13,6 +13,7 @@ summary:
 
 
 
+[[warning-message-with-virtualized-environments-and-in-guest-mounts]]
 == 虛擬化環境和客戶機內掛載的警告訊息
 
 例如，當使用 VMware 和 NFS 用戶機內掛載時， SnapCenter會發出警告訊息，提示應該使用SnapCenter VMware 外掛程式。由於虛擬機器內掛載不需要 VMware 插件，因此可以忽略並關閉該警告訊息。若要配置SnapCenter以抑制此警告，必須套用下列配置：
@@ -25,6 +26,7 @@ image:hana-sc-generic-image-134.png["寬度=601，高度=176"]
 
 
 
+[[deactivate-automated-log-backup-housekeeping]]
 == 停用自動記錄備份管理
 
 日誌備份管理功能預設為啟用，可以在 HANA 插件主機層級停用。使用 PowerShell 指令：
@@ -33,6 +35,7 @@ image:hana-sc-generic-image-134.png["寬度=601，高度=176"]
 
 
 
+[[enable-secure-communication-to-hana-database]]
 == 實現與HANA資料庫的安全通訊
 
 如果 HANA 資料庫配置了安全通信，則SnapCenter執行的 hdbsql 命令必須使用額外的命令列選項。
@@ -55,6 +58,7 @@ HANA_HDBSQL_CMD = /usr/sap/SM1/HDB12/exe/hdbsqls
 ....
 
 
+[[disable-auto-discovery-on-the-hana-plug-in-host]]
 == 停用HANA外掛主機上的自動探索
 
 若要停用 HANA 外掛程式主機上的自動發現功能，請完成下列步驟：

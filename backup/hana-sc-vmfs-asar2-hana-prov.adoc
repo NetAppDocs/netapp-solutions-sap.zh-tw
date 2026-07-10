@@ -17,6 +17,7 @@ summary:
 
 
 
+[[storage-configuration]]
 == 儲存組態
 
 為了滿足 SAP 為生產 HANA 系統定義的儲存效能 KPI，必須為 HANA 系統的資料和日誌檔案系統配置專用 LUN 和資料儲存區。資料儲存區不得在多個 HANA 系統或其他工作負載之間共用。
@@ -39,6 +40,7 @@ image:sc-hana-asrr2-vmfs-image3.png["圖示範所討論的內容"]
 
 
 
+[[vm-disk-configuration]]
 == VM 磁碟組態
 
 必須向 HANA VM 新增三個新磁碟 (VMDK)。每個磁碟都位於先前建立的資料儲存區中，如下圖所示。
@@ -76,6 +78,7 @@ sr0 11:0 1 17.1G 0 rom
 ....
 
 
+[[vm-parameter-disk-enableuuid]]
 == VM 參數 disk.EnableUUID
 
 必須相應地設定此參數，否則SnapCenter資料庫自動發現將失敗。
@@ -89,10 +92,12 @@ image:sc-hana-asrr2-vmfs-image7.png["圖示範所討論的內容"]
 
 
 
+[[file-system-preparation-at-linux-host]]
 == Linux 主機上的檔案系統準備工作
 
 
 
+[[creation-of-xfs-filesystem-on-new-disks]]
 === 在新磁碟上建立 xfs 檔案系統
 
 已在三個新磁碟的每個磁碟上建立 xfs 檔案系統。
@@ -141,6 +146,7 @@ hana-8:~ #
 ....
 
 
+[[creation-of-mount-points]]
 === 建立掛載點
 
 ....
@@ -153,6 +159,7 @@ hana-8:/ # chmod -R 777 /hana/shared
 ....
 
 
+[[configuration-of-etcfstab]]
 === 設定 /etc/fstab
 
 ....
@@ -213,6 +220,7 @@ hana-8:/ #
 ....
 
 
+[[hana-installation]]
 == HANA 安裝
 
 HANA 安裝現在可以執行。

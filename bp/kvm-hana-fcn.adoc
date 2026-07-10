@@ -57,6 +57,7 @@ image:kvm-hana-image11.png["寬度=601，高度=441"]
 
 
 
+[[whats-next]]
 == 下一步是什麼？
 
 配置光纖通道網路後，link:kvm-hana-storage.html["配置用於 SAP HANA 的NetApp存儲"] 。

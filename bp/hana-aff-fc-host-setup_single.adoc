@@ -10,6 +10,7 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+[[single-host-setup]]
 == 單主機設定
 
 [role="lead"]
@@ -17,6 +18,7 @@ summary: 在設定主機之前、NetApp SAN主機公用程式必須從NetApp支�
 
 
 
+[[lun-configuration-for-sap-hana-single-host-systems]]
 == SAP HANA 單主機系統的 LUN 配置
 
 在SAP HANA主機上、需要建立和掛載Volume群組和邏輯磁碟區、如下表所示。
@@ -41,6 +43,7 @@ NOTE: 如果使用 SAP Local Secure Store 服務（LSS），則 `/lss/shared/SID
 
 
 
+[[create-lvm-volume-groups-and-logical-volumes]]
 === 建立LVM Volume群組和邏輯磁碟區
 
 . 將所有LUN初始化為實體磁碟區。
@@ -82,6 +85,7 @@ vgchange -a y
 ....
 
 
+[[create-file-systems]]
 === 建立檔案系統
 
 在所有資料和日誌邏輯磁碟區以及 hana 共用 LUN 上建立 XFS 檔案系統。
@@ -93,6 +97,7 @@ mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
 
 
+[[create-mount-points]]
 === 建立掛載點
 
 建立所需的掛載點目錄，並在資料庫主機上設定權限：
@@ -107,6 +112,7 @@ sapcc-hana-tst:/ # chmod 777 /hana/shared
 ....
 
 
+[[mount-file-systems]]
 === 掛載檔案系統
 
 使用以下方式在系統啟動期間掛載檔案系統 `/etc/fstab`配置文件，將所需的文件系統新增至 `/etc/fstab`設定檔：

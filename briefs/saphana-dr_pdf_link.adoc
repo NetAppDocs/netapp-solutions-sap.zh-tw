@@ -27,4 +27,4 @@ summary: 本文檔重點介紹 SAP HANA 的災難復原。
 
 NetApp開發了全套技術和工具，可協助 IT 組織建置或調整其災難復原計劃，以滿足所有業務需求：
 
-link:https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/6998-sb-3968.pdf["https://www.netapp.com/pdf.html?item=/media/6998-sb-3968.pdf"]

@@ -29,8 +29,6 @@ SnapMirror 作用中同步：
 
 https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["ONTAP 中的 SnapMirror 作用中同步總覽"]
 
-https://knowledge.broadcom.com/external/article?legacyId=83370["NetApp ONTAP 搭配 NetApp SnapMirror Active Sync 與 VMware vSphere Metro Storage Cluster （ VMSC ）。"]
-
 https://docs.netapp.com/us-en/netapp-solutions/vmware/vmware-vmsc-with-smas.html["VMware vSphere Metro Storage Cluster 搭配 SnapMirror 主動式同步"]
 
 https://www.vmware.com/docs/vmware-vsphere-metro-storage-cluster-vmsc["VMware vSphere Metro儲存叢集（VMSC）"]

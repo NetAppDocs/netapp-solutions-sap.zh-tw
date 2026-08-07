@@ -93,6 +93,18 @@ entries:
     url: "/backup/hana-sc-vmware-smas-failover-scenarios.html"
   - title: 其他資訊和版本歷程記錄
     url: "/backup/hana-sc-vmware-smas-additional-info.html"
+- title: 使用 SnapCenter 搭配裸機伺服器和 NetApp ASA 系統進行 SAP HANA 資料保護
+  entries:
+  - title: 本文件的範圍
+    url: "/backup/hana-sc-bare-metal-asar2-scope.html"
+  - title: 本文檔使用的實驗室設置
+    url: "/backup/hana-sc-bare-metal-asar2-lab-setup.html"
+  - title: HANA 系統資源配置與安裝
+    url: "/backup/hana-sc-bare-metal-asar2-hana-provisioning.html"
+  - title: SnapCenter 作業
+    url: "/backup/hana-sc-bare-metal-asar2-sc-operations.html"
+  - title: 其他資訊和版本歷程記錄
+    url: "/backup/hana-sc-bare-metal-asar2-additional-info.html"
 - title: 使用 VMware VMFS 和NetApp ASA系統的SnapCenter進行 SAP HANA 資料保護
   entries:
   - title: 本文件的範圍
@@ -111,7 +123,7 @@ entries:
     url: "/backup/hana-sc-vmfs-asar2-sc-restore.html"
   - title: SAP 系統更新
     url: "/backup/hana-sc-vmfs-asar2sap-refresh.html"
-  - title: 附加資訊和版本歷史記錄
+  - title: 其他資訊和版本歷程記錄
     url: "/backup/hana-sc-vmfs-asar2-add-info.html"
 - title: SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
   entries:

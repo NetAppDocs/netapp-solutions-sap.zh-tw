@@ -45,8 +45,6 @@
   <block id="bc48aec540da03e5e4106e1896968eb5" category="list-text"><block ref="bc48aec540da03e5e4106e1896968eb5" category="inline-link-macro-rx"></block></block>
   <block id="1b957531101399d0f744aec724e69fa1" category="summary">NetApp提供的生命週期管理解決方案已完全整合至SAP系統管理員日常作業所使用的工具、例如SAP Landscape Management（SAP Lama）、可解決功能實作緩慢、自動化不足及生產力損失等難題。目標是簡化資源配置工作流程、從預先處理到後處理、包括建立正式作業系統複本所需的所有軟體和儲存層工作。有了這套解決方案、系統管理員只要按幾下滑鼠、就能建立開發與測試環境、進而改善生命週期管理。</block>
   <block id="643fa590028dacc026f165afdf4fb795" category="doc">SAP-3978：SAP HANA的生命週期管理</block>
-  <block id="2302484597c5b4089c4a24a850b7f489" category="inline-link-macro"><block ref="2302484597c5b4089c4a24a850b7f489" category="inline-link-rx"></block></block>
-  <block id="33876e03541db5898b573e9322b655e7" category="paragraph"><block ref="33876e03541db5898b573e9322b655e7" category="inline-link-macro-rx"></block></block>
   <block id="9ae2a6f9c25e674f13f60775bc219616" category="summary">討論SAP組態最佳實務做法的一系列影片和示範</block>
   <block id="e3f458e2f7c3ee2f08aa3f0f84d2057a" category="paragraph">重點介紹SAP組態最佳實務做法的影片與示範總覽。</block>
   <block id="af01ac16ca42b9b924b834a3199131e9" category="paragraph">本認證適用於下列機型：</block>
@@ -1129,8 +1127,6 @@
   <block id="26e2418d177df1dddb008e455ce28752" category="doc">架構SnapCenter</block>
   <block id="4a8478781fce30dd0844fa495323657c" category="section-title">元件SnapCenter</block>
   <block id="8132c1d54d27cf7a67ac0e563e82c329" category="summary">TR-4646概述SAP HANA的災難恢復保護選項。其中包含詳細的設定資訊、以及以同步和非同步NetApp SnapMirror儲存複寫為基礎的三站台災難恢復解決方案使用案例說明。上述解決方案使用NetApp SnapCenter 功能搭配SAP HANA外掛程式來管理資料庫一致性。</block>
-  <block id="c79cdf002876c8be8a196f93f344a33f" category="inline-link-macro"><block ref="c79cdf002876c8be8a196f93f344a33f" category="inline-link-rx"></block></block>
-  <block id="d925ae253e076ec94fce589bf0750a31" category="paragraph"><block ref="d925ae253e076ec94fce589bf0750a31" category="inline-link-macro-rx"></block></block>
   <block id="44f0406e0b65477e22abb0af2670c920" category="doc">SAP HANA備份解決方案SnapCenter</block>
   <block id="8dfec560491833edefc6c6f71aba9fdc" category="paragraph">適用於SAP HANA的解決方案包含下列領域：SnapCenter</block>
   <block id="3dff72048413a2d2a95ad3e613d65664" category="list-text">保留管理</block>
@@ -1532,7 +1528,6 @@
   <block id="3e9cb21d308ff815d97bb64f89c45e89" category="list-text">針對Hypervisor設定、選取VM Hs Hs iSCSI Direct Attached Disk或NFS for All hosts（VM有iSCSI Direct附加磁碟或NFS用於所有主機）、然後更新設定。</block>
   <block id="3441a12e5d3e26f5680c6227809710fa" category="section-title">手動重新整理資源層級</block>
   <block id="fcca844280c97b2c08b17bca95637969" category="section-title">變更SnapCenter 執行效能不整工作的頻率</block>
-  <block id="1911e0ada44759ee3994a93b354b6e23" category="inline-link"><block ref="1911e0ada44759ee3994a93b354b6e23" category="inline-link-rx"></block></block>
   <block id="532841fbf704673d5f6dc65db8d8cf66" category="inline-link"><block ref="532841fbf704673d5f6dc65db8d8cf66" category="inline-link-rx"></block></block>
   <block id="d53230f85b50903f17f7e6099737f107" category="summary">SAP HANA系統複寫通常是SAP HANA資料庫的高可用度或災難恢復解決方案。SAP HANA系統複寫提供不同的作業模式、您可以根據使用案例或可用度需求來使用。</block>
   <block id="ac95c867fdf2157d0248719b002ae0f0" category="paragraph">有兩種主要使用案例可以結合使用：</block>
@@ -1884,7 +1879,6 @@
   <block id="ec5c19062711162507c65806ea542ac5" category="paragraph">現在SnapCenter 已設定新的功能更新原則。</block>
   <block id="2c0b1092a288f5d67050f3fbf404d5f8" category="list-text">FSX for NetApp ONTAP 解決方案使用者指南—什麼是Amazon FSX for NetApp ONTAP 呢？</block>
   <block id="d82c21a48349085e4fd93fb6712e3789" category="paragraph"><block ref="d82c21a48349085e4fd93fb6712e3789" category="inline-link-rx"></block></block>
-  <block id="3306e00cec668497714eaadcd7aa6ac8" category="list-text">支援資源頁面SnapCenter</block>
   <block id="7608e75619cff3eeb4e8bce40481b456" category="list-text">軟件文檔SnapCenter</block>
   <block id="7a3492bffc26e95ce3669b39a1f14422" category="list-text">TR-4667：利用SnapCenter 下列功能自動化SAP HANA系統複製與複製作業</block>
   <block id="baaebabde318c3efac57f4b4eaf80541" category="summary">您可以使用NetApp Snapshot技術在幾分鐘內建立資料庫備份。建立Snapshot複本所需的時間與資料庫大小無關、因為Snapshot複本不會在儲存平台上移動任何實體資料區塊。</block>
@@ -2898,7 +2892,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="0a961d2cbb588be1d5a93b4774cf6ef1" category="cell">全新儲存系統（ AFF A 系列）</block>
   <block id="f31f11743f1dfba18e9f008e2956d24e" category="cell">2024 年 9 月</block>
   <block id="e4a9c264a13e2ec5faac7a73cf8d0e8c" category="cell">次要更新</block>
-  <block id="e5e2a6bf28307550240d9ed91bbb0fa0" category="paragraph"><block ref="e5e2a6bf28307550240d9ed91bbb0fa0" category="inline-link-rx"></block></block>
   <block id="a36cfc2690f8671748f584abb16bdd04" category="cell">全新儲存系統</block>
   <block id="0fba9f2a3fbb4cfbaed44806cd9933a2" category="cell">全新儲存系統（ ASA A 系列）</block>
   <block id="5e8f0f670e38fbdf628b0883f946934f" category="inline-image-macro">此圖顯示輸入 / 輸出對話方塊或表示寫入內容</block>
@@ -2997,7 +2990,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="14397cf778300a82704513944fe2f1ec" category="paragraph"><block ref="14397cf778300a82704513944fe2f1ec" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9e6a6eb10efdb10620a6a3d4bdeb2b88" category="paragraph"><block ref="9e6a6eb10efdb10620a6a3d4bdeb2b88" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5bf509e6d43ff3eb5c07c44c1546ab09" category="paragraph"><block ref="5bf509e6d43ff3eb5c07c44c1546ab09" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="55aab77fa5d7f50b7fbedbf0df160938" category="paragraph"><block ref="55aab77fa5d7f50b7fbedbf0df160938" category="inline-link-rx"></block></block>
   <block id="5455f48dc7894a1b2782bb01cf938a86" category="paragraph"><block ref="5455f48dc7894a1b2782bb01cf938a86" category="inline-link-rx"></block></block>
   <block id="170e3ae89d6261851ff484a8e771649e" category="paragraph">作者： NetApp 的 Marco Schoen ； CommVault Systems 的 Tristan Daude 博士</block>
   <block id="477777d7db9a7b53d5e478c5db17b758" category="paragraph">本文件涵蓋 SAP HANA 的跨區域複寫。</block>
@@ -3370,8 +3362,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="ef1fb8d9c97217ef2fbf941299c08adf" category="paragraph">SnapMirror 作用中同步：</block>
   <block id="32e3115035ed1831322c88ce03af5c52" category="inline-link">ONTAP 中的 SnapMirror 作用中同步總覽</block>
   <block id="9f090056bc76628ad2a8b94b102aa48c" category="paragraph"><block ref="9f090056bc76628ad2a8b94b102aa48c" category="inline-link-rx"></block></block>
-  <block id="e4004172088b034dfe07abe579273b06" category="inline-link">NetApp ONTAP 搭配 NetApp SnapMirror Active Sync 與 VMware vSphere Metro Storage Cluster （ VMSC ）。</block>
-  <block id="44d0d1ca42daaecc86f8bb55519f9ec5" category="paragraph"><block ref="44d0d1ca42daaecc86f8bb55519f9ec5" category="inline-link-rx"></block></block>
   <block id="34fd97d0487efaacb8dc98024d287c11" category="inline-link">VMware vSphere Metro Storage Cluster 搭配 SnapMirror 主動式同步</block>
   <block id="d5ad3267276646604ba509767a3d16f2" category="paragraph"><block ref="d5ad3267276646604ba509767a3d16f2" category="inline-link-rx"></block></block>
   <block id="58486898b4fe52f80d7a134d74186a4c" category="inline-link">VMware vSphere Metro儲存叢集（VMSC）</block>
@@ -4540,7 +4530,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="087870f30d860ffeb01eac4f727d6656" category="section-title">SnapCenter for VMware vSphere 插件</block>
   <block id="5e9bba71efcdfbbed1dcf18802f8a227" category="sidebar">SnapCenter還原與復原作業</block>
   <block id="743ac471396f82caf85eeeeac51160f8" category="sidebar">SAP 系統更新</block>
-  <block id="3a499e89a73d22ba78550fb47f2e0c88" category="sidebar">附加資訊和版本歷史記錄</block>
   <block id="000c450c2b1b3fbe68fc0d1893fb42e7" category="list-text">為附加 LUN 設定多路徑，如章節所述<block ref="5dbefb7618e64c1782ebe16427fe0a08" category="inline-link-macro-rx"></block> 。</block>
   <block id="6089175223f03bbb436ea3677ff5d54e" category="paragraph"><block ref="6089175223f03bbb436ea3677ff5d54e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3082ebb564b0862e5b62f45e9c7f2918" category="paragraph"><block ref="3082ebb564b0862e5b62f45e9c7f2918" category="inline-image-macro-rx" type="image"></block></block>
@@ -4647,14 +4636,10 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="3c4ac70408381221e011d1b8eb9ca8ce" category="paragraph">使用 SAP HANA 備份和復原作業時，您的組織面臨以下挑戰：• 長時間備份作業會導致生產 SAP 系統效能下降 • 由於長時間復原和復原作業導致系統停機時間不可接受 • 由於應用程式的重要性而縮小備份視窗 • 需要靈活的解決方案來緩解邏輯損壞</block>
   <block id="34e74b1c7f4aad91715567cf698912f6" category="section-title">解決方案</block>
   <block id="b230779de102682fe4be587788f9b085" category="paragraph">透過執行NetApp ONTAP ® 資料管理軟體的NetApp ® 儲存解決方案，結合NetApp SnapCenter ® 資料保護軟體，您可以應付所有這些挑戰。透過ONTAP軟體中包含的NetApp Snapshot™ 技術，您可以在幾秒鐘內建立備份或執行任何大小資料集的復原作業。  SAP HANA 支援使用基於儲存的 Snapshot 副本作為有效的備份作業。</block>
-  <block id="07d632c80bac8a4755255f5e335d8974" category="inline-link-macro"><block ref="07d632c80bac8a4755255f5e335d8974" category="inline-link-rx"></block></block>
-  <block id="e3d55b357098828096098ba417d3c90c" category="paragraph"><block ref="e3d55b357098828096098ba417d3c90c" category="inline-link-macro-rx"></block></block>
   <block id="9446c7c84986f94f08b68900006bb1e5" category="summary">本文檔重點介紹 SAP HANA 的災難復原。</block>
   <block id="bf6723a5d293af775d564a8960e50265" category="doc">SB-3968：SAP HANA 的災難復原</block>
   <block id="24226245cbb8f6448d2fc2fad9d6d847" category="paragraph">業務連續性對於 IT 組織來說至關重要。他們必須能夠為客戶運營業務所需的關鍵任務應用程式提供高可用性服務。否則，他們的客戶將面臨生產力下降，電子商務組織的收入也可能直接受到影響。</block>
   <block id="d9bb80ae32f686bbae368979a76f86d7" category="paragraph">NetApp開發了全套技術和工具，可協助 IT 組織建置或調整其災難復原計劃，以滿足所有業務需求：</block>
-  <block id="6a9c098947d8b811552347f2ed990ebd" category="inline-link-macro"><block ref="6a9c098947d8b811552347f2ed990ebd" category="inline-link-rx"></block></block>
-  <block id="702c9bfa6d3b8d8b923fbeba4db3625f" category="paragraph"><block ref="702c9bfa6d3b8d8b923fbeba4db3625f" category="inline-link-macro-rx"></block></block>
   <block id="225b42e7cb6036e97607adda6dcca1c3" category="summary">NetApp針對 SAP 解決方案的最新變更日誌。</block>
   <block id="2ca0fa0a322d6c31c3d0906a34c85e6c" category="paragraph">了解 SAP 解決方案的新功能。</block>
   <block id="bab52961b58c502c7991d35556c25367" category="section-title">2025年8月18日</block>
@@ -5808,7 +5793,6 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="0efcefbaac1272d75fa3f95b9712d630" category="paragraph">系統資料庫：</block>
   <block id="8c87d36e58a14d731d3cb35d037718d8" category="paragraph">租戶資料庫：</block>
   <block id="02fd0d0d93ba9f1705c5a633970698b9" category="paragraph">邏輯損壞可能由軟體錯誤、人為錯誤或惡意破壞引起。遺憾的是，標準的高可用性和災難復原解決方案通常無法解決邏輯損壞問題。因此，根據邏輯損壞發生的層級、應用程式、檔案系統或儲存位置，有時可能無法滿足最大停機時間和資料遺失的要求。</block>
-  <block id="411b1ca4cfe8073933ca1284bac60213" category="paragraph"><block ref="411b1ca4cfe8073933ca1284bac60213" category="inline-link-rx"></block></block>
   <block id="ea7fdceccfe7d9332d70547a6be7cf72" category="paragraph"><block ref="ea7fdceccfe7d9332d70547a6be7cf72" category="inline-link-macro-rx"></block></block>
   <block id="56a5c925d77740ea69d50272863f3f75" category="section-title">2026 年 2 月 26 日</block>
   <block id="7dad4c0ee446a92530a257db0791c76e" category="paragraph">更新<block ref="c3708ebf567e377ab7439ca8121b298b" category="inline-link-rx"></block>解決方案以涵蓋使用本機安全儲存（LSS）進行 SAP HANA 磁碟區加密。</block>
@@ -5902,4 +5886,108 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="caa5de93118549a4fb1b814eeb2f5544" category="paragraph">SnapCenter 複製刪除工作流程預設不會刪除 <block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> 項目。</block>
   <block id="8bfab5683aa400a8bc0f218a12d430e9" category="paragraph">為了使 <block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> 條目在複製刪除過程中自動刪除，必須先恢復複製並將其設定為自動探索資源。如果未執行此步驟，則 <block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> 條目不會自動刪除，需要手動移除。</block>
   <block id="c18615d685f179944bb9c594c9e6c732" category="list-text">針對 SAP HANA 共享磁碟區執行 SnapCenter 複製刪除工作流程。</block>
+  <block id="9d1408a757e9069797cf7beab6881e23" category="inline-link-macro"><block ref="9d1408a757e9069797cf7beab6881e23" category="inline-link-rx"></block></block>
+  <block id="fbf1e5a8081f7fc23d2d5271b50d8792" category="paragraph"><block ref="fbf1e5a8081f7fc23d2d5271b50d8792" category="inline-link-macro-rx"></block></block>
+  <block id="fba71cc250d7d1a7df4fd50e90fab5e3" category="paragraph">本章提供與此解決方案相關的其他資源連結。</block>
+  <block id="7912a6ea019693a170bbf40a62a72e9f" category="list-text"><block ref="7912a6ea019693a170bbf40a62a72e9f" category="inline-link-rx"></block></block>
+  <block id="60cfba11af764b91802636a5bffeb222" category="inline-link">使用 SnapCenter 跨 ONTAP, Azure NetApp Files, 和 FSx for ONTAP 保護 SAP HANA 系統</block>
+  <block id="928d3b07164bc787951a0af9883e6bc3" category="list-text"><block ref="804a70f1f58a8d76d7850abbe1f47e1e" category="inline-link-rx"></block></block>
+  <block id="f754d929fae407f5c8d867af7641e060" category="cell">08/2026</block>
+  <block id="b88081ecae2714a1f990a3844a1ca60d" category="paragraph">本章詳細介紹用於此解決方案文件的 SAP HANA 系統 BM1 的具體安裝和組態。HANA 系統 QM1 的部署方式相同。</block>
+  <block id="5fe2c5d2c4ab7cedc213ca5c68b05330" category="paragraph">更多通用部署資訊和最佳實務請參閱此處<block ref="5888c0fcaa90f43e1381a41ee8a6b7b6" category="inline-link-rx"></block>。</block>
+  <block id="6f7e25b2593ffdea51a1764f1fdcef78" category="paragraph">以下快照顯示儲存單元 BM1++_++data++_++mnt00001 的建立過程。HANA 日誌和共享的儲存單元已以相同方式建立。</block>
+  <block id="181373e23754fc92ef40c43618103a70" category="paragraph"><block ref="181373e23754fc92ef40c43618103a70" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2243d8c4509f2941e2d63fedd009f4e0" category="inline-link-macro">HANA 主機組態</block>
+  <block id="2e626f2495c3cf150ebe609448c25678" category="paragraph">可以使用 sanlun 命令列出 HANA 主機 FCP 介面卡的 WWPN，該命令是 NetApp 主機公用程式的一部分，如第 <block ref="b77d6bd40a846ccc7ca1a7a06570d692" category="inline-link-macro-rx"></block> 章所述。</block>
+  <block id="b34f9895408cab6e676ce498e645ec3d" category="inline-image-macro">width=601,height=320</block>
+  <block id="94a650aaa1bb03432a6203a1e23f10fa" category="paragraph"><block ref="94a650aaa1bb03432a6203a1e23f10fa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f0f72d91e0604a056769a0193392528b" category="paragraph">點選「新增」建立儲存設備單元。</block>
+  <block id="e36f02d14e3a78adbae48b28c37d2692" category="paragraph"><block ref="e36f02d14e3a78adbae48b28c37d2692" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1eded785990201ae1e7f340804d72ed1" category="paragraph">快照顯示為 HANA 系統 BM1 建立的三個儲存設備單元。</block>
+  <block id="89132c66b0273f0a29d9193cf0702f16" category="paragraph"><block ref="89132c66b0273f0a29d9193cf0702f16" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e026d341645671586b9ce55ee09aa6ff" category="paragraph">在設定主機之前，必須先從<block ref="b5521980cacd8acc0482c24b2751e3c6" category="inline-link-rx"></block>站台下載 NetApp SAN 主機公用程式，並將其安裝在 HANA 伺服器上。主機公用程式文件包含有關必須根據所使用的 FCP HBA 安裝之其他軟體的資訊。</block>
+  <block id="eab12b4f6e78f007ba9c2c8c7b1a0186" category="paragraph">NetApp SAN 主機公用程式也可用於取得在儲存系統上設定主機對映所需的主機介面卡的 WWPN。</block>
+  <block id="2be6edbbf8bc654c3c0bfd578455c69d" category="section-title">多重路徑組態</block>
+  <block id="eb5f11d29c534fdaee78618f730d19fb" category="list-text">在每台伺服器上執行 Linux rescan-scsi-bus.sh -a 命令以探索新的 LUN。</block>
+  <block id="217308982fdfe3d7361a64c05fd7c019" category="list-text">執行 sanlun lun show 命令並驗證所有必要的 LUN 是否可見。輸出結果顯示 LUN 及其對應的裝置檔案有四條從主機到儲存控制器的 FC 路徑。</block>
+  <block id="be2a13eb2b54304d53b799418e936343" category="list-text">執行 multipath -r 和 multipath -ll 命令，取得裝置檔案名稱的全球識別碼 (WWID)。</block>
+  <block id="4a5796bc43390ec85030f36cad92be8a" category="list-text">編輯 /etc/multipath.conf 檔案，並新增 WWID 和別名。</block>
+  <block id="d49a21e46543119b2dab3af45da1e584" category="list-text">執行 multipath -r 命令以重新載入裝置對應。</block>
+  <block id="2e4b99a5da4c365f80291acf83f25625" category="list-text">執行 multipath -ll 命令，列出所有 LUN、別名和儲存設備路徑，以驗證組態。</block>
+  <block id="db5efbe05d05de40804ba94195f74393" category="section-title">主機檔案系統組態</block>
+  <block id="8d4f66e6bde210b4bbcbec584cd88566" category="admonition">依照所述組態，/usr/sap/BM1 目錄將儲存在作業系統磁碟上。如果 /usr/sap/BM1 需要儲存在獨立的磁碟上，則必須在儲存系統上設定額外的 LUN。</block>
+  <block id="fd43d830bdb4e388d4c9d3238d8db821" category="paragraph">下圖呈現所使用實驗室設定的高階總覽。使用兩套單主機 HANA MDC 系統來示範各種操作。HANA 系統 BM1 用於執行備份、還原和恢復作業，而 HANA 系統 QM1 則作為 SAP System Refresh 作業的目標系統。HANA 系統部署在兩台裸機伺服器上，儲存設備端則使用兩個 ASA A30 雙節點叢集。第一個叢集承載 HANA 系統的所有儲存設備單元，第二個叢集則用作備份複寫的目標。</block>
+  <block id="1413de5fa63eb0786c0adaaa425315a9" category="paragraph"><block ref="1413de5fa63eb0786c0adaaa425315a9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="aaf58e5a5445d876b8f7b0fe22b5afbf" category="cell">9.19.1</block>
+  <block id="b9f16534f2b2bafc42883e1f3157014a" category="cell">SLES 15 SP7</block>
+  <block id="4dd5a41036da7fb1df274a1b9fafae33" category="cell">HANA</block>
+  <block id="268a6971497141d3f068e24521aec931" category="cell">2.0 revision 89</block>
+  <block id="3e7e96fad5e237fb2d5a081c6cb11212" category="cell">6.2.2</block>
+  <block id="dc9c4db78e29038229eda79cb4fb3a62" category="doc">SnapCenter 作業</block>
+  <block id="cf222679af586f2f6fcef36213402eb3" category="paragraph">本章概述使用 SnapCenter 進行備份、還原和恢復、SAP 系統重新整理和非同步複寫作業。</block>
+  <block id="fc257548c9d0dd5a5cc664774b7e659c" category="paragraph">備份操作的執行方式與<block ref="b58105cf256232f10befd13824eb8fbd" category="inline-link-rx"></block>中所述相同。</block>
+  <block id="6ce0091e478ffaede7916f5983a47e11" category="admonition">如果儲存單元未設定一致性群組，SnapCenter 會在首次 Snapshot 快照技術備份作業時建立一致性群組和子一致性群組。然後，HANA 資料儲存設備將指派至該子一致性群組。SnapCenter Snapshot 快照技術備份將列於該子一致性群組中。</block>
+  <block id="9cf18086f625ef5df5144a31dc5fbea3" category="inline-image-macro">width=601,height=191</block>
+  <block id="79ba06e59598bce5953dac5bf2051a80" category="paragraph"><block ref="79ba06e59598bce5953dac5bf2051a80" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a76982505db7be9c1561069a79abf435" category="inline-image-macro">width=601,height=205</block>
+  <block id="00f6780c2555a0936eb72dcc73e9a806" category="paragraph"><block ref="00f6780c2555a0936eb72dcc73e9a806" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="512011d5b74ed22c82bf2dd87d933b45" category="paragraph">還原與恢復作業的執行方式與所述相同<block ref="66e2e60033c47c8fe627c71a834090ce" category="inline-link-rx"></block>。</block>
+  <block id="6b2c568c43233dc04f1da2fa10845e34" category="section-title">非同步儲存設備複寫</block>
+  <block id="b12bdbebdc2b957e89692a4ac0bfe43a" category="paragraph">已為 HANA 資料 Volume 設定非同步儲存複寫。</block>
+  <block id="f1929b21af7705b79eccced6f3001dea" category="paragraph"><block ref="f1929b21af7705b79eccced6f3001dea" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="310400b0b4a3a418d6d86450884f9780" category="paragraph">複寫已根據 MirrorAndVault 原則進行設定。</block>
+  <block id="f65d14dd831dcce421764471da054aa6" category="inline-image-macro">width=601,height=206</block>
+  <block id="c4c8c63932d27f8c3250f467fcd26fa6" category="paragraph"><block ref="c4c8c63932d27f8c3250f467fcd26fa6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fb0e1e71df602c6e2ed1c6728be93efe" category="paragraph">此 MirrorAndVault 原則包含不同的 SnapMirror 標籤和保留期限。</block>
+  <block id="bda6dbadb0f513f5218f10abf7195c62" category="inline-image-macro">width=601,height=235</block>
+  <block id="bf306170d819e7c3313e91938ba23611" category="paragraph"><block ref="bf306170d819e7c3313e91938ba23611" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="59e89217d1f7ec869277e9af1d3ddd18" category="paragraph">在 SnapCenter 中，已設定一項原則來比對 ONTAP MirrorAndVault 原則的 SnapMirror 標籤「daily」。</block>
+  <block id="f13df62a1916288c276f504297f42831" category="inline-image-macro">width=378,height=354</block>
+  <block id="00f88ef02fe4c0a8c575a513eec00d7e" category="paragraph"><block ref="00f88ef02fe4c0a8c575a513eec00d7e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5faf148cadf753c102f515fcf70f82f9" category="paragraph">使用 ONTAP MirrorAndVault 原則時，即使 Snapshot 快照技術備份在目標儲存設備中僅可用一次，SnapCenter 也會顯示分隔的 Vault 和 Mirror 複本。</block>
+  <block id="d8ccdfcfedcf950d141658f96224da27" category="paragraph"><block ref="d8ccdfcfedcf950d141658f96224da27" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f3fbac44c3d690f9cb32b8c84c98b9bf" category="paragraph">有關使用 SnapCenter 進行 SAP 系統重新整理和複製作業的更多詳細資訊，請參閱<block ref="c3708ebf567e377ab7439ca8121b298b" category="inline-link-rx"></block>。</block>
+  <block id="96b8c3cfc88602d57e00e31f795909a5" category="section-title">SnapCenter 工作流程</block>
+  <block id="884e6feda877b79be06e0b21fb7ba23b" category="paragraph">操作詳情和先決條件請參閱<block ref="2997ff14a5f91e8cb6ac3a5e838cbf44" category="inline-link-rx"></block>。具體而言，必須先將目標系統新增至 SnapCenter，才能執行第一次重新整理/複製操作。</block>
+  <block id="a44a87fa875df86dc018e5fad20a8969" category="paragraph">複製工作流程的第一步是提供目標主機和目標 SID。</block>
+  <block id="bf631e62061aadc0780364c8629bf104" category="inline-image-macro">width=333,height=313</block>
+  <block id="4bb56f1b7bfc0841e871324869b2461f" category="paragraph"><block ref="4bb56f1b7bfc0841e871324869b2461f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dc844487eb5e6912e10ffcdeb0db6b58" category="paragraph">協定選擇必須為「FCP」。</block>
+  <block id="18f2a59240825d4c3d3982c7f7c6d210" category="inline-image-macro">width=334,height=312</block>
+  <block id="79459453d7ce4eea71ad3c2500ddf454" category="paragraph"><block ref="79459453d7ce4eea71ad3c2500ddf454" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="144fca8386a43e261ab72b107b422397" category="paragraph">您也可以選擇新增 sc-system-refresh.sh 指令碼來自動化恢復操作。</block>
+  <block id="6f9579dcced83f5ab7f3fb18d64f963a" category="inline-image-macro">width=352,height=331</block>
+  <block id="47738e1b349d4c4de3f7fa47efb8248d" category="paragraph"><block ref="47738e1b349d4c4de3f7fa47efb8248d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4aab671e038be0d155852633c46a2803" category="paragraph">下方快照顯示複製工作流程的作業日誌。</block>
+  <block id="a74716b6cfdeb6de488dc178eb7fab64" category="inline-image-macro">width=379,height=468</block>
+  <block id="1aefc8acecb8ca8d5a4b71e8ada504b8" category="paragraph"><block ref="1aefc8acecb8ca8d5a4b71e8ada504b8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8a2ac840f78e7d6f1289a33914b99885" category="paragraph">以下輸出顯示 sc-system-refresh.sh 指令碼的日誌檔。</block>
+  <block id="49ea6572c02d426caf6ed4a9d7e1c224" category="section-title">儲存設備檢視</block>
+  <block id="e7203d350029cf0e6540cf4d9593f079" category="paragraph">在儲存層，已建立 FlexClone® Volume 並對應至目標主機。</block>
+  <block id="cf29ceec036428af03682ca211e04807" category="inline-image-macro">width=601,height=295</block>
+  <block id="f04e7ed0a367cf04e9044498415aa805" category="paragraph"><block ref="f04e7ed0a367cf04e9044498415aa805" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4e1a05d9f0bbe4014d12b951157de8ca" category="paragraph"><block ref="4e1a05d9f0bbe4014d12b951157de8ca" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6de17a2d8dca6c7fc4a6d5b47e8fdd83" category="section-title">主機檢視</block>
+  <block id="acf2994852bd4b04e16be66bfa221852" category="paragraph">在主機端，已探索並掛載新的 FlexClone® Volume。</block>
+  <block id="4e1c0112e7e27e6f70e64692bf2a46b3" category="doc">在裸機伺服器和 NetApp ASA 系統上執行 SnapCenter 的 SAP HANA 資料保護</block>
+  <block id="4f53c8764978efc7e04ccf5eca9a2dff" category="paragraph">本文件概述了使用 SnapCenter 在 X64 裸機伺服器上執行的 HANA 系統（資料儲存於 NetApp ASA 系統）進行資料保護的最佳實務。</block>
+  <block id="d2f7d32c4d8c10fa202de66471914177" category="paragraph">本文件並非設定整個環境的逐步指南，而是專注於與連線至 NetApp ASA 儲存系統的裸機伺服器搭配使用之 SnapCenter 和 HANA 的特定詳細資訊。</block>
+  <block id="2003f744581b30fdfdc3025618263450" category="list-text">設定 SAP HANA 系統</block>
+  <block id="8200552a5d7fa999d46a29d4bc8985d1" category="list-text">特定 SnapCenter 組態</block>
+  <block id="5e70357dec520255b41d23b97e3c4d6d" category="list-text">SnapCenter 備份、還原及恢復作業的詳細資訊</block>
+  <block id="0f135e62f6cfd5d495df5aec6e12f852" category="list-text">針對 SnapCenter SAP 系統重新整理作業的詳細資訊</block>
+  <block id="0f68b904e33d9ac04605aecc958bcf52" category="inline-link-macro">其他資訊</block>
+  <block id="2e0d7bb1690285b33309213b7b97c622" category="paragraph">如需更多資訊和詳細組態說明，請參閱 <block ref="0d570cdc19f454db1ceb6d65aba93fe2" category="inline-link-macro-rx"></block> 章節中所列的文件。</block>
+  <block id="a61723211ec45014f02ec9920daaef26" category="paragraph"><block ref="a61723211ec45014f02ec9920daaef26" category="inline-link-rx"></block></block>
+  <block id="590403e24af81b2be2c1d9abb8663627" category="inline-link-macro"><block ref="590403e24af81b2be2c1d9abb8663627" category="inline-link-rx"></block></block>
+  <block id="8f790e9f9bdd4ea835cccd0f35081a83" category="paragraph"><block ref="8f790e9f9bdd4ea835cccd0f35081a83" category="inline-link-macro-rx"></block></block>
+  <block id="fa1c65a872b9ca230975b3c2b7de8866" category="inline-link-macro"><block ref="fa1c65a872b9ca230975b3c2b7de8866" category="inline-link-rx"></block></block>
+  <block id="6c52a11ec179c9b0dce7aec85aa5f16b" category="paragraph"><block ref="6c52a11ec179c9b0dce7aec85aa5f16b" category="inline-link-macro-rx"></block></block>
+  <block id="452dc078c2039ad92c2da2058afb9627" category="inline-link-macro"><block ref="452dc078c2039ad92c2da2058afb9627" category="inline-link-rx"></block></block>
+  <block id="9f9b969c1fb521eeb60afd916d299ec9" category="paragraph"><block ref="9f9b969c1fb521eeb60afd916d299ec9" category="inline-link-macro-rx"></block></block>
+  <block id="4b4d55bb27bec5759e7aab4dfc59c7a2" category="paragraph"><block ref="4b4d55bb27bec5759e7aab4dfc59c7a2" category="inline-link-rx"></block></block>
+  <block id="90af59cf899c13071304f737b8b45d68" category="section-title">2026 年 8 月 5 日</block>
+  <block id="a8b91b41f89181ec38a97b7e6940398a" category="inline-link">NetApp SnapCenter 適用於裸機伺服器上的 SAP HANA，搭配 NetApp ASA 系統</block>
+  <block id="6c6d709c806fd2c237a28a9dedbceedc" category="paragraph">新解決方案<block ref="87909c917dfc6a157b3191955e2fd2bf" category="inline-link-rx"></block>提供使用 NetApp SnapCenter 進行 SAP HANA 資料保護的最佳實務，涵蓋在 ONTAP ASA 系統上使用裸機伺服器保護 SAP HANA 系統的 SnapCenter 組態與操作指南。</block>
+  <block id="5e8a88c8a8066d604cea2cd759db882b" category="sidebar">使用 SnapCenter 搭配裸機伺服器和 NetApp ASA 系統進行 SAP HANA 資料保護</block>
 </blocks>

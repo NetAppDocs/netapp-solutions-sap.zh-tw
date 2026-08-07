@@ -59,6 +59,6 @@ image:sc-copy-clone-image5.png["此圖顯示輸入 / 輸出對話方塊或表示
 
 image:sc-copy-clone-image6.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"] 詳細的逐步說明可在技術報告中找到
 
-https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["SAP HANA災難恢復與儲存複寫"]
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646.pdf["SAP HANA災難恢復與儲存複寫"]
 
 link:../backup/hana-dr-anf-data-protection-overview.html["使用 Azure NetApp Files 進行 SAP HANA 災難恢復"]

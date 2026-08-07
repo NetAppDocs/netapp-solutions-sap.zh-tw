@@ -1,0 +1,306 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-bare-metal-asar2-hana-provisioning.html 
+keywords: SAP HANA, SnapCenter, backup and recovery 
+summary:  
+---
+= HANA 系統資源配置與安裝
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本章詳細介紹用於此解決方案文件的 SAP HANA 系統 BM1 的具體安裝和組態。HANA 系統 QM1 的部署方式相同。
+
+更多通用部署資訊和最佳實務請參閱此處 https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-asa-fc-introduction.html["採用ASA Fibre Channel Protocol的NetApp解決方案上的SAP HANA"]。
+
+
+
+[[storage-configuration]]
+== 儲存組態
+
+以下快照顯示儲存單元 BM1++_++data++_++mnt00001 的建立過程。HANA 日誌和共享的儲存單元已以相同方式建立。
+
+image:hana-sc-bare-metal-asar2-image-002.png["寬度=601，高度=319"]
+
+可以使用 sanlun 命令列出 HANA 主機 FCP 介面卡的 WWPN，該命令是 NetApp 主機公用程式的一部分，如第 link:hana-sc-bare-metal-asar2-hana-provisioning.html#hana-host-configuration["HANA 主機組態"] 章所述。
+
+....
+sapcc-hana-tst-02:~ # sanlun fcp show adapter
+host20             WWPN:100070b7e40bbadb
+host21             WWPN:100070b7e40bbadc
+....
+image:hana-sc-bare-metal-asar2-image-003.png["width=601,height=320"]
+
+點選「新增」建立儲存設備單元。
+
+image:hana-sc-bare-metal-asar2-image-004.png["width=601,height=320"]
+
+快照顯示為 HANA 系統 BM1 建立的三個儲存設備單元。
+
+image:hana-sc-bare-metal-asar2-image-005.png["寬度=601，高度=319"]
+
+
+
+[[hana-host-configuration]]
+== HANA 主機組態
+
+在設定主機之前，必須先從 http://mysupport.netapp.com/["NetApp支援"]站台下載 NetApp SAN 主機公用程式，並將其安裝在 HANA 伺服器上。主機公用程式文件包含有關必須根據所使用的 FCP HBA 安裝之其他軟體的資訊。
+
+NetApp SAN 主機公用程式也可用於取得在儲存系統上設定主機對映所需的主機介面卡的 WWPN。
+
+....
+sapcc-hana-tst-02:~ # sanlun fcp show adapter
+host20             WWPN:100070b7e40bbadb
+host21             WWPN:100070b7e40bbadc
+....
+
+
+[[multipath-configuration]]
+=== 多重路徑組態
+
+. 在每台伺服器上執行 Linux rescan-scsi-bus.sh -a 命令以探索新的 LUN。
+. 執行 sanlun lun show 命令並驗證所有必要的 LUN 是否可見。輸出結果顯示 LUN 及其對應的裝置檔案有四條從主機到儲存控制器的 FC 路徑。
+
+
+....
+sapcc-hana-tst-02:~ # sanlun lun show | grep BM1
+a30-hana-primary              BM1_shared_1                   /dev/sdx        host21     FCP        250g    cDOT
+a30-hana-primary              BM1_log_mnt00001_1             /dev/sdw        host21     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1            /dev/sdv        host21     FCP        250g    cDOT
+a30-hana-primary              BM1_shared_1                   /dev/sdu        host21     FCP        250g    cDOT
+a30-hana-primary              BM1_log_mnt00001_1             /dev/sdt        host21     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1            /dev/sds        host21     FCP        250g    cDOT
+a30-hana-primary              BM1_shared_1                   /dev/sdh        host20     FCP        250g    cDOT
+a30-hana-primary              BM1_log_mnt00001_1             /dev/sdg        host20     FCP        250g    cDOT
+a30-hana-primary              BM1_shared_1                   /dev/sdk        host20     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1            /dev/sdl        host20     FCP        250g    cDOT
+a30-hana-primary              BM1_log_mnt00001_1             /dev/sdi        host20     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1            /dev/sdj        host20     FCP        250g    cDOT
+sapcc-hana-tst-02:~ #
+....
+. 執行 multipath -r 和 multipath -ll 命令，取得裝置檔案名稱的全球識別碼 (WWID)。
+
+
+....
+sapcc-hana-tst-02:~ # multipath -r
+
+sapcc-hana-tst-02:~ # multipath -ll
+3600a0980383235324a245a4749384947 dm-3 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:10:2 sdk 8:160  active ready running
+  |- 20:0:11:2 sdh 8:112  active ready running
+  |- 21:0:9:2  sdu 65:64  active ready running
+  `- 21:0:11:2 sdx 65:112 active ready running
+3600a098038323537342b596e55666737 dm-2 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:10:0 sdj 8:144 active ready running
+  |- 20:0:11:0 sdl 8:176 active ready running
+  |- 21:0:9:0  sds 65:32 active ready running
+  `- 21:0:11:0 sdv 65:80 active ready running
+3600a098038323537342b596e55666738 dm-5 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:10:1 sdi 8:128 active ready running
+  |- 20:0:11:1 sdg 8:96  active ready running
+  |- 21:0:9:1  sdt 65:48 active ready running
+  `- 21:0:11:1 sdw 65:96 active ready running
+sapcc-hana-tst-02:~ #
+....
+. 編輯 /etc/multipath.conf 檔案，並新增 WWID 和別名。
+
+
+....
+sapcc-hana-tst-02:~ # cat /etc/multipath.conf
+        multipaths {
+        multipath {
+                wwid    3600a098038323537342b596e55666737
+                alias   a30-hana-primary-BM1-data-mnt00001
+        }
+        multipath {
+                wwid    3600a098038323537342b596e55666738
+                alias   a30-hana-primary-BM1-log-mnt00001
+        }
+        multipath {
+                wwid    3600a0980383235324a245a4749384947
+                alias   a30-hana-primary-BM1-shared
+        }
+}
+....
+. 執行 multipath -r 命令以重新載入裝置對應。
+. 執行 multipath -ll 命令，列出所有 LUN、別名和儲存設備路徑，以驗證組態。
+
+
+....
+sapcc-hana-tst-02:~ # multipath -r
+
+sapcc-hana-tst-02:~ # multipath -ll
+a30-hana-primary-BM1-data-mnt00001 (3600a098038323537342b596e55666737) dm-2 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:10:0 sdj 8:144 active ready running
+  |- 20:0:11:0 sdl 8:176 active ready running
+  |- 21:0:9:0  sds 65:32 active ready running
+  `- 21:0:11:0 sdv 65:80 active ready running
+a30-hana-primary-BM1-log-mnt00001 (3600a098038323537342b596e55666738) dm-5 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:10:1 sdi 8:128 active ready running
+  |- 20:0:11:1 sdg 8:96  active ready running
+  |- 21:0:9:1  sdt 65:48 active ready running
+  `- 21:0:11:1 sdw 65:96 active ready running
+a30-hana-primary-BM1-shared (3600a0980383235324a245a4749384947) dm-3 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:10:2 sdk 8:160  active ready running
+  |- 20:0:11:2 sdh 8:112  active ready running
+  |- 21:0:9:2  sdu 65:64  active ready running
+  `- 21:0:11:2 sdx 65:112 active ready running
+sapcc-hana-tst-02:~ #
+....
+
+
+[[host-file-system-configuration]]
+=== 主機檔案系統組態
+
+
+
+==== 建立檔案系統
+
+....
+sapcc-hana-tst-02:~ # ls -al /dev/mapper
+total 0
+drwxr-xr-x  2 root root     200 Feb  9 10:12 .
+drwxr-xr-x 21 root root    5360 Feb  9 08:53 ..
+lrwxrwxrwx  1 root root       7 Feb  9 10:12 a30-hana-primary-BM1-data-mnt00001 -> ../dm-2
+lrwxrwxrwx  1 root root       7 Feb  9 10:12 a30-hana-primary-BM1-log-mnt00001 -> ../dm-5
+lrwxrwxrwx  1 root root       7 Feb  9 10:12 a30-hana-primary-BM1-shared -> ../dm-3
+crw-------  1 root root 10, 236 Feb  9 08:53 control
+lrwxrwxrwx  1 root root       7 Feb  9 08:53 system-root -> ../dm-0
+lrwxrwxrwx  1 root root       7 Feb  9 08:53 system-swap -> ../dm-1
+sapcc-hana-tst-02:~ #
+
+sapcc-hana-tst-02:~ # mkfs.xfs /dev/mapper/a30-hana-primary-BM1-data-mnt00001
+meta-data=/dev/mapper/a30-hana-primary-BM1-data-mnt00001 isize=512    agcount=4, agsize=16384000 blks
+         =                       sectsz=4096  attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=0    bigtime=0 inobtcount=0
+data     =                       bsize=4096   blocks=65536000, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=32000, version=2
+         =                       sectsz=4096  sunit=1 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+Discarding blocks...Done.
+sapcc-hana-tst-02:~ #
+sapcc-hana-tst-02:~ #
+sapcc-hana-tst-02:~ #
+sapcc-hana-tst-02:~ # mkfs.xfs /dev/mapper/a30-hana-primary-BM1-log-mnt00001
+meta-data=/dev/mapper/a30-hana-primary-BM1-log-mnt00001 isize=512    agcount=4, agsize=16384000 blks
+         =                       sectsz=4096  attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=0    bigtime=0 inobtcount=0
+data     =                       bsize=4096   blocks=65536000, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=32000, version=2
+         =                       sectsz=4096  sunit=1 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+Discarding blocks...Done.
+sapcc-hana-tst-02:~ # mkfs.xfs /dev/mapper/a30-hana-primary-BM1-shared
+meta-data=/dev/mapper/a30-hana-primary-BM1-shared isize=512    agcount=4, agsize=16384000 blks
+         =                       sectsz=4096  attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=0    bigtime=0 inobtcount=0
+data     =                       bsize=4096   blocks=65536000, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=32000, version=2
+         =                       sectsz=4096  sunit=1 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+Discarding blocks...Done.
+sapcc-hana-tst-02:~ #
+....
+
+
+==== 建立掛載點
+
+....
+
+sapcc-hana-tst-02:~ # mkdir -p /hana/data/BM1/mnt00001
+sapcc-hana-tst-02:~ # mkdir -p /hana/log/BM1/mnt00001
+sapcc-hana-tst-02:~ # mkdir -p /hana/shared/BM1
+sapcc-hana-tst-02:~ # chmod -R /hana/data
+sapcc-hana-tst-02:~ # chmod 777 -R /hana/data
+sapcc-hana-tst-02:~ # chmod 777 -R /hana/log
+sapcc-hana-tst-02:~ # chmod 777 -R /hana/shared
+sapcc-hana-tst-02:~ #
+....
+
+
+==== 掛載檔案系統
+
+....
+
+sapcc-hana-tst-02:~ # cat /etc/fstab
+/dev/system/root  /                       btrfs  defaults                      0  0
+/dev/system/root  /var                    btrfs  subvol=/@/var                 0  0
+/dev/system/root  /usr/local              btrfs  subvol=/@/usr/local           0  0
+/dev/system/root  /tmp                    btrfs  subvol=/@/tmp                 0  0
+/dev/system/root  /srv                    btrfs  subvol=/@/srv                 0  0
+/dev/system/root  /root                   btrfs  subvol=/@/root                0  0
+/dev/system/root  /opt                    btrfs  subvol=/@/opt                 0  0
+/dev/system/root  /home                   btrfs  subvol=/@/home                0  0
+/dev/system/root  /boot/grub2/x86_64-efi  btrfs  subvol=/@/boot/grub2/x86_64-efi  0  0
+/dev/system/root  /boot/grub2/i386-pc     btrfs  subvol=/@/boot/grub2/i386-pc  0  0
+/dev/system/swap  swap                    swap   defaults                      0  0
+/dev/system/root  /.snapshots             btrfs  subvol=/@/.snapshots          0  0
+UUID=E88D-60DA    /boot/efi               vfat   utf8                          0  2
+192.168.175.86:/sapcc_share/ /mnt/sapcc-share/ nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
+/dev/mapper/a30-hana-primary-BM1-shared /hana/shared xfs defaults 0 0
+/dev/mapper/a30-hana-primary-BM1-log-mnt00001 /hana/log/BM1/mnt00001 xfs relatime,inode64 0 0
+/dev/mapper/a30-hana-primary-BM1-data-mnt00001 /hana/data/BM1/mnt00001 xfs relatime,inode64 0 0
+sapcc-hana-tst-02:~ #
+
+
+sapcc-hana-tst-02:~ # df -h
+Filesystem                                      Size  Used Avail Use% Mounted on
+devtmpfs                                        4.0M     0  4.0M   0% /dev
+tmpfs                                           190G  8.0K  190G   1% /dev/shm
+tmpfs                                            51G   11M   51G   1% /run
+tmpfs                                           4.0M     0  4.0M   0% /sys/fs/cgroup
+/dev/mapper/system-root                          60G   15G   45G  25% /
+/dev/mapper/system-root                          60G   15G   45G  25% /.snapshots
+/dev/mapper/system-root                          60G   15G   45G  25% /boot/grub2/i386-pc
+/dev/mapper/system-root                          60G   15G   45G  25% /boot/grub2/x86_64-efi
+/dev/mapper/system-root                          60G   15G   45G  25% /home
+/dev/mapper/system-root                          60G   15G   45G  25% /opt
+/dev/mapper/system-root                          60G   15G   45G  25% /root
+/dev/mapper/system-root                          60G   15G   45G  25% /srv
+/dev/mapper/system-root                          60G   15G   45G  25% /tmp
+/dev/mapper/system-root                          60G   15G   45G  25% /usr/local
+/dev/mapper/system-root                          60G   15G   45G  25% /var
+/dev/nvme0n1p1                                  253M  5.1M  247M   3% /boot/efi
+192.168.175.86:/sapcc_share/                    1.4T  859G  567G  61% /mnt/sapcc-share
+tmpfs                                            26G   44K   26G   1% /run/user/463
+tmpfs                                            26G   24K   26G   1% /run/user/0
+/dev/mapper/a30-hana-primary-BM1-shared         250G  288M  250G   1% /hana/shared
+/dev/mapper/a30-hana-primary-BM1-log-mnt00001   250G  288M  250G   1% /hana/log/BM1/mnt00001
+/dev/mapper/a30-hana-primary-BM1-data-mnt00001  250G  288M  250G   1% /hana/data/BM1/mnt00001
+sapcc-hana-tst-02:~ #
+....
+
+
+[[hana-installation]]
+=== HANA 安裝
+
+HANA 安裝現在可以執行。
+
+
+NOTE: 依照所述組態，/usr/sap/BM1 目錄將儲存在作業系統磁碟上。如果 /usr/sap/BM1 需要儲存在獨立的磁碟上，則必須在儲存系統上設定額外的 LUN。

@@ -18,6 +18,8 @@ indexpage:
       url: bp/hana-fas-fc-introduction.html
   - title: SAP HANA 內部部署
     links:
+    - title: 在裸機伺服器和 NetApp ASA 系統上執行 SnapCenter 的 SAP HANA 資料保護
+      url: backup/hana-sc-bare-metal-asar2-scope.html
     - title: SnapCenter ， SnapMirror Active Sync 和 VMware Metro Storage 叢集提供 SAP HANA
         資料保護和高可用度
       url: backup/hana-sc-vmware-smas-scope.html

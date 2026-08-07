@@ -1,0 +1,230 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-bare-metal-asar2-sc-operations.html 
+keywords: SAP HANA, SnapCenter, backup and recovery 
+summary:  
+---
+= SnapCenter 作業
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+本章概述使用 SnapCenter 進行備份、還原和恢復、SAP 系統重新整理和非同步複寫作業。
+
+
+
+[[backup-operations]]
+== 備份作業
+
+備份操作的執行方式與 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-backup-operations.html["在SnapCenter中了解 SAP HANA 快照的備份作業"]中所述相同。
+
+
+NOTE: 如果儲存單元未設定一致性群組，SnapCenter 會在首次 Snapshot 快照技術備份作業時建立一致性群組和子一致性群組。然後，HANA 資料儲存設備將指派至該子一致性群組。SnapCenter Snapshot 快照技術備份將列於該子一致性群組中。
+
+image:hana-sc-bare-metal-asar2-image-007.png["width=601,height=191"]
+
+image:hana-sc-bare-metal-asar2-image-008.png["width=601,height=205"]
+
+
+
+[[restore-and-recovery]]
+== 還原與還原
+
+還原與恢復作業的執行方式與所述相同 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-restore.html["使用SnapCenter恢復 SAP HANA 資料庫"]。
+
+
+
+[[asynchronous-storage-replication]]
+== 非同步儲存設備複寫
+
+已為 HANA 資料 Volume 設定非同步儲存複寫。
+
+image:hana-sc-bare-metal-asar2-image-009.png["寬度=601，高度=180"]
+
+複寫已根據 MirrorAndVault 原則進行設定。
+
+image:hana-sc-bare-metal-asar2-image-010.png["width=601,height=206"]
+
+此 MirrorAndVault 原則包含不同的 SnapMirror 標籤和保留期限。
+
+image:hana-sc-bare-metal-asar2-image-011.png["width=601,height=235"]
+
+在 SnapCenter 中，已設定一項原則來比對 ONTAP MirrorAndVault 原則的 SnapMirror 標籤「daily」。
+
+image:hana-sc-bare-metal-asar2-image-012.png["width=378,height=354"]
+
+使用 ONTAP MirrorAndVault 原則時，即使 Snapshot 快照技術備份在目標儲存設備中僅可用一次，SnapCenter 也會顯示分隔的 Vault 和 Mirror 複本。
+
+image:hana-sc-bare-metal-asar2-image-013.png["寬度=601，高度=294"]
+
+
+
+[[sap-system-refresh]]
+== SAP 系統更新
+
+有關使用 SnapCenter 進行 SAP 系統重新整理和複製作業的更多詳細資訊，請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]。
+
+
+
+[[snapcenter-workflow]]
+=== SnapCenter 工作流程
+
+操作詳情和先決條件請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-hana-sys-refresh-with-sc.html#prerequisites-and-limitations["SAP HANA系統更新SnapCenter 功能"]。具體而言，必須先將目標系統新增至 SnapCenter，才能執行第一次重新整理/複製操作。
+
+複製工作流程的第一步是提供目標主機和目標 SID。
+
+image:hana-sc-bare-metal-asar2-image-014.png["width=333,height=313"]
+
+協定選擇必須為「FCP」。
+
+image:hana-sc-bare-metal-asar2-image-015.png["width=334,height=312"]
+
+您也可以選擇新增 sc-system-refresh.sh 指令碼來自動化恢復操作。
+
+image:hana-sc-bare-metal-asar2-image-016.png["width=352,height=331"]
+
+下方快照顯示複製工作流程的作業日誌。
+
+image:hana-sc-bare-metal-asar2-image-017.png["width=379,height=468"]
+
+以下輸出顯示 sc-system-refresh.sh 指令碼的日誌檔。
+
+....
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh # tail -100 sc-system-refresh-QM1.log
+20260212092224###sapcc-hana-tst-03###sc-system-refresh.sh: **********************************************************************************
+20260212092224###sapcc-hana-tst-03###sc-system-refresh.sh: Script version: 3.0
+20260212092224###sapcc-hana-tst-03###sc-system-refresh.sh: ******************* Starting script: recovery operation **************************
+20260212092224###sapcc-hana-tst-03###sc-system-refresh.sh: Recover system database.
+20260212092224###sapcc-hana-tst-03###sc-system-refresh.sh: /usr/sap/QM1/HDB22/exe/Python/bin/python /usr/sap/QM1/HDB22/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
+20260212092245###sapcc-hana-tst-03###sc-system-refresh.sh: Wait until SAP HANA database is started ....
+20260212092246###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  GRAY
+20260212092256###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260212092306###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260212092317###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260212092327###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260212092337###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260212092347###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  GREEN
+20260212092347###sapcc-hana-tst-03###sc-system-refresh.sh: HANA system database started.
+20260212092347###sapcc-hana-tst-03###sc-system-refresh.sh: Checking connection to system database.
+20260212092347###sapcc-hana-tst-03###sc-system-refresh.sh: /usr/sap/QM1/SYS/exe/hdb/hdbsql -U QM1KEY 'select * from sys.m_databases;'
+20260212092348###sapcc-hana-tst-03###sc-system-refresh.sh: Succesfully connected to system database.
+20260212092348###sapcc-hana-tst-03###sc-system-refresh.sh: Tenant databases to recover: BM1
+20260212092348###sapcc-hana-tst-03###sc-system-refresh.sh: Found inactive tenants(BM1) and starting recovery
+20260212092348###sapcc-hana-tst-03###sc-system-refresh.sh: Recover tenant database BM1.
+20260212092348###sapcc-hana-tst-03###sc-system-refresh.sh: /usr/sap/QM1/SYS/exe/hdb/hdbsql -U QM1KEY RECOVER DATA FOR BM1 USING SNAPSHOT CLEAR LOG
+20260630072033###sapcc-hana-tst-03###sc-system-refresh.sh: **********************************************************************************
+20260630072033###sapcc-hana-tst-03###sc-system-refresh.sh: Script version: 3.0
+20260630072033###sapcc-hana-tst-03###sc-system-refresh.sh: ******************* Starting script: recovery operation **************************
+20260630072033###sapcc-hana-tst-03###sc-system-refresh.sh: Recover system database.
+20260630072033###sapcc-hana-tst-03###sc-system-refresh.sh: /usr/sap/QM1/HDB22/exe/Python/bin/python /usr/sap/QM1/HDB22/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
+20260630072101###sapcc-hana-tst-03###sc-system-refresh.sh: Wait until SAP HANA database is started ....
+20260630072101###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260630072111###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260630072122###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260630072132###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260630072142###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  YELLOW
+20260630072152###sapcc-hana-tst-03###sc-system-refresh.sh: Status:  GREEN
+20260630072152###sapcc-hana-tst-03###sc-system-refresh.sh: HANA system database started.
+20260630072152###sapcc-hana-tst-03###sc-system-refresh.sh: Checking connection to system database.
+20260630072152###sapcc-hana-tst-03###sc-system-refresh.sh: /usr/sap/QM1/SYS/exe/hdb/hdbsql -U QM1KEY 'select * from sys.m_databases;'
+DATABASE_NAME,DESCRIPTION,ACTIVE_STATUS,ACTIVE_STATUS_DETAILS,OS_USER,OS_GROUP,RESTART_MODE,FALLBACK_SNAPSHOT_CREATE_TIME
+"SYSTEMDB","SystemDB-QM1-22","YES","ACTIVE","","","DEFAULT",?
+"QM1","QM1-22","NO","ACTIVE","","","DEFAULT",?
+2 rows selected (overall time 18.501 msec; server time 800 usec)
+
+20260630072153###sapcc-hana-tst-03###sc-system-refresh.sh: Succesfully connected to system database.
+20260630072153###sapcc-hana-tst-03###sc-system-refresh.sh: Tenant databases to recover: QM1
+20260630072153###sapcc-hana-tst-03###sc-system-refresh.sh: Found inactive tenants(QM1) and starting recovery
+20260630072153###sapcc-hana-tst-03###sc-system-refresh.sh: Recover tenant database QM1.
+20260630072153###sapcc-hana-tst-03###sc-system-refresh.sh: /usr/sap/QM1/SYS/exe/hdb/hdbsql -U QM1KEY RECOVER DATA FOR QM1 USING SNAPSHOT CLEAR LOG
+0 rows affected (overall time 25.154634 sec; server time 25.151309 sec)
+
+20260630072219###sapcc-hana-tst-03###sc-system-refresh.sh: Checking availability of Indexserver for tenant QM1.
+20260630072219###sapcc-hana-tst-03###sc-system-refresh.sh: Recovery of tenant database QM1 succesfully finished.
+20260630072219###sapcc-hana-tst-03###sc-system-refresh.sh: Status: GREEN
+20260630072219###sapcc-hana-tst-03###sc-system-refresh.sh: ******************* Finished script: recovery operation **************************
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh #
+....
+
+
+[[storage-view]]
+=== 儲存設備檢視
+
+在儲存層，已建立 FlexClone® Volume 並對應至目標主機。
+
+image:hana-sc-bare-metal-asar2-image-018.png["width=601,height=295"]
+
+image:hana-sc-bare-metal-asar2-image-019.png["寬度=601，高度=294"]
+
+
+
+[[host-view]]
+=== 主機檢視
+
+在主機端，已探索並掛載新的 FlexClone® Volume。
+
+....
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh # sanlun lun show
+controller(7mode/E-Series)/                                              device          host                  lun
+vserver(cDOT/FlashRay)        lun-pathname                               filename        adapter    protocol   size    product
+---------------------------------------------------------------------------------------------------------------------------
+a30-hana-primary              BM1_data_mnt00001_1_Clone_0630260725394127 /dev/sdab       host21     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1_Clone_0630260725394127 /dev/sdaa       host21     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1_Clone_0630260725394127 /dev/sdw        host20     FCP        250g    cDOT
+a30-hana-primary              BM1_data_mnt00001_1_Clone_0630260725394127 /dev/sdm        host20     FCP        250g    cDOT
+a30-hana-primary              QM1_shared_1                               /dev/sdz        host21     FCP        250g    cDOT
+a30-hana-primary              QM1_log_mnt00001_1                         /dev/sdy        host21     FCP        250g    cDOT
+a30-hana-primary              QM1_data_mnt00001_1                        /dev/sdx        host21     FCP        250g    cDOT
+a30-hana-primary              QM1_shared_1                               /dev/sdv        host21     FCP        250g    cDOT
+a30-hana-primary              QM1_log_mnt00001_1                         /dev/sds        host21     FCP        250g    cDOT
+a30-hana-primary              QM1_data_mnt00001_1                        /dev/sdq        host21     FCP        250g    cDOT
+a30-hana-primary              QM1_shared_1                               /dev/sdh        host20     FCP        250g    cDOT
+a30-hana-primary              QM1_log_mnt00001_1                         /dev/sdg        host20     FCP        250g    cDOT
+a30-hana-primary              QM1_data_mnt00001_1                        /dev/sdf        host20     FCP        250g    cDOT
+a30-hana-primary              QM1_shared_1                               /dev/sdk        host20     FCP        250g    cDOT
+a30-hana-primary              QM1_log_mnt00001_1                         /dev/sdj        host20     FCP        250g    cDOT
+a30-hana-primary              QM1_data_mnt00001_1                        /dev/sdi        host20     FCP        250g    cDOT
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh #
+
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh # multipath -ll
+3600a098038323537342b596e5566674d dm-7 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:7:3  sdw  65:96  active ready running
+  |- 20:0:9:3  sdm  8:192  active ready running
+  |- 21:0:9:3  sdaa 65:160 active ready running
+  `- 21:0:10:3 sdab 65:176 active ready running
+a30-hana-primary-QM1-data-mnt00001 (3600a098038323537342b596e55666739) dm-4 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:7:0  sdf 8:80   active ready running
+  |- 20:0:9:0  sdi 8:128  active ready running
+  |- 21:0:9:0  sdq 65:0   active ready running
+  `- 21:0:10:0 sdx 65:112 active ready running
+a30-hana-primary-QM1-log-mnt00001 (3600a0980383235324a245a4749384948) dm-6 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:7:1  sdg 8:96   active ready running
+  |- 20:0:9:1  sdj 8:144  active ready running
+  |- 21:0:9:1  sds 65:32  active ready running
+  `- 21:0:10:1 sdy 65:128 active ready running
+a30-hana-primary-QM1-shared (3600a098038323537342b596e5566672d) dm-5 NETAPP,LUN C-Mode
+size=250G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 20:0:7:2  sdh 8:112  active ready running
+  |- 20:0:9:2  sdk 8:160  active ready running
+  |- 21:0:9:2  sdv 65:80  active ready running
+  `- 21:0:10:2 sdz 65:144 active ready running
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh #
+
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh # df -h | grep hana
+/dev/mapper/a30-hana-primary-QM1-shared        250G   18G  233G   7% /hana/shared
+/dev/mapper/a30-hana-primary-QM1-log-mnt00001  250G  3.5G  247G   2% /hana/log/QM1/mnt00001
+/dev/mapper/3600a098038323537342b596e5566674d  250G  8.2G  242G   4% /hana/data/QM1/mnt00001
+sapcc-hana-tst-03:/mnt/sapcc-share/SAP-System-Refresh #
+....

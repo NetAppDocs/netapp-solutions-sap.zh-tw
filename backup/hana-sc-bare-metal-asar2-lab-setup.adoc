@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-bare-metal-asar2-lab-setup.html 
+keywords: SAP HANA, SnapCenter, backup and recovery 
+summary:  
+---
+= 本文檔使用的實驗室設置
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+下圖呈現所使用實驗室設定的高階總覽。使用兩套單主機 HANA MDC 系統來示範各種操作。HANA 系統 BM1 用於執行備份、還原和恢復作業，而 HANA 系統 QM1 則作為 SAP System Refresh 作業的目標系統。HANA 系統部署在兩台裸機伺服器上，儲存設備端則使用兩個 ASA A30 雙節點叢集。第一個叢集承載 HANA 系統的所有儲存設備單元，第二個叢集則用作備份複寫的目標。
+
+image:hana-sc-bare-metal-asar2-image-001.png["寬度=601，高度=289"]
+
+軟體版本
+
+[cols="50%,50%"]
+|===
+| ONTAP | 9.19.1 
+
+
+| Linux 作業系統 | SLES 15 SP7 
+
+
+| HANA | 2.0 revision 89 
+
+
+| SnapCenter | 6.2.2 
+|===

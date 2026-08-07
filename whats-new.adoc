@@ -15,6 +15,13 @@ summary: NetApp針對 SAP 解決方案的最新變更日誌。
 
 
 
+[[05-august-2026]]
+== 2026 年 8 月 5 日
+
+新解決方案 https://review.docs.netapp.com/us-en/netapp-solutions-sap_hana-sc-bare-metal-asar2/backup/hana-sc-bare-metal-asar2-scope.html["NetApp SnapCenter 適用於裸機伺服器上的 SAP HANA，搭配 NetApp ASA 系統"^]提供使用 NetApp SnapCenter 進行 SAP HANA 資料保護的最佳實務，涵蓋在 ONTAP ASA 系統上使用裸機伺服器保護 SAP HANA 系統的 SnapCenter 組態與操作指南。
+
+
+
 [[26-february-2026]]
 == 2026 年 2 月 26 日
 

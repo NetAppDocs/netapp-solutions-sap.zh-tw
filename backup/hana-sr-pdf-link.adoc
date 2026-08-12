@@ -18,4 +18,4 @@ TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式如何在SA
 
 NetApp公司Nils Bauer
 
-link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719.pdf"]

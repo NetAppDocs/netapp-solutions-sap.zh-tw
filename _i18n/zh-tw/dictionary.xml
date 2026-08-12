@@ -1073,8 +1073,6 @@
   <block id="8d5e0cfc83e98d36864aa5b7f1ba6186" category="cell">恢復作業</block>
   <block id="e12451ca8917b29faae9e966a7ef40f6" category="summary">TR-4719說明NetApp SnapCenter 的NetApp功能和SAP HANA外掛程式如何在SAP HANA系統複寫環境中用於備份與還原。</block>
   <block id="ef5cc7c8780ee87a124c0fd66dd44867" category="doc">TR-4719：SAP HANA系統複寫- SnapCenter 利用功能進行備份與恢復</block>
-  <block id="1a7acb5247a596ecf14f6381a5824bd7" category="inline-link-macro"><block ref="1a7acb5247a596ecf14f6381a5824bd7" category="inline-link-rx"></block></block>
-  <block id="d5dfc6464276a185ca9edd33cbc78835" category="paragraph"><block ref="d5dfc6464276a185ca9edd33cbc78835" category="inline-link-macro-rx"></block></block>
   <block id="cb014ba864354c430b0d6d7e306d1c0c" category="summary">本頁說明SAP系統複寫的組態選項。</block>
   <block id="76c0a8113c74eb76e36c8c87f7095211" category="doc">SAP系統複寫的組態選項SnapCenter</block>
   <block id="b65fb91c7466f471e73d7a165cddad8f" category="paragraph">在SAP HANA系統複寫環境中、有兩個選項可用來設定NetApp SnapCenter 功能性軟體的資料保護：</block>
@@ -5988,6 +5986,246 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="4b4d55bb27bec5759e7aab4dfc59c7a2" category="paragraph"><block ref="4b4d55bb27bec5759e7aab4dfc59c7a2" category="inline-link-rx"></block></block>
   <block id="90af59cf899c13071304f737b8b45d68" category="section-title">2026 年 8 月 5 日</block>
   <block id="a8b91b41f89181ec38a97b7e6940398a" category="inline-link">NetApp SnapCenter 適用於裸機伺服器上的 SAP HANA，搭配 NetApp ASA 系統</block>
-  <block id="6c6d709c806fd2c237a28a9dedbceedc" category="paragraph">新解決方案<block ref="87909c917dfc6a157b3191955e2fd2bf" category="inline-link-rx"></block>提供使用 NetApp SnapCenter 進行 SAP HANA 資料保護的最佳實務，涵蓋在 ONTAP ASA 系統上使用裸機伺服器保護 SAP HANA 系統的 SnapCenter 組態與操作指南。</block>
   <block id="5e8a88c8a8066d604cea2cd759db882b" category="sidebar">使用 SnapCenter 搭配裸機伺服器和 NetApp ASA 系統進行 SAP HANA 資料保護</block>
+  <block id="76f472e5d9274388ff7f7d0dc9d7f448" category="section-title">*附加資訊*</block>
+  <block id="8a403280c7aa32e0467bd8083ceea059" category="paragraph">*SAP HANA 最佳實務*</block>
+  <block id="dccf9c2e4a699b348abaf0369603c1a0" category="paragraph">*SnapCenter*</block>
+  <block id="c57455d58ef39f9eb1db2c93bef5df70" category="inline-link">SnapCenter Plug-in for SAP HANA 總覽</block>
+  <block id="5ffd58eaae8490cfbb4bc858e929a6da" category="list-text"><block ref="5ffd58eaae8490cfbb4bc858e929a6da" category="inline-link-rx"></block></block>
+  <block id="667ad583dd02cc9d7872276501f6f66c" category="inline-link">新增主機並安裝 SnapCenter 外掛套件</block>
+  <block id="8f315694e6356220dd4fbaef17bbe615" category="list-text"><block ref="8f315694e6356220dd4fbaef17bbe615" category="inline-link-rx"></block></block>
+  <block id="d73cc48de2ab8d946d6e47d3b9f848cf" category="paragraph">*NetApp ASA 儲存系統*，適用於基於 SAN 的區塊儲存設備存取</block>
+  <block id="ea0fe094bae711285ebc8371a523014c" category="inline-link">NetApp ASA R2 系統文件</block>
+  <block id="711695a428358a66e4939ad6dcd84916" category="list-text"><block ref="711695a428358a66e4939ad6dcd84916" category="inline-link-rx"></block></block>
+  <block id="8500be4066b4a791101e684243c2dffc" category="inline-link">ONTAP SAN 管理</block>
+  <block id="4a6cc46b67467db05937bea8c80b430b" category="list-text"><block ref="4a6cc46b67467db05937bea8c80b430b" category="inline-link-rx"></block></block>
+  <block id="73fd4ea068cd5433ccbcafa6124f7b06" category="paragraph">*ONTAP 一致性群組*，用於將 SAP HANA 相關儲存設備單元作為單一受保護實體進行管理</block>
+  <block id="066225f5413efe4c7cc842c43ca1f3c2" category="inline-link">ONTAP 一致性群組總覽</block>
+  <block id="ca1528ae5f16e5270b5cabf4794f5c41" category="list-text"><block ref="ca1528ae5f16e5270b5cabf4794f5c41" category="inline-link-rx"></block></block>
+  <block id="98abf9650acdc9fa08655cd07511f2ba" category="paragraph">*SnapMirror active sync* 在 *AutomatedFailOverDuplex* 模式下，用於對稱作用中/作用中同步複寫</block>
+  <block id="4a85397e66688e4e619ffe832e627548" category="inline-link">SnapMirror active sync 總覽</block>
+  <block id="78a9628c4e6db0138e994ea278c6b983" category="list-text"><block ref="78a9628c4e6db0138e994ea278c6b983" category="inline-link-rx"></block></block>
+  <block id="19faeb7ab81d5f28227fc1778d55ff90" category="inline-link">SnapMirror active sync 架構</block>
+  <block id="1765a598566c1dba11cfe1a15f128d79" category="list-text"><block ref="1765a598566c1dba11cfe1a15f128d79" category="inline-link-rx"></block></block>
+  <block id="9beab2113e09b892deaf7d6548f12817" category="paragraph">ONTAP Mediator 的設定與組態</block>
+  <block id="bddcb25dc0af4e702a0790b39f1edab8" category="inline-link">ONTAP Mediator 文件</block>
+  <block id="af9fa48da8ca425f8369eaa1584aa7d3" category="list-text"><block ref="af9fa48da8ca425f8369eaa1584aa7d3" category="inline-link-rx"></block></block>
+  <block id="931e10d7f833f6006078c296b8f49e42" category="inline-link">安裝或升級 ONTAP Mediator</block>
+  <block id="6ff5d67c3721ed2eec638795cc57c4a4" category="list-text"><block ref="6ff5d67c3721ed2eec638795cc57c4a4" category="inline-link-rx"></block></block>
+  <block id="5a8bdae742f994f25873f15a8eee40a5" category="paragraph">*SnapMirror 以及 SnapVault 複寫* 用於非同步備份複寫到二線系統</block>
+  <block id="e828793716ccd336d69f1357e07ff5fe" category="inline-link">ONTAP 資料保護文件</block>
+  <block id="747325e8ba6ea89ace953048ea3ee72d" category="list-text"><block ref="747325e8ba6ea89ace953048ea3ee72d" category="inline-link-rx"></block></block>
+  <block id="c46959062f585bc1d35d5c63dddfd17b" category="inline-link">SnapMirror 複寫總覽</block>
+  <block id="5d231adf49e8e491e7b6b2026dc4d6d8" category="list-text"><block ref="5d231adf49e8e491e7b6b2026dc4d6d8" category="inline-link-rx"></block></block>
+  <block id="a438c869758a3fcb6868645c35d01e79" category="inline-link">SnapVault 歸檔/保存庫保護概念</block>
+  <block id="789ff1d53fdd813e0785c922b0db2c3d" category="list-text"><block ref="b0c998f85fe060206e0a875f5b9da77f" category="inline-link-rx"></block> ++|++</block>
+  <block id="f3c4051eda38540dcdf3e932bf6aea6b" category="paragraph">*VMware vSphere 和 VMFS 資料存放區*，用於託管 SAP HANA 虛擬機器磁碟</block>
+  <block id="9dddb9d76afda7d59d1d8140eebf9bf0" category="inline-link">VMware vSphere 與 ONTAP 文件</block>
+  <block id="36610959e438b6d9228cdc631e16bd60" category="list-text"><block ref="36610959e438b6d9228cdc631e16bd60" category="inline-link-rx"></block></block>
+  <block id="26ffc687a7267f96a389530199971cd1" category="inline-link">ONTAP tools for VMware vSphere 文件</block>
+  <block id="09dab3d2a691293c3dd6f1c6546b4b6d" category="list-text"><block ref="09dab3d2a691293c3dd6f1c6546b4b6d" category="inline-link-rx"></block></block>
+  <block id="fe78cffb17578c5535cd918b8c6cc0fe" category="section-title">*結論*</block>
+  <block id="91851d105758536762080b3358cd2bf6" category="paragraph">本文件中所述的部署示範如何使用基於 NetApp ASA、ONTAP、SnapMirror active sync 和 SnapCenter 的高可用度、應用程式一致且營運高效的資料保護架構來保護在 VMware 上執行的 SAP HANA 工作負載。</block>
+  <block id="ee667bef8cad03afe7ebab2da5d0549d" category="paragraph">透過使用 SnapMirror 作用中同步與 ONTAP 一致性群組，SAP HANA 儲存設備 Volume 可以在兩個 ONTAP 叢集之間同步複寫，同時保持資料庫資料、日誌及共享 Volume 的寫入順序一致性。這種設計能夠持續存取儲存資源，並在發生儲存設備或站台層級故障事件時支援自動容錯移轉功能。ONTAP Mediator 的整合進一步強化了此解決方案，支援在故障情境下進行自動決策。</block>
+  <block id="2547923e5380ec1dd71a7e5e4dae6506" category="paragraph">SnapCenter 為 SAP HANA 備份與還原作業增加了必要的應用程式感知能力。透過與 SAP HANA 整合的 Snapshot 快照技術備份，SnapCenter 能夠實現快速、極具空間效率且一致的備份，同時簡化排程、保留、監控和複寫工作流程。結合額外的非同步複寫，此解決方案還可在二線系統位置提供更長的備份保留期限及額外的恢復階層。</block>
+  <block id="1098bd9a1cec6cf7975b06485feacda3" category="paragraph">總體而言，此架構為保護業務關鍵型 SAP HANA 系統提供了強大的基礎。它將高可用度、同步複寫、應用程式一致性備份和簡化的作業管理整合至單一整合解決方案中。採用此方案的組織可以提升服務可用度、縮短恢復時間、強化資料保護，並簡化在 VMware 上搭配 NetApp 儲存設備執行的 SAP HANA 環境管理。</block>
+  <block id="6ef226c5f6ed69fe662fb11a36463be2" category="doc">設定 ONTAP ASA R2 系統</block>
+  <block id="1d0367235f2f685aad2197d4aada78aa" category="paragraph">本章介紹如何為 SAP HANA 系統建立必要的 LUN，如何使用 SMas 在作用中/作用中模式下設定複寫，以及如何安裝和設定 ONTAP Mediator。</block>
+  <block id="03064b31a7fddb8f7e5a6c5d2f4bb73e" category="section-title">建立 LUN</block>
+  <block id="27a9c697c0462abc15aa67e7226fb653" category="paragraph">本章介紹如何使用 NetApp ASA R2 儲存系統的 ONTAP System Manager 為 SAP HANA 建立 LUN。</block>
+  <block id="78805a221a988e79ef3f42d7c5bfd418" category="inline-image-macro">影像</block>
+  <block id="49af3fe77f0c9a7c548a517a74a93629" category="list-text">登入 ASA R2 儲存叢集的 ONTAP System Manager + <block ref="a564ebc246c481b290467e8bb87a2a44" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b5aa0c4133ec897a794602a585b36fe5" category="list-text">儀表板將顯示 + <block ref="c63555260df659828d17c202b3d2410b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="239afca3665bf697016e258c690ce093" category="list-text">在左側選單中選擇「Hosts」，然後點擊「+ Add」<block ref="cc09412068709cd8316075261508ac39" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b9ee30b1dd0cd24dfd7ec575d6fa9495" category="list-text">為您的 VMware ESXi 主機命名，勾選「新主機」選項，並可選擇性地選取「配置主機鄰近性」。選擇或提供叢集中 ESXi 主機的 HBA 的全球連接埠名稱 （WWPN），並根據需要設定鄰近性。+ 點選「新增」。+ <block ref="c8cf70bc46d50075b1acaa3bc4f67578" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2a084f826ef611f1786b795a6d639378" category="list-text">主機已成功定義。+ <block ref="8faba9d758bfeb4851d28d4cc8d422bb" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0248dee0e877ddc46465157450c373f9" category="list-text">從左側選單中選擇「Storage」，然後按一下「+Add」+<block ref="8670c3f7abdf5d1d9b3b925b7c8cd9aa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="581062a75d035114e5fee20245a7332b" category="list-text">為 SAP HANA 資料 Volume 建立資料儲存 LUN + <block ref="9fea340829703d864fe9b194854410d2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ba529526f2d4e4495e096b4d37da84ea" category="list-text">為 SAP HANA 日誌 Volume 建立資料儲存 LUN + <block ref="cfc27d900f1dbf43f5d9671f5019464c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cc92d506da40a89dcb055de2b496ae23" category="list-text">為 SAP HANA 共享 Volume 建立資料儲存 LUN + <block ref="6f57e3193e693a32d941c6c6f38399ac" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6a8d82c66a2c2040d07a08507b8d5318" category="list-text">為 SAP HANA OS + <block ref="5b5cf6f3a2764d856816739804eff6d3" category="inline-image-macro-rx" type="image"></block> 建立資料存放區 LUN</block>
+  <block id="075af1e536ea049c1e71c4e1ed5d2c96" category="list-text">所有不同資料儲存所需的 LUN 均已建立 + <block ref="67eb4ce134f5cc2bf103907dba06cc38" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="73d24cb4a28260161e654504cb2a0362" category="section-title">設定複寫</block>
+  <block id="a60363650af2fd975a5cd2fa0559c21b" category="paragraph">LUN 建立完成後，將設定使用對稱作用中/作用中模式的 SMAs 複寫，並將非同步 SnapVault/SnapMirror 複寫作為備份目的地。非同步複寫為選用項目，但可將額外的備份儲存在第三方儲存系統中，以延長儲存時間。</block>
+  <block id="41f13e57b1bd9346d946fcc02df52005" category="list-text">在 ONTAP System Manager 的左側選單中，選擇「Protection」下的「Consistency groups」，然後點選「+ add」新增一個新的一致性群組「Using existing storage units」。<block ref="831f3dc47f17064a476048e76f9832f2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="65ebf5e22116f82050e8cbfd51716f2e" category="list-text">為 SAP HANA 儲存設備單元所使用的一致性群組命名，選擇「SAP HANA」作為複寫類型，並選擇資料、日誌和共享的儲存設備單元。+ 選取「複製到遠端叢集」，選擇所需的遠端叢集和 SVM。選擇「AutomatedFailOverDuplex」以設定 SMAS 作用中/作用中。選取複寫主機。可選擇性地定義鄰近性設定。+ <block ref="254ba68ce8035ebfc89cb847e76a2c7a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="655214ffa106c7bd72cb7a1fe51a8a10" category="list-text">對用於儲存虛擬機器檔案的資料儲存區的儲存單元重複上述步驟。+ <block ref="6cccfd74f9122389d77f13d250ffecd6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b3fb73361c577a5a862c9edee2f292ab" category="list-text">已成功建立具有 SMAS 保護的一致性群組 + <block ref="560bd30320e64f8aba3e41145c395da5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b6f00900eff413d0daa60396ed59ec2e" category="list-text">此外，為了備份目的，請建立非同步複寫。在 SAP HANA 資料庫的一致性群組的內容功能表中選擇「Protect」。+ <block ref="902453208590755f958fee14d40eb2f8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fcddab5787721038f6ed43fa648975a3" category="list-text">選取「複寫到另一個叢集」核取方塊，選擇所需的遠端叢集和 SVM，然後選擇複寫原則「MirrorAndVault」。+ <block ref="48f3be4cd6ce943104f6b176e56fa844" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4ff4530238c3b86bf56d455f47a343d2" category="list-text">已為 SAP HANA 資料庫設定非同步複寫。如有需要，請對虛擬機器的作業系統資料儲存 LUN 重複上述步驟。+ <block ref="560bd30320e64f8aba3e41145c395da5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="58dc7db50a2e11a9de9e6cc092c59d4d" category="section-title">ONTAP Mediator</block>
+  <block id="8c7d9934923440d32e3aea8417ebbc9e" category="paragraph">按照<block ref="35d5a9f750185b7cab70b9abe8245cda" category="inline-link-rx"></block>指南安裝 ONTAP Mediator。+ 對於 SMas，僅使用 HTTPS 選項即可。+ 安裝完成後，複製憑證檔案 _/opt/netapp/lib/ontap++_++mediator/ontap++_++mediator/server++_++config/intermediate.crt_ 的內容。</block>
+  <block id="124a2cc25d0f38f3fc2b66a306c4ed57" category="paragraph">在 ONTAP 叢集中設定 Mediator：</block>
+  <block id="36f8f65bad82d5e578f78b6abcf44728" category="list-text">登入 ONTAP System Manager，導覽至「Protection」-&gt;「Overview」，然後選擇「Add a mediator」 <block ref="40c796b4c54574fbdb1033d55cd1797d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="10b7700e50a46ca2a822c93fbc4a7a9c" category="list-text">提供先前安裝的中介器資訊。將憑證檔案的內容貼到憑證區段。按下新增。<block ref="354698b2518e0fc77ccbc6affcfaacc1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c938d7b85b77ea8d0b274915924e888d" category="list-text">ONTAP Mediator 已成功新增。<block ref="a2735e9c7cebd865efce016a8b2a9b9b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ee97e4a2e2ba5101bcd5e8aa23751512" category="doc">在 NetApp ASA R2 上使用 VMware VMFS 與 SnapMirror 作用中同步並透過 SnapCenter 進行 SAP HANA 資料保護</block>
+  <block id="dca0084024c5c7d21c8c94632bf6673d" category="paragraph">本文件概述了在 VMware 上執行的 HANA 系統使用 SnapCenter 進行資料保護的最佳實務，這些系統使用 VMFS 資料儲存區和儲存於 NetApp ASAr2 系統上的 LUN，並採用對稱主動/主動組態的 SnapMirror 主動同步。本文件提供解決方案架構總覽、所需的軟體版本以及預期對象。此外，本文件也說明 SnapCenter 與 SAP HANA 和 ONTAP 的整合，以實現應用程式一致的備份與還原作業。</block>
+  <block id="66611a6abb4befd1c7c171317e51a520" category="paragraph">SAP HANA 是業務關鍵型平台，需要高可用度的、具有恢復能力的且應用程式一致的資料保護。對於生產環境的 SAP HANA，儲存可用度和還原/恢復能力必須經過精心設計，以將停機時間降至最低、防範故障，並支援從邏輯或操作問題中快速恢復。</block>
+  <block id="53d847de004cd6f9c904cfa31fe42fe5" category="paragraph">此文件說明在 VMware vSphere 環境中，使用 **NetApp SnapCenter**、**NetApp SnapMirror active sync** 和 **NetApp ASA 儲存系統**實作 SAP HANA 資料保護。此解決方案是以**對稱式主動/主動架構**為基礎，其中 SAP HANA 儲存設備會使用 SnapMirror active sync 在兩個 ONTAP 儲存叢集之間進行同步複寫。此組態可讓主機從兩個站台持續存取複寫的儲存設備，並支援高可用度案例的自動容錯移轉。</block>
+  <block id="d92305fabc3196486db270724d0da678" category="paragraph">本文件著重說明如何設定以 LUN 形式呈現給 VMware ESXi 主機的 SAP HANA 儲存設備 Volume、如何為 SAP HANA 系統建立 VMFS 資料存放區，以及如何將 SAP HANA 資料庫整合至 SnapCenter 以執行應用程式一致的備份與還原作業。</block>
+  <block id="e3d5affaa1de885da64636ba32e51cd8" category="section-title">目標對象</block>
+  <block id="df5c10235bb23b85c2f7609b52ce5934" category="paragraph">本文件的對象為負責在 NetApp 儲存設備上設計、部署和保護 SAP HANA 環境的儲存設備管理員、VMware 管理員、SAP Basis 管理員和基礎架構架構師。</block>
+  <block id="911890e3f2bc013eaa5449115e755f9f" category="paragraph">讀者應具備以下方面的基本知識：</block>
+  <block id="03c1fb69ab838611f3d5feba9d400d1f" category="list-text">SAP HANA 管理。</block>
+  <block id="dca9761bcc0e39157ed504fe81b0a38d" category="list-text">VMware vSphere 和 VMFS 資料儲存管理。</block>
+  <block id="aab895cf6833c12f31a2489a5b8f4365" category="list-text">ONTAP System Manager。</block>
+  <block id="7dfd6cd800a88d1b7eacdc892a63625c" category="list-text">SAN 概念，例如 LUN、啟動器、WWPN 和主機對映。</block>
+  <block id="951226382c359231fd8e36c20274ddb3" category="list-text">NetApp SnapMirror、SnapVault 以及一致性群組。</block>
+  <block id="12b8a1329a66061b9016d9c2007998d6" category="list-text">NetApp SnapCenter 備份與還原概念。</block>
+  <block id="cb2418c01859c7704da751aa5a7d2421" category="section-title">解決方案總覽</block>
+  <block id="5ca114ed947e441f4e9aeaa42c00fa9d" category="paragraph">此解決方案結合了以下 NetApp 和 VMware 技術：</block>
+  <block id="6bceeafcdcbf257f6d6fbc778a3b21f4" category="list-text">**NetApp ASA 儲存系統**，適用於基於 SAN 的區塊儲存設備存取。</block>
+  <block id="c390d1c9ce1f6b4e363e0a4e9aa052f2" category="list-text">**ONTAP 一致性群組**，將 SAP HANA 相關儲存設備單元作為單一受保護實體進行管理。</block>
+  <block id="910cc67984f75dafe1724229132776b0" category="list-text">**SnapMirror active sync** 採用 **AutomatedFailOverDuplex** 模式，提供對稱作用中/作用中同步複寫。</block>
+  <block id="fcfb92235ddd93e1cf6a90e171f1eeaf" category="list-text">ONTAP Mediator 的設定與組態</block>
+  <block id="119bac7efbcd5f6adedacc6674535a77" category="list-text">**VMware vSphere 和 VMFS 資料儲存**，用於託管 SAP HANA 虛擬機器及其資料、日誌、共享的和作業系統磁碟。</block>
+  <block id="cc35a5103ae8d0d511f5d5b22ab2cc14" category="list-text">**NetApp SnapCenter Server、SnapCenter Agent 和適用於 SAP HANA 和 VMware vSphere 的外掛**，用於建立應用程式一致的 Snapshot 快照技術備份。</block>
+  <block id="d486c3699fa86f03e4141e6b9c7df2cb" category="list-text">**SnapMirror 和 SnapVault 複寫**，可將額外的非同步備份複寫至二線系統。</block>
+  <block id="aecb9b410d4069074bd86b1d0b926525" category="paragraph">在此架構中，為 SAP HANA 資料、日誌、共享的和作業系統 Volume 建立專用的 LUN。這些 LUN 會對應到 VMware ESXi 主機，並用於建立 VMFS 資料儲存區。然後，SAP HANA 虛擬機器使用位於對應資料儲存區上的分隔虛擬磁碟。</block>
+  <block id="e34dd430276459b2dd759af22b28a375" category="paragraph"><block ref="e34dd430276459b2dd759af22b28a375" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d1c48871298d3c13e02610afb307b741" category="paragraph">SAP HANA 資料、日誌和共享儲存設備單元被分組到 ONTAP 一致性群組中，並使用 SnapMirror 作用中同步進行保護。這可確保 SAP HANA 儲存配置在參與的 ONTAP 叢集之間保持一致複寫。此外，作業系統資料儲存也可以使用相同的方法進行保護。</block>
+  <block id="13eba10c2d3b049890d3cfc820828bff" category="section-title">適用於 SAP HANA 的 SnapMirror Active Sync</block>
+  <block id="10e4311da8f9af4f99edf4d70196e9b6" category="paragraph">SnapMirror active sync （SMas）透過在兩個 ONTAP 叢集之間同步複寫資料來確保業務連續性。在對稱作用中/作用中組態中，兩個儲存設備站台都可以對複寫的 LUN 提供作用中存取。即使一個儲存系統或站台無法使用，VMware 和 SAP HANA 環境也能繼續運作。</block>
+  <block id="75cfae50428a32fbad85c8200422a8a6" category="paragraph">對於 SAP HANA 工作負載，這帶來了以下好處：</block>
+  <block id="471e4b50b9e4938a1b1892385fd697d2" category="list-text">SAP HANA 儲存設備的同步複寫。</block>
+  <block id="f1944f5eb000b70186aa89e80fbd89e5" category="list-text">使用 ONTAP 一致性群組進行應用程式一致性保護。</block>
+  <block id="03263a879faa1bafe510ff3022134eea" category="list-text">使用 SnapMirror 主動同步實現自動容錯移轉。</block>
+  <block id="b7278ecafb1ad2c3c6f25e932737f66b" category="list-text">SAN 連線的 VMware ESXi 主機的作用中/作用中存取路徑。</block>
+  <block id="53c906648c66ebbf4f48f69c5ad1d0c9" category="list-text">縮短儲存設備或站台故障事件的恢復時間。</block>
+  <block id="36382207aa1cb5b82455d52e6e19ed18" category="list-text">使用 ONTAP System Manager 和 SnapCenter 簡化管理。</block>
+  <block id="b079fbb4825e283e0760102e06794766" category="paragraph">本文件中的組態使用 **AutomatedFailOverDuplex** 原則來啟用 SnapMirror 作用中同步作用中/作用中行為。</block>
+  <block id="0e48d18408dae0153f47bf502e27bd8a" category="paragraph"><block ref="0e48d18408dae0153f47bf502e27bd8a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7c5f56ba7fa4902319890f377dd25764" category="section-title">SnapCenter 整合</block>
+  <block id="1ab1401356adcfb0dca4239db271d0eb" category="paragraph">SnapCenter 用於管理 SAP HANA 應用程式一致性備份。SAP HANA 系統部署完成後，系統會在 SAP HANA 主機上安裝 SnapCenter Plug-in for SAP HANA。系統會建立一個專用的 SAP HANA 資料庫使用者和安全的使用者儲存金鑰，以便 SnapCenter 與 SAP HANA 資料庫通訊。</block>
+  <block id="7e481d3ef215a79685b62ddc2453de48" category="paragraph">SnapCenter 備份原則隨後根據不同的保護需求進行設定。例如，每小時原則可用於頻繁建立本機 Snapshot 複本及 SnapMirror 主動同步感知，而每日原則可用於更新非同步 SnapVault 或 MirrorAndVault 目的地，以實現較長期的備份保留。</block>
+  <block id="ab365fc7a8e83c8a7b6954bb63a16a48" category="paragraph">透過將 SnapCenter 與 SAP HANA 和 ONTAP 整合，此解決方案提供：</block>
+  <block id="1d92320f05cc85f63922863778300dcf" category="list-text">與應用程式一致的 SAP HANA Snapshot 快照技術備份。</block>
+  <block id="8320fe243ca6a01e04433205c71b956a" category="list-text">以原則為基礎的備份排程。</block>
+  <block id="232007b8c35ddd8cc13e5f1ea8c74ec7" category="list-text">Snapshot 快照技術和日誌備份保留管理。</block>
+  <block id="d775ee631663b978c9441eef03dd5390" category="list-text">SnapMirror 和 SnapVault 更新協調。</block>
+  <block id="e1d26b5c9b584dd65fe8cc19d0dadc9f" category="list-text">集中式備份監控與管理。</block>
+  <block id="da88a84c7a66f5b59905278c40cf1947" category="list-text">簡化還原與恢復工作流程。</block>
+  <block id="ec6a0cac38f9c0c484d05072b7a45563" category="paragraph"><block ref="ec6a0cac38f9c0c484d05072b7a45563" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c697e32bc3cb02bd14ee52c39a3e763d" category="section-title">文件範圍</block>
+  <block id="0fb569dc08e03ce65136b3612b11d0fa" category="paragraph">本文件提供了以下任務的逐步組態範例：</block>
+  <block id="62d7582bdeac73fd15e9f68667a34036" category="list-text">在 NetApp ASA 儲存設備上建立 LUN。</block>
+  <block id="41c7e442fa869dec8368f41ed66d1c4c" category="list-text">設定 VMware ESXi 主機的主機存取。</block>
+  <block id="1a8906b4b3e2d7834a71497c32c5e965" category="list-text">建立 ONTAP 一致性群組。</block>
+  <block id="465b2373757d4c1bcc405fd67fccc0e8" category="list-text">在作用中/作用中模式下啟用 SnapMirror 作用中同步。</block>
+  <block id="752695dfbf1c9ab3c2a7f5e66d4a03ab" category="list-text">ONTAP Mediator 的安裝與組態設定</block>
+  <block id="6a381eb8f90098444b30f4df9447d518" category="list-text">設定額外的非同步複寫以用於備份。</block>
+  <block id="c128e9f7d6f4827946041627b4934aa9" category="list-text">建立 VMware VMFS 資料儲存。</block>
+  <block id="9a678414995bb363e333a7549c6f4000" category="list-text">部署 SAP HANA 虛擬機器。</block>
+  <block id="08d0186cbe1848cc2451611131aa3142" category="list-text">安裝作業系統和 SAP HANA。</block>
+  <block id="1357eab159d85999ef7bec910be9334c" category="list-text">將 ONTAP 儲存系統新增至 SnapCenter。</block>
+  <block id="ab7ed23f044525be4a4c24d30c9a1573" category="list-text">建立 SnapCenter 備份原則。</block>
+  <block id="8c6fcea39bf41f9fc2ccf7126642d1d5" category="list-text">為 SAP HANA 資料庫建立 SnapCenter 使用者。</block>
+  <block id="a0195a6f8aa9fc6d95fcf7679afdcb97" category="list-text">設定 SAP HANA 安全的使用者儲存金鑰。</block>
+  <block id="5462b0ac318e98fce063f6e34bb61862" category="list-text">在 SnapCenter 中註冊 SAP HANA 系統。</block>
+  <block id="bf91792c98add25d1a708a8a8173d2eb" category="list-text">安排和執行 SAP HANA 備份。</block>
+  <block id="5e13d94c242d68563ba195c1827125e5" category="paragraph">這些程序旨在作為實作指南，應根據具體的客戶環境、命名標準、網路設計、儲存配置和 SAP 規模要求進行調整。</block>
+  <block id="b42b3ff183e07fca9f9a617d9238708e" category="section-title">架構概要</block>
+  <block id="89f12eeac190ca13527cf3f2f741731b" category="paragraph">從高層級來看，此解決方案由兩個使用 ASA 儲存設備的 NetApp ONTAP 叢集組成，並透過 SAN 連接至 VMware ESXi 主機。SAP HANA 在 VMware 虛擬機器中執行。SAP HANA 作業系統、資料 Volume、日誌 Volume 及共享的 Volume 分別使用獨立的資料儲存區。</block>
+  <block id="dd25355910adbcc579caf6274b5f2012" category="paragraph">SAP HANA 相關儲存設備單元受到 SnapMirror active sync 的保護，透過 ONTAP 一致性群組實現。這可確保資料、日誌和共享的 Volume 一起複寫，並保持寫入順序一致。SnapCenter 接著用於建立 SAP HANA 感知備份，並觸發所需的 ONTAP Snapshot 快照技術和複寫作業。</block>
+  <block id="80e38b309301df7e87a0d67d86e8e1da" category="paragraph">此組合為在 VMware 上執行的 SAP HANA 工作負載提供高可用度且高效運作的資料保護解決方案，搭配 NetApp ASA 儲存設備。</block>
+  <block id="08d773c9bd5ebfad8fd2724837fc2ca0" category="doc">SnapCenter 備份與恢復和 SAP HANA 系統複製</block>
+  <block id="348c82a22029addb8c8cb589c3edcb5f" category="paragraph">NetApp SnapCenter 優化 SAP HANA 生命週期任務，如備份與恢復和 SAP HANA 系統複製，並整合到 SAP HANA 資料庫和生命週期管理工具中，將高效的應用程式整合式資料保護與 SAP 測試系統的靈活佈建相結合，如下圖所示。</block>
+  <block id="82008eac4232b868f2d6f40dd8c9b82d" category="paragraph"><block ref="82008eac4232b868f2d6f40dd8c9b82d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b0b65d35d3bff068908460a71f617d9e" category="paragraph">本章提供有關 SnapCenter 備份與恢復及 SAP HANA 系統複製作業的更多資訊的查找位置。</block>
+  <block id="9fa83b367c23a5d2579b5aebdddebe77" category="doc">SnapCenter 組態</block>
+  <block id="1854186903743d4f4d248bd12407f3ae" category="paragraph">本章介紹如何設定 SnapCenter 以進行 SAP HANA 備份：</block>
+  <block id="46b824c7c4369c4a9ae4c8638ec36f9c" category="list-text">將 NetApp ASA 儲存叢集新增至 SnapCenter</block>
+  <block id="914dc2326b1ae59767d41031bdfeb94e" category="list-text">建立 SAP HANA 備份原則</block>
+  <block id="34e89c6254d3a5c1dea28b3e56456e8b" category="list-text">為 SnapCenter 建立資料庫使用者</block>
+  <block id="0469d4bb6b3af79c3a96cbc66bead855" category="list-text">在 SnapCenter 註冊 SAP HANA 主機</block>
+  <block id="282be0648016bb5aa105661cdd8e9d4c" category="list-text">在 SnapCenter 設定 SAP HANA 執行個體</block>
+  <block id="74f09769ccf3e4d5bc0f21d7fe86a205" category="section-title">將儲存叢集新增至 SnapCenter</block>
+  <block id="fe9e58ace9b3d537dff53c050d91e6cf" category="paragraph">將 NetApp ASA 儲存叢集新增至 SnapCenter。</block>
+  <block id="8b596bc99cdd8b851e10b58297c1086b" category="admonition">管理與監控 SnapMirror active sync 需要 REST API 存取。因此，必須將 SnapCenter 設定為使用 REST API 進行儲存設備通訊。組態檔案 + C:++\++Program Files++\++NetApp++\++SMCore++\++SMCoreServiceHost.dll.config 中的參數「IsRestEnabledForStorageConnection」必須設定為 true：+ _++&lt;++add key="IsRestEnabledForStorageConnection" value="true"++&gt;++_</block>
+  <block id="dd802ed2b0457bb4b5fe0bdcbddc82ba" category="list-text">登入 SnapCenter 圖形使用者介面。+ <block ref="86855db9da6aa7b80fd705de81872f7d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f33fd58713f8ead43f14af870dbc3169" category="list-text">在左側選單中選擇「儲存系統」。+ <block ref="0925e9ce517dda2a7c20c1a09090963c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="87123c6e08fe72c7ed0b462934fceb11" category="list-text">選擇「ONTAP Clusters」作為類型 + <block ref="614b7bee426e0ad3f092d60253cb3731" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="13c83558306f47643a1f15645164aab5" category="list-text">按下「New」新增您的儲存系統 + <block ref="90d7949f69214d8518a1ada0824abb12" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d7b27c74933fc2d751b419d32792d594" category="list-text">請提供您的系統連線詳情，然後點擊「提交」。+ <block ref="81fc255ed1e892e99dd42a29d89451db" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3a460c5621132b4a50645d636f1ea496" category="list-text">儲存系統已成功新增。+ <block ref="d12986f2f61cf8418cfce066c25fdcd7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dcea74556581eb03762768696c267151" category="admonition">即使叢集已整體新增，所有受管理的 SVM 也需要指派一個管理 IP 位址。否則，不同的工作流程將會失敗。</block>
+  <block id="3be03b2422b815c60447d85c760efbed" category="paragraph">注意：認證資料必須在主機新增工作流程中設定，其中 vSphere 可選擇作為主機類型。</block>
+  <block id="4bff457593c6787b76460497fb112473" category="inline-image-macro">說明所討論內容的圖表，width=604,height=307</block>
+  <block id="083c6a070912db8671efcc4eecc5080c" category="paragraph"><block ref="083c6a070912db8671efcc4eecc5080c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5ed21db3cc9fe81e1b7243d4f6a53ba1" category="section-title">建立 SAP HANA 備份原則</block>
+  <block id="763b6fd661c5a75371627b3e71b886ae" category="paragraph">本章介紹如何使用 SMas 為 SAP HANA 定義備份原則，以實現同步複寫，並使用 SnapVault/SnapMirror 進行備份。</block>
+  <block id="c266c41a55a145563550c276e465d0f7" category="list-text">在左側選單中選擇「Settings」，然後選擇「Policies」標籤。點選「加號」以新增原則 <block ref="ec27781f912a66fd9cd8b8a2562f66e2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c0737b1139ec5b6230af8787f3ede59b" category="list-text">請為新原則命名，例如 SMAS HANA – Hourly，並可視需要新增詳細資訊。按「Next」繼續。<block ref="3625b8bb975696a40f9ffe94952217af" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="555c4259b957036ef57241f5c5a3dd5b" category="list-text">保持預設設定，然後按「下一步」繼續。<block ref="2d09852e535e22409dc0e834a77ba20b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9cfe5f5922612466d3fe3700574e4874" category="list-text">選擇「每小時」作為排程頻率，設定要保留的 Snapshot 複本數量或時間，並選擇「建立本機 Snapshot 複本後更新 SnapMirror」，這樣 SnapCenter 也可以在 SMaS 目的地探索 Snapshot 複本。按「下一步」。<block ref="4f7b344db73989a6383f3fcc70a6f33f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d96da70f878af0d4a5433e5151f236c0" category="list-text">檢查摘要並按完成鍵以建立新原則。<block ref="17c54f55c770176bf83f3193003c9637" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="16e8e2b71a69cd7094e7b94b5e320736" category="list-text">在建立 SnapMirror Active Sync 複寫的每小時原則後，使用 SnapVault 建立額外的每日備份複寫原則。<block ref="62fb80b416112dc7e426774cff5cd497" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="50ae0ca1064851ce6e4fbe5d6af69a42" category="list-text">請為新原則命名，例如 SMAS HANA – Daily，並可視需要新增詳細資訊。按「下一步」繼續。<block ref="93467d250543eeed5c63bc5f96100f5d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1ab805888c093ba07ba659b7337f7f31" category="list-text">選擇「每日」作為排程頻率，並定義 Snapshot 複本的保留數量或時間。選擇「建立本機 Snapshot 複本後更新 SnapVault」。按「下一步」繼續。<block ref="265ab7dc9b3deca12302871d5de19bd8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="91b40ae20ac23711c15aea876df89f5f" category="list-text">查看摘要並按完成鍵<block ref="c30b0bf26b8ec458124dbbc8930ee642" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1304f501de39e857f9794ba10c13327f" category="list-text">已定義每日和每小時備份原則。如有需要，可建立具有不同排程類型的其他原則。<block ref="ef11b73efd0add3c0593c9a537a12a94" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f1f93b2ca4ee61b8f3a82da05ad67787" category="section-title">在 SAP HANA 執行個體上建立 SnapCenter 使用者</block>
+  <block id="99f8ad80b7e5ecd85f7f3a9c0ea5fad0" category="paragraph">SnapCenter 需要與 SAP HANA 執行個體通訊，才能建立一致的備份。因此，需要在資料庫中為 SnapCenter 建立使用者：</block>
+  <block id="9c784a51f3c625e4ac0fbda8c8886548" category="list-text">登入伺服器 shell 並切換到使用者 SIDadm。+ 並連接到 SAP HANA 系統的 systemdb：+ _hdbsql -i ++&lt;++instance++_++number++&gt;++ -d SYSTEMDB -u SYSTEM_</block>
+  <block id="e03758c57679e180b97b05257426c822" category="list-text">建立使用者並指派 BACKUP ADMIN、CATALOG READ、DATABASE BACKUPADMIN 和 DATABASE RECOVERY OPERATOR 權限： + + __CREATE USER SNAPCENTER PASSWORD "++&lt;++InitialPassword++&gt;++" + NO FORCE++_++FIRST++_++PASSWORD++_++CHANGE; + ALTER USER SNAPCENTER2 DISABLE PASSWORD LIFETIME; + GRANT BACKUP ADMIN TO SNAPCENTER; + GRANT CATALOG READ TO SNAPCENTER; + GRANT DATABASE BACKUP ADMIN TO SNAPCENTER; + GRANT DATABASE RECOVERY OPERATOR TO SNAPCENTER;__</block>
+  <block id="641f25b2b87432ee5af6823af51bd629" category="list-text">SnapCenter 的使用者已成功建立。</block>
+  <block id="a36fc5fbe56df58a93db689d29147cb2" category="list-text">建立 hdbuserstore 金鑰 + 登入伺服器 shell 並切換到使用者 SIDadm。+ 執行下列命令建立 SnapCenter 稍後使用的金鑰： + _hdbuserstore set ++&lt;++SIDKEY++&gt;++ ++&lt;++hana-server++&gt;++:3++&lt;++instance-number++&gt;++13 ++&lt;++USER++&gt;++ ++&lt;++password++&gt;++_</block>
+  <block id="8f118c5932602bf7e6f4387cf353686b" category="section-title">在 SnapCenter 註冊 SAP HANA 執行個體</block>
+  <block id="bdd81eafbbe51fc0fe6b0e0761fb4c19" category="paragraph">一旦為 SnapCenter 建立資料庫使用者後，SAP HANA 執行個體將會新增至 SnapCenter。</block>
+  <block id="125ae8b152d4572d6335eec44a9b067f" category="list-text">透過 SnapCenter 圖形使用者介面登入 + <block ref="65adfe632daf99b45b315b867f6d5f9f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a5a179be41588f1f4b7105463b95b6e8" category="list-text">在側邊選單中選擇「Hosts」，然後按一下「Add」按鈕（加號）。+ <block ref="f241bda90daa12819d8bd6c1dc95e34d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="46dd9ffafd78ff3a1a43b8aec3629fbb" category="list-text">選擇「Linux」作為「主機類型」，提供主機的主機名稱或 IP 位址以及 SAP HANA 系統的 SID。選擇已有的認證資料，或按一下「認證資料」旁的加號建立新認證資料。選擇「SAP HANA」作為要安裝的外掛程式。+ <block ref="9a344da3d9b1d1e4231af31046619e21" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0df9d58ba0c1704a0588eb1d1a292fd4" category="list-text">如果要建立新認證資料，請提供所需資訊並按「確定」。<block ref="52e7e4b3a0335f387f5647f769b77d1e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="09c9df5762df9aad2563eafb25376418" category="list-text">選擇認證資料後，按「提交」。</block>
+  <block id="3c7b8b8effe45fe85592839f4b6e3f61" category="list-text">請檢查指紋，然後點選「確認並提交」按鈕。+ <block ref="d8c15c67287126660f7c5e84a5a28a6b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="27b09199026ac8222938af75726eb484" category="list-text">主機已成功新增至 SnapCenter。+ <block ref="5c5d4654a5434a36d6ada0262fc10059" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a4020f0d4cd47ffabc38a6051a2a064e" category="paragraph">將資料庫主機新增至 SnapCenter 後，即可設定 SAP HANA 執行個體的備份。</block>
+  <block id="5ee469d30231abe1a118b81fdbc29e07" category="list-text">在左側選單中選擇資源，然後選擇 SAP HANA 作為 Resource + <block ref="ec9fc2dcad1729e772ad5b639f5b080e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1598dff75f8bf07f364a2d6ea5e595b2" category="list-text">將檢視變更為您的系統類型，例如「Multitenant Database Container」，然後按一下您的資料庫所在行 + <block ref="b8ca34d6352146fac1f61bd12fc12f07" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f6493eeb71e0f8e99cb4c5a5d2a5513b" category="list-text">輸入先前建立的 HDB Secure User Store 金鑰，然後按「確定」。+ <block ref="a0a97baa56f7ba6973f19b3833e35734" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d67f9f6f419ed583a71471a7543ff00a" category="list-text">定義您所需的 Snapshot 複本名稱，然後按「下一步」。+ <block ref="88e0753f95cb13913e4c4729d048dccf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5d6771ef1b441fae3875f4775e8513b3" category="list-text">按「Next」，對於自動探索的系統，通常無需進行任何設定。<block ref="bf0e6e14b2162e19288baa76c5f50374" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="51ba5aa70436a40ecbd24f9c57bb4333" category="list-text">選擇或建立並選擇您所需的原則，例如一個每日原則和一個每小時原則。按加號以設定排程 + <block ref="c1c244b1b0b4a0077d0bcbf904149bc7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f4f47bf8d3a57bd00811461d7b8197fa" category="list-text">設定每日原則的開始資料和時間以及到期日期（可選），然後按確定。+ <block ref="f1753281317e398575c6b50a7ef5ee85" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1a141f822c39d2669312e8201990b81b" category="list-text">點選加號以設定每小時原則。+ <block ref="2ef97eb9f867a428c49e11babe6e515a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4b7f3d3b71ba644693e908b4abdc81de" category="list-text">設定每小時原則的開始資料和時間及到期日期（選用），然後按「確定」+<block ref="62e59dae363f1743492721b4b96472e1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d0e3ef11d5e23df8b8725210c7f3b73b" category="list-text">按「下一步」繼續 + <block ref="aed763af8b77687f430eb3f237be73a2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2096ed367d122a2525d06ddf7973bf95" category="list-text">根據需要設定通知，然後按「下一步」，+<block ref="266bd96a1b96aaa23aea99d917362e1f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="52173d7e45e84db17ae09b055969a390" category="list-text">查看設定總結，然後點選「完成」。+ <block ref="a4d75ccf6b0f04d96a8f5fedd4726a5a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5887f90ef5e439706ac2beeed717efac" category="list-text">備份成功完成後，您將看到現有備份的總覽。+ <block ref="42405fd0916a9cc10c110860a539115a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f94d29017824345cd2f4bcbfc8720437" category="doc">VMware 組態資料存放區與虛擬機器建立</block>
+  <block id="32e3d8108d5071864cc45a59878959ce" category="paragraph">使用先前為 SAP HANA 虛擬機器建立的 LUN 建立資料存放區，然後使用這些資料存放區建立虛擬機器。</block>
+  <block id="5e573b170f81d43676493085b8f1bd36" category="paragraph">每個 LUN 將用於一個資料存放區，因此將建立用於資料、日誌、共享的和作業系統的資料存放區。</block>
+  <block id="25bf973bb4100a0a1387eda5e6e91dd4" category="section-title">建立資料存放區</block>
+  <block id="b72bab0d51f15fc24d9d1a497efa826b" category="list-text">登入 vSphere 用戶端並導覽至資料存放區索引標籤。從資料中心的內容功能表中選擇「Storage」-++&gt;++ 「New Datastore……」 <block ref="1f2d810ec9de709cc4c593ae1ee934e8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="30e050270c7a51e03c2af3828939bc92" category="list-text">選取 "VMFS" 作為資料儲存類型。+ <block ref="d502500d48337d5cc56a3b9e62af6a8c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="35bd26fe4e038e709485401bcae9d629" category="list-text">指定包含 SAP HANA 資料檔案的資料存放區名稱，並選擇先前建立的儲存單元 (LUN)。+ <block ref="55dde8afad61cf935461bf312b91a1e1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="df008920045dd5d0445e0fc069aec4b5" category="list-text">選擇最新的 VMFS 版本。+ <block ref="25587001d6502fd03c47ec29f27b819e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e4d691cd1307cffa0fe7b5cc1b19b023" category="list-text">使用分區的所有可用空間。保留預設設定。+ <block ref="b349dc2b453dfac776fa7c97ae90cc40" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fd2470cc5f9b4945369c28b3c7803578" category="list-text">查看總結並點選「完成」。+ <block ref="67d5c28fadf19d35d877af3a393d7ec2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f1e75a48c7b1cf4b64769411eaeab6e1" category="list-text">對日誌、共享的和作業系統的資料存放區重複上述步驟。+ <block ref="ae6fc26f5171555af67b51f501e8c7aa" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3675593b72283ffd6dc6aaee9d013d2d" category="section-title">建立虛擬機器</block>
+  <block id="97a465f634bdfeee8508b9df66bfd5c5" category="list-text">所有資料儲存建立完成後，導覽至「虛擬機器和範本」標籤。從資料中心的上下文選單中選擇「新虛擬機器……」。+ <block ref="44fc72402c6778a4034c21039c20b1b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="502579feba8b1d57f038af36d580bdb4" category="list-text">選擇建立虛擬機器的方式。本範例使用「建立新虛擬機器」工作流程。+ <block ref="94f1824373fe76ed97f74741f684845f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f8a2137b1f1d8e43ddd5e383ca23717a" category="list-text">請提供虛擬機器名稱並選擇您的資料中心。+ <block ref="eb2c547386101af3f415730dc002dfe5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="984dd4a0c92d47b0757daaad8b925110" category="list-text">選擇您的運算硬體 + <block ref="973a82d07132e99c77900f0b3537f8d8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2ac218b8fad01eabd1b64984ffc0d37f" category="list-text">選擇先前建立的作業系統資料儲存。+ <block ref="578f50528f7a55a8b348716c1234bdcf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ee659710e4c504713a72326e1b2b8d50" category="list-text">選擇所需的虛擬機器。+ <block ref="f03842e6258dbd7387d2dee99e3a3d26" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="48775f9a04977b1ab5932ef44c5f46ec" category="list-text">選擇 SAP HANA 系統所使用的作業系統版本。本範例使用 SUSE Linux Enterprise (SLES) 15。+ <block ref="fa6e7034c22c93052528efd75aad135c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="554e825a2087ece7da00e9bc4c15a601" category="list-text">配置虛擬機器所需的 CPU 和記憶體。除了作業系統的硬碟之外，請使用先前建立的資料儲存區新增額外的磁碟，用於資料、日誌和共享的儲存設備。+ <block ref="10402e275b4ff6769c8c2737f6d625c9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3901d00444e0194f4d4af34c2e1a45f0" category="list-text">將作業系統安裝所需的 ISO 檔案作為 DVD 磁碟機掛載，並勾選「開機時連接」。+ <block ref="171b05dc6ad80f92c58fbe7fba437270" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="eee7c877ebc3fb242f8b37f3bbf56c01" category="list-text">在「進階參數」標籤中，新增屬性「disk.EnableUUID」，並將其值設為「True」。這樣可以讓 SnapCenter 稍後探索磁碟詳細資訊。+ <block ref="dc9fb2d27143e354004f1674e2a7ce5f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4bbb94c41b0d845f402841de8b43069a" category="list-text">檢查您的設定，然後按「完成」以建立新的虛擬機器。+ <block ref="92d8291015ca1504cf528298fefafc51" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7577a964f829dec490dee32ab090090a" category="list-text">啟動新虛擬機器。+ <block ref="51726ca684a89a36774f79736812248d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="78dc2e3721b6aa8e16539512960c49ac" category="list-text">連接到控制台並按照 SAP 指南安裝作業系統。+ <block ref="1334dab6357761832df521ab8eacd0d3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3381255d123077021f3f7b9f21125777" category="list-text">作業系統安裝後，再安裝 SAP HANA 系統。使用專用磁碟存放 /hana/data、/hana/log 和 /hana/shared 目錄。</block>
+  <block id="7081b3c929ba02d050803d2a47ff6398" category="inline-link-macro"><block ref="7081b3c929ba02d050803d2a47ff6398" category="inline-link-rx"></block></block>
+  <block id="bec037b0193e8ad67c79bd79b9076dee" category="paragraph"><block ref="bec037b0193e8ad67c79bd79b9076dee" category="inline-link-macro-rx"></block></block>
+  <block id="8b1b108e67f48cabaa5a601a3c881466" category="summary">從 SAP HANA 1.0 SPS10 開始，SAP 引入了參數來調整 IO 行為，並針對所使用的檔案和儲存系統最佳化資料庫。</block>
+  <block id="b79452fa5a06b7ff4261516434074a36" category="section-title">2026年8月12日</block>
+  <block id="e7fce6efbbfa47cad3d6d62bbaf91452" category="paragraph">新解決方案 <block ref="ddc486d09dd6bdaddbb379506389ee5b" category="inline-link-rx"></block>。本文件概述了在 VMware 上執行的 HANA 系統，使用 SnapCenter 進行資料保護的最佳實務，這些系統使用 VMFS 的資料存放區，以及儲存在使用 SnapMirror 作用中同步的 NetApp ASAr2 系統上的 LUN。</block>
+  <block id="ee5bad12c036fd3375e857e834c5b014" category="paragraph">新解決方案<block ref="5d63f7ef6c292c23c51e2512d87ed65d" category="inline-link-rx"></block>提供使用 NetApp SnapCenter 進行 SAP HANA 資料保護的最佳實務，涵蓋在 ONTAP ASA 系統上使用裸機伺服器保護 SAP HANA 系統的 SnapCenter 組態與操作指南。</block>
+  <block id="33213c577fd73208a57eaf90c9296037" category="sidebar">VMware 組態 - 資料存放區與虛擬機器建立</block>
 </blocks>

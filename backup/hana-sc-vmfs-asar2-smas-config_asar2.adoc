@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-smas-config_asar2.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery, SnapMirror active sync, symmetric active-active, NetApp ASA R2 
+summary:  
+---
+= 設定 ONTAP ASA R2 系統
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+[[configuring-ontap-asa-r2-systems]]
+== 設定 ONTAP ASA R2 系統
+
+[role="lead"]
+本章介紹如何為 SAP HANA 系統建立必要的 LUN，如何使用 SMas 在作用中/作用中模式下設定複寫，以及如何安裝和設定 ONTAP Mediator。
+
+
+
+[[creating-luns]]
+=== 建立 LUN
+
+本章介紹如何使用 NetApp ASA R2 儲存系統的 ONTAP System Manager 為 SAP HANA 建立 LUN。
+
+. 登入 ASA R2 儲存叢集的 ONTAP System Manager + image:hana-sc-vmfs-asar2-smas-image-004.jpeg["影像"]
+. 儀表板將顯示 + image:hana-sc-vmfs-asar2-smas-image-005.png["影像"]
+. 在左側選單中選擇「Hosts」，然後點擊「+ Add」image:hana-sc-vmfs-asar2-smas-image-006.png["影像"]
+. 為您的 VMware ESXi 主機命名，勾選「新主機」選項，並可選擇性地選取「配置主機鄰近性」。選擇或提供叢集中 ESXi 主機的 HBA 的全球連接埠名稱 （WWPN），並根據需要設定鄰近性。+ 點選「新增」。+ image:hana-sc-vmfs-asar2-smas-image-007.png["影像"]
+. 主機已成功定義。+ image:hana-sc-vmfs-asar2-smas-image-008.png["影像"]
+. 從左側選單中選擇「Storage」，然後按一下「+Add」+image:hana-sc-vmfs-asar2-smas-image-009.png["影像"]
+. 為 SAP HANA 資料 Volume 建立資料儲存 LUN + image:hana-sc-vmfs-asar2-smas-image-010.png["影像"]
+. 為 SAP HANA 日誌 Volume 建立資料儲存 LUN + image:hana-sc-vmfs-asar2-smas-image-011.png["影像"]
+. 為 SAP HANA 共享 Volume 建立資料儲存 LUN + image:hana-sc-vmfs-asar2-smas-image-012.png["影像"]
+. 為 SAP HANA OS + image:hana-sc-vmfs-asar2-smas-image-013.png["影像"] 建立資料存放區 LUN
+. 所有不同資料儲存所需的 LUN 均已建立 + image:hana-sc-vmfs-asar2-smas-image-014.png["影像"]
+
+
+
+
+[[setting-up-the-replication]]
+=== 設定複寫
+
+LUN 建立完成後，將設定使用對稱作用中/作用中模式的 SMAs 複寫，並將非同步 SnapVault/SnapMirror 複寫作為備份目的地。非同步複寫為選用項目，但可將額外的備份儲存在第三方儲存系統中，以延長儲存時間。
+
+. 在 ONTAP System Manager 的左側選單中，選擇「Protection」下的「Consistency groups」，然後點選「+ add」新增一個新的一致性群組「Using existing storage units」。image:hana-sc-vmfs-asar2-smas-image-015.png["影像"]
+. 為 SAP HANA 儲存設備單元所使用的一致性群組命名，選擇「SAP HANA」作為複寫類型，並選擇資料、日誌和共享的儲存設備單元。+ 選取「複製到遠端叢集」，選擇所需的遠端叢集和 SVM。選擇「AutomatedFailOverDuplex」以設定 SMAS 作用中/作用中。選取複寫主機。可選擇性地定義鄰近性設定。+ image:hana-sc-vmfs-asar2-smas-image-016.png["影像"]
+. 對用於儲存虛擬機器檔案的資料儲存區的儲存單元重複上述步驟。+ image:hana-sc-vmfs-asar2-smas-image-017.png["影像"]
+. 已成功建立具有 SMAS 保護的一致性群組 + image:hana-sc-vmfs-asar2-smas-image-018.png["影像"]
+. 此外，為了備份目的，請建立非同步複寫。在 SAP HANA 資料庫的一致性群組的內容功能表中選擇「Protect」。+ image:hana-sc-vmfs-asar2-smas-image-019.png["影像"]
+. 選取「複寫到另一個叢集」核取方塊，選擇所需的遠端叢集和 SVM，然後選擇複寫原則「MirrorAndVault」。+ image:hana-sc-vmfs-asar2-smas-image-020.png["影像"]
+. 已為 SAP HANA 資料庫設定非同步複寫。如有需要，請對虛擬機器的作業系統資料儲存 LUN 重複上述步驟。+ image:hana-sc-vmfs-asar2-smas-image-018.png["影像"]
+
+
+
+
+[[ontap-mediator]]
+=== ONTAP Mediator
+
+按照 https://docs.netapp.com/us-en/ontap/mediator/#installation-and-upgrade-considerations["安裝或升級 ONTAP Mediator"]指南安裝 ONTAP Mediator。+ 對於 SMas，僅使用 HTTPS 選項即可。+ 安裝完成後，複製憑證檔案 _/opt/netapp/lib/ontap++_++mediator/ontap++_++mediator/server++_++config/intermediate.crt_ 的內容。
+
+在 ONTAP 叢集中設定 Mediator：
+
+. 登入 ONTAP System Manager，導覽至「Protection」->「Overview」，然後選擇「Add a mediator」 image:hana-sc-vmfs-asar2-smas-image-021.png["影像"]
+. 提供先前安裝的中介器資訊。將憑證檔案的內容貼到憑證區段。按下新增。image:hana-sc-vmfs-asar2-smas-image-022.png["影像"]
+. ONTAP Mediator 已成功新增。image:hana-sc-vmfs-asar2-smas-image-023.png["影像"]
+

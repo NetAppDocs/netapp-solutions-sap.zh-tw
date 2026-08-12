@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-smas-sc-br-syscopy.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, system copy 
+summary:  
+---
+= SnapCenter 備份與恢復和 SAP HANA 系統複製
+:allow-uri-read: 
+
+
+
+
+[[snapcenter-backup-recovery-and-sap-hana-system-copy]]
+== SnapCenter 備份與恢復和 SAP HANA 系統複製
+
+[role="lead"]
+NetApp SnapCenter 優化 SAP HANA 生命週期任務，如備份與恢復和 SAP HANA 系統複製，並整合到 SAP HANA 資料庫和生命週期管理工具中，將高效的應用程式整合式資料保護與 SAP 測試系統的靈活佈建相結合，如下圖所示。
+
+image:hana-sc-vmfs-asar2-smas-image-080.png["此圖顯示輸入 / 輸出對話方塊或表示寫入內容"]
+
+本章提供有關 SnapCenter 備份與恢復及 SAP HANA 系統複製作業的更多資訊的查找位置。
+
+
+
+[[backup-operations]]
+=== 備份作業
+
+備份操作的執行方式與 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-backup-operations.html["在SnapCenter中了解 SAP HANA 快照的備份作業"]中所述相同。
+
+
+
+[[restore-and-recovery]]
+=== 還原與還原
+
+還原與恢復作業的執行方式與所述相同 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-restore.html["使用SnapCenter恢復 SAP HANA 資料庫"]。
+
+
+
+[[sap-system-refresh]]
+=== SAP 系統更新
+
+有關使用 SnapCenter 進行 SAP 系統重新整理和複製作業的更多詳細資訊，請參閱 https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["利用SnapCenter 功能實現SAP HANA系統複製與複製作業自動化"]。

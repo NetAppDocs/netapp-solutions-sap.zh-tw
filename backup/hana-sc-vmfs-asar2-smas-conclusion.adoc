@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-smas-conclusion.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery, SnapMirror active sync, symmetric active-active, NetApp ASA R2 
+summary:  
+---
+= 結論
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+[[conclusion]]
+== *結論*
+
+[role="lead"]
+本文件中所述的部署示範如何使用基於 NetApp ASA、ONTAP、SnapMirror active sync 和 SnapCenter 的高可用度、應用程式一致且營運高效的資料保護架構來保護在 VMware 上執行的 SAP HANA 工作負載。
+
+透過使用 SnapMirror 作用中同步與 ONTAP 一致性群組，SAP HANA 儲存設備 Volume 可以在兩個 ONTAP 叢集之間同步複寫，同時保持資料庫資料、日誌及共享 Volume 的寫入順序一致性。這種設計能夠持續存取儲存資源，並在發生儲存設備或站台層級故障事件時支援自動容錯移轉功能。ONTAP Mediator 的整合進一步強化了此解決方案，支援在故障情境下進行自動決策。
+
+SnapCenter 為 SAP HANA 備份與還原作業增加了必要的應用程式感知能力。透過與 SAP HANA 整合的 Snapshot 快照技術備份，SnapCenter 能夠實現快速、極具空間效率且一致的備份，同時簡化排程、保留、監控和複寫工作流程。結合額外的非同步複寫，此解決方案還可在二線系統位置提供更長的備份保留期限及額外的恢復階層。
+
+總體而言，此架構為保護業務關鍵型 SAP HANA 系統提供了強大的基礎。它將高可用度、同步複寫、應用程式一致性備份和簡化的作業管理整合至單一整合解決方案中。採用此方案的組織可以提升服務可用度、縮短恢復時間、強化資料保護，並簡化在 VMware 上搭配 NetApp 儲存設備執行的 SAP HANA 環境管理。

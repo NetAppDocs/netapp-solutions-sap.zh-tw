@@ -1,0 +1,135 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-smas-sc_config.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery, SnapMirror active sync, symmetric active-active, NetApp ASA R2 
+summary:  
+---
+= SnapCenter 組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+[[snapcenter-configuration]]
+== SnapCenter 組態
+
+[role="lead"]
+本章介紹如何設定 SnapCenter 以進行 SAP HANA 備份：
+
+* 將 NetApp ASA 儲存叢集新增至 SnapCenter
+* 建立 SAP HANA 備份原則
+* 為 SnapCenter 建立資料庫使用者
+* 在 SnapCenter 註冊 SAP HANA 主機
+* 在 SnapCenter 設定 SAP HANA 執行個體
+
+
+
+
+[[add-storage-clusters-to-snapcenter]]
+=== 將儲存叢集新增至 SnapCenter
+
+將 NetApp ASA 儲存叢集新增至 SnapCenter。
+
+
+NOTE: 管理與監控 SnapMirror active sync 需要 REST API 存取。因此，必須將 SnapCenter 設定為使用 REST API 進行儲存設備通訊。組態檔案 + C:++\++Program Files++\++NetApp++\++SMCore++\++SMCoreServiceHost.dll.config 中的參數「IsRestEnabledForStorageConnection」必須設定為 true：+ _++<++add key="IsRestEnabledForStorageConnection" value="true"++>++_
+
+. 登入 SnapCenter 圖形使用者介面。+ image:hana-sc-vmfs-asar2-smas-image-044.jpeg["影像"]
+. 在左側選單中選擇「儲存系統」。+ image:hana-sc-vmfs-asar2-smas-image-045.png["影像"]
+. 選擇「ONTAP Clusters」作為類型 + image:hana-sc-vmfs-asar2-smas-image-046.png["影像"]
+. 按下「New」新增您的儲存系統 + image:hana-sc-vmfs-asar2-smas-image-047.png["影像"]
+. 請提供您的系統連線詳情，然後點擊「提交」。+ image:hana-sc-vmfs-asar2-smas-image-048.png["影像"]
+. 儲存系統已成功新增。+ image:hana-sc-vmfs-asar2-smas-image-049.png["影像"]
+
+
+
+NOTE: 即使叢集已整體新增，所有受管理的 SVM 也需要指派一個管理 IP 位址。否則，不同的工作流程將會失敗。
+
+
+
+[[add-vmware-plugin-to-snapcenter]]
+=== 將 VMware 外掛程式加入SnapCenter
+
+在將主機新增至 SnapCenter 之前， VMware vSphere 的 SnapCenter 外掛程式必須部署在 VMware 環境中。另請參閱 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_deploy_snapcenter_plug-in_for_vmware_vsphere.html["部署SnapCenter VMware vSphere的VMware vCenter外掛程式"]。
+
+注意：認證資料必須在主機新增工作流程中設定，其中 vSphere 可選擇作為主機類型。
+
+image:hana-sc-vmfs-asar2-smas-image-050.png["說明所討論內容的圖表，width=604,height=307"]
+
+
+
+[[create-sap-hana-backup-policies]]
+=== 建立 SAP HANA 備份原則
+
+本章介紹如何使用 SMas 為 SAP HANA 定義備份原則，以實現同步複寫，並使用 SnapVault/SnapMirror 進行備份。
+
+. 在左側選單中選擇「Settings」，然後選擇「Policies」標籤。點選「加號」以新增原則 image:hana-sc-vmfs-asar2-smas-image-051.png["影像"]
+. 請為新原則命名，例如 SMAS HANA – Hourly，並可視需要新增詳細資訊。按「Next」繼續。image:hana-sc-vmfs-asar2-smas-image-052.png["影像"]
+. 保持預設設定，然後按「下一步」繼續。image:hana-sc-vmfs-asar2-smas-image-053.png["影像"]
+. 選擇「每小時」作為排程頻率，設定要保留的 Snapshot 複本數量或時間，並選擇「建立本機 Snapshot 複本後更新 SnapMirror」，這樣 SnapCenter 也可以在 SMaS 目的地探索 Snapshot 複本。按「下一步」。image:hana-sc-vmfs-asar2-smas-image-054.png["影像"]
+. 檢查摘要並按完成鍵以建立新原則。image:hana-sc-vmfs-asar2-smas-image-055.png["影像"]
+. 在建立 SnapMirror Active Sync 複寫的每小時原則後，使用 SnapVault 建立額外的每日備份複寫原則。image:hana-sc-vmfs-asar2-smas-image-056.png["影像"]
+. 請為新原則命名，例如 SMAS HANA – Daily，並可視需要新增詳細資訊。按「下一步」繼續。image:hana-sc-vmfs-asar2-smas-image-057.png["影像"]
+. 保持預設設定，然後按「下一步」繼續。image:hana-sc-vmfs-asar2-smas-image-053.png["影像"]
+. 選擇「每日」作為排程頻率，並定義 Snapshot 複本的保留數量或時間。選擇「建立本機 Snapshot 複本後更新 SnapVault」。按「下一步」繼續。image:hana-sc-vmfs-asar2-smas-image-058.png["影像"]
+. 查看摘要並按完成鍵image:hana-sc-vmfs-asar2-smas-image-059.png["影像"]
+. 已定義每日和每小時備份原則。如有需要，可建立具有不同排程類型的其他原則。image:hana-sc-vmfs-asar2-smas-image-060.png["影像"]
+
+
+
+
+[[create-snapcenter-user-at-sap-hana-instance]]
+=== 在 SAP HANA 執行個體上建立 SnapCenter 使用者
+
+SnapCenter 需要與 SAP HANA 執行個體通訊，才能建立一致的備份。因此，需要在資料庫中為 SnapCenter 建立使用者：
+
+. 登入伺服器 shell 並切換到使用者 SIDadm。+ 並連接到 SAP HANA 系統的 systemdb：+ _hdbsql -i ++<++instance++_++number++>++ -d SYSTEMDB -u SYSTEM_
+. 建立使用者並指派 BACKUP ADMIN、CATALOG READ、DATABASE BACKUPADMIN 和 DATABASE RECOVERY OPERATOR 權限： + + __CREATE USER SNAPCENTER PASSWORD "++<++InitialPassword++>++" + NO FORCE++_++FIRST++_++PASSWORD++_++CHANGE; + ALTER USER SNAPCENTER2 DISABLE PASSWORD LIFETIME; + GRANT BACKUP ADMIN TO SNAPCENTER; + GRANT CATALOG READ TO SNAPCENTER; + GRANT DATABASE BACKUP ADMIN TO SNAPCENTER; + GRANT DATABASE RECOVERY OPERATOR TO SNAPCENTER;__
+. SnapCenter 的使用者已成功建立。
+. 建立 hdbuserstore 金鑰 + 登入伺服器 shell 並切換到使用者 SIDadm。+ 執行下列命令建立 SnapCenter 稍後使用的金鑰： + _hdbuserstore set ++<++SIDKEY++>++ ++<++hana-server++>++:3++<++instance-number++>++13 ++<++USER++>++ ++<++password++>++_
+
+
+
+
+[[register-sap-hana-instance-at-snapcenter]]
+=== 在 SnapCenter 註冊 SAP HANA 執行個體
+
+一旦為 SnapCenter 建立資料庫使用者後，SAP HANA 執行個體將會新增至 SnapCenter。
+
+. 透過 SnapCenter 圖形使用者介面登入 + image:hana-sc-vmfs-asar2-smas-image-061.png["影像"]
+. 在側邊選單中選擇「Hosts」，然後按一下「Add」按鈕（加號）。+ image:hana-sc-vmfs-asar2-smas-image-062.png["影像"]
+. 選擇「Linux」作為「主機類型」，提供主機的主機名稱或 IP 位址以及 SAP HANA 系統的 SID。選擇已有的認證資料，或按一下「認證資料」旁的加號建立新認證資料。選擇「SAP HANA」作為要安裝的外掛程式。+ image:hana-sc-vmfs-asar2-smas-image-063.png["影像"]
++
+.. 如果要建立新認證資料，請提供所需資訊並按「確定」。image:hana-sc-vmfs-asar2-smas-image-064.png["影像"]
+.. 選擇認證資料後，按「提交」。
+
+
+. 請檢查指紋，然後點選「確認並提交」按鈕。+ image:hana-sc-vmfs-asar2-smas-image-065.png["影像"]
+. 主機已成功新增至 SnapCenter。+ image:hana-sc-vmfs-asar2-smas-image-066.png["影像"]
+
+
+
+
+[[configuring-of-sap-hana-instance-at-snapcenter]]
+=== 在 SnapCenter 設定 SAP HANA 執行個體
+
+將資料庫主機新增至 SnapCenter 後，即可設定 SAP HANA 執行個體的備份。
+
+. 在左側選單中選擇資源，然後選擇 SAP HANA 作為 Resource + image:hana-sc-vmfs-asar2-smas-image-067.png["影像"]
+. 將檢視變更為您的系統類型，例如「Multitenant Database Container」，然後按一下您的資料庫所在行 + image:hana-sc-vmfs-asar2-smas-image-068.png["影像"]
+. 輸入先前建立的 HDB Secure User Store 金鑰，然後按「確定」。+ image:hana-sc-vmfs-asar2-smas-image-069.png["影像"]
+. 定義您所需的 Snapshot 複本名稱，然後按「下一步」。+ image:hana-sc-vmfs-asar2-smas-image-070.png["影像"]
+. 按「Next」，對於自動探索的系統，通常無需進行任何設定。image:hana-sc-vmfs-asar2-smas-image-071.png["影像"]
+. 選擇或建立並選擇您所需的原則，例如一個每日原則和一個每小時原則。按加號以設定排程 + image:hana-sc-vmfs-asar2-smas-image-072.png["影像"]
+. 設定每日原則的開始資料和時間以及到期日期（可選），然後按確定。+ image:hana-sc-vmfs-asar2-smas-image-073.png["影像"]
+. 點選加號以設定每小時原則。+ image:hana-sc-vmfs-asar2-smas-image-074.png["影像"]
+. 設定每小時原則的開始資料和時間及到期日期（選用），然後按「確定」+image:hana-sc-vmfs-asar2-smas-image-075.png["影像"]
+. 按「下一步」繼續 + image:hana-sc-vmfs-asar2-smas-image-076.png["影像"]
+. 根據需要設定通知，然後按「下一步」，+image:hana-sc-vmfs-asar2-smas-image-077.png["影像"]
+. 查看設定總結，然後點選「完成」。+ image:hana-sc-vmfs-asar2-smas-image-078.png["影像"]
+. 備份成功完成後，您將看到現有備份的總覽。+ image:hana-sc-vmfs-asar2-smas-image-079.png["影像"]
+

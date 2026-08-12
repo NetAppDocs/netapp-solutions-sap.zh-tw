@@ -16,6 +16,8 @@ indexpage:
       url: bp/hana-fas-nfs-introduction.html
     - title: 採用光纖通道傳輸協定的 NetApp FAS 系統上的 SAP HANA 組態指南
       url: bp/hana-fas-fc-introduction.html
+    - title: SAP HANA 與 SUSE KVM 和NetApp存儲
+      url: "/bp/kvm-hana-introduction.html"
   - title: SAP HANA 內部部署
     links:
     - title: 在裸機伺服器和 NetApp ASA 系統上執行 SnapCenter 的 SAP HANA 資料保護
@@ -25,6 +27,9 @@ indexpage:
       url: backup/hana-sc-vmware-smas-scope.html
     - title: 使用 VMware VMFS 和NetApp ASA系統的SnapCenter進行 SAP HANA 資料保護
       url: backup/hana-sc-vmfs-asar2-scope.html
+    - title: 在 NetApp ASA R2 上使用 VMware VMFS 與 SnapMirror 作用中同步並透過 SnapCenter 進行 SAP
+        HANA 資料保護
+      url: "/backup/hana-sc-vmfs-asar2-smas-introduction.html"
     - title: SAP HANA災難恢復與儲存複寫
       url: backup/hana-dr-sr-pdf-link.html
     - title: SAP HANA系統使用LSC和SnapCenter 功能更新

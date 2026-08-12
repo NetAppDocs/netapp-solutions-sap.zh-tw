@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: briefs/saphana-backup_pdf_link.html 
-keywords: sb-3965, sap, SAP HANA, Backup & Recovery 
+keywords: sb-3965, sap, SAP HANA, Backup and Recovery 
 summary: 本文檔重點介紹 SAP HANA 的備份和復原。 
 ---
 = SB-3965：SAP HANA 的備份與復原

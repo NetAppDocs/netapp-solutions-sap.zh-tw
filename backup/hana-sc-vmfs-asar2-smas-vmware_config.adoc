@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-smas-vmware_config.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery, SnapMirror active sync, symmetric active-active, NetApp ASA R2 
+summary:  
+---
+= VMware 組態資料存放區與虛擬機器建立
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+[[vmware-configuration-datastore-and-vm-creation]]
+== VMware 組態資料存放區與虛擬機器建立
+
+[role="lead"]
+使用先前為 SAP HANA 虛擬機器建立的 LUN 建立資料存放區，然後使用這些資料存放區建立虛擬機器。
+
+每個 LUN 將用於一個資料存放區，因此將建立用於資料、日誌、共享的和作業系統的資料存放區。
+
+
+
+[[datastore-creation]]
+=== 建立資料存放區
+
+. 登入 vSphere 用戶端並導覽至資料存放區索引標籤。從資料中心的內容功能表中選擇「Storage」-++>++ 「New Datastore……」 image:hana-sc-vmfs-asar2-smas-image-024.png["影像"]
+. 選取 "VMFS" 作為資料儲存類型。+ image:hana-sc-vmfs-asar2-smas-image-025.png["影像"]
+. 指定包含 SAP HANA 資料檔案的資料存放區名稱，並選擇先前建立的儲存單元 (LUN)。+ image:hana-sc-vmfs-asar2-smas-image-026.png["影像"]
+. 選擇最新的 VMFS 版本。+ image:hana-sc-vmfs-asar2-smas-image-027.png["影像"]
+. 使用分區的所有可用空間。保留預設設定。+ image:hana-sc-vmfs-asar2-smas-image-028.png["影像"]
+. 查看總結並點選「完成」。+ image:hana-sc-vmfs-asar2-smas-image-029.png["影像"]
+. 對日誌、共享的和作業系統的資料存放區重複上述步驟。+ image:hana-sc-vmfs-asar2-smas-image-030.png["影像"]
+
+
+
+
+[[vm-creation]]
+=== 建立虛擬機器
+
+. 所有資料儲存建立完成後，導覽至「虛擬機器和範本」標籤。從資料中心的上下文選單中選擇「新虛擬機器……」。+ image:hana-sc-vmfs-asar2-smas-image-031.png["影像"]
+. 選擇建立虛擬機器的方式。本範例使用「建立新虛擬機器」工作流程。+ image:hana-sc-vmfs-asar2-smas-image-032.png["影像"]
+. 請提供虛擬機器名稱並選擇您的資料中心。+ image:hana-sc-vmfs-asar2-smas-image-033.png["影像"]
+. 選擇您的運算硬體 + image:hana-sc-vmfs-asar2-smas-image-034.png["影像"]
+. 選擇先前建立的作業系統資料儲存。+ image:hana-sc-vmfs-asar2-smas-image-035.png["影像"]
+. 選擇所需的虛擬機器。+ image:hana-sc-vmfs-asar2-smas-image-036.png["影像"]
+. 選擇 SAP HANA 系統所使用的作業系統版本。本範例使用 SUSE Linux Enterprise (SLES) 15。+ image:hana-sc-vmfs-asar2-smas-image-037.png["影像"]
+. 配置虛擬機器所需的 CPU 和記憶體。除了作業系統的硬碟之外，請使用先前建立的資料儲存區新增額外的磁碟，用於資料、日誌和共享的儲存設備。+ image:hana-sc-vmfs-asar2-smas-image-038.png["影像"]
+. 將作業系統安裝所需的 ISO 檔案作為 DVD 磁碟機掛載，並勾選「開機時連接」。+ image:hana-sc-vmfs-asar2-smas-image-039.png["影像"]
+. 在「進階參數」標籤中，新增屬性「disk.EnableUUID」，並將其值設為「True」。這樣可以讓 SnapCenter 稍後探索磁碟詳細資訊。+ image:hana-sc-vmfs-asar2-smas-image-040.png["影像"]
+. 檢查您的設定，然後按「完成」以建立新的虛擬機器。+ image:hana-sc-vmfs-asar2-smas-image-041.png["影像"]
+. 啟動新虛擬機器。+ image:hana-sc-vmfs-asar2-smas-image-042.png["影像"]
+. 連接到控制台並按照 SAP 指南安裝作業系統。+ image:hana-sc-vmfs-asar2-smas-image-043.png["影像"]
+. 作業系統安裝後，再安裝 SAP HANA 系統。使用專用磁碟存放 /hana/data、/hana/log 和 /hana/shared 目錄。
+

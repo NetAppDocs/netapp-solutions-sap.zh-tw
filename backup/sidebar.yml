@@ -125,6 +125,23 @@ entries:
     url: "/backup/hana-sc-vmfs-asar2sap-refresh.html"
   - title: 其他資訊和版本歷程記錄
     url: "/backup/hana-sc-vmfs-asar2-add-info.html"
+- title: 在 NetApp ASA R2 上使用 VMware VMFS 與 SnapMirror 作用中同步並透過 SnapCenter 進行 SAP HANA
+    資料保護
+  entries:
+  - title: 簡介
+    url: "/backup/hana-sc-vmfs-asar2-smas-introduction.html"
+  - title: 設定 ONTAP ASA R2 系統
+    url: "/backup/hana-sc-vmfs-asar2-smas-config_asar2.html"
+  - title: VMware 組態 - 資料存放區與虛擬機器建立
+    url: "/backup/hana-sc-vmfs-asar2-smas-vmware_config.html"
+  - title: 組態SnapCenter
+    url: "/backup/hana-sc-vmfs-asar2-smas-sc_config.html"
+  - title: SnapCenter 備份與恢復和 SAP HANA 系統複製
+    url: "/backup/hana-sc-vmfs-asar2-smas-sc-br-syscopy.html"
+  - title: 結論
+    url: "/backup/hana-sc-vmfs-asar2-smas-conclusion.html"
+  - title: 其他資訊
+    url: "/backup/hana-sc-vmfs-asar2-smas-add_info.html"
 - title: SAP HANA系統複寫利用SnapCenter 功能進行備份與還原
   entries:
   - title: SAP HANA系統複寫總覽

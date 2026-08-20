@@ -6228,4 +6228,9 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="e7fce6efbbfa47cad3d6d62bbaf91452" category="paragraph">新解決方案 <block ref="ddc486d09dd6bdaddbb379506389ee5b" category="inline-link-rx"></block>。本文件概述了在 VMware 上執行的 HANA 系統，使用 SnapCenter 進行資料保護的最佳實務，這些系統使用 VMFS 的資料存放區，以及儲存在使用 SnapMirror 作用中同步的 NetApp ASAr2 系統上的 LUN。</block>
   <block id="ee5bad12c036fd3375e857e834c5b014" category="paragraph">新解決方案<block ref="5d63f7ef6c292c23c51e2512d87ed65d" category="inline-link-rx"></block>提供使用 NetApp SnapCenter 進行 SAP HANA 資料保護的最佳實務，涵蓋在 ONTAP ASA 系統上使用裸機伺服器保護 SAP HANA 系統的 SnapCenter 組態與操作指南。</block>
   <block id="33213c577fd73208a57eaf90c9296037" category="sidebar">VMware 組態 - 資料存放區與虛擬機器建立</block>
+  <block id="64500d2f1eb952270058fcdc56fc55cb" category="section-title">適用於 NAS 的 SnapMirror active sync</block>
+  <block id="6213cd9f309a0bac74202500f3d95388" category="paragraph">NetApp SnapMirror 透過 NFSv4.1 實現 NAS 與 SAP HANA 的作用中同步，是基於兩個 ONTAP 叢集之間的 SVM 鏡射。此架構同步複寫 NAS 資料和相關的 SVM 組態，為關鍵業務 SAP HANA 工作負載提供持續可用度和零 RPO 保護。</block>
+  <block id="a4c2f2f16b272c4054a8e3cd554f5fa0" category="paragraph">透過使用 SVM 複寫，關鍵的 NAS 元件（例如磁碟區、邏輯介面、匯出原則、NFS 設定和存取組態）會鏡射至輔助站台。這降低了維運複雜性，並使輔助環境能夠在主要站台或儲存系統無法使用時快速接管。</block>
+  <block id="334c73889c7cb1cdbc6f31b27820c9a9" category="paragraph">ONTAP Mediator 會監控參與的 ONTAP 系統，並在發生故障的情況下支援仲裁決策。它有助於防止裂腦情況，並啟用受控的容錯移轉行為。結合在一起，適用於 NAS 的 SnapMirror active sync 與 ONTAP Mediator 可為需要高可用度、同步複寫和強大恢復目標的 SAP HANA 環境，提供具有恢復能力的儲存基礎。</block>
+  <block id="201a54a995825f338ef39a67ad865244" category="paragraph"><block ref="201a54a995825f338ef39a67ad865244" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

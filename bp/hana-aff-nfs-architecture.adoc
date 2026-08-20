@@ -96,6 +96,18 @@ image:saphana_aff_nfs_image7b.png["NetApp SnapMirror"]
 
 
 
+==== 適用於 NAS 的 SnapMirror active sync
+
+NetApp SnapMirror 透過 NFSv4.1 實現 NAS 與 SAP HANA 的作用中同步，是基於兩個 ONTAP 叢集之間的 SVM 鏡射。此架構同步複寫 NAS 資料和相關的 SVM 組態，為關鍵業務 SAP HANA 工作負載提供持續可用度和零 RPO 保護。
+
+透過使用 SVM 複寫，關鍵的 NAS 元件（例如磁碟區、邏輯介面、匯出原則、NFS 設定和存取組態）會鏡射至輔助站台。這降低了維運複雜性，並使輔助環境能夠在主要站台或儲存系統無法使用時快速接管。
+
+ONTAP Mediator 會監控參與的 ONTAP 系統，並在發生故障的情況下支援仲裁決策。它有助於防止裂腦情況，並啟用受控的容錯移轉行為。結合在一起，適用於 NAS 的 SnapMirror active sync 與 ONTAP Mediator 可為需要高可用度、同步複寫和強大恢復目標的 SAP HANA 環境，提供具有恢復能力的儲存基礎。
+
+image:saphana_aff_nfs_image6.png["NetApp SnapMirror 作用中同步"]
+
+
+
 [[storage-replication-based-on-metrocluster]]
 === 儲存複寫功能以MetroCluster 功能為基礎
 

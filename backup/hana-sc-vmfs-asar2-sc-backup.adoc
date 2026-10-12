@@ -13,6 +13,7 @@ summary:
 :imagesdir: ../media/
 
 
+[role="lead"]
 對於具有 VMFS 的 VMware 來說沒有什麼特別之處。
 
 image:sc-hana-asrr2-vmfs-image18.png["圖示範所討論的內容"]

@@ -13,6 +13,9 @@ summary: 本文檔重點介紹 SAP HANA 的災難復原。
 :imagesdir: ../media/
 
 
+[role="lead"]
+利用 NetApp 產品組合的技術與工具，建立或調整災難恢復計畫，以確保關鍵任務 SAP HANA 應用程式的可用性。
+
 
 
 [[the-challenge]]

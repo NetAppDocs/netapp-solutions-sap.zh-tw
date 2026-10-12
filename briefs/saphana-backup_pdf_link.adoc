@@ -13,6 +13,9 @@ summary: 本文檔重點介紹 SAP HANA 的備份和復原。
 :imagesdir: ../media/
 
 
+[role="lead"]
+使用 NetApp ONTAP 儲存設備、Snapshot 快照技術和 SnapCenter software，可以在幾秒鐘內備份和還原任何大小的 SAP HANA 資料庫，而不會影響生產效能。
+
 
 
 [[the-challenge]]

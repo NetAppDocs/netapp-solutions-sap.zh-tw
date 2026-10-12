@@ -8,6 +8,7 @@ summary:
 :allow-uri-read: 
 
 
+[role="lead"]
 對於儲存在 VMFS/VMDK 的SnapCenter上的虛擬資源，復原作業始終透過複製、掛載、複製作業完成。
 
 . SnapCenter根據所選快照建立儲存克隆

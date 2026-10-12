@@ -13,6 +13,7 @@ summary:
 :imagesdir: ../media/
 
 
+[role="lead"]
 下圖簡要概述了所使用的實驗室設置。我們使用兩個單主機 HANA MDC 系統來示範各種操作。 HANA系統 VFS 用於執行備份、還原和復原作業，而 HANA 系統 QFS 則用作 SAP 系統刷新作業的目標系統。 SnapCenterfor VMwareSnapCenter對於SnapCenter管理配置了 VMware VMFS 的 HANA 資源至關重要。雖然使用了ONTAP for VMware 工具來為 HANA 系統配置儲存單元，但它們並非必要元件。
 
 image:sc-hana-asrr2-vmfs-image1.png["圖示範所討論的內容"]

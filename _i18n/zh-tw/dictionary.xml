@@ -6233,4 +6233,9 @@ NFS 修改 -vserver hana -v4.x-Session-num-stholds &lt;value&gt;
   <block id="a4c2f2f16b272c4054a8e3cd554f5fa0" category="paragraph">透過使用 SVM 複寫，關鍵的 NAS 元件（例如磁碟區、邏輯介面、匯出原則、NFS 設定和存取組態）會鏡射至輔助站台。這降低了維運複雜性，並使輔助環境能夠在主要站台或儲存系統無法使用時快速接管。</block>
   <block id="334c73889c7cb1cdbc6f31b27820c9a9" category="paragraph">ONTAP Mediator 會監控參與的 ONTAP 系統，並在發生故障的情況下支援仲裁決策。它有助於防止裂腦情況，並啟用受控的容錯移轉行為。結合在一起，適用於 NAS 的 SnapMirror active sync 與 ONTAP Mediator 可為需要高可用度、同步複寫和強大恢復目標的 SAP HANA 環境，提供具有恢復能力的儲存基礎。</block>
   <block id="201a54a995825f338ef39a67ad865244" category="paragraph"><block ref="201a54a995825f338ef39a67ad865244" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4b516344ad0bee38d9cb77420d3090f1" category="paragraph">尋找相關的 SAP HANA、SnapCenter 與 NetApp 文件的連結，並審查此解決方案的版本歷史記錄。</block>
+  <block id="d86efceb79b2224e96602b9a52811721" category="paragraph">設定 SAP HANA 資料庫使用者和 SnapCenter 用於與 HANA 系統通訊的 hdb userstore 金鑰。</block>
+  <block id="2d56321b4b08c798784701897164d4a4" category="paragraph">審查先決條件並設定 SnapCenter 以保護使用 VMware VMFS 資料儲存的 SAP HANA 系統。</block>
+  <block id="07112221fd2661fd0e95645b350bce7c" category="paragraph">使用 NetApp ONTAP 儲存設備、Snapshot 快照技術和 SnapCenter software，可以在幾秒鐘內備份和還原任何大小的 SAP HANA 資料庫，而不會影響生產效能。</block>
+  <block id="9418552ef4445215e623a2257da09813" category="paragraph">利用 NetApp 產品組合的技術與工具，建立或調整災難恢復計畫，以確保關鍵任務 SAP HANA 應用程式的可用性。</block>
 </blocks>

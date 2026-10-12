@@ -13,6 +13,9 @@ summary:
 :imagesdir: ../media/
 
 
+[role="lead"]
+設定 SAP HANA 資料庫使用者和 SnapCenter 用於與 HANA 系統通訊的 hdb userstore 金鑰。
+
 
 
 [[configure-snapcenter-database-user]]

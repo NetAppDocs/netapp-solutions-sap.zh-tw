@@ -13,6 +13,9 @@ summary:
 :imagesdir: ../media/
 
 
+[role="lead"]
+審查先決條件並設定 SnapCenter 以保護使用 VMware VMFS 資料儲存的 SAP HANA 系統。
+
 
 
 [[pre-requisites]]
